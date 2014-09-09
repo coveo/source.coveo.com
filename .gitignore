@@ -1,2 +1,6 @@
 _site/
 .DS_Store
+.sass-cache
+coveo-blog.iml
+*.lock
+.idea

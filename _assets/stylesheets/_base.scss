@@ -9,6 +9,17 @@ body {
     font-size:17px;
 }
 
+body:before {
+    content: "";
+    position: absolute;
+    background: #F5862C;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 5px;
+    z-index: 9999;
+}
+
 .is-visible {
     
     .site-nav {
@@ -90,10 +101,9 @@ a {
 
 .blog-cover {
     @extend .article-cover;
-    height: 320px;
+    height: 380px;
     background-color:#111;
     background-size:cover;
-    background-position:center center;
     z-index:1;
 
     section {
