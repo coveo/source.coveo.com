@@ -2160,7 +2160,7 @@ a:hover {
 }
 
 .blog-cover section {
-    text-align: center;
+    text-align: right;
     position: absolute;
     left: 0;
     right: 0;
@@ -2173,7 +2173,7 @@ a:hover {
     background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
     background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(0, 0, 0, 0.15)), color-stop(1, transparent));
-    padding: 100px 0;
+    padding: 100px 20px;
     z-index: 10
 }
 
