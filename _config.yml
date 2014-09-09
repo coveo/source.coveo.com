@@ -10,7 +10,7 @@ inc:
   url:          http://www.coveo.com/
   #facebook:     sendtoinc
   twitter:      coveoquebec
-  gplus:        '101183822199340201470'
+  #gplus:        '101183822199340201470'
 
   # Comments
   disqus:
@@ -39,7 +39,6 @@ inc:
 url:         http://source.coveo.com
 source:      .
 destination: ./_site
-plugins:     ./_plugins
 layouts:     ./_layouts
 include:     ['.htaccess']
 exclude:     []
@@ -49,7 +48,7 @@ timezone:    nil
 future:      false
 show_drafts: nil
 limit_posts: 0
-pygments:    true
+highlighter: pygments
 
 relative_permalinks: true
 
@@ -93,21 +92,3 @@ kramdown:
 
 redcloth:
   hard_breaks: true
-
-#
-# jekyll-assets: see more at https://github.com/ixti/jekyll-assets
-#
-assets:
-
-  dirname: assets
-  baseurl: /assets/
-  sources:
-    - _assets/javascripts
-    - _assets/stylesheets
-    - _assets/images
-  js_compressor: uglifier
-  css_compressor: sass
-  cachebust: none
-  cache: false
-  gzip: [ text/css, application/javascript ]
-  debug: false
