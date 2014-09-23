@@ -72,14 +72,14 @@ Here are some more examples on how `assertThat` can help you.
 
 ### Another cleaner error message
 
-#### The test
+*The test*
 
     // Before
     assertTrue(company.getEmployees().isEmpty());
     // After
     assertThat(company.getEmployees()).isEmpty());
 
-#### The assertion message
+*The assertion message*
 
     // Before (yes, that's all it says!)
     java.lang.AssertionError
@@ -88,7 +88,7 @@ Here are some more examples on how `assertThat` can help you.
 
 ### Code that reads more like english
 
-#### The test
+*The test*
 
     // Before
     assertFalse(company.isHiring());
@@ -97,14 +97,14 @@ Here are some more examples on how `assertThat` can help you.
 
 ### Powerful assertions
 
-#### The test
+*The test*
 
     // Before
     assertTrue(company instanceof Company);
     // After
     assertThat(company).isInstanceOf(Company.class);
    
-#### The assertion message
+*The assertion message*
 
     // Before
     java.lang.AssertionError
