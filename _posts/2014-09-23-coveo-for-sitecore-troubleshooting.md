@@ -36,7 +36,7 @@ The first blocking issue you could meet is directly in the Sitecore Indexing Ma
 
 Now, what can go wrong with it? Well if you are using Coveo for Sitecore with a Coveo instance that you have been using with other connectors, you might have not installed the Coveo Admin Service in the first place. It is not installed by default with the Coveo Enterprise Search Installation Wizard, you need to choose the Custom Install path and make sure that it is selected.
 
-![](http://onlinehelp.coveo.com/resources/Image.ashx?img=CESInstWS2012-InstallingFoldersAdminService2.png&amp;PID=3&amp;SID=1&amp;p=CES&amp;lang=en&amp;v=7.0)
+![](http://onlinehelp.coveo.com/resources/Image.ashx?img=CESInstWS2012-InstallingFoldersAdminService2.png&PID=3&SID=1&p=CES&lang=en&v=7.0)
 
 The other common issue is with the https certificate. If you are using a restrictive certificate imposing an instance name, then the default local host will not pass the validation step. Simply change the <span style="color: gray;">&lt;AdminServiceUri&gt;</span> value from <span style="color: gray;">localhost/AdminService</span> to <span style="color: gray;">[qualified name]/AdminService</span> in the <span style="color: gray;">Coveo.SearchProvider.config</span>.
 
