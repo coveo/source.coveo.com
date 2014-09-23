@@ -2434,10 +2434,6 @@ article {
     font-size: 18px
 }
 
-article .container > header, article .container > section, article .container > footer {
-    margin: 0 8em
-}
-
 article .social {
     height: 40px;
     padding: 10px 0
