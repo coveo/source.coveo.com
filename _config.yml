@@ -1,7 +1,7 @@
 inc:
   # Blog Information
-  title:        "Coveo Source"
-  subtitle:     "What should I put here?"
+  title:        "Source @ Coveo"
+  subtitle:     "A technical blog by the fine people at Coveo"
   cover_image:  blog-cover.jpg
   logo:         logo.png
   
