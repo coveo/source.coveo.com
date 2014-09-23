@@ -71,33 +71,41 @@ This is much better! Now we know that we expected a collection with size 2 but t
 Here are some more examples on how `assertThat` can help you.
 
 ### Another cleaner error message
+
 #### The test
+
     // Before
     assertTrue(company.getEmployees().isEmpty());
     // After
     assertThat(company.getEmployees()).isEmpty());
 
 #### The assertion message
+
     // Before (yes, that's all it says!)
     java.lang.AssertionError
     // After
     java.lang.AssertionError: expecting empty, but was:<['John']>
 
 ### Code that reads more like english
+
 #### The test
+
     // Before
     assertFalse(company.isHiring());
     // After
     assertThat(company.isHiring()).isFalse();
 
 ### Powerful assertions
+
 #### The test
+
     // Before
     assertTrue(company instanceof Company);
     // After
     assertThat(company).isInstanceOf(Company.class);
    
 #### The assertion message
+
     // Before
     java.lang.AssertionError
     // After
