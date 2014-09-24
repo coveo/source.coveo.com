@@ -65,7 +65,7 @@ excerpt_separator: "<!-- more -->"
 safe:        false
 host:        0.0.0.0
 port:        4000
-baseurl:     http://coveo.github.io #Switch to source.coveo.com once the DNS is setup
+baseurl:     http://source.coveo.com
 lsi:         false
 
 rdiscount:
