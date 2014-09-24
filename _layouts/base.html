@@ -29,19 +29,31 @@
     <meta property="og:site_name" content="{{ site.inc.title }}">     
 </head>
 <body>
-    
+
 <section class="site-nav">
     <header>
-        <nav id="navigation">
-            <a class="brand" href="{{ site.inc.url }}">
-                <img src="{{ site.baseurl }}/images/{{ site.inc.logo }}" alt="Inc">
-            </a>
-            <a href="{{ site.baseurl }}" class="home">Blog</a>
-            <a href="https://answers.coveo.com">Answers</a>
-            <a href="https://developers.coveo.com">Documentation</a>
-        </nav>
+        <div class="container">
+            <div id="logo">
+    		    <a href="/">
+    			    <img src="{{ site.baseurl }}/images/{{ site.inc.logo }}" title="back to home page" alt="Coveo Source Blog">
+    		    </a>
+    	    </div>
+            <nav id="navigation">
+                <div class="selectBox">
+                    <span class="selected">Blog</span>
+                    <span class="selectArrow"></span>
+                    <div class="selectOptions">
+                        <span class="selectOption" value="http://answers.coveo.com">Answers</span>
+                        <span class="selectOption" value="http://onlinehelp.coveo.com">Online Help</span>
+                        <span class="selectOption" value="http://api.developers.coveo.com">API Reference</span>
+                        <span class="selectOption" value="http://www.coveo.com">Coveo.com</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 </section>
+</div>
 
 {{ content }}
 
