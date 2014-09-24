@@ -14,7 +14,7 @@ author:
 ---
 
 If you've ever written a unit test in Java, you've probably used JUnit 4 and done something like this:
-
+	
     public class CompanyTest {
         private Company company;
         @Before
@@ -22,14 +22,14 @@ If you've ever written a unit test in Java, you've probably used JUnit 4 and don
         {
             company = new Company();
         }
-
-	    @Test
-	    public void getEmployees()
-	    {
-		    company.addEmployee("John");
-		    company.addEmployee("Susan");
-		    assertEquals(company.getEmployees().size(), 2);
-	    }	    
+        
+        @Test
+        public void getEmployees()
+        {
+            company.addEmployee("John");
+            company.addEmployee("Susan");
+            assertEquals(company.getEmployees().size(), 2);
+        }	    
     }
 
 This is okay and gets the job done.
