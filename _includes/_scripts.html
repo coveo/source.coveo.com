@@ -27,3 +27,32 @@
 {% if site.inc.analytics.google %}
   {% include _google-analytics.html %}
 {% endif %}
+<script type="text/javascript" charset="utf-8">
+
+$(function() {
+  enableSelectBoxes();
+});
+
+function enableSelectBoxes(){
+  $('div.selectBox').each(function(){
+
+    $(this).children('span.selected').html("Blog");
+    
+    $(this).children('span.selected,span.selectArrow').click(function(){
+      $('span.selectArrow').toggleClass('active');
+      $('div.selectBox').toggleClass('active');
+      if($(this).parent().children('div.selectOptions').css('display') == 'none'){
+        $(this).parent().children('div.selectOptions').css('display','block');
+      } else {
+        $(this).parent().children('div.selectOptions').css('display','none');
+      }
+    });
+    
+    $(this).find('span.selectOption').click(function() {
+      $(this).parent().css('display','none');
+      location.replace($(this).attr('value'));
+    });
+  });       
+}
+
+</script>

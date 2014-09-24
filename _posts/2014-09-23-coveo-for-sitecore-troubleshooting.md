@@ -4,7 +4,7 @@ layout: post
 title: "Coveo for Sitecore troubleshooting"
 #subtitle: ""
 
-excerpt: "Thinking like a Product Expert"
+excerpt: "Thinking like a Product Expert."
 
 author:
   name: Simon Langevin Ouellet
@@ -23,7 +23,7 @@ The process is simpler than before but the troubleshooting will require a change
 
 IMPORTANT: The [CES Console](http://onlinehelp.coveo.com/en/ces/7.0/Administrator/using_the_ces_console.htm) is your dear friend for all your Coveo operations. This is still the case with Coveo for Sitecore. The first step before starting any type of troubleshooting is to arm yourself with that friendly tool. Be aware that you can filter by source or system events.
 
-NEW STUFF: For all of you using June 2014's release or newer, the R&amp;D team added a built-in [Coveo Diagnostic Page](href="https://developers.coveo.com/display/public/SC201406/Coveo+Diagnostic+Page). I will not lie, this is one of my favorite new feature.
+NEW STUFF: For all of you using June 2014's release or newer, the R&amp;D team added a built-in [Coveo Diagnostic Page](https://developers.coveo.com/display/public/SC201406/Coveo+Diagnostic+Page). I will not lie, this is one of my favorite new feature.
 
 ## The new process and where you should look first when something is wrong
 
@@ -105,6 +105,6 @@ The newest fluffy addition to the Coveo and Sitecore relationship is RabbitMQ. T
 
 ![](https://lh6.googleusercontent.com/Rz6tiPuNFw5EyKVamQ5ZTQ7RImHx8v5Rsidea6t1An-kE2yD7gUEoem4Re6ZmVO2eU8wQ7AyiX33ARHUPAQtIkKF-O_pOauy2EFDIpSuXMrofM03v-L4TcqW)
 
-<span style="color: red;">WARNING: If you ran several indexing operations that are not being picked up by Coveo or you changed the source name multiple times, the documents will not be automatically cleared from the Queue. This could end up filling up the drive on which your RabbitMQ is installed. By clicking on the Queue, you will be able to Delete or Purge it. We recommend to use the purge unless the Queue is not used anymore, in case of a source name change for example.</span>
+<span style="color: red;">WARNING: If you ran several indexing operations that are not being picked up by Coveo or you changed the source name multiple times, the documents will not be automatically cleared from the Queue. This could end up filling up the drive on which your RabbitMQ is installed. By clicking on the Queue, you will be able to Delete or Purge it. We don't recommend to use the purge unless the Queue is not used anymore, in case of a source name change for example.</span>
 
 LAST TIP: Coveo supports [log4net](https://developers.coveo.com/display/public/SC201406/Using+the+Sitecore+Search+Provider#UsingtheSitecoreSearchProvider-UsingLoggingforDebuggingPurposes), do not hesitate to use it!

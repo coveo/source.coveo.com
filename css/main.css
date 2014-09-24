@@ -3079,3 +3079,91 @@ article .full.zoomable img.zoom {
         display: none
     }
 }
+
+
+/* header navigation */
+div.selectBox {
+    position:relative;
+    display:inline-block;
+    cursor:default;
+    text-align:left;
+    line-height:35px;
+    clear:both;
+    color:#333333;
+	font-family: 'Proxima Nova', sans-serif;
+	font-size: 18px;
+	border-top: 2px solid white;
+	cursor: pointer;
+}
+
+div.selectBox.active {
+	box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+}
+
+span.selected {
+    width:150px;
+    text-indent:10px;
+    border-right:none;
+    background:#f7f7f7;
+    overflow:hidden;
+}
+
+span.selectArrow {
+    width:30px;
+    text-align:center;
+    font-size:20px;
+    background : url('/images/fleche_noir.png') no-repeat 50% 50%;
+    background-color: #f7f7f7;
+    cursor:pointer;
+}
+
+span.selectArrow.active {
+    background : url('/images/fleche_noir_reverse.png') no-repeat 50% 50%;
+    background-color: #f7f7f7;
+}
+ 
+span.selectArrow,span.selected {
+    position:relative;
+    float:left;
+    height:33px;
+    z-index:1;
+}
+
+div.selectOptions {
+    position:absolute;
+    top:28px;
+    left:0;
+    width:180px;
+    overflow:hidden;
+    background:#ffffff;
+    padding-top:5px;
+    display:none;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+    z-index: 99;
+}
+     
+span.selectOption {
+	color : #666666;
+    display:block;
+    line-height:20px;
+    padding:5px 10px;
+    cursor: pointer;
+}
+ 
+span.selectOption:hover {
+	color: #333333;
+    background:#e2e2e2;         
+}  
+
+
+.site-nav #logo img {
+    height: 40px;
+    margin-right: 10px;
+    margin-top: -2px
+}
+
+#logo {
+    margin-top: 10px;
+    float: left;
+    padding: 5px 0 0 0;
+}
