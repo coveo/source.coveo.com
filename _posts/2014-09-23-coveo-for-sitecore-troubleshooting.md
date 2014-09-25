@@ -4,8 +4,6 @@ layout: post
 title: "Coveo for Sitecore troubleshooting"
 #subtitle: ""
 
-excerpt: "Thinking like a Product Expert."
-
 author:
   name: Simon Langevin Ouellet
   bio: Product Expert, Coveo for Sitecore Support
