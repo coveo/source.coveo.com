@@ -32,7 +32,9 @@ If you've ever written a unit test in Java, you've probably used JUnit 4 and don
         }	    
     }
 
-This is okay and gets the job done.
+This is okay and gets the job done. However, I think there are some issues with this approach.
+
+<!-- more -->
 
 If there's a bug in your `Company` class and the `addEmployee` method does not work, you will get the following message:
 	
