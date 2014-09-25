@@ -4,8 +4,6 @@ layout: post
 title: "Adding server-side scripting"
 #subtitle: ""
 
-excerpt: "How I've added server-side scripting to Coveo's Search API component."
-
 author:
   name: Martin Laporte
   bio: Team Lead, JS UI
