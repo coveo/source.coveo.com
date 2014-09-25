@@ -15,6 +15,8 @@ author:
 
 Coveo for Sitecore has been out for a few months now and we had to rethink the way we index search and of course, for us, support and maintenance people, the way we tackle the issues popping here and there.
 
+<!-- more -->
+
 Our Search Provider implementation pushes documents to RabbitMQ, which keeps them warm until Coveo picks them up for indexing. The configuration is set in the <span style="color: gray;">Coveo.SearchProvider.config</span> file and is also being synchronised with the indexing back-end through the Coveo Admin Service. The schema below is from the Coveo Online Help, for now I will only address the Search Provider part.
 
 <img src="http://onlinehelp.coveo.com/resources/Image.ashx?img=CoveoForSitecore1.png&amp;PID=3&amp;SID=1&amp;p=CES&amp;lang=en&amp;v=7.0" style="width: 600px;"/>
