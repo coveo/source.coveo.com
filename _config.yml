@@ -27,7 +27,7 @@ inc:
   
  # Analytics     
   analytics:
-    google: false # Add tracking code in _includes/_google-analytics.html
+    google: true # Add tracking code in _includes/_google-analytics.html
       
       
   # Google Fonts
