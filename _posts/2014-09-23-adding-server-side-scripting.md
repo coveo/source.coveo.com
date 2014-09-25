@@ -13,6 +13,8 @@ author:
 
 Recently, I've spent some time adding support for server-side scripts in Coveo's Search API component. In a Coveo setup, the Search API provides the backend through which our JS UI framework executes queries on the index, using REST requests. Queries go through what we call the Query Pipeline. The Query Pipeline provides various ways to alter the query before it's finally sent to the index server, and now offers scriptable extension points where you can implement complex custom logic when needed.
 
+<!-- more -->
+
 ## Choosing a script language
 
 I had many choices of languages I could support. The Search API runs on the JVM, so I could simply load additional jars. But that requires compilation, and I wanted something users can simply edit, save and reload to test. Some kind of script language would work better. The Java ecosystem offers many options (Jython, JRuby, Groovy, several JavaScript runtimes, etc.). In the end, I settled on JavaScript, mainly because working with the JS UI already requires JS skills.
