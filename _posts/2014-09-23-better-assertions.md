@@ -4,8 +4,6 @@ layout: post
 title: "Better unit test assertions in Java"
 #subtitle: ""
 
-excerpt: "Not all assertions are born equal."
-
 author:
   name: Guillaume Simard
   bio: Team Lead, UA
