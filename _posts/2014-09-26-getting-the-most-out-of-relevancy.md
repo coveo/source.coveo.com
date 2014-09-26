@@ -11,7 +11,7 @@ author:
   image: kmpungi.jpg
 ---
 
-You probably wondered how come a result is coming first and not the other when performing a query. Why the search result is ranked in a certain way and what can you do about it?
+You probably wondered how come a result is coming first and not the other when performing a query. Why is the search result ranked in a certain way and what can you do about it?
 
 <!-- more -->
 
