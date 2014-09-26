@@ -13,6 +13,8 @@ author:
 
 You probably wondered how come a result is coming first and not the other when performing a query. Why the search result is ranked in a certain way and what can you do about it?
 
+<!-- more -->
+
 ## How to check your ranking:
 
 The best way to check your ranking is to enable the ranking information.
