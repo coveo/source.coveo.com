@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 
 title: "Getting the most out of relevancy"
