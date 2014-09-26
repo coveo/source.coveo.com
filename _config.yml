@@ -28,8 +28,7 @@ inc:
  # Analytics     
   analytics:
     google: true
-    coveo: 
-      token: TODO_GSIMARD
+    coveo: true
       
       
   # Google Fonts
