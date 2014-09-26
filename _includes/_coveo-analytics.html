@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function() {
-    var token = 'TODO_GSIMARD';
+    var token = 'fcd71564-3e7f-465f-b206-b69342cf9db7';
     var debugging = location.hash.contains("debug-coveo-analytics");
 
     var eventData = {
@@ -13,7 +13,7 @@ $(document).ready(function() {
 			customData: new Object()
 		};
         
-    var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom'  + '?token='+eventData.token + "&user=anonymous" + "&customEvent=" + encodeURIComponent(eventData);
+    var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom'  + '?token='+eventData.token + "&user=anonymous" + "&customEvent=" + encodeURIComponent(JSON.stringify(eventData));
     $.ajax({
 		  url: requestUrl,
 		  dataType: 'jsonp',
