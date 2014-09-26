@@ -27,7 +27,9 @@ inc:
   
  # Analytics     
   analytics:
-    google: true # Add tracking code in _includes/_google-analytics.html
+    google: true
+    coveo: 
+      token: TODO_GSIMARD
       
       
   # Google Fonts

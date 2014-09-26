@@ -1,0 +1,35 @@
+<script>
+$(document).ready(function() {
+    var token = '{% site.inc.analytics.coveo.token %}';
+    var debugging = location.hash.contains("debug-coveo-analytics");
+
+    var eventData = {
+            eventType: 'pageVisit',
+            eventValue: location.toString(),
+            originLevel1: location.hostname,
+			originLevel2: location.pathname,
+			device: window.navigator.userAgent,
+			language: navigator.language || navigator.userLanguage,
+			customData: new Object()
+		};
+        
+    var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom'  + '?token='+eventData.token + "&user=anonymous" + "&customEvent=" + encodeURIComponent(eventData);
+    $.ajax({
+		  url: requestUrl,
+		  dataType: 'jsonp',
+		  error : function(data, status, message){
+			// Suppressing the error, if occurs while posting analytics data to Coveo.
+			if(debugging){
+			  console.log("Failed to send event '" + eventData.actionCause +"': " + message);
+			  console.log(status);
+			  console.log(data);
+			  console.log(requestUrl);
+			}
+
+		  },
+		  success: function(){
+		  	if(debugging) console.log("Successfully sent event '"+ eventData.actionCause + "'.");
+		  }
+		});
+});
+</script>
