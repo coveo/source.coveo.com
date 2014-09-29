@@ -54,7 +54,7 @@ Relevance ranking has phases, each of them working on the documents sorted by th
     A phase has been inserted between the second and the third, and was named the Collaborative Ratings phase. This phase takes collaborative ratings information into account.
 
 3. The third phase is more computing intensive, the goal here is to weight terms while taking their number of occurrences into account.
-4. The last phase, which has no name, is the phase where we compute the adjacency between the query terms, giving more weight to documents having the terms close together.
+4. The last phase: the adjacency phase, is the phase where we compute the proximity of query terms, giving more weight to documents having the terms close together.
 
 As usual, every application comes with a default setting, and most of the time users can modify those settings so the ranking will match their own preferences.
 
