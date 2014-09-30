@@ -47,7 +47,7 @@ timezone:    nil
 
 # Show future posts
 future:      false
-show_drafts: nil
+show_drafts: false
 limit_posts: 0
 highlighter: pygments
 
