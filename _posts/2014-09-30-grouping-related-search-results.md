@@ -53,7 +53,7 @@ If you have already visited [answers.coveo.com](http://answers.coveo.com), you m
                 <CustomField name="foldingid">%[id]</CustomField>
                 <CustomField name="questionid">%[id]</CustomField>
                 <CustomField name="questiontitle">%[title]</CustomField>
-	        <CustomField name="score">%[score]</CustomField>
+                <CustomField name="score">%[score]</CustomField>
             </CustomFields>
         </Fields>
     </Mapping>
@@ -77,8 +77,8 @@ If you have already visited [answers.coveo.com](http://answers.coveo.com), you m
                 <CustomField name="sysAuthor">%[username]</CustomField>
                 <CustomField name="foldingid">%[parent_id]</CustomField>
                 <CustomField name="answerid">%[id]</CustomField>
-	        <CustomField name="answerstate">%[state_string]</CustomField>
-	        <CustomField name="score">%[score]</CustomField>
+                <CustomField name="answerstate">%[state_string]</CustomField>
+                <CustomField name="score">%[score]</CustomField>
             </CustomFields>
         </Fields>
     </Mapping>
