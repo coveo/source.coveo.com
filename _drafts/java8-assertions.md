@@ -11,6 +11,8 @@ author:
   bio: Team Lead, UA
   twitter: guisim
   image: guisim.jpg
+
+published: false
 ---
 
 todo
