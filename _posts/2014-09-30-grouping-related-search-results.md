@@ -138,7 +138,7 @@ We are only displaying questions and answers in this result list. The default re
 </script>
 {% endhighlight %}
 
-We have the [ResultFolding Component](https://developers.coveo.com/display/JsSearch/ResultFolding+Component) near the end of the template. While the [Folding component](https://developers.coveo.com/display/JsSearch/Folding+Component) folds the questions and answers together, the [ResultFolding Component](https://developers.coveo.com/display/JsSearch/ResultFolding+Component) renders the folded results. The template used to render the folded results is an option of the [ResultFolding Component](https://developers.coveo.com/display/JsSearch/ResultFolding+Component). In our case, the "answer-template" template is used to render the children.
+We have the [ResultFolding Component](https://developers.coveo.com/display/JsSearch/ResultFolding+Component) near the end of the template. While the [Folding component](https://developers.coveo.com/display/JsSearch/Folding+Component) folds the questions and answers together, the [ResultFolding Component](https://developers.coveo.com/display/JsSearch/ResultFolding+Component) renders the folded results. The template used to render the folded results is an option of the [ResultFolding Component](https://developers.coveo.com/display/JsSearch/ResultFolding+Component). In our case, the `"answer-template"` template is used to render the children.
 
 We use a specific template for the children since, among other things, an answer does not have a meaningful title. Here is the template that we are using:
   
