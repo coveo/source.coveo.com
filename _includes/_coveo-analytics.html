@@ -9,8 +9,10 @@ $(document).ready(function() {
         originLevel2: 'y',
         device: navigator.userAgent,
         language: navigator.language || navigator.userLanguage,
-        customData: {}
-        };
+        customData: {
+            "referrer": document.referrer
+        }
+    };
         
     var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom?user=anonymous&access_token='+token+"&customEvent="+encodeURIComponent(JSON.stringify(data));
     $.ajax({
