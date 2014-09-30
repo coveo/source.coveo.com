@@ -1,35 +1,33 @@
 <script>
 $(document).ready(function() {
     var token = '16aa3ce3-d77a-4c25-97a2-18be59347d9e';
-    var debugging = location.hash.contains("debug-coveo-analytics");
 
+    var debug = location.hash.contains("debug-coveo-analytics");
     var eventData = {
-            eventType: 'pageVisit',
-            eventValue: location.toString(),
-            originLevel1: location.hostname,
-			originLevel2: location.pathname,
-			device: window.navigator.userAgent,
-			language: navigator.language || navigator.userLanguage,
-			customData: new Object()
-		};
+        eventType: 'pageVisit',
+        eventValue: location.toString(),
+        originLevel1: location.hostname,
+        originLevel2: location.pathname,
+        device: navigator.userAgent,
+        language: navigator.language || navigator.userLanguage,
+        customData: {}
+        };
         
-    var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom' + '?access_token=' + token + "&user=anonymous" + "&customEvent=" + encodeURIComponent(JSON.stringify(eventData));
+    var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom?user=anonymous&access_token=' + token + "&customEvent=" + encodeURIComponent(JSON.stringify(eventData));
     $.ajax({
-		  url: requestUrl,
-		  dataType: 'jsonp',
-		  error : function(data, status, message){
-			// Suppressing the error, if occurs while posting analytics data to Coveo.
-			if(debugging){
-			  console.log("Failed to send event '" + eventData.actionCause +"': " + message);
-			  console.log(status);
-			  console.log(data);
-			  console.log(requestUrl);
-			}
-
-		  },
-		  success: function(){
-		  	if(debugging) console.log("Successfully sent event '"+ eventData.actionCause + "'.");
-		  }
-		});
+          url: requestUrl,
+          dataType: 'jsonp',
+          error : function(data, status, message){
+            if(debug){
+              console.log("Failed to send event '" + eventData.actionCause + "': " + message);
+              console.log(status);
+              console.log(data);
+              console.log(requestUrl);
+            }
+          },
+          success: function(){
+              if(debug) console.log("Successfully sent event '" + eventData.actionCause + "'.");
+          }
+        });
 });
 </script>
