@@ -1,0 +1,18 @@
+<script>
+$(document).ready(function() {
+    var token = '16aa3ce3-d77a-4c25-97a2-18be59347d9e';
+
+    var data = {
+        eventType: 'pageVisit',
+        eventValue: location.toString(),
+        language: navigator.language || navigator.userLanguage,
+        customData: {}
+        };
+        
+    var requestUrl = 'https://usageanalytics.coveo.com/rest/v9/analytics/custom?user=anonymous&access_token='+token+"&customEvent="+encodeURIComponent(JSON.stringify(data));
+    $.ajax({
+          url: requestUrl,
+          dataType: 'jsonp'
+        });
+});
+</script>
