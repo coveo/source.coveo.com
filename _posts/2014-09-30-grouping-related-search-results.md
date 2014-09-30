@@ -103,7 +103,7 @@ We then used the [Folding Component](https://developers.coveo.com/display/JsSear
     data-rearrange="date ascending"></div>
 {% endhighlight %}
 
-We set the data-field property to the common value shared by both the question and its answer(s). We then set the properties to specify the field to use for the parent and for the children. Those fields are either on the question or on the answer but not on both. Finally, we set the `data-rearrange` property to `"date ascending"`. This way, the results are displayed in the same order as they were created (question, answer 1, answer 2, ...).
+We set the `data-field` property to the common value shared by both the question and its answer(s). We then set the properties to specify the field to use for the parent and for the children. Those fields are either on the question or on the answer but not on both. Finally, we set the `data-rearrange` property to `"date ascending"`. This way, the results are displayed in the same order as they were created (question, answer 1, answer 2, ...).
 
 ## Rendering the results using templates.
 
