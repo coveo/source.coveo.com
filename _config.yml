@@ -20,7 +20,7 @@ inc:
   # Sharing settings
   sharing:
     twitter:    true
-    facebook:   true
+    facebook:   false
     gplus:      true
     hn:         true
     foursquare: true
