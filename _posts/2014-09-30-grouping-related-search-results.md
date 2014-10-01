@@ -4,6 +4,8 @@ layout: post
 title: "Grouping related search results"
 #subtitle: "How we display a question and its answer(s) in the search results of our Q&A site"
 
+tags: [Database, JavaScript Search Framework, Result Folding]
+
 author:
   name: Carl Bolduc
   bio: Coveo for Sitecore Support Team Leader
