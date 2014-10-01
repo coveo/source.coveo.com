@@ -8,8 +8,6 @@ author:
   bio: Team Lead, UA
   twitter: guisim
   image: guisim.jpg
-
-published: false
 ---
 
 Java 8 is pretty cool. We (finally!) got Lambda Expressions in Java and a lot of other goodies. At Coveo, we started working with Java 8 as soon as the first stable release was available. As mentionned in [my previous blog post]([Some Link]({% post_url 2014-09-23-better-assertions %})), one way we're using Java 8 is in our unit tests.
@@ -19,87 +17,86 @@ Java 8 is pretty cool. We (finally!) got Lambda Expressions in Java and a lot of
 Let's say we want to test that adding an `Employee` to a `Company` correctly invokes the `CompanyDal` class with the right information.
 
 {% highlight java linenos %}
-    public interface CompanyDal
-    {
-        void registerEmployee(Employee e);
-    }
+public interface CompanyDal
+{
+    void registerEmployee(Employee e);
+}
 {% endhighlight %}
 
 {% highlight java linenos %}
-    public class Company
+public class Company
+{
+    private CompanyDal dal;
+
+    public Company(CompanyDal dal)
     {
-        private CompanyDal dal;
-
-        public Company(CompanyDal dal)
-        {
-            this.dal = dal;
-        }
-
-        public void addEmployee(Employee employee)
-        {
-            // Let's say there's a deep copy here
-            Employee copiedEmployee = new Employee(employee.getName());
-            dal.registerEmployee(copiedEmployee);
-        }
+        this.dal = dal;
     }
+
+    public void addEmployee(Employee employee)
+    {
+        // Let's say there's a deep copy here
+        Employee copiedEmployee = new Employee(employee.getName());
+        dal.registerEmployee(copiedEmployee);
+    }
+}
 {% endhighlight %}
 
 {% highlight java linenos %}
-    public class Employee
+public class Employee
+{
+    private String name;
+
+    public Employee(String name)
     {
-        private String name;
-
-        public Employee(String name)
-        {
-            this.name = name;
-        }
-
-        public String getName()
-        {
-            return this.name;
-        }
+        this.name = name;
     }
+
+    public String getName()
+    {
+        return this.name;
+    }
+}
 {% endhighlight %}
 
 When testing the `Company` class we'll want to mock our `CompanyDal` interface. We use the great [Mockito](https://github.com/mockito/mockito) library for our mocking needs.
 
 {% highlight java linenos %}
-    public class CompanyTest {
+public class CompanyTest {
+    private Company company;
+    private CompanyDal mockedDal;
 
-        private Company company;
-        private CompanyDal mockedDal;
-
-        @Before
-        public void setup()
-        {
-            mockedDal = mock(CompanyDal.class);
-            company = new Company(mockedDal);
-        }
-
-    @Test
-    public void addingAnEmployeeRegistersItInTheDal()
+    @Before
+    public void setup()
     {
-        Employee employee = new Employee("John");
-        company.addEmployee(employee);
-
-        // TODO: Verify that the employee was register with the DAL.
+        mockedDal = mock(CompanyDal.class);
+        company = new Company(mockedDal);
     }
+
+@Test
+public void addingAnEmployeeRegistersItInTheDal()
+{
+    Employee employee = new Employee("John");
+    company.addEmployee(employee);
+
+    // TODO: Verify that the employee was register with the DAL.
+}
 {% endhighlight %}
 
 This is a good test as it validates that the `Company` class interacts with the `CompanyDal` class as expected.
 Now.. how can we do this verification?
 
-We could be tempting to do 
+We could be tempted to do 
 
 {% highlight java linenos %}
-    @Test
-    public void addingAnEmployeeRegistersItInTheDal()
-    {
-        Employee employee = new Employee("John");
-        company.addEmployee(employee);
+@Test
+public void addingAnEmployeeRegistersItInTheDal()
+{
+    Employee employee = new Employee("John");
+    company.addEmployee(employee);
 
-        verify(mockedDal).registerEmployee(employee);
-    }
+    verify(mockedDal).registerEmployee(employee);
+}
 {% endhighlight %}
 
 But that won't work as the two `Employee` instances are not the same. This is caused by the deep copy that takes place in the `Company` class.
@@ -110,25 +107,25 @@ So what we need to do is verify if the `Employee` passed to the `CompanyDal` has
 This can be done using Mockito [Matchers](http://docs.mockito.googlecode.com/hg/latest/org/mockito/Matchers.html).
 
 {% highlight java linenos %}
-    @Test
-    public void addingAnEmployeeRegistersItInTheDal()
+@Test
+public void addingAnEmployeeRegistersItInTheDal()
+{
+    Employee employee = new Employee("John");
+    company.addEmployee(employee);
+
+    verify(mockedDal).registerEmployee(argThat(new ArgumentMatcher<Employee>()
     {
-        Employee employee = new Employee("John");
-        company.addEmployee(employee);
-
-        verify(mockedDal).registerEmployee(argThat(new ArgumentMatcher<Employee>()
+        @Override public boolean matches(Object item)
         {
-            @Override public boolean matches(Object item)
-            {
-                return ((Employee)item).getName().equals(employee.getName());
-            }
+            return ((Employee)item).getName().equals(employee.getName());
+        }
 
-            @Override public void describeTo(Description description)
-            {
-                description.appendText("Employees must have the same name");
-            }
-        }));
-    }
+        @Override public void describeTo(Description description)
+        {
+            description.appendText("Employees must have the same name");
+        }
+    }));
+}
 {% endhighlight %}
 
 This will produce the following message in case of test failure
@@ -150,94 +147,94 @@ The `matches()` method could easily be replaced by a [`java.util.Predicate`](htt
 But we'll need an adapter class to bridge Mockito's `Matcher` with `Predicate`. Introducing `LambdaMatcher`!
 
 {% highlight java linenos %}
-    import java.util.Optional;
-    import java.util.function.Predicate;
+import java.util.Optional;
+import java.util.function.Predicate;
 
-    import org.hamcrest.BaseMatcher;
-    import org.hamcrest.Description;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 
-    public class LambdaMatcher<T> extends BaseMatcher<T>
+public class LambdaMatcher<T> extends BaseMatcher<T>
+{
+    private final Predicate<T> matcher;
+    private final Optional<String> description;
+
+    public LambdaMatcher(Predicate<T> matcher)
     {
-        private final Predicate<T> matcher;
-        private final Optional<String> description;
-
-        public LambdaMatcher(Predicate<T> matcher)
-        {
-            this(matcher, null);
-        }
-
-        public LambdaMatcher(Predicate<T> matcher, String description)
-        {
-            this.matcher = matcher;
-            this.description = Optional.ofNullable(description);
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        public boolean matches(Object argument)
-        {
-            return matcher.test((T) argument);
-        }
-
-        @Override
-        public void describeTo(Description description)
-        {
-            this.description.ifPresent(description::appendText);
-        }
+        this(matcher, null);
     }
+
+    public LambdaMatcher(Predicate<T> matcher, String description)
+    {
+        this.matcher = matcher;
+        this.description = Optional.ofNullable(description);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean matches(Object argument)
+    {
+        return matcher.test((T) argument);
+    }
+
+    @Override
+    public void describeTo(Description description)
+    {
+        this.description.ifPresent(description::appendText);
+    }
+}
 {% endhighlight %}
 
 `LambdaMatcher` is really easy to use. Here's our rewritten `addingAnEmployeeRegistersItInTheDal` test.
 
 {% highlight java linenos %}
-    @Test
-    public void canFindEmployee()
-    {
-        Employee employee = new Employee("John");
-        company.addEmployee(employee);
+@Test
+public void canFindEmployee()
+{
+    Employee employee = new Employee("John");
+    company.addEmployee(employee);
 
-        verify(mockedDal).registerEmployee(argThat(new LambdaMatcher<>(e -> e.getName()
-                                                                             .equals(employee.getName()))));
-    }
+    verify(mockedDal).registerEmployee(argThat(new LambdaMatcher<>(e -> e.getName()
+                                                                         .equals(employee.getName()))));
+}
 {% endhighlight %}
 
 And if you want a description
 
 {% highlight java linenos %}
-    @Test
-    public void canFindEmployee()
-    {
-        Employee employee = new Employee("John");
-        company.addEmployee(employee);
+@Test
+public void canFindEmployee()
+{
+    Employee employee = new Employee("John");
+    company.addEmployee(employee);
 
-        verify(mockedDal).registerEmployee(argThat(new LambdaMatcher<>(e -> e.getName()
-                                                                             .equals(employee.getName()),
-                                                                       "Employees must have the same name")));
-    }
+    verify(mockedDal).registerEmployee(argThat(new LambdaMatcher<>(e -> e.getName()
+                                                                         .equals(employee.getName()),
+                                                                   "Employees must have the same name")));
+}
 {% endhighlight %}
 
 This new code will generate the same nice error message as above.. but it is much simpler! If you want to save even more time, you can create the following static method.
 
 {% highlight java linenos %}
-    public static <T> T argThatMatches(Predicate<T> predicate)
-    {
-        LambdaMatcher<T> matcher = new LambdaMatcher(predicate);
-        return Matchers.argThat(matcher);
-    }
+public static <T> T argThatMatches(Predicate<T> predicate)
+{
+    LambdaMatcher<T> matcher = new LambdaMatcher(predicate);
+    return Matchers.argThat(matcher);
+}
 {% endhighlight %}
 
 Which will result in the following test.
 
 {% highlight java linenos %}
-    @Test
-    public void canFindEmployee()
-    {
-        Employee employee = new Employee("John");
-        company.addEmployee(employee);
+@Test
+public void canFindEmployee()
+{
+    Employee employee = new Employee("John");
+    company.addEmployee(employee);
 
-        verify(mockedDal).registerEmployee(argThatMatches(e -> e.getName()
-                                                                .equals(employee.getName())));
-    }
+    verify(mockedDal).registerEmployee(argThatMatches(e -> e.getName()
+                                                            .equals(employee.getName())));
+}
 {% endhighlight %}
 
 That's it! Feel free to use the `LambdaMatcher` class in your own projects and add some Lambda to your unit tests!
