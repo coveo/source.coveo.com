@@ -19,7 +19,7 @@ inc:
   
   # Sharing settings
   sharing:
-    twitter:    false
+    twitter:    true
     facebook:   false
     gplus:      false
     hn:         false
