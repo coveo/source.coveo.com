@@ -111,4 +111,4 @@ Here are some more examples on how `assertThat` can help you.
     // After
     java.lang.AssertionError: expected instance of:<com.coveo.Company> but was instance of:<java.lang.Object>
 
-In my next blog post, we'll look at how Java 8 can further enhance the readability and maintainability of your tests.
+EDIT: [Here]({% post_url 2014-10-01-java8-mockito%}) is another way you can enhance the readability of your tests using Java 8.
