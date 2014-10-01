@@ -23,7 +23,7 @@ inc:
     facebook:   false
     gplus:      true
     hn:         true
-    foursquare: true
+    foursquare: false
     
   
  # Analytics     
