@@ -11,6 +11,7 @@
     <link href="{{ site_url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
     <meta name="title" content="{% if page.title %}{{ page.title }} {% else %}{{ site.inc.title }}{% endif %}">
     {% if page.author.name %}<meta name="author" content="{{ page.author.name }}">{% endif %}
+    {% if page.tags %}<meta name="tags" content="{% for tag in page.tags %}{{ tag }};{% endfor %}" />{% endif %}
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
     {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %} 
     {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}       
