@@ -20,9 +20,10 @@ inc:
   # Sharing settings
   sharing:
     twitter:    true
-    facebook:   false
-    gplus:      false
-    hn:         false
+    facebook:   true
+    gplus:      true
+    hn:         true
+    foursquare: true
     
   
  # Analytics     
