@@ -24,6 +24,19 @@
         s.parentNode.insertBefore(g, s);
     }(document, 'script'));
 </script>{% endif %}
+{% if site.inc.sharing.foursquare %}
+<script type='text/javascript'>
+  (function() {
+    window.___fourSq = {};
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'http://platform.foursquare.com/js/widgets.js';
+    s.async = true;
+    var ph = document.getElementsByTagName('script')[0];
+    ph.parentNode.insertBefore(s, ph);
+  })();
+</script>
+{% endif %}
 {% if site.inc.analytics.google %}
   {% include _google-analytics.html %}
 {% endif %}
