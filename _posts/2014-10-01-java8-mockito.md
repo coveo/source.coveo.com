@@ -2,6 +2,7 @@
 layout: post
 
 title: "Using Java 8 with Mockito"
+tags: [Java, Java 8, Unit Tests]
 
 author:
   name: Guillaume Simard
