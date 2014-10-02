@@ -2,7 +2,7 @@
 layout: post
 
 title: "Better unit test assertions in Java"
-#subtitle: ""
+tags: [Java, Unit Tests]
 
 author:
   name: Guillaume Simard
