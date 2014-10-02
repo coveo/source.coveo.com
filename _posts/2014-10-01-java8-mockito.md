@@ -11,7 +11,7 @@ author:
   image: guisim.jpg
 ---
 
-Java 8 is pretty cool. We (finally!) got Lambda Expressions in Java and a lot of other goodies. At Coveo, we started working with Java 8 as soon as the first stable release was available. As mentionned in [my previous blog post]({% post_url 2014-09-23-better-assertions %}), one way we're using Java 8 is in our unit tests.
+Java 8 is pretty cool. We (finally!) got Lambda Expressions in Java and a lot of other goodies. At Coveo, we started working with Java 8 as soon as the first stable release was available. As mentioned in [my previous blog post]({% post_url 2014-09-23-better-assertions %}), one way we're using Java 8 is in our unit tests.
 
 <!-- more -->
 
