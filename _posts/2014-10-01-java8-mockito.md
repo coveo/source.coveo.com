@@ -36,7 +36,7 @@ public class Company
 
     public void addEmployee(Employee employee)
     {
-        // Let's say there's a deep copy here
+        // Pretend there's a deep copy here
         Employee copiedEmployee = new Employee(employee.getName());
         dal.registerEmployee(copiedEmployee);
     }
@@ -80,7 +80,7 @@ public void addingAnEmployeeRegistersItInTheDal()
     Employee employee = new Employee("John");
     company.addEmployee(employee);
 
-    // TODO: Verify that the employee was register with the DAL.
+    // TODO: Verify that the employee was registered with the DAL.
 }
 {% endhighlight %}
 
@@ -100,11 +100,11 @@ public void addingAnEmployeeRegistersItInTheDal()
 }
 {% endhighlight %}
 
-But that won't work as the two `Employee` instances are not the same. This is caused by the deep copy that takes place in the `Company` class.
+But that won't work since the two `Employee` instances are not the same. This is caused by the deep copy in the `Company` class.
 
-_Note: For the sake of this example, let's pretend that we can't override `Employee`'s `equals()` method to use value equality instead of reference equality._
+_Note: For the sake of this example, we need to pretend that we can't override `Employee`'s `equals()` method to use value equality instead of reference equality._
 
-So what we need to do is verify if the `Employee` passed to the `CompanyDal` has the same `name` property as the one passed to the `Company` class.
+What we need to do is verify that the `Employee` passed to the `CompanyDal` has the same `name` property as the one passed to the `Company` class.
 This can be done using Mockito [Matchers](http://docs.mockito.googlecode.com/hg/latest/org/mockito/Matchers.html).
 
 {% highlight java linenos %}
@@ -142,7 +142,7 @@ This will produce the following message in case of test failure
     );
     -> at com.coveo.Company.addEmployee(CompanyTest.java:46)
 
-This is good! But this test suddenly inflated from 4 lines to 15 lines!
+This is good! But this test suddenly went from 4 lines of code to 15 lines!
 The `matches()` method could easily be replaced by a [`java.util.Predicate`](http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html)!
 
 But we'll need an adapter class to bridge Mockito's `Matcher` with `Predicate`. Introducing `LambdaMatcher`!
