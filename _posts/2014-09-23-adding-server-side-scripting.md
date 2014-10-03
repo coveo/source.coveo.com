@@ -4,8 +4,6 @@ layout: post
 title: "Adding server-side scripting"
 #subtitle: ""
 
-excerpt: "How I've added server-side scripting to Coveo's Search API component."
-
 author:
   name: Martin Laporte
   bio: Team Lead, JS UI
@@ -14,6 +12,8 @@ author:
 ---
 
 Recently, I've spent some time adding support for server-side scripts in Coveo's Search API component. In a Coveo setup, the Search API provides the backend through which our JS UI framework executes queries on the index, using REST requests. Queries go through what we call the Query Pipeline. The Query Pipeline provides various ways to alter the query before it's finally sent to the index server, and now offers scriptable extension points where you can implement complex custom logic when needed.
+
+<!-- more -->
 
 ## Choosing a script language
 

@@ -19,15 +19,17 @@ inc:
   
   # Sharing settings
   sharing:
-    twitter:    false
+    twitter:    true
     facebook:   false
-    gplus:      false
-    hn:         false
+    gplus:      true
+    hn:         true
+    foursquare: false
     
   
  # Analytics     
   analytics:
-    google: false # Add tracking code in _includes/_google-analytics.html
+    google: true
+    coveo: true
       
       
   # Google Fonts
@@ -46,7 +48,7 @@ timezone:    nil
 
 # Show future posts
 future:      false
-show_drafts: nil
+show_drafts: false
 limit_posts: 0
 highlighter: pygments
 

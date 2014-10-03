@@ -2,9 +2,7 @@
 layout: post
 
 title: "Better unit test assertions in Java"
-#subtitle: ""
-
-excerpt: "Not all assertions are born equal."
+tags: [Java, Unit Tests]
 
 author:
   name: Guillaume Simard
@@ -32,7 +30,9 @@ If you've ever written a unit test in Java, you've probably used JUnit 4 and don
         }	    
     }
 
-This is okay and gets the job done.
+This is okay and gets the job done. However, I think there are some issues with this approach.
+
+<!-- more -->
 
 If there's a bug in your `Company` class and the `addEmployee` method does not work, you will get the following message:
 	
@@ -111,4 +111,4 @@ Here are some more examples on how `assertThat` can help you.
     // After
     java.lang.AssertionError: expected instance of:<com.coveo.Company> but was instance of:<java.lang.Object>
 
-In my next blog post, we'll look at how Java 8 can further enhance the readability and maintainability of your tests.
+EDIT: [Here]({% post_url 2014-10-01-java8-mockito%}) is another way you can enhance the readability of your tests using Java 8.
