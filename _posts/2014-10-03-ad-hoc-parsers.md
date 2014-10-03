@@ -2,9 +2,7 @@
 layout: post
 
 title: "Ad-hoc parsing using parser combinators"
-subtitle: ""
-
-excerpt: "The pony! The pony! He comes!"
+tags: [Scala, Parser]
 
 author:
   name: Martin Laporte
@@ -14,6 +12,8 @@ author:
 ---
 
 If you work for any given amount of time as a software developer, one problem you'll end up with is parsing structured text to extract meaningful information.
+
+<!-- more -->
 
 I've faced this issue more than I care to remember. I even think that's why I learned regular expressions in the first place. But, [as Internet wisdom will teach you](http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454) regexes are only suitable for a subset of the parsing problems out there. We learn it at school: grammars are the way to go. Still, it is my deep belief that most engineers, when faced with a parsing problem, will first try to weasel their way out using regular expressions. Why? Well...
 
