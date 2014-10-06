@@ -21,8 +21,8 @@ inc:
   sharing:
     twitter:    true
     facebook:   false
-    gplus:      true
-    hn:         true
+    gplus:      false
+    hn:         false
     foursquare: false
     
   
