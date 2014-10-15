@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 
 title: "Customize Ranking with QRE"
