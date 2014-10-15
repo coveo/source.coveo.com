@@ -39,10 +39,10 @@ A QRE is made for @sysfiletype=="pdf" query expression and the +100 modifier val
 
 The impact on the final score is:
 
-    - (-100) will increase your document QRE weight by 1000
-    - (+50)  will increase your document QRE weight by 500
-    - (-50) will decrease your document QRE weight by 500
-    - (-100) will decrease your document QRE weight by 1000
+- (-100) will increase your document QRE weight by 1000
+- (+50)  will increase your document QRE weight by 500
+- (-50) will decrease your document QRE weight by 500
+- (-100) will decrease your document QRE weight by 1000
 
 You can also select "custom" in order to enter a custom value.
 
@@ -60,10 +60,10 @@ You need to compare the language of your search interface versus the @syslanguag
 
 ![Document Language]({{ site.baseurl }}/images/DocumentLanguage.png)
 
-    - If the language of the document matches the language of the search interface, the QRE of the document will automatically be: 600.
-    - If the language of the document doesn't match the language of the search interface or @syslanguage is missing under the Field tab, then the QRE of the document will automatically be: 0
+- If the language of the document matches the language of the search interface, the QRE of the document will automatically be: 600.
+- If the language of the document doesn't match the language of the search interface or @syslanguage is missing under the Field tab, then the QRE of the document will automatically be: 0
 
 ## How to Implement QREs?
 
-    - An administrator can add QREs to specific search interfaces from the Interface Editor for a search interface (see Customizing the Ranking for a Search Interface) or for a Related Results panel (see Adding or Customizing a Related Results Panel).
-    - A developer can implement QREs programmatically (see Adding Query Ranking Expressions to a Search Interfaces).
+- An administrator can add QREs to specific search interfaces from the Interface Editor for a search interface (see Customizing the Ranking for a Search Interface) or for a Related Results panel (see Adding or Customizing a Related Results Panel).
+- A developer can implement QREs programmatically (see Adding Query Ranking Expressions to a Search Interfaces).
