@@ -39,7 +39,7 @@ A QRE is made for @sysfiletype=="pdf" query expression and the +100 modifier val
 
 The impact on the final score is:
 
-- (-100) will increase your document QRE weight by 1000
+- (+100) will increase your document QRE weight by 1000
 - (+50)  will increase your document QRE weight by 500
 - (-50) will decrease your document QRE weight by 500
 - (-100) will decrease your document QRE weight by 1000
