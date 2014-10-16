@@ -23,7 +23,7 @@ Since the September 2013 build, a QRE interface was added to the Interface Edito
 
 ![The QRE Interface]({{ site.baseurl }}/images/QREInterface.png)
 
-With this interface, QRE can directly be modified from the Interface Editor without using CES. All QRE created within the Interface Editor are specific to the search interface that is selected in "current Interface" dropdown menu. Therefore, the QRE will affect every queries made in that search interface. 
+With this interface, QRE can be modified directly from the Interface Editor without using CES. All QRE created within the Interface Editor are specific to the search interface that is selected in "current Interface" dropdown menu. Therefore, the QRE will affect every queries made in that search interface. 
 
 ## Example
 
