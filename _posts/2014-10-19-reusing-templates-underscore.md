@@ -8,7 +8,7 @@ author:
   name: Vincent Séguin
   bio: Team Lead, Coveo for Sitecore
   twitter: VincentSeguin
- image: vseguin.jpg
+  image: vseguin.jpg
 ---
 
 UnderscoreJS is probably one of my favorite template engines. I've been working with Mustache or Handlebars, and they just don't offer the same flexibility as Underscore. Even more, we've been using this framework extensively in our JavaScript UI Framework, always delivering great results.
@@ -21,28 +21,28 @@ It may happen that you want to render multiple templates in a single page. For i
 
 Let's start by creating our first Underscore template for the Products section. It basically just renders a list of products with their pictures and name. There's also a section that will be used to display more/less results.
 
-{% highlight html %}
+{% highlight text %}
 <div id="productsContainer" >
    <script class="productsTemplate" type="text/x-underscore-template" >
-   {{ if (results.results.length > 0) { }}
+   <% if (results.results.length > 0) { %>
        <h2>Products</h2>
        <span class="showMoreResults">Show more results in Products</span>
        <span class="showLessResults">Show fewer results in Products</span>
        <div class="resultsContainer">
            <div class="results">
-               {{ _.each(results.results, function(result, index) { }}
+               <% _.each(results.results, function(result, index) { %>
                        <div class="productElement">
-                           <img src='{{= result.raw.@Html.Coveo().ToCoveoFieldName("imageurl", false)}}'/>
+                           <img src='<%= result.raw.@Html.Coveo().ToCoveoFieldName("imageurl", false)%>'/>
                            <div class="productText">
-                               <a class="clickableUri" href="{{= result.clickUri }}">
-                                   <span>{{= result.title }}</span>
+                               <a class="clickableUri" href="<%= result.clickUri %>">
+                                   <span><%= result.title %></span>
                                </a>
                            </div>
                        </div>
-               {{ }); }}
+               <% }); %>
            </div>
        </div>
-   {{ } }}
+   <% } %>
    </script>
 </div>
 {% endhighlight %}
@@ -70,34 +70,34 @@ Coveo.Rest.SearchEndpoint.endpoints['default'].search({
 
 This will actually output the resulting HTML in the page. You may notice that i'm using the results object, which actually contains the <a href="https://developers.coveo.com/display/SearchREST/Query+Results">Query Results</a> object returned by the REST endpoint. So the whole thing work, and we have products and rainbows displayed in our page. SUDDENLY, someone asks us to display another section, based on Downloads this time. Alright! Let's create another template.
 
-{% highlight html %}
+{% highlight text %}
 <div id="downloadsContainer" class="searchContainer">
   <script class="downloadsTemplate" type="text/x-underscore-template" >
-      {{ if (results.results.length >= 0) { }}
+      <% if (results.results.length >= 0) { %>
           <h2>Downloads</h2>
           <span class="showMoreResults">Show more results in Downloads</span>
           <span class="showLessResults">Show fewer results in Downloads</span>
           <div class="results">
-         {{ _.each(results.results, function(result) { }}
+         <% _.each(results.results, function(result) { %>
               <div class="downloadsElement">
                   <div class="downloadsInformations">
-                      <a class="clickableUri" href="{{= result.clickUri }}">
-                          {{= result.title }}
+                      <a class="clickableUri" href="<%= result.clickUri %>">
+                          <%= result.title %>
                       </a>
                       <div>
-                          <span class="downloadsSize">{{= result.raw.@Html.Coveo().ToCoveoFieldName("size", false)}}kB</span> 
-                          <span class="downloadsExtension">{{= result.raw.@Html.Coveo().ToCoveoFieldName("extension", false)}}</span>
+                          <span class="downloadsSize"><%= result.raw.@Html.Coveo().ToCoveoFieldName("size", false)%>kB</span> 
+                          <span class="downloadsExtension"><%= result.raw.@Html.Coveo().ToCoveoFieldName("extension", false)%></span>
                       </div>
                   </div>
               </div>
-          {{ }); }}
+          <% }); %>
          </div>
-      {{ } }}
+      <% } %>
   </script>
 </div>
 {% endhighlight %}
 
-This time, we're ouputting slightly different informations : we have a link, as well as the file size and the file extension. Just like we did before for the Products, we need to compile and then render our template. We'll extract our query in an utility function, since we don't want to repeat code, don't we?
+This time, we're outputting slightly different informations : we have a link, as well as the file size and the file extension. Just like we did before for the Products, we need to compile and then render our template. We'll extract our query in an utility function, since we don't want to repeat code, don't we?
 
 {% highlight javascript %}
 var productsTemplate = _.template($("script.productsTemplate").html());
@@ -120,7 +120,7 @@ function performQuery(queryToPerform, numberOfResults, container) {
 
 Excellent. We have Products and Downloads rendered, our customer is happy and we're riding unicorns. But we're not 100% happy. Take a look at this little piece of HTML that gets repeated :
 
-{% highlight html %}
+{% highlight text %}
  <h2>Products</h2>
  <span class="showMoreResults">Show more results in Products</span>
  <span class="showLessResults">Show fewer results in Products</span>
@@ -132,11 +132,11 @@ This may seems small, but let's say we add 6 more templates in our page (that ac
 
 My solution to our repetition problem is to create a new header template, by extracting and parametizing our little piece of markup. Our header template will use a category as parameter.
 
-{% highlight html %}
+{% highlight text %}
 <script class="headerTemplate" type="text/x-underscore-template" >
- <h2>{{= category}}</h2>
- <span class="showMoreResults">Show more results in {{= category}}</span>
- <span class="showLessResults">Show fewer results in {{= category}}</span>
+ <h2><%= category%></h2>
+ <span class="showMoreResults">Show more results in <%= category%></span>
+ <span class="showLessResults">Show fewer results in <%= category%></span>
 </script>
 {% endhighlight %}
 
@@ -164,51 +164,51 @@ function performQuery(queryToPerform, numberOfResults, container) {
 
 You can see that when we append the HTML, we now pass the headerTemplate to the current template we're rendering. Last thing we need, let's edit our templates to use this new header parameter.
 
-{% highlight html %}
+{% highlight text %}
 <div id="productsContainer" >
    <script class="productsTemplate" type="text/x-underscore-template" >
-   {{ if (results.results.length > 0) { }}
-       {{= header({category : "Products"})}}
+   <% if (results.results.length > 0) { %>
+       <%= header({category : "Products"})%>
        <div class="resultsContainer">
            <div class="results">
-               {{ _.each(results.results, function(result, index) { }}
+               <% _.each(results.results, function(result, index) { %>
                        <div class="productElement">
-                           <img src='{{= result.raw.@Html.Coveo().ToCoveoFieldName("imageurl", false)}}'/>
+                           <img src='<%= result.raw.@Html.Coveo().ToCoveoFieldName("imageurl", false)%>'/>
                            <div class="productText">
-                               <a class="clickableUri" href="{{= result.clickUri }}">
-                                   <span>{{= result.title }}</span>
+                               <a class="clickableUri" href="<%= result.clickUri %>">
+                                   <span><%= result.title %></span>
                                </a>
                            </div>
                        </div>
-               {{ }); }}
+               <% }); %>
            </div>
        </div>
-   {{ } }}
+   <% } %>
    </script>
 </div>
 {% endhighlight %}
 
-{% highlight html %}
+{% highlight text %}
 <div id="downloadsContainer" class="searchContainer">
   <script class="downloadsTemplate" type="text/x-underscore-template" >
-      {{ if (results.results.length >= 0) { }}
-          {{= header({category : "Downloads"})}}
+      <% if (results.results.length >= 0) { %>
+          <%= header({category : "Downloads"})%>
           <div class="results">
-         {{ _.each(results.results, function(result) { }}
+         <% _.each(results.results, function(result) { %>
               <div class="downloadsElement">
                   <div class="downloadsInformations">
-                      <a class="clickableUri" href="{{= result.clickUri }}">
-                          {{= result.title }}
+                      <a class="clickableUri" href="<%= result.clickUri %>">
+                          <%= result.title %>
                       </a>
                       <div>
-                          <span class="downloadsSize">{{= result.raw.@Html.Coveo().ToCoveoFieldName("size", false)}}kB</span> 
-                          <span class="downloadsExtension">{{= result.raw.@Html.Coveo().ToCoveoFieldName("extension", false)}}</span>
+                          <span class="downloadsSize"><%= result.raw.@Html.Coveo().ToCoveoFieldName("size", false)%>kB</span> 
+                          <span class="downloadsExtension"><%= result.raw.@Html.Coveo().ToCoveoFieldName("extension", false)%></span>
                       </div>
                   </div>
               </div>
-          {{ }); }}
+          <% }); %>
          </div>
-      {{ } }}
+      <% } %>
   </script>
 </div>
 {% endhighlight %}

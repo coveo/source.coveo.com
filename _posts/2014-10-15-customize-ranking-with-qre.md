@@ -13,11 +13,11 @@ author:
 
 A query ranking expression (QRE) modifies the ranking score of search results matching a query expression.
 
+<!-- more -->
+
 ## What is the impact on the final ranking score?
 
 The QRE feature is computed during the first phase of the ranking algorithm. This will have an impact on all documents, especially in case where it's only the QRE that boost the document's weight.
-
-<!-- more -->
 
 Since the September 2013 build, a QRE interface was added to the Interface Editor. The QRE interface can be found under Interface Editor - Search Interfaces – Features - Ranking.
 
