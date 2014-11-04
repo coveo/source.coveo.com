@@ -3,7 +3,7 @@ layout: post
 
 title: "Optimizing web application build process"
 
-tags: [Salesforce, Insight Panel, Query Builder]
+tags: [JavaScript, Gulp, Build Process, Ant]
 
 author:
   name: William Fortin
