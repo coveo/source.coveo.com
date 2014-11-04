@@ -66,7 +66,7 @@ The Cloud Admin Web Application is a [Single Page Application](http://en.wikiped
 Templates are now in `target/package/templates/templates.js` and accessible with `window.CoveoTemplates.templateName(data)`.
 
 ###Gzip https://github.com/jstuckey/gulp-gzip
-As you may know, the Cloud Admin Web application is hosted on AWS S3. Since S3 is for static file serving and dosen't allow *on-the-fly* compression, we need to gzip files before uploading them to S3. With gulp-gzip we simply pipe gzip() into our task’s stream and we have a compressed gzipped file.
+As you may know, the Cloud Admin Web application is hosted on AWS S3. Since S3 is for static file serving and doesn't allow *on-the-fly* compression, we need to gzip files before uploading them to S3. With gulp-gzip we simply pipe gzip() into our task’s stream and we have a compressed gzipped file.
 
 {% highlight javascript %}
     var gulp = require('gulp');
@@ -122,9 +122,11 @@ Microsoft’s [roadmap to 2.0](http://blogs.msdn.com/b/typescript/archive/2014/1
 
 ```
     hg pull
-    
+```
+```
     npm install
-    
+```
+```
     gulp
 ```
 
