@@ -9,10 +9,8 @@ author:
   name: William Fortin
   bio: JavaScript Ninja, Cloud
   twitter: willyfortin
-  image: wfortin.jpg
+  image: wfortin.jpeg
 ---
-
-#Optimizing Web Application Build Process
 
 At Coveo, we love to tackle new technologies. Last year was all about TypeScript, preprocessed stylesheets with LESS/SASS and optimizing our JavaScript applications with minification, concatenation and compression. Since we have a Java stack in the cloud, using the build tools that were already in place wasa no brainer. We started with an Ant script to manage the build process of the Cloud Admin Web Application.
 
