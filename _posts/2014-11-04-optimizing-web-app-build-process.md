@@ -14,9 +14,9 @@ author:
 
 At Coveo, we love to tackle new technologies. Last year was all about TypeScript, preprocessed stylesheets with LESS/SASS and optimizing our JavaScript applications with minification, concatenation and compression. Since we have a Java stack in the cloud, using the build tools that were already in place was a no brainer. We started with an Ant script to manage the build process of the Cloud Admin Web Application.
 
-We created Ant tasks for compiling TypeScript, concatenating JavaScript libraries and compiling LESS to CSS. We then added sprites compilation, unit tests and underscore templates... up to a point where building the whole application took about 30 seconds.
-
 <!-- more -->
+
+We created Ant tasks for compiling TypeScript, concatenating JavaScript libraries and compiling LESS to CSS. We then added sprites compilation, unit tests and underscore templates... up to a point where building the whole application took about 30 seconds.
 
 That means that every time a developer had to modify a stylesheet and wanted to test it in a browser, he had to run `ant less`..and wait 6 or 7 seconds. After that, he could refresh the page and see the results. It was the same thing if he had to modify a TypeScript file, add a new library or add a new icon.
 
