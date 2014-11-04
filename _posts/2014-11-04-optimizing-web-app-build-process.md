@@ -50,18 +50,18 @@ Watch is integrated into Gulp and must be one of its greatest features. Watch al
 The Cloud Admin Web Application is a [Single Page Application](http://en.wikipedia.org/wiki/Single-page_application) built with [Marionette.JS](http://marionettejs.com/) and our template engine of choice is [Underscore.JS](http://underscorejs.org/). When developing, we want each template separated in their own [EJS files](http://www.embeddedjs.com/), but in production we need the best performance. Sure, we could use underscore’s _.template method on the client as stated in [Vincent’s latest post](http://source.coveo.com/2014/10/19/reusing-templates-underscore/) but [gulp-template-compile](https://github.com/ingro/gulp-template-compile) goes a step further by concatenating all of our templates into a single file and generating plain JavaScript functions that are usable later.
 
 {% highlight javascript %}
-    var gulp = require('gulp');
-	var template = require('gulp-template-compile');
-	var concat = require('gulp-concat');
+var gulp = require('gulp');
+var template = require('gulp-template-compile');
+var concat = require('gulp-concat');
 	
-	gulp.task('templates', function () {
-	    return gulp.src('./templates/**/*.ejs')
-	        .pipe(template({
-		        namespace: 'CoveoTemplates'
-	        }))
-	        .pipe(concat('templates.js'))
-	        .pipe(gulp.dest('target/package/templates'));
-	});
+gulp.task('templates', function () {
+     return gulp.src('./templates/**/*.ejs')
+         .pipe(template({
+             namespace: 'CoveoTemplates'
+         }))
+         .pipe(concat('templates.js'))
+         .pipe(gulp.dest('target/package/templates'));
+});
 {% endhighlight %}
 
 Templates are now in `target/package/templates/templates.js` and accessible with `window.CoveoTemplates.templateName(data)`.
@@ -71,15 +71,15 @@ Templates are now in `target/package/templates/templates.js` and accessible with
 As you may know, the Cloud Admin Web application is hosted on AWS S3. Since S3 is for static file serving and doesn't allow *on-the-fly* compression, we need to gzip files before uploading them to S3. With gulp-gzip we simply pipe gzip() into our task’s stream and we have a compressed gzipped file.
 
 {% highlight javascript %}
-    var gulp = require('gulp');
-    var gzip = require('gulp-gzip');
+var gulp = require('gulp');
+var gzip = require('gulp-gzip');
     
-    // Gzip the file CoveoJsAdmin.js
-    gulp.task('gzip', function () {
-	    return gulp.src('target/package/js/CoveoJsAdmin.js')
-            .pipe(gzip())
-            .pipe(gulp.dest('target/package/js'));
-	});
+// Gzip the file CoveoJsAdmin.js
+gulp.task('gzip', function () {
+    return gulp.src('target/package/js/CoveoJsAdmin.js')
+    .pipe(gzip())
+    .pipe(gulp.dest('target/package/js'));
+});
 {% endhighlight %}
 
 This will output the gzipped `CoveoJsAdmin.js.gz` file in `target/package/js`.
@@ -88,26 +88,26 @@ This will output the gzipped `CoveoJsAdmin.js.gz` file in `target/package/js`.
 [gulp-concat](https://github.com/ingro/gulp-template-compile) allows us to to combine all the files needed into a single file while [gulp-uglify](https://github.com/terinjokes/gulp-uglify/) minifies (and uglifies!) our files to shrink them to a minimum weight. [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) lets us know which code belongs to which file for easier debugging.  [gulp-if](https://github.com/robrich/gulp-if) allows us to add conditions to tasks. We use a `--min` flag to determine if we minify and gzip or not.
 
 {% highlight javascript %}    
-    var gulp = require('gulp');
-    var gutil = require('gulp-util');
-    var gulpif = require('gulp-if');
-    var concat = require('gulp-concat');
-    var uglify = require('gulp-uglify');
-    var gzip = require('gulp-gzip');
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var gulpif = require('gulp-if');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var gzip = require('gulp-gzip');
     
-    // Check for '--min' flag (true if present)
-    var useMinifiedSources = gutil.env.min;
+// Check for '--min' flag (true if present)
+var useMinifiedSources = gutil.env.min;
     
-    // Minify and gzip
-    gulp.task('libraries', function () {
-	    return gulp.src('lib/**/*.
-	        .pipe(concat('CoveoJsAdmin.Dependencies.js'))
-	        .pipe(gulp.dest('target/package/js'))
-	        .pipe(gulpif(useMinifiedSources, uglify()))
-	        .pipe(gulpif(useMinifiedSources, rename('CoveoJsAdmin.Dependencies.min.js')))
-	        .pipe(gulpif(useMinifiedSources, gzip(gzipOptions)))
-	        .pipe(gulpif(useMinifiedSources, gulp.dest('target/package/js')));
-	});
+// Minify and gzip
+gulp.task('libraries', function () {
+     return gulp.src('lib/**/*')
+           .pipe(concat('CoveoJsAdmin.Dependencies.js'))
+           .pipe(gulp.dest('target/package/js'))
+           .pipe(gulpif(useMinifiedSources, uglify()))
+           .pipe(gulpif(useMinifiedSources, rename('CoveoJsAdmin.Dependencies.min.js')))
+           .pipe(gulpif(useMinifiedSources, gzip(gzipOptions)))
+           .pipe(gulpif(useMinifiedSources, gulp.dest('target/package/js')));
+});
 {% endhighlight %}
 
 This will take all our libraries files (Backbone, JQuery, Underscore, etc) located in `/lib` and bundle them into `CoveoJsAdmin.Dependencies.js`. If the flag `--min` is enabled when calling gulp, it will also minify and rename to `CoveoJsAdmin.Dependencies.min.js`and gzip the file to `CoveoJsAdmin.Dependencies.min.js.gz`. The generated files will be output to `target/package/js`.
@@ -125,9 +125,11 @@ Microsoft’s [roadmap to 2.0](http://blogs.msdn.com/b/typescript/archive/2014/1
 ```
     hg pull
 ```
+
 ```
     npm install
 ```
+
 ```
     gulp
 ```
