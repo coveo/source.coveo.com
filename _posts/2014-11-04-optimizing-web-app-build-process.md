@@ -45,7 +45,8 @@ Watch is integrated into Gulp and must be one of its greatest features. Watch al
     });
 {% endhighlight %}
 
-###Template compile https://github.com/ingro/gulp-template-compile
+###[Template compile](https://github.com/ingro/gulp-template-compile)
+
 The Cloud Admin Web Application is a [Single Page Application](http://en.wikipedia.org/wiki/Single-page_application) built with [Marionette.JS](http://marionettejs.com/) and our template engine of choice is [Underscore.JS](http://underscorejs.org/). When developing, we want each template separated in their own [EJS files](http://www.embeddedjs.com/), but in production we need the best performance. Sure, we could use underscore’s _.template method on the client as stated in [Vincent’s latest post](http://source.coveo.com/2014/10/19/reusing-templates-underscore/) but [gulp-template-compile](https://github.com/ingro/gulp-template-compile) goes a step further by concatenating all of our templates into a single file and generating plain JavaScript functions that are usable later.
 
 {% highlight javascript %}
@@ -65,7 +66,8 @@ The Cloud Admin Web Application is a [Single Page Application](http://en.wikiped
 
 Templates are now in `target/package/templates/templates.js` and accessible with `window.CoveoTemplates.templateName(data)`.
 
-###Gzip https://github.com/jstuckey/gulp-gzip
+###[Gzip](https://github.com/jstuckey/gulp-gzip)
+
 As you may know, the Cloud Admin Web application is hosted on AWS S3. Since S3 is for static file serving and doesn't allow *on-the-fly* compression, we need to gzip files before uploading them to S3. With gulp-gzip we simply pipe gzip() into our task’s stream and we have a compressed gzipped file.
 
 {% highlight javascript %}
