@@ -120,7 +120,7 @@ This will take all our libraries files (Backbone, JQuery, Underscore, etc) locat
 
 ###What’s coming next
 
-Microsoft’s [roadmap to 2.0](http://blogs.msdn.com/b/typescript/archive/2014/10/22/typescript-and-the-road-to-2-0.aspx) is very promising!. Especially with the latest tsc 1.1.0.1 complier that should save us more than 30% compile time. We’re actually updating the compiler and adapting our codebase to support it soon. Some plugins offer [incremental builds](https://github.com/gulpjs/gulp/#incremental-builds), we’re actually looking at some to ensure compile time will be even shorter. Also, we still have development scripts in Python and we would love to translate them to JavaScript to build the project as easily as 
+Microsoft’s [roadmap to 2.0](http://blogs.msdn.com/b/typescript/archive/2014/10/22/typescript-and-the-road-to-2-0.aspx) is very promising!. Especially with the latest tsc 1.1.0.1 compiler that should save us more than 30% compile time. We’re actually updating the compiler and adapting our codebase to support it soon. Some plugins offer [incremental builds](https://github.com/gulpjs/gulp/#incremental-builds), we’re actually looking at some to ensure compile time will be even shorter. Also, we still have development scripts in Python and we would love to translate them to JavaScript to build the project as easily as 
 
 ```
     hg pull
