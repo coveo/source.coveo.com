@@ -29,7 +29,9 @@ Working with Gulp is a pleasure. What I must insist on is Gulp’s philosophy of
 There are a tons of great official and third-party plugins targeting a JavaScript stack. The plugins are all searchable right on [Gulp’s website](http://gulpjs.com/plugins/). Each plugins can be installed via npm and saved to your package.json’s devDependencies.
 
 ##Great plugins we use
+
 ###Watch
+
 Watch is integrated into Gulp and must be one of its greatest features. Watch allows to select files and monitor for changes. We can hook those changes to specific tasks, so modifications to LESS files will trigger LESS compilation automatically. Watch improves our productivity a lot!
 
 {% highlight javascript %}   
