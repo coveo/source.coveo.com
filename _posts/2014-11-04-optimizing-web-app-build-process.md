@@ -122,7 +122,9 @@ Microsoft’s [roadmap to 2.0](http://blogs.msdn.com/b/typescript/archive/2014/1
 
 ```
     hg pull
+    
     npm install
+    
     gulp
 ```
 
