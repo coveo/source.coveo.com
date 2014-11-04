@@ -35,14 +35,14 @@ There are a tons of great official and third-party plugins targeting a JavaScrip
 Watch is integrated into Gulp and must be one of its greatest features. Watch allows to select files and monitor for changes. We can hook those changes to specific tasks, so modifications to LESS files will trigger LESS compilation automatically. Watch improves our productivity a lot!
 
 {% highlight javascript %}   
-    var gulp = require('gulp');
+var gulp = require('gulp');
     
-    gulp.task('watch', function () {
-        gulp.watch('./stylesheets/**/*.less', ['less']);
-	gulp.watch('./templates/**/*.ejs', ['templates']);
-	gulp.watch('./src/**/*.ts', ['ts:compile']);
-        gulp.watch('./test/src/**/*.ts', ['test:compile']);
-    });
+gulp.task('watch', function () {
+    gulp.watch('./stylesheets/**/*.less', ['less']);
+    gulp.watch('./templates/**/*.ejs', ['templates']);
+    gulp.watch('./src/**/*.ts', ['ts:compile']);
+    gulp.watch('./test/src/**/*.ts', ['test:compile']);
+});
 {% endhighlight %}
 
 ###[Template compile](https://github.com/ingro/gulp-template-compile)
