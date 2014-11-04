@@ -38,10 +38,10 @@ Watch is integrated into Gulp and must be one of its greatest features. Watch al
     var gulp = require('gulp');
     
     gulp.task('watch', function () {
-	    gulp.watch('./stylesheets/**/*.less', ['less']);
-	    gulp.watch('./templates/**/*.ejs', ['templates']);
-	    gulp.watch('./src/**/*.ts', ['ts:compile']);
-	    gulp.watch('./test/src/**/*.ts', ['test:compile']);
+        gulp.watch('./stylesheets/**/*.less', ['less']);
+	gulp.watch('./templates/**/*.ejs', ['templates']);
+	gulp.watch('./src/**/*.ts', ['ts:compile']);
+        gulp.watch('./test/src/**/*.ts', ['test:compile']);
     });
 {% endhighlight %}
 
