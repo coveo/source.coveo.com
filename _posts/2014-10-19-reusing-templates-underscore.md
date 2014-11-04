@@ -21,7 +21,7 @@ It may happen that you want to render multiple templates in a single page. For i
 
 Let's start by creating our first Underscore template for the Products section. It basically just renders a list of products with their pictures and name. There's also a section that will be used to display more/less results.
 
-{% highlight text %}
+{% highlight jsp %}
 <div id="productsContainer" >
    <script class="productsTemplate" type="text/x-underscore-template" >
    <% if (results.results.length > 0) { %>
@@ -70,7 +70,7 @@ Coveo.Rest.SearchEndpoint.endpoints['default'].search({
 
 This will actually output the resulting HTML in the page. You may notice that i'm using the results object, which actually contains the <a href="https://developers.coveo.com/display/SearchREST/Query+Results">Query Results</a> object returned by the REST endpoint. So the whole thing work, and we have products and rainbows displayed in our page. SUDDENLY, someone asks us to display another section, based on Downloads this time. Alright! Let's create another template.
 
-{% highlight text %}
+{% highlight jsp %}
 <div id="downloadsContainer" class="searchContainer">
   <script class="downloadsTemplate" type="text/x-underscore-template" >
       <% if (results.results.length >= 0) { %>
@@ -120,7 +120,7 @@ function performQuery(queryToPerform, numberOfResults, container) {
 
 Excellent. We have Products and Downloads rendered, our customer is happy and we're riding unicorns. But we're not 100% happy. Take a look at this little piece of HTML that gets repeated :
 
-{% highlight text %}
+{% highlight jsp %}
  <h2>Products</h2>
  <span class="showMoreResults">Show more results in Products</span>
  <span class="showLessResults">Show fewer results in Products</span>
@@ -132,7 +132,7 @@ This may seems small, but let's say we add 6 more templates in our page (that ac
 
 My solution to our repetition problem is to create a new header template, by extracting and parametizing our little piece of markup. Our header template will use a category as parameter.
 
-{% highlight text %}
+{% highlight jsp %}
 <script class="headerTemplate" type="text/x-underscore-template" >
  <h2><%= category%></h2>
  <span class="showMoreResults">Show more results in <%= category%></span>
@@ -164,7 +164,7 @@ function performQuery(queryToPerform, numberOfResults, container) {
 
 You can see that when we append the HTML, we now pass the headerTemplate to the current template we're rendering. Last thing we need, let's edit our templates to use this new header parameter.
 
-{% highlight text %}
+{% highlight jsp %}
 <div id="productsContainer" >
    <script class="productsTemplate" type="text/x-underscore-template" >
    <% if (results.results.length > 0) { %>
@@ -188,7 +188,7 @@ You can see that when we append the HTML, we now pass the headerTemplate to the 
 </div>
 {% endhighlight %}
 
-{% highlight text %}
+{% highlight jsp %}
 <div id="downloadsContainer" class="searchContainer">
   <script class="downloadsTemplate" type="text/x-underscore-template" >
       <% if (results.results.length >= 0) { %>
