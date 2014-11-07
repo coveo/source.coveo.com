@@ -52,49 +52,39 @@ I told myself : "We just started using Java8. Maybe I can find a way to use some
 {% highlight java linenos %}
 public enum TimePeriod
 {
-    MINUTE(Dimension.MINUTE,
-	      (from, to) -> Minutes.minutesBetween(from, to).getMinutes() + 1, 
-	      Minutes::minutes, 
-		  from -> from.withZone(DateTimeZone.UTC)
-                      .withSecondOfMinute(0)
-                      .withMillisOfSecond(0)),
-    HOUR(Dimension.HOUR, 
-		(from, to) -> Hours.hoursBetween(from, to).getHours() + 1,
-		 Hours::hours, 
-		 from -> from.withZone(DateTimeZone.UTC)
-					 .withMinuteOfHour(0)
-					 .withSecondOfMinute(0)
-					 .withMillisOfSecond(0)),
-    DAY(Dimension.DAY,
-	   (from, to) -> Days.daysBetween(from, to).getDays() + 1, 
-	   Days::days,
-	   from -> from.withZone(DateTimeZone.UTC)
-				   .withTimeAtStartOfDay()),
-    WEEK(Dimension.WEEK,
-		(from, to) -> Weeks.weeksBetween(from, to).getWeeks() + 1,
-		 Weeks::weeks, 
-		 from -> from.withZone(DateTimeZone.UTC)
-					 .withDayOfWeek(1)
-					 .withTimeAtStartOfDay()),
-    MONTH(Dimension.MONTH,
-		 (from, to) -> Months.monthsBetween(from, to).getMonths() + 1,
-		 Months::months,
-		 from -> from.withZone(DateTimeZone.UTC)
-		     		 .withDayOfMonth(1)
-					 .withTimeAtStartOfDay());
+    MINUTE(Dimension.MINUTE, (from,
+                              to) -> Minutes.minutesBetween(from, to).getMinutes() + 1, Minutes::minutes, from -> from.withZone(DateTimeZone.UTC)
+                                                                                                                      .withSecondOfMinute(0)
+                                                                                                                      .withMillisOfSecond(0)),
+    HOUR(Dimension.HOUR, (from,
+                          to) -> Hours.hoursBetween(from, to).getHours() + 1, Hours::hours, from -> from.withZone(DateTimeZone.UTC)
+                                                                                                        .withMinuteOfHour(0)
+                                                                                                        .withSecondOfMinute(0)
+                                                                                                        .withMillisOfSecond(0)),
+    DAY(Dimension.DAY, (from,
+                        to) -> Days.daysBetween(from, to).getDays() + 1, Days::days, from -> from.withZone(DateTimeZone.UTC)
+                                                                                                 .withTimeAtStartOfDay()),
+    WEEK(Dimension.WEEK, (from,
+                          to) -> Weeks.weeksBetween(from, to).getWeeks() + 1, Weeks::weeks, from -> from.withZone(DateTimeZone.UTC)
+                                                                                                        .withDayOfWeek(1)
+                                                                                                        .withTimeAtStartOfDay()),
+    MONTH(Dimension.MONTH, (from,
+                            to) -> Months.monthsBetween(from, to).getMonths() + 1, Months::months, from -> from.withZone(DateTimeZone.UTC)
+                                                                                                               .withDayOfMonth(1)
+                                                                                                               .withTimeAtStartOfDay());
 
     private Dimension<Timestamp> dimension;
-    private BiFunction<DateTime, DateTime, Integer> getNnumberOfPoints;
+    private BiFunction<DateTime, DateTime, Integer> getNumberOfPoints;
     private Function<Integer, ReadablePeriod> getPeriodFromNbOfInterval;
     private Function<DateTime, DateTime> getStartOfInterval;
 
     private TimePeriod(Dimension<Timestamp> dimension,
-                     BiFunction<DateTime, DateTime, Integer> getNnumberOfPoints,
-                     Function<Integer, ReadablePeriod> getPeriodFromNbOfInterval,
-                     Function<DateTime, DateTime> getStartOfInterval)
+                       BiFunction<DateTime, DateTime, Integer> getNumberOfPoints,
+                       Function<Integer, ReadablePeriod> getPeriodFromNbOfInterval,
+                       Function<DateTime, DateTime> getStartOfInterval)
     {
         this.dimension = dimension;
-        this.getNnumberOfPoints = getNnumberOfPoints;
+        this.getNumberOfPoints = getNumberOfPoints;
         this.getPeriodFromNbOfInterval = getPeriodFromNbOfInterval;
         this.getStartOfInterval = getStartOfInterval;
     }
@@ -107,7 +97,7 @@ public enum TimePeriod
     public int getNumberOfPoints(DateTime from,
                                  DateTime to)
     {
-        return getNnumberOfPoints.apply(from, to);
+        return getNumberOfPoints.apply(from, to);
     }
 
     public ReadablePeriod getPeriodFromNbOfInterval(int nbOfInterval)
@@ -120,6 +110,7 @@ public enum TimePeriod
         return getStartOfInterval.apply(from);
     }
 }
+
 {% endhighlight %}
 
 Using this enum, I was able to easily change the code to allow the user to specify the time periods for the graph data points. 
