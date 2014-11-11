@@ -17,7 +17,7 @@ I've been working remotely from more than two years now, and I thought I'd add m
 
 First some background. I'm a long time Coveo employee, and before going remote I worked on-site for many years. I'm a Canadian who, having married a frenchwoman, now lives in France. My job is split between development and some management, with a strong emphasis on the former. I head a 7 person strong team responsible for our Salesforce integration, JS UI front-end and REST backend, and also our mobile apps.
 
-One particular (I think) aspect of my own situation is the 6 hours time zone difference between me and the home office. Also, I should note that most Coveo R&D staff are on-site, although we do have some other remote developers but none as far away than me.
+One particular (I think) aspect of my own situation is the 6 hours time zone difference between me and the home office. Also, I should note that most Coveo R&D staff are on-site, although we do have some other remote developers but none as far away as me.
 
 When thinking about remote work, communication is always the first thing coming up, so I'll dedicate this post to this topic.
 
