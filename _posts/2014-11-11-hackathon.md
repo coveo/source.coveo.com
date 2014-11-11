@@ -26,7 +26,7 @@ We had our first Hackathon last Saturday. The rules were simple:
 * Work on something related to Coveo. 
 * Work on something you would not work in your normal workweek (aka, don't plan on "working"). 
 * You demo what you did before you leave.
-* No beer before 12h. 
+* No beer before noon. 
 Ok, the last one is not a rule, only a recommendation.
  
 I was impressed by the number of working projects presented at the end of the day. We had some complex [NLP](http://en.wikipedia.org/wiki/Natural_language_processing)  tried out, some time saving macros and some UI hacks (by non-UI people). Some even tried to prototype other technology to replace limitations in the ones we have or add new APIs into our infrastructure, and much more. We can say it was an all around success.
