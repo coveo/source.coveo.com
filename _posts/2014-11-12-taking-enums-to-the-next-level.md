@@ -3,13 +3,13 @@ layout: post
 
 title: "Taking Enums to the next level with Java 8"
 
+published:false
+
 author:
   name: Jonathan Rochette
   bio: Analytics API Jedi Master
   twitter: JoRochette
   image: jrochette.jpg
-
-published:false  
 ---
 
 Taking Enums to the next level with Java8
