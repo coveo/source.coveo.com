@@ -16,6 +16,8 @@ Taking Enums to the next level with Java8
 
 In our awesome cloud Usage Analytics API, there is a call that returns the analytics data in data points format (these are meant to be used to build a graph). Recently, we added a feature allowing the user to chose the time period (initially, only *days* was available). Problem is, the code was strongly coupled with the *day* period...
 
+<!-- more -->
+
 ![image](/images/graphexemple.png)
 
 For exemple, take this snippet :
