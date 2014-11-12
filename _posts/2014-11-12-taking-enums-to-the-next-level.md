@@ -8,6 +8,8 @@ author:
   bio: Analytics API Jedi Master
   twitter: JoRochette
   image: jrochette.jpg
+
+published:false  
 ---
 
 Taking Enums to the next level with Java8
