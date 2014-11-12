@@ -36,7 +36,7 @@ private static List<DataPoint> createListWithZerosForTimeInterval(DateTime from,
     }
 {% endhighlight %}
 
-> **Note:** Days, as well as Minutes, Hours, Weeks and Months in the snippet a little further bellow, come from the [Joda-Time Java date and time API](http://www.joda.org/joda-time/).
+**Note:** Days, as well as Minutes, Hours, Weeks and Months in the snippet a little further bellow, come from the [Joda-Time Java date and time API](http://www.joda.org/joda-time/).
 
 Even if the name of the method does not reflect it, it is very strongly binded to the concept of *days*.
 
