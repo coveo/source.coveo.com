@@ -1,0 +1,19 @@
+<script src="/js/d3.min.js"></script>
+<script src="/js/CoveoJsSearch.WithDependencies.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Coveo.Rest.SearchEndpoint.endpoints["default"] = new Coveo.Rest.SearchEndpoint({
+            restUri: 'https://developers.coveo.com/coveorest/search',
+            anonymous: true
+        });
+        $('#searchBox').coveo('initSearchBox', '/search');
+        var myValueCaption = {  "Developers.coveo.com.public" : "Developers",
+                                "answers" : "Answers",
+                                "BlogTech" : "Technical Blog"};
+        $("#search").coveo("init", {
+            Facet : {
+                valueCaption : myValueCaption
+            }
+        })        
+    });
+</script>

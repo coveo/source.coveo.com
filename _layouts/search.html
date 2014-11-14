@@ -28,11 +28,11 @@
     <meta property="og:description" content="{{ page.title }}"/>
     <meta name="description" content="{{ page.title }}"/>
     {% endif %}
-    <meta property="og:site_name" content="{{ site.inc.title }}">
+    <meta property="og:site_name" content="{{ site.inc.title }}">    
     <link rel="stylesheet" href="/css/CoveoFullSearch.css" />
     {% include _search.html %}
 </head>
-<body>
+<body id="search" class="CoveoSearchInterface" data-enable-history="true">
 
 <section class="site-nav">
     <header>
@@ -61,7 +61,107 @@
 </section>
 </div>
 
-{{ content }}
+<article class="container">
+
+<div id="search" class="CoveoSearchInterface" data-enable-history="true">
+    <span class="CoveoAnalytics" data-search-hub="Blog" data-token="api_key_16aa3ce3-d77a-4c25-97a2-18be59347d9e" data-user="coveokmua@coveo.com" data-send-to-cloud="true" />
+
+    <div class="coveo-tab-section">
+        <a class="CoveoTab"
+           data-id="Blog"
+           data-caption="Blog"
+           data-icon="coveo-sprites-documentType-all-content"
+	       data-expression='@syssource==BlogTech'></a>
+    </div>
+
+    <div class="coveo-results-section">
+        <div class="coveo-facet-column">
+            <div data-tab="Blog">
+	            <div class="CoveoFacet" data-title="Author" data-field="@sysauthor" data-show-icon="true"></div>
+	        </div>
+	        <div class="CoveoFacet" data-title="Tags" data-field="@tags" data-is-multi-value-field="true"></div>
+        </div>
+
+        <div class="coveo-results-column">
+            <div class="CoveoShareQuery"></div>
+            <div class="CoveoPreferencesPanel">
+                <div class="CoveoResultsPreferences"></div>
+                <div class="CoveoResultsFiltersPreferences"></div>
+            </div>
+            <div class="CoveoBreadcrumb"></div>
+
+            <div class="coveo-results-header">
+                <div class="coveo-summary-section">
+                    <span class="CoveoQuerySummary"></span>
+                    <span class="CoveoQueryDuration"></span>
+                </div>
+                <div class="coveo-sort-section">
+                    <span class="CoveoSort" data-sort-criteria="relevancy">Relevance</span>
+                    <span class="CoveoSort" data-sort-criteria="date descending,date ascending">Date</span>
+                </div>
+                <div class='coveo-clear'></div>
+            </div>
+
+            <div class="CoveoHiddenQuery"></div>
+            <div class="CoveoDidYouMean"></div>
+            <div class="CoveoErrorReport" data-pop-up='false'></div>
+
+            <div class="CoveoResultList" data-wait-animation="fade">
+                <script id="Default" type="text/x-underscore-template">
+                <%= fromFileTypeToIcon(obj) %>
+                
+                <div class="coveo-date"><%-dateTime(raw.sysdate)%></div>
+                
+                <div class="coveo-title">
+                  <a class="CoveoResultLink" target="_blank"><%=title?highlight(title, titleHighlights):clickUri%></a>
+                
+                  <%= loadTemplate("DefaultQuickView") %>
+                </div>
+                
+                <div class="coveo-excerpt">
+                  <%=highlight(excerpt, excerptHighlights)%>
+                </div>
+                
+                <div class="CoveoPrintableUri"></div>
+                
+                <table class="CoveoFieldTable">
+                  <tr data-field="@sysauthor" data-caption="Author"></tr>
+                </table>
+                </script>
+
+                <script id="DefaultQuickView" type="text/x-underscore-template">
+                <div class="CoveoQuickView" data-title="<%= attrEncode(fromFileTypeToIcon(obj) + title) %>" data-fixed="true" data-template-id="DefaultQuickViewContent">
+                </div>
+                </script>
+
+                <script id="DefaultQuickViewContent" type="text/x-underscore-template">
+                <div class="coveo-quick-view-header">
+                  <table class="CoveoFieldTable">
+                    <tr data-field="@sysdate" data-caption="Date" data-helper="dateTime"></tr>
+                    <tr data-field="@objecttype" data-caption="Type"></tr>
+                  </table>
+                </div>
+                <div class="CoveoQuickViewDocument"></div>
+                </script>
+
+                <script class="result-template" type="text/x-underscore-template">
+                    <%=
+                    loadTemplates({
+                'Default' : 'default'
+                    })
+                    %>
+                </script>
+            </div>
+            <div class="CoveoPager"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<div style="clear:both;"></div>
+
+</article>
 
 <footer class="site-footer">
     <div class="container">
