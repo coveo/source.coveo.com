@@ -3171,5 +3171,5 @@ span.selectOption:hover {
 #searchBox {
      float: right;
      margin: 20px 0 0 0;
-     font-size : 15px;
+     font-size : 15px !important;
 }
