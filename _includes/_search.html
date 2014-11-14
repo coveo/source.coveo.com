@@ -6,7 +6,7 @@
             restUri: 'https://developers.coveo.com/coveorest/search',
             anonymous: true
         });
-      if(document.location.pathname == "/") {
+      if (document.location.pathname !== "/search/") {
         $('#searchBox').coveo('initSearchBox', '/search');
       } else if (document.location.pathname == "/search/" ) {
         var mySearchBox = $("#searchBox");
