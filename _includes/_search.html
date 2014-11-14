@@ -6,7 +6,9 @@
             restUri: 'https://developers.coveo.com/coveorest/search',
             anonymous: true
         });
+      if(document.location.pathname == "/") {
         $('#searchBox').coveo('initSearchBox', '/search');
+      } else if (document.location.pathname == "/search/" ) {
         var myValueCaption = {  "Developers.coveo.com.public" : "Developers",
                                 "answers" : "Answers",
                                 "BlogTech" : "Technical Blog"};
@@ -15,5 +17,6 @@
                 valueCaption : myValueCaption
             }
         })        
+      }
     });
 </script>
