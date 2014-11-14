@@ -29,25 +29,8 @@
     <meta name="description" content="{{ page.title }}"/>
     {% endif %}
     <meta property="og:site_name" content="{{ site.inc.title }}">    
-    <script src="/js/d3.min.js"></script>
-    <script src="/js/CoveoJsSearch.WithDependencies.min.js"></script>
     <link rel="stylesheet" href="/css/CoveoFullSearch.css" />
-    <script type="text/javascript">
-        $(function () {
-            Coveo.Rest.SearchEndpoint.endpoints["default"] = new Coveo.Rest.SearchEndpoint({
-                restUri: 'https://developers.coveo.com/coveorest/search',
-                anonymous: true
-            });
-            var myValueCaption = {  "Developers.coveo.com.public" : "Developers",
-                                    "answers" : "Answers",
-                                    "BlogTech" : "Technical Blog"};
-	        $("#search").coveo("init", {
-	            Facet : {
-                    valueCaption : myValueCaption
-	            }
-	        })        
-        });
-    </script>
+    {% include _search.html %}
 </head>
 <body id="search" class="CoveoSearchInterface" data-enable-history="true">
 
@@ -72,7 +55,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="CoveoSearchBox" data-activate-omnibox="true"></div>
+            <div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true"></div>
         </div>
     </header>
 </section>

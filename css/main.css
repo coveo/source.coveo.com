@@ -3168,7 +3168,7 @@ span.selectOption:hover {
     padding: 5px 0 0 0;
 }
 
-.CoveoSearchBox {
-         float: right;
-         margin: 20px 0 0 0;
+#searchBox {
+     float: right;
+     margin: 20px 0 0 0;
 }

@@ -28,7 +28,9 @@
     <meta property="og:description" content="{{ page.title }}"/>
     <meta name="description" content="{{ page.title }}"/>
     {% endif %}
-    <meta property="og:site_name" content="{{ site.inc.title }}">     
+    <meta property="og:site_name" content="{{ site.inc.title }}">
+    <link rel="stylesheet" href="/css/CoveoFullSearch.css" />
+    {% include _search.html %}
 </head>
 <body>
 
@@ -53,6 +55,7 @@
                     </div>
                 </div>
             </nav>
+            <div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true"></div>
         </div>
     </header>
 </section>
