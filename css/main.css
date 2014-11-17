@@ -3173,6 +3173,6 @@ span.selectOption:hover {
      margin: 20px 0 0 0;
 }
 
-.CoveoQueryBox {
+#searchBox .CoveoQueryBox {
      font-size : 15px;
 }
