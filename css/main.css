@@ -3168,8 +3168,8 @@ span.selectOption:hover {
     padding: 5px 0 0 0;
 }
 
-#searchBox {
+#searchBox .CoveoQueryBox {
      float: right;
      margin: 20px 0 0 0;
-     font-size : 15px !important !important;
+     font-size : 15px;
 }
