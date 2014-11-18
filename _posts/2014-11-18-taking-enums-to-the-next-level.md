@@ -142,4 +142,4 @@ became this (note that the timePeriod was passed to the method after being speci
 for (int i = 0; i < timePeriod.getNumberOfPoints(from, to); i++)
 {% endhighlight %}
 
-The code behind the getGraphDataPoints call of the Usage Analytics service is now completly independant and unaware of the time period. And as a bonus, it does respect hat *open/closed principle* I was talking about earlier.
+The code behind the getGraphDataPoints call of the Usage Analytics service is now completly independant and unaware of the time period. And as a bonus, it does respect that *open/closed principle* I was talking about earlier.
