@@ -42,7 +42,7 @@ Even if the name of the method does not reflect it, it is very strongly binded t
 As I was looking for a way to use different time periods (*months*, *weeks*, *hours* for exemple), I saw the oh so nasty **switch/case** staement slowy sneaking its way into the code .  
 
 ----------
-You have to understand that the notion **switch/case = evil** was drilled into my mind when I was attending college and in two internships I made, so I tend to try to avoid those at any cost, mainly because they often violate the [*open-closed principle*](http://en.wikipedia.org/wiki/Open/closed_principle). I strongly believe that this principle is one of the most important best practices for writing object-oriented code. And I am no the only one. Robert C. Martin once said :
+You have to understand that the notion **switch/case = evil** was drilled into my mind when I was attending college and in two internships that I had, so I tend to try to avoid those at any cost, mainly because they often violate the [*open-closed principle*](http://en.wikipedia.org/wiki/Open/closed_principle). I strongly believe that this principle is one of the most important best practices for writing object-oriented code. And I am no the only one. Robert C. Martin once said :
 
 > In many ways [the open-closed principle] is at the heart of object oriented design. Conformance to this principle is what yields the greatest benefits claimed for object oriented technology; i.e. reusability and maintainability.[^footnote]
 
