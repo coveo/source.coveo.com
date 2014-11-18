@@ -2512,17 +2512,8 @@ article ol li, article ul li {
     margin-bottom: 0.5em
 }
 
-article blockquote {
-    border: 0;
-    font-size: 24px;
-    margin: 1.2em -4em 1.2em 0;
-    padding: 0
-}
-
 article blockquote p {
-    font-size: 30px;
     line-height: 1.1;
-    color: #2077b2;
     font-weight: 600
 }
 
