@@ -2966,6 +2966,10 @@ article .full.zoomable img.zoom {
 }
 
 @media (max-width: 720px) {
+    #searchBox {
+        display: none;    
+    }
+    
     article {
         padding-top: 30px
     }
@@ -3037,10 +3041,6 @@ article .full.zoomable img.zoom {
         display: none
     }
 
-    .site-nav #navigation a {
-        display: none
-    }
-
     .site-nav #navigation .brand {
         display: inline-block
     }
@@ -3076,8 +3076,7 @@ article .full.zoomable img.zoom {
 
 .site-nav #logo img {
     height: 40px;
-    margin-right: 10px;
-    margin-top: -2px
+    margin: -2px 10px 0 10px;
 }
 
 #logo {
