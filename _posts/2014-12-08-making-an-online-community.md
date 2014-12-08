@@ -7,7 +7,7 @@ title: "Making an online community"
 author:
   name: Benoît Chabert
   bio: designer
-  image: bchabert.png
+  image: bchabert.jpg
 ---
 ![image](/images/posts/online_communities.png)
 
