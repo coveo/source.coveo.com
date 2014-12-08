@@ -63,7 +63,7 @@ Online Community 0/1
 Build an online community
 </p>
 
-So we’ve identified the benefits. You can pat yourself on the back. The second big step is to make sure we actually succeed in creating an online community. Indeed, only if we’re successful in creating our online community, will we get all these benefits. But wait a second, how do you measure success in an online community ? Surely, it must be different then any other web applications. 
+So we’ve identified the benefits. You can pat yourself on the back. The second big step is to make sure we actually succeed in creating an online community. Indeed, only if we’re successful in creating our online community, will we get all these benefits. But wait a second, how do you measure success in an online community ? Surely, it must be different than any other web applications. 
 
 <h4 id="benefits-11-2" style="line-height: 0.1em; color:#cdcdcd;">
 Benefits 1/1
