@@ -164,7 +164,7 @@ As we can see, the landing page presents the tagline (as said before, it is esse
 <p style="text-align:center">
 <img src="/images/posts/heart.png" alt="image" style="max-width:49%">
 <img src="/images/posts/chuck.png" alt="image" style="max-width:49%">
-</p/
+</p>
 
 When a user logs in, he is brought to his profile page, which is undoubtedly called “Home”. There he has access to updates on various Coveo sites, as well as other features (such as social media, etc).
 
