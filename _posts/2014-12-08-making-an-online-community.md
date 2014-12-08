@@ -41,11 +41,14 @@ Build an online community
 
 Luckily, this quest wasn’t too hard. A lot of research has been done in regards to online communities. Ridings and Gefen (2004), suggest that a first category of benefits simply come from forming a social group. Easy enough, When you form a social group you can: 
 
-exchange information, give and receive emotional support, develop friendships and have fun. 
+- Exchange information
+- Give and receive emotional support
+- Develop friendships 
+- Have fun
 
 It makes sense, for most of you, who have friends, you can agree with them. 
 
-The second category is related to access to online information. An online community will often have 24/7 access and operation, asynchronous interactions, global geographical reach and, hopefully, some kind of history of what happened in the community. Well, all of our assumptions are confirmed and the idea of an online community looks great for a business like Coveo. But wait, there’s more. Hagel and Armstrong (1997) have also found that online communities are believed to promote customer loyalty. Of course! Customers get more personally attached to a product because the product not only represents a solution but also represents a network of online relationships. I’m a network ambassador for [Frank & Oak](http://network.frankandoak.com) (great clothing if you’re looking for clothes ([here’s a 25$ coupon as well](http://vnlink.co/SVAXBku)). Contrary to what one can believe, the community there doesn’t only speak about fashion, but also about lifestyle. We can exchange ideas about music, as well as games, or just do a meetup in a city somewhere. We also actively participate with Frank & Oak staff on some design decisions by providing feedback. This attachment makes all of us even more loyal to the brand but it also makes us feel *special* for being a part of it. It feels like this emotion is the right one to have in regards to a community. An emotion one would get when he is part of something greater than himself. Now I’m overstepping a bit on the next part which is how to ensure the success of an online community. 
+The second category is related to access to online information. An online community will often have 24/7 access and operation, asynchronous interactions, global geographical reach and, hopefully, some kind of history of what happened in the community. Well, all of our assumptions are confirmed and the idea of an online community looks great for a business like Coveo. But wait, there’s more. Hagel and Armstrong (1997) have also found that online communities are believed to promote customer loyalty. Of course! Customers get more personally attached to a product because the product not only represents a solution but also represents a network of online relationships. I’m a network ambassador for Frank & Oak (http://network.frankandoak.com) (great clothing if you’re looking for clothes (here’s a 25$ coupon as well) http://vnlink.co/SVAXBku). Contrary to what one can believe, the community there doesn’t only speak about fashion, but also about lifestyle. We can exchange ideas about music, as well as games, or just do a meetup in a city somewhere. We also actively participate with Frank & Oak staff on some design decisions by providing feedback. This attachment makes all of us even more loyal to the brand but it also makes us feel *special* for being a part of it. It feels like this emotion is the right one to have in regards to a community. An emotion one would get when he is part of something greater than himself. Now I’m overstepping a bit on the next part which is how to ensure the success of an online community. 
 
 ![image](/images/posts/success.png)
 
@@ -124,8 +127,7 @@ This stage is composed of 5 key elements. I’m trying to keep this post short s
 
 ### Leitmotiv
 
-A clear purpose will generally serve you well when building an online community. This purpose can be explicitly written in the interface (as a tagline) and will inform potential members of your community’s purpose. A good example of this (taken from Iriberri & Leroy 2009) is the tagline of slashdot.org:
-## “ *News for Nerds. Stuff that matters* ”.
+A clear purpose will generally serve you well when building an online community. This purpose can be explicitly written in the interface (as a tagline) and will inform potential members of your community’s purpose. A good example of this (taken from Iriberri & Leroy 2009) is the tagline of slashdot.org: _News for Nerds. Stuff that matters_.
 
 This strong tagline instantly defines the community and its purpose.
 
@@ -139,7 +141,7 @@ It is generally okay for a community to have explicitly written rules on how to 
 
 ### Branding
 
-Like I said earlier, a great tagline will help in this regard. You can also use design patterns that you know are appealing to your audience. For instance, with the Frank & Oak network we can see a visual style that is similar on their [network site](http://network.frankandoak.com) and on their [e-commerce site](http://frankandoak.com).
+Like I said earlier, a great tagline will help in this regard. You can also use design patterns that you know are appealing to your audience. For instance, with the Frank & Oak network we can see a visual style that is similar on their network site (http://network.frankandoak.com) and on their e-commerce site(http://frankandoak.com).
 
 ### Feedback & Continuity
 
