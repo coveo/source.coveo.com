@@ -81,11 +81,11 @@ Look for the following tag at the end of the file :
 
 {% highlight html %}
 
-    <script type="text/javascript">
-        Coveo.$(function() {
-            Coveo.$('#search').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
-        });
-    </script>
+<script type="text/javascript">
+    Coveo.$(function() {
+        Coveo.$('#search').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
+    });
+</script>
 
 {% endhighlight %}
 
@@ -93,12 +93,12 @@ And replace it by :
 
 {% highlight html %}
 
-    <script type="text/javascript">
-        Coveo.$(function() {
-            Coveo.$('#search').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
-            Coveo.$('#search').find("input.CoveoQueryBox").attr("placeholder", '@Model.PlaceholderText');
-        });
-    </script>
+<script type="text/javascript">
+    Coveo.$(function() {
+        Coveo.$('#search').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
+        Coveo.$('#search').find("input.CoveoQueryBox").attr("placeholder", '@Model.PlaceholderText');
+    });
+</script>
 
 {% endhighlight %}
 
@@ -124,4 +124,4 @@ Lots of steps for a small result you may say! But like i said earlier, all those
 
 Thanks for reading!
 
-![image](/images/posts/kinginthecastle.gif)
+![image](/images/sitecore/kinginthecastle.gif)
