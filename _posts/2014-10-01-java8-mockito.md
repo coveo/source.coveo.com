@@ -219,7 +219,7 @@ This new code will generate the same nice error message as above.. but it is muc
 {% highlight java linenos %}
 public static <T> T argThatMatches(Predicate<T> predicate)
 {
-    LambdaMatcher<T> matcher = new LambdaMatcher(predicate);
+    LambdaMatcher<T> matcher = new LambdaMatcher<>(predicate);
     return Matchers.argThat(matcher);
 }
 {% endhighlight %}
