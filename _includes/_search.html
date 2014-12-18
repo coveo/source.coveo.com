@@ -10,14 +10,8 @@
         $('#searchBox').coveo('initSearchBox', '/search');
       } else if (document.location.pathname == "/search/" ) {
         var mySearchBox = $("#searchBox");
-        var myValueCaption = {  "Developers.coveo.com.public" : "Developers",
-                                "answers" : "Answers",
-                                "BlogTech" : "Technical Blog"};
         $("#search").coveo("init", {
-            externalComponents : [mySearchBox],
-            Facet : {
-                valueCaption : myValueCaption
-            }
+            externalComponents : [mySearchBox]
         })        
       }
     });
