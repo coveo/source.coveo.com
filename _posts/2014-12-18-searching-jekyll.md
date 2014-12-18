@@ -156,7 +156,7 @@ We wanted to have a search box on every page. We proceeded to change our two lay
 <div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true"></div>
 {% endhighlight %}
 
-For the search box and the search page to work, the [JavaScript Search Framework](https://developers.coveo.com/display/public/JsSearch/Home) ressources must be included in all the pages of the blog. These two lines were also added to the base and post layouts:
+For the search box and the search page to work, the [JavaScript Search Framework](https://developers.coveo.com/display/public/JsSearch/Home) resources must be included in all the pages of the blog. These two lines were also added to the base and post layouts:
 
 {% highlight html %}
 {{ "{% include _search.html " }}%}
