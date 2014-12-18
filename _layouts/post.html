@@ -17,6 +17,7 @@ layout: base
 	            By {% if page.author.twitter %}<address><a rel="author" href="https://twitter.com/{{ page.author.twitter }}" title="{{ page.author_name }}" target="_blank">{% endif %}{{ page.author.name }}{% if page.author.twitter %}</a></address>{% endif %} &mdash;
                 <time pubdate datetime="{{ page.date | date: "%Y-%d-%B" }}" title="{{ page.date | date: "%B %d, %Y" }}">{{ page.date | date: "%B %d, %Y" }}</time>
             </div>
+            
             <h1 class="title">{{ page.title }}</h1>
             {% if page.subtitle %}<h2 class="subtitle">{{ page.subtitle }}</h2>{% endif %}
         </header>
@@ -24,6 +25,16 @@ layout: base
         <section>
             {{ content }}
             {% include _social.html %}
+            {% if page.tags %}
+              {% for tag in page.tags %}
+                {% if forloop.last %}
+                  <a href="/search#f:@tags=[{{ tag }}]">{{ tag }}</a>
+                {% else %}
+                  <a href="/search#f:@tags=[{{ tag }}]">{{ tag }},</a> 
+                {% endif %}  
+              {% endfor %}
+            {% endif %}
+
         </section>
 
         <footer>
@@ -33,7 +44,6 @@ layout: base
                 <span class="muted">{{ page.author.bio }}</span>
                 </p>
             </address>
-
         </footer>
 
         {% if site.inc.disqus.shortname %}
