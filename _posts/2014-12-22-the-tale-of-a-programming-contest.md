@@ -32,9 +32,9 @@ I was at the coffee machine when Jean (our CFO) came in and asked:
 
 *Jean*:	What can we do to get more applicants, to get our name out there?
 
-*Marc*:	\*joking* We should do a programming contest for students!
+*Marc*:	\*joking\* We should do a programming contest for students!
 
-*Jean*:	What a great idea - let's do that!
+*Jean*: What a great idea - let's do that!
 
 Ok, that was not totally a joke, but not totally serious either! The idea came from a programming contest held in Quebec City called "[Le Bivouac Urbain](http://bivouacurbain.com)", where contestants had to create a full video game in 48 hours.
 
