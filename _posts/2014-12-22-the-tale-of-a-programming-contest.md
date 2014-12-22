@@ -9,7 +9,7 @@ author:
   name: Marc Sanfaçon
   bio: SVP Technology
   twitter: msanfacon
-  image: msanfacon.jpg
+  image: msanfacon.png
 ---
 
 ## It all began...
