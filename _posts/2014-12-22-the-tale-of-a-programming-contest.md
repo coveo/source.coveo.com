@@ -20,6 +20,8 @@ Did I say passionate?
 
 Our primary source for hiring talented and passionate - I know, but it's really important to us - software developers was (and still is) universities. We bring students on board during an internship and show them what it's like to work with us - the challenges, the environment, the people, ... - it usually works really well and we end up hiring almost 33% of the interns.
 
+<!-- more -->
+
 Back in 2010, Coveo was little known in Quebec City, let alone Montreal or Sherbrooke. We had to find a way to spread the word on how Coveo is such a great place to work at.
 
 I was at the coffee machine when Jean (our CFO) came in and asked:
