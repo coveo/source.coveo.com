@@ -72,7 +72,7 @@ The final score would be based on several criteria: performance, code quality, q
 
 ## Preparing the day
 
-Out objective was to get 5 or 6 teams of 4 students. Based on the limited success we had attracting students, achieving that goal would definitely help spreading the word about Coveo. We reached to the different universities & colleges to promote the contest. We received more than 12 registrations in a few weeks! We were really excited, but at the same time, ...
+Our objective was to get 5 or 6 teams of 4 students. Based on the limited success we had attracting students, achieving that goal would definitely help spreading the word about Coveo. We reached to the different universities & colleges to promote the contest. We received more than 12 registrations in a few weeks! We were really excited, but at the same time, ...
 
 That was a problem, since we initially wanted to host the contest in our office, but we didn’t have a room large enough for all these people + staff! We fixed this through a fantastic collaboration with Laval University that offered to rent us a classroom. We decided to hold the contest there. We also limited the contest to 8 teams and asked all team to provide a small demo project to classify. I evaluated all those projects and selected the 8 teams.
 
