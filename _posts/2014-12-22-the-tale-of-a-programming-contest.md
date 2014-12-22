@@ -12,7 +12,7 @@ author:
   image: marcsanfacon.jpg
 ---
 
-# It all began...
+## It all began...
 
 It is in September of 2010 that the idea of doing a programming contest came to life. Coveo was a startup with highly passionate employees, ready to grow and bring more passionate people on board.
 
@@ -36,7 +36,7 @@ I was at the coffee machine when Jean (our CFO) came in and asked:
 
 Ok, that was not totally a joke, but not totally serious either! The idea came from a programming contest held in Quebec City called "[Le Bivouac Urbain](http://bivouacurbain.com)", where contestants had to create a full video game in 48 hours.
 
-# Defining the contest
+## Defining the contest
 
 The decision to do a programming contest was made - yeah, that’s really all it took to start the project! But we still needed to do a lot of things to make it a reality and the most important one was defining the challenge.
 
@@ -68,13 +68,13 @@ We wanted people to know that creating a search engine that works is challenging
 
 The final score would be based on several criteria: performance, code quality, quality & design of the UI, and of course, results precision. The correction would be manual, meaning that Coveo’s staff would evaluate the different aspects of the project.
 
-# Preparing the day
+## Preparing the day
 
-In our wildest dreams, we initially targeted 5 to 6 teams of 4 students. Based on the limited success we had attracting students, achieving that goal would definitely help spreading the word about Coveo. We reached to the different universities & colleges to promote the contest. We received more than 12 registrations in a few weeks! We were really excited, but at the same time, ...
+Out objective was to get 5 or 6 teams of 4 students. Based on the limited success we had attracting students, achieving that goal would definitely help spreading the word about Coveo. We reached to the different universities & colleges to promote the contest. We received more than 12 registrations in a few weeks! We were really excited, but at the same time, ...
 
-That was a problem, since we initially wanted to host the contest in our office, but we didn’t have a room large enough for all these people + staff! We fixed this through a fantastic collaboration with Laval University that offered to rent a classroom. We decided to hold the contest there. We also limited the contest to 8 teams and asked all team to provide a small demo project to classify. I evaluated all those projects and selected the 8 teams.
+That was a problem, since we initially wanted to host the contest in our office, but we didn’t have a room large enough for all these people + staff! We fixed this through a fantastic collaboration with Laval University that offered to rent us a classroom. We decided to hold the contest there. We also limited the contest to 8 teams and asked all team to provide a small demo project to classify. I evaluated all those projects and selected the 8 teams.
 
-One of the teams, the actual winners of the first edition, presented an algorithm to compute stuff I can’t remember, but I sure remember that they put a nice image while the computation was running.
+One of the teams presented an algorithm to compute stuff I can’t remember, but I sure remember that they put a nice image while the computation was running.
 
 ![](/images/20141222/image_0.gif)
 
@@ -114,11 +114,11 @@ A lot of people at Coveo got excited by Coveo Blitz and helped make it a reality
 
 **_The room and participants_**
 
-# Lessons learned
+## Lessons learned
 
 We learned several things by doing all these editions of Coveo Blitz. Here are the most important ones, at least, for me!
 
-## You are never too prepared
+### You are never too prepared
 
 We are now at our fifth edition of Coveo Blitz and I can tell you that after every edition, we told ourselves that the following year, we’ll be more prepared. We start working on the next edition several months in advance, often 8-10 months before, but you need more than enough time to succeed. Because as says the [Parkinson’s law](http://en.wikipedia.org/wiki/Parkinson%27s_law): *work expands so as to fill the time available for its completion*.
 
@@ -128,11 +128,11 @@ I suggest to take the preparation of a contest like any other project and set mi
 
 **_Coveo’s version of Grumpy Cat_**
 
-## Favor automatic correction over manual
+### Favor automatic correction over manual
 
 We planned about 60 minutes to correct the team solutions in the first edition and it took more than 3 hours! Also, automatic correction opens a lot of opportunities - see below.
 
-## Multiple evaluation runs with dynamic scoring/dashboard
+### Multiple evaluation runs with dynamic scoring/dashboard
 
 If you ask anyone who participated to Coveo Blitz, starting in 2013, what was the highlights, I bet they will tell you "dashboard & scoring".
 
@@ -142,7 +142,7 @@ Being able to do multiple evaluation runs with a live dashboard displaying real-
 
 **_An evaluation run at Coveo Blitz 2013_**
 
-## Host the event in your office
+### Host the event in your office
 
 If possible, hosting the event in your office is a plus. At least, it was for us.
 
@@ -152,11 +152,11 @@ If possible, hosting the event in your office is a plus. At least, it was for us
 
 * You can prepare in advance since it’s in your office
 
-## Have people bring their own hardware
+### Have people bring their own hardware
 
 I said it earlier, do not supply the computers for the people. Have them bring their own laptops, desktops or mainframe, whatever they want. When you do the evaluation, use a method that is not based on their hardware to compute the score. For example, we now use Amazon Web Services to run the contest and do evaluation runs, which we can somewhat control (by machine type, for example).
 
-## Innovate
+### Innovate
 
 We tried to innovate at every edition of Coveo Blitz by modifying the challenges but also by modifying the infrastructure - dashboards or achievements, for example.
 
@@ -167,7 +167,7 @@ We added a small challenge to register to the contest. Students had to create a 
 
 **_One of the teams built a server on a Nintendo DS - How cool is that?!_**
 
-## Free food & beer
+### Free food & beer
 
 I think that giving people free food & drink during the contest is a plus. We also have free beer to celebrate at the end of the day, and a tower of pizzas. Everyone appreciates this and I bet the Coveo team appreciates the beer even more than the students: celebrating the success of the contest after having worked on this single day for the last several months is a must!
 
@@ -177,7 +177,7 @@ This is also the moment where everyone can talk together and where we make conta
 
 **_The pizzas at Coveo Blitz 2013!_**
 
-# Fun facts of the 2012 edition
+## Fun facts of the 2012 edition
 
 * 48 participants
 
@@ -229,7 +229,7 @@ This is also the moment where everyone can talk together and where we make conta
 
 * 2 hours of video
 
-# In conclusion
+## In conclusion
 
 The first edition was a success and we got a few people hired out of that edition. We also got the word out, if not about how cool Coveo was, at least how free the beer was at the contest! :)
 
@@ -239,7 +239,7 @@ If you know me, you know I really like [pie charts](http://dilbert.com/strips/co
 
 ![](/images/20141222/image_9.png)
 
-When I see that most people I have in interviews know about Coveo Blitz or probably heard about Coveo from Blitz, I tell myself: "Mission accomplished!", and, I’m always happy to see Coveo Blitz mentioned in someone’s resume *contest *section.
+When I see that most people I have in interviews know about Coveo Blitz or probably heard about Coveo from Blitz, I tell myself: "Mission accomplished!", and, I’m always happy to see Coveo Blitz mentioned in someone’s resume *contest* section.
 
 In just a few weeks, it's going to be the fifth edition of Coveo Blitz. The Coveo team can’t wait to live that. Several people have been working on the project since last March - yes, it takes time to build the challenges, test them and create all these nice dashboards!
 
