@@ -2,6 +2,7 @@
 layout: post
 
 title: "Taking Enums to the next level with Java 8"
+tags: [Java, Java 8]
 
 author:
   name: Jonathan Rochette
