@@ -12,7 +12,7 @@ author:
 ---
 
 
-In our awesome cloud Usage Analytics API, there is a call that returns the analytics data in data points format (these are meant to be used to build a graph). Recently, we added a feature allowing the user to chose the time period (initially, only *days* was available). Problem is, the code was strongly coupled with the *day* period...
+In our awesome cloud Usage Analytics API, there is a call that returns the analytics data in data points format (these are meant to be used to build a graph). Recently, we added a feature allowing the user to choose the time period (initially, only *days* was available). Problem is, the code was strongly coupled with the *day* period...
 
 <!-- more -->
 
@@ -34,7 +34,7 @@ private static List<DataPoint> createListWithZerosForTimeInterval(DateTime from,
     }
 {% endhighlight %}
 
-**Note:** Days, as well as Minutes, Hours, Weeks and Months in the snippet a little further bellow, come from the [Joda-Time Java date and time API](http://www.joda.org/joda-time/).
+**Note:** Days, as well as Minutes, Hours, Weeks and Months in the snippet a little further below, come from the [Joda-Time Java date and time API](http://www.joda.org/joda-time/).
 
 Even if the name of the method does not reflect it, it is very strongly binded to the concept of *days*.
 
@@ -43,7 +43,7 @@ As I was looking for a way to use different time periods (*months*, *weeks*, *ho
 ----------
 You have to understand that the notion **switch/case = evil** was drilled into my mind when I was attending college and in two internships that I had, so I tend to try to avoid those at any cost, mainly because they often violate the [*open-closed principle*](http://en.wikipedia.org/wiki/Open/closed_principle). I strongly believe that this principle is one of the most important best practices for writing object-oriented code. And I am no the only one. Robert C. Martin once said :
 
-> In many ways [the open-closed principle] is at the heart of object oriented design. Conformance to this principle is what yeilds the greatest benefits claimed for object oriented technology; i.e. reusability and maintainability.[^footnote]
+> In many ways [the open-closed principle] is at the heart of object oriented design. Conformance to this principle is what yields the greatest benefits claimed for object oriented technology; i.e. reusability and maintainability.[^footnote]
 
   [^footnote]: [http://www.objectmentor.com/resources/articles/ocp.pdf](http://www.objectmentor.com/resources/articles/ocp.pdf)
 
