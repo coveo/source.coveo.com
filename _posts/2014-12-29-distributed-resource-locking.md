@@ -80,7 +80,7 @@ public class MemcachedResourceLocker implements ResourceLocker
 }
 {% endhighlight %}
 
-**Note:** The `ResourceLocker` interface was not included to keep the code to a minimum. It is a simple interface taht include the `lock()` and `unlock()` methods.
+**Note:** The `ResourceLocker` interface was not included to keep the code to a minimum. It is a simple interface that includes the `lock()` and `unlock()` methods.
 
 {% highlight java linenos %}
 public class RetryableLockResource extends AbstractRetryableTask
