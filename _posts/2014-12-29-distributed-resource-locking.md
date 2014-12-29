@@ -16,15 +16,15 @@ As Coveo's cloud usage analytics product matures, more and more events are logge
 
 <!-- more -->
 
-Amazon Redshift is already doing a pretty good job at [handling concurrent operations on the cluster](http://docs.aws.amazon.com/redshift/latest/dg/c_Concurrent_writes.html) but we needed a little more, so we decided to go with resource locking (where the resources are the different tables in the database). There are a lot of ways to implements such a solution, but we also had some constraint :
+Amazon Redshift is already doing a pretty good job at [handling concurrent operations on the cluster](http://docs.aws.amazon.com/redshift/latest/dg/c_Concurrent_writes.html) but we needed a little more, so we decided to go with resource locking (where the resources are the different tables in the database). There are a lot of ways to implement such a solution, but we also had some constraints :
 
 - Our service is running on multiple instances, so we needed a distributed locking mechanism.
-- The resource locking had to be transparent to read operations (ie. no impacts on reporting queries).
+- The resource locking had to be transparent to read operations (ie. no impact on reporting queries).
 - Deadlocks were not acceptable.
-- Locks had to have a short lifespan. We did not want to locks insertion and update for an extended period of time.
+- Locks had to have a short lifespan. We did not want to lock insertions and updates for an extended period of time.
 
 
-With these in mind, we quickly discarded some solution like the [LOCK](http://docs.aws.amazon.com/redshift/latest/dg/r_LOCK.html) feature offered by Amazon Redshift because it impacted all queries, from the simple `select 1;` to the complicated triple full outer join of doom without forgetting any inserts or updates.
+With these in mind, we quickly discarded some solutions like the [LOCK](http://docs.aws.amazon.com/redshift/latest/dg/r_LOCK.html) feature offered by Amazon Redshift because it impacted all queries, from the simple `select 1;` to the complicated triple `full outer join` of doom, without forgetting any inserts or updates.
 
 After consideration, we were left with two possible solutions :
 
@@ -33,7 +33,7 @@ After consideration, we were left with two possible solutions :
 
 We finally decided to go with the cache service, mainly because of the timeout capabilities that would allow us to easily circumvent the deadlock issue, better performance and it was much simpler to implement than the database option.
 
-Here is what is looks like :
+Here is what it looks like :
 
 {% highlight java linenos %}
 public class MemcachedResourceLocker implements ResourceLocker
