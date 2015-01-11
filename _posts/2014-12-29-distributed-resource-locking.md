@@ -11,6 +11,7 @@ author:
   image: jrochette.jpg
 ---
 
+**Small update**: Having noticed comments about this post on Twitter, I think it's important to specify that the word "lock" might have been badly chosen here. It's more of a best-effort thing to reduce the frequency of situations where certain operations would need to be retried. It's perfectly fine if for any reason those still occur concurrently (indeed before there was no locking whatsoever). The only adverse effect would be slightly decreased performance for the querying user. So, kids, do not use this approach if you need real resource exclusion.
 
 As Coveo's cloud usage analytics product matures, more and more events are logged every seconds and a lot more people are using the analytics dashboards from the cloud admin. That increased load is great and the usage analytics handles it easily, but there was one thing we did not see coming: transaction cycles in the database. They did not happen often, but this was still problematic as continuous increase in the load on the service only meant more transaction cycles. These cycles were the result of scheduled jobs running when insertion of new events and reporting queries occurred at the same time. 
 
