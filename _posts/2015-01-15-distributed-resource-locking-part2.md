@@ -12,7 +12,7 @@ author:
 ---
 
 
-Following some strong reactions about my last post (that were caused, I believe, by a poor use of the word lock on my part), I decided to write a little follow up post to remedy the situation. I will explain why what we wanted was to avoid duplicate work, not prevent it at all cost[^footnote].
+Following some strong reactions about [my last post](http://source.coveo.com/2014/12/29/distributed-resource-locking/) (that were caused, I believe, by a poor use of the word lock on my part), I decided to write a little follow up post to remedy the situation. I will explain why what we wanted was to avoid duplicate work, not prevent it at all cost[^footnote].
 
 <!-- more -->
 
