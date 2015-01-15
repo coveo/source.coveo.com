@@ -1,5 +1,4 @@
 ---
-published: false
 layout: post
 
 title: "Distributed resource locking using memcached - part 2"
@@ -21,7 +20,7 @@ Following some strong reactions about my last post (that were caused, I believe,
 
 Let's start by taking a look at the definition of a lock. [Wikipedia](http://en.wikipedia.org/wiki/Lock_(computer_science)) says : 
 
-> "In computer science, a lock is a synchronization mechanism for enforcing limits on access to a resource in an environment where there are many threads of execution. A lock is designed to enforce a mutual exclusion concurrency control policy."
+> In computer science, a lock is a synchronization mechanism for enforcing limits on access to a resource in an environment where there are many threads of execution. A lock is designed to enforce a mutual exclusion concurrency control policy.
 
 Locking resources using memcached respects the first part of that definition. It does enforce limits regarding access to a resource. The issue is that it does not respect the second part of the definition (which is kind of the important part of the definition). Mutual exclusion cannot be achieved using memcached because the information about the lock is not persistent, there could be synchronization problems when memcached in running on a cluster composed of multiple instances, lock state could be lost in case of network partition problems, etc. What would happen if, for instance, the Memcached server crashed or an entity held the lock for a long time and the cache entry expired? It would be as if the resource was never locked and concurrent operations on a critical section could (and, according to [Murphy's law](http://en.wikipedia.org/wiki/Murphy%27s_law), would)  happen. That kind of locking is called [*ghetto locking*](https://code.google.com/p/memcached/wiki/NewProgrammingTricks#Ghetto_central_locking) by the fine people of Memcached. We could call it probabilistic locking or resource access control.
 
