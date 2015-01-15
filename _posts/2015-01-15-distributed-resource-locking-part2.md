@@ -1,5 +1,4 @@
 ---
-published: false
 layout: post
 
 title: "Distributed resource locking using memcached - part 2"
