@@ -8,7 +8,7 @@ tags: [Index, Load Balanced, Mirror]
 author:
   name: Victor Ajani
   bio: Product Expert, Advanced Enterprise Search Platform
-  image: Victor.jpg
+  image: Victor.png
 ---
 
 When configuring your servers, there are some aspects to consider. Depending on your needs, you will need to implement the most beneficial scalability model. We will be highlighting some options that can guide you along.
@@ -36,7 +36,7 @@ Now, CES is of course designed to function properly as long as its host server m
 Another aspect that we’d like you to ponder, is the freshness of your index. This is also important to consider, giving that the index pipeline processing time may greatly vary depending on numerous factors such as the index size, the number of new documents to index at a given time, and the available resources on your Coveo Master and Mirror servers. Also, indexing can only go as fast as the crawled repository can feed us the documents. Hence, it’s possible that the bottleneck might not be CES-related.
  Near Real-Time indexing is a newer feature that improves the freshness of your index, thereby making new documents searchable faster. NRTI creates small temporary slices called subslices to receive new, changed, or deleted indexed documents. Because subslices are much smaller in size than a regular slice of a large index, their index pipeline processing is completed much faster, allowing to return queried documents they contain much faster. The feature kicks in by default when reaching a million documents. Look at the below table for recorded improvements:
 
-![NRTI]({{ site.baseurl }}/images/NrtiImprovement.png)
+![NRTI]({{ site.baseurl }}/images/NrtiImprovements.png)
 
 The table speaks for itself. Use NRTI at your leisure!
 A side note on this: When the Coveo server does not meet the requirements and large sources are rebuilt on top of a normal flow of new documents, the index pipeline processing time may prolong by a few days and enabling the NRTI feature will most likely not help because the server is lacking resources.
