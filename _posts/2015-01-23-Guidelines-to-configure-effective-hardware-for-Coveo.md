@@ -16,8 +16,6 @@ The first aspect to consider is the amount of documents. You see, as the number 
 
 <!-- more -->
 
-When configuring your servers, there are some aspects to consider. Depending on your needs, you will need to implement the most beneficial scalability model. We will be highlighting some options that can guide you along.
-The first aspect to consider is the amount of documents. You see, as the number of documents in your index increases, hosting the index on a single hard disk can often lead to size and performance limitations. In this scenario, consider adding a slice. The slice is in effect, a separate physical storage location for a section of the master index and distributes the index content, hence increasing available space. It’s possible that it can potentially speed indexing once you have passed a certain threshold, so add a slice when it’s needed. A slice can potentially contain up to 40million documents, and since one Coveo server can typically host up to two slices, it would then contain up to 80 million documents evenly distributed between the two. Potential problem averted! 
 Memory and CPU levels, are other factors to keep in mind. To put it simply, the greater number of CPU cores, the better. In what exact situation should I add CPU cores, you might ask? Well, when you find your users entering queries with numerous terms, exact match operators or wildcard characters, high number of documents to convert and if you use the OCR module these operations are CPU dependent. So to give an example of a server with an index size between 5 to 20 million documents:
 
 ![Server Index Size Example]({{ site.baseurl }}/images/ServerIndexSizeSample.png)
