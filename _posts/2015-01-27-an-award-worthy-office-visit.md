@@ -12,7 +12,7 @@ author:
 
 ##The Why
 
-We lately had @Maps360 come to our office in Quebec to take pictures for Google Business View. Why you might ask.
+We lately had [Maps360](http://www.maps360.ca/) come to our office in Quebec to take pictures for Google Business View. Why you might ask.
 
 We are a software company. We sell a series of bits ordered in a very specific manner. Our clients buy those well aligned bits and, to some extent, couldn’t care less about our offices.
 
