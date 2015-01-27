@@ -16,11 +16,11 @@ We lately had [Maps360](http://www.maps360.ca/) come to our office in Quebec to 
 
 We are a software company. We sell a series of bits ordered in a very specific manner. Our clients buy those well aligned bits and, to some extent, couldn’t care less about our offices.
 
-![](/images/201501/virtual_visit_0.jpg)
-
 But we also sell to another audience. Our bits aligner. We are constantly hiring in a competitive industry where there are far more jobs than people to fill them. We are a good place to work, with good conditions, and with a nice office. That last part is something that we thought we could leverage in our recruiting, and Google Business View comes in as the best option to show this off.
 
 <!-- more --> 
+
+![](/images/201501/virtual_visit_0.jpg)
 
 ##The How
 
