@@ -19,7 +19,9 @@ We are a software company. We sell a series of bits ordered in a very specific m
 ![](/images/201501/virtual_visit_0.jpg)
 
 But we also sell to another audience. Our bits aligner. We are constantly hiring in a competitive industry where there are far more jobs than people to fill them. We are a good place to work, with good conditions, and with a nice office. That last part is something that we thought we could leverage in our recruiting, and Google Business View comes in as the best option to show this off.
+
 <!-- more --> 
+
 ##The How
 
 With the help of Guy Couture from Maps360, we started preparing the whole visit. We quickly settled on using Morphsuits to have a common theme. A few days and 600$ later, we had our order in; almost all colors and a Power Ranger (but that was for the Christmas party; that’s another story).
