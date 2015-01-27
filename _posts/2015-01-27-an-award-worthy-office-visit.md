@@ -24,7 +24,7 @@ But we also sell to another audience. Our bits aligner. We are constantly hiring
 
 With the help of Guy Couture from Maps360, we started preparing the whole visit. We quickly settled on using Morphsuits to have a common theme. A few days and 600$ later, we had our order in; almost all colors and a Power Ranger (but that was for the Christmas party; that’s another story).
 
-![](images/201501/virtual_visit_1.jpg)
+![](/images/201501/virtual_visit_1.jpg)
 
 From there we planned as many ideas as we could. There were some things we wanted to showcase. Donuts (a classic here whenever you break the build, leave your machine unlocked or else), our bean bags, our projectors and TVs, our shower, our swordsmanship skills, etc.
 
@@ -32,7 +32,7 @@ And then we got anything we could squeeze in as weird\funny\wut.
 
 We also had our UX people prepare some slides with some of our perks and teams so we could have them on different screens throughout the shooting.
 
-![](images/201501/virtual_visit_2.jpg)
+![](/images/201501/virtual_visit_2.jpg)
 
 We improvised many things on the spot, but the preparation enabled us to have many things at hand; some big teddy bear, epic nerf gun battle, pictures of morphsuiters that couldn’t make it, a distributed-resource locking debate, a twister game, snow saucer to slide in the stairs with, alouette!
 
@@ -44,7 +44,7 @@ So. Did it pay off?
 
 It’s probably the most fun we had with our clothes on… (hey, those count as clothes, right?). Seriously, we had a blast. So even if we weren’t going to hear a lot afterwards, we can still remember many things that happened "or did not happen" on that evening.
 
-![](images/201501/virtual_visit_3.jpg)
+![](/images/201501/virtual_visit_3.jpg)
 
 But we did hear about it. After it was online, it took less than a week for candidates to start mentioning it. So, kudos to everybody involved.
 
@@ -58,13 +58,13 @@ What we didn’t expect was to have gained more global visibility. Google gives 
 
 Awesome! We couldn’t have asked for anything more!
 
-![](images/201501/virtual_visit_4.jpg)
+![](/images/201501/virtual_visit_4.jpg)
 
 ##It’s a Wrap
 
 I want to say some major thanks. To the awesome team that help prepare, stage and shoot the whole project. It took a large group of people over many hours. It would not have been possible to do it without you guys. And by far and large, the result would not have been this nice if it was not for all the fun we had. Also, to Guy from Maps360 that helped shape this vision from the start, and did a fantastic job of juggling with our multiple ideas to bring the whole thing into a sharp result.
 
-![](images/201501/virtual_visit_5.jpg)
+![](/images/201501/virtual_visit_5.jpg)
 
 Looking back, there is only one shot I think we should have added. A shot where Blond, Blue, Brown, Orange, Pink and White would be around a table debating the meaning of Madonna’s Like A Virgin.
 
