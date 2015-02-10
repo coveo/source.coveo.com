@@ -16,6 +16,8 @@ author:
 
 After months of preparation, the fifth edition of Coveo Blitz was held on January 10th 2015. We held the contest in our offices for the third time this year. A total of 54 students from 7 universities and colleges participated in the fifth edition of our annual contest. Let me tell you a bit on how it went.
 
+<!-- more -->
+
 # Contest creation process
 
 We started working on Coveo Blitz 2015 in late March of 2014. The first step was to find people interested in working on the preparation of the contest among our employees. This was the easy part for Coveo, probably due to the fact that it’s not the first edition and people know what they are getting into.
@@ -24,8 +26,6 @@ Then, probably the most important task was to find the challenges the students w
 
 After a few meetings of brainstorming on ideas around what we do (search engine, usage analytics, …), we decided to ask the students to provide an analytics engine on top of a near1 billion log lines of Apache web server. We wanted the engine to provide small metrics such as count by error code or access by country for a specific date range. But we also added a few more complex metrics such as the average response time, the max response time, and others.
 
-
-<!-- more -->
 
 The contest was divided in three different parts:
 
@@ -71,14 +71,19 @@ I admit it, the contest was too complex this year and I am certainly a bit respo
 
 I have a few advices for people who wants to participate in Coveo Blitz, or any other contest. 
 
-1. **Be prepared**<br>Every year we can see the difference between the teams that spent time to prepare for the contest compared to the ones who did not. The ones who prepared already have the tools they want to used installed on their computer and pretty much know the role of each people in the team. That makes a big difference when you have a limited time to complete the challenges.  You'll have a lot more fun that way, I'm sure!
+1. **Be prepared**<br>
+Every year we can see the difference between the teams that spent time to prepare for the contest compared to the ones who did not. The ones who prepared already have the tools they want to used installed on their computer and pretty much know the role of each people in the team. That makes a big difference when you have a limited time to complete the challenges.  You'll have a lot more fun that way, I'm sure!
 
-2. **Know the basics**<br>Every year we see students choosing the language they want to use, installing the featured components and reading the how-to. Again, this goes to #1, be prepared. You should know your tools and languages if you want to perform in the contest.
+2. **Know the basics**<br>
+Every year we see students choosing the language they want to use, installing the featured components and reading the how-to. Again, this goes to #1, be prepared. You should know your tools and languages if you want to perform in the contest.
 
 3. **Have someone dedicated to the UI**<br>
 Coveo Blitz always has a user interface part and every year is the same - most teams do not put the required efforts to have nice user interfaces. It still counts for 25% of the points, at least it was in the last editions of Coveo Blitz.
 
-4. **Set small, incremental goals during the day**<br>This is crucial to achieving results. You're a team and you need to sync often, and make sure you're all working in the same direction. During the first edition of Coveo Blitz, a team used agile methodology with the help of a cooking timer. Every 30 minutes they would do a scrum. That was really impressive and worked pretty well - highly suggested!
+4. **Set small, incremental goals during the day**<br>
+This is crucial to achieving results. You're a team and you need to sync often, and make sure you're all working in the same direction. 
+
+During the first edition of Coveo Blitz, a team used agile methodology with the help of a cooking timer. Every 30 minutes they would do a scrum. That was really impressive and worked pretty well - highly suggested!
 
 ![](/images/20150210/image_2.jpg)
 
