@@ -14,7 +14,7 @@ author:
 
 # Fifth edition 
 
-After months of preparation, the fifth edition of Coveo Blitz was held on January 10th 2015. We held the contest in our offices for the third time this year. A total of 54 students from 7 universities and colleges participated in the fifth edition of our annual contest. Let me tell you a bit on how it went.
+After months of preparation, the fifth edition of Coveo Blitz was held on January 10th 2015. We held the [contest](/2014/12/22/the-tale-of-a-programming-contest) in our offices for the third time this year. A total of 54 students from 7 universities and colleges participated in the fifth edition of our annual contest. Let me tell you a bit on how it went.
 
 <!-- more -->
 
