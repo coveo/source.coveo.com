@@ -24,7 +24,7 @@ We started working on Coveo Blitz 2015 in late March of 2014. The first step was
 
 Then, probably the most important task was to find the challenges the students would have to work on during the contest. This is where I always push to get the challenges more *challenging*. I admit, I’m the one who always thinks it’s going to be too easy. But boy, was I wrong this year! 
 
-After a few meetings of brainstorming on ideas around what we do (search engine, usage analytics, …), we decided to ask the students to provide an analytics engine on top of a near1 billion log lines of Apache web server. We wanted the engine to provide small metrics such as count by error code or access by country for a specific date range. But we also added a few more complex metrics such as the average response time, the max response time, and others.
+After a few meetings of brainstorming on ideas around what we do (search engine, usage analytics, …), we decided to ask the students to provide an analytics engine on top of nearly 1 billion log lines of Apache web server. We wanted the engine to provide small metrics such as count by error code or access by country for a specific date range. But we also added a few more complex metrics such as the average response time, the max response time, and others.
 
 
 The contest was divided in three different parts:
