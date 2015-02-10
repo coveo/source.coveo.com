@@ -75,10 +75,10 @@ I have a few advices for people who wants to participate in Coveo Blitz, or any 
 
 2. **Know the basics**<br>Every year we see students choosing the language they want to use, installing the featured components and reading the how-to. Again, this goes to #1, be prepared. You should know your tools and languages if you want to perform in the contest.
 
-4. **Have someone dedicated to the UI**<br>
+3. **Have someone dedicated to the UI**<br>
 Coveo Blitz always has a user interface part and every year is the same - most teams do not put the required efforts to have nice user interfaces. It still counts for 25% of the points, at least it was in the last editions of Coveo Blitz.
 
-3. **Set small, incremental goals during the day**<br>This is crucial to achieving results. You're a team and you need to sync often, and make sure you're all working in the same direction. During the first edition of Coveo Blitz, a team used agile methodology with the help of a cooking timer. Every 30 minutes they would do a scrum. That was really impressive and worked pretty well - highly suggested!
+4. **Set small, incremental goals during the day**<br>This is crucial to achieving results. You're a team and you need to sync often, and make sure you're all working in the same direction. During the first edition of Coveo Blitz, a team used agile methodology with the help of a cooking timer. Every 30 minutes they would do a scrum. That was really impressive and worked pretty well - highly suggested!
 
 ![](/images/20150210/image_2.jpg)
 
