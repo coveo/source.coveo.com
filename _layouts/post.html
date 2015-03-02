@@ -13,11 +13,11 @@ layout: base
     <div class="container">
         <header>
             <div class="meta">
-                
+
 	            By {% if page.author.twitter %}<address><a rel="author" href="https://twitter.com/{{ page.author.twitter }}" title="{{ page.author_name }}" target="_blank">{% endif %}{{ page.author.name }}{% if page.author.twitter %}</a></address>{% endif %} &mdash;
                 <time pubdate datetime="{{ page.date | date: "%Y-%d-%B" }}" title="{{ page.date | date: "%B %d, %Y" }}">{{ page.date | date: "%B %d, %Y" }}</time>
             </div>
-            
+
             <h1 class="title">{{ page.title }}</h1>
             {% if page.subtitle %}<h2 class="subtitle">{{ page.subtitle }}</h2>{% endif %}
         </header>
@@ -30,8 +30,8 @@ layout: base
                 {% if forloop.last %}
                   <a href="/search#f:@tags=[{{ tag }}]">{{ tag }}</a>
                 {% else %}
-                  <a href="/search#f:@tags=[{{ tag }}]">{{ tag }},</a> 
-                {% endif %}  
+                  <a href="/search#f:@tags=[{{ tag }}]">{{ tag }},</a>
+                {% endif %}
               {% endfor %}
             {% endif %}
 
@@ -39,7 +39,8 @@ layout: base
 
         <footer>
             <address>
-               {% if page.author.image %}<img src="{{ site.baseurl }}/images/{{ page.author.image }}">{% endif %}
+               {% if page.author.imageURL %}<img src="{{ page.author.imageURL }}" />{% endif %}
+               {% if page.author.image %}<img src="{{ site.baseurl }}/images/{{ page.author.image }}"/>{% endif %}
                 <p>Written by <strong>{% if page.author.twitter %}<a rel="author" href="https://twitter.com/{{ page.author.twitter }}" title="{{ page.author_name }}" target="_blank">{% endif %}{{ page.author.name }}{% if page.author.twitter %}</a>{% endif %}</strong><br>
                 <span class="muted">{{ page.author.bio }}</span>
                 </p>
