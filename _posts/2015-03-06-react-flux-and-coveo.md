@@ -16,6 +16,8 @@ author:
   bio: Demo Engineer - I glue things together using bytes
   twitter: pastjean
   imageURL: https://avatars.githubusercontent.com/u/140675
+
+published:false
 ---
 
 [vanillajs]: http://vanilla-js.com/
