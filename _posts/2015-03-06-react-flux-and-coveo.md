@@ -91,26 +91,46 @@ is available on the web, I found [nice tips here][reacttips].
 
 ## Flux Architecture
 
-one way flow of information which is quite simpler than the MVC model
+What a better way to describe flux than what the project's website gives us:
 
-- Views:
-  - controller-view
-  - Other views
-- Stores:
-- Dispatcher:
-- Actions/ActionCreators:
+> Flux is the application architecture that Facebook uses for building
+> client-side web applications. It complements React's composable view
+> components by utilizing a unidirectional data flow. It's more of a pattern
+> rather than a formal framework, and you can start using Flux immediately
+> without a lot of new code.
+> [http://facebook.github.io/flux](http://facebook.github.io/flux)
+
+The notable thing about flux is the one way flow of information which is quite
+simpler than the MVC model. Of course you can still use MVC with React but I
+decided to use the whole package to build myself an opinion around it.
+
+
+### The flux architecture
+
+The flux architecture is quite simple and easy to implement.
 
 ![Flux architecture diagram](/images/fluxdiagram.svg)
 
-Views subcribe to changes on Stores and publish actions
+- Views: (basically those are react components)
+  - controller-view: The view that handle state
+  - Other views: Those are more like components and gets passed parameters by properties
+- Stores: The 'M' in MVC,
+- Dispatcher: An event dispatcher that receives `Actions` and passes them to
+    stores
+- Actions/ActionCreators: Actions are the event model of Flux, some utility function
+    called `ActionCreators` are built to help the publishing of those events
+
+So it works like this :
+- Stores subscribes to dispatcher and listens on certain events
+- Views subscribes to stores and update their state based on the stores state
+- Views/Stores or other things triggers actions and the flow starts,
+  `Action -> Dispatcher -> Stores -> View`
 
 [The flux documentation][flux] is quite extensive and there are a lot of example
 out there to help you get started with this new architecture of building a web
 application.
 
 ## The demo
-
-### Some flux architecture detail
 
 Here are the most notable things that were built :
 
@@ -133,12 +153,11 @@ Here are the most notable things that were built :
 - CategoryResultList : A result list that displays results grouped by some field
     the CategoryStore helps this list.
 
-
-The code of the demo is available on [Github][githubrepo]
-
 ![demo screenshot](/images/reactfluxcoveodemo.jpg)
 
 Hope you'll like reading/seeing the code that's out there in that demo!
+
+The code of the demo is available on [Github][githubrepo]
 
 Writing this article helped me much in understanding React & Flux more. I had to
 revisit the documentation sites which are really explanatory and this made me
