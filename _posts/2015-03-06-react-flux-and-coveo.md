@@ -44,14 +44,7 @@ The code of the demo is available on [Github][githubrepo]
 
 JavaScript is an evolving language and new JavaScript frameworks are born and die everyday (if you are a purist there is always [VanillaJS][vanillajs] available for you).
 
-As an experiment, I wanted to build an interface to Coveos search engine around [React][react] web application framework. While learning [React][react], I went all-in and used [Flux][flux], a simple web application architecture popularized at the same time as React, which is somewhat different from the traditionnal MVC pattern libraries like [Backbone / Marionette][marionette].
-
-As an experiment, I wanted to build an interface to Coveo's search engine around
-React web application framework. While learning the . I went all
-in and used  a simple web application architecture which was
-popularized at the same time as React which is somewhat different from the
-traditionnal MVC pattern libraries like
-
+As an experiment, I wanted to build an interface to Coveo's  search engine around [React][react] web application framework. While learning [React][react], I went all-in and used [Flux][flux], a simple web application architecture popularized at the same time as React, which is somewhat different from the traditionnal MVC pattern libraries like [Backbone / Marionette][marionette].
 
 This project also got me to experiment with other technologies like SVG icons, instead of plain or font icons, and also with the new FlexBox. I also leaned towards ECMAScript 6 for this project and the new features coming in are game-changing (template string, classes, const, arrow function).
 
@@ -98,7 +91,7 @@ What better way to describe flux than what the projects website tells us?
 > without a lot of new code.
 > [http://facebook.github.io/flux](http://facebook.github.io/flux)
 
-The notable thing about flux is the one-way flow of information, which is quite simpler than the MVC model. Of course. you can still use MVC with React, but I decided to use the whole package to forge an opinion on it.
+The notable thing about flux is the one-way flow of information, which is quite simpler than the MVC model. Of course. you can still use MVC with React, but I decided to use the whole package to form an opinion about it.
 
 ### The flux architecture
 
