@@ -2,12 +2,12 @@
 layout: base
 ---
 <div class="blog-cover" style="background-image:url({{ site.baseurl }}/images/{{ site.inc.cover_image }});">
-    
+
     <section>
         <div class="container">
             <h1>{{ site.inc.title }}</h1>
             {% if site.inc.subtitle %}<h3>{{ site.inc.subtitle }}</h3>{% endif %}
-        
+
             {% if site.inc.twitter %}
             <a href="https://twitter.com/{{ site.inc.twitter }}" title="Follow on Twitter" target="_blank"><i class="icon icon-twitter"></i></a>
             {% endif %}
@@ -27,6 +27,8 @@ layout: base
   {% unless post.draft %}
     <section class="index">
         {% if post.author.image %}<img src="{{ site.baseurl }}/images/{{ post.author.image }}" class="avatar">{% endif %}
+        {% if post.author.imageURL %}<img src="{{ post.author.imageURL }}" class="avatar">{% endif %}
+
         <div>
             <h2 class="title"><a href="{{ site.baseurl }}{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
             <p>{{ post.excerpt }}</p>
