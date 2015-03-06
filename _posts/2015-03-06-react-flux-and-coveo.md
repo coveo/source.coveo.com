@@ -31,7 +31,7 @@ author:
 
 [githubrepo]: https://github.com/pastjean/react-flux-coveo-experiments
 
-React and Flux are quite evolving technologies and using them with Coveo was a
+React and Flux are evolving technologies and using them with Coveo was a
 no brainer for me to get started on them. Here is my take on creating a searchable
 dashboard with theses.
 
@@ -41,13 +41,13 @@ The code of the demo is available on [Github][githubrepo]
 
 ## Another JS Framework, another Day
 
-Javascript is quite an evolving language and new javascript frameworks are
+JavaScript is an evolving language and new JavaScript frameworks are
 given birth and die everyday (if you are a purist there is always
 [VanillaJS][vanillajs] available for you).
 
-As an experiment, I wanted to build an interface to Coveo's search engine while
-learning the [React][react] framework by Facebook and using a simple web
-application architecture which was popularized at the same time as React named [Flux][flux] which is somewhat different from the traditionnal MVC pattern libraries like [Backbone / Marionette][marionette]
+As an experiment, I wanted to build an interface to Coveo's search engine around React web application framework
+While learning the [React][react]. I went all in and used [Flux][flux] a simple web
+application architecture which was popularized at the same time as React which is somewhat different from the traditionnal MVC pattern libraries like [Backbone / Marionette][marionette]
 
 This project also got me to experiment with other technologies like SVG icons, instead of plain icons or font icons and also with the new FlexBox. I also leaned towards ECMAScript 6 for this project and the new features coming in are quite nice.
 
@@ -62,16 +62,16 @@ bootstrap a React template application.
 ## React
 
 React is an interesting technology developped initially by Facebook then released
-about one year ago in the wild.
+about one year ago into the wild.
 
-It provides a virtual DOM (document object model), a javascript representation of the DOM which we can manipulate freely. What React does under the hood is that when a
+It provides a virtual DOM (document object model), a JavaScript representation of the DOM which we can manipulate freely. What React does under the hood is that when a
 component's `render` method is called it does a diff of the previous render Virtual DOM and the new one and then only modifies the real browser DOM.
 
-React also provides a nice extension to javascript called [JSX](jsx) which really
+React also provides a nice extension to JavaScript called [JSX](jsx) which really
 eases the use of React. JSX is like inputing some html templates directly into your
-javascript.
+JavaScript.
 
-Here is an example of what JSX would do:
+Here is an example of what JSX can do:
 
     var Nav;
     // Input (JSX):
@@ -86,8 +86,8 @@ The main elements of React are components which are kinda like views (in the MVC
 
 
 For more information about React see [their website][react]. If you want some
-React help there is a nice [chrome dev tool addon](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). A lot of user have experimented with React and much information
-is available on the web, I found [nice tips here][reacttips].
+React help there is a nice [chrome dev tool addon](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). A lot of user have experimented with React and a lot of information is available on the web, I found [nice tips here][reacttips] which is a nice
+wrap up of tips and tricks about React.
 
 ## Flux Architecture
 
@@ -107,7 +107,7 @@ decided to use the whole package to build myself an opinion around it.
 
 ### The flux architecture
 
-The flux architecture is quite simple and easy to implement.
+The flux architecture is simple and easy to implement.
 
 ![Flux architecture diagram](/images/fluxdiagram.svg)
 
@@ -121,12 +121,13 @@ The flux architecture is quite simple and easy to implement.
     called `ActionCreators` are built to help the publishing of those events
 
 So it works like this :
+
 - Stores subscribes to dispatcher and listens on certain events
 - Views subscribes to stores and update their state based on the stores state
 - Views/Stores or other things triggers actions and the flow starts,
   `Action -> Dispatcher -> Stores -> View`
 
-[The flux documentation][flux] is quite extensive and there are a lot of example
+[The flux documentation][flux] is extensive and there are a lot of example
 out there to help you get started with this new architecture of building a web
 application.
 
