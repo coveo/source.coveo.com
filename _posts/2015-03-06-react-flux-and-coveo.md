@@ -33,7 +33,7 @@ author:
 
 React and Flux are evolving technologies and using them with Coveo was a
 no brainer for me to get started on them. Here is my take on creating a searchable
-dashboard with theses.
+dashboard with those technologies.
 
 The code of the demo is available on [Github][githubrepo]
 
