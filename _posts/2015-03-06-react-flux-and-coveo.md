@@ -29,7 +29,7 @@ author:
 
 [marionette]: http://marionettejs.com/
 
-[githubrepo]: https://github.com/pastjean/react-flux-coveo-experiments
+[githubrepo]: https://github.com/Coveo/react-flux-coveo-experiments
 [learnes6]: https://babeljs.io/docs/learn-es6/
 
 React and Flux are evolving technologies and using them with Coveo was a
