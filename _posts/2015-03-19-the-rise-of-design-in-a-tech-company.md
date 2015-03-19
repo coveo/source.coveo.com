@@ -18,7 +18,7 @@ The Rise of Design in a Tech Company
 
 The Beginning
 -------------
-Coveo was founded in 2005 by a team spun off from Copernic, a search software company, to focus specifically on the enterprise search market. In the past, Coveo had a graphic/web designer but nobody to work with the developers on the product itself. Therefore, the real interface design journey began in 2011, when they needed help from someone with those skills on a project for a client. Because I had worked with a Coveo employee the year before on a personal business project, he mentioned my name and they called me.
+Coveo was founded in 2005 by a team spun off from Copernic, a search software company, to focus specifically on the enterprise search market. In the past, Coveo had a graphic/web designer but nobody to work with the developers on the product itself. Therefore, the real interface design journey began in 2011, when they needed help from someone with those skills on a project for a client. <!-- more --> Because I had worked with a Coveo employee the year before on a personal business project, he mentioned my name and they called me.
 
 Coveo people love trying new things, but they had never worked with an interface designer. We gave it a try with a contract to redesign Coveo Faceted Navigation. In conjunction with the product managers, we tried a lot of new approaches and designs. They found the value of having someone to do wireframes, mockups, and prototypes. Lucky for me, they hired me full time!
 
