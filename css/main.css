@@ -219,6 +219,15 @@ img {
     vertical-align: middle
 }
 
+
+figcaption{
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size:13px;
+  color:#848484;
+  text-align:center;
+}
+
 .img-responsive {
     display: block;
     max-width: 100%;
@@ -2967,9 +2976,9 @@ article .full.zoomable img.zoom {
 
 @media (max-width: 720px) {
     #searchBox {
-        display: none;    
+        display: none;
     }
-    
+
     article {
         padding-top: 30px
     }
@@ -3092,7 +3101,7 @@ article .full.zoomable img.zoom {
 }
 
 .CoveoSearchButton, .CoveoQueryBox {
-     border-radius: 0 !important;  
+     border-radius: 0 !important;
 }
 
 #searchBox .CoveoQueryBox {
@@ -3113,7 +3122,7 @@ article .full.zoomable img.zoom {
   margin: 0;
   padding: 15px 4px 17px 0;
   list-style: none;
-  
+
 }
 #navigation ul li {
   font: 18px 'Proxima Nova', sans-serif;
@@ -3133,11 +3142,11 @@ article .full.zoomable img.zoom {
 }
 
 .CurrentSite {
-    border: 1px solid #cdcdcd; 
+    border: 1px solid #cdcdcd;
 }
 
 .LastMenuEntry {
-    border-bottom: 1px solid #cdcdcd; 
+    border-bottom: 1px solid #cdcdcd;
 }
 
 #navigation ul li:hover {
@@ -3157,9 +3166,9 @@ article .full.zoomable img.zoom {
   -o-transition: opacity 0.2s;
   -transition: opacity 0.2s;
 }
-#navigation ul li ul li { 
-  background: #fff; 
-  display: block; 
+#navigation ul li ul li {
+  background: #fff;
+  display: block;
   color: #333333;
   border-left: 1px solid #cdcdcd;
   border-right: 1px solid #cdcdcd;

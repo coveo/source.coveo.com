@@ -3,18 +3,16 @@ layout: post
 
 title: "The Rise of Design in a Tech Company"
 
-tags: [Design, Tag 2, Tag3]
+tags: [Design, UX, UI]
 
 author:
   name: Roxanne Fanny Corriveau
   bio: Product Designer
   twitter: rfcorriveau
-  image: LINK_TO_IMAGE
+  image: rfcorriveau.jpg
 
 ---
 
-The Rise of Design in a Tech Company
-====================================
 
 The Beginning
 -------------
@@ -22,11 +20,22 @@ Coveo was founded in 2005 by a team spun off from Copernic, a search software co
 
 Coveo people love trying new things, but they had never worked with an interface designer. We gave it a try with a contract to redesign Coveo Faceted Navigation. In conjunction with the product managers, we tried a lot of new approaches and designs. They found the value of having someone to do wireframes, mockups, and prototypes. Lucky for me, they hired me full time!
 
+<figure>
+  <img src="/images/20150319/evolutionfacet.png">
+  <figcaption>Evolution of the faceted navigation through the years</figcaption>
+</figure>
+
 The Growth
 ----------
 Over the last three years, the company has grown very fast. Coveo needed to hire new people in every team of the enterprise ([and we still need more people](http://careers.coveo.com/positions-research#poste)). They hired [Eric Bouchard](http://ca.linkedin.com/in/ebouchard/fr), a former member of Copernic, as VP of UX and Design to work alongside me. Eric was asked to consolidate the vision of the product and the website. After Eric came onboard, we built a new team to manage the website. We hired a web designer, [Alexandre Drouin](http://ca.linkedin.com/pub/alexandre-drouin/21/a53/b12), who sometimes worked with me.
 
 After some time, it seemed impossible for me to work on every design project for the product. Working with Eric, we began looking for another interface designer. We work a lot with developers, and we needed a geek (I am one myself!) who was interested in knowing how things work behind the interface because simplifying the Coveo product for users is quite a challenge. After meeting a few candidates, we found [Benoit Chabert](http://ca.linkedin.com/in/chabert/fr), who brought with him some skills in motion design. After he started work, we had a little more time to work on some [projects initiated by the team](http://source.coveo.com/2014/12/08/making-an-online-community/).
+
+<figure>
+  <img src="/images/20150319/infographic_2014.png">
+  <figcaption>Infographic by Alexandre Drouin</figcaption>
+</figure>
+
 
 The Present
 -----------
