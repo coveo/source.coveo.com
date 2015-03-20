@@ -39,7 +39,7 @@ The screenshot below shows a document with a two stars collaborative rating. Und
 
 If I decide to give a three yellow stars personal appreciation to the document (just by clicking on the third star), now the collaborative rating weight is 500 and the total weight of the document is now 6922.
 
-![Collaborative rating 3 yellow star]({{ site.baseurl }}/images/Collaborativerating3yellowstar.png)
+![Collaborative rating 3 yellow stars]({{ site.baseurl }}/images/Collaborativerating3yellowstars.png)
 
 So when I perform a “tax” query, this document will be ranked higher on my search result page compared to the search result page of the other user from my group. 
 The reason behind that is that personal appreciation prevails on collaborative rating meaning that, once you rate a search result, its collaborative rating score is no longer taken into account. 
