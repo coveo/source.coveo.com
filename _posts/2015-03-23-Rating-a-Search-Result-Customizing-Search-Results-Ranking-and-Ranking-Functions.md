@@ -34,7 +34,7 @@ Collaborative rating appears as a 1 to 3 gray stars![Two grey stars score]({{ si
 
 The screenshot below shows a document with a two stars collaborative rating. Under ranking weights tab, you can see that collaborative rating weight is 412 and the total weight of the document is 6834. 
 
-![Collaborative rating default]({{ site.baseurl }}/images/Collaborativeratingdefault.png)
+![Collaborative rating default]({{ site.baseurl }}/images/CollaborativeratingDefault.png)
 
 If I decide to give a three yellow stars personal appreciation to the document (just by clicking on the third star), now the collaborative rating weight is 500 and the total weight of the document is now 6922.
 
