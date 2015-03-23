@@ -20,6 +20,8 @@ This immediately changes its position in the search results page. You or other m
 
 It’s important that you understand the difference between “Personal appreciation” and “Collaborative rating”
 
+<!-- more -->
+
 ### Personal appreciation
 
 Personal appreciation is a score that you, as a user, can assign to a document or item to reflect your perception of its relevance to the query. By rating a search result on a 1 to 3 yellow stars scale![Full Yellow Stars]({{ site.baseurl }}/images/FullYellowStars.png)
