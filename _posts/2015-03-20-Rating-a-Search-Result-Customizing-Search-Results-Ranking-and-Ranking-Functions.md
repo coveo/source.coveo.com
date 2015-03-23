@@ -49,14 +49,14 @@ Now If I asked to someone from the same group as mine to check the collaborative
 ![Collaborative rating 2 grey star]({{ site.baseurl }}/images/Collaborativerating2greystar.png)
 
 Note: You need to wait until the next update of document rating in order for your rating to take effect.
-If you go to CES Admin tool – Configuration – Schedules – System
+If you go to CES Admin tool –> Configuration –> Schedules –> System
 Check the schedule of “Update Document Rating”, by default it’s once a week, but you can change it as you like.
 
 ![Update Document Rating]({{ site.baseurl }}/images/UpdateDocumentRating.png)
 
 _Where should I go to create/Modify group for Collaborative rating_:
 
-You can do it from in the CES Admin tool – Index – Ranking – Collaborative Rating.
+You can do it from in the CES Admin tool –> Index –> Ranking –> Collaborative Rating.
 
 ![Modify group for Collaborative rating]({{ site.baseurl }}/images/ModifygroupforCollaborativerating.png)
 
@@ -77,10 +77,10 @@ Click [here](http://onlinehelp.coveo.com/en/CES/7.0/Administrator/Customizing_Se
 
 ## Ranking Functions
 
-Ranking functions are like [Query Functions](https://developers.coveo.com/display/SearchREST/Query+Function) ,but the result of the computation is used to influence ranking, just like Query Ranking Expressions. 
-The computation is done in the Ranking's first phase, meaning that all documents will have a chance to receive the Ranking Function's boosts.
+Ranking functions are like [Query Functions](https://developers.coveo.com/display/SearchREST/Query+Function), but the result of the computation is used to influence ranking, just like Query Ranking Expressions. 
+The computation is done in the ranking's first phase, meaning that all documents will have a chance to receive the ranking runction's boosts.
 If NormalizeWeight is enabled, the entire value domain of the function will be taken into account to give a normalized boost ranking from 0 to 600. 
 By enabling ranking information, it is possible to see the actual boost value provided by the functions, for each document.
 
-Click [here](https://developers.coveo.com/display/SearchREST/Ranking+Function) for more information.
+For more information about ranking functions look at the [Ranking function documentation](https://developers.coveo.com/display/SearchREST/Ranking+Function)
 
