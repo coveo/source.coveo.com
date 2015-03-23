@@ -11,23 +11,22 @@ author:
   image: kmpungi.jpg
 ---
 
+## Rating a Search Result
 
-## Rating a Search Result:
-
-_What is the advantage of rating a search result:_
+### What is the advantage of rating a search result
 
 Rating a search result is useful when you find that its automatic ranking in the current query is not appropriate from your point of view or that of your group. 
 This immediately changes its position in the search results page. You or other members of your group also benefit from this corrected rating the next time the same query is performed.
 
 It’s important that you understand the difference between “Personal appreciation” and “Collaborative rating”
 
-_Personal appreciation:_
+### Personal appreciation
 
 Personal appreciation is a score that you, as a user, can assign to a document or item to reflect your perception of its relevance to the query. By rating a search result on a 1 to 3 yellow stars scale![Full Yellow Stars]({{ site.baseurl }}/images/FullYellowStars.png)
 you can influence the search result ranking. The Coveo Platform uses your personal appreciation to immediately modify the ranking of a search result and to calculate its collaborative rating.
 
 
-_Collaborative rating:_
+### Collaborative rating
 
 The Coveo Platform calculates collaborative rating as an average of the personal appreciations given to each document by users of the same group and uses it as one of the ranking factors. 
 Because this process is performed independently for each user group, it adapts ranking to different types of users.
@@ -49,18 +48,18 @@ Now If I asked to someone from the same group as mine to check the collaborative
 ![Collaborative rating 2 grey star]({{ site.baseurl }}/images/Collaborativerating2greystar.png)
 
 Note: You need to wait until the next update of document rating in order for your rating to take effect.
-If you go to CES Admin tool –> Configuration –> Schedules –> System
+If you go to `CES Admin tool –> Configuration –> Schedules –> System`
 Check the schedule of “Update Document Rating”, by default it’s once a week, but you can change it as you like.
 
 ![Update Document Rating]({{ site.baseurl }}/images/UpdateDocumentRating.png)
 
-_Where should I go to create/Modify group for Collaborative rating_:
+### Where should I go to create/Modify group for Collaborative rating
 
-You can do it from in the CES Admin tool –> Index –> Ranking –> Collaborative Rating.
+You can do it from in the `CES Admin tool –> Index –> Ranking –> Collaborative Rating`.
 
 ![Modify group for Collaborative rating]({{ site.baseurl }}/images/ModifygroupforCollaborativerating.png)
 
-_Removing or modifying a personal appreciation_:
+### Removing or modifying a personal appreciation
 
 To delete your personal appreciation for a document, right-click on the yellow stars:
 The document rank is immediately adjusted according to the automatic relevance score in the search results list and the appropriate number of gray stars![Two grey stars score]({{ site.baseurl }}/images/Twogreystarsscore.png) appears.
