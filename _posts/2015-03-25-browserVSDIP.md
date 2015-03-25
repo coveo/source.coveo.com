@@ -18,13 +18,20 @@ Curious about this issue, I ran a few tests on a virtual machine with indexed lo
 <!-- more -->
 
 Test one
-Typing File:///C:/test/test.jpg on the address bar of IE11.
+
+    Typing File:///C:/test/test.jpg on the address bar of IE11.
+    
 Test two
-<img src=File:///C:\test\test.jpg /> in an html file loaded locally on the machine.
+
+    <img src=File:///C:\test\test.jpg /> in an html file loaded locally on the machine.
+
 Test three
-<img src=File:///C:\test\test.jpg /> in an html file hosted on a distant server.
+
+    <img src=File:///C:\test\test.jpg /> in an html file hosted on a distant server.
+
 Test four
-<img src=File:///C:\test\test.jpg /> in an html file on a network shared folder.
+
+    <img src=File:///C:\test\test.jpg /> in an html file on a network shared folder.
 
 While the two first tests successfully displayed the image, the last two didn’t show anything, it was like the line was not even in the html file.
 By opening the browser’s console, I saw, for both failed attempts, an error message saying “Not allowed to load local resource”.
