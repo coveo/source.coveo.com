@@ -11,6 +11,7 @@ author:
 ---
 
 ![Post main image]({{ site.baseurl }}/images/20150325/1.jpg)
+
 Not too long ago, a customer opened a case about the troubles he had loading an Office file from a search results page. The file was on his workstation. From his browser, he clicked on the open link to access the local file, only to get an error message.
 Curious about this issue, I ran a few tests on a virtual machine with indexed local files, just like the customer did on his side before opening the case.
 
@@ -18,12 +19,16 @@ Curious about this issue, I ran a few tests on a virtual machine with indexed lo
 
 Test one
 Typing File:///C:/test/test.jpg on the address bar of IE11.
+
 Test two
 <img src=File:///C:\test\test.jpg /> in an html file loaded locally on the machine.
+
 Test three
 <img src=File:///C:\test\test.jpg /> in an html file hosted on a distant server.
+
 Test four
 <img src=File:///C:\test\test.jpg /> in an html file on a network shared folder.
+
 
 While the two first tests successfully displayed the image, the last two didn’t show anything, it was like the line was not even in the html file.
 By opening the browser’s console, I saw, for both failed attempts, an error message saying “Not allowed to load local resource”.
