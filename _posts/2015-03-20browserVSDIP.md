@@ -12,7 +12,7 @@ author:
 
 ![Post main image]({{ site.baseurl }}/images/20150325/1.jpg)
 Not too long ago, a customer opened a case about the troubles he had loading an Office file from a search results page. The file was on his workstation. From his browser, he clicked on the open link to access the local file, only to get an error message.
-Curious about this issue, I ran a few tests on a virtual machine, with indexed local files, just like the customer did on his side before opening the case.
+Curious about this issue, I ran a few tests on a virtual machine with indexed local files, just like the customer did on his side before opening the case.
 
 <!-- more -->
 
@@ -25,7 +25,7 @@ Test three
 Test four
 <img src=File:///C:\test\test.jpg /> in an html file on a network shared folder.
 
-While the two first tests successfully displayed the image, the two last one didn’t show anything, it was like the line was not even in the html file.
+While the two first tests successfully displayed the image, the last two didn’t show anything, it was like the line was not even in the html file.
 By opening the browser’s console, I saw, for both failed attempts, an error message saying “Not allowed to load local resource”.
 Interesting fact, the console was the only place where I could see any indication that there was even an attempt to load the local JPEG image. The web page did not show the classic “file unavailable” icon, there was no dialog box, and no mention on the browser’s status bar, like you could expect to see when a pop-up page is blocked.
 Unlike for pop-up pages, the browser won’t offer you to allow access to local files, it will just ignore the instruction.
