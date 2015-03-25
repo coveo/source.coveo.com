@@ -11,6 +11,7 @@ author:
 ---
 
 ![Post main image]({{ site.baseurl }}/images/20150325/1.jpg)
+
 Not too long ago, a customer opened a case about the troubles he had loading an Office file from a search results page. The file was on his workstation. From his browser, he clicked on the open link to access the local file, only to get an error message.
 Curious about this issue, I ran a few tests on a virtual machine with indexed local files, just like the customer did on his side before opening the case.
 
