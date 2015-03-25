@@ -28,7 +28,7 @@ Test four
 While the two first tests successfully displayed the image, the last two didn’t show anything, it was like the line was not even in the html file.
 By opening the browser’s console, I saw, for both failed attempts, an error message saying “Not allowed to load local resource”.
 Interesting fact, the console was the only place where I could see any indication that there was even an attempt to load the local JPEG image. The web page did not show the classic “file unavailable” icon, there was no dialog box, and no mention on the browser’s status bar, like you could expect to see when a pop-up page is blocked.
-Unlike for pop-up pages, the browser won’t offer you to allow access to local files, it will just ignore the instruction.
+Unlike for pop-up pages, the browser won’t allow access to local files, it will just ignore the instruction.
 
 But why?
 
@@ -41,7 +41,7 @@ I later found out that you could bypass the browser’s security by completely d
 
 ![Slim Pickins riding a falling bomb with his classic IE logo]({{ site.baseurl }}/images/20150325/3.jpg)
  
-Let’s just say that in the end, if you want to make sure that all your files can be opened through a web browser without sacrificing security, you can host your documents on a cloud based solution.
+Let’s just say that, in the end, if you want to make sure that all your files can be opened through a web browser without sacrificing security, you can host your documents on a cloud based solution.
 For any content on your local computer, the Desktop Integration Package is still your best bet.
 
 [Further reading about The desktop integration package.](http://onlinehelp.coveo.com/en/CES/7.0/User/Desktop_Integration_Package.htm)
