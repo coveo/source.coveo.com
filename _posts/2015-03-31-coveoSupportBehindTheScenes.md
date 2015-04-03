@@ -14,7 +14,7 @@ author:
 
 #Coveo Support Behind the Scenes
 
-Hello everyone, my name is Eric Savoie and I am a product specialist here at Coveo since July 2014. I’m the second product specialist hired with the objective of specializing in the support of our Coveo for Salesforce product.
+Hello everyone, my name is Eric Savoie and I am a product specialist here at Coveo since July 2014. I was the second product specialist hired to specialize in supporting our Coveo for Salesforce product.
 Through the months, I have come to realize that support in the cloud is very different from “conventional” support here at Coveo. For this post, I originally wanted to concentrate on the main differences between what we call Platform support and Cloud support but I realized that many out there would not be able to relate to those differences without an introduction to the product specialist’s reality.
 So here is an overview of how the communication between support and the client looks like at Coveo. It might help some of you understand what happens between the different interactions we have through a case opened in the community.
 Before we start, I would like to mention that the support department at Coveo is not a call center. The reason for this is because we are selling our solution to enterprises (B2B) and not to individuals, which means that the end user will almost never contact us directly.
@@ -36,7 +36,7 @@ Also, when opening a case through the customer portal, a client will be suggeste
 
 ####When is it a good idea to use the phone then?
 
-The phone is very useful in the case of an emergency, especially when we are outside of business hours which are between 6:00 and 18:00 EST. When calling over the phone off-hours, the client has to leave a voicemail.
+The phone is very useful in the case of an emergency, especially when we are outside of business hours, which are between 6:00 and 18:00 EST. When calling over the phone off-hours, the client has to leave a voicemail.
 A best practice would be to open a case prior to calling support and to mention the case number in the voicemail. That way, the product specialist can immediately have access to the necessary information and start his investigation right away.
 It’s also easier to track the history of the issue through a case. When a voicemail is left, a member of the support team is immediately notified, will listen to it and contact the client as soon as possible.
 Again, if a case is open, a meeting invitation can be sent through it and contact with the client can be established sooner.
