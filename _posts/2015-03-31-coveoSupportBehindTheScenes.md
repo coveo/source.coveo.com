@@ -15,7 +15,7 @@ author:
 #Coveo Support Behind the Scenes
 
 Hello everyone, my name is Eric Savoie and I am a product specialist here at Coveo since July 2014. I was the second product specialist hired to specialize in supporting our Coveo for Salesforce product.
-Through the months, I have come to realize that support in the cloud is very different from “conventional” support here at Coveo. For this post, I originally wanted to concentrate on the main differences between what we call Platform support and Cloud support but I realized that many out there would not be able to relate to those differences without an introduction to the product specialist’s reality.
+Through the months, I have come to realize that support in the cloud is very different from “conventional” support here at Coveo. For this post, I originally wanted to focus on the main differences between what we call Platform support and Cloud support but I realized that many out there would not be able to relate to those differences without an introduction to the product specialist’s reality.
 So here is an overview of how the communication between support and the client looks like at Coveo.
 
 <!-- more -->
