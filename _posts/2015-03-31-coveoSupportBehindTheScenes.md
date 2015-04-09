@@ -16,14 +16,16 @@ author:
 
 Hello everyone, my name is Eric Savoie and I am a product specialist here at Coveo since July 2014. I was the second product specialist hired to specialize in supporting our Coveo for Salesforce product.
 Through the months, I have come to realize that support in the cloud is very different from “conventional” support here at Coveo. For this post, I originally wanted to concentrate on the main differences between what we call Platform support and Cloud support but I realized that many out there would not be able to relate to those differences without an introduction to the product specialist’s reality.
-So here is an overview of how the communication between support and the client looks like at Coveo. It might help some of you understand what happens between the different interactions we have through a case opened in the community.
-Before we start, I would like to mention that the support department at Coveo is not a call center. The reason for this is because we are selling our solution to enterprises (B2B) and not to individuals, which means that the end user will almost never contact us directly.
-Individual problems will be assessed by their system administrator (typically the IT department). When the system administrator is in need of support, he contacts us so we can bring in our expertise. Now, let’s start by the beginning shall we?
+So here is an overview of how the communication between support and the client looks like at Coveo.
 
 <!-- more -->
 
+It might help some of you understand what happens between the different interactions we have through a case opened in the community.
+Before we start, I would like to mention that the support department at Coveo is not a call center. The reason for this is because we are selling our solution to enterprises (B2B) and not to individuals, which means that the end user will almost never contact us directly.
+Individual problems will be assessed by their system administrator (typically the IT department). When the system administrator is in need of support, he contacts us so we can bring in our expertise. Now, let’s start by the beginning shall we?
+
 When a system administrator (referred to as client for the rest of this post) has a problem he cannot troubleshoot using our [documentation](http://onlinehelp.coveo.com/en/ces/7.0/), his best option is to open a case through our [community](https://coveocommunity.force.com/customers/login).
-I can see you already have some questions, let’s answer them right now:
+I feel you may already have some questions, let's answer them right now:
 
 ####Why should I open a case instead of calling directly?
 
@@ -75,7 +77,7 @@ When we can’t figure out the cause of the issue with the Coveo logs, there may
 ## 
 !["What's up doc?"](/images/20150331/whatsupdoc.jpg) 
 
-To end on a lighter note, we could easily make the analogy that we are “Coveo doctors”.
+To end on a lighter note, we could easily use the analogy that we are “Coveo doctors”.
 
 Just like a doctor will evaluate symptoms in the body and associate it with a disease or infection, we must associate the symptoms in the software with a bug or misconfiguration.
 
