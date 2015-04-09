@@ -12,7 +12,6 @@ author:
   image: esavoie.jpg
 ---
 
-#Coveo Support Behind the Scenes
 
 Hello everyone, my name is Eric Savoie and I am a product specialist here at Coveo since July 2014. I was the second product specialist hired to specialize in supporting our Coveo for Salesforce product.
 Through the months, I have come to realize that support in the cloud is very different from “conventional” support here at Coveo. For this post, I originally wanted to focus on the main differences between what we call Platform support and Cloud support but I realized that many out there would not be able to relate to those differences without an introduction to the product specialist’s reality.
@@ -27,7 +26,7 @@ Individual problems will be assessed by their system administrator (typically th
 When a system administrator (referred to as client for the rest of this post) has a problem he cannot troubleshoot using our [documentation](http://onlinehelp.coveo.com/en/ces/7.0/), his best option is to open a case through our [community](https://coveocommunity.force.com/customers/login).
 I feel you may already have some questions, let's answer them right now:
 
-####Why should I open a case instead of calling directly?
+#### Why should I open a case instead of calling directly?
 
 Because Coveo is a very complex software platform, a product specialist will rarely be able to troubleshoot an issue on the spot. Most of the time, he will need to search through the documentation or consult an expert on a specific part of the software.
 Also, he will most likely need lots of additional information that cannot be easily transmitted over the phone. A case allows us to track the progress on an issue more efficiently and to use it as documentation for future problems.
@@ -36,7 +35,7 @@ Also, when opening a case through the customer portal, a client will be suggeste
 
 ![Case Creation Search](/images/20150331/caseCreationSearch.png)
 
-####When is it a good idea to use the phone then?
+#### When is it a good idea to use the phone then?
 
 The phone is very useful in the case of an emergency, especially when we are outside of business hours, which are between 6:00 and 18:00 EST. When calling over the phone off-hours, the client has to leave a voicemail.
 A best practice would be to open a case prior to calling support and to mention the case number in the voicemail. That way, the product specialist can immediately have access to the necessary information and start his investigation right away.
@@ -46,7 +45,7 @@ Again, if a case is open, a meeting invitation can be sent through it and contac
 In case of an emergency, a client should always call our department after creating a case. That way, he can raise the flag on the particular issue that demands our immediate attention. Otherwise, the case will be treated according to the priority we assign it.
 Assigning priority to a case can only be done using the information contained within the case. This is why the more information we have in the description, the better we will be able to respond appropriately.
 
-##Submitting the right information
+## Submitting the right information
 
 Right off the bat, here is some information that any product specialist likes to see when he is assigned a new case.
 
@@ -65,7 +64,7 @@ Knowing this information from the start can prevent a distracted product special
 
 ![Case Product Information](/images/20150331/caseProductInfo.png)
 
-##New case in the console
+## New case in the console
 
 Upon receiving a case, we dispatch it to the appropriate team within the support department. There is one team for each line of business: Coveo Enterprise Search, Coveo for Sitecore and Coveo for Salesforce/Cloud.
 
@@ -74,7 +73,6 @@ We must often verify this in order to determine if the issue could stem from the
 They contain all the information about what operations were performed by the service (System logs), what was modified in the index (Index logs) and what was queried (Queries logs). This is why in most cases a product specialist will ask you to send certain types of logs and your configuration very early on.
 When we can’t figure out the cause of the issue with the Coveo logs, there may have been something caught by the Windows logs. These logs can be found in the “Event Viewer”.
 
-## 
 !["What's up doc?"](/images/20150331/whatsupdoc.jpg) 
 
 To end on a lighter note, we could easily use the analogy that we are “Coveo doctors”.
