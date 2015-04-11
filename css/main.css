@@ -2389,7 +2389,8 @@ a:hover {
 }
 
 .site-nav #navigation {
-    padding-right: 0
+    padding-right: 0;
+    padding-left: 10px;
 }
 
 .site-nav #navigation a {
@@ -2975,6 +2976,9 @@ article .full.zoomable img.zoom {
 }
 
 @media (max-width: 720px) {
+    #navigation {
+        display: none;
+    }
     #searchBox {
         display: none;
     }
@@ -3095,9 +3099,11 @@ article .full.zoomable img.zoom {
 }
 
 #searchBox {
-     float: right;
-     margin: 20px 0 0 0;
-     border-radius: 0;
+    float: right;
+    margin: 22px 10px 0 0;
+    border-radius: 0;
+    width: 50%;
+    height: 36px;
 }
 
 .CoveoSearchButton, .CoveoQueryBox {
@@ -3132,13 +3138,7 @@ article .full.zoomable img.zoom {
   padding: 6px 12px;
   background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir.png') no-repeat 90% 50%;
   cursor: pointer;
-  width: 180px;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
-
+  width: 160px;
 }
 
 .CurrentSite {
@@ -3152,6 +3152,7 @@ article .full.zoomable img.zoom {
 #navigation ul li:hover {
   background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir_reverse.png') no-repeat 90% 50%;
 }
+
 #navigation ul li ul {
   padding: 0;
   position: absolute;

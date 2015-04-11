@@ -39,24 +39,31 @@
         <div class="container">
             <div id="logo">
     		    <a href="/">
-    			    <img src="{{ site.baseurl }}/images/{{ site.inc.logo }}" title="back to home page" alt="Coveo Source Blog">
+    			    <!--<img src="{{ site.baseurl }}/images/{{ site.inc.logo }}" title="back to home page" alt="Coveo Source Blog">-->
+    			    <img src="https://s3.amazonaws.com/coveostatic/logo-coveo_community.png" title="back to home page" alt="Coveo Source Blog">
     		    </a>
     	    </div>
             <nav id="navigation">
                 <ul>
                   <li class="CurrentSite">
-                    Blog
+                    Technical Blog
                     <ul>
-                            <li><a href="http://answers.coveo.com">Answers</a></li>
-                            <li><a href="http://developers.coveo.com">Developers</a></li>
-                            <li><a href="http://onlinehelp.coveo.com">Online Help</a></li>
-                            <li><a href="http://api.developers.coveo.com">API Reference</a></li>
-                            <li class="LastMenuEntry"><a href="http://www.coveo.com">Coveo.com</a></li>
+                      <li><a href="https://developers.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/Developers.png">Developers</a></li>
+                      <li><a href="http://answers.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/Answers.png">Answers</a></li>
+                      <li><a href="http://onlinehelp.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/OnlineHelp.png">Online Help</a></li>
+                      <li><a href="http://api.developers.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/API.png">API Reference</a></li>
+                      <li class="LastMenuEntry"><a href="http://www.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/CoveoWebsite.png">Coveo Website</a><a href="http://www.coveo.com">Coveo.com</a></li>
                     </ul>
                   </li>
                 </ul>
             </nav>
-            <div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true" data-auto-focus="false"></div>
+            <div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true"></div>
+            <div class="CoveoTopFieldSuggestions"
+                 data-field="@systitle"
+                 data-header-title="Topic Titles"
+                 data-number-of-suggestions="10"></div>
+
+            <!--<div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true" data-auto-focus="false"></div>-->
         </div>
     </header>
 </section>
