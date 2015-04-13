@@ -1,0 +1,32 @@
+html {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container{
+  max-width:100%;
+  margin:0 auto;
+}
+
+.center{
+  text-align:center;
+}
+
+.page-header{
+  margin:15px 0;
+}
+
+.page-header__title{
+  margin:0;
+}
+.page-header__slogan{
+  margin:0 0 0 45px;
+}
+@media only all and (min-width: 900px) {
+  .container{
+    max-width:768px;
+  }
+}
