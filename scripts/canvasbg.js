@@ -94,7 +94,6 @@ function createDots(){
 }
 
 function onMouse(e){
-  console.log(e.type)
   if(e.type == 'mousemove'){
     mousePosition.x = e.pageX;
     mousePosition.y = e.pageY;
