@@ -11,12 +11,9 @@ console.log((function notSoNiceMultilineHack(){
 //
 // Hi fella,
 //
-// Want to have so fun and smash your head at solving nice search problems ?
-// Join Coveo and become part of a team of passionate creators that like to
-// hurts their heads againts hard problems.
-//
+// Want to have so fun and smash your head at solving nice problems ?
 // Visit http://careers.coveo.com/ to learn about working at Coveo
-// about and our openings.
+// and see our openings.
 }).toString().split("\n").slice(1, -1)
 .map(function(line){return line.replace(/\/\/ */i, "")}).join("\n"));
 
