@@ -79,6 +79,10 @@ ul.stat{
 }
 
 /* Projects */
+.section__stats{
+  position:relative;
+  overflow:hidden;
+}
 
 .section__projects{
   display:flex;
@@ -141,6 +145,12 @@ ul.stat{
   z-index:1;
   opacity:0.2;
   top:0;left:0;bottom:0;right:0;
+}
+
+.canvasBG{
+  position:absolute;
+  top:0;left:0;bottom:0;right:0;
+  z-index:2
 }
 
 /* graph */

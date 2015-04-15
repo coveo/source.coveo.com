@@ -1,29 +1,24 @@
-/*global window,riot,reqwest */
+/*global window,riot,reqwest,console */
 "use strict";
-// console.log
-// _.-~-.
-// 7''  Q..\
-// _7         (_
-// _7  _/    _q.  /
-// _7 . ___  /VVvv-'_                                            .
-// 7/ / /~- \_\\      '-._     .-'                      /       //
-// ./ ( /-~-/||'=.__  '::. '-~'' {             ___   /  //     ./{
-// V   V-~-~| ||   __''_   ':::.   ''~-~.___.-'' _/  // / {_   /  {  /
-// VV/-~-~-|/ \ .'__'. '.    '::                     _ _ _        ''.
-// / /~~~~||VVV/ /  \ )  \        _ __ ___   ___ ___(_) | | __ _   .::'
-// / (~-~-~\\.-' /    \'   \::::. | '_ ` _ \ / _ \_  / | | |/ _` | :::'
-// /..\    /..\__/      '     '::: | | | | | | (_) / /| | | | (_| | ::'
-// vVVv    vVVv                 ': |_| |_| |_|\___/___|_|_|_|\__,_| ''
+
+console.log((function notSoNiceMultilineHack(){
+// ,adPPYba,  ,adPPYba,  8b       d8  ,adPPYba,  ,adPPYba,
+// a8"     "" a8"     "8a `8b     d8' a8P_____88 a8"     "8a
+// 8b         8b       d8  `8b   d8'  8PP""""""" 8b       d8
+// "8a,   ,aa "8a,   ,a8"   `8b,d8'   "8b,   ,aa "8a,   ,a8"
+// `"Ybbd8"'  `"YbbdP"'      "8"      `"Ybbd8"'  `"YbbdP"'
 //
-// Hi there, nice to meet you!
 //
-// Interested in having a direct impact on hundreds of millions of users? Join
-// Mozilla, and become part of a global community that’s helping to build a
-// brighter future for the Web.
+// Hi fella,
 //
-// Visit https://careers.mozilla.org to learn about our current job openings.
-// Visit https://www.mozilla.org/contribute for more ways to get involved and
-// help support Mozilla.
+// Want to have so fun and smash your head at solving nice search problems ?
+// Join Coveo and become part of a team of passionate creators that like to
+// hurts their heads againts hard problems.
+//
+// Visit http://careers.coveo.com/ to learn about working at Coveo
+// about and our openings.
+}).toString().split("\n").slice(1, -1)
+.map(function(line){return line.replace(/\/\/ */i, "")}).join("\n"));
 
 
 // Private Storage

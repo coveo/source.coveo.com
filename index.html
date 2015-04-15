@@ -5,10 +5,11 @@ a8"     "" a8"     "8a `8b     d8' a8P_____88 a8"     "8a
 "8a,   ,aa "8a,   ,a8"   `8b,d8'   "8b,   ,aa "8a,   ,a8"
 `"Ybbd8"'  `"YbbdP"'      "8"      `"Ybbd8"'  `"YbbdP"'
 
-                                            - open-source hub v0.0.0
+                                            - open-source hub v0.1.0
 
 Fine open source projects built with ☕ by Coveo folks
-find out more on this at https://github.com/Coveo/coveo.github.io
+feel free to explore this site's code but you'd better be at
+https://github.com/Coveo/coveo.github.io and see more
 
 or better! join the team http://careers.coveo.com/
 -->
@@ -22,14 +23,17 @@ or better! join the team http://careers.coveo.com/
 <header class="page-header">
   <div class="container">
     <h1 class="page-header__title">Open Source <span class="accent">@</span> Coveo</h1>
-    <p class="page-header__slogan">Fine open source projects built with <span class="accent">☕</span> by Coveo folks</p>
+    <p class="page-header__slogan">Fine open source projects built with
+      <!-- not everyone likes emojis so use twemoji -->
+      <!-- <span class="accent">☕</span> -->
+      <img class="emoji" draggable="false" alt="☕" src="http://twemoji.maxcdn.com/16x16/2615.png"> by Coveo folks</p>
   </div>
 </header>
 
-<section class="section section--reverse">
+<section class="section section--reverse section__stats">
+  <canvas class="canvasBG"></canvas>
+
   <div class="container flex section__stats">
-
-
     <div>
       <h2>Statistics</h2>
       <globalstats></globalstats>
@@ -151,6 +155,9 @@ or better! join the team http://careers.coveo.com/
   coveoua('send','pageView');
 
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/1.1.5/reqwest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.0.14/riot+compiler.js"></script>
+
 <script src="/scripts/main.js"></script>
+<script src="/scripts/canvasbg.js"></script>
