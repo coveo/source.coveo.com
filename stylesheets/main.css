@@ -1,22 +1,57 @@
+/*
+colors:
+  white      #ffffff
+  less white #f2f2f2
+  accent     #ff4a0b
+  less dark  #315a77
+  dark       #0e1a29
+
+*/
 html {
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
+body{
+  font-family: 'Open Sans', sans-serif;
+  color: #0e1a29;
+}
+
+a,
+a:hover,
+a:visited{
+  color: #ff4a0b;
+  text-decoration: none;
+}
 .container{
-  max-width:100%;
-  margin:0 auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .center{
-  text-align:center;
+  text-align: center;
 }
 
+.flex{
+  display: flex;
+}
+
+.accent{
+  color: #ff4a0b;
+}
+.section{
+  padding:15px 5px;
+}
+.section--reverse{
+  color: #ffffff;
+  background-color:#0e1a29;
+}
+
+/* HEADER */
 .page-header{
-  margin:15px 0;
+  padding:15px 0;
 }
 
 .page-header__title{
@@ -25,6 +60,90 @@ html {
 .page-header__slogan{
   margin:0 0 0 45px;
 }
+
+/* Stats Section */
+
+.section__stats{
+  justify-content: space-between;
+}
+.section__stats h2{
+  margin:0;
+}
+
+ul.stat{
+  list-style:none;
+  padding:0;
+}
+.stat__number{
+  color: #ff4a0b;
+}
+
+/* Projects */
+
+.section__projects{
+  display:flex;
+  flex-flow:row wrap;
+}
+
+.projects__title{
+  margin:0;
+}
+
+.project {
+  position:relative;
+  width:100%;
+  padding: 10px 5px;
+
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  background:#f2f2f2;
+  margin:6px 0;
+  overflow:hidden;
+}
+
+.project__stars,.project__title{
+  width:50%;
+  margin: 0 0 15px 0 ;
+}
+
+.project__description{
+  width:100%;
+  z-index:2;
+}
+
+.project__title{
+  font-size:1.2rem;
+  font-weight:bold;
+  transition: color 0.2s ease;
+  z-index:2;
+}
+
+.project:hover .project__title{
+  color:#ff4a0b;
+}
+.project__title a,
+.project__title a:hover,
+.project__title a:visited{
+  text-decoration:none;
+  color:inherit;
+}
+.project__stars{
+  text-align:right;
+  z-index:2;
+}
+
+.project__commit-graph{
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index:1;
+  opacity:0.2;
+  top:0;left:0;bottom:0;right:0;
+}
+
+/* graph */
 @media only all and (min-width: 900px) {
   .container{
     max-width:768px;
