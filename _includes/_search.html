@@ -1,7 +1,41 @@
 <script src="/js/d3.min.js"></script>
 <script src="/js/CoveoJsSearch.WithDependencies.min.js"></script>
 <script type="text/javascript">
-    $(function () {
+  // Set the Coveo Cloud Organization search and analytics tokens
+  var uaToken = '7b9b9300-3901-437b-bafd-51ae596f1b16';
+  var searchToken = '7b9b9300-3901-437b-bafd-51ae596f1b16';
+  var origin = 'TechBlog';
+  var TechDocSearchPage = 'http://search.coveo.com/';
+  var SuggestionScope = ' @syssource=("Web - TechBlog") ';
+
+  $(function () {
+    Coveo.Rest.SearchEndpoint.endpoints["default"] = new Coveo.Rest.SearchEndpoint({
+      restUri: 'https://cloudplatform.coveo.com/rest/search',
+      accessToken: searchToken
+    });
+    $("#searchBox").on("afterInitialization", function(){
+      $("#searchBox").coveo('state', 'site', origin);
+    });
+    $('#searchBox').coveo('initSearchBox', TechDocSearchPage, {
+      TopFieldSuggestions: {
+        omniboxSuggestionOptions: {
+          onSelect: function (valueSelected, populateOmniBoxEventArgs) {
+            populateOmniBoxEventArgs.closeOmniBox();
+            Coveo.Rest.SearchEndpoint.endpoints["default"]
+                    .search({
+                      q: '@systitle=="' + valueSelected + '"'
+                    })
+                    .done(function (results) {
+                      window.location = results.results[0].clickUri;
+                    })
+          }
+        },
+        queryOverride: SuggestionScope
+      }
+    });
+  });
+
+    /*$(function () {
         Coveo.Rest.SearchEndpoint.endpoints["default"] = new Coveo.Rest.SearchEndpoint({
             restUri: 'https://developers.coveo.com/coveorest/search',
             anonymous: true
@@ -14,5 +48,5 @@
             externalComponents : [mySearchBox]
         })        
       }
-    });
+    });*/
 </script>
