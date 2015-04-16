@@ -97,7 +97,7 @@ The notable thing about flux is the one-way flow of information, which is quite 
 
 The flux architecture is simple and easy to implement.
 
-![Flux architecture diagram](/images/fluxdiagram.svg)
+![Flux architecture diagram]({{ site.baseurl }}/images/fluxdiagram.svg)
 
 - Views: (basically those are react components)
   - controller-view: The view that handles state
@@ -142,7 +142,7 @@ Here are the most notable things that were built :
 - CategoryResultList : A result list that displays results grouped by some field
     the CategoryStore helps this list.
 
-![demo screenshot](/images/reactfluxcoveodemo.jpg)
+![demo screenshot]({{ site.baseurl }}/images/reactfluxcoveodemo.jpg)
 
 Hope you'll like reading/seeing the code that's out there in that demo!
 
