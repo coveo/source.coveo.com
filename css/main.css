@@ -2972,10 +2972,10 @@ article .full.zoomable img.zoom {
 
 @media (max-width: 720px) {
     #navigation {
-        display: none;
+        display: none !Important;
     }
     #searchBox {
-        display: none;
+        width: 50% !Important;
     }
 
     article {
@@ -3079,7 +3079,14 @@ article .full.zoomable img.zoom {
     }
 }
 
-
+@media (max-width: 350px) {
+    #logo {
+        display: none !Important;
+    }
+    #searchBox {
+        width: 90% !Important;
+    }
+}
 /* header navigation */
 
 .site-nav #logo img {
@@ -3095,7 +3102,7 @@ article .full.zoomable img.zoom {
 
 #searchBox {
     float: right;
-    margin: 22px 10px 0 0;
+    margin: 27px 10px 0 0;
     border-radius: 0;
     width: 50%;
     height: 36px;
@@ -3129,7 +3136,7 @@ article .full.zoomable img.zoom {
     background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir.png') no-repeat 90% 50%;
     cursor: pointer;
     width: 160px;
-    height: 38px;
+    height: 36px;
     vertical-align: middle;
 }
 
@@ -3154,7 +3161,7 @@ article .full.zoomable img.zoom {
 #navigation ul li ul {
   padding: 0;
   position: absolute;
-  top: 37px;
+  top: 35px;
   left: -1px;
   display: none;
   opacity: 0;
