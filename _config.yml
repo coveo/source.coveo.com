@@ -37,6 +37,9 @@ source:      .
 destination: ./_site
 layouts:     ./_layouts
 
+base_url: ""
+url: http://source.coveo.com
+
 # Show future posts
 future:      false
 highlighter: pygments
