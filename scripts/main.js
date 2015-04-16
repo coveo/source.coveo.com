@@ -45,7 +45,6 @@ function updateStats(){ _updateTags(_globalStatsTags); _updateTags(_langStatsTag
 
 // Global Object (for debugging or fiddling around)
 var CoveoOpenSource = {
-  githubUser: _githubUser,
   stats: _stats,
   getRepositories: getRepositories,
   getStats: getStats
@@ -60,27 +59,12 @@ riot.compile(function() {
   _langStatsTags = riot.mount("langstats");
 });
 
-
-function githubRepositories(githubUser){
+function proxyRepositories(){
   return reqwest({
-    url: "https://api.github.com/users/" + githubUser + "/repos?type=public&sort=updated",
+    url: "https://coveogithubioproxy.coveodemo.com/repositories",
     type: "json"
   });
 }
-
-function githubRepositoryPunchCard(githubUser, repository){
-  return reqwest({
-    url: "https://api.github.com/repos/" + githubUser + "/" + repository + "/stats/punch_card",
-    type: "json"
-  });
-}
-function githubRepositoryLanguages(githubUser, repository){
-  return reqwest({
-    url: "https://api.github.com/repos/" + githubUser + "/" + repository + "/languages",
-    type: "json"
-  });
-}
-
 
 function addBytesToLanguage(language, bytes){
   if(!_stats.languages[language]){
@@ -90,34 +74,26 @@ function addBytesToLanguage(language, bytes){
   _stats.languages[language] += bytes;
 }
 
+// Let's query our github proxy and update the UI :)
+proxyRepositories().then(function(repos){
+  // Sort by updated
+  // We want only !forks sorted by last updated
 
-// Let's query github and update the UI :)
-githubRepositories(_githubUser)
-.then(function(repos){
+  repos = repos.filter(function(repo){ return !repo.fork; })
+               .sort(function(a, b){return (new Date(a.updated_at)).valueOf() - (new Date(b.updated_at)).valueOf(); })
+               .reverse()
+               .forEach(function(repo){
+                 _repositories.push(repo);
 
-  // Save in our repo store
-  repos.filter(function(repo){return !repo.fork; }).forEach(function(repo){
-    _repositories.push(repo);
-    _stats.repositories++;
-    _stats.size += repo.size;
-    _stats.openIssues += repo.open_issues_count;
+                 _stats.repositories ++;
+                 _stats.size += repo.size;
+                 _stats.openIssues += repo.open_issues_count;
 
-    githubRepositoryLanguages(_githubUser, repo.name).then(function(languages){
-      repo.languages = languages;
 
-      Object.keys(languages).forEach(function(language){
-        addBytesToLanguage(language, languages[language]);
-      });
-      updateStats();
-      updateProjects(); // update ui
-    });
-  });
-  // Query
-
-  _repositories.forEach(function(repo){
-    githubRepositoryPunchCard("coveo", repo.name).then(function(punchcard){
-      repo.punchcard = punchcard;
-      updateProjects(); // update ui
-    });
-  });
+                 Object.keys(repo.languages).forEach(function(language){
+                   addBytesToLanguage(language, repo.languages[language])
+                 });
+               });
+  updateProjects();
+  updateStats();
 });
