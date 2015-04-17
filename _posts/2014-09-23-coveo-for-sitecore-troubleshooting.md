@@ -17,7 +17,7 @@ Coveo for Sitecore has been out for a few months now and we had to rethink the w
 
 Our Search Provider implementation pushes documents to RabbitMQ, which keeps them warm until Coveo picks them up for indexing. The configuration is set in the <span style="color: gray;">Coveo.SearchProvider.config</span> file and is also being synchronised with the indexing back-end through the Coveo Admin Service. The schema below is from the Coveo Online Help, for now I will only address the Search Provider part.
 
-<img src="http://onlinehelp.coveo.com/resources/Image.ashx?img=CoveoForSitecore1.png&amp;PID=3&amp;SID=1&amp;p=CES&amp;lang=en&amp;v=7.0" style="width: 600px;"/>
+![](/images/CoveoForSitecore1.png)
 
 The process is simpler than before but the troubleshooting will require a change of mindset.
 
@@ -36,7 +36,7 @@ The first blocking issue you could meet is directly in the Sitecore Indexing Ma
 
 Now, what can go wrong with it? Well if you are using Coveo for Sitecore with a Coveo instance that you have been using with other connectors, you might have not installed the Coveo Admin Service in the first place. It is not installed by default with the Coveo Enterprise Search Installation Wizard, you need to choose the Custom Install path and make sure that it is selected.
 
-![](http://onlinehelp.coveo.com/resources/Image.ashx?img=CESInstWS2012-InstallingFoldersAdminService2.png&PID=3&SID=1&p=CES&lang=en&v=7.0)
+![](/images/cesinstws2012-installingfoldersadminservice3.png)
 
 The other common issue is with the https certificate. If you are using a restrictive certificate imposing an instance name, then the default local host will not pass the validation step. Simply change the <span style="color: gray;">&lt;AdminServiceUri&gt;</span> value from <span style="color: gray;">localhost/AdminService</span> to <span style="color: gray;">[qualified name]/AdminService</span> in the <span style="color: gray;">Coveo.SearchProvider.config</span>.
 
@@ -103,7 +103,7 @@ The QueueURI is defined in the source’s general properties under the <span sty
 
 The newest fluffy addition to the Coveo and Sitecore relationship is RabbitMQ. The default access point of the management is <span style="color: gray;">http://localhost:15672/</span> and the username and password are <span style="color: gray;">guest/guest</span>. RabbitMQ will give you a simple and user friendly overview of the current crawling operation. While rebuilding, an empty queue will be a clear sign that nothing left Sitecore, while a full and idle queue will reveal a Coveo issue.
 
-![](https://lh6.googleusercontent.com/Rz6tiPuNFw5EyKVamQ5ZTQ7RImHx8v5Rsidea6t1An-kE2yD7gUEoem4Re6ZmVO2eU8wQ7AyiX33ARHUPAQtIkKF-O_pOauy2EFDIpSuXMrofM03v-L4TcqW)
+![](/images/rabbit_mq_management_plugin_2.png)
 
 <span style="color: red;">WARNING: If you ran several indexing operations that are not being picked up by Coveo or you changed the source name multiple times, the documents will not be automatically cleared from the Queue. This could end up filling up the drive on which your RabbitMQ is installed. By clicking on the Queue, you will be able to Delete or Purge it. We don't recommend to use the purge unless the Queue is not used anymore, in case of a source name change for example.</span>
 
