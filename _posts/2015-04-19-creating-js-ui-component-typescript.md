@@ -11,7 +11,7 @@ author:
   image: vseguin.jpg
 ---
 
-Behind the scenes, the Coveo JS UI framework is built entirely in TypeScript. Obviously, it's intended to be customized in JavaScript, but you may want to go further and create your own component in TypeScript. Although this is a little more complex, this will ensure you understand/respect the JS UI basics.
+Behind the scenes, the Coveo JS UI framework is built entirely in TypeScript. Obviously, it's intended to be customized in JavaScript, but you may want to go further and create your own component in TypeScript. Be aware that this uses the internal JS UI APIs, so it can eventually break when updating. Purpose of the post is to give a glimpse of how the components are built internally.
 
 <!-- more -->
 
