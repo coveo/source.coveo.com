@@ -2,7 +2,7 @@
 layout: post
 
 title: "Creating a new JS UI component in TypeScript"
-tags: [Templating, UnderscoreJS]
+tags: [TypeScript, JS UI]
 
 author:
   name: Vincent Séguin
