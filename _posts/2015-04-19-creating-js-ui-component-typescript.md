@@ -245,7 +245,6 @@ You may notice there's now 3 more options of different types.
 Now, my real use case was to give the user the possibility to toggle between a "regular" view and a "tabular" view. My markup looks like this, where the TableResultList and MainResultList are two different elements containing the two different result lists templates :
 
 {% highlight html %}
-</div>
 <div class="coveo-toggle-result-list-section">
     <span class="CoveoToggleResultList" data-result-list="#TableResultList" data-number-of-results="50" data-icon="table-result-list"></span>
     <span class="CoveoToggleResultList" data-result-list="#MainResultList" data-default-result-list="true" data-icon="default-result-list"></span>
@@ -256,7 +255,7 @@ Now, my real use case was to give the user the possibility to toggle between a "
 
 And the visual result looks just like this:
 
-![image](/images/20150419/toggleresultlist1.png)
-![image](/images/20150419/toggleresultlist2.png)
+![image]({{ site.baseurl }}/images/20150419/toggleresultlist1.png)
+![image]({{ site.baseurl }}/images/20150419/toggleresultlist2.png)
 
 Thanks a lot for reading! :D
