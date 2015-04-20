@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "React + Flux & Coveo !== undefined"
+title: "React + Flux &amp; Coveo !== undefined"
 
 tags:
   - React
