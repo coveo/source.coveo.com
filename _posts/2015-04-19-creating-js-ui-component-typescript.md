@@ -255,7 +255,7 @@ Now, my real use case was to give the user the possibility to toggle between a "
 
 And the visual result looks just like this:
 
-![image]({{ site.baseurl }}/images/20150419/toggleresultlist1.png)
-![image]({{ site.baseurl }}/images/20150419/toggleresultlist2.png)
+![image]({{ site.baseurl }}/images/20150419/toggleresultlist1.jpg)
+![image]({{ site.baseurl }}/images/20150419/toggleresultlist2.jpg)
 
 Thanks a lot for reading! :D
