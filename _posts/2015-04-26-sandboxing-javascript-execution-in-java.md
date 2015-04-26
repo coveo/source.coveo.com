@@ -10,7 +10,7 @@ author:
   image: mlaporte.jpg
 ---
 
-The Query Pipeline on a Coveo index can be extended using JavaScript code running on the server. This has many benefits, but allowing arbitrary code to run in a server process opens the possibility for an admin to bring the server down in many creative ways. To protect against this we added functionality to the JS interpreter we're using ([DynJS](https://github.com/dynjs/dynjs)) to prevent Bad Things from happening.
+The [Query Pipeline](https://developers.coveo.com/display/SearchREST/Managing+the+Query+Execution+Pipeline) on a Coveo index can be extended using JavaScript code running on the server. This has many benefits, but allowing arbitrary code to run in a server process opens the possibility for an admin to bring the server down in many creative ways. To protect against this we added functionality to the JS interpreter we're using ([DynJS](https://github.com/dynjs/dynjs)) to prevent Bad Things from happening.
 
 <!-- more -->
 
@@ -65,7 +65,7 @@ To address that we need a way to stop script execution if it takes too long. But
 
 Turns out this is pretty easy to do. The `ThreadMXBean` object exposed by the JVM provides methods to check the total amount of CPU time used by a thread. By reading the value just before script execution starts and then periodically checking the value during execution, it's possible to detect when the script code has exceeded a pre-determined CPU quota. When this happens, an exception is thrown to inform the caller of the situation.
 
-So, how to we arrange to periodically check the CPU quota? We need to have this check performed at some place where the JavaScript interpreter must pass no matter what kind of infinite loop it's in. In this case I've chosen to do that in the `interpret` method of `BlockStatement`, which is essentially when any scope like a loop or condition or function body is entered. There we call `checkResourceUsage` from `ExecutionContext`, which will relay the call if resource quotas are being enforced.
+So, how do we arrange to periodically check the CPU quota? We need to have this check performed at some place where the JavaScript interpreter must pass no matter what kind of infinite loop it's in. In this case I've chosen to do that in the `interpret` method of `BlockStatement`, which is essentially when any scope like a loop or condition or function body is entered. There we call `checkResourceUsage` from `ExecutionContext`, which will relay the call if resource quotas are being enforced.
 
 Here is how we check that CPU quota hasn't been exceeded:
 
@@ -91,10 +91,10 @@ To run JS code with quota checks, you need to run the code using the `ExecutionC
 context.createResourceQuotaExecutionObject(new ResourceQuota(cpuQuota, memoryQuota));
 {% endhighlight %}
 
-## Trying it out
-
-The changes we've made to DynJS are available [publicly on GitHub](https://github.com/Coveo/dynjs/tree/resource-quotas). We also submitted a [pull request](https://github.com/dynjs/dynjs/pull/154) but it hasn't been merged yet.
-
 ## What about Nashorn?
 
 [Nashorn](http://openjdk.java.net/projects/nashorn/) is the new JS interpreter bundled with Java 8. It has good performance and is certainly more robust, but I still haven't figured out a way to implement proper CPU and memory quotas in that engine, mainly because I haven't yet find a place where I can regularly check if quotas have been exceeded (I haven't tried very hard though). I might write a new post when/if I succeed in that endeavour.
+
+## Trying it out
+
+The changes we've made to DynJS are available [publicly on GitHub](https://github.com/Coveo/dynjs/tree/resource-quotas). We also submitted a [pull request](https://github.com/dynjs/dynjs/pull/154) but it hasn't been merged yet.
