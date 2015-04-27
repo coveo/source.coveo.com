@@ -93,7 +93,7 @@ context.createResourceQuotaExecutionObject(new ResourceQuota(cpuQuota, memoryQuo
 
 ## What about Nashorn?
 
-[Nashorn](http://openjdk.java.net/projects/nashorn/) is the new JS interpreter bundled with Java 8. It has good performance and is certainly more robust, but I still haven't figured out a way to implement proper CPU and memory quotas in that engine, mainly because I haven't yet find a place where I can regularly check if quotas have been exceeded (I haven't tried very hard though). I might write a new post when/if I succeed in that endeavour.
+[Nashorn](http://openjdk.java.net/projects/nashorn/) is the new JS interpreter bundled with Java 8. It has good performance and is certainly more robust, but I still haven't figured out a way to implement proper CPU and memory quotas in that engine, mainly because I haven't yet found a place where I can regularly check if quotas have been exceeded (I haven't tried very hard though). I might write a new post when/if I succeed in that endeavour.
 
 ## Trying it out
 
