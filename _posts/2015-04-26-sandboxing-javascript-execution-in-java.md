@@ -30,7 +30,7 @@ For example, JS code can use a Java object like this:
 var foo = new java.util.ArrayList();
 {% endhighlight %}
 
-What we did is add an configuration option for DynJS to prevent it from exposing any Java package or object except the ones standard in JavaScript, plus any API that is explicitly exposed by the hosting application (which we assume are "safe").
+What we did is add a configuration option for DynJS to prevent it from exposing any Java package or object except the ones standard in JavaScript, plus any API that is explicitly exposed by the hosting application (which we assume are "safe").
 
 This shows how to set the option when creating a `DynJS` runtime object:
 
@@ -67,7 +67,7 @@ Turns out this is pretty easy to do. The `ThreadMXBean` object exposed by the JV
 
 So, how do we arrange to periodically check the CPU quota? We need to have this check performed at some place where the JavaScript interpreter must pass no matter what kind of infinite loop it's in. In this case I've chosen to do that in the `interpret` method of `BlockStatement`, which is essentially when any scope like a loop or condition or function body is entered. There we call `checkResourceUsage` from `ExecutionContext`, which will relay the call if resource quotas are being enforced.
 
-Here is how we check that CPU quota hasn't been exceeded:
+Here is how we check that the CPU quota hasn't been exceeded:
 
 {% highlight java %}
 private void checkCpuTime() {
