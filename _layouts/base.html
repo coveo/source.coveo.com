@@ -9,26 +9,70 @@
     <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{{ site.baseurl }}/images/{{ site.inc.logo }}"/>
     <link href="{{ site_url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
-    <meta name="title" content="{% if page.title %}{{ page.title }} {% else %}{{ site.inc.title }}{% endif %}">
-    {% if page.author.name %}<meta name="author" content="{{ page.author.name }}">{% endif %}
-    {% if page.tags %}<meta name="tags" content="{% for tag in page.tags %}{{ tag }};{% endfor %}" />{% endif %}
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-    {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
-    {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
-    <meta property="og:title" content="{% if page.title %}{{ page.title }} {% else %}{{ site.inc.title }}{% endif %}"/>
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
-    {% if page.cover_image %}
-    <meta property="og:image" content="{{ site.url }}/images/{{ page.cover_image }}"/>
+<meta content="{{ site.title }}" property="og:site_name">
+
+{% if page.title %}
+  <meta content="{{ page.title }}" property="title">
+  <meta content="{{ page.title }}" property="og:title">
+{% else %}
+  <meta content="{{ site.title }}" property="title">
+  <meta content="{{ site.title }}" property="og:title">
+{% endif %}
+{% if page.title %}
+  <meta content="article" property="og:type">
+{% else %}
+  <meta content="website" property="og:type">
+{% endif %}
+{% if page.description %}
+  <meta content="{{ page.description }}" property="og:description">
+  <meta name="description" content="{{ page.title }}"/>
+{% else %}
+  <meta content="{{ site.description }}" property="og:description">
+  <meta name="description" content="{{ page.title }}"/>
+{% endif %}
+{% if page.url %}
+  <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+{% endif %}
+{% if page.date %}
+  <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
+  <meta content="{{ site.url }}/about/" property="article:author">
+{% endif %}
+{% if page.image %}
+  <meta content="{{ site.url }}/{{ page.image }}" property="og:image">
+{% else %}
+  {% if page.cover_image %}
+  <meta property="og:image" content="{{ site.url }}/images/{{ page.cover_image }}"/>
+  {% else %}
     {% if page.main_image %}
-    <meta property="og:image" content="{{ site.url }}/images/{{ page.main_image }}"/>
+    {% else %}
     {% endif %}
-    <meta property="og:image" content="{{ site.url }}/images/{{ site.inc.logo }}"/>
-    {% endif %}
-    {% if page.excerpt %}
-    <meta property="og:description" content="{{ page.title }}"/>
-    <meta name="description" content="{{ page.title }}"/>
-    {% endif %}
-    <meta property="og:site_name" content="{{ site.inc.title }}">
+  {% endif %}
+  <meta property="og:image" content="{{ site.url }}/images/{{ site.inc.logo }}"/>
+{% endif %}
+  <meta content="/img/logo-high-resolution.png" property="og:image">
+{% endif %}
+
+{% if page.categories %}
+  {% for category in page.categories limit:1 %}
+  <meta content="{{ category }}" property="article:section">
+  {% endfor %}
+{% endif %}
+
+{% if page.tags %}
+  <meta name="tags" content="{% for tag in page.tags %}{{ tag }};{% endfor %}" />
+  {% for tag in page.tags %}
+  <meta content="{{ tag }}" property="article:tag">
+  {% endfor %}
+{% endif %}
+
+{% if page.author.name %}
+  <meta name="author" content="{{ page.author.name }}">
+{% endif %}
+
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
+{% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
+
     <link rel="stylesheet" href="/css/CoveoFullSearch.css" />
     {% include _search.html %}
 </head>
