@@ -81,7 +81,7 @@ private void checkCpuTime() {
 }
 {% endhighlight %}
 
-A similar technique is used to monitor heap allocations. The same `ThreadMXBean` object also exposes metrics about how many bytes were allocated by the current thread (including memory that is no longer referenced, but's that OK). By checking this metric in the exact same way as for CPU, we can detect whenever the thread has exceeded the allowed memory quota and put an end to it's processing.
+A similar technique is used to monitor heap allocations. The same `ThreadMXBean` object also exposes metrics about how many bytes were allocated by the current thread (including memory that is no longer referenced, but's that OK). By checking this metric in the exact same way as for CPU, we can detect whenever the thread has exceeded the allowed memory quota and put an end to its processing.
 
 NOTE: The call reporting memory allocation for a thread is not available on all JVMs, but works well enough on Hotspot and I expect others are implementing it as well. Trying to use memory quota on a JVM without the proper support would result in an `UnsupportedOperationException`.
 
