@@ -56,7 +56,7 @@ public class DynamoDB extends AbstractModule
     @Provides
     @Singleton
     public static EncryptionMaterialsProvider kmsEncryptionMaterialProvider(AWSKMS awsKms,
-                                                                            DynamoDBConfigurationProvider dynamoConfigurationProvider)
+                                                                            DynamoDBConfigProvider dynamoDBConfigProvider)
     {
         return new DirectKmsMaterialProvider(awsKms, dynamoConfigurationProvider.getDynamoDBKmsKeyId().getValue());
     }
