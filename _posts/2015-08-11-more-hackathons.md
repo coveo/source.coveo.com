@@ -1,3 +1,16 @@
+---
+layout: post
+
+title: "More Hackathons at Coveo"
+tags: [Hackathons]
+
+author:
+  name: Guillaume Simard
+  bio: Team Lead, UA
+  twitter: guisim
+  image: guisim.jpg
+---
+
 > We should really try this new technology...
 
 >It would be really cool if we could integrate these two components...
