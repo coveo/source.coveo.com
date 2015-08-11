@@ -38,7 +38,7 @@ So we’ve been doing this for the better part of 2015 now and the event is stil
 
 ## Some sample projects made during Hackathons
 
-* Creating a mobile-friendly version of our cloud administration application.
+* Creating a [mobile-friendly version of our cloud administration application](https://github.com/Coveo/JsAdminMobile).
 * Integrating a world map component into our search results with geolocation.
 * Using Spark and usage analytics data to influence the index using machine learning.
 * A web service where Coveo connectors can be easily configured online and tested.
