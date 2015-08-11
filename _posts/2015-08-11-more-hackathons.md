@@ -10,6 +10,8 @@
 
 How often do you hear this sort of statement? At Coveo, we hear it every week. Not because we’re overworked, not because we do not take the time to do things correctly. We hear this simply because we have a lot of ideas.
 
+<!-- more -->
+
 We’re pretty enthusiastic when it comes to creating software. Sadly, due to the nature of software development and the rate at which new technologies are released, we do not always have the time to play with everything we’d like to.
 
 ## So we introduced Hackathons
