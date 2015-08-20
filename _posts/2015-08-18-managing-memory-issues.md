@@ -34,7 +34,6 @@ Let’s take this example
 
 ProcDump is going to create multiple dump files, three in this case (`- n 3`), with 5 seconds intervals (`-s 5`) when the program (`CESService7.exe`) is using more than 80% of CPU (`-c 80`). The dump files will be created in the folder prodcumps (`c:\procdumps`). 
 
-You can download and read more about ProcDump [here](https://technet.microsoft.com/en-ca/sysinternals/dd996900.aspx) 
 
 Unfortunately, there is no options to kill the program after creating the dump files. This can be a problem, because the server can become very slow and experience performance issues. Using Windows monitoring tool on the RAM we can automatically start a script that will start ProcDump and terminate the program in fault (CES Service).
 
