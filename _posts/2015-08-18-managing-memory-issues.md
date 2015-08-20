@@ -2,7 +2,6 @@
 layout: post
 
 title: "TroubleShooting memory issues with CESService7 "
-#subtitle: ""
 
 author:
   name: Yan Bussieres
