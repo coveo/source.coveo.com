@@ -12,7 +12,7 @@ author:
   image: ybussieres.png 
 ---
 
- ////Comment to delete
+ ////Comment: 
  
  This article on confluence: https://developers.coveo.com/display/SupportKB/TroubleShooting+memory+issues+with+CESService7 explains the procedure in a more detailed way. This article also needs revision/approval. If you could include the link to my article at the beggining of the blog once everything is fine, it would be appreciated. Thanks, and sorry for messing up the blog. /// 
 
