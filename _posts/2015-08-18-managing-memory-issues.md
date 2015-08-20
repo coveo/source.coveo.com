@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 
 title: "TroubleShooting memory issues with CESService7 "
