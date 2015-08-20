@@ -75,6 +75,8 @@ It is also possible to send an e-mail directly from the task scheduler, but appa
 
 From the task manager, it is possible to restrain the CPU usage for a program. We can choose which processors are allowed to run a program. If there is, let’s say, 8 CPU availables, we could allow processors 1 to 5 to be used by a program. The program will only use 5/8 of the resources available.  
 
+![image](https://github.com/ybussieres/pictures/blob/master/CPULimitation.PNG)
+
 ### Conclusion 
 
 I hope this blog will help people experiencing memory issues. If you want to go further, you can monitor every programs that is running on your computer ! But don't forget to settle the `bat` file the right way... 
