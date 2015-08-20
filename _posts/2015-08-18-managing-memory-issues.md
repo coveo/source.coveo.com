@@ -12,24 +12,20 @@ author:
   image: ybussieres.png 
 ---
 
- ////Comment (to be deleted):
+  This article on confluence: https://developers.coveo.com/display/SupportKB/TroubleShooting+memory+issues+with+CESService7 explains the procedure in a more detailed way. 
  
- This article on confluence: https://developers.coveo.com/display/SupportKB/TroubleShooting+memory+issues+with+CESService7 explains the procedure in a more detailed way. This article also needs revision/approval. If you could include the link to my article at the beggining of the blog once everything is fine, it would be appreciated. Thanks, and sorry for messing up the blog. /// 
+By default, CESService7 should not use more than 50% of the RAM. This way, CES won’t monopolize all the available resources. 
 
-
-By default, CESService7 should not use more than 50% of the RAM. This way, CES won’t monopolize the whole resources available. 
-
-However, sometimes, the CES service is going to take more than 50% of the total RAM. The best way to find out why CES service have this behaviour is to create dump files when this happens. 
-
-There was an easy way to do that with Windows Server 2003, using User Mode Process Dumper 8.1, but this software won’t run with Windows server 2008 and Windows server 2012. 
-
-So, basically, my goal was to find a way to replicate what User Mode Process Dumper was doing on the recent versions of Windows Server: create an automatic process to monitor the CES service usage of memory, and then create multiple dump files when the RAM used by CES service was spiking over 50%.  To avoid multiple problems, I also added the option to close automatically CES service when this situation is happening. 
-
+However, sometimes the CES service is going to take more than 50% of the total RAM. The best way to find out why the service has this behaviour is to create dump files.
 <!-- more -->
 
-### ProcDump ###
+There is an easy way to do that with Windows Server 2003, using User Mode Process Dumper 8.1, but this software doesn’t work on more recent versions of the Windows, that is Windows server 2008 and Windows server 2012. 
 
-![image]({{ site.baseurl }}/images/ProcDumpImage.png)
+So, basically, my goal was to find a way to replicate what User Mode Process Dumper is doing on the newer versions of Windows Server: Create an automatic process to monitor the CES service memory usage, and then create multiple dump files when the RAM used by CES service is spiking over 50%.  To avoid multiple problems, I also added the option to automatically close CES service when this situation happens
+
+###ProcDump
+
+![image](source.coveo.com/images/ProcDumpImage.png)
 
 ProcDump 
 
