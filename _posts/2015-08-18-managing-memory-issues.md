@@ -62,7 +62,7 @@ If triggered:
   RUN ScripDumpFiles.bat
   Create Dump Files for CESCrawlers.exe, CESConverters.EXE, CesService.exe
 Force to quit CESService
-{% highlight %}
+{% endhighlight %}
 
 ### Mail Alert
 
@@ -70,7 +70,7 @@ You can also configure an email alert when this happens by adding this line in t
 
 {% highlight %}
 bat CALL blat -to user@example.com -server smtp.example.com -f sender@example.com -subject "subject" -body "body"
-{% highlight %}
+{% endhighlight %}
 
 It is also possible to send an e-mail directly from the task scheduler, but apparently there is an unfixed bug with Windows 8 that won’t allow an e-mail to be sent.
 
