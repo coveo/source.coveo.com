@@ -54,7 +54,7 @@ This script is going to run as an administrator and execute ProcDump if you choo
 
 In pseudo code, it would look like this:
 
-```sh
+```ruby
 Performance monitor running in background
 
 If memory used by CES service spikes over limit:
