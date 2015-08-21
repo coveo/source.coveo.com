@@ -54,7 +54,7 @@ This script is going to run as an administrator and execute ProcDump if you choo
 
 In pseudo code, it would look like this:
 
-{% highlight %}
+{% highlight bat %}
 Performance monitor running in background
 If memory used by CES service spikes over limit:
   Trigger the alert created in Task Scheduler
@@ -68,7 +68,7 @@ Force to quit CESService
 
 You can also configure an email alert when this happens by adding this line in the file:  
 
-{% highlight %}
+{% highlight bat %}
 bat CALL blat -to user@example.com -server smtp.example.com -f sender@example.com -subject "subject" -body "body"
 {% endhighlight %}
 
