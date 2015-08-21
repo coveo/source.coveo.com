@@ -56,17 +56,11 @@ In pseudo code, it would look like this:
 
 ```
 Performance monitor running in background
-
 If memory used by CES service spikes over limit:
-
   Trigger the alert created in Task Scheduler
-
 If triggered:
-
   RUN ScripDumpFiles.bat
-
   Create Dump Files for CESCrawlers.exe, CESConverters.EXE, CesService.exe
-
 Force to quit CESService
 ```
 
@@ -75,7 +69,7 @@ Force to quit CESService
 You can also configure an email alert when this happens by adding this line in the file:  
 
 ```bat
-    CALL blat -to user@example.com -server smtp.example.com -f sender@example.com -subject "subject" -body "body"
+CALL blat -to user@example.com -server smtp.example.com -f sender@example.com -subject "subject" -body "body"
 ```
 
 It is also possible to send an e-mail directly from the task scheduler, but apparently there is an unfixed bug with Windows 8 that won’t allow an e-mail to be sent.
