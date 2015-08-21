@@ -35,7 +35,7 @@ Let’s take this example
 c:\procdump.exe -c 80 -s 5 -n 3 CESService7.exe c:\procdumps
 ```
 
-ProcDump is going to create multiple dump files, three in this case (`- n 3`), with 5 seconds intervals (`-s 5`) when the program (`CESService7.exe`) is using more than 80% of CPU (`-c 80`). The dump files will be created in the folder prodcumps (`c:\procdumps`).
+ProcDump is going to create multiple dump files, three in this case (`-n 3`), with 5 seconds intervals (`-s 5`) when the program (`CESService7.exe`) is using more than 80% of CPU (`-c 80`). The dump files will be created in the folder prodcumps (`c:\procdumps`).
 
 
 Unfortunately, there is no options to kill the program after creating the dump files. This can be a problem, because the server can become very slow and experience performance issues. Using Windows monitoring tool on the RAM we can automatically start a script that will start ProcDump and terminate the program in fault (CES Service).
@@ -54,14 +54,20 @@ This script is going to run as an administrator and execute ProcDump if you choo
 
 In pseudo code, it would look like this:
 
-```
+```sh
 Performance monitor running in background
- If memory used by CES service spikes over limit:
+
+If memory used by CES service spikes over limit:
+
   Trigger the alert created in Task Scheduler
- If triggered:
-   RUN ScripDumpFiles.bat
-   Create Dump Files for CESCrawlers.exe, CESConverters.EXE, CesService.exe
- Force to quit CESService
+
+If triggered:
+
+  RUN ScripDumpFiles.bat
+
+  Create Dump Files for CESCrawlers.exe, CESConverters.EXE, CesService.exe
+
+Force to quit CESService
 ```
 
 ### Mail Alert
