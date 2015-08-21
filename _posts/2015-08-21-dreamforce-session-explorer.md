@@ -2,7 +2,7 @@
 layout: post
 
 title: "Dreamforce Session Explorer - The story behind the app"
-tags: [Templating, UnderscoreJS]
+tags: [React, DF15, Dreamforce Session Explorer, iOS, Android]
 
 author:
   name: Vincent Séguin
