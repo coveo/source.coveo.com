@@ -33,7 +33,7 @@ Also, he will most likely need lots of additional information that cannot be eas
 This is why all our efforts are concentrated on managing the community as efficiently as possible. When a client opens a case in the community, a first response will most of the time be given the same day.
 Also, when opening a case through the customer portal, a client will be suggested knowledge base articles as he types in the title of the case. This is made possible by using our own product and querying the index as the client types.
 
-![Case Creation Search](/images/20150331/caseCreationSearch.png)
+![Case Creation Search]({{ site.baseurl }}/images/20150331/caseCreationSearch.png)
 
 #### When is it a good idea to use the phone then?
 
@@ -62,7 +62,7 @@ Knowing this information from the start can prevent a distracted product special
 
 **Product:** In the case creation page, there is a field called “Product”. This field should be filled with the product from which the issue is stemming. This information will determine to which team the case will go and will greatly affect the way we manage it. It will also allow a faster dispatch of the case to the right product specialist.
 
-![Case Product Information](/images/20150331/caseProductInfo.png)
+![Case Product Information]({{ site.baseurl }}/images/20150331/caseProductInfo.png)
 
 ## New case in the console
 
@@ -73,7 +73,7 @@ We must often verify this in order to determine if the issue could stem from the
 They contain all the information about what operations were performed by the service (System logs), what was modified in the index (Index logs) and what was queried (Queries logs). This is why in most cases a product specialist will ask you to send certain types of logs and your configuration very early on.
 When we can’t figure out the cause of the issue with the Coveo logs, there may have been something caught by the Windows logs. These logs can be found in the “Event Viewer”.
 
-!["What's up doc?"](/images/20150331/whatsupdoc.jpg) 
+!["What's up doc?"]({{ site.baseurl }}/images/20150331/whatsupdoc.jpg) 
 
 To end on a lighter note, we could easily use the analogy that we are “Coveo doctors”.
 
