@@ -24,7 +24,7 @@
           /*"coveoSiteSection": ,*/
           "referrer": document.referrer,
           "referrerHost": document.referrer.split('/')[2],
-          "pageTitle": $('meta[property=title]').attr("content"),
+          "pageTitle": $("title").text().replace('Source @ Coveo — ','').replace(' — Source @ Coveo',''),
           /*"pageAudience": $('meta[name=audience]').attr("content"),*/
           /*"pageLanguage": $('meta[name=lang]').attr("content"),*/
           "pageUserAgent": navigator.userAgent
