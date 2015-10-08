@@ -28,9 +28,9 @@ layout: base
             {% if page.tags %}
               {% for tag in page.tags %}
                 {% if forloop.last %}
-                  <a href="/search#f:@tags=[{{ tag }}]">{{ tag }}</a>
+                  <a href="https://search.coveo.com/#sort=relevancy&f:sourceFacet=[Web%20-%20TechBlog]&f:TagsFacet=[{{ tag }}]">{{ tag }}</a>
                 {% else %}
-                  <a href="/search#f:@tags=[{{ tag }}]">{{ tag }},</a>
+                  <a href="https://search.coveo.com/#sort=relevancy&f:sourceFacet=[Web%20-%20TechBlog]&f:TagsFacet=[{{ tag }}]">{{ tag }},</a>
                 {% endif %}
               {% endfor %}
             {% endif %}
