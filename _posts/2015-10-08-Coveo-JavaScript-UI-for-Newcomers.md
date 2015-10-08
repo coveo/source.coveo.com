@@ -10,7 +10,7 @@ author:
   bio: Product Expert, Advanced Enterprise Search Platform
   image: kmpungi.jpg
 ---
-When comparing the .NET UI versus the JS one, the comment that we usually heard from our clients is that .NET UI is much friendly user than the JS one. The clients feel like you need to  have some skills in coding in order to use the JS UI, something that you don’t really need with the .NET UI.
+When comparing the .NET UI versus the JS one, the comment that we usually heard from our clients is that .NET UI is much more user friendly than the JS one. The clients feel like you need to have some skills in coding in order to use the JS UI, something that you don’t really need with the .NET UI.
 So I decided to create this article to simplify the notion of Coveo JS UI and hope that after reading and following these steps, you’ll find out that it’s pretty easy to get started with the Coveo JS UI.
 
 ## Step # 1: Installing the Coveo Search API
