@@ -23,7 +23,8 @@
             populateOmniBoxEventArgs.closeOmniBox();
             Coveo.Rest.SearchEndpoint.endpoints["default"]
                     .search({
-                      q: '@systitle=="' + valueSelected + '"'
+                      q: '@systitle=="' + valueSelected + '"',
+                      aq: SuggestionScope
                     })
                     .done(function (results) {
                       window.location = results.results[0].clickUri;
