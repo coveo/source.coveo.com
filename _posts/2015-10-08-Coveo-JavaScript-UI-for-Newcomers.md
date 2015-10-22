@@ -10,18 +10,17 @@ author:
   bio: Product Expert, Advanced Enterprise Search Platform
   image: kmpungi.jpg
 ---
-When comparing the .NET UI versus the JS one, the comment that we usually heard from our clients is that .NET UI is much more user friendly than the JS one. The clients feel like you need to have some skills in coding in order to use the JS UI, something that you don’t really need with the .NET UI.
-So I decided to create this article to simplify the notion of Coveo JS UI and hope that after reading and following these steps, you’ll find out that it’s pretty easy to get started with the Coveo JS UI.
+The new Coveo JS UI has been available for a while now. How about getting off to the right start? Well you’re at the right place, here is a tutorial on how to configure and use the new Coveo JS UI.
 
 ## Step # 1: Installing the Coveo Search API
 
-The Coveo Platform 7 comes with the Coveo Search API, a REST web service that is used by other Coveo products such as the Coveo JavaScript Search interfaces to send query and receive search results from a Coveo unified index. 
+The Coveo Platform 7 comes with the Coveo Search API, a web service offering a REST interface that is used by other Coveo products such as the Coveo JavaScript Search interfaces to send query and receive search results from a Coveo unified index. 
 The Coveo Search API REST endpoint can also be used by custom applications (see [REST Search API Home](https://developers.coveo.com/display/public/SearchREST/REST+Search+API+Home)).
 
 ![Coveo Rest Basic Diagram]({{ site.baseurl }}/images/JSUI101/CoveoRestBasicDiagram.png)
 
 As shown in the following diagram, the Coveo Search API acts as is a bridge between the front-end search interfaces or applications and a Coveo Enterprise Search (CES) instance maintaining a unified index on the back-end. 
-You can install the Coveo Search API on a server of your choice such as on the Coveo Master server (where Coveo Enterprise Search is installed), on a front-end server (where the Coveo JavaScript Search is installed), or any other server. 
+You can install the Coveo Search API on a server of your choice such as on the Coveo Master server (where Coveo Enterprise Search is installed), on a front-end server (where the Coveo JavaScript Search search is served from), or any other server. 
 Once installed, the Coveo Search API runs as a Windows service.
 
 When your deployment includes one or more Coveo JavaScript Search interfaces, you must install and configure a Coveo Search API.
@@ -69,3 +68,5 @@ Now that your Coveo Search API is well configured and up and running, you can no
 	
 	Here is your Coveo JavaScript search page:
 	![Search Page Final]({{ site.baseurl }}/images/JSUI101/SearchPageFinal.png)
+	
+You are good to go! But do not stop there, there is so much more to do with it! [Start here] (https://developers.coveo.com/display/public/JsSearchV1/JavaScript+Search+Framework+V1+Home)
