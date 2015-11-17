@@ -12,6 +12,8 @@ author:
 ---
 The new Coveo JS UI has been available for a while now. How about getting off to the right start? Well you’re at the right place, here is a tutorial on how to configure and use the new Coveo JS UI.
 
+<!-- more -->
+
 ## Step # 1: Installing the Coveo Search API
 
 The Coveo Platform 7 comes with the Coveo Search API, a web service offering a REST interface that is used by other Coveo products such as the Coveo JavaScript Search interfaces to send query and receive search results from a Coveo unified index. 
