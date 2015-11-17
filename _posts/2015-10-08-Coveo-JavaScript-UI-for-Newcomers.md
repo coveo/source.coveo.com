@@ -46,27 +46,35 @@ Once you started the “Coveo Search API” service, you can validate that the s
 Now that your Coveo Search API is well configured and up and running, you can now create your Coveo search interface in JavaScript.
 
 	1.	Using a browser, access the URL in the following format: "http://[REST_API_SERVER]:[port]"
-	![Coveo JS Landing Page]({{ site.baseurl }}/images/JSUI101/CoveoJSLandingPage.png)
+
+![Coveo JS Landing Page]({{ site.baseurl }}/images/JSUI101/CoveoJSLandingPage.png)
 	
 	2.	Click on "CLICK HERE TO START"
-	![Coveo JS Authentication]({{ site.baseurl }}/images/JSUI101/CoveoJSAuthentication.png)
+
+![Coveo JS Authentication]({{ site.baseurl }}/images/JSUI101/CoveoJSAuthentication.png)
 	
 	3.	Type your username and password, then click on connect, you’ll get the message below:
-	![Coveo JS Loading]({{ site.baseurl }}/images/JSUI101/CoveoJSLoading.png)
+
+![Coveo JS Loading]({{ site.baseurl }}/images/JSUI101/CoveoJSLoading.png)
 	
 	4.	On the “CREATE A SEARCH PAGE” window, you can click on “CREATE PAGE” if you just want to only use the “All Content” search interface, or you can click on “MORE TABS” in order to add more search interfaces.
-	![Create A Search Page]({{ site.baseurl }}/images/JSUI101/CreateASearchPage.png)
+
+![Create A Search Page]({{ site.baseurl }}/images/JSUI101/CreateASearchPage.png)
 	
-	•	By clicking on “MORE TABS”, you’ll see the out of the box search interfaces available
-	![Available Search Interfaces]({{ site.baseurl }}/images/JSUI101/AvailableSearchInterfaces.png)
+	5.	By clicking on “MORE TABS”, you’ll see the out of the box search interfaces available
 	
-	•	Click on the ones that you want to add into your search page. As an example, let’s click on "People", "Email" and "SharePoint"
-	![Selected Interfaces]({{ site.baseurl }}/images/JSUI101/SelectedInterfaces.png)
+![Available Search Interfaces]({{ site.baseurl }}/images/JSUI101/AvailableSearchInterfaces.png)
 	
-	5.	Click on “CREATE PAGE”, you’ll get the message below:
-	![Creating]({{ site.baseurl }}/images/JSUI101/Creating.png)
+	6.	Click on the ones that you want to add into your search page. As an example, let’s click on "People", "Email" and "SharePoint"
+	
+![Selected Interfaces]({{ site.baseurl }}/images/JSUI101/SelectedInterfaces.png)
+	
+	7.	Click on “CREATE PAGE”, you’ll get the message below:
+	
+![Creating]({{ site.baseurl }}/images/JSUI101/Creating.png)
 	
 	Here is your Coveo JavaScript search page:
-	![Search Page Final]({{ site.baseurl }}/images/JSUI101/SearchPageFinal.png)
+	
+![Search Page Final]({{ site.baseurl }}/images/JSUI101/SearchPageFinal.png)
 	
 You are good to go! But do not stop there, there is so much more to do with it! [Start here] (https://developers.coveo.com/display/public/JsSearchV1/JavaScript+Search+Framework+V1+Home)
