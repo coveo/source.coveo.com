@@ -16,7 +16,7 @@ In the last months, we [experienced with React](http://source.coveo.com/2015/08/
 
 <!-- more -->
 
-In this article, i'll introduce you on how to start a new project using TypeScript, JSX and React and show you some tools we use to simplify our development.
+In this article, I'll introduce you on how to start a new project using TypeScript, JSX and React and show you some tools we use to simplify our development.
 
 ## Initial setup with npm
 
@@ -28,7 +28,7 @@ npm install tsd -g
 npm install react --save
 ```
 
-First, let's make sure we have TypeScript compiler 1.6 or later:
+Second, let's make sure we have TypeScript compiler 1.6 or later:
 ```
 ./node_modules/typescript/bin/tsc --version
 ```
@@ -39,7 +39,7 @@ message TS6029: Version 1.6.2
 
 ## TypeScript definitions with tsd
 
-We're almost ready to start coding, but we'll need the React definitions. We already installed [tsd](http://definitelytyped.org/tsd/) which is a package manager to search and install TypeScript definition files directly from the community driven [DefinitelyTyped](https://github.com/DefinitelyTyped) repository. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a tsd project by running :
+We're almost ready to start coding, but we'll need the React definitions. We already installed [tsd](http://definitelytyped.org/tsd/) which is a package manager to search and install TypeScript definition files directly from the community driven [DefinitelyTyped](https://github.com/DefinitelyTyped) repository. [DefinitelyTyped is a great project and we try to contribute](https://github.com/coveo/DefinitelyTyped) as much as we can. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a tsd project by running :
 ```
 tsd init
 ```
@@ -95,7 +95,7 @@ class HelloWorld extends React.Component<any, any> {
 }
 {% endhighlight %}
 
-We first reference to our TypeScript definitions that we setup in the previous step. We then `import` React module using the ES6 module import syntax. And we declare our first component using react!
+We first reference to our TypeScript definitions that we setup in the previous step. We then `import` React module using the ES6 module import syntax and then, we declare our first component using react!
 
 ## Compiling to JavaScript
 
