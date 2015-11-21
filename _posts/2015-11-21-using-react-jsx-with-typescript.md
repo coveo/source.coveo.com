@@ -106,7 +106,7 @@ tsc --jsx react --module commonjs HelloWorld.tsx
 
 This will produce `HelloWorld.js`
 
-But, you might not want to remember all those flags, let's save our compiler configuration to a `tsconfing.json`. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. For more details refer to the [official documentation](https://github.com/Microsoft/typescript/wiki/tsconfig.json)
+But, you might not want to remember all those flags, let's save our compiler configuration to a `tsconfing.json`. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. For more details refer to the [official documentation](https://github.com/Microsoft/typescript/wiki/tsconfig.json).
 
 {% highlight javascript %}
 {
