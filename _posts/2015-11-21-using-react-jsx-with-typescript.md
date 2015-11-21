@@ -28,7 +28,7 @@ npm install tsd -g
 npm install react --save
 ```
 
-First, les make sure we have TypeScript compiler 1.6 or later:
+First, let's make sure we have TypeScript compiler 1.6 or later:
 ```
 ./node_modules/typescript/bin/tsc --version
 ```
@@ -54,7 +54,7 @@ This downloads the definitions to our `typings` folder, saves the commit hash to
 
 Our `tsd.json` should contain something like :
 
-```javascript
+{% highlight javascript %}
 "installed": {
   "react/react.d.ts": {
     "commit": "16134c168d021351acb1673ee9659644fc58c424"
@@ -62,11 +62,12 @@ Our `tsd.json` should contain something like :
   {
     //....
   }
-```
+{% endhighlight %}
+
 
 And the `tsd.d.ts` should contain:
 
-```javascript
+{% highlight javascript %}
 /// <reference path="react/react-dom.d.ts" />
 /// <reference path="react/react.d.ts" />
 /// <reference path="react/react-addons-create-fragment.d.ts" />
@@ -78,13 +79,13 @@ And the `tsd.d.ts` should contain:
 /// <reference path="react/react-addons-transition-group.d.ts" />
 /// <reference path="react/react-addons-update.d.ts" />
 /// <reference path="react/react-global.d.ts" />
-```
+{% endhighlight %}
 
 ## Let's code
 
 Create a file named `HelloWorld.tsx`. Notice the `.tsx` extension, this is needed for TypeScript to enable JSX syntax support.
 
-```javascript
+{% highlight javascript %}
 /// <reference path="./typings/tsd.d.ts" />
 
 class HelloWorld extends React.Component<any, any> {
@@ -92,7 +93,7 @@ class HelloWorld extends React.Component<any, any> {
     return <div>Hello world!</div>
   }
 }
-```
+{% endhighlight %}
 
 We first reference to our TypeScript definitions that we setup in the previous step. We then `import` React module using the ES6 module import syntax. And we declare our first component using react!
 
@@ -107,7 +108,7 @@ This will produce `HelloWorld.js`
 
 But, you might not want to remember all those flags, let's save our compiler configuration to a `tsconfing.json`. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. For more details refer to the [official documentation](https://github.com/Microsoft/typescript/wiki/tsconfig.json)
 
-```javascript
+{% highlight javascript %}
 {
   "compilerOptions": {
     "jsx": "react",
@@ -123,7 +124,7 @@ But, you might not want to remember all those flags, let's save our compiler con
     "HelloWorld.tsx"
   ]
 }
-```
+{% endhighlight %}
 
 We can now run `tsc` in our project folder to produce the same result.
 
@@ -132,7 +133,8 @@ Let's explore a little deeper on how to render our `HelloWorld` component and pa
 
 
 Let's improve our HelloWorld component by adding `firstname` and `lastname` props and typing them with an `interface`. Then, let's render it! This will allow us to be notified at compile time if a `prop` is missing or is the wrong type!
-```javascript
+
+{% highlight javascript %}
 /// <reference path="./typings/tsd.d.ts" />
 
 class HelloWorldProps {
@@ -152,10 +154,11 @@ React.render(<HelloWorld
     firstname="John"
     lastname="Smith"/>,
   document.getElementById('app'));
-```
+{% endhighlight %}
 
 Compile once again with `tsc`. Then let's finish by importing everything in an `index.html` file:
-```html
+
+{% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -170,7 +173,7 @@ Compile once again with `tsc`. Then let's finish by importing everything in an `
     <script src="HelloWorld.js"></script>
   </body>
 </html>
-```
+{% endhighlight %}
 
 Open `index.html` in your browser and you should see
 ```
