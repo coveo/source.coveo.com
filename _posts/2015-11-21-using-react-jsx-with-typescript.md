@@ -32,7 +32,7 @@ npm install react --save
 Second, let's make sure we have TypeScript compiler 1.6 or later:
 
 {% highlight javascript %}
-./node_modules/typescript/bin/tsc --version
+tsc --version
 {% endhighlight %}
 
 You should see an output similar to:
