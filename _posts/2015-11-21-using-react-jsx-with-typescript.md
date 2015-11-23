@@ -188,4 +188,4 @@ Hello John Smith!
 
 That's it! You've created your first TypeScript React project. Hope you enjoy developing with it as much as we do!
 
-> Note that i've intentionally left [webpack](http://webpack.github.io/docs/) out of this tutorial to keep it short but as you project grows to more than one file, a module loader will be necessary.
+> Note that i've intentionally left [webpack](http://webpack.github.io/docs/) out of this tutorial to keep it short but as your project grows to more than one file, a module loader will be necessary.
