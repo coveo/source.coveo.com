@@ -21,35 +21,42 @@ In this article, I'll introduce you on how to start a new project using TypeScri
 ## Initial setup with npm
 
 First we'll setup our project with `npm init`. For this project we need node, typescript, tsd, and react. Let's install them:
-```
+
+{% highlight javascript %}
 npm install typescript -g
 npm install tsd -g
 
 npm install react --save
-```
+{% endhighlight %}
 
 Second, let's make sure we have TypeScript compiler 1.6 or later:
-```
+
+{% highlight javascript %}
 ./node_modules/typescript/bin/tsc --version
-```
+{% endhighlight %}
+
 You should see an output similar to:
-```
+
+{% highlight javascript %}
 message TS6029: Version 1.6.2
-```
+{% endhighlight %}
 
 ## TypeScript definitions with tsd
 
 We're almost ready to start coding, but we'll need the React definitions. We already installed [tsd](http://definitelytyped.org/tsd/) which is a package manager to search and install TypeScript definition files directly from the community driven [DefinitelyTyped](https://github.com/DefinitelyTyped) repository. [DefinitelyTyped is a great project and we try to contribute](https://github.com/coveo/DefinitelyTyped) as much as we can. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a tsd project by running :
-```
+
+{% highlight javascript %}
 tsd init
-```
+{% endhighlight %}
 
 This will create a `tsd.json` file (similar to a `package.json` but refering to our TypeScript definitions), a `typings/` folder to store the definitions and a `tsd.d.ts` referencing all our downloaded definitions.
 
 We can now install the needed definitions:
-```
+
+{% highlight javascript %}
 tsd install react-global --save
-```
+{% endhighlight %}
+
 This downloads the definitions to our `typings` folder, saves the commit hash to the `tsd.json` and updates the `tsd.d.ts`.
 
 Our `tsd.json` should contain something like :
@@ -63,7 +70,6 @@ Our `tsd.json` should contain something like :
     //....
   }
 {% endhighlight %}
-
 
 And the `tsd.d.ts` should contain:
 
