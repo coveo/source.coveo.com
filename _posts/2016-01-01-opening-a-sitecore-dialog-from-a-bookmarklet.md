@@ -12,7 +12,7 @@ author:
   image: jflheureux.jpeg
 ---
 
-When developing dialogs, wizards and applications in Sitecore, a developer would have to open them many times per day. If the action to open them requires more than one click, a lot of time will be lost navigating in the interface.
+When developing dialogs, wizards and applications in Sitecore, a developer would have to open them many times per day. When the action to open them requires more than one click, a lot of time will be lost.
 
 Wouldn't it be nice if one could open a dialog from the browser console command line or a bookmark?
 
@@ -43,5 +43,7 @@ With feature detection, a universal bookmarklet code can be crafted.
 {% highlight javascript %}
 javascript:var eventName = 'YourEventName'; var userEvent = { type: 'click', preventDefault: function(){} }; if (scForm.speakPostEvent) { scForm.speakPostEvent(scForm, userEvent, eventName); } else { scForm.postEvent(this, userEvent, eventName); }
 {% endhighlight %}
+
+![image]({{ site.baseurl }}/images/20160101/CreateSitecoreDialogBookmarklet.gif)
 
 This code can even be used in the excellent [Sitecore Developer Tool](https://chrome.google.com/webstore/detail/sitecore-developer-tool/cmbppbejihcnbngefandoljljdppnlda) Google Chrome extension to open dialogs from any Sitecore administration page.
