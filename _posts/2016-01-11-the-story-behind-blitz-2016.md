@@ -26,12 +26,12 @@ These changes allowed us to easily manage the Vindinium server (through our cust
 We also learn a lot while coding the challenge, this year we tackled with Scala, Akka, MongoDB, AWS, NodeJS, React and TypeScript.
 
 ## The contenders
-This year we made a roll call to our teammates if they be interested in also participating in Blitz. Needless to say, it took about 10 minutes to build two complete teams. We made sure the Coveo teams didn’t know about the challenge. They needed to be good, they represent Coveo! Gladly the two Coveo teams finished first and second. Congrats to Brute force it (Alexandre, Frédéric, Vincentand Pierre-Alexandre) and WOW BLITZ AWESOME team (Mathieu, Charle, Denis and Jean-Philippe).
+This year we made a roll call to our teammates if they were interested in also participating to Blitz. Needless to say, it took about 10 minutes to build two complete teams. We made sure the Coveo teams didn’t know about the challenge. They needed to be good, they represent Coveo! Luckily for us, the two Coveo teams finished first and second. Congrats to Brute Force It (Alexandre, Frédéric, Vincent and Pierre-Alexandre) and WOW BLITZ AWSOME (Mathieu, Charle, Denis and Jean-Philippe).
 
 ## The winners
-Congrats to the two Coveo team who made it to the finals. Team *Comeo* (François Chantal, Olivier Précourt et Samuel Thériault-Hall) got first prize and each won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault et Jean-Benoît Harvey) each got a Best Buy gift card for their second position.
+Kudos to the two Coveo team who made it to the finals. Team *Comeo* (François Chantal, Olivier Précourt et Samuel Thériault-Hall) got first prize and each won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault et Jean-Benoît Harvey) each got a Best Buy gift card for their second position.
 
 ## Wrap up
-We finished the day by having each team expressing their algorithms used solve the challenge, grabbed a cold beer and a slice of pizza and discussed with students. We’ve listed some solutions on the Coveo Blitz 2016 GitHub account. Send us your solution if yours isn’t listed. Also, be sure to check out [Vindinium subreddit](https://www.reddit.com/r/vindinium) for great AI solutions.
+We finished the day by having each team explaining the algorithms used to solve the challenge, grabbed a cold beer and a slice of pizza and discussed with students. We’ve listed some solutions on the Coveo Blitz 2016 GitHub account. Send us your solution if yours isn’t listed! Also, be sure to check out the [Vindinium subreddit](https://www.reddit.com/r/vindinium) for great AI solutions.
 
 We hope you’ve enjoyed your day as much as we did and hope to se you next year for another awesome challenge.
