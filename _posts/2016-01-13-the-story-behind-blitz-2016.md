@@ -17,7 +17,7 @@ This year was the sixth edition of Coveo Blitz, our classic programming contest 
 
 ## The brainstorm
 
-We’ve wanted to do a challenge involving artificial intelligence for a long time. With a smaller team working on Blitz this year, we had to leverage existing projects to make it on time. Our search began, we knew [Scalatron](https://scalatron.github.io/), [Berlin AI](http://www.berlin-ai.com/), and found a bunch of interesting projects. We eventually found [Vindinium](http://vindinium.org/). It covered most of our requirements: It is [open source](https://github.com/ornicar/vindinium), customizable, [works with most programming languages](http://vindinium.org/starters) and has many available starter kits.
+We’ve wanted to do a challenge involving artificial intelligence for a long time. With a smaller team working on Blitz this year, we had to leverage existing projects to make it on time. We already knew [Scalatron](https://scalatron.github.io/), [Berlin AI](http://www.berlin-ai.com/), but our search allowed us to find a bunch of interesting projects, including [Vindinium](http://vindinium.org/) which turned out to be most compelling one. It covered most of our requirements: It was [open source](https://github.com/ornicar/vindinium), customizable, [worked with most programming languages](http://vindinium.org/starters) and had many available starter kits.
 
 ![image]({{ site.baseurl }}/images/blitz2016/finals.jpg)
 
@@ -35,13 +35,13 @@ We also learned a lot while coding the challenge, this year we tackled with Scal
 
 ## The contenders
 
-This year we made a roll call to our teammates to see if they were interested in also participating to Blitz. Needless to say, it took about 10 minutes to build two complete teams. We made sure the Coveo teams didn’t know about the challenge. They needed to be good, they represent Coveo! Luckily for us, the two Coveo teams finished first and second. Congrats to Brute Force It (Alexandre, Frédéric, Vincent and Pierre-Alexandre) and WOW BLITZ AWSOME (Mathieu, Charle, Denis and Jean-Philippe).
+This year we made a roll call to our amazing colleagues to see if they were interested in also participating to Blitz. Needless to say, it took about 10 minutes to build two complete teams. We made sure the Coveo teams didn’t know about the challenge. They needed to be good, they represent Coveo! Luckily for us, the two Coveo teams finished first and second. Congrats to Brute Force It (Alexandre, Frédéric, Vincent and Pierre-Alexandre) and WOW BLITZ AWSOME (Mathieu, Charle, Denis and Jean-Philippe).
 
 ![image]({{ site.baseurl }}/images/blitz2016/coveoteams.png)
 
 ## The winners
 
-Since the first and second places were taken by the Coveo teams (which couldn't win the prizes), team *Comeo* (François Chantal, Olivier Précourt et Samuel Thériault-Hall) got first prize and each won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault et Jean-Benoît Harvey) each got a Best Buy gift card for their second position. Kudos to two teams!
+Since the first and second places were taken by the Coveo teams (which couldn't win the prizes), team *Comeo* (François Chantal, Olivier Précourt et Samuel Thériault-Hall) got first prize and each member won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault et Jean-Benoît Harvey) each member got a Best Buy gift card for its second position. Kudos to two teams!
 
 ![image]({{ site.baseurl }}/images/blitz2016/winners.png)
 
