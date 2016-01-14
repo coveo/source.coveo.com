@@ -27,7 +27,7 @@ Vindinium out of the box was a great skeleton for our contest. However, it was m
 
 Another thing we wanted to do was to prevent open source Vindinium bots from working. This would ensure that lazy students wouldn’t simply copy a Github project and dominate all other teams. To do this, we modified most constants such as the cost of using a tavern, the life provided by a tavern and the damage done by heroes. We also added spikes, a new type of tile. Spikes can be passed through just like air but they deal damage to your hero.
 
-These changes allowed us to easily manage the Vindinium server (through our custom UI) and created a fun and diverse environment for the participants. Spikes added a surprisingly nice complexity to the game and lead to some interesting pathfinding strategies.
+These changes allowed us to easily manage the Vindinium server (through our custom UI) and created a fun and diverse environment for the participants. Spikes added a surprisingly nice complexity to the game and led to some interesting pathfinding strategies.
 
 We also learned a lot while coding the challenge, this year we tackled with Scala, Akka, MongoDB, AWS, NodeJS, React and TypeScript.
 
