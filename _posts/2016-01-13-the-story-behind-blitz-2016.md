@@ -17,7 +17,7 @@ This year was the sixth edition of Coveo Blitz, our classic programming contest 
 
 ## The brainstorm
 
-We’ve wanted to do a challenge involving artificial intelligence for a long time. With a smaller team working on Blitz this year, we had to leverage existing projects to make it on time. Our search began, we knew [Scalatron](https://scalatron.github.io/), [Berlin AI](http://www.berlin-ai.com/), and found a bunch of interesting projects. We eventually found [Vindinium](http://vindinium.org/). It covered most of our requirements: It is [open source](https://github.com/ornicar/vindinium), customizable, works with most programming languages and has many available starter kits.
+We’ve wanted to do a challenge involving artificial intelligence for a long time. With a smaller team working on Blitz this year, we had to leverage existing projects to make it on time. Our search began, we knew [Scalatron](https://scalatron.github.io/), [Berlin AI](http://www.berlin-ai.com/), and found a bunch of interesting projects. We eventually found [Vindinium](http://vindinium.org/). It covered most of our requirements: It is [open source](https://github.com/ornicar/vindinium), customizable, [works with most programming languages](http://vindinium.org/starters) and has many available starter kits.
 
 ![image]({{ site.baseurl }}/images/blitz2016/finals.jpg)
 
