@@ -41,7 +41,7 @@ This year we made a roll call to our amazing colleagues to see if they were inte
 
 ## The winners
 
-Since the first and second places were taken by the Coveo teams (which couldn't win the prizes), team *Comeo* (François Chantal, Olivier Précourt et Samuel Thériault-Hall) got first prize and each member won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault et Jean-Benoît Harvey) each member got a Best Buy gift card for its second position. Kudos to two teams!
+Since the first and second places were taken by the Coveo teams (which couldn't win the prizes), team *Comeo* (François Chantal, Olivier Précourt et Samuel Thériault-Hall) got first prize and each member won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault et Jean-Benoît Harvey) each member got a Best Buy gift card for its second position. Kudos to those two teams!
 
 ![image]({{ site.baseurl }}/images/blitz2016/winners.png)
 
