@@ -63,7 +63,9 @@ public class UserServiceWithToken
     {
         executeIfAuthorized(org,
                             tokenCacheWrapper.getTokenInfo(token),
-                            Functions.consumerToFunction(account -> userService.setReportsOnUser(account, id, reports)),
+                            Functions.consumerToFunction(account -> userService.setReportsOnUser(account, 
+                                                                                                 id,
+                                                                                                 reports)),
                             Permissions.EDIT_REPORTS);
     }
 
