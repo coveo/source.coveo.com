@@ -44,8 +44,6 @@ url: http://source.coveo.com
 future:      false
 highlighter: pygments
 
-relative_permalinks: true
-
 permalink:     pretty
 paginate_path: 'page:num'
 paginate: 10
