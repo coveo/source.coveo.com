@@ -18,7 +18,7 @@ In July 2015, Microsoft announced the release of Typescript 1.5, introducing [de
 
 This article will demonstrate the possibility of using decorators to do dependency injection in Typescript.
 
-## Why uses injection?
+## Why use injection?
 
 1.	Injection avoids the pollution of the global namespace with object instances.
 
