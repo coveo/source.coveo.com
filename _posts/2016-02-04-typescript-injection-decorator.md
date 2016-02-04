@@ -18,7 +18,7 @@ In July 2015, Microsoft announced the release of Typescript 1.5, introducing [de
 
 This article will demonstrate the possibility of using decorators to do dependency injection in Typescript.
 
-##Why uses injection?
+## Why uses injection?
 
 1.	Injection avoids the pollution of the global namespace with object instances.
 
@@ -31,7 +31,7 @@ This article will demonstrate the possibility of using decorators to do dependen
     We use Backbone to periodically refresh our models with the state from the server. Our injector allows us to create the instance once and use it where we need it.
 
 
-##Implementation
+## Implementation
 
 I made a simple [project]( https://github.com/GermainBergeron/dose) on GitHub that provides the Injector and decorator. Feel free to contribute!
  
@@ -91,7 +91,7 @@ test();
 
 It works and it's far from magic. We must cast the registered value in `User` because `getRegistered` returns an object of type `any`.
 
-###Enters the decorator
+### Enters the decorator
 First, let's look at the simpler injector:
 {% highlight javascript %}
 function injectProperty(...keys: string[]) {
@@ -185,7 +185,7 @@ export default class UserConsumer {
 
 The official Typescript [decorator page](https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Decorators.md) has a lot more information on what is possible with the decorators.
 
-###Try it
+### Try it
 Create a npm projet that depends on dose & Typescript >= 1.5. Then you can run `npm install` to download the dependencies. 
 
 Import the injector & the inject decorator and you are all set!
