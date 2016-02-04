@@ -6,7 +6,7 @@ tags: [Typescript, Injection, Decorator, Javascript, ES7]
 
 author:
   name: Germain Bergeron
-  bio: 	Software Ninjaneer
+  bio:  Software Ninjaneer
   image: gbergeron.jpg
 ---
 
@@ -16,15 +16,15 @@ In July 2015, Microsoft announced the release of Typescript 1.5, introducing [de
 
 >It should be noted that decorators are still in [stage 1 proposal](https://github.com/wycats/javascript-decorators) and their actual implementation could change anytime 
 
-This article will demonstrate the possibility to use decorators to do dependency injection in Typescript.
+This article will demonstrate the possibility of using decorators to do dependency injection in Typescript.
 
 ##Why uses injection?
 
-1.	Injection avoids the pollution of the global namespace with object instances. 
+1.	Injection avoids the pollution of the global namespace with object instances.
 
-2.	It provides an easy way to share an object instance across our application, without the need to pass the object everywhere
+2.	It provides an easy way to share an object instance across our application, without the need to pass the object everywhere.
     
-    In our constantly growing Single Page Application, we have some objects that are constants through a user visit. E.g., the visitor's browser and the logged User. The first offers us some utility methods like `browser.isMobile()` or `browser.isIE()`. The second which contains a set of permissions, email, etc., is used, among other things, to determine which panels the users can access to.
+    In our constantly growing Single Page Application, we have some objects that are constants through a user visit. E.g., the visitor's browser and the logged User. The first offers us some utility methods like `browser.isMobile()` or `browser.isIE()`. The second which contains a set of permissions, email, etc., is used, among other things, to determine which panels the user can access.
 
 3.	The injected object is always up-to-date.
 
@@ -37,15 +37,15 @@ I made a simple [project]( https://github.com/GermainBergeron/dose) on GitHub th
  
 It's also available on npm: `npm install dose`.
 
-It uses a small registry that stores values in a map. It can be improved a lot, but it met my requirements.
+It uses a small registry that stores values in a map. There's a lot to improve in there, but it met my requirements.
 
 {% highlight javascript %}
 export default class Injector {
 
-    private static registery: {[key: string]: any} = {};
+    private static registry: {[key: string]: any} = {};
 
     static getRegistered(key: string): any {
-        var registered = Injector.registery[key];
+        var registered = Injector.registry[key];
         if (registered) {
             return registered;
         } else {
@@ -54,11 +54,11 @@ export default class Injector {
     }
 
     static register(key: string, value: any) {
-        var registered = Injector.registery[key];
+        var registered = Injector.registry[key];
         if (registered) {
             throw new Error(`Error: ${key} is already registered.`);;
         }
-        Injector.registery[key] = value;
+        Injector.registry[key] = value;
     }
 }
 {% endhighlight %}
@@ -89,9 +89,9 @@ function test() {
 test();
 {% endhighlight %}
 
-It works, but it's far from magic. We must cast the registered value in `User` because `getRegistered` returns an object of type `any`.
+It works and it's far from magic. We must cast the registered value in `User` because `getRegistered` returns an object of type `any`.
 
-###Enters the decorators
+###Enters the decorator
 First, let's look at the simpler injector:
 {% highlight javascript %}
 function injectProperty(...keys: string[]) {
@@ -101,7 +101,7 @@ function injectProperty(...keys: string[]) {
 }
 {% endhighlight %}
 
-In this code, target is the object instance on which we want to inject, key is the property. Let's see the usage:
+In this code, `target` is the object instance on which we want to inject and `key` is the property. Let's see the usage:
 
 {% highlight javascript %}
 class UserConsumer {
@@ -128,9 +128,9 @@ class UserConsumer {
 }
 {% endhighlight %}
 
->Note that it adds parameters to the methods. I have yet to make it work direclty in the method parameters
+>Note that it adds parameters to the methods. I have yet to make it work directly in the method parameters
 
-Nice! But we can do better. We don't want to have a decorator for the method and another for the property. Let's wrap them with a small function that detects the type, so we can use `@inject('key')` on both methods and paremeters
+Nice! But we can do better. We don't want to have a decorator for the method and another for the property. Let's wrap them with a small function that detects the type, so we can use `@inject('key')` on both methods and parameters
 
 {% highlight javascript %}
 export function inject(...keys: string[]) {
@@ -186,7 +186,7 @@ export default class UserConsumer {
 The official Typescript [decorator page](https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Decorators.md) has a lot more information on what is possible with the decorators.
 
 ###Try it
-First of all, you'll need to create a npm projet, that depends on dose & Typescript >= 1.5. Then you can run `npm install` to download the dependencies. 
+Create a npm projet that depends on dose & Typescript >= 1.5. Then you can run `npm install` to download the dependencies. 
 
 Import the injector & the inject decorator and you are all set!
 
