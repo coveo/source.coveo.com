@@ -35,7 +35,7 @@ inc:
 
 source:      .
 destination: ./_site
-layouts:     ./_layouts
+layouts_dir: ./_layouts
 
 base_url: ""
 url: http://source.coveo.com
@@ -50,5 +50,7 @@ paginate: 10
 
 excerpt_separator: "<!-- more -->"
 
-host:        0.0.0.0
+host:        127.0.0.1
 port:        4000
+
+gems: [jekyll-paginate]
