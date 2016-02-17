@@ -98,3 +98,7 @@ context.createResourceQuotaExecutionObject(new ResourceQuota(cpuQuota, memoryQuo
 ## Trying it out
 
 The changes we've made to DynJS are available [publicly on GitHub](https://github.com/Coveo/dynjs/tree/resource-quotas). We also submitted a [pull request](https://github.com/dynjs/dynjs/pull/154) but it hasn't been merged yet.
+
+## Update - February 2016
+
+As of now, DynJS is no longer being maintained, and no official version has ever been released with the changes described in this post (in fact the PR is still opened).
