@@ -206,4 +206,4 @@ private ServiceException getExceptionByReflection(RestException restException)
 # Success!
 Now that wasn't so hard was it? By using this `ErrorDecoder`, all the exceptions declared thrown, even the subclasses of abstract base exceptions in our APIs will get a chance to live by and get thrown on both sides of an inter-service call, with no specific treatment, just some reflection magic! 
 
-Hopefully you have learned a thing or two today, thanks for reading!
+Hopefully this will come handy for you, thanks for reading!
