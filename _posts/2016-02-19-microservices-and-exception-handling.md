@@ -13,6 +13,7 @@ author:
 ---
 Exception handling across microservices can be tedious, let's see how the Java reflection api can help us ease the pain!
 <!-- more -->
+
 # Microservices architecture
 When it comes to building a complex application in the cloud, microservices architecture is the newest and coolest kid in town. It has numerous advantages over the more _traditional_ monolithic architecture such as :
 
@@ -21,52 +22,33 @@ When it comes to building a complex application in the cloud, microservices arch
 - possibility to upgrade only a microservice at a time, making the deployments less risky and less prone to unexpected side effects;
 - technology independance : by exposing an api with a clearly defined contract with a set of common rules shared by all microservices, you don't have to care which language or database is used by the microservice.
 
-I could go on for a while on this, microservices are a great way to build applications in the cloud. There are lots of awesome OSS projects from our friends at [Netflix](https://netflix.github.io/) and [Spring](https://spring.io/) that will help you doing this, from [service discovery](https://github.com/Netflix/eureka) to [mid-tier load balancing](https://github.com/Netflix/ribbon) and [dynamic configuration](https://github.com/Netflix/archaius), there's a library for most requirements you'll have to meet. It's also great to see Spring coming aboard with [Spring Cloud](http://projects.spring.io/spring-cloud/) collaborating and integrating some of Netflix librairies into a very useful and simple library to use with your new or existing Spring application!
+I could go on for a while on this, microservices are a great way to build applications in the cloud. There are lots of awesome OSS projects from our friends at [Netflix](https://netflix.github.io/) and [Spring](https://spring.io/) that will help you doing this, from [service discovery](https://github.com/Netflix/eureka) to [mid-tier load balancing](https://github.com/Netflix/ribbon) and [dynamic configuration](https://github.com/Netflix/archaius), there's a library for most requirements you'll have to meet. It's also great to see Spring coming aboard with [Spring Cloud](http://projects.spring.io/spring-cloud/) collaborating and integrating some of the Netflix librairies into a very useful and simple library to use with your new or existing Spring application!
 
 ## Caveats
-It wouln't be fair to avoid talking about the downsides of microservices as they do present some serious caveats and are not suited to everyone and every application out there. Splitting an application into microservices bring some additional challenges like : 
-- complex configuration management: 10 microservices? 10 configuration profiles, 10 Logback configurations, etc. (using a centralized [configuration server](https://github.com/spring-cloud/spring-cloud-config) can help you on this though);
+It wouln't be fair to avoid talking about the downsides of microservices as they do present some challenges and are not suited to everyone and every application out there. Splitting an application into microservices bring some additional concerns like :
+
+- complex configuration management : 10 microservices? 10 configuration profiles, 10 Logback configurations, etc. (using a centralized [configuration server](https://github.com/spring-cloud/spring-cloud-config) can help you on this though);
 - complicated build, packaging and deployment processes;
 - performance hit : you need to validate this token? No problem, just make a POST to this endpoint with the token in the body and you'll get the response in no time! While this is true for most cases, the network overhead, serialization/deserialization process can become a bottleneck and you always have to be resilient for network outages or congestion;
-- Interacting with other microservices brings a lot of boilerplate code : whereas a single additional method to a class was needed in a monolithic architecture, in a microservices you need a resource implementing an API, a client, some authorization mechanism, exception handling...
+- Interacting with other microservices brings a lot of boilerplate code : whereas a single additional method to a class was needed in a monolithic architecture, in a microservices you need a resource implementing an API, a client, some authorization mechanism, exception handling, etc.
 
-# Inter-service communication
-## Resource, API and client architecture
-When it comes to dealing with microservices, you'll have to deal with many cases of inter-services communication. To do this properly, you need to implement you APIs so that so that the endpoints, parameters and thrown exceptions follow along nicely during development. A good way to do that is have 3 seperate projects for the API, the resource and the client (we're using Spring annotations here but the logic stands for any framework and libraries used) :  
-**FooApi.java**
-```java
-public interface FooApi
-{
-    @RequestMapping(method = RequestMethod.GET, value ="/bar/{id}")
-    Bar getBar(@PathVariable String id) throws BarDoesNotExistException;
-}
-```
-**FooResource.java**
-```java
-@RestController
-public class FooResource implements FooApi
-{
-    @Override
-    public String getBar(String id) throws BarDoesNotExistException
-    {
-        someService.getBar(id);
-    }
-}
-```
-**FooClient.java**
-```java
-@FeignClient("Foo")
-public class FooClient extends FooApi
-{
-}
-```
-Both the client and the resource project link on the API project so they are decoupled and changes on the api will follow along on the api and client automatically. This is possible with [Feign](https://github.com/Netflix/feign) version 8.13 and up using Feign annotations or with Spring annotations using `SpringMvcContract` in Spring Cloud Netflix. 
+# Dynamic exception handling using [Feign](https://github.com/Netflix/feign) and reflection
 
-## Dynamic exception handling in Feign
-In a monolithic application, handling exceptions is a walk in the park. However, when using an inter-service call and something goes wrong, most of the times you'd like to propagate this exception or handle it gracefully. The problem is, you don't get an exception from the client, you get a HTTP code and a JSON body describing the error or you may get a generic exception depending on the client used.
+In a monolithic application, handling exceptions is a walk in the park. However, when using an inter-service call and something goes wrong, most of the times you'll want to propagate this exception or handle it gracefully. The problem is, you don't get an exception from the client, you get an HTTP code and a body describing the error or you may get a generic exception depending on the client used.
 
-Using Feign, you are able to easily decode errors using the `ErrorDecoder` interface with the received `Response` object when the HTTP code is not in the 200 range. Now, we only need a way to map the errors to the proper exception. At Coveo, most of our exceptions inherit from a base exception which defines a readable `errorCode` that is unique per exception : 
-```java
+For some of our applications at Coveo, we use [Feign](https://github.com/Netflix/feign) to build our clients across services. It allows us to easily build clients by just writing an interface with the parameters, the endpoint and the thrown exceptions like this : 
+{% highlight java %}
+interface GitHub {
+  @RequestLine("GET /users/{user}/repos")
+  List<Repo> getUserRepos(@Param("user") String user) throws UserDoesNotExistException;
+}
+{% endhighlight %}
+When using the client, you are able to easily decode errors using the `ErrorDecoder` interface with the received `Response` object when the HTTP code is not in the 200 range. Now, we only need a way to map the errors to the proper exception. 
+
+## Required base exception
+
+Most of our exceptions here at Coveo inherit from a base exception which defines a readable `errorCode` that is unique per exception : 
+{% highlight java %}
 public abstract class ServiceException extends Exception
 {
     private static final long serialVersionUID = 1L;
@@ -77,18 +59,19 @@ public abstract class ServiceException extends Exception
         return errorCode;
     }
 }
-```
-This allows us to return a consistent error message on the api like this : 
-```json
+{% endhighlight %}
+This allows us to translate exceptions on the api into a `RestException` object with a consistent error code and message like this : 
+{% highlight json %}
 {
     "errorCode": "INVALID_TOKEN",
     "message": "The provided token is invalid or expired."
 }
-```
-Using this key, we can use the reflection api of Java to build up a map of thrown exceptions at runtime and rethrown them like there were no inter-service call!
-### Using reflection to create a dynamic ErrorDecoder
+{% endhighlight %}
+Using the `errorCode` as the key, we can use the reflection api of Java to build up a map of thrown exceptions at runtime and rethrow them like there were no inter-service call!
+
+### Using reflection to create a dynamic `ErrorDecoder`
 Alright, let's dive into the code. First, we need a little POJO to hold the information for instantiation : 
-```java
+{% highlight java %}
 public class ThrownServiceExceptionDetails
 {
     private Class<? extends ServiceException> clazz;
@@ -96,11 +79,13 @@ public class ThrownServiceExceptionDetails
     private Constructor<? extends ServiceException> messageConstructor;
     //getters and setters omitted
 }
-```
-Then, we use reflection to get the thrown exceptions from the client (it supports both Spring `@RequestMapping` and Feign `@RequestLine` annotation and scanning subclasses!) : 
-```java
+{% endhighlight %}
+Then, we use reflection to get the thrown exceptions from the client in the constructor by passing the Feign interface as a parameter : 
+{% highlight java %}
 public class FeignServiceExceptionErrorDecoder implements ErrorDecoder
 {
+    private static final Logger logger = LoggerFactory.getLogger(FeignServiceExceptionErrorDecoder.class)
+
     private Class<?> apiClass;
     private Map<String, ThrownServiceExceptionDetails> exceptionsThrown = new HashMap<>();
 
@@ -108,8 +93,7 @@ public class FeignServiceExceptionErrorDecoder implements ErrorDecoder
     {
         this.apiClass = apiClass;
         for (Method method : apiClass.getMethods()) {
-            if (method.getAnnotation(RequestMapping.class) != null || 
-                method.getAnnotation(RequestLine.class) != null) {
+            if (method.getAnnotation(RequestLine.class) != null) {
                 for (Class<?> clazz : method.getExceptionTypes()) {
                     if (ServiceException.class.isAssignableFrom(clazz)) {
                         if (Modifier.isAbstract(clazz.getModifiers())) {
@@ -118,15 +102,16 @@ public class FeignServiceExceptionErrorDecoder implements ErrorDecoder
                             extractServiceExceptionInfo(clazz);
                         }
                     } else {
-                        //log warning as exception doesn't inherit from ServiceException
+                        logger.info("Exception '{}' declared thrown on interface '{}' doesn't inherit from 
+                                     ServiceException, it will be skipped.", clazz.getName(), apiClass.getName())
                     }
                 }
             }
         }
     }
-```
+{% endhighlight %}
 With the thrown exceptions in hand, knowing that they inherit from `ServiceException`, we extract the `errorCode` and the relevant constructors. It supports empty constructor and single `String` parameter constructor : 
-```java
+{% highlight java %}
 private void extractServiceExceptionInfo(Class<?> clazz)
         throws Exception
 {
@@ -152,12 +137,13 @@ private void extractServiceExceptionInfo(Class<?> clazz)
                     .withEmptyConstructor((Constructor<? extends ServiceException>) emptyConstructor)
                     .withMessageConstructor((Constructor<? extends ServiceException>) messageConstructor));
     } else {
-        //log warning as there are no compatible constructors
+        logger.warn("Couldn't instantiate the exception '{}' for the interface '{}', it needs an empty or String 
+                     only *public* constructor.", clazz.getName(), apiClass.getName());
     }
 }
-```
+{% endhighlight %}
 Bonus feature, when the scanned exception is abstract, we use the Spring `ClassPathScanningCandidateComponentProvider` to get all the subclasses and add them to the map : 
-```java
+{% highlight java %}
 private void extractServiceExceptionInfoFromSubClasses(Class<?> clazz)
         throws Exception
 {
@@ -181,10 +167,9 @@ private Set<Class<?>> getAllSubClasses(Class<?> clazz) throws ClassNotFoundExcep
     }
     return subClasses;
 }
-}
-```
+{% endhighlight %}
 Finally, we implement Feign `ErrorDecoder`, deserialize the body into the `RestException` object we use who hold the `errorCode` and `message` and we use this to return the proper exception : 
-```java
+{% highlight java %}
 @Override
 public Exception decode(String methodKey,
                         Response response)
@@ -198,7 +183,8 @@ public Exception decode(String methodKey,
     } catch (IOException e) {
         // Fail silently here, irrelevant as a new exception will be thrown anyway
     } catch (Exception e) {
-        //log error
+        logger.error("Error instantiating the exception to be thrown for the interface '{}'", 
+                     apiClass.getName(), e);
     }
     return defaultDecode(methodKey, response, restException); //fallback not presented here
 }
@@ -215,9 +201,9 @@ private ServiceException getExceptionByReflection(RestException restException)
     }
     return exceptionToBeThrown;
 }
-```
+{% endhighlight %}
 
 # Success!
-Now that wasn't so hard was it? By using this `ErrorDecoder`, all the exceptions declared thrown, even the subclasses of abstract base exceptions in our APIs will get a chance to live by and get rethrown on both sides of an inter-service call, with no specific treatment, no gigantic switch case, just some reflection magic! 
+Now that wasn't so hard was it? By using this `ErrorDecoder`, all the exceptions declared thrown, even the subclasses of abstract base exceptions in our APIs will get a chance to live by and get thrown on both sides of an inter-service call, with no specific treatment, just some reflection magic! 
 
 Hopefully you have learned a thing or two today, thanks for reading!
