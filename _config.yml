@@ -2,8 +2,6 @@ source:      .
 destination: ./_site
 layouts_dir: ./_layouts
 
-baseurl: ""
-
 future:      false
 
 permalink:     pretty
@@ -35,7 +33,6 @@ inc:
     gplus:      false
     hn:         false
     foursquare: false
-
 
  # Analytics
   analytics:
