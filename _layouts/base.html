@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/main.css"/>
     <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{{ site.baseurl }}/images/{{ site.inc.logo }}"/>
-    <link href="{{ site_url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
+    <link href="{{ site.baseurl }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
 <meta content="{{ site.title }}" property="og:site_name">
 
 {% if page.title %}
@@ -30,21 +30,21 @@
 {% endif %}
 
 {% if page.url %}
-  <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+  <meta content="{{ site.baseurl }}{{ page.url }}" property="og:url">
 {% endif %}
 
 {% if page.date %}
   <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-  <meta content="{{ site.url }}/about/" property="article:author">
+  <meta content="{{ site.baseurl }}/about/" property="article:author">
 {% endif %}
 
 {% if page.image %}
-  <meta content="{{ site.url }}/{{ page.image }}" property="og:image">
+  <meta content="{{ site.baseurl }}/{{ page.image }}" property="og:image">
 {% else %}
 {% if page.cover_image %}
-  <meta property="og:image" content="{{ site.url }}/images/{{ page.cover_image }}"/>
+  <meta property="og:image" content="{{ site.baseurl }}/images/{{ page.cover_image }}"/>
 {% else %}
-  <meta property="og:image" content="{{ site.url }}/images/{{ site.inc.logo }}"/>
+  <meta property="og:image" content="{{ site.baseurl }}/images/{{ site.inc.logo }}"/>
 {% endif %}
 {% endif %}
 
@@ -65,7 +65,7 @@
   <meta name="author" content="{{ page.author.name }}">
 {% endif %}
 
-<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="canonical" href="{{ site.baseurl }}{{ page.url }}">
 {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
 {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
 
