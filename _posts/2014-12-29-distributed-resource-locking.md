@@ -13,7 +13,7 @@ author:
 
 **Small update**: Having noticed comments about this post on Twitter, I think it's important to specify that the word "lock" might have been badly chosen here. It's more of a best-effort thing to reduce the frequency of situations where certain operations would need to be retried. It's perfectly fine if for any reason those still occur concurrently (indeed before there was no locking whatsoever). The only adverse effect would be slightly decreased performance for the querying user. So, kids, do not use this approach if you need real resource exclusion.
 
-As Coveo's cloud usage analytics product matures, more and more events are logged every seconds and a lot more people are using the analytics dashboards from the cloud admin. That increased load is great and the usage analytics handles it easily, but there was one thing we did not see coming: transaction cycles in the database. They did not happen often, but this was still problematic as continuous increase in the load on the service only meant more transaction cycles. These cycles were the result of scheduled jobs running when insertion of new events and reporting queries occurred at the same time. 
+As Coveo's cloud usage analytics product matures, more and more events are logged every seconds and a lot more people are using the analytics dashboards from the cloud admin. That increased load is great and the usage analytics handles it easily, but there was one thing we did not see coming: transaction cycles in the database. They did not happen often, but this was still problematic as continuous increase in the load on the service only meant more transaction cycles. These cycles were the result of scheduled jobs running when insertion of new events and reporting queries occurred at the same time.
 
 <!-- more -->
 
@@ -36,7 +36,7 @@ We finally decided to go with the cache service, mainly because of the timeout c
 
 Here is what it looks like :
 
-{% highlight java linenos %}
+{% highlight java %}
 public class MemcachedResourceLocker implements ResourceLocker
 {
     private CacheService resourceLockCache;
@@ -83,7 +83,7 @@ public class MemcachedResourceLocker implements ResourceLocker
 
 **Note:** The `ResourceLocker` interface was not included to keep the code to a minimum. It is a simple interface that includes the `lock()` and `unlock()` methods.
 
-{% highlight java linenos %}
+{% highlight java %}
 public class RetryableLockResource extends AbstractRetryableTask
 {
     private ResourceLocker resourceLocker;
@@ -113,7 +113,7 @@ public class RetryableLockResource extends AbstractRetryableTask
 }
 {% endhighlight %}
 
-{% highlight java linenos %}
+{% highlight java %}
 public abstract class AbstractRetryableTask
 {
     private Duration delay;
@@ -158,7 +158,7 @@ public abstract class AbstractRetryableTask
 
 Here is an example of how we use it in an actual "real code" situation in a scheduled job (scheduling is done with [Quartz](http://quartz-scheduler.org/):
 
-{% highlight java linenos %}
+{% highlight java %}
 public void execute(JobExecutionContext context) throws JobExecutionException
 {
     String account = context.getJobDetail().getJobDataMap().getString(SchedulerWrapper.ACCOUNT_NAME_PARAM);

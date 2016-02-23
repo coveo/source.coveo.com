@@ -19,9 +19,9 @@ As the Analytics service grows, the need for its own configuration storage began
 
 Since server side encryption is not available for DynamoDB, we had no choice but to use client-side encryption. We used a [neat little library from aws-labs](https://github.com/awslabs/aws-dynamodb-encryption-java) for this. It essentially takes care of signing and encrypting the data and is very simple to use.
 
-Here is what the setup looks like. Note that we use [AWS KMS](http://aws.amazon.com/kms/) to manage the encryption key, [Guice](https://github.com/google/guice) for dependency injection and [Archaius](https://github.com/Netflix/archaius) for configuration management : 
+Here is what the setup looks like. Note that we use [AWS KMS](http://aws.amazon.com/kms/) to manage the encryption key, [Guice](https://github.com/google/guice) for dependency injection and [Archaius](https://github.com/Netflix/archaius) for configuration management :
 
-{% highlight java linenos %}
+{% highlight java %}
 public class DynamoDB extends AbstractModule
 {
     @Override
@@ -65,9 +65,9 @@ public class DynamoDB extends AbstractModule
 
 It's pretty simple to setup right?
 
-Next, here is an example of an object that we save in dynamo and that is encrypted : 
+Next, here is an example of an object that we save in dynamo and that is encrypted :
 
-{% highlight java linenos %}
+{% highlight java %}
 @DynamoDBTable(tableName = "UsageAnalytics-Reports")
 public class Report
 {
@@ -169,7 +169,7 @@ public class Report
 Also pretty simple. All the job is done with the annotations from the DynamoDB data modeling lib. `@DynamoDBAttribute` indicates which field is persisted in the database. By default, all the attributes that are annotated with `@DynamoDBAttribute` will be encrypted. As you can see, some attributes can be not encrypted (I'll explain why we need this a little bit later).
 They are annotated with either the `@DoNotEncrypt` or the `@DoNotTouch` annotations. The attributes with `@DoNotEncrypt` will be signed, but not encrypted and the ones with `@DoNotTouch` will be neither signed nor encrypted. If you are not familiar with the concept of signing and encrypting, I recommend you to take a look at this [stackoverflow answer](http://stackoverflow.com/a/454069/1546324).
 
-That's pretty much it. From now on, saving an object with the `DynamoDBMapper` will encrypt the data before persisting it in DynamoDB. 
+That's pretty much it. From now on, saving an object with the `DynamoDBMapper` will encrypt the data before persisting it in DynamoDB.
 
 ![image]({{ site.baseurl }}/images/20150706/dynamo_enc.png)
 
@@ -179,5 +179,3 @@ That's pretty much it. From now on, saving an object with the `DynamoDBMapper` w
 - Remember when I said wanted some data to not be encrypted? Here's why: scan operations do not work on encrypted fields. This means it's only possible to fetch by ID or by a scan operation on a *non encrypted* field. For us, it is acceptable that some fields are not encrypted. They do not contain sensible information and allow us to perform smarter retrieval of the data.
 - It is possible to back up and restore your encrypted data, as long as the encryption metadada is backed up and restored along with it. For big dynamoDB tables, you can use [AWS Data Pipeline](http://aws.amazon.com/datapipeline/). Since our tables are relatively small and data pipeline can be expensive (it uses AWS EMR and must spawn ec2 instances), we use [this script](https://github.com/bchew/dynamodump) in a cron job.
 - I haven't tried it yet, but according to AWS support, KMS key rotation is supported by the `aws-dynamodb-encryption` lib.
-
-

@@ -17,14 +17,14 @@ Java 8 is pretty cool. We (finally!) got Lambda Expressions in Java and a lot of
 
 Let's say we want to test that adding an `Employee` to a `Company` correctly invokes the `CompanyDal` class with the right information.
 
-{% highlight java linenos %}
+{% highlight java %}
 public interface CompanyDal
 {
     void registerEmployee(Employee e);
 }
 {% endhighlight %}
 
-{% highlight java linenos %}
+{% highlight java %}
 public class Company
 {
     private CompanyDal dal;
@@ -43,7 +43,7 @@ public class Company
 }
 {% endhighlight %}
 
-{% highlight java linenos %}
+{% highlight java %}
 public class Employee
 {
     private String name;
@@ -62,7 +62,7 @@ public class Employee
 
 When testing the `Company` class we'll want to mock our `CompanyDal` interface. We use the great [Mockito](https://github.com/mockito/mockito) library for our mocking needs.
 
-{% highlight java linenos %}
+{% highlight java %}
 public class CompanyTest {
     private Company company;
     private CompanyDal mockedDal;
@@ -87,9 +87,9 @@ public void addingAnEmployeeRegistersItInTheDal()
 This is a good test as it validates that the `Company` class interacts with the `CompanyDal` class as expected.
 Now.. how can we do this verification?
 
-We could be tempted to do 
+We could be tempted to do
 
-{% highlight java linenos %}
+{% highlight java %}
 @Test
 public void addingAnEmployeeRegistersItInTheDal()
 {
@@ -107,7 +107,7 @@ _Note: For the sake of this example, we need to pretend that we can't override `
 What we need to do is verify that the `Employee` passed to the `CompanyDal` has the same `name` property as the one passed to the `Company` class.
 This can be done using Mockito [Matchers](http://docs.mockito.googlecode.com/hg/latest/org/mockito/Matchers.html).
 
-{% highlight java linenos %}
+{% highlight java %}
 @Test
 public void addingAnEmployeeRegistersItInTheDal()
 {
@@ -147,7 +147,7 @@ The `matches()` method could easily be replaced by a [`java.util.Predicate`](htt
 
 But we'll need an adapter class to bridge Mockito's `Matcher` with `Predicate`. Introducing `LambdaMatcher`!
 
-{% highlight java linenos %}
+{% highlight java %}
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -187,7 +187,7 @@ public class LambdaMatcher<T> extends BaseMatcher<T>
 
 `LambdaMatcher` is really easy to use. Here's our rewritten `addingAnEmployeeRegistersItInTheDal` test.
 
-{% highlight java linenos %}
+{% highlight java %}
 @Test
 public void canFindEmployee()
 {
@@ -201,7 +201,7 @@ public void canFindEmployee()
 
 And if you want a description
 
-{% highlight java linenos %}
+{% highlight java %}
 @Test
 public void canFindEmployee()
 {
@@ -216,7 +216,7 @@ public void canFindEmployee()
 
 This new code will generate the same nice error message as above.. but it is much simpler! If you want to save even more time, you can create the following static method.
 
-{% highlight java linenos %}
+{% highlight java %}
 public static <T> T argThatMatches(Predicate<T> predicate)
 {
     LambdaMatcher<T> matcher = new LambdaMatcher<>(predicate);
@@ -226,7 +226,7 @@ public static <T> T argThatMatches(Predicate<T> predicate)
 
 Which will result in the following test.
 
-{% highlight java linenos %}
+{% highlight java %}
 @Test
 public void canFindEmployee()
 {
