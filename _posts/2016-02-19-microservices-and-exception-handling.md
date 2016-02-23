@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Microservices and exception handling with Feign and reflection"
+title: "Microservices and exception handling in Java with Feign and reflection"
 
 tags: [Microservices, Java, Reflection, Feign, Exception handling]
 
@@ -28,7 +28,6 @@ I could go on for a while on this, microservices are a great way to build applic
 It wouln't be fair to avoid talking about the downsides of microservices as they do present some challenges and are not suited to everyone and every application out there. Splitting an application into microservices bring some additional concerns like :
 
 - complex configuration management : 10 microservices? 10 configuration profiles, 10 Logback configurations, etc. (using a centralized [configuration server](https://github.com/spring-cloud/spring-cloud-config) can help you on this though);
-- complicated build, packaging and deployment processes;
 - performance hit : you need to validate this token? No problem, just make a POST to this endpoint with the token in the body and you'll get the response in no time! While this is true for most cases, the network overhead, serialization/deserialization process can become a bottleneck and you always have to be resilient for network outages or congestion;
 - Interacting with other microservices brings a lot of boilerplate code : whereas a single additional method to a class was needed in a monolithic architecture, in a microservices you need a resource implementing an API, a client, some authorization mechanism, exception handling, etc.
 
@@ -51,7 +50,6 @@ Most of our exceptions here at Coveo inherit from a base exception which defines
 {% highlight java %}
 public abstract class ServiceException extends Exception
 {
-    private static final long serialVersionUID = 1L;
     private String errorCode;
     //Constructors omitted
     public String getErrorCode()
@@ -206,4 +204,4 @@ private ServiceException getExceptionByReflection(RestException restException)
 # Success!
 Now that wasn't so hard was it? By using this `ErrorDecoder`, all the exceptions declared thrown, even the subclasses of abstract base exceptions in our APIs will get a chance to live by and get thrown on both sides of an inter-service call, with no specific treatment, just some reflection magic! 
 
-Hopefully this will come handy for you, thanks for reading!
+Hopefully this will come in handy for you, thanks for reading!
