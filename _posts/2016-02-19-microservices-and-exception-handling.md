@@ -11,7 +11,7 @@ author:
   image: jebeaudet.png
 
 ---
-Exception handling across microservices can be tedious, let's see how the Java reflection api can help us ease the pain!
+Exception handling across microservices can be tedious, let's see how the Java reflection API can help us ease the pain!
 <!-- more -->
 
 # Microservices architecture
@@ -20,7 +20,7 @@ When it comes to building a complex application in the cloud, microservices arch
 - modularization and isolation, which makes the development easier in a big team;
 - more efficient scaling of the critical paths of the application;
 - possibility to upgrade only a microservice at a time, making the deployments less risky and less prone to unexpected side effects;
-- technology independance : by exposing an api with a clearly defined contract with a set of common rules shared by all microservices, you don't have to care which language or database is used by the microservice.
+- technology independance : by exposing an API with a clearly defined contract with a set of common rules shared by all microservices, you don't have to care which language or database is used by the microservice.
 
 I could go on for a while on this, microservices are a great way to build applications in the cloud. There are lots of awesome OSS projects from our friends at [Netflix](https://netflix.github.io/) and [Spring](https://spring.io/) that will help you doing this, from [service discovery](https://github.com/Netflix/eureka) to [mid-tier load balancing](https://github.com/Netflix/ribbon) and [dynamic configuration](https://github.com/Netflix/archaius), there's a library for most requirements you'll have to meet. It's also great to see Spring coming aboard with [Spring Cloud](http://projects.spring.io/spring-cloud/) collaborating and integrating some of the Netflix librairies into a very useful and simple library to use with your new or existing Spring application!
 
@@ -33,7 +33,7 @@ It wouln't be fair to avoid talking about the downsides of microservices as they
 
 # Dynamic exception handling using [Feign](https://github.com/Netflix/feign) and reflection
 
-In a monolithic application, handling exceptions is a walk in the park. However, when using an inter-service call and something goes wrong, most of the times you'll want to propagate this exception or handle it gracefully. The problem is, you don't get an exception from the client, you get an HTTP code and a body describing the error or you may get a generic exception depending on the client used.
+In a monolithic application, handling exceptions is a walk in the park. However, if something goes wrong during an inter-service call, most of the times you'll want to propagate this exception or handle it gracefully. The problem is, you don't get an exception from the client, you get an HTTP code and a body describing the error or you may get a generic exception depending on the client used.
 
 For some of our applications at Coveo, we use [Feign](https://github.com/Netflix/feign) to build our clients across services. It allows us to easily build clients by just writing an interface with the parameters, the endpoint and the thrown exceptions like this : 
 {% highlight java %}
@@ -58,14 +58,14 @@ public abstract class ServiceException extends Exception
     }
 }
 {% endhighlight %}
-This allows us to translate exceptions on the api into a `RestException` object with a consistent error code and message like this : 
+This allows us to translate exceptions on the API into a `RestException` object with a consistent error code and message like this : 
 {% highlight json %}
 {
     "errorCode": "INVALID_TOKEN",
     "message": "The provided token is invalid or expired."
 }
 {% endhighlight %}
-Using the `errorCode` as the key, we can use the reflection api of Java to build up a map of thrown exceptions at runtime and rethrow them like there were no inter-service call!
+Using the `errorCode` as the key, we can use the reflection API of Java to build up a map of thrown exceptions at runtime and rethrow them like there was no inter-service call!
 
 ### Using reflection to create a dynamic `ErrorDecoder`
 Alright, let's dive into the code. First, we need a little POJO to hold the information for instantiation : 
@@ -166,7 +166,7 @@ private Set<Class<?>> getAllSubClasses(Class<?> clazz) throws ClassNotFoundExcep
     return subClasses;
 }
 {% endhighlight %}
-Finally, we implement Feign `ErrorDecoder`, deserialize the body into the `RestException` object we use who hold the `errorCode` and `message` and we use this to return the proper exception : 
+Finally, we need to implement Feign `ErrorDecoder`. We deserialize the body into the `RestException` object who holds the `message` and the `errorCode` used to map to the proper exception : 
 {% highlight java %}
 @Override
 public Exception decode(String methodKey,
@@ -202,6 +202,6 @@ private ServiceException getExceptionByReflection(RestException restException)
 {% endhighlight %}
 
 # Success!
-Now that wasn't so hard was it? By using this `ErrorDecoder`, all the exceptions declared thrown, even the subclasses of abstract base exceptions in our APIs will get a chance to live by and get thrown on both sides of an inter-service call, with no specific treatment, just some reflection magic! 
+Now that wasn't so hard was it? By using this `ErrorDecoder`, all the exceptions declared thrown, even the subclasses of abstract base exceptions in our APIs, will get a chance to live by and get thrown on both sides of an inter-service call, with no specific treatment, just some reflection magic! 
 
 Hopefully this will come in handy for you, thanks for reading!
