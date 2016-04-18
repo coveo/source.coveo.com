@@ -7,7 +7,7 @@ tags: [Sitecore, Bookmarklet, SPEAK]
 
 author:
   name: Jean-François L'Heureux
-  bio: Solution Architect, Trainer, Coveo for Sitecore Team
+  bio: Trainer & Evangelist, Coveo for Sitecore Team
   twitter: jflh
   image: jflheureux.jpeg
 ---
@@ -43,6 +43,8 @@ With feature detection, a universal bookmarklet code can be crafted.
 {% highlight javascript %}
 javascript:var eventName = 'YourEventName'; var userEvent = { type: 'click', preventDefault: function(){} }; if (scForm.speakPostEvent) { scForm.speakPostEvent(scForm, userEvent, eventName); } else { scForm.postEvent(this, userEvent, eventName); }
 {% endhighlight %}
+
+This code uses undocumented Sitecore APIs that might change in the future.
 
 ![image]({{ site.baseurl }}/images/20160101/CreateSitecoreDialogBookmarklet.gif)
 
