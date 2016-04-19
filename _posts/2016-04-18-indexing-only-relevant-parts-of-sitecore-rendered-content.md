@@ -7,7 +7,7 @@ tags: [Sitecore, Coveo for Sitecore, Indexing, Processor, Pipeline]
 
 author:
   name: Jean-François L'Heureux
-  bio: Trainer and Evangelist, Coveo for Sitecore Team
+  bio: Trainer & Evangelist, Coveo for Sitecore Team
   twitter: jflh
   image: jflheureux.jpeg
 ---
@@ -71,7 +71,7 @@ Add the processor node after your existing HTML fetching processor in your Coveo
     <pipelines>
       <coveoPostItemProcessingPipeline>
         <!-- Your existing HTML fetching processor -->
-        <processor type="Coveo.SearchProvider.Processors.HtmlContentInBodyWithRequestsProcessor, Coveo.SearchProviderBase" />
+        <processor type="Coveo.SearchProvider.Processors.HtmlContentInBodyWithRequestsProcessor, Coveo.SearchProviderBase"/>
         <!-- The CleanHtmlContentInBodyProcessor processor -->
         <processor type="Coveo.For.Sitecore.Samples.Processors.CleanHtmlContentInBodyProcessor, Coveo.For.Sitecore.Samples">
           <StartCommentText>BEGIN NOINDEX</StartCommentText>
