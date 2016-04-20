@@ -31,7 +31,7 @@ Other solutions are possible with the help of a developer:
 
 ## Introducing the CleanHtmlContentInBodyProcessor
 
-The idea is to use harmless HTML comment elments around HTML markup you don't want to be indexed. The processor is removing the comments and all the markup in between. The processor should run after the one fetching the HTML but before the item is sent to the index for indexing.
+The idea is to use harmless HTML comment elements around HTML markup you don't want to be indexed. The processor is removing the comments and all the markup in between. The processor should run after the one fetching the HTML but before the item is sent to the index for indexing.
 
 ### Code
 
