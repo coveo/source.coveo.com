@@ -12,7 +12,7 @@ author:
   image: jflheureux.jpeg
 ---
 
-Organizations who care about relevancy use Coveo for Sitecore to power their website search. When indexing a Sitecore item, you want as much information as possible to be indexed. That's why you probably use the [`HtmlContentInBodyWithRequestsProcessor`](https://developers.coveo.com/display/public/SitecoreV3/Indexing+Documents+with+HTML+Content+Processor) to index the Sitecore rendered HTML of the item. However, you don't want to index global sections of the HTML like the header, footer, navigation, ads and sidebars.
+For website search, relevancy of the search results should be a priority. When indexing a Sitecore item with Coveo for Sitecore, you want as much information as possible to be indexed. That's why you probably use the [`HtmlContentInBodyWithRequestsProcessor`](https://developers.coveo.com/display/public/SitecoreV3/Indexing+Documents+with+HTML+Content+Processor) to index the Sitecore rendered HTML of the item. However, you don't want to index global sections of the HTML like the header, footer, navigation, ads and sidebars.
 
 A few solutions were available to do so. This post details a simple solution that involves only a Sitecore processor and minor edits to layouts, sublayouts or views.
 
@@ -20,14 +20,21 @@ A few solutions were available to do so. This post details a simple solution tha
 
 ## Official Solution
 
-The [official documentation](https://developers.coveo.com/display/public/SitecoreV3/Indexing+Documents+with+HTML+Content+Processor) details a complex solution that requires a new device, the duplication of most of your layouts, the configuration of presentation of all your rendering templates and a lot of attention not to forget updating the new device rendering when a change is made to the default rendering. The advantage of this solution is that it can be maintained by content editors and marketers.
+The [official documentation](https://developers.coveo.com/display/public/SitecoreV3/Indexing+Documents+with+HTML+Content+Processor) details a complex solution that requires:
+
+* A new device,
+* The duplication of most of your layouts,
+* The configuration of the presentation of all your rendering templates, and
+* A lot of attention not to forget updating the new device presentation when a change is made to the default device presentation.
+
+This solution has the advantage to be easy to maintain by content editors and marketers.
 
 ## Other Solutions
 
 Other solutions are possible with the help of a developer:
 
-1. Modify the code of unwanted UI components to avoid rendering their content when detecting the Coveo HTTP request user agent
-2. Code a custom processor to remove unwanted sections after the rendered HTML is fetched
+1. Modify the code of unwanted UI components to avoid rendering their content when detecting the Coveo HTTP request user agent.
+2. Code a custom processor to remove unwanted sections after the rendered HTML is fetched.
 
 ## Introducing the CleanHtmlContentInBodyProcessor
 
@@ -35,7 +42,7 @@ The idea is to use harmless HTML comment elements around HTML markup you don't w
 
 ### Code
 
-The main code of the processor is fairly simple. It uses Regex to delete matched sections of the markup. The code currently assumes that the HTML is encoded in UTF8 but can be easily adjusted for your integration. The complete code can be found in the [Coveo Samples GitHub repository](https://github.com/coveo/samples/blob/master/coveo-for-sitecore/processors/CleanHtmlContentInBodyProcessor.cs).
+The main code of the processor is fairly simple. It uses Regex to delete matched sections of the markup. The code currently assumes that the HTML is encoded in UTF-8 but can be easily adjusted for your integration. The complete code can be found in the [Coveo Samples GitHub repository](https://github.com/coveo/samples/blob/master/coveo-for-sitecore/processors/CleanHtmlContentInBodyProcessor.cs).
 
 {% highlight c# %}
 public class CleanHtmlContentInBodyProcessor : IProcessor<CoveoPostItemProcessingPipelineArgs>
@@ -120,4 +127,4 @@ Be cautious with the comment locations. There are 2 possible problems:
 
 ## Conclusion
 
-Whichever solution used, a Coveo for Sitecore integrator should always ensure the best search relevancy by indexing all but unwanted content. This ensures a great user experience and increase of the key performance indicators for the customer.
+Whichever solution used, a Coveo for Sitecore integrator should always ensure the best search relevancy by indexing all but unwanted content. This ensures a great user experience and an increase of the key performance indicators for the customer.
