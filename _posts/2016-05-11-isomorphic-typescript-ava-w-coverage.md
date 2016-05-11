@@ -158,7 +158,7 @@ First the entrypoint:
 ```js
 import * as entrypoint from './index';
 global.ourlibentrypoint = entrypoint
-``` 
+```
 
 Then the webpack configuration
 
