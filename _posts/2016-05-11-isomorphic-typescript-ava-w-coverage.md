@@ -243,6 +243,7 @@ Some libs forgets type definitions. In my case I had to add a special `lib.d.ts`
 for tests.
 
 `test/lib.d.ts`:
+
 ```js
 interface IteratorResult<T> {
     done: boolean;
