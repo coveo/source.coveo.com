@@ -138,7 +138,7 @@ export {
     history,
     SimpleAnalytics
 }
-``` 
+```
 
 Then build it with `tsc`. If you don't have it installed globally, you can use
 the `npm bin` executable `$(npm bin)/tsc`
