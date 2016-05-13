@@ -360,3 +360,6 @@ This was a tedious work to glue everything together, but it was worth it.
 TypeScript is a nice transpiler bringing a lot to a large application's codebase.
 It is up to date and even transpiles to ES2015 which you can then retranspile
 with babel if you want more included.
+
+If you want to see an example of what came out of it see [coveo.analytics.js](https://github.com/coveo/coveo.analytics.js)
+
