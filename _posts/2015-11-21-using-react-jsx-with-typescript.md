@@ -43,7 +43,7 @@ You should see an output similar to:
 message TS6029: Version 1.6.2
 {% endhighlight %}
 
-## TypeScript definitions with "typings"
+## TypeScript definitions with typings
 
 We're almost ready to start coding, but we'll need the React definitions. We already installed [typings](https://github.com/typings/typings) which is a package manager to search and install TypeScript definition files directly from the [community driven repositories](https://github.com/typings/typings#sources). Most definitions are from DefinitelyTyped. [DefinitelyTyped is a great project and we try to contribute](https://github.com/coveo/DefinitelyTyped) as much as we can. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a "typings" project by running :
 
@@ -75,8 +75,20 @@ Our `typings.json` should contain something like :
 
 {% highlight javascript %}
 {
+  "dependencies": {},
   "globalDependencies": {
+    "react": "registry:dt/react#0.14.0+20160602151522",
+    "react-addons-create-fragment": "registry:dt/react-addons-create-fragment#0.14.0+20160316155526",
+    "react-addons-css-transition-group": "registry:dt/react-addons-css-transition-group#0.14.0+20160316155526",
+    "react-addons-linked-state-mixin": "registry:dt/react-addons-linked-state-mixin#0.14.0+20160316155526",
+    "react-addons-perf": "registry:dt/react-addons-perf#0.14.0+20160316155526",
+    "react-addons-pure-render-mixin": "registry:dt/react-addons-pure-render-mixin#0.14.0+20160316155526",
+    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20160427035638",
+    "react-addons-transition-group": "registry:dt/react-addons-transition-group#0.14.0+20160417134118",
+    "react-addons-update": "registry:dt/react-addons-update#0.14.0+20160316155526",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
     "react-global": "registry:dt/react-global#0.14.0+20160316155526"
+    //.....
   }
 }
 {% endhighlight %}
