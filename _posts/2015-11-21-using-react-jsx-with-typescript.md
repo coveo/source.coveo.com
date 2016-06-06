@@ -18,6 +18,8 @@ In the last months, we [experienced with React](http://source.coveo.com/2015/08/
 
 In this article, I'll introduce you on how to start a new project using TypeScript, JSX and React and show you some tools we use to simplify our development.
 
+> This article was updated on June 6, 2016 to use `typings` instead of `tsd` since it is now deprecated in favor of typings.
+
 ## Initial setup with npm
 
 First we'll setup our project with `npm init`. For this project we need node, typescript, typings, and react. Let's install them:
