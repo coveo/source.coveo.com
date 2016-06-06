@@ -150,8 +150,6 @@ Let's explore a little deeper on how to render our `HelloWorld` component and pa
 Let's improve our HelloWorld component by adding `firstname` and `lastname` props and typing them with an `interface`. Then, let's render it! This will allow us to be notified at compile time if a `prop` is missing or is the wrong type!
 
 {% highlight javascript %}
-/// <reference path="./typings/index.d.ts" />
-
 class HelloWorldProps {
   public firstname: string;
   public lastname: string;
