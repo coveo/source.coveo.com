@@ -3,7 +3,7 @@ layout: post
 
 title: "Using React JSX with TypeScript"
 
-tags: [React, JSX, TypeScript, tsd, DefinitelyTyped]
+tags: [React, JSX, TypeScript, DefinitelyTyped, typings]
 
 author:
   name: William Fortin
@@ -18,13 +18,15 @@ In the last months, we [experienced with React](http://source.coveo.com/2015/08/
 
 In this article, I'll introduce you on how to start a new project using TypeScript, JSX and React and show you some tools we use to simplify our development.
 
+> This article was updated on June 6, 2016 to use `typings` instead of `tsd` since it is now deprecated in favor of typings.
+
 ## Initial setup with npm
 
-First we'll setup our project with `npm init`. For this project we need node, typescript, tsd, and react. Let's install them:
+First we'll setup our project with `npm init`. For this project we need node, typescript, typings, and react. Let's install them:
 
 {% highlight javascript %}
 npm install typescript -g
-npm install tsd -g
+npm install typings -g
 
 npm install react --save
 {% endhighlight %}
@@ -41,50 +43,70 @@ You should see an output similar to:
 message TS6029: Version 1.6.2
 {% endhighlight %}
 
-## TypeScript definitions with tsd
+## TypeScript definitions with typings
 
-We're almost ready to start coding, but we'll need the React definitions. We already installed [tsd](http://definitelytyped.org/tsd/) which is a package manager to search and install TypeScript definition files directly from the community driven [DefinitelyTyped](https://github.com/DefinitelyTyped) repository. [DefinitelyTyped is a great project and we try to contribute](https://github.com/coveo/DefinitelyTyped) as much as we can. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a tsd project by running :
+We're almost ready to start coding, but we'll need the React definitions. We already installed [typings](https://github.com/typings/typings) which is a package manager to search and install TypeScript definition files directly from the [community driven repositories](https://github.com/typings/typings#sources). Most definitions are from DefinitelyTyped. [DefinitelyTyped is a great project and we try to contribute](https://github.com/coveo/DefinitelyTyped) as much as we can. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a "typings" project by running :
 
 {% highlight javascript %}
-tsd init
+typings init
 {% endhighlight %}
 
-This will create a `tsd.json` file (similar to a `package.json` but refering to our TypeScript definitions), a `typings/` folder to store the definitions and a `tsd.d.ts` referencing all our downloaded definitions.
+This will create a `typings.json` file (similar to a `package.json` but refering to our TypeScript definitions), a `typings/` folder to store the definitions and a `index.d.ts` referencing all our downloaded definitions.
 
 We can now install the needed definitions:
 
 {% highlight javascript %}
-tsd install react-global --save
+typings install dt~react --global --save
+typings install dt~react-dom --global --save
+typings install dt~react-addons-create-fragment --global --save
+typings install dt~react-addons-css-transition-group --global --save
+typings install dt~react-addons-linked-state-mixin --global --save
+typings install dt~react-addons-perf --global --save
+typings install dt~react-addons-pure-render-mixin --global --save
+typings install dt~react-addons-test-utils --global --save
+typings install dt~react-addons-transition-group --global --save
+typings install dt~react-addons-update --global --save
+typings install dt~react-global --global --save
 {% endhighlight %}
 
-This downloads the definitions to our `typings` folder, saves the commit hash to the `tsd.json` and updates the `tsd.d.ts`.
+This downloads the definitions to our `typings` folder, saves the commit hash to the `typings.json` and updates the `typings/index.d.ts`.
 
-Our `tsd.json` should contain something like :
+Our `typings.json` should contain something like :
 
 {% highlight javascript %}
-"installed": {
-  "react/react.d.ts": {
-    "commit": "16134c168d021351acb1673ee9659644fc58c424"
-  },
-  {
-    //....
+{
+  "dependencies": {},
+  "globalDependencies": {
+    "react": "registry:dt/react#0.14.0+20160602151522",
+    "react-addons-create-fragment": "registry:dt/react-addons-create-fragment#0.14.0+20160316155526",
+    "react-addons-css-transition-group": "registry:dt/react-addons-css-transition-group#0.14.0+20160316155526",
+    "react-addons-linked-state-mixin": "registry:dt/react-addons-linked-state-mixin#0.14.0+20160316155526",
+    "react-addons-perf": "registry:dt/react-addons-perf#0.14.0+20160316155526",
+    "react-addons-pure-render-mixin": "registry:dt/react-addons-pure-render-mixin#0.14.0+20160316155526",
+    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20160427035638",
+    "react-addons-transition-group": "registry:dt/react-addons-transition-group#0.14.0+20160417134118",
+    "react-addons-update": "registry:dt/react-addons-update#0.14.0+20160316155526",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-global": "registry:dt/react-global#0.14.0+20160316155526"
+    //.....
   }
+}
 {% endhighlight %}
 
-And the `tsd.d.ts` should contain:
+And the `typings/index.d.ts` should contain:
 
 {% highlight javascript %}
-/// <reference path="react/react-dom.d.ts" />
-/// <reference path="react/react.d.ts" />
-/// <reference path="react/react-addons-create-fragment.d.ts" />
-/// <reference path="react/react-addons-css-transition-group.d.ts" />
-/// <reference path="react/react-addons-linked-state-mixin.d.ts" />
-/// <reference path="react/react-addons-perf.d.ts" />
-/// <reference path="react/react-addons-pure-render-mixin.d.ts" />
-/// <reference path="react/react-addons-test-utils.d.ts" />
-/// <reference path="react/react-addons-transition-group.d.ts" />
-/// <reference path="react/react-addons-update.d.ts" />
-/// <reference path="react/react-global.d.ts" />
+/// <reference path="globals/react-addons-create-fragment/index.d.ts" />
+/// <reference path="globals/react-addons-css-transition-group/index.d.ts" />
+/// <reference path="globals/react-addons-linked-state-mixin/index.d.ts" />
+/// <reference path="globals/react-addons-perf/index.d.ts" />
+/// <reference path="globals/react-addons-pure-render-mixin/index.d.ts" />
+/// <reference path="globals/react-addons-test-utils/index.d.ts" />
+/// <reference path="globals/react-addons-transition-group/index.d.ts" />
+/// <reference path="globals/react-addons-update/index.d.ts" />
+/// <reference path="globals/react-dom/index.d.ts" />
+/// <reference path="globals/react-global/index.d.ts" />
+/// <reference path="globals/react/index.d.ts" />
 {% endhighlight %}
 
 ## Let's code
@@ -92,7 +114,7 @@ And the `tsd.d.ts` should contain:
 Create a file named `HelloWorld.tsx`. Notice the `.tsx` extension, this is needed for TypeScript to enable JSX syntax support.
 
 {% highlight javascript %}
-/// <reference path="./typings/tsd.d.ts" />
+/// <reference path="./typings/index.d.ts" />
 
 class HelloWorld extends React.Component<any, any> {
   render() {
@@ -112,7 +134,7 @@ tsc --jsx react --module commonjs HelloWorld.tsx
 
 This will produce `HelloWorld.js`
 
-But, you might not want to remember all those flags, let's save our compiler configuration to a `tsconfing.json`. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. For more details refer to the [official documentation](https://github.com/Microsoft/typescript/wiki/tsconfig.json).
+But, you might not want to remember all those flags, let's save our compiler configuration to a `tsconfig.json`. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. For more details refer to the [official documentation](https://github.com/Microsoft/typescript/wiki/tsconfig.json).
 
 {% highlight javascript %}
 {
@@ -127,12 +149,13 @@ But, you might not want to remember all those flags, let's save our compiler con
     "target": "ES5"
   },
   "files": [
+    "./typings/index.d.ts",
     "HelloWorld.tsx"
   ]
 }
 {% endhighlight %}
 
-We can now run `tsc` in our project folder to produce the same result.
+We can now run `tsc` in our project folder to produce the same result. Notice that we include the `typings/index.d.ts` file, so we won't need to reference it in all our files.
 
 ## Finishing touches
 Let's explore a little deeper on how to render our `HelloWorld` component and pass typed `props`.
@@ -141,8 +164,6 @@ Let's explore a little deeper on how to render our `HelloWorld` component and pa
 Let's improve our HelloWorld component by adding `firstname` and `lastname` props and typing them with an `interface`. Then, let's render it! This will allow us to be notified at compile time if a `prop` is missing or is the wrong type!
 
 {% highlight javascript %}
-/// <reference path="./typings/tsd.d.ts" />
-
 class HelloWorldProps {
   public firstname: string;
   public lastname: string;
@@ -156,7 +177,7 @@ class HelloWorld extends React.Component<HelloWorldProps, any> {
   }
 }
 
-React.render(<HelloWorld
+ReactDOM.render(<HelloWorld
     firstname="John"
     lastname="Smith"/>,
   document.getElementById('app'));
