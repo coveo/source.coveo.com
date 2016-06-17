@@ -10,7 +10,7 @@ author:
   image: mlaporte.jpg
 ---
 
-Some parts of Coveo's query pipeline are [extensible using JavaScript](http://source.coveo.com/2014/09/23/adding-server-side-scripting/). We initially used [DynJS](http://dynjs.org/) but since it's now unmaintained we had to switch to a new JS engine, namely Nashorn that comes out-of-the-box starting with Java 8. Nashorn works pretty well, but it's missing built-in support for the `require` function that is used with CommonJS modules.
+Some parts of Coveo's query pipeline are [extensible using JavaScript](http://source.coveo.com/2014/09/23/adding-server-side-scripting/). We initially used [DynJS](http://dynjs.org/), but since it's now unmaintained, we had to switch to a new JS engine, namely Nashorn that comes out-of-the-box starting with Java 8. Nashorn works pretty well, but it's missing built-in support for the `require` function that is used with CommonJS modules.
 <!-- more -->
 Since it's a pretty handy feature, we have decided to [open source](https://github.com/coveo/nashorn-commonjs-modules) it and publish it on [Maven Central](http://mvnrepository.com/artifact/com.coveo/nashorn-commonjs-modules).
 
