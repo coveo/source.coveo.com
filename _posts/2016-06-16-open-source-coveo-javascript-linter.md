@@ -11,7 +11,7 @@ tags:
 
 author:
   name: Lucien Bénié
-  bio: Newcomer (Salesforce Integration)
+  bio: Salesforce integration wizard
   github: https://github.com/lbenie
   imageURL: https://avatars.githubusercontent.com/lbenie
 ---
