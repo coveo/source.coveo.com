@@ -29,6 +29,6 @@ var foo = require('./foo.js');
 
 As for loading files, we provide out-of-the-box implementations for using the filesystem and Java resources. Providing your own implementation is a straightforward process --- as an example, here at Coveo we have an implementation that is backed by an SQL database.
 
-As far as I know, the library fully implements the NodeJS API for loading modules (as described [here](https://nodejs.org/api/modules.html)). It even supports loading modules from the `node_modules` folder and subfolders, so you can use `npm` to download libraries and their dependencies. Of course, Nashorn doesn't support the Node APIs to most modules simply won't work, but you can still use it to download portable libraries such as [Underscore](http://underscorejs.org/).
+As far as I know, the library fully implements the NodeJS API for loading modules (as described [here](https://nodejs.org/api/modules.html)). It even supports loading modules from the `node_modules` folder and subfolders, so you can use `npm` to download libraries and their dependencies. Of course, Nashorn doesn't support the Node APIs so most modules simply won't work, but you can still use it to download portable libraries such as [Underscore](http://underscorejs.org/).
 
 Enjoy!
