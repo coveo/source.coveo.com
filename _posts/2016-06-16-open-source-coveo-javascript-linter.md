@@ -24,15 +24,18 @@ run your code.
 How many times have I got an `undefined` variable because I refactored some code
 and forgot to rename *that* variable.
 
-Even tough it has been more than 5 years since I wrote my first `Hello World`.
+Even though it has been more than 5 years since I wrote my first `Hello World`.
 The feeling remains the same -- Why did I make this mistake *again* ?
 
 <!-- more -->
 
 To help me fix some of those mistakes, I tried a few linting tools over the
-years. From the overly strict `JSLint` to the more flexible variant `JSHint` and
-`JSCS`. I recently discovered `Eslint` and fell in love with its
+years. From the overly strict [JSLint](http://www.jslint.com/) to the more
+flexible variant [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/). I
+recently discovered [ESLint](http://eslint.org/) and fell in love with its
 extensibility and features.
+
+> JSCS and ESLint have merged since April 14th you can check their blog posts [JSCS](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.glmbaqz0c) and [ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint)
 
 # Overview
 
@@ -40,14 +43,15 @@ Linting is a process of checking the source code for *programmatic* as well as
 *stylistic* errors. A `Lint` or a `Linter` is a program that supports linting.
 They are available for most languages like CSS, Python, JavaScript, HTML, etc...
 
+
 ## Eslint
 
-[Eslint](http://eslint.org/) is the most recent of the four linting tools
+[ESLint](http://eslint.org/) is the most recent of the four linting tools
 previously mentioned. It was created by **Nicholas C. Zakas** in june 2013.
 
 > Its goal is to provide a pluggable linting utility for JavaScript.
 
-Design to be heavily extensible, it comes with a large set of custom rules and
+Designed to be heavily extensible, it comes with a large set of custom rules and
 it is really easy to install. It gives precise and concise output by including
 the rule name out of the box. You are always aware of which rule was causing an
 error.
@@ -138,3 +142,30 @@ gulp.task('lint', function() {
 
 Sit back, relax and enjoy watching your silly mistakes from your terminal
 output!
+
+## TypeScript
+
+For TypeScript lovers, Coveo also provides a gulp task wrapper to lint
+TypeScript. The project *pretty-typescript* can be found
+[here](https://github.com/coveo/pretty-typescript) (huge kudos to Dominique
+Bégin).
+
+Similarly to *pretty-javascript*, you only have to include `pretty-typescript` and `gulp` from `npm`.
+
+```sh
+npm install --save-dev pretty-typescript gulp
+```
+
+Then simply add a task to lint your TypeScript code in your `gulpfile` as follow :
+
+```js
+var linter = require('pretty-typescript');
+var gulp = require('gulp');
+
+gulp.task('lint', function() {
+  gulp
+    .src('/src/**/*.ts')
+    .pipe(linter())
+    .pipe(gulp.dest('src'));
+});
+```
