@@ -6,7 +6,7 @@ title: "How to prevent frequent JavaScript mistakes"
 tags:
   - JavaScript
   - Lint
-  - Eslint
+  - ESLint
   - Code style
 
 author:
@@ -44,7 +44,7 @@ Linting is a process of checking the source code for *programmatic* as well as
 They are available for most languages like CSS, Python, JavaScript, HTML, etc...
 
 
-## Eslint
+## ESLint
 
 [ESLint](http://eslint.org/) is the most recent of the four linting tools
 previously mentioned. It was created by **Nicholas C. Zakas** in june 2013.
