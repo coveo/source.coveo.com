@@ -35,14 +35,13 @@ flexible variant [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/). I
 recently discovered [ESLint](http://eslint.org/) and fell in love with its
 extensibility and features.
 
-> JSCS and ESLint have merged since April 14th you can check their blog posts [JSCS](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.glmbaqz0c) and [ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint)
+> JSCS and ESLint have merged since April 14th you can check their blog posts [JSCS](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.glmbaqz0c) and [ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint).
 
 # Overview
 
 Linting is a process of checking the source code for *programmatic* as well as
 *stylistic* errors. A `Lint` or a `Linter` is a program that supports linting.
 They are available for most languages like CSS, Python, JavaScript, HTML, etc...
-
 
 ## ESLint
 
@@ -83,9 +82,9 @@ here at [Coveo](www.coveo.com) who write Pure JavaScript.
 ### Open-sourcing
 
 `eslint-config-coveo` started as an internal project for my team (Salesforce
-integration) then we decided -- Hey why not open-source it?
+integration) then we decided -- Hey... why not open-source it?
 
-With that in mind, I created a gulp task wrapper that use **our** rule set
+With that in mind, I created a gulp task wrapper that uses **our** rule set
 defined from [that shareable
 config](https://github.com/coveo/eslint-config-coveo). You can find the project
 `pretty-javascript` [here](https://github.com/coveo/pretty-javascript).
