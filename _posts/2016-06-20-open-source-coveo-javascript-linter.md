@@ -55,10 +55,10 @@ it is really easy to install. It gives precise and concise output by including
 the rule name out of the box. You are always aware of which rule was causing an
 error.
 
-`Eslint` provides good documentation for its rules. The rules list is easy to
-follow and is grouped into logical categories. Each rule gives details about
-what it *enforces* or *not* and provides examples of **good** and **bad**
-written code for it.
+`ESLint` provides good documentation for [its
+rules](http://eslint.org/docs/rules/). It is easy to follow and is grouped into
+logical categories. Each rule gives details about what it *enforces* or *not*
+and provides examples of **good** and **bad** written code for it.
 
 ### Pros
 
@@ -70,6 +70,7 @@ that can be tweaked
 -   Include many rules not available in other linters
 
 ### Cons
+
 -   Slow, compared to JSHint or JSCS, but faster than these two if combined
 -   Requires some configuration to get started
 
@@ -89,12 +90,12 @@ defined from [that shareable
 config](https://github.com/coveo/eslint-config-coveo). You can find the project
 `pretty-javascript` [here](https://github.com/coveo/pretty-javascript).
 
-**Having said all that**
+## Want to be a JavaScript high priest of digital innovation?
 
 For anyone who wants to write JavaScript like we do it at **Coveo** follow these
 simple steps to get you up and running.
 
--    Install `pretty-javascript` and `gulp` packages from `npm`
+-   Install `pretty-javascript` and `gulp` packages from `npm`
 
 ```sh
 npm install --save-dev pretty-javascript gulp
@@ -139,23 +140,22 @@ gulp.task('lint', function() {
 });
 ```
 
-Sit back, relax and enjoy watching your silly mistakes from your terminal
-output!
+## Want to be a TypeScript tech-wizard-in-residence?
 
-## TypeScript
-
-For TypeScript lovers, Coveo also provides a gulp task wrapper to lint
+For TypeScript lovers, **Coveo** also provides a gulp task wrapper to lint
 TypeScript. The project *pretty-typescript* can be found
 [here](https://github.com/coveo/pretty-typescript) (huge kudos to Dominique
 Bégin).
 
-Similarly to *pretty-javascript*, you only have to include `pretty-typescript` and `gulp` from `npm`.
+Similarly to *pretty-javascript*, you only have to include `pretty-typescript`
+and `gulp` from `npm`.
 
 ```sh
 npm install --save-dev pretty-typescript gulp
 ```
 
-Then simply add a task to lint your TypeScript code in your `gulpfile` as follow :
+Then simply add a task to lint your TypeScript code in your `gulpfile` as
+follows :
 
 ```js
 var linter = require('pretty-typescript');
@@ -168,3 +168,6 @@ gulp.task('lint', function() {
     .pipe(gulp.dest('src'));
 });
 ```
+
+> Sit back, relax and enjoy watching your silly mistakes from your terminal
+output!
