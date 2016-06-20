@@ -15,10 +15,10 @@
     {% unless post.draft %}
     <item>
       <title>{{ post.title }}</title>
-      <link>{{ site.base_url }}{{ post.url }}</link>
+      <link>{{ site.github.url }}{{ post.url }}</link>
       <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
       <author>{{ post.author_name }}</author>
-      <guid>{{ site.base_url }}{{ post.id }}</guid>
+      <guid>{{ site.github.url }}{{ post.id }}</guid>
       <description>{{ post.content | xml_escape }}</description>
     </item>
     {% endunless %}
