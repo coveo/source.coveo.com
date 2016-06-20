@@ -21,7 +21,7 @@
 
       <link>{{ site.github.url }}{{ post.url }}</link>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-      <guidisPermaLink="true">{{ site.github.url }}{{ post.id }}</guid>
+      <guid isPermaLink="true">{{ site.github.url }}{{ post.id }}</guid>
       {% if post.excerpt %}
         <description>{{ post.excerpt | xml_escape }}</description>
       {% else %}
