@@ -1,25 +1,32 @@
 ---
 ---
-<?xml version="1.0"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.inc.title }}</title>
+    <title>{{ site.name | xml_escape }}</title>
     <link>{{ site.github.url }}</link>
-    <atom:link href="{{ site.github.url }}/feed.xml" rel="self" type="application/rss+xml" />
-    <description>Coveo's technical blog</description>
+    <atom:link href="{{ site.github.url }}/{{ page.path }}" rel="self" type="application/rss+xml" />
+    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>		
     <language>en-us</language>
     <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
     <lastBuildDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</lastBuildDate>
 
-    {% for post in site.posts %}
+    {% for post in site.posts limit:10 %}
     {% unless post.draft %}
     <item>
-      <title>{{ post.title }}</title>
+      <title>{{ post.title | xml_escape }}</title>
+      {% if post.author.name %}
+        <dc:creator>{{ post.author.name | xml_escape }}</dc:creator>
+      {% endif %}        
+
       <link>{{ site.github.url }}{{ post.url }}</link>
-      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-      <author>{{ post.author_name }}</author>
-      <guid>{{ site.github.url }}{{ post.id }}</guid>
-      <description>{{ post.content | xml_escape }}</description>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <guidisPermaLink="true">{{ site.github.url }}{{ post.id }}</guid>
+      {% if post.excerpt %}
+        <description>{{ post.excerpt | xml_escape }}</description>
+      {% else %}
+        <description>{{ post.content | xml_escape }}</description>
+      {% endif %}
     </item>
     {% endunless %}
     {% endfor %}
