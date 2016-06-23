@@ -59,6 +59,7 @@ Lastly, don’t PascalCase your words. I may search by name. I have a better cha
 There are two philosophies here. Those who don’t look at the cover letter (some study say it’s 90% of the market), and those who find it’s an important way to know a candidate. I think they are a good way to know the motivations of a candidate (or lack thereof).
 
 You have a few options, in my preferred order:
+
 * A personalized cover letter where you clearly took the time to write something unique for us
 * No cover letter (Close second option)
 * A cover text sang by a dancing clown while throwing pies and confetti running around the office
