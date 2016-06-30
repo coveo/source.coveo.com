@@ -40,7 +40,7 @@ author:
 ```
 
 3. Write your post using markdown. Follow http://jekyllrb.com/docs/posts/
-4. Use the `<!-- more -->` tag within your post. To let jekyll know where the
+4. Use the `<!-- more -->` tag within your post. To let Jekyll know where the
   excerpt ends.
 5. Commit and push to github.
 6. You can view your post at [youruser.github.io/source.coveo.com](youruser.github.io/source.coveo.com)
