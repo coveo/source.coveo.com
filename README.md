@@ -50,19 +50,12 @@ author:
 
 # Run locally
 
-Install dependencies:
-
-```sh
-gem install bundle
-bundle install
 ```
-
-Run:
-```sh
-bundle exec jekyll server
-
-> Server address: http://127.0.0.1:4000/
-> Server running... press ctrl-c to stop.
+cd /path/to/your/repo
+docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll
 ```
+You can then access your local copy of the blog via http://localhost:4000/
+
+Changes made to your local files will be reflected on your blog live.
 
 For more help and info, Jekyll documentation has a nice [installation page](http://jekyllrb.com/docs/installation/)
