@@ -49,8 +49,9 @@ author:
 8. Roll yourself over all the traffic you will bring and controversies you will create
 
 # Run locally
-[Install Docker](https://docs.docker.com/engine/installation/)
-
+1. [Install Docker](https://docs.docker.com/engine/installation/)
+2. Clone this repo
+3. Run these commands:
 ```
 cd /path/to/your/repo
 docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll
