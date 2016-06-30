@@ -49,6 +49,7 @@ author:
 8. Roll yourself over all the traffic you will bring and controversies you will create
 
 # Run locally
+[Install Docker](https://docs.docker.com/engine/installation/)
 
 ```
 cd /path/to/your/repo
