@@ -14,7 +14,7 @@ Preparation:
 
 1. You need a Github account, create one [here](https://github.com/join)
 2. [Fork this repository](https://github.com/Coveo/source.coveo.com/fork)
-3. _(optional)_ Poke us in [#technical_blog](https://coveo.slack.com/messages/technical_blog) or [#opensource](https://coveo.slack.com/messages/opensource) channel on [slack](coveo.slack.com) to join Coveo Organization
+3. _(optional)_ Poke us in [#technical_blog](https://coveo.slack.com/messages/technical_blog) or [#opensource](https://coveo.slack.com/messages/opensource) channel on [slack](http://coveo.slack.com) to join Coveo Organization
 
 Post creation:
 
