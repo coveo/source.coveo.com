@@ -56,7 +56,7 @@ author:
 cd /path/to/your/repo
 docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll
 ```
-You can then access your local copy of the blog via http://localhost:4000/
+You can then access your local copy of the blog via [localhost:4000](http://localhost:4000/)
 
 Changes made to your local files will be reflected on your blog live.
 
