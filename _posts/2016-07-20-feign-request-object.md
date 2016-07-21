@@ -19,6 +19,7 @@ After playing with Feign a little, I started to really like the tool. Writing a 
 Request objects are a simple pattern that help maintain methods with many optional parameters, which is the case for some our API's methods. Without request object, calling a method would look like this :
 
 {% highlight java linenos %}
+
 statsApi.getCombinedData(from,
                          to,
                          dimensions,
@@ -31,16 +32,19 @@ statsApi.getCombinedData(from,
                          null,
                          null,
                          null);
+                         
 {% endhighlight %}
 
 Not looking so good right? Using request object transform the method call into this :
 
 {% highlight java linenos %}
+
 statsApi.getCombinedData(new GetCombinedDataRequest(from,
                                                     to,
                                                     dimensions,
                                                     metrics)
                          .withIncludeMetadata(true));
+                         
 {% endhighlight %}
 
 Way better! 
@@ -50,6 +54,7 @@ For the request objects, we settled for a constructor that would take the requir
 So, this is all very nice, but it does not fix my initial concern with Feign. I have some really nice request objects, but I cannot use any of them, as they are not supported. But, since Feign is very easily extendable, I simply added support for the request objects via a homemade encoder. And thus, the ReflectionEncoder was born.
 
 {% highlight java linenos %}
+
 public class ReflectionEncoder implements Encoder
 {
     private static final String DEFAULT_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ";
@@ -119,6 +124,7 @@ public class ReflectionEncoder implements Encoder
         return "{" + key + "}";
     }
 }
+
 {% endhighlight %}
 
 It's pretty simple. If the object received by the encoder is of the right type, it will use reflection to find the getters of the object, and depending on the annotation, inject the parameter at the right place in the RequestTemplate. Otherwiae, it will use a fallback encoder. Then, simply set the ReflectionEncoder in your client class with the builder provided by Feign and you are ready to go!
@@ -126,6 +132,7 @@ It's pretty simple. If the object received by the encoder is of the right type, 
 Here is a complete example of a simple client using request objects.
 
 {% highlight java linenos %}
+
 public interface CustomDimensionsApi extends ClientFactory.Api
 {
     /**
@@ -137,9 +144,11 @@ public interface CustomDimensionsApi extends ClientFactory.Api
     @RequestLine("PUT /" + ApiVersion.VERSION + "/dimensions/custom/{apiName}")
     DimensionResponse editDimension(EditDimensionRequest request);
 }
+
 {% endhighlight %}
 
 {% highlight java linenos %}
+
 /*
  * Request object for the CustomDimensionsApi.editDimension call.
  *
@@ -199,6 +208,7 @@ public class EditDimensionRequest extends BaseRequest
         return this;
     }
 }
+
 {% endhighlight %}
 
 
