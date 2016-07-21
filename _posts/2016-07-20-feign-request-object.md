@@ -10,7 +10,7 @@ author:
   twitter: JoRochette
   image: jrochette.jpg
 ---
-We recently decided to move our functional tests stack from python to Java, mainly to make coding functional tests easier (our project's backend is coded in Java) and thus increase the number of functional tests getting written. We needed a few things to make this possible and one of them was a complete and comprehensive Java client for the Usage Analytics API. Since a lot of the Java API clients we use internaly are built with [Netflix's Feign](https://github.com/OpenFeign/feign), I decided to give it a go.
+We recently decided to move our functional tests stack from python to Java, mainly to make coding them easier (our project's backend is coded in Java) and thus increase the number of tests getting written. We needed a few things to make this possible and one of them was a complete and comprehensive Java client for the Usage Analytics API. Since a lot of the Java API clients we use internaly are built with [Netflix's Feign](https://github.com/OpenFeign/feign), I decided to give it a go.
 
 <!-- more -->
 
@@ -121,7 +121,7 @@ public class ReflectionEncoder implements Encoder
 }
 ```
 
-It may look complicared, but it's in fact pretty simple. Here is how it works: if the object received by the encoder is of the right type, it will use reflection to find the getters of the object, and depending on the annotation, inject the parameter at the right place in the RequestTemplate. Otherwise, it will use a fallback encoder. 
+It may look complicated, but it's in fact pretty simple. Here is how it works: if the object received by the encoder is of the right type, it will use reflection to find the getters of the object, and depending on the annotation, inject the parameter at the right place in the RequestTemplate. Otherwise, it will use a fallback encoder. 
 
 Now, simply set the ReflectionEncoder in your client class with the builder provided by Feign and you are ready to go!
 
@@ -190,4 +190,5 @@ public class EditDimensionRequest extends BaseRequest
 }
 ```
 
+There you have it: a very simple HTTP client built with Feign, using a request object. It made coding our functional tests way easier and made them much cleaner. The next steps for us would be to combine that with [better exception handling](http://source.coveo.com/2016/02/19/microservices-and-exception-handling/) (awesome post by my friend Jacques-Etienne Beaudet, go check it out), and we would be unstoppable!
 
