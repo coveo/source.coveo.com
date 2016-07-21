@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Using request object with Feign"
+title: "Using request objects with Feign"
 tags: [Java, Feign, Api]
 
 author:
