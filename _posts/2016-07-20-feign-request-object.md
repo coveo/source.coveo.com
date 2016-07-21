@@ -10,15 +10,15 @@ author:
   twitter: JoRochette
   image: jrochette.jpg
 ---
-We recently decided to move our functional tests stack from python to Java, mainly to make coding functional tests easier (our project's backend is coded in Java) and thus increase the number of functional tests getting written. We needed a couple a thing to make this possible and one of them was a complete and comprehensive java client for the Usage Analytics API. Since a lot of the java API clients we use internaly are built with [Netflix's Feign](https://github.com/OpenFeign/feign), I decided to give it a go.
+We recently decided to move our functional tests stack from python to Java, mainly to make coding functional tests easier (our project's backend is coded in Java) and thus increase the number of functional tests getting written. We needed a few things to make this possible and one of them was a complete and comprehensive java client for the Usage Analytics API. Since a lot of the java API clients we use internaly are built with [Netflix's Feign](https://github.com/OpenFeign/feign), I decided to give it a go.
 
 <!-- more -->
 
-After playing with Feign a little, I started to really like the tool. Writing a client with this is pretty easy, and it would not be a lot of work to maintain. I only had one major concern : there was no out of the box for request objects.
+After playing with Feign a little, I started to really like the tool. Writing an HTTP client with this is pretty easy, and it would not be a lot of work to maintain. I only had one major concern : there was no out of the box for request objects.
 
 Request objects are a simple pattern that help maintain methods with many optional parameters, which is the case for some our API's methods. Without request object, calling a method would look like this :
 
-{% highlight java linenos %}
+```java
 statsApi.getCombinedData(from,
                          to,
                          dimensions,
@@ -31,17 +31,17 @@ statsApi.getCombinedData(from,
                          null,
                          null,
                          null);
-{% endhighlight %}
+```
 
 Not looking so good right? Using request object transform the method call into this :
 
-{% highlight java linenos %}
+```java
 statsApi.getCombinedData(new GetCombinedDataRequest(from,
                                                     to,
                                                     dimensions,
                                                     metrics)
                          .withIncludeMetadata(true));
-{% endhighlight %}
+```
 
 Way better! 
 
@@ -49,7 +49,7 @@ For the request objects, we settled for a constructor that would take the requir
 
 So, this is all very nice, but it does not fix my initial concern with Feign. I have some really nice request objects, but I cannot use any of them, as they are not supported. But, since Feign is very easily extendable, I simply added support for the request objects via a homemade encoder. And thus, the ReflectionEncoder was born.
 
-{% highlight java linenos %}
+```java
 public class ReflectionEncoder implements Encoder
 {
     private static final String DEFAULT_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ";
@@ -119,21 +119,21 @@ public class ReflectionEncoder implements Encoder
         return "{" + key + "}";
     }
 }
-{% endhighlight %}
+```
 
 It's pretty simple. If the object received by the encoder is of the right type, it will use reflection to find the getters of the object, and depending on the annotation, inject the parameter at the right place in the RequestTemplate. Otherwiae, it will use a fallback encoder. Then, simply set the ReflectionEncoder in your client class with the builder provided by Feign and you are ready to go!
 
 Here is a complete example of a simple client using request objects.
 
-{% highlight java linenos %}
+```java
 public interface CustomDimensionsApi extends ClientFactory.Api
 {
     @RequestLine("PUT /" + ApiVersion.VERSION + "/dimensions/custom/{apiName}")
     DimensionResponse editDimension(EditDimensionRequest request);
 }
-{% endhighlight %}
+```
 
-{% highlight java linenos %}
+```java
 public class EditDimensionRequest extends BaseRequest
 {
     private String apiName;
@@ -186,6 +186,6 @@ public class EditDimensionRequest extends BaseRequest
         return this;
     }
 }
-{% endhighlight %}
+```
 
 
