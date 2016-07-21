@@ -10,13 +10,13 @@ author:
   twitter: JoRochette
   image: jrochette.jpg
 ---
-We recently decided to move our functional tests stack from python to Java, mainly to make coding functional tests easier (our project's backend is coded in Java) and thus increase the number of functional tests getting written. We needed a few things to make this possible and one of them was a complete and comprehensive java client for the Usage Analytics API. Since a lot of the java API clients we use internaly are built with [Netflix's Feign](https://github.com/OpenFeign/feign), I decided to give it a go.
+We recently decided to move our functional tests stack from python to Java, mainly to make coding functional tests easier (our project's backend is coded in Java) and thus increase the number of functional tests getting written. We needed a few things to make this possible and one of them was a complete and comprehensive Java client for the Usage Analytics API. Since a lot of the Java API clients we use internaly are built with [Netflix's Feign](https://github.com/OpenFeign/feign), I decided to give it a go.
 
 <!-- more -->
 
-After playing with Feign a little, I started to really like the tool. Writing an HTTP client with this is pretty easy, and it would not be a lot of work to maintain. I only had one major concern : there was no out of the box for request objects.
+After playing with Feign a little, I started to really like the tool. Writing an HTTP client with it is pretty easy, and it would not be a lot of work to maintain. I only had one major concern: there was no out of the box support for request objects.
 
-Request objects are a simple pattern that help maintain methods with many optional parameters, which is the case for some our API's methods. Without request object, calling a method would look like this :
+Request objects is a simple pattern that help maintain methods with many optional parameters, which is the case for some our API's methods. Without request objects, calling a method would look like this:
 
 ```java
 statsApi.getCombinedData(from,
@@ -33,7 +33,7 @@ statsApi.getCombinedData(from,
                          null);
 ```
 
-Not looking so good right? Using request object transform the method call into this :
+Not looking so good, right? Using a request object transforms the method call into this:
 
 ```java
 statsApi.getCombinedData(new GetCombinedDataRequest(from,
@@ -121,7 +121,9 @@ public class ReflectionEncoder implements Encoder
 }
 ```
 
-It's pretty simple. If the object received by the encoder is of the right type, it will use reflection to find the getters of the object, and depending on the annotation, inject the parameter at the right place in the RequestTemplate. Otherwiae, it will use a fallback encoder. Then, simply set the ReflectionEncoder in your client class with the builder provided by Feign and you are ready to go!
+It may look complicared, but it's in fact pretty simple. Here is how it works: if the object received by the encoder is of the right type, it will use reflection to find the getters of the object, and depending on the annotation, inject the parameter at the right place in the RequestTemplate. Otherwise, it will use a fallback encoder. 
+
+Now, simply set the ReflectionEncoder in your client class with the builder provided by Feign and you are ready to go!
 
 Here is a complete example of a simple client using request objects.
 
