@@ -16,7 +16,7 @@ We recently decided to move our functional tests stack from python to Java, main
 
 After playing with Feign a little, I started to really like the tool. Writing an HTTP client with it is pretty easy, and it would not be a lot of work to maintain. I only had one major concern: there was no out of the box support for request objects.
 
-Request objects is a simple pattern that help maintain methods with many optional parameters, which is the case for some our API's methods. Without request objects, calling a method would look like this:
+Using request objects is a simple pattern that help maintain methods with many optional parameters, which is the case for some our API's methods. Without request objects, calling a method would look like this:
 
 ```java
 statsApi.getCombinedData(from,
