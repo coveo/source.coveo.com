@@ -2,7 +2,7 @@
 layout: post
 
 title: "Using request object with Feign"
-https://docs.google.com/document/d/1v8gWIA3huHV20toDY1kp58ChiYR5nLmFwT4qpZ_CMHA/tags: [Java, Feign, Api]
+tags: [Java, Feign, Api]
 
 author:
   name: Jonathan Rochette
