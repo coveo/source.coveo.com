@@ -150,42 +150,19 @@ public class EditDimensionRequest extends BaseRequest
     }
 
     @PathParam("apiName")
-    public String getApiName()
-    {
-        return apiName;
-    }
-
-    public void setApiName(String apiName)
-    {
-        this.apiName = apiName;
-    }
+    public String getApiName() { return apiName; }
+    public void setApiName(String apiName) { this.apiName = apiName; }
 
     @QueryParam("updatePastEvents")
-    public Boolean getUpdatePastEvents()
-    {
-        return updatePastEvents;
-    }
-
-    public void setUpdatePastEvents(Boolean updatePastEvents)
-    {
-        this.updatePastEvents = updatePastEvents;
-    }
+    public Boolean getUpdatePastEvents() { return updatePastEvents; }
+    public void setUpdatePastEvents(Boolean updatePastEvents) { this.updatePastEvents = updatePastEvents; }
 
     @BodyParam
-    public CustomDimensionModel getCustomDimensionModel()
-    {
-        return customDimensionModel;
-    }
+    public CustomDimensionModel getCustomDimensionModel() { return customDimensionModel; }
+    public void setCustomDimensionModel(CustomDimensionModel customDimensionModel) { this.customDimensionModel = customDimensionModel; }
 
-    public void setCustomDimensionModel(CustomDimensionModel customDimensionModel)
-    {
-        this.customDimensionModel = customDimensionModel;
-    }
-
-    public EditDimensionRequest withUpdatePastEvents(Boolean updatePastEvents)
-    {
-        setUpdatePastEvents(updatePastEvents);
-        return this;
+    public EditDimensionRequest withUpdatePastEvents(Boolean updatePastEvents){
+        setUpdatePastEvents(updatePastEvents); return this;
     }
 }
 ```
