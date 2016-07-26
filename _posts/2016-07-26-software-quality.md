@@ -10,7 +10,6 @@ author:
   image: maveilleux.jpg
 ---
 
-# Software Quality
 When I try to code, I always ask myself what’s right and what’s wrong about software quality. Sometimes, those questions aren’t easy to answer, but as software developers, we must answer them. Over my short time (4 years) as a developer, I developed certain universal and basic questions by reading online, and by questioning myself. Those questions, when answered correctly, can hint at the quality of a software.
 
 <!-- more -->
