@@ -12,31 +12,33 @@ author:
 ---
 
 If you've ever written a unit test in Java, you've probably used JUnit 4 and done something like this:
-	
-    public class CompanyTest {
-        private Company company;
-        @Before
-        public void setup()
-        {
-            company = new Company();
-        }
-        
-        @Test
-        public void getEmployees()
-        {
-            company.addEmployee("John");
-            company.addEmployee("Susan");
-            assertEquals(company.getEmployees().size(), 2);
-        }	    
+
+{% highlight java %}
+public class CompanyTest {
+    private Company company;
+    @Before
+    public void setup()
+    {
+        company = new Company();
     }
+
+    @Test
+    public void getEmployees()
+    {
+        company.addEmployee("John");
+        company.addEmployee("Susan");
+        assertEquals(company.getEmployees().size(), 2);
+    }	    
+}
+{% endhighlight %}
 
 This is okay and gets the job done. However, I think there are some issues with this approach.
 
 <!-- more -->
 
 If there's a bug in your `Company` class and the `addEmployee` method does not work, you will get the following message:
-	
-    java.lang.AssertionError: 
+
+    java.lang.AssertionError:
     Expected :0
     Actual   :2
 
@@ -45,8 +47,8 @@ Expected 0? Oops, `assertEquals` takes the expected value first and the actual v
 	assertEquals(2, company.getEmployees().size());
 
 And now you get:
-	
-    java.lang.AssertionError: 
+
+    java.lang.AssertionError:
     Expected :2
     Actual   :0
 
@@ -103,7 +105,7 @@ Here are some more examples on how `assertThat` can help you.
     assertTrue(company instanceof Company);
     // After
     assertThat(company).isInstanceOf(Company.class);
-   
+
 *The assertion message*
 
     // Before

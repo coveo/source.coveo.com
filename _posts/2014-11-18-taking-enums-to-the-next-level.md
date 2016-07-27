@@ -2,6 +2,7 @@
 layout: post
 
 title: "Taking Enums to the next level with Java 8"
+tags: [Java, Java 8]
 
 author:
   name: Jonathan Rochette
@@ -18,7 +19,7 @@ In our awesome cloud Usage Analytics API, there is a call that returns the analy
 ![image](/images/graphexemple.png)
 
 For exemple, take this snippet :
-{% highlight java linenos %}
+{% highlight java %}
 private static List<DataPoint> createListWithZerosForTimeInterval(DateTime from,
                                                                   DateTime to,
                                                                   ImmutableSet<Metric<? extends Number>> metrics)
@@ -27,9 +28,7 @@ private static List<DataPoint> createListWithZerosForTimeInterval(DateTime from,
         List<DataPoint> points = new ArrayList<>();
         for (int i = 0; i <= Days.daysBetween(from, to).getDays(); i++) {
             points.add(new DataPoint().withDatas(createDatasWithZeroValues(metrics))
-                                      .withDayOfYear(from.withZone(DateTimeZone.UTC)
-                                                         .plusDays(i)
-                                                         .withTimeAtStartOfDay()));
+                                      .withDayOfYear(from.withZone(DateTimeZone.UTC).plusDays(i).withTimeAtStartOfDay()));
         }
         return points;
     }
@@ -51,14 +50,14 @@ You have to understand that the notion **switch/case = evil** was drilled into m
 ------------
 I told myself : "We just started using Java 8. Maybe I can find a way to use some awesome new feature to avoid that switch/case death trap." Using the new [*functions*](http://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html) in Java 8 (well not so new, but you know what I mean), I decided to add a little meat to an *enum* that would represent the different time periods available.
 
-{% highlight java linenos %}
+{% highlight java %}
 
 public enum TimePeriod
 {
-    MINUTE(Dimension.MINUTE, 
+    MINUTE(Dimension.MINUTE,
            (from,
             to) -> Minutes.minutesBetween(from, to).getMinutes() + 1,
-           Minutes::minutes, 
+           Minutes::minutes,
            from -> from.withZone(DateTimeZone.UTC)
                        .withSecondOfMinute(0)
                        .withMillisOfSecond(0)),
@@ -131,14 +130,14 @@ public enum TimePeriod
 
 {% endhighlight %}
 
-Using this enum, I was able to easily change the code to allow the user to specify the time periods for the graph data points. 
+Using this enum, I was able to easily change the code to allow the user to specify the time periods for the graph data points.
 
 This :
-{% highlight java linenos %}
+{% highlight java %}
 for (int i = 0; i <= Days.daysBetween(from, to).getDays(); i++)
 {% endhighlight %}
 became this (note that the timePeriod was passed to the method after being specified in a query param by the user) :
-{% highlight java linenos %}
+{% highlight java %}
 for (int i = 0; i < timePeriod.getNumberOfPoints(from, to); i++)
 {% endhighlight %}
 

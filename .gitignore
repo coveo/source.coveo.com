@@ -1,6 +1,11 @@
 _site/
+
 .DS_Store
+Thumbs.db
+
 .sass-cache
-coveo-blog.iml
+
+*.iml
 *.lock
+
 .idea

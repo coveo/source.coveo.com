@@ -1,7 +1,79 @@
 <script>
-$(document).ready(function() {
-    var token = '16aa3ce3-d77a-4c25-97a2-18be59347d9e';
+  var uaToken = '7b9b9300-3901-437b-bafd-51ae596f1b16'; // For the coveosearch org
+  var uaToken2 = '16aa3ce3-d77a-4c25-97a2-18be59347d9e'; // For the ??? org
+  var eventType = 'pageVisit';
 
+  $(document).ready(function() {
+    var eventValue = location.href;
+
+    if (typeof uaToken === 'undefined') {
+      console.log('Error: token argument is missing.');
+    } else {
+      if (typeof eventType === 'undefined') {
+        console.log('Error: eventType argument is missing.');
+        return;
+      }
+
+      var uaData = {
+        eventType: eventType,
+        eventValue: eventValue,
+        device: getDeviceName(),
+        mobile: isMobile(),
+        customData: {
+          "coveoSite": location.hostname,
+          /*"coveoSiteSection": ,*/
+          "referrer": document.referrer,
+          "referrerHost": document.referrer.split('/')[2],
+          "pageTitle": $("title").text().replace('Source @ Coveo — ','').replace(' — Source @ Coveo',''),
+          /*"pageAudience": $('meta[name=audience]').attr("content"),*/
+          /*"pageLanguage": $('meta[name=lang]').attr("content"),*/
+          "pageUserAgent": navigator.userAgent
+        },
+        anonymous: true,
+        /*username: "username",
+         userDisplayName: "Firstname Lastname",*/
+        language: navigator.language || navigator.userLanguage
+      };
+
+      var customEventData = encodeURIComponent(JSON.stringify(uaData));
+      var requestUrl = 'https://usageanalytics.coveo.com/rest/v13/analytics/custom?access_token='+uaToken+"&customEvent="+customEventData;
+      var requestUrl2 = 'https://usageanalytics.coveo.com/rest/v13/analytics/custom?access_token='+uaToken2+"&customEvent="+customEventData;
+
+      // JSONP method
+      $.ajax({
+        url: requestUrl,
+        dataType: 'jsonp'
+      });
+      $.ajax({
+        url: requestUrl2,
+        dataType: 'jsonp'
+      });
+    }
+  });
+
+  var getDeviceName = function (){
+    var userAgent = navigator.userAgent;
+    if (userAgent.match(/Android/i)) return "Android";
+    if (userAgent.match(/BlackBerry/i)) return "BlackBerry";
+    if (userAgent.match(/iPhone/i)) return "iPhone";
+    if (userAgent.match(/iPad/i)) return "iPad";
+    if (userAgent.match(/iPod/i)) return "iPod";
+    if (userAgent.match(/Opera Mini/i)) return "Opera Mini";
+    if (userAgent.match(/IEMobile/i)) return "IE Mobile";
+    if (userAgent.match(/Chrome/i)) return "Chrome";
+    if (userAgent.match(/MSIE/i) || userAgent.match(/Trident/i)) return "IE";
+    if (userAgent.match(/Opera/i)) return "Opera";
+    if (userAgent.match(/Firefox/i)) return "Firefox";
+    if (userAgent.match(/Safari/i)) return "Safari";
+    return "Others";
+  };
+
+  var isMobile = function () {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return true;
+  }
+
+/*$(document).ready(function() {
+  var token = '16aa3ce3-d77a-4c25-97a2-18be59347d9e';
     var data = {
         eventType: 'pageVisit',
         eventValue: location.toString(),
@@ -19,5 +91,5 @@ $(document).ready(function() {
           url: requestUrl,
           dataType: 'jsonp'
         });
-});
+});*/
 </script>

@@ -65,5 +65,5 @@ You need to compare the language of your search interface versus the @syslanguag
 
 ## How to Implement QREs?
 
-- An administrator can add QREs to specific search interfaces from the Interface Editor for a search interface (see [Customizing the Ranking for a Search Interface](http://onlinehelp.coveo.com/en/CES/7.0/Administrator/Customizing_the_Ranking_for_a_Search_Interface.htm)) or for a Related Results panel (see [Adding or Customizing a Related Results Panel](http://onlinehelp.coveo.com/en/CES/7.0/Administrator/Adding_or_Customizing_a_Related_Results_Panel.htm#qre)).
+- An administrator can add QREs to specific search interfaces from the Interface Editor for a search interface (see [Customizing the Ranking for a .NET Search Interface](http://www.coveo.com/go?dest=adminhelp70&lcid=9&context=1028)) or for a Related Results panel (see [Adding or Customizing a Related Results Panel]((http://www.coveo.com/go?dest=adminhelp70&lcid=9&context=1034)).
 - A developer can implement QREs programmatically (see [Adding Query Ranking Expressions to a Search Interfaces](https://developers.coveo.com/x/OIAl)).

@@ -11,7 +11,7 @@ author:
   image: mlaporte.jpg
 ---
 
-I've been working remotely from more than two years now, and I thought I'd add my own experience to the rather large amount of similar posts out there on the web.
+I've been working remotely for more than two years now, and I thought I'd add my own experience to the rather large amount of similar posts out there on the web.
 
 <!-- more -->
 

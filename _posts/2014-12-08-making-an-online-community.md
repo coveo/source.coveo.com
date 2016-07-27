@@ -14,7 +14,7 @@ author:
 
 As the UX design department grows at Coveo we start to get enough manpower to actually create stuff before it’s implemented (yep…). One of these concepts is for an online community. 
 
-The idea for this project came from an internal initiative to unify the search on our various websites. You’re probably familiar with [how great Coveo is at this kind of problem](http://www.coveo.com/en/solutions/enterprise-search). Basically, it’s what we do. I was tasked to create mockups for this initiative. As I was working on this, another idea came up. We have Coveo staff who are communicating directly with developers. We have online resources (a lot) that are frequently updated. Maybe we could bring all of this togheter. We talked about it in our meetings with the design team and soon it started consuming me. <!-- more --> What if we could go further then only unifying the search? What if we could create a sense of an online community. Not only would people easily get access to the help they need but they could also contribute and bring their own insights on Coveo’s products. Each user would have a real sense of doing something great. 
+The idea for this project came from an internal initiative to unify the search on our various websites. You’re probably familiar with [how great Coveo is at this kind of problem](http://www.coveo.com/en/solutions/enterprise-search). Basically, it’s what we do. I was tasked to create mockups for this initiative. As I was working on this, another idea came up. We have Coveo staff who are communicating directly with developers. We have online resources (a lot) that are frequently updated. Maybe we could bring all of this together. We talked about it in our meetings with the design team and soon it started consuming me. <!-- more --> What if we could go further than only unifying the search? What if we could create a sense of an online community. Not only would people easily get access to the help they need but they could also contribute and bring their own insights on Coveo’s products. Each user would have a real sense of doing something great. 
 My journey began.
 
 <p style="text-align:center">
@@ -39,7 +39,7 @@ Online Community 0/1
 Build an online community
 </p>
 
-Luckily, this quest wasn’t too hard. A lot of research has been done in regards to online communities. Ridings and Gefen (2004), suggest that a first category of benefits simply come from forming a social group. Easy enough, When you form a social group you can: 
+Luckily, this quest wasn’t too hard. A lot of research has been done in regards to online communities. Ridings and Gefen (2004), suggest that a first category of benefits simply come from forming a social group. Easy enough, when you form a social group you can: 
 
 - Exchange information
 - Give and receive emotional support
@@ -48,7 +48,7 @@ Luckily, this quest wasn’t too hard. A lot of research has been done in regard
 
 It makes sense, for most of you, who have friends, you can agree with them. 
 
-The second category is related to access to online information. An online community will often have 24/7 access and operation, asynchronous interactions, global geographical reach and, hopefully, some kind of history of what happened in the community. Well, all of our assumptions are confirmed and the idea of an online community looks great for a business like Coveo. But wait, there’s more. Hagel and Armstrong (1997) have also found that online communities are believed to promote customer loyalty. Of course! Customers get more personally attached to a product because the product not only represents a solution but also represents a network of online relationships. I’m a network ambassador for [Frank & Oak](http://network.frankandoak.com) (great clothing if you’re looking for clothes ([here’s a 25$ coupon as well](http://vnlink.co/SVAXBku)) . Contrary to what one can believe, the community there doesn’t only speak about fashion, but also about lifestyle. We can exchange ideas about music, as well as games, or just do a meetup in a city somewhere. We also actively participate with Frank & Oak staff on some design decisions by providing feedback. This attachment makes all of us even more loyal to the brand but it also makes us feel *special* for being a part of it. It feels like this emotion is the right one to have in regards to a community. An emotion one would get when he is part of something greater than himself. Now I’m overstepping a bit on the next part which is how to ensure the success of an online community. 
+The second category is related to access to online information. An online community will often have 24/7 access and operation, asynchronous interactions, global geographical reach and, hopefully, some kind of history of what happened in the community. Well, all of our assumptions are confirmed and the idea of an online community looks great for a business like Coveo. But wait, there’s more. Hagel and Armstrong (1997) have also found that online communities are believed to promote customer loyalty. Of course! Customers get more personally attached to a product because the product not only represents a solution but also represents a network of online relationships. I’m a network ambassador for [Frank & Oak](http://network.frankandoak.com) (great clothing if you’re looking for clothes -[here’s a 25$ coupon as well](http://vnlink.co/SVAXBku)). Contrary to what one can believe, the community there doesn’t only speak about fashion, but also about lifestyle. We can exchange ideas about music, as well as games, or just do a meetup in a city somewhere. We also actively participate with Frank & Oak staff on some design decisions by providing feedback. This attachment makes all of us even more loyal to the brand but it also makes us feel *special* for being a part of it. It feels like this emotion is the right one to have in regards to a community. An emotion one would get when he is part of something greater than himself. Now I’m overstepping a bit on the next part which is how to ensure the success of an online community. 
 
 ![image](/images/posts/success.png)
 
@@ -66,7 +66,7 @@ Online Community 0/1
 Build an online community
 </p>
 
-So we’ve identified the benefits. You can pat yourself on the back. The second big step is to make sure we actually succeed in creating an online community. Indeed, only if we’re successful in creating our online community, will we get all these benefits. But wait a second, how do you measure success in an online community ? Surely, it must be different than any other web applications. 
+So we’ve identified the benefits. You can pat yourself on the back. The second big step is to make sure we actually succeed in creating an online community. Indeed, only if we’re successful in creating our online community will we get all these benefits. But wait a second, how do you measure success in an online community? Surely, it must be different than any other web applications. 
 
 <h4 id="benefits-11-2" style="line-height: 0.1em; color:#cdcdcd;">
 Benefits 1/1
@@ -79,7 +79,7 @@ Find tangible information on the benefits of an online community
 Success 0/1
 </h4>
 <p style="font-size: 0.9em;">
-Identify the criterias of success
+Identify the criteria of success
 </p>
 
 <h4 id="benefits-11-2" style="line-height: 0.1em;">
@@ -93,7 +93,7 @@ I’m going to take this quote from Iriberri & Leroy (2009):
 
 Researchers who focus on measuring success [in an online community] agree that, the larger the volume of messages posted and the closer members feel to each other, the more successful the online community becomes.
 
-Basically, the more an online community feels like a real one, the more successful it will be (take this dumb down sentence with a grain of salt, of course there are many other considerations when you do stuff online). One suggested approach is to build the community by stages. These stages must always take in consideration the needs of the members and the state of the community as a whole. For instance, losing a certain privilege or functionnality at a stage could have very negative impact on the user experience. The first stage is the inception stage.
+Basically, the more an online community feels like a real one, the more successful it will be (take this dumb down sentence with a grain of salt, of course there are many other considerations when you do stuff online). One suggested approach is to build the community by stages. These stages must always take in consideration the needs of the members and the state of the community as a whole. For instance, losing a certain privilege or functionality at a stage could have very negative impact on the user experience. The first stage is the inception stage.
 
 <h4 id="benefits-11-2" style="line-height: 0.1em; color:#cdcdcd;">
 Benefits 1/1
@@ -106,7 +106,7 @@ Find tangible information on the benefits of an online community
 Success 1/1
 </h4>
 <p style="font-size: 0.9em; color:#cdcdcd;">
-Identify the criterias of success
+Identify the criteria of success
 </p>
 
 <h4 id="benefits-11-2" style="line-height: 0.1em;">
@@ -141,7 +141,7 @@ It is generally okay for a community to have explicitly written rules on how to 
 
 ### Branding
 
-Like I said earlier, a great tagline will help in this regard. You can also use design patterns that you know are appealing to your audience. For instance, with the Frank & Oak network we can see a visual style that is similar on their [network site](http://network.frankandoak.com) and on their [e-commerce site](http://frankandoak.com).
+Like I said earlier, a great tagline will help in this regard. You can also use design patterns that you know are appealing to your audience. For instance, with the Frank & Oak network, we can see a visual style that is similar on their [network site](http://network.frankandoak.com) and on their [e-commerce site](http://frankandoak.com).
 
 ### Feedback & Continuity
 
@@ -150,7 +150,7 @@ Like I said earlier, a great tagline will help in this regard. You can also use 
 </p>
 
 
-Finally, a community also needs to keep on building from its foundation. Malone & Crumlish (2009), who talk about social interfaces, suggest not to completely finish the design. Users should be able to “ finish ” some part of the design as they use the interface. There is also a need for consistency between each version of the design, at least on some features. Not to repeat myself, but it is important to note that if a factor is present in one stage, it should continue to exist in the other stages.
+Finally, a community also needs to keep on building from its foundation. Malone & Crumlish (2009), who talk about social interfaces, suggest not to completely finish the design. Users should be able to “ finish ” some parts of the design as they use the interface. There is also a need for consistency between each version of the design, at least on some features. Not to repeat myself, but it is important to note that if a factor is present in one stage, it should continue to exist in the other stages.
 
 Stay tuned, next week I will update this with a visual design of how this can be brought to life.
 
@@ -168,18 +168,18 @@ As we can see, the landing page presents the tagline (as said before, it is esse
 <img src="/images/posts/chuck.png" alt="image" style="max-width:49%">
 </p>
 
-When a user logs in, he is brought to his profile page, which is undoubtedly called “Home”. There he has access to updates on various Coveo sites, as well as other features (such as social media, etc).
+When a user logs in, he is brought to his profile page, which is undoubtedly called “Home”. There, he has access to updates on various Coveo sites, as well as other features (such as social media, etc.).
 
 ![image](/images/posts/profil.png)
 
 
-Finally when a user goes to another user’s profile he can see his achievements, tweets and other information such as his *fellowships*. The same idea of a guild except it would be automatically generated by the user’s activity on different sites. Each user would then know more about each other and could share knowledge.
+Finally, when a user goes to another user’s profile, he can see his achievements, tweets and other information such as his *fellowships*. The same idea of a guild except it would be automatically generated by the user’s activity on different sites. Users would then know more about each other and could share knowledge.
 
 ![image](/images/posts/user_page.png)
 
 **TO BE CONTINUED**
 
-It doesn’t stop there, there are many more explanations I could give on smaller features (private messaging, private information on profiles, etc) but this post ends here.
+It doesn’t stop there, there are many more explanations I could give on smaller features (private messaging, private information on profiles, etc.) but this post ends here.
 
 **SOURCE**
 
