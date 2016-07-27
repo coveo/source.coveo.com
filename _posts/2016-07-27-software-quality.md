@@ -2,7 +2,7 @@
 layout: post
 
 title: Software Quality
-tags: "software quality, design, implementation, build, deploy, monitoring"
+tags: "software quality design implementation build deploy monitoring"
 
 author:
   name: Marc-Antoine Veilleux
