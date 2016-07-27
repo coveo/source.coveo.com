@@ -14,7 +14,7 @@ When I try to code, I always ask myself what’s right and what’s wrong about 
 
 <!-- more -->
 
-Every time I code, I answer all of them. Sometimes, the answer can be, for that particular project, I don’t care. Sometimes, for that specific line of code, I don’t have to care because there already is a structure, a framework, or a way of doing things that already makes sure the software is great. The important thing is to be aware of those questions, and to take a decision for each of them.
+Every time I code, I answer all of them. Sometimes, the answer can be, for that particular project: "I don’t care". Sometimes, for that specific line of code, I don’t have to care because there already is a structure, a framework, or a way of doing things that already makes sure the software is great. The important thing is to be aware of those questions, and to take a decision for each of them.
 
 Those questions aren’t in any particular order. I try to split them by software project phase: design, implementation, tests, build, deployment, and monitoring. Some are useful for more than one phase. For each one of them, I try to answer it briefly and offer some potential solutions. Obviously, those solutions are based on my personal knowledge and may - and I hope so - change over time.
 
@@ -28,7 +28,7 @@ When creating a software, think about the future.
 - Can you break the API contract? 
 - If not, how can you change it?
 
-Most of the time, you must make sure everything stays compatible with your API clients. There aren’t many solutions to that challenge. One of the best ways is to use API versioning. Each time there’s a breaking change on the client side, you change version. Over a long period of time, you can deprecate some API versions and then clean up some code. 
+Most of the time, you must make sure everything stays compatible with your API clients. There aren’t many solutions to that challenge. One of the best ways is to use API versioning. Each time there’s a breaking change on the client side, you change version. Over a long period of time, you can deprecate some API versions and then proceed to clean up some code. 
 
 ### Extensibility
 - Can a developer easily change or add functionalities to that component? 
@@ -54,10 +54,10 @@ If you *really* don’t want to use a web server or need more speed, try somethi
 - How can I troubleshoot a problem in a production environment? 
 - How can I look at variable values? 
  
-At any time, you must be able to debug an application execution. There will be bugs; make sure your software isn’t a big black box. To do so, you can add internal and external logs everywhere - it will help you understand the app flow. Logging everything all the time can consume resources and slow down your app. Having intelligent logs and error messages is tremendous here. A good log can solve problems before going to the support team (`An error happened.` vs `The communication failed because XYZ wasn't configured properly.`). If you need more logs, you can use dynamic switches that will trace your app in specific scenarios without restarting the application. If everything else fails, make sure you can attach to the process or dump the memory to analyze it. 
+At any time, you must be able to debug an application execution. There will be bugs; make sure your software isn’t a big black box. To do so, you can add internal and external logs everywhere - it will help you understand the app flow. Logging everything all the time can consume resources and slow down your app. Having intelligent logs and error messages is tremendously important here. A good log can solve problems before going to the support team (`An error happened.` vs `The communication failed because XYZ wasn't configured properly.`). If you need more logs, you can use dynamic switches that will trace your app in specific scenarios without restarting the application. If everything else fails, make sure you can attach to the process or dump the memory to analyze it. 
 
 ## Implementation 
-Now that we asked ourselves some questions about the design, we are ready to implement it. Obviously, there are still some interrogations to be answered.
+Now that we've asked ourselves some questions about the design, we are ready to implement it. Obviously, there are still some interrogations to be answered.
 
 ### Best Practices
 - Am I the first one to ever solve that problem? 
@@ -73,7 +73,7 @@ In general, when implementing a solution, try to be lazy and search for existing
 - Can others learn from what I’ve done? 
 - Should I enforce a code standard? 
 
-Code review is done first for quality purposes, but it is an excellent way to learn and share information to the whole team. Over the years, I’ve learned as much as a reviewer than a reviewee. To start adopting a code review process in your team, there are many tools or processes you can use. You can enforce [pull requests](https://help.github.com/articles/using-pull-requests/) on your master branch or use software like: 
+Code review is done first for quality purposes, but it is an excellent way to learn and share information to the whole team. Over the years, I’ve learned as much as a reviewer than a reviewee. To start adopting a code review process in your team, there are many tools or processes you can use. You can enforce [pull requests](https://help.github.com/articles/using-pull-requests/) on your master branch or use softwares like: 
 
 - [Phabricator](https://www.phacility.com/)
 - [Gerrit](https://en.wikipedia.org/wiki/Gerrit_(software))
@@ -114,7 +114,7 @@ I’ve put together the build and deploy process because they have a lot of comm
 
 A setup that looks like the real thing really helps the developers to code and test potential pitfalls. There are a lot of tools that can help you standardize the build and deploy processes. To help you, you can check some tools like [gulp](http://gulpjs.com/), [msbuild](https://msdn.microsoft.com/en-us/library/dd393574.aspx), and [maven](https://maven.apache.org/) for the build process, and [npm](https://www.npmjs.com/), [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)), and [NuGet](https://www.nuget.org/) for your dependencies management. Typically, each language has its own way of doing things.
 
-When you know what your build process looks like, make it work into a continuous integration platform like [Jenkins](https://jenkins.io/), [Travis](https://travis-ci.org/) or [TeamCity](https://www.jetbrains.com/teamcity/). Those tools will build your project and make sure everyone can build it correctly and not only *On Their Machine<sup>TM<sup>*.
+When you know what your build process looks like, make it work into a continuous integration platform like [Jenkins](https://jenkins.io/), [Travis](https://travis-ci.org/) or [TeamCity](https://www.jetbrains.com/teamcity/). Those tools will build your project and make sure everyone can build it correctly and not only *On Their Machine<sup>TM</sup>*.
 
 Overall, the processes must be so easy that any developer would be able to build and deploy to their dev environment. One person must not have the exclusive knowledge on how to build or deploy - there shouldn’t have any human single point of failure for these processes.
 
