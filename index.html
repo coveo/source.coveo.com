@@ -1,7 +1,7 @@
 ---
 layout: base
 ---
-<div class="blog-cover" style="background-image:url({{ site.baseurl }}/images/{{ site.inc.cover_image }});">
+<div class="blog-cover" style="background-image:url({{ site.github.url }}/images/{{ site.inc.cover_image }});">
 
     <section>
         <div class="container">
@@ -14,7 +14,7 @@ layout: base
             {% if site.inc.facebook %}
             <a href="http://facebook.com/{{ site.inc.facebook }}" title="Like on Facebook" target="_blank"><i class="icon icon-facebook"></i></a>
             {% endif %}
-            <a href="{{ site.baseurl }}/feed.xml" title="RSS Feed">
+            <a href="{{ site.github.url }}/feed.xml" title="RSS Feed">
                 <i class="icon icon-rss"></i>
             </a>
         </div>
@@ -26,13 +26,13 @@ layout: base
 {% for post in paginator.posts %}
   {% unless post.draft %}
     <section class="index">
-        {% if post.author.image %}<img src="{{ site.baseurl }}/images/{{ post.author.image }}" class="avatar">{% endif %}
+        {% if post.author.image %}<img src="{{ site.github.url }}/images/{{ post.author.image }}" class="avatar">{% endif %}
         {% if post.author.imageURL %}<img src="{{ post.author.imageURL }}" class="avatar">{% endif %}
 
         <div>
-            <h2 class="title"><a href="{{ site.baseurl }}{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
+            <h2 class="title"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
             <p>{{ post.excerpt }}</p>
-            <p class="readmore"><a href="{{ site.baseurl }}{{ post.url }}" rel="prefetch">Read more...</a></p>
+            <p class="readmore"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">Read more...</a></p>
             <div class="meta">
                 Written By <address>{{ post.author.name }}</address> &mdash;
                 <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date: "%B %d, %Y" }}">{{ post.date | date: "%B %d, %Y" }}</time>
@@ -44,13 +44,13 @@ layout: base
     {% endfor %}
     <section class="pagination" style="text-align:center">
       {% if paginator.next_page %}
-        <a href="{{ site.baseurl }}/page{{ paginator.next_page }}" class="btn btn-outline">< Older</a>
+        <a href="{{ site.github.url }}/page{{ paginator.next_page }}" class="btn btn-outline">< Older</a>
       {% endif %}
       {% if paginator.previous_page %}
         {% if paginator.previous_page == 1 %}
-        <a href="{{ site.baseurl }}" class="btn btn-outline">Newer ></a>
+        <a href="{{ site.github.url }}" class="btn btn-outline">Newer ></a>
         {% else %}
-        <a href="{{ site.baseurl }}/page{{ paginator.previous_page }}" class="btn btn-outline">Newer ></a>
+        <a href="{{ site.github.url }}/page{{ paginator.previous_page }}" class="btn btn-outline">Newer ></a>
         {% endif %}
       {% endif %}
     </section>
