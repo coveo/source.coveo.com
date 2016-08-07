@@ -11,6 +11,8 @@ author:
   image: jebeaudet.png
 
 ---
+**Update 2016/07/08**: The project is now available on [GitHub](https://github.com/coveo/feign-error-decoder)! I plan on making it more generic before publishing it to Maven, I'll update this post soon with the new details.
+
 Exception handling across microservices can be tedious, let's see how the Java reflection API can help us ease the pain!
 <!-- more -->
 
