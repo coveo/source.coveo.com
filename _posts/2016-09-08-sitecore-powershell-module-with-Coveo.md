@@ -21,7 +21,7 @@ Coveo has a [REST Search API] (https://developers.coveo.com/display/SearchREST/R
 Thanks to CJ Morgan at [BrainJocks] (http://www.brainjocks.com/team) for providing me a basic SPE script with several examples.
 This would usually work with Lucene, and I believe also Solr. It uses the sitecore_master_index with some custom GUIDs and templates.
 
-{% highlight powershell %}
+```powershell
 
 # This will return all items that have the template planogram within the the index sitecore_master
 Find-Item -Index "sitecore_master" -Criteria @{Filter = "Equals"; Field = "_templatename"; Value = "Planogram"} 
@@ -80,13 +80,13 @@ $item
 #$item.Fields | Format-List -Property *
 
 
-{% endhighlight %}
+```
 
 ##Example with Coveo
 
 Coveo has a few unique twists in the way it handles fields. This new example is based on the Coveo_Master_index , which is created by default when installing the package. Take some time to read the examples, I will explain the changes in the next section.
 
-{% highlight powershell %}
+```powershell
 
 # This will return all items that have the template article group within the the index Coveo Master
 Find-Item -Index "Coveo_master_index" -Criteria @{Filter = "Equals"; Field = "_templatename"; Value = "Article Group"} 
@@ -142,7 +142,7 @@ $item
 $item.Fields | Format-List -Property *
 
 
-{% endhighlight %}
+```
 
 ##What is different?
 
