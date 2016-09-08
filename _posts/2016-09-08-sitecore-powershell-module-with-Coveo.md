@@ -10,16 +10,16 @@ author:
   image: slangevin.png
 ---
 
-The excellent [Sitecore PowerShell Extension]  (https://marketplace.sitecore.net/Modules/Sitecore_PowerShell_console.aspx?sc_lang=en) allows you to return items from your index and display its properties in a friendly manner. All of this at a much faster speed than using the Content Search API. This is of course just one function of that rich extension.
+The excellent [Sitecore PowerShell Extension]  (https://marketplace.sitecore.net/Modules/Sitecore_PowerShell_console.aspx?sc_lang=en) allows you to return items from your index and display its properties in a friendly manner. All of this at a much faster speed than using the Content Search API. This is, of course, just one function of that rich extension.
 
 <!-- more -->
 
-Coveo has a [REST Search API] (https://developers.coveo.com/display/SearchREST/REST+Search+API+Home) which gives you the opportunity to send complex queries, but the advantage of the SPE is its usability across all your search providers. For example, I might want to compare the amount of results returned between might Lucene, Solr and Coveo indexes with the same script. 
+Coveo has a [REST Search API] (https://developers.coveo.com/display/SearchREST/REST+Search+API+Home) which gives you the opportunity to send complex queries, but the advantage of the SPE is its usability across all your search providers. For example, I might want to compare the amount of results returned between Lucene, Solr and Coveo indexes with the same script. 
 
 ##Example with Lucene
 
 Thanks to CJ Morgan at [BrainJocks] (http://www.brainjocks.com/team) for providing me a basic SPE script with several examples.
-This would usually work with Lucene, and I believe also Solr. It uses the sitecore_master_index with some custom GUIDs and templates.
+This will work with Lucene, and I believe also Solr. It uses the sitecore_master_index with some custom GUIDs and templates.
 
 ```powershell
 
@@ -39,7 +39,7 @@ Find-Item -Index "sitecore_master" -Criteria $filterParams
 # This will return only a certain # of items for the sitecore_master index
 Find-Item -Index "sitecore_master" -First 1000
  
-# THis will allow me to view the properties of the index so I can do more work on it
+# This will allow me to view the properties of the index so I can do more work on it
 # Powershell screen has a buffer so using Format-Table -Autosize to show it horizontally
 # might not work the way you want.  It would be best to view it like this and then filter from there
 Find-Item -Index "sitecore_master" -First 10 | Select-Object -Property *
@@ -84,7 +84,7 @@ $item
 
 ##Example with Coveo
 
-Coveo has a few unique twists in the way it handles fields. This new example is based on the Coveo_Master_index , which is created by default when installing the package. Take some time to read the examples, I will explain the changes in the next section.
+Coveo has a few unique twists in the way it handles fields. This new example is based on the coveo_master_index , which is created by default when installing the package. Take some time to read the examples, I will explain the changes in the next section.
 
 ```powershell
 
@@ -104,7 +104,7 @@ Find-Item -Index "Coveo_web_index" -Criteria $filterParams -First 10
 # This will return only a certain # of items for the selected index
 Find-Item -Index "Coveo_master_index" -First 100
 
-# THis will allow me to view the properties of the index so I can do more work on it
+# This will allow me to view the properties of the index so I can do more work on it
 # Powershell screen has a buffer so using Format-Table -Autosize to show it horizontally
 # might not work the way you want.  It would be best to view it like this and then filter from there
 Find-Item -Index "Coveo_master_index" -First 10 | Select-Object -Property *
@@ -147,9 +147,9 @@ $item.Fields | Format-List -Property *
 ##What is different?
 
 
-* Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend to make _uniqueid facet however, since it contains a lot of unique values, so I changed the operator for an Equals.
+* Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend _uniqueid as a facet since it contains a lot of unique values, so I changed the operator to an Equals.
 
-* Coveo will usually create one index per database, which mean that the _uniqueid field will return a single value against the Coveo_master_index, not two like in the Lucene example.
+* Coveo will usually create one index per database, which means that the _uniqueid field will return a single value against the Coveo_master_index, not two like in the Lucene example.
 
 * When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo by default will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
 
