@@ -153,7 +153,7 @@ $item.Fields | Format-List -Property *
 
 * When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo by default will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
 
-* _template does not contain any dashes when indexed by Coveo, templateid will however. So I removed the dashes in my query, but I could also simply change the field for templateid
+* _template does not contain any dashes when indexed by Coveo, templateid will however. So I removed the dashes in my query, but I could also simply change the field for templateid.
 
 And that's it! Thanks again to [Cognifide] (https://www.cognifide.com/) for creating the module and to anyone who contributed to it.
 
