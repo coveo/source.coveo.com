@@ -19,7 +19,7 @@ Coveo has a [REST Search API] (https://developers.coveo.com/display/SearchREST/R
 ##Example with Lucene
 
 Thanks to CJ Morgan at [BrainJocks] (http://www.brainjocks.com/team) for providing me a basic SPE script with several examples.
-This will work with Lucene, and I believe also Solr. It uses the sitecore_master_index with some custom GUIDs and templates.
+This will work with Lucene and I believe also with Solr. It uses the sitecore_master_index with some custom GUIDs and templates.
 
 ```powershell
 
