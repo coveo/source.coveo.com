@@ -92,11 +92,11 @@ Coveo has a few unique twists in the way it handles fields. This new example is 
 Find-Item -Index "Coveo_master_index" -Criteria @{Filter = "Equals"; Field = "_templatename"; Value = "Article Group"} 
 
 # This will return 1 single item
-Find-Item -Index "Coveo_master_index" -Criteria @{Filter = "Contains"; Field = "_uniqueid"; Value = "{A5CDBC19-FFEA-4801-81A6-2B87F318B275}"}
+Find-Item -Index "Coveo_master_index" -Criteria @{Filter = "Equals"; Field = "_uniqueid"; Value = "{A5CDBC19-FFEA-4801-81A6-2B87F318B275}"}
 
 # This is an example of how to do multiple filters at once
 $filterParams = @(
-        @{Filter = "Contains"; Field = "_uniqueid"; Value = "{A5CDBC19-FFEA-4801-81A6-2B87F318B275}"},
+        @{Filter = "Equals"; Field = "_uniqueid"; Value = "{A5CDBC19-FFEA-4801-81A6-2B87F318B275}"},
         @{Filter = "Equals"; Field = "_database"; Value = "web"}
     )
 Find-Item -Index "Coveo_web_index" -Criteria $filterParams -First 10
@@ -146,15 +146,14 @@ $item.Fields | Format-List -Property *
 
 ##What is different?
 
-Please load the file in an IDE to see the line numbers.
 
-Line 24 and 28 will fail by default, since Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend to make _uniqueid facet however, since it contains a lot of unique values.
+* Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend to make _uniqueid facet however, since it contains a lot of unique values, so I changed the operator for an Equals.
 
-Still on Line 24, I changed the comment since Coveo will usually create one index per database, which mean that the _uniqueid field will return a single value, not two.
+* Coveo will usually create one index per database, which mean that the _uniqueid field will return a single value against the Coveo_master_index, not two like in the Lucene example.
 
-Line 33,  I changed the First 1000 to 100, since Coveo by default will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
+* When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo by default will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
 
-Line 67, _template does not contain any dashes when indexed by Coveo, templateid will however. So I removed the dashes in my query, but I could also simply change the field for templateid
+* _template does not contain any dashes when indexed by Coveo, templateid will however. So I removed the dashes in my query, but I could also simply change the field for templateid
 
 And that's it! Thanks again to [Cognifide] (https://www.cognifide.com/) for creating the module and to anyone who contributed to it.
 
