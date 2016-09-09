@@ -26,7 +26,7 @@ This will work with Lucene and I believe also with Solr. It uses the sitecore_ma
 # This will return all items that have the template planogram within the the index sitecore_master
 Find-Item -Index "sitecore_master" -Criteria @{Filter = "Equals"; Field = "_templatename"; Value = "Planogram"} 
  
-# This will show 2 items with one being master and one being web
+# This will show two items: one being master, and one being web.
 Find-Item -Index "sitecore_master" -Criteria @{Filter = "Contains"; Field = "_uniqueid"; Value = "{005ac360-4daa-4de7-b158-88b193f8f5bc}"}
  
 # This is an example of how to do multiple filters at once
@@ -36,7 +36,7 @@ $filterParams = @(
     )   
 Find-Item -Index "sitecore_master" -Criteria $filterParams
  
-# This will return only a certain # of items for the sitecore_master index
+# This will return only a certain number of items for the sitecore_master index
 Find-Item -Index "sitecore_master" -First 1000
  
 # This will allow me to view the properties of the index so I can do more work on it
