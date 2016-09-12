@@ -39,16 +39,15 @@ Find-Item -Index "sitecore_master" -Criteria $filterParams
 # This will return only a certain number of items for the sitecore_master index
 Find-Item -Index "sitecore_master" -First 1000
  
-# This will allow me to view the properties of the index so I can do more work on it
-# Powershell screen has a buffer so using Format-Table -Autosize to show it horizontally
-# might not work the way you want.  It would be best to view it like this and then filter from there
+# This will allow you to view the properties of the index so I can do more work on it
+# Powershell screen has a buffer, so using Format-Table -Autosize to show it horizontally
 Find-Item -Index "sitecore_master" -First 10 | Select-Object -Property *
  
 # This will allow you to see the fields value of the index item
-# and this is the information you will use in the Field variable for the Filter
+# which is the information you will use in the Field variable for the Filter
 Find-Item -Index "sitecore_master" -First 1 | select -expand "Fields"
  
-# This will search by a particular version # and it has to be a Descendant of the items
+# This will search by a particular version and will only allow the descendants of a certain item
 $filterParams = @(
         @{Filter = "Equals"; Field = "_version"; Value = "2"}
         @{Filter = "DescendantOf"; Value = (Get-Item master: -ID "{B03731AD-B04C-41B6-944C-D21BBC5926D4}") }
@@ -58,8 +57,8 @@ Find-Item -Index "sitecore_master" -Criteria $filterParams -First 10
  
  
 # When the items are returned using Find-Item they are not true Sitecore Items but instead
-# are "Sitecore.ContentSearch.SearchTypes.SearchResultItem" items so to make them into regular
-# Sitecore items you have to add Initialize-Item to the end of the results like below
+# are "Sitecore.ContentSearch.SearchTypes.SearchResultItem" items.  To make them into regular Sitecore items, you have to add 
+# Initialize-Item at the end of the results, as such.
 $filterParams = @(
         @{Filter = "Equals"; Field = "_version"; Value = "2"}
         @{Filter = "DescendantOf"; Value = (Get-Item master: -ID "{B03731AD-B04C-41B6-944C-D21BBC5926D4}") }
@@ -84,14 +83,14 @@ $item
 
 ##Example with Coveo
 
-Coveo has a few unique twists in the way it handles fields. This new example is based on the coveo_master_index , which is created by default when installing the package. Take some time to read the examples, I will explain the changes in the next section.
+Coveo has a few unique twists in the way it handles fields. This new example is based on the coveo_master_index , which is created by default when installing the package. I will explain the changes in the next section.
 
 ```powershell
 
 # This will return all items that have the template article group within the the index Coveo Master
 Find-Item -Index "Coveo_master_index" -Criteria @{Filter = "Equals"; Field = "_templatename"; Value = "Article Group"} 
 
-# This will return 1 single item
+# This will return a single item
 Find-Item -Index "Coveo_master_index" -Criteria @{Filter = "Equals"; Field = "_uniqueid"; Value = "{A5CDBC19-FFEA-4801-81A6-2B87F318B275}"}
 
 # This is an example of how to do multiple filters at once
@@ -101,19 +100,18 @@ $filterParams = @(
     )
 Find-Item -Index "Coveo_web_index" -Criteria $filterParams -First 10
 
-# This will return only a certain # of items for the selected index
+# This will return only a certain number of items for the selected index
 Find-Item -Index "Coveo_master_index" -First 100
 
-# This will allow me to view the properties of the index so I can do more work on it
-# Powershell screen has a buffer so using Format-Table -Autosize to show it horizontally
-# might not work the way you want.  It would be best to view it like this and then filter from there
+# This will allow you to view the properties of the index so I can do more work on it
+# Powershell screen has a buffer, so using Format-Table -Autosize to show it horizontally
 Find-Item -Index "Coveo_master_index" -First 10 | Select-Object -Property *
 
 # This will allow you to see the fields value of the index item
-# and this is the information you will use in the Field variable for the Filter
+# which is the information you will use in the Field variable for the Filter
 Find-Item -Index "Coveo_master_index" -First 1 | select -expand "Fields"
 
-# This will search by a particular version # and it has to be a Descendant of the items
+# This will search by a particular version and will only allow the descendants of a certain item
 $filterParams = @(
         @{Filter = "Equals"; Field = "_version"; Value = "2"}
         @{Filter = "DescendantOf"; Value = (Get-Item master: -ID "{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}") }
@@ -122,8 +120,8 @@ Find-Item -Index "Coveo_master_index" -Criteria $filterParams -First 10
 
 
 # When the items are returned using Find-Item they are not true Sitecore Items but instead
-# are "Sitecore.ContentSearch.SearchTypes.SearchResultItem" items so to make them into regular
-# Sitecore items you have to add Initialize-Item to the end of the results like below
+# are "Sitecore.ContentSearch.SearchTypes.SearchResultItem" items. To make them into regular Sitecore items, you have to add 
+# Initialize-Item at the end of the results, as such.
 $filterParams = @(
         @{Filter = "Equals"; Field = "_version"; Value = "2"}
         @{Filter = "DescendantOf"; Value = (Get-Item master: -ID "{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}") }
@@ -149,11 +147,11 @@ $item.Fields | Format-List -Property *
 
 * Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend _uniqueid as a facet since it contains a lot of unique values, so I changed the operator to an Equals.
 
-* Coveo will usually create one index per database, which means that the _uniqueid field will return a single value against the Coveo_master_index, not two like in the Lucene example.
+* Coveo usually creates one index per database, which means that the _uniqueid field will return a single value against the Coveo_master_index, not two like in the Lucene example.
 
-* When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo by default will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
+* When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo, by default, will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
 
-* _template does not contain any dashes when indexed by Coveo, templateid will however. So I removed the dashes in my query, but I could also simply change the field for templateid.
+* _template does not contain any dashes when indexed by Coveo. However, templateid will . So I removed the dashes in my query, but I could also simply change the field for templateid.
 
 And that's it! Thanks again to [Cognifide] (https://www.cognifide.com/) for creating the module and to anyone who contributed to it.
 
