@@ -10,15 +10,15 @@ author:
   image: slangevin.png
 ---
 
-The excellent [Sitecore PowerShell Extension]  (https://marketplace.sitecore.net/Modules/Sitecore_PowerShell_console.aspx?sc_lang=en) allows you to return items from your index and display its properties in a friendly manner, all of this at a much faster speed than using the Content Search API. This is, of course, just one function of that rich extension.
+The excellent [Sitecore PowerShell Extension](https://marketplace.sitecore.net/Modules/Sitecore_PowerShell_console.aspx?sc_lang=en) allows you to return items from your index and display its properties in a friendly manner, all of this at a much faster speed than using the Content Search API. This is, of course, just one function of that rich extension.
 
 <!-- more -->
 
-Coveo has a [REST Search API] (https://developers.coveo.com/display/SearchREST/REST+Search+API+Home) which gives you the opportunity to send complex queries, but the advantage of the SPE is its usability across all your search providers. For example, I might want to compare the amount of results returned between Lucene, Solr, and Coveo indexes with the same script. 
+Coveo has a [REST Search API](https://developers.coveo.com/display/SearchREST/REST+Search+API+Home) which gives you the opportunity to send complex queries, but the advantage of the SPE is its usability across all your search providers. For example, I might want to compare the amount of results returned between Lucene, Solr, and Coveo indexes with the same script. 
 
-##Example with Lucene
+## Example with Lucene
 
-Thanks to CJ Morgan at [BrainJocks] (http://www.brainjocks.com/team) for providing me with a basic SPE script with several examples.
+Thanks to CJ Morgan at [BrainJocks](http://www.brainjocks.com/team) for providing me with a basic SPE script with several examples.
 This will work with Lucene and I believe also with Solr. It uses the sitecore_master_index with some custom GUIDs and templates.
 
 ```powershell
@@ -81,7 +81,7 @@ $item
 
 ```
 
-##Example with Coveo
+## Example with Coveo
 
 Coveo has a few unique twists in the way it handles fields. This new example is based on the coveo_master_index , which is created by default when installing the package. I will explain the changes in the next section.
 
@@ -142,7 +142,7 @@ $item.Fields | Format-List -Property *
 
 ```
 
-##What is different?
+## What is different?
 
 
 * Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend _uniqueid as a facet since it contains a lot of unique values, so I changed the operator to an Equals.
@@ -153,5 +153,5 @@ $item.Fields | Format-List -Property *
 
 * _template does not contain any dashes when indexed by Coveo. However, templateid will . So I removed the dashes in my query, but I could also simply change the field for templateid.
 
-And that's it! Thanks again to [Cognifide] (https://www.cognifide.com/) for creating the module and to anyone who contributed to it.
+And that's it! Thanks again to [Cognifide](https://www.cognifide.com/) for creating the module and to anyone who contributed to it.
 
