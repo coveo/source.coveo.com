@@ -61,6 +61,6 @@ This also brought some development perks, such as a [webpack dev server](https:/
 
 We would love for people to contribute to our Search UI project! Simply make a Pull Request, and a feature or improvement that you coded could be added to the Coveo Search Framework.
 
-This not only makes our developers aware of your implementations, but it also makes every other project you work on that much easier to start.
+This not only makes our developers aware of your implementations, but it also makes your other projects that much easier to start.
 
 Coveo is very open to new ideas and features, and would love to hear from what you think should be improved. We await your pull requests in our [GitHub Project](https://github.com/coveo/search-ui), and we hope that you enjoy the new Coveo Search Framework!
