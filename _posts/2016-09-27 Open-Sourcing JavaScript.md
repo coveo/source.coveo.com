@@ -37,7 +37,7 @@ This way, it is much easier for developers to remember to update the documentati
 
 This also means that anyone playing with the open-source code is able to see the documentation right next to the component code without having to refer to an external website.
 
-Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the component can be used even by people who are not familiar with coding.
+Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
 
 ###Removed internal jQuery dependencies
 
@@ -47,7 +47,7 @@ With the new Search UI, we removed our dependency on that library, while still c
 
 ###Update the way the project is built
 
-We started using [TypeScript](http://www.typescriptlang.org/) at a really early stage in the project, nearly 3 years ago, since version 0.4. Since then, the “correct” way to set up a TypeScript project has evolved tremendously.
+We started using [TypeScript](http://www.typescriptlang.org/) at a really early stage in the project, nearly 3 years ago, in the JavaScript Search Framework version 0.4. Since then, the “correct” way to set up a TypeScript project has evolved tremendously.
 
 We made extensive use of [triple-slash directives](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) to instruct the typescript compiler how to bundle the project.
 
@@ -63,4 +63,4 @@ We would love for people to contribute to our Search UI project! Simply make a P
 
 This not only makes our developers aware of your implementations, but it also makes every other project you work on that much easier to start.
 
-Coveo is very open to new ideas and features, and would love to hear from what you think should be improved. We await your pull request in our [GitHub Project](https://github.com/coveo/search-ui), and we hope that you enjoy the new Coveo Search Framework!
+Coveo is very open to new ideas and features, and would love to hear from what you think should be improved. We await your pull requests in our [GitHub Project](https://github.com/coveo/search-ui), and we hope that you enjoy the new Coveo Search Framework!
