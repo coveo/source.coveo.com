@@ -15,7 +15,7 @@ In July 2016, the Coveo Search UI, also known as the Coveo JavaScript Search Fra
 
 Although it is called the JavaScript Search Framework, the code is written using [TypeScript](http://www.typescriptlang.org/). The TypeScript code is then compiled into JavaScript, which allows us to modify our code base without the fear of breaking the framework.
 
-##Why open-sourcing it?
+## Why open-sourcing it?
 
 As Coveo continues to grow, we have more and more partners that need to implement our Search UI in a website, and tweak it in different ways to fit their needs.
 
@@ -23,11 +23,11 @@ Before open-sourcing the code, our partners had to do some serious code-gymnasti
 
 We improved the flexibility and usability of the framework, and by open-sourcing it, we are giving our advanced Coveo partners a means to take their implementation to the next level by allowing them to take the code and play with it to their heart’s content.
 
-##What’s different with the open-source version?
+## What’s different with the open-source version?
 
 We did not decide to simply open-source the code; we modified it to make it more user friendly for anyone who wants to join in.
 
-###Improved documentation
+### Improved documentation
 
 Before the open-source version, the JavaScript Search Framework documentation had to be updated by hand every time there was a modification in the code. While the people at Coveo are keenly aware of the importance of good documentation, it still happened from time to time that certain features were added, removed, or modified without the documentation reflecting this change.
 
@@ -39,13 +39,13 @@ This also means that anyone playing with the open-source code is able to see the
 
 Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
 
-###Removed internal jQuery dependencies
+### Removed internal jQuery dependencies
 
 The old JavaScript Search Framework was dependent on the jQuery library. However, because a plethora of other packages also use this library, the potential for conflicts between the Coveo Search Framework and other packages was high.
 
 With the new Search UI, we removed our dependency on that library, while still continuing to support it. This way, other packages or features that use the jQuery library will still work in the Coveo Search Framework, while also lowering the risk of potential conflict.
 
-###Update the way the project is built
+### Update the way the project is built
 
 We started using [TypeScript](http://www.typescriptlang.org/) at a really early stage in the project, nearly 3 years ago, in the JavaScript Search Framework version 0.4. Since then, the “correct” way to set up a TypeScript project has evolved tremendously.
 
@@ -57,7 +57,7 @@ We modified our project to instead use ES6 CommonJS modules and [webpack](https:
 
 This also brought some development perks, such as a [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html), which makes developing with the Search UI much more enjoyable.
 
-##Can people contribute to the project?
+## Can people contribute to the project?
 
 We would love for people to contribute to our Search UI project! Simply make a Pull Request, and a feature or improvement that you coded could be added to the Coveo Search Framework.
 
