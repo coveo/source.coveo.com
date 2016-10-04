@@ -23,7 +23,7 @@
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
       <guid isPermaLink="true">{{ site.github.url }}{{ post.id }}</guid>
       {% if post.excerpt %}
-        <description>{{ post.content | xml_escape }}</description>
+        <description>{{ post.excerpt | xml_escape }}</description>
       {% else %}
         <description>{{ post.content | xml_escape }}</description>
       {% endif %}
