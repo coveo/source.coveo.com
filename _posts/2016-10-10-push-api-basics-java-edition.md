@@ -11,69 +11,46 @@ author:
 published: true
 ---
 
-Hello!  I am excited to be writing my first post for the Coveo Technology blog. Before I dive in to the Push API, I thought I would very briefly share my background and an explanation of the Coveo Platform Evangelist role.  
+Hello!  I am excited to be writing my first post for the Coveo Technology blog. Before I dive into the Push API, I thought I would very briefly share my background and an explanation of the Coveo Platform Evangelist role.  
 
-Before joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. Content management and enterprise search were like chocolate and peanut butter. <!-- more --> I would help corporations convert paper-based processes into shiny, new digital workflows that  could easily generate hundreds of thousands of new documents per month.  Without a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  The application integration experience was my secret weapon; by using third-party search engines and developing connectors into each application, I could provide a universal search experience across the entire system.  
+Prior to joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. Content management and enterprise search were like chocolate and peanut butter. <!-- more --> I would help corporations convert paper-based processes into shiny new digital workflows that  could easily generate hundreds of thousands of new documents per month.  Without a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  The application integration experience was my secret weapon; by using third-party search engines and developing connectors into each application, we could provide a universal search experience across entire systems.  
 
-Over the years, I build these types of digital workflow systems for law firms, distribution companies, airlines, manufacturers, retailers and more.  The one thing they all had in common was the critical need to search for content.  And that brings me to my role at Coveo.  As the Platform Evangelist, I will act as a bridge between the software company and the customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
+Over the years, I built these types of digital workflow systems for law firms, distribution companies, airlines, manufacturers, retailers and more.  The one thing they all had in common was the critical need to search for content.  And that brings me to my role at Coveo.  As the Platform Evangelist, I will act as a bridge between the software company and the customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
 
-There are a lot of potential Step 1's to empower our customers and partners to build these types of solutions.  I might be biased by my past experience, but the mechanism for indexing custom content sources seems like a fine place to start.  And with the Coveo Cloud Platform being a cloud-based search engine, it might not be immediately obviously how to accomplish this safely and efficiently  
+So what should I write about first?  There are many potential Step 1's to empower our customers and partners to build these types of solutions.  I am probably biased by my past experience, but the mechanism for indexing custom content sources seems like a good place to start.  And with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obviously how to accomplish this securely and efficiently.
 
 ## A Space Elevator for Your Content (i.e. Push API)
 
+Indexing a large, on-premise content management system with a cloud-based search engine might be perplexing at first.  Do you push the content to the cloud?  Or does the cloud connect to your network and pull the content?  
 
+With Coveo Cloud, the answer is that you push your content up to the cloud with the Push API.  Whether you need to index one document or a million, you simply upload the files and the metadata to Coveo Cloud for processing.  Unless you want to convert and extract the content from files yourself (which I do not recommend), you should upload the original binary files to Coveo Cloud.  The indexing pipeline will convert the files, process them for indexing, and create previews for fast viewing online.  Note: all documents are encrypted during transmission and at rest.
 
-Testing a change ![Hello](http://www.test.com/mypicture.jpg).  In July 2016, the Coveo Search UI, also known as the Coveo JavaScript Search Framework, became open-source. This means that, from now on, anyone will be able to go on GitHub, take the Coveo Search UI, and modify the code itself to adapt it to their own needs.
-<!-- more -->
+The uploading process is very straight-forward.  Full documentation is available [here](https://developers.coveo.com/display/CloudPlatform/Push+API+Usage+Overview), but I will briefly describe the process:
 
-Although it is called the JavaScript Search Framework, the code is written using [TypeScript](http://www.typescriptlang.org/). The TypeScript code is then compiled into JavaScript, which allows us to modify our code base without the fear of breaking the framework.
+1. Create a Push Source in your Organization
+ * Note the organization id, source id, and API Key - you will need them to execute the remaining steps
+2. If you are only uploading metadata, small amounts of text or very small files, skip to step 5
+3. Use the API to request a URL for uploading your content
+ * You will be given a pre-signed URL for an encrypted AWS S3 bucket and a fileID used to reference it later
+4. Upload your file to the pre-signed URL
+5. Create a JSON document with all metadata, textual content, and base64-compressed content if you have a very small file
+ * If you uploaded a large binary file to S3, add the fileId given to you in step 3 instead
+6. Upload the JSON document with the Push API
 
-## Why open-sourcing it?
+Your document, including any metadata and binary content will be indexed and searchable within a few seconds, depending on size and load.  Documents are considered unique by their documentID (URI).  You can update or delete an existing document by providing the same documentID (URI) again.
 
-As Coveo continues to grow, we have more and more partners that need to implement our Search UI in a website, and tweak it in different ways to fit their needs.
+### Java Implementation
 
-Before open-sourcing the code, our partners had to do some serious code-gymnastics to bypass certain sections of the Search Framework and implement their own features.
+Using the Push API in Java was fairly simple (and useful when converting some legacy connectors that were written in Java).  The Push API uses standard restful HTTP commands, like PUT, POST and DELETE.  You need to include your API Key as an Authorization header, and the source and organization ids are required in many of the URLs.  
 
-We improved the flexibility and usability of the framework, and by open-sourcing it, we are giving our advanced Coveo partners a means to take their implementation to the next level by allowing them to take the code and play with it to their heart’s content.
+I have created a repository on [GitHub](https://github.com/coveo/pushapi-java) with several examples, and I will add more soon.  I have thoroughly documented the source code and used relatively few third-party libraries, making the code very portable.  Core, reusable operations are defined in the `CoveoPushAPI` class, and examples that string together a series of operations to perform an entire use case are in the various `*Test` classes.
 
-## What’s different with the open-source version?
+### A Few Tips
 
-We did not decide to simply open-source the code; we modified it to make it more user friendly for anyone who wants to join in.
-
-### Improved documentation
-
-Before the open-source version, the JavaScript Search Framework documentation had to be updated by hand every time there was a modification in the code. While the people at Coveo are keenly aware of the importance of good documentation, it still happened from time to time that certain features were added, removed, or modified without the documentation reflecting this change.
-
-From now on, the documentation is generated using [TypeDoc](https://github.com/TypeStrong/typedoc/), which means that the documentation is made from comments left in the code. To access the current documentation, see the [Coveo Search UI documentation](https://coveo.github.io/search-ui/).
-
-This way, it is much easier for developers to remember to update the documentation when adding new features or modifying existing ones.
-
-This also means that anyone playing with the open-source code is able to see the documentation right next to the component code without having to refer to an external website.
-
-Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
-
-### Removed internal jQuery dependencies
-
-The old JavaScript Search Framework was dependent on the jQuery library. However, because a plethora of other packages also use this library, the potential for conflicts between the Coveo Search Framework and other packages was high.
-
-With the new Search UI, we removed our dependency on that library, while still continuing to support it. This way, other packages or features that use the jQuery library will still work in the Coveo Search Framework, while also lowering the risk of potential conflict.
-
-### Update the way the project is built
-
-We started using [TypeScript](http://www.typescriptlang.org/) at a really early stage in the project, nearly 3 years ago, in the JavaScript Search Framework version 0.4. Since then, the “correct” way to set up a TypeScript project has evolved tremendously.
-
-We made extensive use of [triple-slash directives](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) to instruct the typescript compiler how to bundle the project.
-
-While this method served us well at the beginning of the project, it has serious drawback. The main one is that the project becomes monolithic and cannot be easily customized to include or exclude certains components.
-
-We modified our project to instead use ES6 CommonJS modules and [webpack](https://webpack.github.io/) in order to have a much more flexible bundle. Technically speaking, specifying any entry point in the project results in a coherent bundle that executes correctly at run time.
-
-This also brought some development perks, such as a [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html), which makes developing with the Search UI much more enjoyable.
-
-## Can people contribute to the project?
-
-We would love for people to contribute to our Search UI project! Simply make a Pull Request, and a feature or improvement that you coded could be added to the Coveo Search Framework.
-
-This not only makes our developers aware of your implementations, but it also makes your other projects that much easier to start.
-
-Coveo is very open to new ideas and features, and would love to hear from what you think should be improved. We await your pull requests in our [GitHub Project](https://github.com/coveo/search-ui), and we hope that you enjoy the new Coveo Search Framework!
+* Don't forget the API Key and other required headers
+* Make note of the various HTTP response codes in the Push API documentation.  Not all of the API calls use the same response codes for success
+* Files should be zlib compressed before being uploaded to S3.  I could not find a simple way to do this "stream-to-stream" in Java, so I chose to consume the original input stream into a new, compressed temp file, and then open a stream to the new temp file.  This is safer (memory-wise) than trying to compress to an in-memory byte[].
+* Currently, the API gives you a single pre-signed URL for uploading large files to S3.  This precludes the use of the multipart protocol for files larger than 100 MB (which could become an issue when uploading large batches of documents, which I will discuss in a future post).  I am investigating the best way to handle this.  For now, you will have to stream the file to S3 in a single PUT request.
+* In metadata, dates must be in UTC.  If you specify a date without a time, it will be interpreted as midnight *UTC*, which is then converted back to the timezone of your organization, which could be the previous day.
+* You must provide the file extension, as opposed to the mimetype, of binary files.  This can be a bit odd if your file does not have an extension in your content management system.  I have experimented with using Apache Tiki to get the most appropriate file extension for a given mimetype, and it works well if you find your self in that situation.  I have inquired about the ability to specify a mimetype instead of a file extension.
+* Multivalued metadata should be specified as a JSON array, like `[a, b, c]`
