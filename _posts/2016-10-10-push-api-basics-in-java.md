@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Push API Basics (Java edition)
+title: Push API Basics (in Java)
 tags:
   - Java
   - Push API
