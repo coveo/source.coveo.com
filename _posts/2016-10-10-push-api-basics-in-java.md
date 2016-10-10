@@ -51,7 +51,7 @@ Using the Push API in Java was fairly simple (and useful when converting some le
 
 I have created a repository on [GitHub](https://github.com/coveo/pushapi-java) with several examples, and I will add more soon.  I have thoroughly documented the source code and used relatively few third-party libraries, making the code very portable.  Core, reusable operations are defined in the `CoveoPushAPI` class, and examples that string together a series of operations to perform an entire use case are in the various `*Test` classes.
 
-![](/images/CoveoPushAPI.java.jpg)
+![Code Sample]({{ site.baseurl }}/images/CoveoPushAPI.java.jpg)
 
 ### A Few Tips
 
