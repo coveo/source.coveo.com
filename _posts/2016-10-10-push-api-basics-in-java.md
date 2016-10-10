@@ -13,9 +13,15 @@ published: true
 
 Hello!  I am excited to be writing my first post for the Coveo Technology blog. Before I dive into the Push API, I thought I would very briefly share my background and an explanation of the Coveo Platform Evangelist role.  
 
-Prior to joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. Content management and enterprise search were like chocolate and peanut butter. <!-- more --> I would help corporations convert paper-based processes into shiny new digital workflows that  could easily generate hundreds of thousands of new documents per month.  Without a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  The application integration experience was my secret weapon; by using third-party search engines and developing connectors into each application, we could provide a universal search experience across entire systems.  
+Prior to joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. Content management and enterprise search were like chocolate and peanut butter. <!-- more -->
 
-Over the years, I built these types of digital workflow systems for law firms, distribution companies, airlines, manufacturers, retailers and more.  The one thing they all had in common was the critical need to search for content.  And that brings me to my role at Coveo.  As the Platform Evangelist, I will act as a bridge between the software company and the customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
+I would help corporations convert paper-based processes into shiny new digital workflows that could easily generate hundreds of thousands of new documents per month.  Without a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  
+
+The application integration experience was my secret weapon; by using third-party search engines and developing connectors into each application, we could provide a universal search experience across entire systems.  
+
+Over the years, I built these types of digital workflow systems for law firms, distribution companies, airlines, manufacturers, retailers and more.  The one thing they all had in common was the critical need to search for content.  
+
+And that brings me to my role at Coveo.  As the Platform Evangelist, I will act as a bridge between the software company and our customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
 
 So what should I write about first?  There are many potential Step 1's to empower our customers and partners to build these types of solutions.  I am probably biased by my past experience, but the mechanism for indexing custom content sources seems like a good place to start.  And with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obviously how to accomplish this securely and efficiently.
 
@@ -33,17 +39,19 @@ The uploading process is very straight-forward.  Full documentation is available
 3. Use the API to request a URL for uploading your content
  * You will be given a pre-signed URL for an encrypted AWS S3 bucket and a fileID used to reference it later
 4. Upload your file to the pre-signed URL
-5. Create a JSON document with all metadata, textual content, and base64-compressed content if you have a very small file
+5. Create a JSON document with all metadata, security information (like ACLs), text-based content, and base64-compressed binary content if you have a very small file
  * If you uploaded a large binary file to S3, add the fileId given to you in step 3 instead
 6. Upload the JSON document with the Push API
 
-Your document, including any metadata and binary content will be indexed and searchable within a few seconds, depending on size and load.  Documents are considered unique by their documentID (URI).  You can update or delete an existing document by providing the same documentID (URI) again.
+Your document, including any metadata and binary content will be indexed and searchable within a few seconds, depending on the size and system load.  Documents are considered unique by their documentID (URI).  You can update or delete an existing document by providing the same documentID (URI) again.
 
 ### Java Implementation
 
 Using the Push API in Java was fairly simple (and useful when converting some legacy connectors that were written in Java).  The Push API uses standard restful HTTP commands, like PUT, POST and DELETE.  You need to include your API Key as an Authorization header, and the source and organization ids are required in many of the URLs.  
 
 I have created a repository on [GitHub](https://github.com/coveo/pushapi-java) with several examples, and I will add more soon.  I have thoroughly documented the source code and used relatively few third-party libraries, making the code very portable.  Core, reusable operations are defined in the `CoveoPushAPI` class, and examples that string together a series of operations to perform an entire use case are in the various `*Test` classes.
+
+![](/images/CoveoPushAPI.java.jpg)
 
 ### A Few Tips
 
