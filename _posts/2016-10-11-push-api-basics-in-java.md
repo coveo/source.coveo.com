@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Push API Basics (in Java)
+excerpt: Indexing a large, on-premise content management system with a cloud-based search engine might be perplexing at first.  Do you push the content to the cloud?  Or does the cloud connect to your network and pull the content?  
 tags:
   - Java
   - Push API
@@ -11,7 +12,7 @@ author:
 published: true
 ---
 
-Hello!  I am excited to be writing my first post for the Coveo Technology blog. Before I dive into the Push API, I thought I would very briefly share my background and an explanation of the Coveo Platform Evangelist role.  
+Hello!  I am excited to write my first post for the Coveo Technology blog. Before I dive into the Push API, I would like to briefly introduce myself and my background with enterprise content management systems and search.  The Coveo Cloud Push API is a must-have feature for the types of customers and projects I have encountered.
 
 Prior to joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. In the words of old TV commercials, content management and enterprise search went together like chocolate and peanut butter. <!-- more -->
 
