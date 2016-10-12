@@ -1,7 +1,6 @@
 ---
 layout: post
-title: Push API Basics (in Java)
-excerpt: Indexing a large, on-premise content management system with a cloud-based search engine might be perplexing at first.  Do you push the content to the cloud?  Or does the cloud connect to your network and pull the content?  
+title: Push API Basics with Java Examples
 tags:
   - Java
   - Push API
@@ -12,19 +11,11 @@ author:
 published: true
 ---
 
-Hello!  I am excited to write my first post for the Coveo Technology blog. Before I dive into the Push API, I would like to briefly introduce myself and my background with enterprise content management systems and search.  The Coveo Cloud Push API is a must-have feature for the types of customers and projects I have encountered.
+The Coveo Cloud Push API is a must-have feature that allows Coveo Cloud to index on-premise content management systems, including metadata and security permissions. While most content management systems include a built-in search engine, they are often underpowered, incapable of combining content from multiple repositories, and lack advanced features like Coveo's Usage Analytics and machine learning based Reveal.
 
-Prior to joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. In the words of old TV commercials, content management and enterprise search went together like chocolate and peanut butter. <!-- more -->
+<!-- more -->
 
-I would help corporations convert paper-based processes into shiny new digital workflows that could easily generate hundreds of thousands of new documents per month.  If there was't a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  
-
-The application integration experience was my secret weapon; by using third-party search engines and developing connectors into each application, we could provide a universal search experience across entire enterprise systems.  
-
-Over the years, I built these types of digital workflow systems for law firms, distribution companies, airlines, manufacturers, hospitals, retailers and more.  The one thing they all had in common was the critical need to search for content.  
-
-And that brings me to my role at Coveo.  As Platform Evangelist, I act as a bridge between the software and our customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
-
-So what should I write about first?  There are many potential Step 1's to empower our customers and partners to build these types of solutions.  I am probably biased by my past experience, but the mechanism for indexing custom content sources seems like a good place to start.  And with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obviously how to accomplish this securely and efficiently.
+Indexing your managed content in Coveo Cloud is a great alternative.  But with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obviously how to accomplish this securely and efficiently.
 
 ## A Space Elevator for Your Content (i.e. Push API)
 
