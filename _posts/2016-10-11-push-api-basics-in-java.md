@@ -15,13 +15,13 @@ Hello!  I am excited to be writing my first post for the Coveo Technology blog. 
 
 Prior to joining Coveo, I was a professional services consultant for 16 years, specializing in application integration, content management and enterprise search. In the words of old TV commercials, content management and enterprise search went together like chocolate and peanut butter. <!-- more -->
 
-I would help corporations convert paper-based processes into shiny new digital workflows that could easily generate hundreds of thousands of new documents per month.  If there was not a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  
+I would help corporations convert paper-based processes into shiny new digital workflows that could easily generate hundreds of thousands of new documents per month.  If there was't a way to search and locate documents quickly, these systems would be useless. While most content management systems included a built-in search engine, they were often underpowered and incapable of combining content from multiple repositories, especially from different vendors.  
 
 The application integration experience was my secret weapon; by using third-party search engines and developing connectors into each application, we could provide a universal search experience across entire enterprise systems.  
 
 Over the years, I built these types of digital workflow systems for law firms, distribution companies, airlines, manufacturers, hospitals, retailers and more.  The one thing they all had in common was the critical need to search for content.  
 
-And that brings me to my role at Coveo.  As the Platform Evangelist, I act as a bridge between the software and our customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
+And that brings me to my role at Coveo.  As Platform Evangelist, I act as a bridge between the software and our customers, helping them discover, design and implement Coveo Cloud solutions for searching their enterprise systems.
 
 So what should I write about first?  There are many potential Step 1's to empower our customers and partners to build these types of solutions.  I am probably biased by my past experience, but the mechanism for indexing custom content sources seems like a good place to start.  And with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obviously how to accomplish this securely and efficiently.
 
@@ -29,19 +29,25 @@ So what should I write about first?  There are many potential Step 1's to empowe
 
 Indexing a large, on-premise content management system with a cloud-based search engine might be perplexing at first.  Do you push the content to the cloud?  Or does the cloud connect to your network and pull the content?  
 
-With Coveo Cloud, the answer is that you push your content up to the cloud with the Push API.  Whether you need to index one document or a million, you simply upload the files and the metadata to Coveo Cloud for processing.  Unless you want to convert and extract the content from files yourself (which I do not recommend), you should upload the original binary files to Coveo Cloud.  The indexing pipeline will convert the files, process them for indexing, and create previews for fast viewing online.  Note: all documents are encrypted during transmission and at rest.
+Coveo Cloud does have a web crawler that can pull content from web-enabled repositories on-premise, but companies are often reluctant to expose sensitive systems in this way.  Web crawling is also limited in terms of its ability to index metadata and security trimming information that most content management systems need indexed.  
 
-The uploading process is very straight-forward.  Full documentation is available [here](https://developers.coveo.com/display/CloudPlatform/Push+API+Usage+Overview), but I will briefly describe the process:
+To work around those restrictions, Coveo Cloud provides a Push API for uploading content without requiring any external exposure or open ports.  Whether you need to index one document or a million, you simply upload the files, metadata and security information to Coveo Cloud for processing.  Unless you want to convert and extract the content from files yourself (which I do not recommend), you should upload the original binary files to Coveo Cloud.  The indexing pipeline will convert the files, process them for indexing, and create previews for fast viewing online.  Note: all documents are encrypted during transmission and at rest.
 
-1. Create a Push Source in your Organization
- * Note the organization id, source id, and API Key - you will need them to execute the remaining steps
-2. If you are only uploading metadata, small amounts of text or very small files, skip to step 5
-3. Use the API to request a URL for uploading your content
- * You will be given a pre-signed URL for an encrypted AWS S3 bucket and a fileID used to reference it later
-4. Upload your file to the pre-signed URL
-5. Create a JSON document with all metadata, security information (ACLs), text-based content, and base64-compressed binary content if you have a very small file
- * If you uploaded a large binary file to S3, add the fileId given to you in step 3 instead
-6. Upload the JSON document with the Push API
+The uploading process is very straight-forward.  Full documentation is available [here](https://developers.coveo.com/display/CloudPlatform/Push+API+Usage+Overview), but I will briefly describe the process.  Here are the steps for uploading a large, binary file:
+
+1. Create a Push Source in your Organization.
+ * Note the organization id, source id, and API Key - you will need them to execute the remaining steps.
+2. Use the API to request a URL for uploading your content.
+ * You will be given a pre-signed URL for an encrypted AWS S3 bucket and a fileID used to reference it later.
+4. Upload your file to the pre-signed URL.
+5. Create a JSON document with all metadata, security information (ACLs), and the fileId given to you in step 2.
+6. Upload the JSON document with the Push API.
+
+If you are only uploading a small block of text or a small binary document, you can skip the S3 bucket steps and encode the content directly in the JSON Document.  Follow these steps instead:
+
+1. Create a Push Source in your Organization.
+2. Create a JSON document with all metadata, security information. (ACLs), and text-based content or base64-compressed binary content.
+3. Upload the JSON document with the Push API.
 
 Your document, including any metadata and binary content will be indexed and searchable very soon, depending on the size and system load.  Documents are considered unique by their documentID (URI).  You can update or delete an existing document by providing the same documentID (URI) again.
 
@@ -56,7 +62,7 @@ For example, this is the process for uploading a document:
 {% highlight java %}
 
 String organizationId = "...";
-String sourceId = "..."
+String sourceId = "...";
 String accessToken = "..."
 String filePath = "..."
 String docId = "..."
@@ -66,7 +72,7 @@ CoveoPushAPI coveoPushAPI = new CoveoPushAPI(organizationId, sourceId, accessTok
 
 try {
     // *** Set Source Status to REBUILD ***
-    coveoPushAPI.setSourceStatus("REBUILD");
+    coveoPushAPI.setSourceStatus(STATUS_REBUILD);
 
     // *** Get Pre-Signed AWS S3 URL for uploading file ***
     AbstractMap.SimpleEntry<String, String> s3File = coveoPushAPI.getS3File();
@@ -124,7 +130,7 @@ try {
     coveoPushAPI.putDocumentOnCoveo(json, docId);
 
     // *** Set source status back to IDLE
-    coveoPushAPI.setSourceStatus("IDLE");
+    coveoPushAPI.setSourceStatus(STATUS_IDLE);
 
 
 } catch (Exception e) {
@@ -132,16 +138,16 @@ try {
 }
 {% endhighlight %}
 
-### Coming Soon
-
-Uploading and deleting one file a at a time is obviously just the beginning.  In future articles I will discuss batch processing documents, securing documents with Permissions, and pushing user and group information to Identity Providers.
-
 ### A Few Tips
 
-* Don't forget the API Key and other required headers
-* Make note of the various HTTP response codes in the Push API documentation.  Not all of the API calls use the same response codes for success
+* Remember the API Key and other required headers.
+* Make note of the various HTTP response codes in the Push API documentation.  For example, not all of the API calls use the same 2xx response code to indicate success.
 * Files should be zlib compressed before being uploaded to S3.  I could not find a simple way to do this "stream-to-stream" in Java, so I chose to consume the original input stream into a new, compressed temp file, and then open a stream to the new temp file.  This is safer (memory-wise) than trying to compress to an in-memory byte[].
 * Currently, the API gives you a single pre-signed URL for uploading large files to S3.  This precludes the use of the multipart protocol for files larger than 100 MB (which could become an issue when uploading large batches of documents, which I will discuss in a future post).  I am investigating the best way to handle this.  For now, you will have to stream the file to S3 in a single PUT request.
 * In metadata, dates must be in UTC.  If you specify a date without a time, it will be interpreted as midnight *UTC*, which is then converted back to the timezone of your organization, which could be the previous day.
-* You must provide the file extension, as opposed to the mimetype, of binary files.  This can be a bit odd if your file does not have an extension in your content management system.  I have experimented with using Apache Tiki to get the most appropriate file extension for a given mimetype, and it works well if you find your self in that situation.  I have inquired about the ability to specify a mimetype instead of a file extension.
-* Multivalued metadata should be specified as a JSON array, like `[a, b, c]`
+* You must provide the file extension, as opposed to the mimetype, of binary files.  This can be a bit odd if your file does not have an extension in your content management system.  I have experimented with using Apache Tiki to get the most appropriate file extension for a given mimetype, and it works well if you find yourself in that situation.  I have inquired about the ability to specify a mimetype instead of a file extension.
+* Multivalued metadata should be specified as a JSON array, like `[a, b, c]`.
+
+### Coming Soon
+
+Uploading and deleting one file at a time is obviously just the beginning.  In future articles I will discuss batch processing documents, securing documents with Permissions, and pushing user and group information to Identity Providers.
