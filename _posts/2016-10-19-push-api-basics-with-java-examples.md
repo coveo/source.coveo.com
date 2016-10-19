@@ -16,7 +16,7 @@ Hello!  I am excited to write my first post for the Coveo Technology blog. As Pl
 
 The Push API is a must-have feature that allows Coveo Cloud to index on-premise content management systems, including metadata and security permissions. While most content management systems include a built-in search engine, they are often underpowered, incapable of combining content from multiple repositories, and lack advanced features like Coveo's Usage Analytics and machine learning based Reveal.
 
-Indexing your managed content in Coveo Cloud is a great alternative.  But with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obviously how to accomplish this securely and efficiently.
+Indexing your managed content in Coveo Cloud is a great alternative.  But with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obvious how to accomplish this securely and efficiently.
 
 ## A Space Elevator for Your Content (i.e. Push API)
 
