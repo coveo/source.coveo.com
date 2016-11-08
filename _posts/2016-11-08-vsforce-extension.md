@@ -11,7 +11,7 @@ author:
   name: Andre Theriault, Lucien Benie, Etienne Rocheleau
   bio: Salesforce Integration developpers, demo engineer
   image: 
-published: false
+published: true
 ---
 
 [Introduction]
