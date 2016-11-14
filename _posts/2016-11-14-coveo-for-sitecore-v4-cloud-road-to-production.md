@@ -17,7 +17,7 @@ I received several questions in the past few months about environment setup and 
 
 ## What kind of organization do I get when I purchase Coveo for Sitecore?
 
-All Coveo for Sitecore cloud plans offer a Production and Sandbox cloud organization.The owner of the organizations is the recipient of the license. 
+All Coveo for Sitecore cloud plans offer a Production and Sandbox cloud organization. The owner of the organizations is the recipient of the license. 
 The Coveo license team will rarely accept to change the owner for you due to legal and security concerns. This mean that you, or your client, will need to manage access to the organizations.
 Inviting members is a straightforward approach documented [here](https://developers.coveo.com/display/SitecoreV4/Sharing+Your+Customer+License+with+Developers+or+System+Integrators#SharingYourCustomerLicensewithDevelopersorSystemIntegrators-AddMembers) 
 Once a member is assigned as an Administrator, he or she can manage the invites in the future.
