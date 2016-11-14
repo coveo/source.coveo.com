@@ -36,15 +36,15 @@ As a best practice, I would tend to limit my sandbox organization for testing on
 This is also a good strategy when multiple developers are coding on different copies of your instance. Each of them can have its own organization to code and test against.
 The trial organizations are only valid for one month, but creating a new one is one easy step. Simply go to the Sitecore Control Panel and choose Configuration in the Coveo Search Menu. From there you can use the Coveo Cloud Organization feature to connect to Coveo cloud. Once you are redirected back to Sitecore, you will be given the option to create a new organization. This new org will not be configured, but rebuilding your indexes will do the trick.
 
-![Coveo for Sitecore Cloud Configuration]({{ site.baseurl }}/images/CoveoForSitecoreV4Cloud/NewOrg.png)
+![Coveo for Sitecore Cloud Configuration](/images/CoveoForSitecoreV4Cloud/NewOrg.png)
 
 The only limitation of this approach is when it comes to external content. You will lose the configuration of external sources every month, but be aware that you can access the JSON of your source from the Cloud Administration Console. Keeping this JSON and copying it in another organization will re-create the source.
 
-![Coveo Source JSON]({{ site.baseurl }}/images/CoveoForSitecoreV4Cloud/EditJSON.png)
+![Coveo Source JSON](/images/CoveoForSitecoreV4Cloud/EditJSON.png)
 
 In summary, it would look like the following
 
-![Coveo for Sitecore Cloud Environment]({{ site.baseurl }}/images/CoveoForSitecoreV4Cloud/CloudEnv.png)
+![Coveo for Sitecore Cloud Environment](/images/CoveoForSitecoreV4Cloud/CloudEnv.png)
 
 The Diagram above is in a scenario where each developer has access to a unique Sitecore and database farm. If all the developers are sharing the same Sitecore, then a simple Coveo organization will be sufficient. 
 In this case, Coveo for Sitecore needs to be configured according [the scaling guide](https://developers.coveo.com/display/SitecoreV4/Installing+Coveo+for+Sitecore+in+a+CM+or+CD+Configuration).
