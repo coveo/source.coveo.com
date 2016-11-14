@@ -13,7 +13,7 @@ Version 4 was released this spring and allowed Coveo for Sitecore’s users to m
 Integrating Coveo for Sitecore to your Sitecore solution is now easier than ever, you can download the package directly on our [site](http://www.coveo.com/en/solutions/coveo-for-sitecore/download) and follow the installation wizard in Sitecore.
 <!-- more -->
 This is great to try the product with a trial organization, but how do I manage a paid license?
-I received several questions in the past few months about environment setup and license management, so I will try to cover all the points to have a smooth road from development to production.
+I received several questions in the past few months about environment setup and license management, so I will try to clarify in this post.
 
 ## What do I get when I buy?
 
