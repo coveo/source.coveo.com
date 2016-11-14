@@ -15,7 +15,7 @@ Integrating Coveo for Sitecore to your Sitecore solution is now easier than ever
 This is great to try the product with a trial organization, but how do I manage a paid license?
 I received several questions in the past few months about environment setup and license management, so I will try to clarify in this post.
 
-## What do I get when I buy?
+## What kind of organization do I get when I purchase Coveo for Sitecore?
 
 All Coveo for Sitecore cloud plans offer a Production and Sandbox cloud organization.The owner of the organizations is the recipient of the license. 
 The Coveo license team will rarely accept to change the owner for you due to legal and security concerns. This mean that you, or your client, will need to manage access to the organizations.
