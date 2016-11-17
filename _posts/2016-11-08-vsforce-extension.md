@@ -42,7 +42,7 @@ Other features were also added to make it easier for us specifically to work wit
 
 We have also found it very useful to directly activate and fetch the logs from your salesforce organization to be able to parse through them locally. Salesforce normally requires you to manually activate the logs if you want to be able to view system information while executing server-side code. But with this feature we are able to active the logs for your user and fetch them after the operation you are testing has completed.
 
-We can also executre SOQL queries directly from local code by selecting the query and right clicking -> execute. Or we can open a text input by calling the command `vsforce: Execute SOQL` from the command palette.
+We can also executre SOQL queries directly from the conext menu locally by selecting a query and executing the command. Or we can open a text input by calling the command `vsforce: Execute SOQL` from the command palette. The results will be presented in an easy to read format in the editor.
 
 These were normally operations where we had to open salesforce to do and we felt they were slowing us down.
  
