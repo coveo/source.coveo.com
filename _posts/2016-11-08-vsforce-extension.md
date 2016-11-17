@@ -37,8 +37,14 @@ To that auto-complete feature we also wanted to add syntax highlighting to also 
 
 Another operation necessary to local development with Salesforce is the ability to deploy/retrieve packaged or single file(s). To do this we respect the standard format of a Salesforce workspace with the different files separated by type in folders and a `package.xml` at the root. When calling a deploy/retrieve operation, you will be prompted to choose which `package.xml` to use if more than one was found in your current workspace. Then the extension will send a deploy or a retrieve request to Salesforce and handle the response. Once completed, the user can choose to view the output of the operation and eventual errors. Errors within a file will be displayed in the Problems section of Vscode with a link to the specific line if available. We are still working on the deploy single file operation.
 
-#### Execute SOQL query, fetch logs and others...
-[TODO]
+#### Diff from server, fetch logs and others...
+Other features were also added to make it easier for us specifically to work with our current products. Namely the ability to fetch the current version of a file from Salesforce and to use Vscode built-in tool to view a diff with the local file. This feature is meant to ease a little bit the problem that Salesforce offers no versionning mechanism on code files. It is very useful when more than one person is working on the same file or component. Eventually we could be able to add a check before a single file deploy to validate that you would not overwrite a more recent version from Salesforce.
+
+We have also found it very useful to directly activate and fetch the logs from your salesforce organization to be able to parse through them locally. Salesforce normally requires you to manually activate the logs if you want to be able to view system information while executing server-side code. But with this feature we are able to active the logs for your user and fetch them after the operation you are testing has completed.
+
+We can also executre SOQL queries directly from local code by selecting the query and right clicking -> execute. Or we can open a text input by calling the command `vsforce: Execute SOQL` from the command palette.
+
+These were normally operations where we had to open salesforce to do and we felt they were slowing us down.
  
 ### How it works
 
