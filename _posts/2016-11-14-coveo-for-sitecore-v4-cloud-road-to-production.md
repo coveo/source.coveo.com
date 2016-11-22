@@ -46,7 +46,7 @@ In summary, it would look like the following
 
 ![Coveo for Sitecore Cloud Environment](/images/CoveoForSitecoreV4Cloud/CloudEnv.PNG)
 
-The diagram above is in a scenario where each developer has access to a unique Sitecore and database farm. If all the developers are sharing the same Sitecore, then a simple Coveo organization will be sufficient. 
+The diagram above is in a scenario where each developer has access to a unique Sitecore and database farm. If all the developers are sharing the same Sitecore, then a single Coveo organization will be sufficient. 
 In this case, Coveo for Sitecore needs to be configured according to [the Scaling Guide](https://developers.coveo.com/display/SitecoreV4/Coveo+for+Sitecore+Scaling+Guide).
 I hope this answers a few questions about how to get started with Coveo for Sitecore cloud.
 
