@@ -12,52 +12,55 @@ author:
 
 
 One of my responsibilities, as a client executive for our Coveo for Sitecore user-base, is to help our clients optimize the value of their Coveo deployment, by leveraging all the features offered by our platform. 
-I have unfortunately seen too many examples of customers exploiting only the search mechanisms of Coveo, passing by the opportunity to ramp up their experience from advance Enterprise Search to actual relevance and insight provider.  A few ingredients can act as catalysts for this transition, among others the Usage analytics platform and our machine-learning solution, Reveal. This blog posts relates the story of the beginning of this journey of a real Coveo for Sitecore Cloud client, which we will conveniently call client X.
+I have unfortunately seen too many examples of customers exploiting only the search mechanisms of Coveo, passing by the opportunity to ramp up their experience from advance Enterprise Search to actual relevance and insight provider. A few ingredients can act as catalysts for this transition, among others the Usage analytics platform and our machine-learning solution, Reveal. This blog post relates the story of a real Coveo for Sitecore Cloud client, which we will conveniently call client X, starting his journey towards automated, highly relevant content.
 
 <!-- more -->
 
-After the completition of their implementation project, client X had several questions on what to do next, namely with the UA platform and Reveal. Here are some of the questions that were asked throughout our discussions. 
+After the completion of their implementation project, client X had several questions on what to do next, namely with the UA platform and Reveal. Here are some of the questions that were asked throughout our discussions. 
 
 ## How can I get started with the Usage Analytics?
 	
-First of all, it is important to know that all our Coveo clients can benefit from the Usage Analytics platform, whether their index is hosted locally or in the Cloud. The only thing to consider is the recency of their environment, as some dated installations of Coveo may require an upgrade in order to be compatible with the platform. The first step would be to check with the Support desk or your assigned Client Executive if a Cloud organisation was generated to host the data gathered by the platform. Once completed, simply validate that the data is indeed crawled in your live environment. Accessing the platform after a few days should already indicate user activity after only 15 minutes. 
-The reports section should normally contains a Summary report, including all the basic information on the queries performed through Coveo, results presented, click-through, click rank, etc.
+It is important to know that all our Coveo clients can benefit from the Usage Analytics platform, whether their index is hosted locally or in the Cloud. The only thing to consider is the recency of their environment, as some dated installations of Coveo may require an upgrade in order to be compatible with the platform. 
+The first step would be to check with the Support desk or your assigned Client Executive if a Cloud organization was generated to host the data gathered by the platform. Once completed, simply validate that the data is indeed crawled in your live environment. Accessing the platform after a few days should already indicate user activity after only 15 minutes. 
+The reports section should normally contain a Summary report, including all the basic information on the queries performed through Coveo, results presented, click-through, click rank, etc.
 
 ![Reports Menu](/images/TamingUA/Reports.png)
 ![Summary Dashboard](/images/TamingUA/SummaryDashboard.png)
  
 ## Can you clarify what all these metrics refer to?
 
-Coveo provides a lot of information in the UA platform, but mastering the data presented requires an understanding on certain concepts which may sometime seem fuzzy at first. Here is a quick guide explaining some of these concepts: 
-* Click through : the amount of queries resulting in a click on a result
-* Click rank : the rank of the result clicked by the user
-* Queries without results : queries performed which didn’t returned any result
-* Queries without clicks : queries performed which didn’t result in a click on a result
-* Content gaps : a knowledge gap between the information requested by a pool of user and the documentation available and findable in the index.
-* Queries with low relevance : a combination of the number of times the queries was performed and its average result in terms of click-through and click-rank. Basically a list providing the analyst his priorities in terms of content management. A number between 0 and 1 is assigned to every low relevance query, where 0 is the lowest relevance and 1 represents perfect relevance. 
+Coveo provides a lot of information in the UA platform, but mastering the data presented requires an understanding of certain concepts which may sometime seem fuzzy at first. Here is a quick guide explaining some of these concepts: 
+* Click through: the amount of queries resulting in a click on a result
+* Click rank: the rank of the result clicked by the user
+* Queries without results: queries performed which didn’t returned any result
+* Queries without clicks: queries performed which didn’t result in a click on a result
+* Content gaps: a knowledge gap between the information requested by a pool of user and the documentation available and findable in the index.
+* Queries with low relevance : a combination of the number of times the queries was performed and its average result in terms of click-through and click-rank. Basically a list providing an analyst his priorities in terms of content management. A number between 0 and 1 is assigned to every low relevance query, where 0 is the lowest relevance and 1 represents perfect relevance. 
 
 ![Content Gaps](/images/TamingUA/ContentGaps.png)
 
 Obviously, a lot more information is made available to anyone managing Usage analytics, as all the dashboards and tables provided are modular, customizable to each client’s needs. You may even use custom events for maximum personalization. 
-After a 1 hour call with client X, our team basically presented a tour of the platform, explaining the purpose of each dashboard and the top indicators to look for. The reality is that after explaining the concepts detailed above, the autonomy of the client had already drastically improved compared his level of comfort before the call.
+After a 1 hour call with client X, our team presented a tour of the platform, explaining the purpose of each dashboard and the top indicators to look for. The reality is that after explaining the concepts detailed above, the autonomy of the client had already drastically improved compared to their level of comfort before the call.
 
 ## Is Reveal enabled, and if so what is its impact so far?
 
-Reveal is always a big value driver for any discussion with our clients, especially with the Marketing folks. In a nutshell, when presented with a machine-learning solution able to understand the usage analytics data and automatically modify the relevance of several search functions without any human input, the positive impact Reveal can have on content management and overall enhancement of the user experience goes without saying. That being said, Client X was still uncertain of the actual Reveal had in HIS environment, understandably so. Reveal doesn’t drastically change the output of the queries performed upon activation, at least not immediately. See, Reveal has to feed on the data gathered by the usage analytics platform, and detect trends before being able to have a positive impact on the search output. We estimate at approximately 3 months (variable depending on the volume of activity with Coveo) the time required for Reveal to have an optimal impact on query suggestion, result relevance and item recommendation. Nonetheless, Client X’s question remained…
+Reveal is always a big value driver for any discussion with our clients, especially with the Marketing folks. In a nutshell, when presented with a machine-learning solution able to understand the usage analytics data and automatically modify the relevance of several search functions without any human input, the positive impact Reveal can have on content management and overall enhancement of the user experience goes without saying. 
+That being said, Client X was still uncertain of the actual Reveal had in THEIR environment, understandably so. Reveal doesn’t drastically change the output of the queries performed upon activation, at least not immediately. Reveal has to feed on the data gathered by the usage analytics platform, and detect trends before being able to have a positive impact on the search output. We estimate at approximately 3 months (variable depending on the volume of activity with Coveo) the time required for Reveal to have an optimal impact on query suggestion, result relevance, and item recommendation. Nonetheless, Client X’s question remained…
 
-The first step to validate the impact of Reveal is to confirm the activation of this feature through the creation of a Reveal model in a Pipeline. This step is fairly simple, as one can confirm in a glimpse if a model using Reveal is enabled or not, as visible on image A and B. Simply go under the Pipeline section of the Search tab, and click on whatever pipelines are currently used to see if Reveal is activated or not, and which features it powers.
+The first step to validate the impact of Reveal is to confirm the activation of this feature through the creation of a Reveal model in a Pipeline. This step is fairly simple, as one can confirm in a glimpse if a model using Reveal is enabled or not, as visible on image A and B. Simply go under the **Pipeline** section of the **Search** tab, and click on whichever pipeline is currently used to see if Reveal is activated or not, and which features it powers.
 
 ![Pipeline with Reveal](/images/TamingUA/PipelineWithReveal.png)
 
-The second question is however a bit trickier, not because of the difficulty of the analysis, but because it does require a bit of testing. Analyzing the impact of Reveal on your Search experience requires the usage of a feature called A/B testing. This functions allows a Coveo administrator to set up two separate pipelines, with a different set of parameters, to experiment what works best. Some may want to modify the layout of Search to see the impact this has in terms of usage, others might want to see if the boosting rules set in place actually enhance or deteriorate the search experience. In this case, what interests us is to compare what kind of impact Reveal has on click-through, click rank and overall relevance of the results.
+The second question is however a bit trickier, not because of the difficulty of the analysis, but because it does require a bit of testing. Analyzing the impact of Reveal on your Search experience requires the usage of a feature called A/B testing. This function allows a Coveo administrator to set up two separate pipelines, with a different set of parameters, to experiment what works best.
+Some may want to use different Thesaurus, others might want to see if the boosting rules set in place actually enhance or deteriorate the search experience. In this case, what interests us is to compare what kind of impact Reveal has on click-through, click rank, and overall relevance of the results.
  
 ![A/B Testing Menu](/images/TamingUA/ABTestingMenu.png)
 ![A/B Testing Active](/images/TamingUA/ABTestingActive.png)
 
-To have a clear representation of this impact, we suggested our client X to set up two pipelines, one with Reveal, one without, and compare the results after a bit more than 2 weeks of test. It is also interesting to point out that the client could decide the proportion of traffic going on each pipeline. After finalising the dashboards helping us visualize this experiment, the results were clear: better average click rank (almost 1 point difference), better click through (almost 8% difference) and fewer content gaps for the pipeline using the Reveal model. Needless to say, we recommended sending 100% of the traffic on the pipeline using Reveal as soon as possible. 
+To have a clear representation of this impact, we suggested our client X to set up two pipelines, one with Reveal, one without, and compare the results after a bit more than two weeks of test. It is also interesting to point out that the client could decide the proportion of traffic going on each pipeline. After finalizing the dashboards helping us visualize this experiment, the results were clear: better average click rank (almost 1 point difference), better click through (almost 8% difference), and fewer content gaps for the pipeline using the Reveal model. Needless to say, we recommended sending 100% of the traffic on the pipeline using Reveal as soon as possible. 
 
 ## In conclusion…
 
-Search isn’t an appliance anymore, it’s a two-way communication channel between you and your users. Being able to provide relevant content is already a big step towards an integrated search experience, but being able to tune this experience based on user behavior is quickly becoming a key value driver for Coveo. The Usage analytics Platform is definitely a great way to start your journey towards relevance, and Reveal is the key towards the automation of this process.
+Search isn’t an appliance anymore: it’s a two-way communication channel between you and your users. Being able to provide relevant content is already a big step towards an integrated search experience, but being able to tune this experience based on user behavior is quickly becoming a key value driver for Coveo. The Usage Analytics Platform is definitely a great way to start your journey towards relevance, and Reveal is the key towards the automation of this process.
 
 Communicate with us to learn more on how we can help you get started on this thrilling path!
