@@ -27,7 +27,7 @@ First and foremost, to make things easier to develop, enable the Debug Mode for 
 Second, install the Salesforce Lightning Inspector and the Salesforce Developer Tool Suite.
 The Salesforce Lightning Inspector adds a tab in your Chrome developer tools. Simply browse to a Lightning page, and you will see the Lightning tab appear.
 
-![image](/images/posts/debugging-salesforce/lightning-tab.jpg)
+![The lightning extension](/images/posts/debugging-salesforce/lightning-tab.jpg)
 
 The Lightning inspector gives you information about the state of a page/component with the current attribute’s values, information about the performance, a transactions log, an event log, and the current storage.
 
