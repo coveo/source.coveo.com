@@ -31,7 +31,7 @@ The reports section should normally contain a Summary report, including all the 
 
 Coveo provides a lot of information in the UA platform, but mastering the data presented requires an understanding of certain concepts which may seem fuzzy at first. Here is a quick guide explaining some of these concepts: 
 * Click-through: number of queries resulting in a click on a result
-* Click rank: the rank of the result clicked by the user. An example for this could be that a user clicked on the second result presented for after a specific query, which would mean that the click rank for this result is 2.
+* Click rank: the rank of the result clicked by the user. An example for this could be that a user clicked on the second result presented for a specific query, which would mean that the click rank for this result is 2.
 * Queries without results: queries performed which didn’t returned any result
 * Queries without clicks: queries performed which didn’t result in a click on a result
 * Content gaps: a knowledge gap between the information requested by a pool of user and the documentation available and findable in the index.
@@ -45,7 +45,7 @@ After a 1 hour call with client X, our team presented a tour of the platform, ex
 ## Is Reveal enabled, and if so what is its impact so far?
 
 Reveal is always a big value driver for any discussion with our clients, especially with the Marketing folks. In a nutshell, when presented with a machine-learning solution able to understand the Usage Analytics data and automatically modify the relevance of several search functions without any human input, the positive impact Reveal can have on content management and overall enhancement of the user experience goes without saying. 
-That being said, Client X was still uncertain of the actual impact Reveal had in THEIR environment, understandably so. Reveal doesn’t drastically change the output of the queries performed upon activation, at least not immediately. Reveal feeds on the data gathered by the Usage Analytics platform, and detects trends before being able to have a positive impact on the search output. We estimate at approximately 3 months (variable depending on the volume of activity with Coveo) the time required for Reveal to have an optimal impact on query suggestion, result relevance, and item recommendation. Nonetheless, Client X’s question remained. 
+That being said, Client X was still uncertain of the actual impact Reveal had in THEIR environment, understandably so. Reveal doesn’t drastically change the output of the queries performed upon activation, at least not immediately. Reveal has to feed on the data gathered by the usage analytics platform, as it needs to detect trends before having a positive impact on the search output. We estimate at approximately 3 months the time required for Reveal to have an optimal impact on query suggestion, result relevance, and item recommendation (variable depending on the volume of activity with Coveo). Nonetheless, Client X’s question remained. 
 
 The first step to validate the impact of Reveal is to confirm the activation of this feature through the creation of a Reveal model in a Pipeline. This step is fairly simple, as one can confirm in a glimpse if a model using Reveal is enabled or not, as visible on image A and B. Simply go under the **Pipeline** section of the **Search** tab, and click on whichever pipeline is currently used to see if Reveal is activated or not, and which features it powers.
 
