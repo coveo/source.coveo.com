@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Taming the Coveo Usage analytics platform and Coveo Reveal"
+title: "Taming the Coveo Usage Analytics Platform and Coveo Reveal"
 tags: [Usage Analytics, Cloud, Reveal]
 
 author:
