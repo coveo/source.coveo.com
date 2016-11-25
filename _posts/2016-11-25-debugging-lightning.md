@@ -19,7 +19,7 @@ For almost a year, Coveo has been offering Lightning components in Salesforce as
 
 First and foremost, to make things easier to develop, enable the Debug Mode for Lightning Components. This helps you understand what is happening, and allows Chrome to load the debugger when needed; minified code can be difficult to load and can make Chrome lag.
 
-![Enable lightning debug mode](/images/posts/debugging-salesforce/enable-lightning-debug.jpg)
+![Enable lightning debug mode]({{"/images/posts/debugging-salesforce/enable-lightning-debug.jpg" | relative_url }})
 
 ## Install the Salesforce Lightning Inspector
 
