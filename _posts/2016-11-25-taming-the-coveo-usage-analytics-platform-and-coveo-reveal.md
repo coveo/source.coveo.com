@@ -57,7 +57,7 @@ Some may want to use different Thesaurus, others might want to see if the boosti
 ![A/B Testing Menu](/images/TamingUA/ABTestingMenu.png)
 ![A/B Testing Active](/images/TamingUA/ABTestingActive.png)
 
-To have a clear representation of this impact, we suggested our client X to set up two pipelines, one with Reveal, one without, and compare the results after a bit more than two weeks of test. It is also interesting to point out that the client could decide the proportion of traffic going on each pipeline. After finalizing the dashboards helping us visualize this experiment, the results were clear: better average click rank (almost 1 point difference), better click through (almost 8% difference), and fewer content gaps for the pipeline using the Reveal model. Needless to say, we recommended sending 100% of the traffic on the pipeline using Reveal as soon as possible. 
+To have a clear representation of this impact, we suggested our client X to set up two pipelines, one with Reveal, one without, and compare the results after a bit more than two weeks of test. It is also interesting to point out that the client could decide the proportion of traffic going on each pipeline. After finalizing the dashboards helping us visualize this experiment, the results were clear: better average click rank (better average click rank by 1), better click through (8% difference), and fewer content gaps for the pipeline using the Reveal model. Needless to say, we recommended sending 100% of the traffic on the pipeline using Reveal as soon as possible. 
 
 ## In conclusion…
 
