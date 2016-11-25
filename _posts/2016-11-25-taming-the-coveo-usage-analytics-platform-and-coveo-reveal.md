@@ -35,7 +35,7 @@ Coveo provides a lot of information in the UA platform, but mastering the data p
 * Queries without results: queries performed which didn’t returned any result
 * Queries without clicks: queries performed which didn’t result in a click on a result
 * Content gaps: a knowledge gap between the information requested by a pool of user and the documentation available and findable in the index.
-* Queries with low relevance : a combination of the number of times the queries was performed and its average result in terms of click-through and click-rank. Basically a list providing an analyst his priorities in terms of content management. A number between 0 and 1 is assigned to every low relevance query, where 0 is the lowest relevance and 1 represents perfect relevance. 
+* Queries with low relevance: a combination of the number of times the queries was performed and its average result in terms of click-through and click-rank. Basically a list providing analysts their priorities in terms of content management. A number between 0 and 1 is assigned to every low relevance query, where 0 is the lowest relevance and 1 represents perfect relevance. 
 
 ![Content Gaps](/images/TamingUA/ContentGaps.png)
 
