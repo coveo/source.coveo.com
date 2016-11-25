@@ -63,7 +63,7 @@ After the first two evaluations, not a single team had points! The Coveo team wa
 
 We were still hoping for some teams to make points on the third evaluation as we were monitoring the teams testing their algorithms with the test data provided. But after the third round when no one scored a single point we had to readjust the contest.
 
-We gave the source code of the GLORIOUS MAPREDUCER for the first evaluation round to everyone. We also decided to rerun the first three rounds in place of the fourth one. We finally got a team scoring points on our super Mario Kart dashboard. You can see it [here](https://www.youtube.com/watch?v=PGXPVTMHcGs#t=260)[.](https://www.youtube.com/watch?v=PGXPVTMHcGs#t=260)
+We gave the source code of the GLORIOUS MAPREDUCER for the first evaluation round to everyone. We also decided to rerun the first three rounds in place of the fourth one. We finally got a team scoring points on our super Mario Kart dashboard. You can see it [here](https://www.youtube.com/watch?v=oZweqCiaWCc#t=260)[.](https://www.youtube.com/watch?v=oZweqCiaWCc#t=260)
 
 I admit it, the contest was too complex this year and I am certainly a bit responsible for this.
 
