@@ -12,7 +12,7 @@ author:
 
 
 One of my responsibilities, as a client executive for our Coveo for Sitecore user-base, is to help our clients optimize the value of their Coveo deployment, by leveraging all the features offered by our platform. 
-I have unfortunately seen too many examples of customers exploiting only the search mechanisms of Coveo, passing by the opportunity to ramp up their experience from advance Enterprise Search to actual relevance and insight provider. A few ingredients can act as catalysts for this transition, among others the Usage analytics platform and our machine-learning solution, Reveal. This blog post relates the story of a real Coveo for Sitecore Cloud client, which we will conveniently call client X, starting his journey towards automated, highly relevant content.
+I have unfortunately seen too many examples of customers exploiting only the search mechanisms of Coveo, passing by the opportunity to ramp up their experience from advance Enterprise Search to actual relevance and insight provider. A few ingredients can act as catalysts for this transition, among others the Usage analytics platform and our machine-learning solution, Reveal. This blog post relates the story of a real Coveo for Sitecore Cloud client, which we will conveniently call client X, starting their journey towards automated, highly relevant content.
 
 <!-- more -->
 
@@ -52,7 +52,7 @@ The first step to validate the impact of Reveal is to confirm the activation of 
 ![Pipeline with Reveal](/images/TamingUA/PipelineWithReveal.png)
 
 The second question is however a bit trickier, not because of the difficulty of the analysis, but because it does require a bit of testing. Analyzing the impact of Reveal on your Search experience requires the usage of a feature called A/B testing. This function allows a Coveo administrator to set up two separate pipelines, with a different set of parameters, to experiment what works best.
-Some may want to use different Thesaurus, others might want to see if the boosting rules set in place actually enhance or deteriorate the search experience. In this case, what interests us is to compare what kind of impact Reveal has on click-through, click rank, and overall relevance of the results.
+Some may want to use different thesauri, others might want to see if the boosting rules set in place actually enhance or deteriorate the search experience. In this case, what interests us is to compare what kind of impact Reveal has on click-through, click rank, and overall relevance of the results.
  
 ![A/B Testing Menu](/images/TamingUA/ABTestingMenu.png)
 ![A/B Testing Active](/images/TamingUA/ABTestingActive.png)
