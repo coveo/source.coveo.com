@@ -19,7 +19,7 @@ For almost a year, Coveo has been offering Lightning components in Salesforce as
 
 First and foremost, to make things easier to develop, enable the Debug Mode for Lightning Components. This helps you understand what is happening, and allows Chrome to load the debugger when needed; minified code can be difficult to load and can make Chrome lag.
 
-![image](/images/posts/debugging-salesforce/enable-lightning-debug.jpg)
+![Enable lightning debug mode](/images/posts/debugging-salesforce/enable-lightning-debug.jpg)
 
 ## Install the Salesforce Lightning Inspector
 
@@ -34,7 +34,7 @@ The Lightning inspector gives you information about the state of a page/componen
 
 If you have the `@AuraEnabled` apex method, you need to check the logs. This is where the Salesforce Developer Tool suite comes in handy. The trick is to open the extension in the Salesforce Administration tool and click New Window. Set up your user like you would with regular Salesforce logs; you can now start having some fun with your community.
 
-![image](/images/posts/debugging-salesforce/concrete-io.png)
+![Retrieving logs](/images/posts/debugging-salesforce/concrete-io.png)
 
 
 From there, you’ll be able to see the logs for the Aura Enabled method in real time. Simply add `System.debug(‘foobar’)` in your apex method to get the information you need.
@@ -48,12 +48,12 @@ While this always works, it can be slightly cumbersome. There are occasions when
 For instance, let’s say that you are trying to debug your Lightning component, and get a big red popup message with a poorly written error message.
 First, in the Chrome Developer Tools, under the Sources tab, enable the `Pause on exceptions` button. This pauses the code on the `Aura` exception thrown when there are exceptions in your components.
 
-![image](/images/posts/debugging-salesforce/pause-on-erros-lightning.jpg)
+![Pause on errors](/images/posts/debugging-salesforce/pause-on-erros-lightning.jpg)
 
 
 You can then try to reproduce the issue while the developer tools are open. With the current scope, you’ll get an `AuraError` with a lot more information about the issue. 
 
-![image](/images/posts/debugging-salesforce/stack-trace.png)
+![Check the stack trace](/images/posts/debugging-salesforce/stack-trace.png)
 
 Most of the time, the stack trace can help you figure out which part of your application is problematic. Using the `Go to line` shortcut (`CTRL+G`), you can easily navigate to the faulty code. If the code isn’t evaluated on runtime, you can also easily add a breakpoint in the source code.
 
