@@ -30,6 +30,7 @@ The reports section should normally contain a Summary report, including all the 
 ## Can you clarify what all these metrics refer to?
 
 Coveo provides a lot of information in the UA platform, but mastering the data presented requires an understanding of certain concepts which may seem fuzzy at first. Here is a quick guide explaining some of these concepts: 
+
 * Click-through: number of queries resulting in a click on a result
 * Click rank: the rank of the result clicked by the user. An example for this could be that a user clicked on the second result presented for a specific query, which would mean that the click rank for this result is 2.
 * Queries without results: queries performed which didn’t returned any result
