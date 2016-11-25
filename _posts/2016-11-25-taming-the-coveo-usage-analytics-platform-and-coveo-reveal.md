@@ -7,7 +7,7 @@ tags: [Usage Analytics, Cloud, Reveal]
 author:
   name: Jean Christophe Dumont
   bio:  Coveo for Sitecore Client Executive
-  image: jcdumont.png
+  image: jcdumont.jpg
 ---
 
 
