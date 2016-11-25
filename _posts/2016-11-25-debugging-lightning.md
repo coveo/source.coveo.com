@@ -6,7 +6,7 @@ tags: "salesforce debug lightning locker service community aura"
 
 author:
   name: Marc-Antoine Veilleux
-  bio: Team Lead, Salesforce
+  bio: Coveo for Salesforce Team Lead
   image: maveilleux.jpg
 ---
 
