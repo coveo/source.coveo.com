@@ -14,14 +14,14 @@ For almost a year, Coveo has been offering Lightning components in Salesforce as
 
 <!-- more -->
 
-##Enable the Debug Mode
+## Enable the Debug Mode
 
 
 First and foremost, to make things easier to develop, enable the Debug Mode for Lightning Components. This helps you understand what is happening, and allows Chrome to load the debugger when needed; minified code can be difficult to load and can make Chrome lag.
 
 ![image](/images/posts/debugging-salesforce/enable-lightning-debug.jpg)
 
-##Install the Salesforce Lightning Inspector
+## Install the Salesforce Lightning Inspector
 
 
 Second, install the Salesforce Lightning Inspector and the Salesforce Developer Tool Suite.
@@ -39,7 +39,7 @@ If you have the `@AuraEnabled` apex method, you need to check the logs. This is 
 
 From there, you’ll be able to see the logs for the Aura Enabled method in real time. Simply add `System.debug(‘foobar’)` in your apex method to get the information you need.
 
-##Debugging JavaScript Errors
+## Debugging JavaScript Errors
 
 In your JavaScript code (Renderer, Controller, or Helper), you can start a debugging session using the JavaScript `debugger` keyword. Simply add it to your code at the place you want to debug; Chrome will stop running the code when hitting the keyword.
 
@@ -57,7 +57,7 @@ You can then try to reproduce the issue while the developer tools are open. With
 
 Most of the time, the stack trace can help you figure out which part of your application is problematic. Using the `Go to line` shortcut (`CTRL+G`), you can easily navigate to the faulty code. If the code isn’t evaluated on runtime, you can also easily add a breakpoint in the source code.
 
-##Using Debug Logs
+## Using Debug Logs
 When all else fails, you can use the old debug logs. In your code, simply enter `console.log(‘foobar’)` to enter text in the Chrome console when the code is run.
 I recommend having a `debug` attribute on the Lightning component that activates error logging. Because Lightning isn’t easy to debug, you should really consider having tracing logs in as many places as possible in your JavaScript methods.
 
