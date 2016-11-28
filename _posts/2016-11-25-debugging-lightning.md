@@ -32,7 +32,7 @@ The Salesforce Lightning Inspector adds a tab in your Chrome developer tools. Si
 The Lightning inspector gives you information about the state of a page/component with the current attribute’s values, information about the performance, a transactions log, an event log, and the current storage.
 
 
-If you have the `@AuraEnabled` apex method, you need to check the logs. This is where the Salesforce Developer Tool suite comes in handy. The trick is to open the extension in the Salesforce Administration tool and click New Window. Set up your user like you would with regular Salesforce logs; you can now start having some fun with your community.
+If you have the [`@AuraEnabled` apex method](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_annotation_AuraEnabled.htm), you need to check the logs. This is where the Salesforce Developer Tool suite comes in handy. The trick is to open the extension in the Salesforce Administration tool and click New Window. Set up your user like you would with regular Salesforce logs; you can now start having some fun with your community.
 
 ![Retrieving logs]({{"/images/posts/debugging-salesforce/concrete-io.png" | relative_url }})
 
