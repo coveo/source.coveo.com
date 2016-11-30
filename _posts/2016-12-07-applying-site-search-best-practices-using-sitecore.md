@@ -28,12 +28,12 @@ Be aware that in order to work, you will also need to add the Search Box View Re
 
 For web form, the same components are sublayouts tied to .ascx files.
 
-1. Make it prominent
+### 1. Make it prominent
 
 You will want to insert the search box in the header or your solution and use the same header accross the site.
 Since both the search box and it's resources are components, you can use simple placeholder's logic and add the rendering manually or reference the rendering through code.
 
-### Using a placeholder
+#### Using a placeholder
 
 The placeholder would look like this:
 
@@ -49,7 +49,7 @@ You can then add Coveo Search Box renderings using the presentation details of e
 As mentioned earlier, you will need both the Search Box View Resources and the Search Box View rendering. The resources need to be added before the search box otherwise the component will not load.
 For more information on this subject, read this [article](https://developers.coveo.com/display/SitecoreV4/Inserting+a+Coveo+Search+Box+to+Your+Header).
 
-### Using a reference to the rendering
+#### Using a reference to the rendering
 
 The drawback of manually adding the component is, as the name states, a manual method. 
 You could instead directly reference the rendering in your header and avoid all the trouble.
@@ -77,7 +77,7 @@ The only mandatory field to change is the Search page item, simply point it to y
 
 ![Parameters Item](/images/SiteSearchBestPractices/parametersitem.png)
 
-2. Make it mobile
+### 2. Make it mobile
 
 Coveo's Search Box component is mobile friendly out of the box. You could still provide a few adjustments based on your environment.
 Coveo for Sitecore's css can be found in the Coveo/css folder on the website root folder, but *don't* change anything there. This folder is completely replaced when you upgrade the solution, so your changes will be lost.
@@ -85,16 +85,16 @@ Instead, create your own CSS files with your own styling.
 
 If you feel bold and want to change the product directly, simply [clone our repo](https://github.com/coveo/search-ui) and create a pull request.
 
-3. Keep it simple
+### 3. Keep it simple
 
 This is one that is often forgotten. Having a collapsable/expandable search box looks great, but make sure users can find it!
 Rule of thumb, if a user starts typing without selecting anything on the page, the search box should be the one with the focus. If the search box is collapsed, then expend it on any keystrokes.
 
-### Label it
+#### Label it
 
 As mentioned in best practice 1, the search box view rendering comes with a set of parameters, one of them is the	"Searchbox placeholder text". Use it to add a watermark in your search box.
 
-### Only one search box per page
+#### Only one search box per page
 
 First of all, if you followed my rendering reference approach in best practice 1 and created a search result page with the Coveo Search View Resources and Coveo Search View renderings, then your search result page will most likely break. 
 This is normal since you are already including the resources for the search box in the header, and you are also adding the search interfaces resources for the result page.
@@ -151,28 +151,28 @@ function setSearchboxPlaceholderText() {
     Coveo.$('#@Model.SearchboxId').find('input.CoveoQueryBox').attr('placeholder', '@Model.SearchboxPlaceholderText');
 } 
 
-    Coveo.$(function () {
-        if (!isOnSearchPage()) {
-            if (typeof(CoveoForSitecore) !== 'undefined') {
-                var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
-                
-                CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-                Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
-            } else {
-                Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
-            }
-            setSearchboxPlaceholderText();
-        } else {
-            var searchBoxElement = Coveo.$('#@Model.SearchboxId');
-            var searchOptionsForSearchBox = {
-                externalComponents: [searchBoxElement]
-            };
+Coveo.$(function () {
+    if (!isOnSearchPage()) {
+        if (typeof(CoveoForSitecore) !== 'undefined') {
+            var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+            
             CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-            Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
-                setSearchboxPlaceholderText();
-            });
+            Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
+        } else {
+            Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
         }
-    });
+        setSearchboxPlaceholderText();
+    } else {
+        var searchBoxElement = Coveo.$('#@Model.SearchboxId');
+        var searchOptionsForSearchBox = {
+            externalComponents: [searchBoxElement]
+        };
+        CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+        Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
+            setSearchboxPlaceholderText();
+        });
+    }
+});
 
 ```
 
