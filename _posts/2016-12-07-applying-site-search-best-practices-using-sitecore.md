@@ -38,7 +38,9 @@ Since both the search box and it's resources are components, you can use simple 
 The placeholder would look like this:
 
 {% highlight javascript %}
+
 @Html.Sitecore().Placeholder("search-box")
+
 {% endhighlight %}
 
 You can then add Coveo Search Box renderings using the presentation details of each items or of the standard value item of the template:
@@ -57,10 +59,12 @@ This is my favorite approach since you only need to set it in the header and you
 In your header, instead of adding a placeholder, you would add the following references:
 
 {% highlight javascript %}
+
 <!-- The resources first -->
 @Html.Sitecore().Rendering("{id-of-the-search-box-resources}")
 <!-- Then the search box item -->
 @Html.Sitecore().Rendering("{id-of-the-search-box-view-rendering}", new { DataSource = "{parameters-item-of-the-search-box-view}" })
+
 {% endhighlight %}
 
 Now you might wonder what the DataSource is.
@@ -107,6 +111,7 @@ The right approach is to load this search box as a component of the search resul
 First of all, you will want to customize your copy (never the original!) of the SearchBoxView.cshtml file in order to add a new boolean function detecting if the search box is on a search page:
 
 {% highlight javascript %}
+
  function isOnSearchPage() {
     return Coveo.$('#{idofmysearchpage}').length > 0;
 }
@@ -120,9 +125,11 @@ You can retrieve all the options of the search page components by using CoveoFor
 All of these components are then passed in the init method of the search page:
 
 {% highlight javascript %}
+
 Coveo.$(function() {
     Coveo.$('#@Model.Id').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
 });
+
 {% endhighlight %}
 
 Which mean that in order to "give control" of your search page to the search box, you need to add it as a component. 
