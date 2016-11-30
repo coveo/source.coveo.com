@@ -37,11 +37,10 @@ Since both the search box and it's resources are components, you can use simple 
 
 The placeholder would look like this:
 
-{% highlight javascript %}
+```js
 
 @Html.Sitecore().Placeholder("search-box")
-
-{% endhighlight %}
+```
 
 You can then add Coveo Search Box renderings using the presentation details of each items or of the standard value item of the template:
 
@@ -58,14 +57,14 @@ This is my favorite approach since you only need to set it in the header and you
 
 In your header, instead of adding a placeholder, you would add the following references:
 
-{% highlight javascript %}
+```js
 
 <!-- The resources first -->
 @Html.Sitecore().Rendering("{id-of-the-search-box-resources}")
 <!-- Then the search box item -->
 @Html.Sitecore().Rendering("{id-of-the-search-box-view-rendering}", new { DataSource = "{parameters-item-of-the-search-box-view}" })
 
-{% endhighlight %}
+```
 
 Now you might wonder what the DataSource is.
 Well all Coveo for Sitecore components have parameters templates found in the CoveoModule folder.
@@ -110,12 +109,12 @@ The right approach is to load this search box as a component of the search resul
 
 First of all, you will want to customize your copy (never the original!) of the SearchBoxView.cshtml file in order to add a new boolean function detecting if the search box is on a search page:
 
-{% highlight javascript %}
+```js
 
  function isOnSearchPage() {
     return Coveo.$('#{idofmysearchpage}').length > 0;
 }
-{% endhighlight %}
+```
 
 The id of a Coveo Search rendering is computed randomly by default with the $GenerateUniqueId token. You can change this in the [property of the component](https://developers.coveo.com/display/public/SitecoreV4/Search+Component+Properties) itself.
 Make sure to use a unique id since you want the behavior of the search box to change only on specific search pages.
@@ -124,27 +123,26 @@ You will then use this function as a condition to load the search box alone or a
 You can retrieve all the options of the search page components by using CoveoForSitecore.componentsOptions.
 All of these components are then passed in the init method of the search page:
 
-{% highlight javascript %}
+```js
 
 Coveo.$(function() {
     Coveo.$('#@Model.Id').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
 });
-
-{% endhighlight %}
+```
 
 Which mean that in order to "give control" of your search page to the search box, you need to add it as a component. 
 This said, the search box is included before the options are defined, so you need to extend these options from the search box.
 
-{% highlight javascript %}
+```js
 var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
 CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-{% endhighlight %}
+```
 
 In the Coveo Search component, you will then also extend the options of the search box.
 
 The end result would look like this for the SearchBoxView.cshtml:
 
-{% highlight javascript %}
+```js
 
 function isOnSearchPage() {
     return Coveo.$('#{idofmysearchpage}').length > 0;
@@ -153,41 +151,40 @@ function setSearchboxPlaceholderText() {
     Coveo.$('#@Model.SearchboxId').find('input.CoveoQueryBox').attr('placeholder', '@Model.SearchboxPlaceholderText');
 } 
 
-Coveo.$(function () {
-    if (!isOnSearchPage()) {
-        if (typeof(CoveoForSitecore) !== 'undefined') {
-            var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
-            
-            CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-            Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
-        } else {
-            Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
-        }
-        setSearchboxPlaceholderText();
-    } else {
-        var searchBoxElement = Coveo.$('#@Model.SearchboxId');
-        var searchOptionsForSearchBox = {
-            externalComponents: [searchBoxElement]
-        };
-        CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-        Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
+    Coveo.$(function () {
+        if (!isOnSearchPage()) {
+            if (typeof(CoveoForSitecore) !== 'undefined') {
+                var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+                
+                CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+                Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
+            } else {
+                Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
+            }
             setSearchboxPlaceholderText();
-        });
-    }
-});
+        } else {
+            var searchBoxElement = Coveo.$('#@Model.SearchboxId');
+            var searchOptionsForSearchBox = {
+                externalComponents: [searchBoxElement]
+            };
+            CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+            Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
+                setSearchboxPlaceholderText();
+            });
+        }
+    });
 
-{% endhighlight %}
+```
 
 And for the SearchView.cshtml:
 
-{% highlight javascript %}
+```js
 
  Coveo.$(function() {
     var searchOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
     CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptions);
 });
-
-{% endhighlight %}
+```
 
 If everything is done correctly, you should have a search box which behaves in two ways:
 
