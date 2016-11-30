@@ -23,8 +23,8 @@ I will be using Coveo for Sitecore 4.0.450 using Sitecore MVC. Take note that ev
 ![Search Box](/images/SiteSearchBestPractices/searchbox.png)
 
 Coveo JavaScript UI contains a [SearchBox](https://coveo.github.io/search-ui/components/searchbox.html) component containing a query box (for user input), a search button and an omnibox (used for suggestions).
-Coveo for Sitecore will add this [component](https://developers.coveo.com/display/SitecoreV4/Search+Component+Properties) to your Sitecore solution in the form of a rendering tied to a .cshtml file found in the website Views folder.
-Be aware that in order to work, you will also need to add the Search Box View Resources on every pages using the search box. This [component]((https://developers.coveo.com/display/SitecoreV4/Overview+of+CoveoSearchResources.ascx)) contains the JavaScript and CSS references to run your search box.
+Coveo for Sitecore will add this [component](https://developers.coveo.com/display/public/SitecoreV4/Search+Component+Properties) to your Sitecore solution in the form of a rendering tied to a .cshtml file found in the website Views folder.
+Be aware that in order to work, you will also need to add the Search Box View Resources on every pages using the search box. This [component]((https://developers.coveo.com/display/public/SitecoreV4/Overview+of+CoveoSearchResources.ascx)) contains the JavaScript and CSS references to run your search box.
 
 For web form, the same components are sublayouts tied to .ascx files.
 
@@ -47,7 +47,7 @@ You can then add Coveo Search Box renderings using the presentation details of e
 ![Rendering](/images/SiteSearchBestPractices/rendering.png)
 
 As mentioned earlier, you will need both the Search Box View Resources and the Search Box View rendering. The resources need to be added before the search box otherwise the component will not load.
-For more information on this subject, read this [article](https://developers.coveo.com/display/SitecoreV4/Inserting+a+Coveo+Search+Box+to+Your+Header).
+For more information on this subject, read this [article](https://developers.coveo.com/display/public/SitecoreV4/Inserting+a+Coveo+Search+Box+to+Your+Header).
 
 #### Using a reference to the rendering
 
@@ -102,7 +102,7 @@ To fix this, start by removing the Search Box View Resources when you are in a C
 
 Now that this is fixed, you will want to load only one search box. A Coveo search interface will contain a query box per default. You could simply keep this box and hide the header box on the search result page.
 
-This is of course the simple approach, but you might want to keep the same style accross the site and keep the header box instead. The interface's search box can be removed simply by unchecking the "Display the main search box" check box on the [properties of the component](https://developers.coveo.com/display/SitecoreV4/Search+Component+Properties).
+This is of course the simple approach, but you might want to keep the same style accross the site and keep the header box instead. The interface's search box can be removed simply by unchecking the "Display the main search box" check box on the [properties of the component](https://developers.coveo.com/display/public/SitecoreV4/Search+Component+Properties).
 
 Once this is done, you will have a header search powering your search interface, but it is not perfect yet. The search box is a simple redirect to the search page, so using that search box will constantly reload your search page, which is not ideal.
 The right approach is to load this search box as a component of the search result page. This was well explained in this [post](https://answers.coveo.com/questions/4830/adding-search-box-hides-the-coveo-search-sublayout), but let me go over it in details.
