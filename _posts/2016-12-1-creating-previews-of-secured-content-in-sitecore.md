@@ -17,28 +17,36 @@ You may have secured items in your content tree that you’d like to present to 
 
 #ItemLimitedViewProcessor
 
-The main idea is to create a copy of items when they go through the Coveo pipelines before they are indexed. These copies are stripped of their content and access rules while still linking to the original page. "This way, if attempting to access a secured page redirects an anonymous user to a login dialog, he will also be redirected by clicking on the new hollow item."
+All this is accomplished by creating a copy of items as they go through the Coveo pipelines and running them through our custom processor before they are indexed. The processor strips the copies of their content and access rules while still linking to the original page. This way, if you redirect an anonymous user trying to access secure content to a login page, he will also be redirected by clicking on the new hollow item.
 
 To obtain the same relevancy as the original items, the content of the item’s body is added to a new field which is free text searchable, but not displayed.
 
+Two fields are created in Sitecore items that are two be targeted by the processor. A first one to indicate the item has to be stripped, and a second potentially containing a preview text to show anonymous users.
+
 ##Code
-The processor added to the CoveoItemPostProcessingPipeline does a shallow copy of an item if it finds it marked for copying. It also adds two fields to the new item: “IsLimitedAccessDocument”, a field marking an item as a stripped down duplicate and “HiddenContent”, a hidden field containing the original item’s body. Furthermore, a new /Unique ID/ must be created for the item and it’s copy to be considered two different identities.
+The processor added to the CoveoItemPostProcessingPipeline does a shallow copy of an item if it finds it marked for copying. It also adds two fields to the new item: “IsLimitedAccessDocument”, a field marking an item as a stripped down duplicate and “HiddenContent”, a hidden field containing the original item’s body. Furthermore, a new `Unique ID` must be created for the item and it’s copy to be considered two different elements.
 
 
 *Copy Paste Code*
 
+##Configurations
 
-Configurations
-In the Coveo.SearchProvider.Custom.Config file, the processor is added to the pipeline:
+The next step is patching the coveo configuration files in your Sitecore repository. To do this, you may either patch the `Coveo.SearchProvider.Custom.Config` file or create your own .config *as long as it's loaded after 'coveo.SearchProvider.Custom.Config'*.
 
-
-    <coveoPostItemProcessingPipeline>
-        [...]
-        <processor type="Coveo.SearchProvider.Processors.HtmlContentInBodyWithRequestsProcessor, Coveo.SearchProviderBase" />
-        <processor type="Coveo.SearchProvider.Processors.ItemLimitedViewStripProcessor, Coveo.SearchProviderBase" />
-    </coveoPostItemProcessingPipeline>
-
-
+  <configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+    <sitecore>
+      <pipelines>
+        <coveoPostItemProcessingPipeline>
+          <processor type="ItemLimitedAccess.Processors.ItemLimitedViewStripProcessor, ItemLimitedAccess">
+            <LimitedAccessFieldID></LimitedAccessFieldID>
+            <PreviewFieldID></PreviewFieldID>
+            <FieldToHideID></FieldToHideID>
+          </processor>
+        </coveoPostItemProcessingPipeline>
+      </pipelines>
+    </sitecore>
+  </configuration>
+  
 It is important to add the processor after the HtmlContentInBodyWithRequestsProcessor, as this first processor formats the content of the item which is then used for relevancy.
 
 In this same file, the fields referenced in the code are added to the fieldmap:
