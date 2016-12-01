@@ -12,7 +12,7 @@ author:
 
 A few months ago, Coveo for Sitecore Product and Marketing teams released a solid eBook on Site Search [Best Practices](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search).
 It is a great guide for high level planning, but for tech folks on the field, filling the gap between the guide and what Coveo for Sitecore V4 can be a challenge.
-In this series of blogs, will go over each of the 18 points and explain in details how to fullfill them properly.
+In this series of blogs, will go over each of the 19 points and explain in details how to fullfill them properly.
 
 I will be using Coveo for Sitecore 4.0.450 using Sitecore MVC. Take note that everything listed below can also be done in web form but will require a different syntax.
 
@@ -88,7 +88,6 @@ If you feel bold and want to change the product directly, simply [clone our repo
 ### 3. Keep it simple
 
 This is one that is often forgotten. Having a collapsable/expandable search box looks great, but make sure users can find it!
-Rule of thumb, if a user starts typing without selecting anything on the page, the search box should be the one with the focus. If the search box is collapsed, then expend it on any keystrokes.
 
 #### Label it
 
@@ -110,8 +109,7 @@ The right approach is to load this search box as a component of the search resul
 First of all, you will want to customize your copy (never the original!) of the SearchBoxView.cshtml file in order to add a new boolean function detecting if the search box is on a search page:
 
 ```js
-
- function isOnSearchPage() {
+function isOnSearchPage() {
     return Coveo.$('#{idofmysearchpage}').length > 0;
 }
 ```
@@ -124,7 +122,6 @@ You can retrieve all the options of the search page components by using CoveoFor
 All of these components are then passed in the init method of the search page:
 
 ```js
-
 Coveo.$(function() {
     Coveo.$('#@Model.Id').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
 });
@@ -143,10 +140,10 @@ In the Coveo Search component, you will then also extend the options of the sear
 The end result would look like this for the SearchBoxView.cshtml:
 
 ```js
-
 function isOnSearchPage() {
     return Coveo.$('#{idofmysearchpage}').length > 0;
 }
+// This additional function is used to tell the search page to retriev the Placeholder Text and place it in the search box
 function setSearchboxPlaceholderText() {
     Coveo.$('#@Model.SearchboxId').find('input.CoveoQueryBox').attr('placeholder', '@Model.SearchboxPlaceholderText');
 } 
@@ -163,32 +160,91 @@ Coveo.$(function () {
         }
         setSearchboxPlaceholderText();
     } else {
-        var searchBoxElement = Coveo.$('#@Model.SearchboxId');
+        //Here you will be able to use the Coveo.$ selector in January 2017. The is a limitation currently where the framework will only accept an html element
+        var searchBoxElement = document.getElementById('@Model.SearchboxId');
+        // Register the search box as an external component
         var searchOptionsForSearchBox = {
             externalComponents: [searchBoxElement]
         };
+
+        //Extend the options of the search box to include the search page
         CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+
         Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
             setSearchboxPlaceholderText();
         });
     }
 });
-
 ```
 
-And for the SearchView.cshtml:
+And for the SearchView.cshtml, replace the default:
 
 ```js
-
- Coveo.$(function() {
-    var searchOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
-    CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptions);
+Coveo.$(function() {
+    CoveoForSitecore.componentsOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
 });
 ```
+Which simply grabs the properties of the search model, by:
+
+```js
+Coveo.$(function() {
+    CoveoForSitecore.componentsOptions = Coveo.$.extend({}, @(Html.Raw(Model.GetJavaScriptInitializationOptions())), CoveoForSitecore.componentsOptions || {});
+});
+```
+Which extends the current options by adding the search box.
 
 If everything is done correctly, you should have a search box which behaves in two ways:
 
 * If you are on the search page, the search box will drive the search results in an Asynchronous fashion.
 * If you are on any other pages, the search box will redirect to the search result page.
 
-This is enough for now. I will cover the 15 remaining practices in the next few weeks.
+### 4. Make it smart
+
+#### Focus their cursor on search, right away
+
+Rule of thumb, if a user starts typing without selecting anything on the page, the search box should be the one with the focus, if you are using a colapsable search box, then expend it on any keystrokes.
+The Search Box View rendering will take the focus by default when the [autoFocus](https://coveo.github.io/search-ui/components/querybox.html#options.autofocus) option is set to true.
+
+#### Suggest queries and content as they type
+
+This is a good one, type-ahead and suggestions is an absolute must to reduce input errors and guide users to the right content. Before we get too deep into this, take note that Coveo offers three types of suggestions:
+
+* Queries : A popular search term which will launch a query when clicked
+* Result : An existing document which will open the link when clicked
+* Facets : An existing facet on the search interface which will select it when clicked
+
+You can see the detailed explainations for each of them [here](https://developers.coveo.com/display/public/SitecoreV4/Providing+Suggestions+using+the+Coveo+Omnibox)
+
+IMPORTANT! Before you can use any of them on the search box, you need to replace the Search Box View Resources by a Search View Resources component, since it contains additional JS dependencies needed for suggestions.
+
+What to use when?
+
+The best practices would be to only offer Result Suggestions on the search box, then use queries suggestions for the main search page.
+The Search Box rendering comes with a default placeholder for the [Omnibox Result List](https://developers.coveo.com/display/public/SitecoreV4/Omnibox+Result+List+Component+Properties). 
+You can find this component in the same rendering folder where all the other components are.
+
+![Omnibox Result List](/images/SiteSearchBestPractices/omniboxresultlist.png)
+
+You can add more than one component. This can be useful if you want to select results in different categories. 
+If you have the Enterprise edition, simply use the filtering rules on each of them to scope the suggestions. If you don't, then you can add your expression in your copy of the OmniboxResultListView.cshtml file:
+
+```
+<span class="CoveoForSitecoreOmniboxResultList"
+    .....
+    data-query-expression='@myfield=="myValue"'
+    ....
+</span>
+```
+
+Keep in mind that providing a long list of results looks messy, keep control of the number of results using the Number of results field.
+
+For the main search page, do not provide result suggestions, instead switch for Reveal queries suggestions. It is enabled by default, simply create the [Reveal Model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_query_suggestions_in_a_query_pipeline.htm#Manage_Query_Suggestions_(Coveo_Cloud_V2)) and wait a for the machine to learn. This can take a few weeks.
+
+### 5. Test it
+
+How to test the search box is up to you, but we can tell you if visitors use it or not.
+Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](https://onlinehelp.coveo.com/en/cloud/coveo_cloud_usage_analytics.htm). Keep in mind that the Origin 3 (Referrer) [dimension](https://onlinehelp.coveo.com/en/cloud/usage_analytics_dimensions.htm), will tell you where the user was coming from, which will tell you if your search box is used or not.
+
+Note: Coveo for Sitecore does not send the right data as an Origin 3, this is a bug which will be fixed in Q1 2017.
+
+This is enough for now. I will cover the remaining practices in the next few weeks.
