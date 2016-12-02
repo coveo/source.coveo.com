@@ -11,7 +11,7 @@ author:
 ---
 
 A few months ago, Coveo for Sitecore Product and Marketing teams released a solid eBook on [Site Search Best Practices](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search).
-It is a great guide for high level planning, but when it comes to execution, there are some gaps that need to be filled?
+It is a great guide for high level planning, but when it comes to execution, there are some gaps that need to be filled.
 In this series of blogs, I will go over each of the 19 points and explain in details how to fullfill them properly.
 
 I will be using Coveo for Sitecore 4.0.450 in an Sitecore 8.0 MVC environment. Take note that everything listed below can also be done in web form but will require a different syntax.
