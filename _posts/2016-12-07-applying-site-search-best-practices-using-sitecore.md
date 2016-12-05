@@ -208,7 +208,7 @@ The Search Box View rendering will take the focus by default when the [autoFocus
 
 #### Suggest queries and content as they type
 
-This is a good one, type-ahead and suggestions is an absolute must to reduce input errors and guide users to the right content. Before we get too deep into this, take note that Coveo offers three types of suggestions:
+This is a good one; type-ahead and suggestions are an absolute must to reduce input errors and guide users to the right content. Before we get too deep into this, take note that Coveo offers three types of suggestions:
 
 * Queries: A popular search term which will launch a query when clicked.
 * Result: An existing document which will open the link when clicked.
