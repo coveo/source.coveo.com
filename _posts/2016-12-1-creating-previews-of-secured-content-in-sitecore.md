@@ -201,5 +201,4 @@ Finally, the query must be modified to filter the duplicates out of connected us
 ##Implementation
 Now that your processor is correctly configured, the next step is activating it on your items. Add a “Limited Access” field to the sitecore items you wish to duplicate with the "Strip" keyword as its value. Also, if you want a preview text for your item, create a preview field with the text. Finally, enter the IDs of both these fields with the ID of a field you'd like to hide to your processor's configuration in your .config file.
 
-
-Rebuild your indexes
+Now rebuild your indexes and you're good to go!
