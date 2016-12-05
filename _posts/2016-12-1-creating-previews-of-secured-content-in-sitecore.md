@@ -8,7 +8,7 @@ tags: [Sitecore, Secured Content, Coveo for Sitecore]
 author:
   name: Laurent Mandrile
   bio: Intern, Coveo for Sitecore
-  image: TODO
+  image: lmandrile.jpg
 ---
 
 You may have secured items in your content tree that you’d like to present to anonymous users without the items' content being revealed. With the `ItemLimitedViewProcessor`, you may do just that. Stripped down values of secured items without quick views are created at indexing time. These items are searchable by anonymous users and filtered out at query time for connected users, who will see the secured content normally. You may also specify a preview field for an item that will be used as a quickview, hide fields that you wouldn't want an anonymous user to access and inject the original secured content in a hidden field so it may still count for relevance. 
