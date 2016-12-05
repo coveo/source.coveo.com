@@ -37,14 +37,14 @@ If you have the [`@AuraEnabled` apex method](https://developer.salesforce.com/do
 ![Retrieving logs]({{"/images/posts/debugging-salesforce/concrete-io.png" | relative_url }})
 
 
-From there, you’ll be able to see the logs for the Aura Enabled method in real time. Add `System.debug('foobar')` in your apex method to get the information you need.
+From there, you’ll be able to see the logs for the Aura Enabled method in real time. Add `System.debug('foobar')` in your Apex method to get the information you need.
 
 ## Debugging JavaScript Errors
 
 In your JavaScript code (Renderer, Controller, or Helper), you can start a debugging session using the JavaScript `debugger` keyword. Simply add it to your code at the place you want to debug; Chrome will stop running the code when hitting the keyword.
 
 
-While this always works, it can be slightly cumbersome, for example when you can’t change the code, for instance in a managed package with Lightning components. To debug these, you must use the source tab in your Chrome Developer Tools.
+While this always works, it can be slightly cumbersome, for example when you can’t change the code, as in a managed package with Lightning components. To debug these, you must use the source tab in your Chrome Developer Tools.
 For instance, let’s say that you are trying to debug your Lightning component, and get a big red popup message with a poorly written error message.
 First, in the Chrome Developer Tools, under the Sources tab, enable the `Pause on exceptions` button. This pauses the code on the `Aura` exception thrown when there are exceptions in your components.
 
@@ -58,6 +58,7 @@ You can then try to reproduce the issue while the developer tools are open. With
 Most of the time, the stack trace can help you figure out which part of your application is problematic. Using the `Go to line` shortcut (`CTRL+G`), you can navigate to the faulty code. If the code isn’t evaluated on runtime, you can also add a breakpoint in the source code.
 
 ## Using Debug Logs
+
 When all else fails, you can use the old debug logs. In your code, simply enter `console.log('foobar')` to enter text in the Chrome console when the code is run.
 I recommend having a `debug` attribute on the Lightning component that activates error logging. Because Lightning isn’t easy to debug, you should really consider having tracing logs in as many places as possible in your JavaScript methods.
 
