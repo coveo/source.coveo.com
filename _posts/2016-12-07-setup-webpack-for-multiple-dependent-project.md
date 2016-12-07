@@ -15,19 +15,19 @@ In the past few months, I've been discovering [Webpack](https://webpack.github.i
 
 <!-- more -->
 
-A problem I ran into was how to setup multiple project dependent on one another, in different repositories. 
+A problem I ran into was how to setup multiple projects dependent on one another, in different repositories. 
 I wanted to make sure that the development environment was as painless as possible.
 
-For demonstration purpose, I'll talk about two of the project I work on, the [Coveo Search UI](https://github.com/coveo/search-ui) and the Interface Editor, which is a standalone web application that allows less technical user to customize their Search UI.
+For demonstration purpose, I'll talk about two of the projects I work on, the [Coveo Search UI](https://github.com/coveo/search-ui) and the Interface Editor, which is a standalone web application that allows less technical user to customize their Search UI.
 
-The Search UI lives in it's own repository, and is a completely different product then the Interface Editor.
+The Search UI lives in it's own repository, and is a completely different product than the Interface Editor.
 The Search UI is also released on npm, independently of the Interface Editor. 
 
 Now, as you can imagine, the Search UI is a dependency of the Interface Editor. And, as you can also imagine, it often happens that we need to push code change in the Search UI project in order to improve or fix another issue in the Interface Editor. Concretely, this means that we need to be able to do a code change in the Search UI codebase, and have it available as quickly as possible in the Interface Editor project.
 
 ## Dev server
 
-One of the very nice feature of webpack is the [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html) . It allows to drastically improve and speedup your development workflow. For both project, I setup a webpack dev server. The Search UI dev server is configured to be available on localhost:8080 and the Interface Editor dev server lives on localhost:8081. 
+One of the very nice feature of webpack is the [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html) . It allows to drastically improve and speedup your development workflow. For both project, I setup a webpack dev server. The Search UI dev server is configured to be available on `localhost:8080` and the Interface Editor dev server lives on `localhost:8081`. 
 
 Both work independently, and a developer working on both project will simply open a different browser tab for each server.
 
@@ -41,13 +41,13 @@ So, initially, that's what I tried to do. I simply used `npm link coveo-search-u
 
 Sure enough, it looks like it worked. When I would do a code change in the Search UI codebase, both server would automatically reload because the webpack dev server would detect a change in the Search UI bundle. However, what I quickly realized was that the code change would **NOT** actually be available inside the dev server for the Interface Editor.
 
-Concretely speaking, this meant that I would see my change on localhost:8080, but not localhost:8081.
+Concretely speaking, this meant that I would see my code changes on `localhost:8080`, but not `localhost:8081`.
 
-The reason for this is that the dev server does not actually create a "real" bundle file on your filesystem each time it process your code change : instead, it serve the bundle from "memory". This explains why the naive `npm link` command was not producing what I was initially expecting. The file linked by the `npm link` command would not have really changed on the disk.
+The reason for this is that the dev server does not actually create a "real" bundle file on your filesystem each time it process your code change. Instead, it serves the bundle from "memory". This explains why the `npm link` command was not producing what I was initially expecting. The file linked by npm would not change on the disk each time the webpack dev server did it's job.
 
 ## Custom symlink script
 
-What I created is a simple node script in the Search UI project to do the symlink myself. This way, I could add simple logic to fetch the code change and create a real file on my filesystem every time a bundle is created.
+To solve this, I created is a simple node script in the Search UI project to do the symlink myself. This way, I could add simple logic to fetch the code change and create a real file on my filesystem every time a bundle is created.
 
 The script, named `link.externally.js` looks like this:
 
@@ -108,7 +108,7 @@ stats(path)
           })
     })
     .then(()=> {
-      return link(process.cwd(), path, "dir");
+      return link(process.cwd(), path, 'dir');
     })
     .done(()=> {
       console.log(`Link done for ${path}`.black.bgGreen);
@@ -119,7 +119,7 @@ stats(path)
 
 Basically, you configure it with an array of "external projects", and it will first check if the dependency is already present in the external folder. If it is, it will delete it.
 
-Then, it will call the webpack dev server, download the file, and write it on the file system.
+Then, it will call the webpack dev server, download the bundle file, and write it on the file system.
 
 ## Running the script
 
@@ -140,7 +140,7 @@ let webpackConfig = require('../webpack.config.js');
 webpackConfig.entry['CoveoJsSearch'].unshift('webpack-dev-server/client?http://localhost:8080/');
 const compiler = webpack(webpackConfig);
 
-const exec = (command, args, options, done)=> {
+const exec = (command, args, options, done) => {
   options = _.extend({}, {
     failOnError: true
   }, options);
@@ -178,10 +178,10 @@ server.listen(8080, 'localhost', ()=> {});
 
 {% endhighlight %}
 
-We simply add a listener on the 'done' event of the compiler, which then run the `link.externally.js` script. 
+We simply add a listener on the `done` event of the compiler, which then run the `link.externally.js` script. 
 
-We debounced it, to guard against weird fringe case where a developer could hit save extremely quickly in his editor, and produce a weird or incoherent bundle. 
+We debounced it, to guard against weird fringe case(s) where a developer could hit save extremely quickly in his editor, and produce an incomplete or incoherent bundle. 
 
-The debounced function is more of a hack then a 'solid' solution, because we could not figure out what exactly was happening with the dev server compiler in those situation. 
+The debounced function is a hack, because we could not figure out what exactly was happening with the dev server compiler in those situations. 
 
 The hack works well enough though, and has stayed so far in our build process !
