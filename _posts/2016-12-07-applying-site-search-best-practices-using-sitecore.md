@@ -23,8 +23,8 @@ I will be using Coveo for Sitecore 4.0.450 in a Sitecore 8.0 MVC environment. Ta
 ![Search Box](/images/SiteSearchBestPractices/searchbox.png)
 
 The Coveo JavaScript Search Framework contains a [SearchBox](https://coveo.github.io/search-ui/components/searchbox.html) component containing a query box (for user input), a search button, and an omnibox (used for suggestions).
-Coveo for Sitecore will add this [component](https://developers.coveo.com/display/public/SitecoreV4/Search+Component+Properties) to your Sitecore solution in the form of a rendering tied to a .cshtml file found in the website Views folder.
-Be aware that in order to work, you will also need to add the Search Box View Resources on every page using the search box. This [component](https://developers.coveo.com/display/public/SitecoreV4/Overview+of+CoveoSearchResources.ascx) contains the JavaScript and CSS references to run your search box.
+Coveo for Sitecore will add this [component](https://developers.coveo.com/x/PgHvAQ) to your Sitecore solution in the form of a rendering tied to a .cshtml file found in the website Views folder.
+Be aware that in order to work, you will also need to add the Search Box View Resources on every page using the search box. This [component](https://developers.coveo.com/x/IAHvAQ) contains the JavaScript and CSS references to run your search box.
 
 For web forms, the same components are sublayouts tied to .ascx files.
 
@@ -42,7 +42,7 @@ The placeholder would look like this:
 @Html.Sitecore().Placeholder("search-box")
 ```
 
-You can then add the Coveo Search Box renderings using the presentation details of whether:
+You can then add the Coveo Search Box renderings using the presentation details of either:
 
 * each item individually;
 * the standard value item of the template.
@@ -50,7 +50,7 @@ You can then add the Coveo Search Box renderings using the presentation details 
 ![Rendering](/images/SiteSearchBestPractices/rendering.png)
 
 As mentioned earlier, you will need both the Search Box View Resources and the Search Box View rendering. The resources need to be added before the search box; otherwise, the component will not load.
-For more information on this subject, read this [article](https://developers.coveo.com/display/public/SitecoreV4/Inserting+a+Coveo+Search+Box+to+Your+Header).
+For more information on this subject, read this [article](https://developers.coveo.com/x/KokkAg).
 
 #### Using a reference to the rendering
 
@@ -102,7 +102,7 @@ To fix this, start by removing the Search Box View Resources when you are in a C
 
 Now that this is fixed, you will want to load only one search box. A Coveo search interface will contain a query box by default. You could simply keep this box and hide the header box on the search result page.
 
-This is of course the simple approach, but you might want to keep the same style accross the site and keep the header box instead. The interface's search box can be removed simply by unchecking the "Display the main search box" checkbox on the [properties of the component](https://developers.coveo.com/display/public/SitecoreV4/Search+Component+Properties).
+This is of course the simple approach, but you might want to keep the same style accross the site and keep the header box instead. The interface's search box can be removed simply by unchecking the "Display the main search box" checkbox on the [properties of the component](https://developers.coveo.com/x/PgHvAQ).
 
 Once this is done, you will have a header search powering your search interface, but it is not perfect yet. The search box is a simple redirect to the search page, so using that search box will constantly reload your search page, which is not ideal.
 The right approach is to load this search box as a component of the search result page. This was well explained in this [post](https://answers.coveo.com/questions/4830/adding-search-box-hides-the-coveo-search-sublayout), but let me go over it in details.
@@ -115,7 +115,7 @@ function isOnSearchPage() {
 }
 ```
 
-The id of a Coveo Search rendering is computed randomly by default with the $GenerateUniqueId token. You can change this in the [property of the component](https://developers.coveo.com/display/public/SitecoreV4/Search+Component+Properties) itself.
+The id of a Coveo Search rendering is computed randomly by default with the $GenerateUniqueId token. You can change this in the [property of the component](https://developers.coveo.com/x/PgHvAQ) itself.
 Make sure to use a unique id since you want the behavior of the search box to change only on specific search pages.
 You will then use this function as a condition to load the search box alone or add it as an external component of your search page. 
 
@@ -214,14 +214,14 @@ This is a good one; type-ahead and suggestions are an absolute must to reduce in
 * Result: An existing document which will open the link when clicked.
 * Facets: An existing facet on the search interface which will select it when clicked.
 
-You can see the detailed explanations for each of them [here](https://developers.coveo.com/display/public/SitecoreV4/Providing+Suggestions+using+the+Coveo+Omnibox)
+You can see the detailed explanations for each of them [here](https://developers.coveo.com/x/AoIUAg)
 
 IMPORTANT! Before you can use any of them on the search box, you need to replace the Search Box View Resources by a Search View Resources component, since it contains additional JS dependencies needed for suggestions.
 
 What to use when?
 
 The best practices would be to only offer Result Suggestions on the search box, then use query suggestions for the main search page.
-The Search Box rendering comes with a default placeholder for the [Omnibox Result List](https://developers.coveo.com/display/public/SitecoreV4/Omnibox+Result+List+Component+Properties). 
+The Search Box rendering comes with a default placeholder for the [Omnibox Result List](https://developers.coveo.com/x/UgHvAQ). 
 You can find this component in the same rendering folder where all the other components are.
 
 ![Omnibox Result List](/images/SiteSearchBestPractices/omniboxresultlist.png)
@@ -244,7 +244,7 @@ For the main search page, do not provide result suggestions. Instead switch for 
 ### 5. Test it
 
 How to test the search box is up to you, but we can tell you if visitors use it or not.
-Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](https://onlinehelp.coveo.com/en/cloud/coveo_cloud_usage_analytics.htm). Keep in mind that the Origin 3 (Referrer) [dimension](https://onlinehelp.coveo.com/en/cloud/usage_analytics_dimensions.htm), will tell you where the user was coming from; which will tell you if your search box is used or not.
+Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=89). Keep in mind that the Origin 3 (Referrer) [dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106), will tell you where the user was coming from; which will tell you if your search box is used or not.
 
 Note: Coveo for Sitecore does not send the right data as an Origin 3, this is a bug which will be fixed in Q1 2017.
 
