@@ -11,9 +11,7 @@ author:
   image: olamothe.png
 ---
 
-In the past few months, I've been discovering [Webpack](https://webpack.github.io/) , and how to use it to improve the development process in our team.
-
-A problem I ran into was how to setup multiple projects dependent on one another, in different repositories. 
+In the past few months, I've been discovering [Webpack](https://webpack.github.io/) , and how to use it to improve the development process in our team. A problem I ran into was how to setup multiple projects dependent on one another, in different repositories. 
 I wanted to make sure that the development environment was as painless as possible.
 
 <!-- more -->
