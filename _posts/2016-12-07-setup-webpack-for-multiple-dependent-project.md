@@ -13,10 +13,10 @@ author:
 
 In the past few months, I've been discovering [Webpack](https://webpack.github.io/) , and how to use it to improve the development process in our team.
 
-<!-- more -->
-
 A problem I ran into was how to setup multiple projects dependent on one another, in different repositories. 
 I wanted to make sure that the development environment was as painless as possible.
+
+<!-- more -->
 
 For demonstration purpose, I'll talk about two of the projects I work on, the [Coveo Search UI](https://github.com/coveo/search-ui) and the Interface Editor, which is a standalone web application that allows less technical user to customize their Search UI.
 
