@@ -29,7 +29,7 @@ Now, as you can imagine, the Search UI is a dependency of the Interface Editor. 
 
 One of the very nice feature of webpack is the [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html) . It allows to drastically improve and speedup your development workflow. 
 
-Whenever you produce a change in one your source file and save it, webpack will recompile all the needed bundle, depending on the different entry points of your application. Once the process has been completed, the dev server will automatically reload your application with your new code change.
+Whenever you do a change in one your source file and save it, webpack will recompile all the needed bundle, depending on the different entry points of your application. Once the process has been completed, the dev server will automatically reload your application with your new code change.
 
 For both project, I setup a webpack dev server. The Search UI dev server is configured to be available on `localhost:8080` and the Interface Editor dev server lives on `localhost:8081`. 
 
