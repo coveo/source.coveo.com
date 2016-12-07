@@ -11,20 +11,20 @@ author:
   image: lmandrile.jpg
 ---
 
-You may have secured items in your content tree that you’d like to present to anonymous users without the items' content being revealed. With the `ItemLimitedViewProcessor`, you may do just that. Stripped down values of secured items without quick views are created at indexing time. These items are searchable by anonymous users and filtered out at query time for connected users, who will see the secured content normally. You may also specify a preview field for an item that will be used as a quickview, hide fields that you wouldn't want an anonymous user to access and inject the original secured content in a hidden field so it may still count for relevance. 
+You may have secured items in your content tree that you would like to present to anonymous users without the items' content being revealed. The following blogpost introduces a method that will allow you to do just that. Stripped down values of secured items are created at indexing time and are made searchable by anonymous users while being filtered out at query time for connected users, who will see the secured content as usual. The `ItemLimitedViewProcessor` described bellow will give you a way of implementing this.
 
 <!-- more -->
 
 #ItemLimitedViewProcessor
 
-This feat is accomplished by creating a copy of items as they go through the Coveo pipelines and running them through our custom processor before they are indexed. The processor strips the copies of their content and access rules while still linking to the original page. This way, if you redirect an anonymous user trying to access secure content to a login page, he will be redirected to the same login by clicking on the new hollow item.
+This feat is accomplished by creating a copy of items as they go through the Coveo pipelines and running them through our custom processor before they are indexed. The processor strips the content and access rules of these copies while still linking to the original page. This way, if you redirect an anonymous user trying to access secure content to a login page, he will be redirected to the same login page when clicking on the new hollow item. You may also specify a preview field for an item that will be used as a quickview, hide fields that you wouldn't want an anonymous user to access and inject the original secured content in a hidden field so it may still count for relevance.
 
-To obtain the same relevancy as the original items, the content of the item’s body is added to a new field which is free text searchable, but not displayed.
+To achieve the same relevancy as the original items, the content of the item’s body is added to a new field (in our case, `HiddenContent`) which is free-text searchable, but not displayed.
 
-Two fields are created in Sitecore items that are to be targeted by the processor. A first one to indicate the item has to be stripped, and a second potentially containing a preview text to show anonymous users.
+Two fields are created in Sitecore items that will be used by the processor. The first to indicate the item has to be stripped, and the second potentially containing a preview text to show anonymous users. (In our case, Sitecore fields whose ID's are referenced in the  `LimitedAccessFieldId` and `PreviewFieldId` fields described bellow)
 
 ##Code
-The processor added to the CoveoItemPostProcessingPipeline does a shallow copy of an item if it finds it marked for copying. It also adds two fields to the new item: “IsLimitedAccessDocument”, a field marking an item as a stripped down duplicate and “HiddenContent”, a hidden field containing the original item’s body. Furthermore, a new `Unique ID` must be created for the item and its copy to be considered two different elements.
+The processor added to the `CoveoItemPostProcessingPipeline` does a shallow copy of an item if it finds it marked for copying. It also adds two fields to the new item: `IsLimitedAccessDocument`, a field marking an item as a stripped down duplicate, and `HiddenContent`, a hidden field containing the original item’s body. Furthermore, a new `Unique ID` must be created for the item and its copy to be considered two different elements.
 
 {% highlight c# %}
 public class ItemLimitedViewStripProcessor : IProcessor<CoveoPostItemProcessingPipelineArgs>
@@ -35,7 +35,7 @@ public class ItemLimitedViewStripProcessor : IProcessor<CoveoPostItemProcessingP
     public string LimitedAccessFieldId { get; set; }
 
     /// <summary>
-    /// ID of a field that must be stripped from the MetaData.
+    /// ID of a field that must be stripped from the Metadata.
     /// </summary>
     /// <remarks>Can be empty.</remarks>
     public string FieldToHideId { get; set; }
@@ -124,28 +124,12 @@ public class ItemLimitedViewStripProcessor : IProcessor<CoveoPostItemProcessingP
         }
         s_Logger.TraceExiting();
     }
-
-    private AccessRulesHierarchy CreateAnonymousAccessRule()
-    {
-        AccessRulesHierarchy accessRuleHierarchy = new AccessRulesHierarchy();
-        IEnumerable<IndexableReadAccessRule> accessRules = new[] {
-            new IndexableReadAccessRule() {
-                Account = new IndexableAccount("", SecurityConstants.EVERYONE_ROLE, IndexableAccountType.Role),
-                PermissionType = IndexablePermissionType.Access,
-                PropagationType = IndexablePropagationType.Entity,
-                SecurityPermission = IndexableSecurityPermission.AllowAccess
-            }
-        };
-        accessRuleHierarchy.AddChildRules(accessRules);
-
-        return accessRuleHierarchy;
-    }
 }
 {% endhighlight %}
 
 ##Configurations
 
-The next step is patching the Coveo configuration files in your Sitecore repository. To do this, you may either patch the `Coveo.SearchProvider.Custom.Config` file or create your own .config *as long as it's loaded after 'coveo.SearchProvider.Custom.Config'*.
+The next step is patching the Coveo configuration files in your Sitecore repository. To do this, you may either create a new .config file (as long as it's loaded after 'coveo.SearchProvider.Custom.Config') or patch the `coveo.SearchProvider.Custom.Config` directly.
 
 {% highlight xml %}
 <configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
@@ -165,7 +149,7 @@ The next step is patching the Coveo configuration files in your Sitecore reposit
 
 It is important to add the processor after the HtmlContentInBodyWithRequestsProcessor, as this first processor formats the content of the item which is then used for relevancy.
 
-In this same file, the fields referenced in the code are added to the fieldmap:
+In this same file, the fields referenced in the code must be added to the field map:
 
 {% highlight xml %}
 <fieldMap>
@@ -176,7 +160,7 @@ In this same file, the fields referenced in the code are added to the fieldmap:
 </fieldMap>
 {% endhighlight %}
 
-Finally, the query must be modified to filter the duplicates out of connected users’ searches. If using MVC, integrate this snippet to your query builder in your `SearchView.cshtml` file.  
+Finally, the query must be modified to filter the duplicates out of connected users’ searches. The following example is for a MVC setup. Start by [duplicating](https://developers.coveo.com/display/public/SitecoreV4/Duplicating+the+Coveo+Search+Component) your search component (`SearchView.cshtml`). Then, replace the code bloc containing `.coveoForSitecore('init', CoveoForSitecore.componentsOptions)` with the following snippet.
 
 {% highlight js %}
 <script type="text/javascript">
@@ -197,8 +181,10 @@ Finally, the query must be modified to filter the duplicates out of connected us
 </script>
 {% endhighlight %}
 
+Now that your processor is correctly configured, the next step is activating it on your items with the following steps:
 
-##Implementation
-Now that your processor is correctly configured, the next step is activating it on your items. Add a “Limited Access” field to the sitecore items you wish to duplicate with the "Strip" keyword as its value. Also, if you want a preview text for your item, create a preview field with the text. Finally, enter the IDs of both these fields with the ID of a field you'd like to hide to your processor's configuration in your .config file.
+- Add a “Limited Access” field to the Sitecore items you wish to duplicate with the "Strip" keyword as its value. 
+- Create a preview field with the text. (Optional)
+- Enter the IDs of both these fields with the ID of a field you'd like to hide to your processor's configuration in your .config file.
 
 Now rebuild your indexes and you're good to go!
