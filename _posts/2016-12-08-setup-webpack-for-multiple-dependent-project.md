@@ -121,7 +121,7 @@ stats(path)
 {% endhighlight %}
 
 
-Basically, you configure the scipt with an array of "external projects". These are the repositories where you wish to create a symlink. It will first take care of deleting the dependency that is already present in the external folder.
+Basically, you configure the script with an array of "external projects". These are the repositories where you wish to create a symlink. It will first take care of deleting the dependency that is already present in the external folder.
 
 Then, it will call the webpack dev server, download the bundle file, and write it on the file system.
 
