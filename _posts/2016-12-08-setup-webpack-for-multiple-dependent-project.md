@@ -11,7 +11,7 @@ author:
   image: olamothe.png
 ---
 
-In the past few months, I've been discovering [Webpack](https://webpack.github.io/) , and how to use it to improve the development process in our team. 
+In the past few months, I've been discovering [Webpack](https://webpack.github.io/), and how to use it to improve the development process in our team. 
 
 A problem I ran into was how to setup multiple projects dependent on one another, in different repositories. 
 I wanted to make sure that the development environment was as painless as possible.
@@ -51,7 +51,7 @@ The reason for this is that the dev server does not actually create a "real" bun
 
 ## Custom symlink script
 
-To solve this, I created is a simple node script in the Search UI project to do the symlink myself. This way, I could add simple logic to fetch the code change and create a real file on my filesystem every time a bundle is created.
+To solve this, I created a simple node script in the Search UI project to do the symlink myself. This way, I could add simple logic to fetch the code change and create a real file on my filesystem every time a bundle is created.
 
 The script, named `link.externally.js` looks like this:
 
@@ -71,15 +71,15 @@ const write = Q.denodeify(fs.writeFile);
 const fetch = require('node-fetch');
 
 
-externalProjects.forEach(function (proj) {
-const path = proj + '/node_modules/coveo-search-ui';
+externalProjects.forEach((proj) => {
+const path = `${proj}/node_modules/coveo-search-ui'`;
 stats(path)
-    .then((fStat)=> {
+    .then((fStat) => {
       if (fStat.isSymbolicLink()) {
         return unlink(path)
       } else if (fStat.isDirectory()) {
-        return new Promise((resolve, reject)=> {
-          rmdir(path, (err)=> {
+        return new Promise((resolve, reject) => {
+          rmdir(path, (err) => {
             if (err) {
               reject(err);
             }
@@ -90,44 +90,44 @@ stats(path)
         return fStat;
       }
     })
-    .catch(()=> {
+    .catch(() => {
       return '';
     })
-    .then(()=> {
+    .then(() => {
       return fetch('http://localhost:8080/js/CoveoJsSearch.js')
-          .then((res)=> {
+          .then((res) => {
             if (res && res.status === 200) {
               return res.text();
             }
             return '';
           })
-          .then((body)=> {
+          .then((body) => {
             if (body) {
               return write(process.cwd() + '/bin/js/CoveoJsSearch.js', body);
             }
             return '';
           })
-          .catch(()=> {
+          .catch(() => {
             return '';
           })
     })
-    .then(()=> {
+    .then(() => {
       return link(process.cwd(), path, 'dir');
     })
-    .done(()=> {
+    .done(() => {
       console.log(`Link done for ${path}`.black.bgGreen);
     })
 })
 {% endhighlight %}
 
 
-Basically, you configure it with an array of "external projects", and it will first check if the dependency is already present in the external folder. If it is, it will delete it.
+Basically, you configure the scipt with an array of "external projects". These are the repositories where you wish to create a symlink. It will first take care of deleting the dependency that is already present in the external folder.
 
 Then, it will call the webpack dev server, download the bundle file, and write it on the file system.
 
 ## Running the script
 
-Then, we need to run the `link.externally.js` script every time the webpack dev server does it's job.
+After this, we need to run the `link.externally.js` script every time the webpack dev server does it's job.
 
 `dev.js` is the node script that we run to start the webpack dev server in the Search UI project.
 
@@ -149,26 +149,26 @@ const exec = (command, args, options, done) => {
     failOnError: true
   }, options);
   
-  var p = require('child_process').spawn(command, args, {
+  let p = require('child_process').spawn(command, args, {
     stdio: 'inherit'
   })
-    .on('exit', function (code) {
-      if (options.failOnError && code != 0) {
-        done(command + ' ' + args + ' failed with error ' + code);
-      } else {
-        done();
-      }
-    });
+  .on('exit', (code) => {
+    if (options.failOnError && code != 0) {
+      done(`command ${args} failed with error ${code}`);
+    } else {
+      done();
+    }
+  });
 };
 
-let debouncedLinkToExternal = _.debounce(()=> {
+let debouncedLinkToExternal = _.debounce(() => {
   console.log('... Compiler done ... Linking external projects'.black.bgGreen);
-  exec('node', ['./link.externally.js'], undefined, function () {
+  exec('node', ['./link.externally.js'], undefined, () => {
     console.log('Link done');
   })
 }, 1000);
 
-compiler.plugin('done', ()=> {
+compiler.plugin('done', () => {
   debouncedLinkToExternal();
 });
 
@@ -178,7 +178,7 @@ let server = new WebpackDevServer(compiler, {
   compress: true
 });
 
-server.listen(8080, 'localhost', ()=> {});
+server.listen(8080, 'localhost', () => {});
 
 {% endhighlight %}
 
@@ -187,5 +187,6 @@ We simply add a listener on the `done` event of the compiler, which then run the
 We debounced it, to guard against weird fringe case(s) where a developer could hit save extremely quickly in his editor, and produce an incomplete or incoherent bundle. 
 
 The debounced function is a hack, because we could not figure out what exactly was happening with the dev server compiler in those situations. 
+The hack works well enough though, and has stayed so far in our build process!
 
-The hack works well enough though, and has stayed so far in our build process !
+Webpack certainly has been beneficial to our team so far, and I would invite you to give it a try if you haven't already. It can be daunting at first, but there are a lot of good tutorial available online to get you started, and with webpack 2.0 coming soon, things will get even better!
