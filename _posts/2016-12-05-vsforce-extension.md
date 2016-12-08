@@ -1,14 +1,14 @@
 ---
 layout: post
 title: My first Visual Studio Code extension (vsforce)
-excerpt: Our experiences in creating our first Visual Studio Code extension, details about the extension vsforce and what knowledge would have been useful when we started the development.
+excerpt: Our experience creating our first Visual Studio Code extension, details about the vsforce extension, and information that would have been useful when starting its development.
 tags:
   - Visual Studion Code
   - Extension
   - Salesforce
   - vsforce
-  - Typescript
-  - Javascript
+  - TypeScript
+  - JavaScript
 author:
   name: André Thériault, Lucien Bénié & Étienne Rocheleau
   bio: Salesforce Integration developers, demo engineer
