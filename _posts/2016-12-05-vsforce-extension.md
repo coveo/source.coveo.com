@@ -11,7 +11,7 @@ tags:
   - Javascript
 author:
   name: André Thériault, Lucien Bénié & Étienne Rocheleau
-  bio: Salesforce Integration developpers, demo engineer
+  bio: Salesforce Integration developers, demo engineer
   imageURL: https://avatars.githubusercontent.com/erocheleau
 published: true
 ---
