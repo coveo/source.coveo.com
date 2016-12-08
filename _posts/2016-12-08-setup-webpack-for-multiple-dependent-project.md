@@ -72,7 +72,7 @@ const fetch = require('node-fetch');
 
 
 externalProjects.forEach((proj) => {
-const path = `${proj}/node_modules/coveo-search-ui'`;
+const path = `${proj}/node_modules/coveo-search-ui`;
 stats(path)
     .then((fStat) => {
       if (fStat.isSymbolicLink()) {
