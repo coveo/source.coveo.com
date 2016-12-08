@@ -22,7 +22,7 @@ published: true
 ## TypeScript
 TypeScript is a free and open-source programming language developed and maintained by **Microsoft**. It's a superset of JavaScript and adds static typing and classed based object-oriented programming to the language. It is included as a first-class programming language in Visual Studio Code.
 
-What Microsoft says:
+As mentioned on the TypeScript website:
 > TypeScript starts from the same syntax and semantics that millions of JavaScript developers know today. TypeScript compiles to clean, simple JavaScript code which runs on any browser, in Node.js, or in any JavaScript engine that supports ECMAScript 3 (or newer).
 
 ## Our first Visual Studio Code extension
