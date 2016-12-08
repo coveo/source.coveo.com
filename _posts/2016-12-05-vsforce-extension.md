@@ -22,10 +22,11 @@ published: true
 ## TypeScript
 TypeScript is a free and open-source programming language developed and maintained by **Microsoft**. It's a superset of JavaScript and adds static typing and classed based object-oriented programming to the language. It is included as a first-class programming language in Visual Studio Code.
 
+What Microsoft says:
 > TypeScript starts from the same syntax and semantics that millions of JavaScript developers know today. TypeScript compiles to clean, simple JavaScript code which runs on any browser, in Node.js, or in any JavaScript engine that supports ECMAScript 3 (or newer).
 
 ## Our first Visual Studio Code extension
-We at Coveo have been using Visual Studio Code for a while and we liked its performance speed compared to [Atom](https://atom.io/). Both are built on electron but vscode is faster seems faster in every category, from a project wide search to opening a large project codebase.
+We at Coveo have been using Visual Studio Code for a while and we liked its performance speed compared to [Atom](https://atom.io/). Both are built on electron but vscode is faster in every category, from a project wide search to opening a large project codebase.
 
 ## Why a Salesforce extension?
 If you've been working with Salesforce, you know that the entire process of writing and publishing code can be tricky and slow at times. You may also know that the Salesforce developer console does not offer all the features of a full fledged IDE/editor. Having your codebase locally on your machine is essential when working with a version control software.
@@ -33,7 +34,7 @@ If you've been working with Salesforce, you know that the entire process of writ
 ### The purpose of vsforce
 We've created [vsforce](https://github.com/coveo/vsforce) in order to make the process much simpler and much quicker than it is right now for you to create, test, and publish your code from your local machine.
 
->There are other extensions out there but none of them filled the feature list we wanted or worked the way we'd have liked.
+There are other extensions out there but none of them filled the feature list we wanted or worked the way we'd have liked.
 
 **We also wanted to have the control over the extension to be able to update it following Salesforce possible changes in API or new development features**.
 
