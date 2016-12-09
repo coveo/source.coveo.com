@@ -11,7 +11,9 @@ author:
   image: lmandrile.jpg
 ---
 
-In your Sitecore content tree, you may have secured items that you would like to present to anonymous users without the items' content being displayed. The following blogpost introduces a method that will allow you to do just that. Stripped down values of secured items are created at indexing time and are made searchable by anonymous users while being filtered out at query time for connected users, who will see the secured content as usual. The `ItemLimitedViewProcessor` described below will give you a way of implementing this.
+In your Sitecore content tree, you may have secured items that you would like to present to anonymous users without the items' content being displayed. The following blogpost introduces a method that will allow you to do just that. 
+
+This is done by creating stripped down values of secured items at indexing time and are made searchable by anonymous users while being filtered out at query time for connected users, who will see the secured content as usual. The `ItemLimitedViewProcessor` described below will give you a way of implementing this.
 
 <!-- more -->
 
@@ -163,4 +165,6 @@ Now that your processor is correctly configured, the next step is to activate it
 - Choose a field you want to hide in your duplicate (Optional)
 - Configure the parameters in your processor configuration file using each field ID defined in the previous steps
 
-Now rebuild your indexes and you're good to go! To test your feature, open your search page with an incognito window, search for an item your marked for copying, and you should see its copy with the preview text you entered. Clicking this copy should redirect you to an access denied page. Now login with a user that has access to the item, search for it once more, and instead of finding the copy, you should see the full item appear normally in your results.
+Now rebuild your indexes and you're good to go! To test your feature, open your search page with an incognito window, search for an item your marked for copying, and you should see its copy with the preview text you entered. Clicking this copy should redirect you to an access denied page. 
+
+Now, login with a user that has access to the item, search for it once more; instead of finding the copy, you should see the full item appear normally in your results.
