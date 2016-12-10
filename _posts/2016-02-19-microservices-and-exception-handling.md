@@ -11,6 +11,8 @@ author:
   image: jebeaudet.png
 
 ---
+**Update 2016/12/10**: It's now on [Maven central](https://maven-badges.herokuapp.com/maven-central/com.coveo/feign-error-decoder)! I've added some precisions below but I have left the post mostly intact for historical purposes.
+
 **Update 2016/07/08**: The project is now available on [GitHub](https://github.com/coveo/feign-error-decoder)! I plan on making it more generic before publishing it to Maven, I'll update this post soon with the new details.
 
 Exception handling across microservices can be tedious, let's see how the Java reflection API can help us ease the pain!
@@ -35,7 +37,22 @@ It wouln't be fair to avoid talking about the downsides of microservices as they
 
 # Dynamic exception handling using [Feign](https://github.com/Netflix/feign) and reflection
 
-In a monolithic application, handling exceptions is a walk in the park. However, if something goes wrong during an inter-service call, most of the times you'll want to propagate this exception or handle it gracefully. The problem is, you don't get an exception from the client, you get an HTTP code and a body describing the error or you may get a generic exception depending on the client used.
+---
+
+**Update 2016/12/10**: Since the publication of this article, the library was heavily refactored in order to be generic for your exception hierarchy and to the model returned on your api when an exception is thrown. It now also supports :
+ 
+- an *optional* dependency on Spring to support classpath scanning for abstract exception classes;
+- a customizable `Decoder`;
+- a customizable fallback `ErrorDecoder`
+- better algorithm to instantiate exceptions (it now supports empty and all combinations of `String` and `Throwable` constructors);
+- injection of the `Throwable` message field via reflection; 
+- customization of many of the library's aspects.
+
+All the details and examples are available in the [readme of the project on Github](https://github.com/coveo/feign-error-decoder). The rest of the article below is still relevant to show the big picture but bear in mind that it's not accurate with regards to the published code.
+
+---
+
+In a monolithic application, handling exceptions is a walk in the park. You try, you catch. However, if something goes wrong during an inter-service call, most of the times you'll want to propagate this exception or handle it gracefully. The problem is, you don't get an exception from the client, you get an HTTP code and a body describing the error or you may get a generic exception depending on the client used.
 
 For some of our applications at Coveo, we use [Feign](https://github.com/Netflix/feign) to build our clients across services. It allows us to easily build clients by just writing an interface with the parameters, the endpoint and the thrown exceptions like this : 
 {% highlight java %}
