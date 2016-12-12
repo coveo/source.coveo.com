@@ -17,7 +17,7 @@ This is done by creating stripped down values of secured items at indexing time 
 
 <!-- more -->
 
-#ItemLimitedViewProcessor
+# ItemLimitedViewProcessor
 
 This feat is accomplished by creating a copy of items as they go through the Coveo pipelines and running them through our custom processor before they are indexed. The processor strips the content and access rules of these copies while still linking to the original page. This way, if you redirect an anonymous user trying to access secure content to a login page, they will be redirected to the same login page when clicking on the new hollow item. You may also specify a preview field for an item that will be used as a Quick View, hide fields that you wouldn't want an anonymous user to access, and inject the original secured content in a hidden field so it may still be relevant.
 
@@ -25,7 +25,8 @@ To achieve the same relevancy as the original items, the content of the item bod
 
 Two fields are created in Sitecore items that will be used by the processor. The first indicates the item to be stripped, while the second potentially contains a preview to show anonymous users. In our case, these are the fields whose ID's are referenced by the `LimitedAccessFieldId` and `PreviewFieldId` properties described below.
 
-##Code
+## Code
+
 The processor added to the `CoveoItemPostProcessingPipeline` does a hollow copy of an item if it finds it marked for copying. It also adds two fields to the new item: `IsLimitedAccessDocument`, a field marking an item as a stripped down duplicate, and `HiddenContent`, a hidden field containing the original item body. Furthermore, a new `Unique ID` must be created for the item and its copy to be considered two different elements. The complete code can be found in the [Coveo Samples GitHub repository](https://github.com/coveo/samples/tree/master/coveo-for-sitecore/processors/ItemLimitedViewStripProcessor).
 
 {% highlight c# %}
@@ -104,7 +105,7 @@ public void Process(CoveoPostItemProcessingPipelineArgs p_Args)
 }
 {% endhighlight %}
 
-##Configurations
+## Configurations
 
 The next step is patching the Coveo configuration files in your Sitecore repository. To do this, you may either create a new .config file (as long as it's loaded after 'Coveo.SearchProvider.Custom.Config') or patch the `Coveo.SearchProvider.Custom.Config` directly.
 
