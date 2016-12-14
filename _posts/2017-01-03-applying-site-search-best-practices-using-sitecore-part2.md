@@ -30,7 +30,7 @@ This was discussed with more details on this [forum post](https://answers.coveo.
 
 #### Limit the number of facets
 
-Facets have a [dependsOn option](https://coveo.github.io/search-ui/components/facet.html#options.dependson) which you can use to only show a facet when it becomes relevant. The basic example is Years and Months. You will want the users to select the year before selecting the month.
+Facets have a [dependsOn](https://coveo.github.io/search-ui/components/facet.html#options.dependson) option which you can use to only show a facet when it becomes relevant. The basic example is Years and Months. You will want the users to select the year before selecting the month.
 You can also use the [Hierarchical Facet](https://coveo.github.io/search-ui/components/hierarchicalfacet.html) component to encapsulate facets, but it can quickly increase the complexity of your field management.
 
 Keep in mind that every facet click is tracked by Coveo Usage Analytics, which means that you can easilly track the usage of your facets and remove the ones rarely used.
@@ -49,13 +49,13 @@ Now that you know what to remove, you have several options:
 
 ```js
 Coveo.$('#@Model.Id')
-  // Call this event on the newQuery event since you want to make sure that my facet component exists, but has not yet launched the query to retrieve it's values
+  // Call this event on the newQuery event since you want to make sure that my facet component exists, but has not yet launched the query to retrieve it's values.
   .on(Coveo.QueryEvents.newQuery, function(e, args) {
     var pageWidth = window.innerWidth;
-    // Example of width, replace it by the value you prefer
+    // Example of width, replace it by the value you prefer.
     if(pageWidth < 600){
       Coveo.get(TagsFacet).disable();
-      // Remember that the component also has the .enable() method
+      // Remember that the component also has the .enable() method.
     }
   })
   // Then resume the initialization
@@ -93,7 +93,8 @@ If you have a Coveo Cloud index, then [Reveal Automatic Relevance Tuning (ART)](
 
 This is already the default behavior using our Coveo Search View rendering, so I don't have that much to add. Here are some useful links about sorting, use them wisely!
 
-[Inserting a sort component](https://developers.coveo.com/x/FQDvAQ)
+[Inserting a sort component](https://developers.coveo.com/x/FQDvAQ) 
+<br>
 [Understanding the code of a sort component](https://developers.coveo.com/x/wgDvAQ)
 
 Also take note that both the Coveo Search View and the Coveo Tab View components have a default sort property.
@@ -194,7 +195,7 @@ So now my result-template class can be use simply to route my templates:
 </script>
 ```
 
-Using this logic will allow you to show different type of results on the same page without being confusing for the user.
+Using this logic will allow you to show different type of results on the same page without being confusing for the user. In this example, the same query returns a pdf and a map location:
 
 ![Result Template](/images/SiteSearchBestPractices/resulttemplate.png)
 
