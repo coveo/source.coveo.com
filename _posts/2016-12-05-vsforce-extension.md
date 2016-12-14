@@ -3,7 +3,7 @@ layout: post
 title: My first Visual Studio Code extension (vsforce)
 excerpt: Our experience creating our first Visual Studio Code extension, details about the vsforce extension, and information that would have been useful when starting its development.
 tags:
-  - Visual Studion Code
+  - Visual Studio Code
   - Extension
   - Salesforce
   - vsforce
@@ -39,10 +39,10 @@ There are other extensions out there but none of them filled the feature list we
 **We also wanted to have the control over the extension to be able to update it following Salesforce possible changes in API or new development features**.
 
 ### Useful features
-vsforce provides a lot of feature to help us developers be more efficient when writing apex/Lightning code for Salesforce.
+vsforce provides a lot of feature to help us developers be more efficient when writing Apex/Lightning code for Salesforce.
 
 #### Auto-complete and syntax highlighting
-One of the major feature that we wanted to have in the first release was the ability to propose auto-completion while coding. All the information on the components and their attributes are obtainable through the Salesforce [Metadata API](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm). We wanted to accelerate our coding speed by having completion-as-you-type following known components without having to try a deploy to see if it would fail, for instance if you made a mistake while typing the name of a component or an apex class; this could take several minutes, depending on how long and complex your deploy process is.
+One of the major feature that we wanted to have in the first release was the ability to propose auto-completion while coding. All the information on the components and their attributes are obtainable through the Salesforce [Metadata API](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm). We wanted to accelerate our coding speed by having completion-as-you-type following known components without having to try a deploy to see if it would fail, for instance if you made a mistake while typing the name of a component or an Apex class; this could take several minutes, depending on how long and complex your deploy process is.
 
 ![Auto-complete](/images/2016-12-07-vsforce/auto-completion.gif "Auto-complete")
 
@@ -61,11 +61,11 @@ Other features were also added to make it easier for us specifically to work wit
 
 ![compare](/images/2016-12-07-vsforce/compare.gif "Compare with Salesforce")
 
-This feature is meant to solve the fact that Salesforce does not offer a versionning mechanism on code files. This feature is very useful when more than one person is working on the same file or component. Eventually, we would be able to add a check before a single file deploy to validate that you would not overwrite a more recent version from Salesforce.
+This feature is meant to solve the fact that Salesforce does not offer a versioning mechanism on code files. This feature is very useful when more than one person is working on the same file or component. Eventually, we would be able to add a check before a single file deploy to validate that you would not overwrite a more recent version from Salesforce.
 
-We have also found it useful to directly activate and fetch the logs from your Salesforce organization to be able to parse through them locally. Salesforce normally requires you to manually activate the logs if you want to be able to view system information while executing server-side code. With this feature, we are able to activate the logs for your user and fetch them after the operation you are testing has completed.
+We have also found it useful to directly activate and fetch the logs from your Salesforce organization to be able to parse them locally. Salesforce normally requires you to manually activate the logs if you want to be able to view system information while executing server-side code. With this feature, we are able to activate the logs for your user and fetch them after the operation you are testing has completed.
 
-We can also execute [SOQL](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) queries directly from the conext menu locally by selecting a query and executing the command. Furthermore, we can open a text input by calling the command `vsforce: Execute SOQL` from the command palette. The results are presented in an easy to read format in the editor.
+We can also execute [SOQL](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) queries directly from the context menu locally by selecting a query and executing the command. Furthermore, we can open a text input by calling the command `vsforce: Execute SOQL` from the command palette. The results are presented in an easy to read format in the editor.
 
 ![SOQL](/images/2016-12-07-vsforce/soql-query.gif "SOQL query")
 
