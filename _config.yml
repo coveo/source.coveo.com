@@ -41,5 +41,7 @@ inc:
 
   google_font: 'Droid+Sans:400,700'
 
-gems: [jekyll-paginate]
+gems: 
+    - jekyll-paginate
+    - jekyll-sitemap
 exclude: ['Gemfile', 'Gemfile.lock']
