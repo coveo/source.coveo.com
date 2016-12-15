@@ -11,49 +11,49 @@ author:
   image: olamothe.png
 ---
 
-In the past few months, I've been discovering [Webpack](https://webpack.github.io/), and how to use it to improve the development process in our team. 
+In the past few months, I've been discovering [Webpack](https://webpack.github.io/) and how to use it to improve the development process in our team. 
 
 A problem I ran into was how to setup multiple projects dependent on one another, in different repositories. 
 I wanted to make sure that the development environment was as painless as possible.
 
 <!-- more -->
 
-For demonstration purpose, I'll talk about two of the projects I work on, the [Coveo Search UI](https://github.com/coveo/search-ui) and the Interface Editor, which is a standalone web application that allows less technical user to customize their Search UI.
+For demonstration purposes, I'll talk about two of the projects I work on: the [Coveo Search UI](https://github.com/coveo/search-ui) and the Interface Editor, which is a standalone web application that allows less technical user to customize their Search UI.
 
-The Search UI lives in it's own repository, and is a completely different product than the Interface Editor.
+The Search UI lives in its own repository, and is a completely different product than the Interface Editor.
 The Search UI is also released on npm, independently of the Interface Editor. 
 
-Now, as you can imagine, the Search UI is a dependency of the Interface Editor. And, as you can also imagine, it often happens that we need to push code change in the Search UI project in order to improve or fix another issue in the Interface Editor. Concretely, this means that we need to be able to do a code change in the Search UI codebase, and have it available as quickly as possible in the Interface Editor project.
+As you can imagine, the Search UI is a dependency of the Interface Editor. As expected, it often happens that we need to push code change in the Search UI project in order to improve or fix another issue in the Interface Editor. Concretely, this means that we need to be able to change code in the Search UI codebase, and have it available as quickly as possible in the Interface Editor project.
 
 ## Dev server
 
-One of the very nice feature of webpack is the [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html) . It allows to drastically improve and speedup your development workflow. 
+One of the nice features of webpack is the [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html). It allows developers to drastically improve and accelerate the development workflow. 
 
-Whenever you do a change in one your source file and save it, webpack will recompile your bundle, depending on the different entry points of your application. Once the process has been completed, the dev server will automatically reload your application with your new code change.
+Whenever you change something in one your source files and save it, webpack recompiles your bundle, depending on the different entry points of your application. Once the process is completed, the dev server automatically reloads your application with your new code change.
 
-For both project, I setup a webpack dev server. The Search UI dev server is configured to be available on `localhost:8080` and the Interface Editor dev server lives on `localhost:8081`. 
+For both project, I setup a webpack dev server. The Search UI dev server is configured to be available on `localhost:8080` and the Interface Editor dev server lives on `localhost:8081`.
 
-Both work independently, and a developer working on both project will simply open a different browser tab for each server.
+Both work independently, and a developer working on both project can simply open a different browser tab for each server.
 
 ## Symlink between multiple projects
 
-A nice feature of npm is the [link](https://docs.npmjs.com/cli/link) command, which allows to very easily link multiple node project with one another.
+A nice feature of npm is the [link](https://docs.npmjs.com/cli/link) command, which allows us to easily link multiple node projects with one another.
 
-This tackle the very problem that I was trying to solve.
+This tackles the very problem that I was trying to solve.
 
-So, initially, that's what I tried to do. I simply used `npm link coveo-search-ui` Interface Editor repository. 
+Initially, that's what I tried to do. I simply used the `npm link coveo-search-ui` Interface Editor repository. 
 
-Sure enough, it looks like it worked. When I would do a code change in the Search UI codebase, both server would automatically reload because the webpack dev server would detect a change in the Search UI bundle. However, what I quickly realized was that the code change would **NOT** actually be available inside the dev server for the Interface Editor.
+Sure enough, it looked like it worked. When I would change code in the Search UI codebase, both servers would automatically reload because the webpack dev server would detect a change in the Search UI bundle. However, what I quickly realized was that the code changes would **NOT** actually be available inside the dev server for the Interface Editor.
 
-Concretely speaking, this meant that I would see my code changes on `localhost:8080`, but not `localhost:8081`.
+Concretely speaking, this meant that I would see my code changes on `localhost:8080`, but not on `localhost:8081`.
 
-The reason for this is that the dev server does not actually create a "real" bundle file on your filesystem each time it process your code change. Instead, it serves the bundle from "memory". This explains why the `npm link` command was not producing what I was initially expecting. The file linked by npm would not change on the disk each time the webpack dev server did it's job.
+The reason for this is that the dev server does not actually create a "real" bundle file on your filesystem each time it processes your code change. Instead, it serves the bundle from "memory." This explains why the `npm link` command was not producing what I was initially expecting. The file linked by npm would not change on the disk each time the webpack dev server did its job.
 
 ## Custom symlink script
 
 To solve this, I created a simple node script in the Search UI project to do the symlink myself. This way, I could add simple logic to fetch the code change and create a real file on my filesystem every time a bundle is created.
 
-The script, named `link.externally.js` looks like this:
+The script, named `link.externally.js`, looks like this:
 
 {% highlight javascript %}
 'use strict';
@@ -121,13 +121,13 @@ stats(path)
 {% endhighlight %}
 
 
-Basically, you configure the script with an array of "external projects". These are the repositories where you wish to create a symlink. It will first take care of deleting the dependency that is already present in the external folder.
+Basically, you configure the script with an array of "external projects." These are the repositories where you wish to create a symlink. It will first take care of deleting the dependency that is already present in the external folder.
 
 Then, it will call the webpack dev server, download the bundle file, and write it on the file system.
 
 ## Running the script
 
-After this, we need to run the `link.externally.js` script every time the webpack dev server does it's job.
+After this, we need to run the `link.externally.js` script every time the webpack dev server does its job.
 
 `dev.js` is the node script that we run to start the webpack dev server in the Search UI project.
 
@@ -182,9 +182,9 @@ server.listen(8080, 'localhost', () => {});
 
 {% endhighlight %}
 
-We simply add a listener on the `done` event of the compiler, which then run the `link.externally.js` script. 
+We simply add a listener on the `done` event of the compiler, which then runs the `link.externally.js` script. 
 
-We debounced it, to guard against weird fringe case(s) where a developer could hit save extremely quickly in his editor, and produce an incomplete or incoherent bundle. 
+We debounced it, to guard against weird fringe case(s) where a developer could hit save extremely quickly in their editor, and produce an incomplete or incoherent bundle. 
 
 The debounced function is a hack, because we could not figure out what exactly was happening with the dev server compiler in those situations. 
 The hack works well enough though, and has stayed so far in our build process!
