@@ -33,7 +33,9 @@ This was discussed with more details on this [forum post](https://answers.coveo.
 Facets have a [dependsOn](https://coveo.github.io/search-ui/components/facet.html#options.dependson) option which you can use to only show a facet when it becomes relevant. The basic example is Years and Months. You will want the users to select the year before selecting the month.
 You can also use the [Hierarchical Facet](https://coveo.github.io/search-ui/components/hierarchicalfacet.html) component to encapsulate facets, but it can quickly increase the complexity of your field management.
 
-Keep in mind that every facet click is tracked by Coveo Usage Analytics, which means that you can easilly track the usage of your facets and remove the ones rarely used.
+Keep in mind that every facet click is tracked by Coveo Usage Analytics, which means that you can easilly track the usage of your facets and remove the ones rarely used. Here is a example of two cards to mesure facet performance:
+
+![Facet Performance](/images/SiteSearchBestPractices/facetperf.png)
 
 #### Be sparing with mobile facets
 
