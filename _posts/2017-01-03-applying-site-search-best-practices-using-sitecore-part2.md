@@ -33,9 +33,13 @@ This was discussed with more details on this [forum post](https://answers.coveo.
 Facets have a [dependsOn](https://coveo.github.io/search-ui/components/facet.html#options.dependson) option which you can use to only show a facet when it becomes relevant. The basic example is Years and Months. You will want the users to select the year before selecting the month.
 You can also use the [Hierarchical Facet](https://coveo.github.io/search-ui/components/hierarchicalfacet.html) component to encapsulate facets, but it can quickly increase the complexity of your field management.
 
+If you have some type of "master" facet, which is used for a parent category (product vs support knowledge base for example), you might want to convert them to [tabs](https://developers.coveo.com/x/J4EKAg) instead. You can restrict the facets to be shown on each tabs, which is a great way to reduce the overall amount of facets.
+
 Keep in mind that every facet click is tracked by Coveo Usage Analytics, which means that you can easilly track the usage of your facets and remove the ones rarely used. Here is a example of two cards to mesure facet performance:
 
 ![Facet Performance](/images/SiteSearchBestPractices/facetperf.png)
+
+The Facet Title and Facet Value columns are dimensions, while the Query Count and Click Through columns are metrics. The Query Count shows the number of time this facet was selected, while the Click Through shows the ratio between the facet selection and the result click. In other words, if I select a facet and click on a result, my click through is 100%; if I click on no results, then I am at 0%. A facet with a low click through should be removed, since it is mostly leading your users to a cul-de-sac.
 
 #### Be sparing with mobile facets
 
