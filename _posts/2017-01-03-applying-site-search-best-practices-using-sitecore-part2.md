@@ -127,9 +127,9 @@ The delimiters would be ```<% %>``` by default, but the framework also supports 
 
 This said, you can use the delimiters for three different type of operations:
 
-* Evaluate : ```{{ }}``` // To insert any type of code such as variable declarations, loops, conditions, etc.
-* Extrapolate : ```{{= }}``` // To insert any elements from the response of the index.
-* Escape : ```{{- }}``` // To insert any elements from the response of the index using html escaping.
+* Evaluate : ```{{ }}``` - To insert any type of code such as variable declarations, loops, conditions, etc.
+* Extrapolate : ```{{= }}``` - To insert any elements from the response of the index.
+* Escape : ```{{- }}``` - To insert any elements from the response of the index using html escaping.
 
 For more details on these operations, read this [help page](https://developers.coveo.com/x/GwOwAQ).
 
