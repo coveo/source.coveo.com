@@ -8,6 +8,7 @@ tags: [Sitecore, Secured Content, Coveo for Sitecore]
 author:
   name: Laurent Mandrile
   bio: Intern, Coveo for Sitecore
+  twitter: mandrilelaurent
   image: lmandrile.jpg
 ---
 
@@ -48,7 +49,8 @@ public void Process(CoveoPostItemProcessingPipelineArgs p_Args)
         sitecoreIndexableItem.Item[limitedAccessFieldId] == LIMITED_ACCESS_VALUE) {
 
         // Check if a preview text has been specified.
-        IIndexableDataField previewField = sitecoreIndexableItem.Fields.FirstOrDefault(arg => (ID) arg.Id == previewFieldId);
+        IIndexableDataField previewField = sitecoreIndexableItem.Fields.FirstOrDefault(
+             arg => (ID) arg.Id == previewFieldId);
         byte[] encodedPreview = null;
         if (previewField != null) {
             string previewText = previewField.Value.ToString();
@@ -68,7 +70,8 @@ public void Process(CoveoPostItemProcessingPipelineArgs p_Args)
         }
 
         if (!String.IsNullOrEmpty(FieldToHideId)) {
-            IIndexableDataField fieldToHide = sitecoreIndexableItem.Fields.FirstOrDefault(arg => (ID) arg.Id == fieldToHideId);
+            IIndexableDataField fieldToHide = sitecoreIndexableItem.Fields.FirstOrDefault(
+                 arg => (ID) arg.Id == fieldToHideId);
             if (fieldToHide != null) {
                 newMetadata.Remove(fieldToHide.Name);
             }
