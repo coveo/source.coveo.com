@@ -20,13 +20,13 @@ published: true
 [Visual Studio Code](https://github.com/Microsoft/vscode) is a free open-source, cross-platform [TypeScript](https://www.typescriptlang.org/) based editor from the **Microsoft** team. It is built with [electron](https://github.com/electron/electron), a framework based on [Node.js](https://nodejs.org/en/) and [Chromium](http://www.chromium.org/) that lets you write cross-platform desktop applications using JavaScript, HTML, and CSS.
 
 ## TypeScript
-TypeScript is a free and open-source programming language developed and maintained by **Microsoft**. It's a superset of JavaScript and adds static typing and classed based object-oriented programming to the language. It is included as a first-class programming language in Visual Studio Code.
+TypeScript is a free and open-source programming language developed and maintained by **Microsoft**. It's a superset of JavaScript and adds static typing and class based object-oriented programming to the language. It is included as a first-class programming language in Visual Studio Code.
 
 As mentioned on the TypeScript website:
 > TypeScript starts from the same syntax and semantics that millions of JavaScript developers know today. TypeScript compiles to clean, simple JavaScript code which runs on any browser, in Node.js, or in any JavaScript engine that supports ECMAScript 3 (or newer).
 
 ## Our first Visual Studio Code extension
-We at Coveo have been using Visual Studio Code for a while and we liked its performance speed compared to [Atom](https://atom.io/). Both are built on electron but vscode is faster in every category, from a project wide search to opening a large project codebase.
+At Coveo have been using Visual Studio Code for a while and we liked its performance speed compared to [Atom](https://atom.io/). Both are built on electron but vscode is faster in every category, from a project wide search to opening a large project codebase.
 
 ## Why a Salesforce extension?
 If you've been working with Salesforce, you know that the entire process of writing and publishing code can be tricky and slow at times. You may also know that the Salesforce developer console does not offer all the features of a full fledged IDE/editor. Having your codebase locally on your machine is essential when working with a version control software.
@@ -42,7 +42,7 @@ There are other extensions out there but none of them filled the feature list we
 vsforce provides a lot of feature to help us developers be more efficient when writing Apex/Lightning code for Salesforce.
 
 #### Auto-complete and syntax highlighting
-One of the major feature that we wanted to have in the first release was the ability to propose auto-completion while coding. All the information on the components and their attributes are obtainable through the Salesforce [Metadata API](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm). We wanted to accelerate our coding speed by having completion-as-you-type following known components without having to try a deploy to see if it would fail, for instance if you made a mistake while typing the name of a component or an Apex class; this could take several minutes, depending on how long and complex your deploy process is.
+One of the major feature that we wanted to have in the first release was the ability to propose auto-completion while coding. All the information on the components and their attributes are obtainable through the Salesforce [Metadata API](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm). We wanted to accelerate our coding speed by having completion-as-you-type following known components without having to try a deploy to see if it would fail. For instance, if you made a mistake while typing the name of a component or an Apex class; this could take several minutes, depending on how long and complex your deploy process is.
 
 ![Auto-complete](/images/2016-12-07-vsforce/auto-completion.gif "Auto-complete")
 
