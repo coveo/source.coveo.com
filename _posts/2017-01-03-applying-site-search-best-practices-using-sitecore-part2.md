@@ -17,15 +17,15 @@ For those of you who missed [part 1](http://source.coveo.com/2016/12/07/applying
 ## The Search Result Page
 ![Search Page](/images/SiteSearchBestPractices/standardresultpage.png)
 
-My first post was covering the standalone search box. It can get confusing since the search result page also contains it's own search box. 
-In technical term, the result page is using the Coveo Search View rendering and contains a result template and several placeholders for sub-components such as facets, sorts, related queries, recommendations, tabs and more.
-If you followed my first set of best practices, chances are that the search interface search box is hidden, and the standalone search box is driving your result page.
+My first post was mostly about the standalone search box. It can get confusing since the search result page also contains it's own search box. 
+In technical term, the search result page is using the Coveo Search View rendering and contains a result template and several placeholders for sub-components such as facets, sorts, related queries, recommendations, tabs and more.
+If you followed my first set of best practices, chances are that the search interface search box is hidden, and the standalone search box is driving your search result page.
 
 ### 6. Make your search results "human friendly"
 
 #### Focus on the result
 
-Be careful with headers and banners. Also keep in mind that a page refresh will mostly send the user back to the top of the page. Having to scroll back down really kills the experience so keeping an anchor in the search results is the way to go.
+Be careful with headers and banners. Also keep in mind that a page refresh will most likely send the user back to the top of the page. Having to scroll back down really kills the experience so keeping an anchor in the search results is the way to go.
 This was discussed with more details on this [forum post](https://answers.coveo.com/questions/6113/clearing-facet-brings-the-focus-back-to-the-top-of-the-page).
 
 #### Limit the number of facets
