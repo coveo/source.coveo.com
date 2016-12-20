@@ -40,6 +40,8 @@ Keep in mind that every facet click is tracked by Coveo Usage Analytics, which m
 
 The Facet Title and Facet Value columns are dimensions, while the Query Count and Click Through columns are metrics. The Query Count shows the number of time this facet was selected, while the Click Through shows the ratio between the facet selection and the result click. In other words, if I select a facet and click on a result, my click through is 100%; if I click on no results, then it would be at 0%. A facet with a low click through should be removed, since it is mostly leading your users to a cul-de-sac.
 
+If you do not know what are dimensions and metrics, please refer to this [guide](https://onlinehelp.coveo.com/en/cloud/usage_analytics_dimensions.htm). I will cover this topic in the last blog of this series.
+
 #### Be sparing with mobile facets
 
 Since September 2016's version, the Coveo JavaScript framework will place all the facets in a container when the screen size is reduced. So if you are using an older version, an upgrade could improve your mobile experience without the need to code anything. 
