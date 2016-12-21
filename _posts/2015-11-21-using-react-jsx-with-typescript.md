@@ -58,6 +58,13 @@ This will create a `typings.json` file (similar to a `package.json` but refering
 
 We can now install the needed definitions:
 
+
+EDIT: Since typescript 2.0 you can do
+```sh
+npm install @types/react
+npm install @types/...
+```
+
 {% highlight javascript %}
 typings install dt~react --global --save
 typings install dt~react-dom --global --save
