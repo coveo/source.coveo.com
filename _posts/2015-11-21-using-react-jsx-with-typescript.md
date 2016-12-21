@@ -16,11 +16,11 @@ In the last months, we [experienced with React](http://source.coveo.com/2015/08/
 
 <!-- more -->
 
-EDIT: _Please note that *typings* is not required anymore and may not work since a recent typescript update (2.0) made type definitions available in npm and auto discovered by the typescript compiler via node_modules_
-
 In this article, I'll introduce you on how to start a new project using TypeScript, JSX and React and show you some tools we use to simplify our development.
 
-> This article was updated on June 6, 2016 to use `typings` instead of `tsd` since it is now deprecated in favor of typings.
+> EDIT:This article was updated on June 6, 2016 to use `typings` instead of `tsd` since it is now deprecated in favor of typings.
+> EDIT2: _Please note that *typings* is not required anymore and may not work since a recent typescript update (2.0) made type definitions available in npm and auto discovered by the typescript compiler via node_modules_
+
 
 ## Initial setup with npm
 
