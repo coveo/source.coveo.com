@@ -27,32 +27,32 @@ In this article, I'll introduce you on how to start a new project using TypeScri
 
 First we'll setup our project with `npm init`. For this project we need node, typescript, typings, and react. Let's install them:
 
-{% highlight javascript %}
+```sh
 npm install typescript -g
 npm install typings -g
 
 npm install react --save
-{% endhighlight %}
+```
 
 Second, let's make sure we have TypeScript compiler 1.6 or later:
 
-{% highlight javascript %}
+```sh
 tsc --version
-{% endhighlight %}
+```
 
 You should see an output similar to:
 
-{% highlight javascript %}
+```js
 message TS6029: Version 1.6.2
-{% endhighlight %}
+```
 
 ## TypeScript definitions with typings
 
 We're almost ready to start coding, but we'll need the React definitions. We already installed [typings](https://github.com/typings/typings) which is a package manager to search and install TypeScript definition files directly from the [community driven repositories](https://github.com/typings/typings#sources). Most definitions are from DefinitelyTyped. [DefinitelyTyped is a great project and we try to contribute](https://github.com/coveo/DefinitelyTyped) as much as we can. It will allow us to download the latest definitions for React and other libraries. Like we did with npm, we need to initialize a "typings" project by running :
 
-{% highlight javascript %}
+```
 typings init
-{% endhighlight %}
+```
 
 This will create a `typings.json` file (similar to a `package.json` but refering to our TypeScript definitions), a `typings/` folder to store the definitions and a `index.d.ts` referencing all our downloaded definitions.
 
@@ -60,12 +60,13 @@ We can now install the needed definitions:
 
 
 EDIT: Since typescript 2.0 you can do
+
 ```sh
 npm install @types/react
 npm install @types/...
 ```
 
-{% highlight javascript %}
+```sh
 typings install dt~react --global --save
 typings install dt~react-dom --global --save
 typings install dt~react-addons-create-fragment --global --save
@@ -77,13 +78,13 @@ typings install dt~react-addons-test-utils --global --save
 typings install dt~react-addons-transition-group --global --save
 typings install dt~react-addons-update --global --save
 typings install dt~react-global --global --save
-{% endhighlight %}
+```
 
 This downloads the definitions to our `typings` folder, saves the commit hash to the `typings.json` and updates the `typings/index.d.ts`.
 
 Our `typings.json` should contain something like :
 
-{% highlight javascript %}
+```js
 {
   "dependencies": {},
   "globalDependencies": {
@@ -101,11 +102,11 @@ Our `typings.json` should contain something like :
     //.....
   }
 }
-{% endhighlight %}
+```
 
 And the `typings/index.d.ts` should contain:
 
-{% highlight javascript %}
+```js
 /// <reference path="globals/react-addons-create-fragment/index.d.ts" />
 /// <reference path="globals/react-addons-css-transition-group/index.d.ts" />
 /// <reference path="globals/react-addons-linked-state-mixin/index.d.ts" />
@@ -117,13 +118,13 @@ And the `typings/index.d.ts` should contain:
 /// <reference path="globals/react-dom/index.d.ts" />
 /// <reference path="globals/react-global/index.d.ts" />
 /// <reference path="globals/react/index.d.ts" />
-{% endhighlight %}
+```
 
 ## Let's code
 
 Create a file named `HelloWorld.tsx`. Notice the `.tsx` extension, this is needed for TypeScript to enable JSX syntax support.
 
-{% highlight javascript %}
+```
 /// <reference path="./typings/index.d.ts" />
 
 class HelloWorld extends React.Component<any, any> {
@@ -131,7 +132,7 @@ class HelloWorld extends React.Component<any, any> {
     return <div>Hello world!</div>
   }
 }
-{% endhighlight %}
+```
 
 We first reference to our TypeScript definitions that we setup in the previous step. We then `import` React module using the ES6 module import syntax and then, we declare our first component using react!
 
@@ -146,7 +147,7 @@ This will produce `HelloWorld.js`
 
 But, you might not want to remember all those flags, let's save our compiler configuration to a `tsconfig.json`. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. For more details refer to the [official documentation](https://github.com/Microsoft/typescript/wiki/tsconfig.json).
 
-{% highlight javascript %}
+```js
 {
   "compilerOptions": {
     "jsx": "react",
@@ -163,7 +164,7 @@ But, you might not want to remember all those flags, let's save our compiler con
     "HelloWorld.tsx"
   ]
 }
-{% endhighlight %}
+```
 
 We can now run `tsc` in our project folder to produce the same result. Notice that we include the `typings/index.d.ts` file, so we won't need to reference it in all our files.
 
@@ -173,7 +174,7 @@ Let's explore a little deeper on how to render our `HelloWorld` component and pa
 
 Let's improve our HelloWorld component by adding `firstname` and `lastname` props and typing them with an `interface`. Then, let's render it! This will allow us to be notified at compile time if a `prop` is missing or is the wrong type!
 
-{% highlight javascript %}
+```
 class HelloWorldProps {
   public firstname: string;
   public lastname: string;
@@ -191,11 +192,11 @@ ReactDOM.render(<HelloWorld
     firstname="John"
     lastname="Smith"/>,
   document.getElementById('app'));
-{% endhighlight %}
+```
 
 Compile once again with `tsc`. Then let's finish by importing everything in an `index.html` file:
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -210,8 +211,7 @@ Compile once again with `tsc`. Then let's finish by importing everything in an `
     <script src="HelloWorld.js"></script>
   </body>
 </html>
-{% endhighlight %}
-
+```
 Open `index.html` in your browser and you should see
 ```
 Hello John Smith!
