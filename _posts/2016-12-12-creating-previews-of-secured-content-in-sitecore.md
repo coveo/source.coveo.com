@@ -168,7 +168,7 @@ Now that your processor is correctly configured, the next step is to activate it
 - Choose a field you want to hide in your duplicate (Optional)
 - Configure the parameters in your processor configuration file using each field ID defined in the previous steps
 
-**As a very important side note**, make sure you are handling the processing of your secure content well! The `HtmlContentInBodyWithRequestsProcessor` is used to retrieve the content injected in the `HiddenContent` field, and if the item is secured, [Coveo for Sitecore has to be able to login.](https://developers.coveo.com/display/public/SitecoreV4/Configuring+Form+Authentication)
+**As a very important side note**, make sure you are handling the processing of your secure content correctly! The `HtmlContentInBodyWithRequestsProcessor` is used to retrieve the content injected in the `HiddenContent` field, and if the item is secured, [Coveo for Sitecore has to be configured to authentificate itself.](https://developers.coveo.com/display/public/SitecoreV4/Configuring+Form+Authentication)
 
 Now rebuild your indexes and you're good to go! To test your feature, open your search page with an incognito window, search for an item your marked for copying, and you should see its copy with the preview text you entered. Clicking this copy should redirect you to an access denied page. 
 
