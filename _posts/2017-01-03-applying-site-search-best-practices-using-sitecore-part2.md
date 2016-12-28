@@ -145,7 +145,7 @@ As you may have figured out already, the response of the index can be seen direc
 Now back to the result template, here is an example for a Sitecore template called Team Members:
 
 ```js
-<script id="team-member-result-template" type="text/underscore">
+<script id="team-member-result-template" class="result-template" type="text/underscore" data-condition='raw.@(Model.ToCoveoFieldName("_templatename", false)) == "Team Member"'>
   <div class="coveo-result-frame">
     <div class="coveo-result-row">
         <!-- Custom thumbnails using the image computed field. -->
@@ -180,37 +180,16 @@ Now back to the result template, here is an example for a Sitecore template call
 </script>
 ```
 
-As mentioned before, the result-template class will be the one loaded by default, so you will need to use the [loadTemplate](https://developers.coveo.com/display/public/JsSearchV1/Result+Template+Helpers#ResultTemplateHelpers-loadTemplate) helper to diplay your custom template.
-Your result-template class will then simply become a router for your different templates, this mean that you will need to extract the content of this template and allocate it in a template of its own.
-This is fairly simple, remove the result-template class from your existing template and assign it an id like you did for your custom template:
+The class is the same as the default template and the condition will tell the framework when to load that template. The id is optionnal but helps to quickly identify the templates. The template itself has been customized to show a special thumbnail and excerpt.
 
- ```js
-<script class="result-template" type="text/underscore">
-  <!-- HTML -->
-</script>
-```
+The default template will be left without any condition in order to load for all the other Sitecore templates.
 
-Will become:
+Here is an example of two result type on the same page:
 
-```js
-<script id="default-result-template" type="text/underscore">
-  <!-- HTML -->
-</script>
-```
+![Result Template Example](/images/SiteSearchBestPractices/resulttemplateexample.png)
 
-Now your result-template class can be used to route your custom templates:
-
-```js
-<script class="result-template" type="text/underscore">
-  <!-- Declare a Boolean isTeamMember based on the Sitecore _templatename field. -->
-  {{ var isTeamMember = raw.@(Model.ToCoveoFieldName("_templatename", false)) === "Team Member";
-    var templateToLoad = isTeamMember ? "team-member-result-template" : "default-result-template"; }}
-  <!-- Use the loadTemplate helper to display the correct template. -->
-  {{= loadTemplate(templateToLoad) }}
-</script>
-```
-
-Using this logic will allow you to show different type of results on the same page without being confusing for the user. In this example, the same query returns a pdf and a map location:
+Using this logic will allow you to show different type of results on the same page without being confusing for the user. 
+Here is another example based on file type field where the same query returns a pdf and a map location:
 
 ![Result Template](/images/SiteSearchBestPractices/resulttemplate.png)
 
