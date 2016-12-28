@@ -2,7 +2,7 @@
 layout: post
 
 title: "Applying Site Search Best Practices using Sitecore Part 2"
-tags: [Sitecore, Coveo for Sitecore]
+tags: [Sitecore, Coveo for Sitecore, Site Search Best Practices Series]
 
 author:
   name: Simon Langevin
@@ -18,27 +18,27 @@ For those of you who missed [part 1](http://source.coveo.com/2016/12/07/applying
 ![Search Page](/images/SiteSearchBestPractices/standardresultpage.png)
 
 My first post was mostly about the standalone search box. It can get confusing since the search result page also contains it's own search box. 
-In technical term, the search result page is using the Coveo Search View rendering and contains a result template and several placeholders for sub-components such as facets, sorts, related queries, recommendations, tabs and more.
+In technical term, the Coveo Search View rendering is a search result which contains a result template and several placeholders for sub-components such as facets, sorts, related queries, recommendations, tabs and more.
 If you followed my first set of best practices, chances are that the search interface search box is hidden, and the standalone search box is driving your search result page.
 
 ### 6. Make your search results "human friendly"
 #### Focus on the result
 
-Be careful with headers and banners. Also keep in mind that a page refresh will most likely send the user back to the top of the page. Having to scroll back down is a hit on the experience so keeping an anchor in the search results is the way to go.
-This was discussed with more details on this [forum post](https://answers.coveo.com/questions/6113/clearing-facet-brings-the-focus-back-to-the-top-of-the-page).
+Be careful with the size of the headers and banners on your search result page. You must keep the focus (the center of the screen) on the results and keep in mind that a page refresh will most likely send the user back to the top of the page. Having to scroll back down is a hit on the experience so keeping an anchor in the search results is the way to go.
+For more details, visit this [forum post](https://answers.coveo.com/questions/6113/clearing-facet-brings-the-focus-back-to-the-top-of-the-page).
 
 #### Limit the number of facets
 
 Facets have a [dependsOn](https://coveo.github.io/search-ui/components/facet.html#options.dependson) option which you can use to only show a facet when it becomes relevant. The basic example is Years and Months. You will want the users to select the year before selecting the month.
 You can also use the [Hierarchical Facet](https://coveo.github.io/search-ui/components/hierarchicalfacet.html) component to encapsulate facets, but it can quickly increase the complexity of your field management.
 
-If you have some type of "master" facet, which is used for a parent category (product vs support knowledge base for example), you might want to convert them to [tabs](https://developers.coveo.com/x/J4EKAg) instead. You can restrict the facets to be shown on each tabs, which is a great way to reduce the overall amount of facets.
+If you have some type of "master" facet, which is used for a parent category (product vs support knowledge base for example), you might want to convert them to [tabs](https://developers.coveo.com/x/J4EKAg) instead. You can [restrict the facets](https://developers.coveo.com/x/UwDvAQ) to be shown on each tabs, which is a great way to reduce the overall amount of facets.
 
-Keep in mind that every facet click is tracked by Coveo Usage Analytics, which means that you can easilly track the usage of your facets and remove the ones rarely used. Here is a example of two cards to mesure facet performance:
+Keep in mind that every facet click is tracked by Coveo Usage Analytics, which means that you can easily track the usage of your facets and remove the ones rarely used. Here is a example of two cards to mesure facet performance:
 
 ![Facet Performance](/images/SiteSearchBestPractices/facetperf.png)
 
-The Facet Title and Facet Value columns are dimensions, while the Query Count and Click Through columns are metrics. The Query Count shows the number of time this facet was selected, while the Click Through shows the ratio between the facet selection and the result click. In other words, if I select a facet and click on a result, my click through is 100%; if I click on no results, then it would be at 0%. A facet with a low click through should be removed, since it is mostly leading your users to a cul-de-sac.
+The Facet Title and Facet Value columns are dimensions, while the Query Count and Click-Through columns are metrics. The Query Count shows the number of time this facet was selected, while the Click-Through shows the ratio between the facet selection and the result click. In other words, if I select a facet and click on a result, my Click-Through is 100%; if I click on no results, then it would be at 0%. A facet with a low Click-Through should be removed, since it is mostly leading your users to a cul-de-sac.
 
 If you do not know what are dimensions and metrics, please refer to this [guide](https://onlinehelp.coveo.com/en/cloud/usage_analytics_dimensions.htm). I will cover this topic in the last blog of this series.
 
@@ -52,17 +52,19 @@ Same as I said before, Coveo Usage Analytics can give you hints on what to keep 
 Now that you know what to remove, you have several options, here are the two most popular:
 
 * Assign a different rendering on the mobile device of your search page item which contains only a limited number of facets.
-* Hide the facet using the [disable method](https://coveo.github.io/search-ui/classes/basecomponent.html#disable) of the component based on the width of the screen:
+* Hide the facet using the [disable method](https://coveo.github.io/search-ui/classes/basecomponent.html#disable) of the component based on the width of the screen. Here is an example with a media query:
 
 ```js
 Coveo.$('#@Model.Id')
   // You need to call this event on the newQuery event since you want to make sure that the facet component exists, but has not yet launched the query to retrieve it's values.
   .on(Coveo.QueryEvents.newQuery, function(e, args) {
-    var pageWidth = window.innerWidth;
     // Example of width, replace it by the value you prefer.
-    if(pageWidth < 600){
+    var mq = window.matchMedia( "(min-width: 600px)" );
+    
+    if (mq.matches) {
+      Coveo.get({the DOM id of the facet}).enable();
+    } else {
       Coveo.get({the DOM id of the facet}).disable();
-      // Remember that the component also has the .enable() method.
     }
   })
   // Then resume the initialization.
@@ -77,8 +79,8 @@ Also, managing a single device simplifies cuztomization and maintenance in the l
 
 Several languages are supported by the Coveo index, you can see the full list [here](https://onlinehelp.coveo.com/en/ces/7.0/user/supported_languages.htm).
 
-By default the Coveo Search View rendering will have a "Filter results on the current context language" property enabled. You can simply uncheck it to have a multi-language search page.
-This logic is based on the language version of the search page item. An English version item will have a filter on the "en" language which can be seen in the browser console:
+By default, the Coveo Search View rendering will have a "Filter results on the current context language" property enabled. You can simply uncheck it to have a multi-language search page.
+This logic is based on the language version of the search page item. An English version item will have a filter on the "en" language which can be seen in the network tab of most browsers' developer tools:
 
 ```js
 cq: @fz95xlanguage11111=="en"
@@ -97,7 +99,7 @@ Tackling every single variant of a word can become an arduous task, which can be
 
 ![Content Gap](/images/SiteSearchBestPractices/contentgap.png)
 
-In the screenshot above, I created a few cards which uses the Query dimension combined with the Relevance Index metric for the first card and the Visit Count metric for the second one. The Relevance index is a mix of result position and frequency of query, the full equation can be found [here](https://answers.coveo.com/questions/7568/how-is-the-relevance-index-metric-calculated). The Visit Count metric will only tell you how many visitors tried that query. To make sure that I am only seeing queries without results, I used the HasResult = False filter on that same card. These two cards will give you a list of your problematic queries, on which you can spend most of your manual efforts.
+In the screenshot above, I created a few cards which uses the Query dimension combined with the Relevance Index metric for the first card and the Visit Count metric for the second one. The Relevance index is a mix of result position and frequency of query, the full equation can be found [here](https://answers.coveo.com/questions/7568/how-is-the-relevance-index-metric-calculated). The Visit Count metric will only tell you how many visitors tried that query. To make sure that I am only seeing queries without results, I used the ```HasResult = False``` filter on that same card. These two cards will give you a list of your problematic queries, on which you can spend most of your manual efforts.
 
 If you have a Coveo Cloud index, then [Reveal Automatic Relevance Tuning (ART)](https://onlinehelp.coveo.com/en/cloud/coveo_reveal_features.htm) will do the work for you; simply [create the model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_automatic_relevance_tuning_in_a_query_pipeline.htm) and then sit back and relax.
 
@@ -106,7 +108,8 @@ If you have a Coveo Cloud index, then [Reveal Automatic Relevance Tuning (ART)](
 This is already the default behavior using our Coveo Search View rendering, so I don't have too much to add. Here are some useful links about sorting, use them wisely!
 
 [Inserting a sort component](https://developers.coveo.com/x/FQDvAQ) 
-<br>
+
+
 [Understanding the code of a sort component](https://developers.coveo.com/x/wgDvAQ)
 
 Also take note that both the Coveo Search View and the Coveo Tab View renderings have a default sort property which can be changed.
@@ -124,22 +127,22 @@ When the page loads, the result list will load the default template declared in 
 
 Changing anything in-between these tags will change the look and feel of your result list. Now before I go further, let's make sure we are on the same page regarding underscore.js templating.
 
-Inline with your html, you can use special sets of delimiters to indicate to the underscore.js framework that you are inserting dynamic presentation logic.
-The delimiters would be ```<% %>``` by default, but the framework also supports ```{{ }}```. This is what Coveo for Sitecore will use in order to avoid conflict with asp.net.
+In your html, you can use special sets of delimiters to indicate to the underscore.js framework that you are inserting dynamic presentation logic.
+The delimiters would be ```<% %>``` by default, but the framework also supports ```{{ }}```. This is what Coveo for Sitecore will use in order to avoid conflict with ASP.NET.
 
-This said, you can use the delimiters for three different type of operations:
+This said, you can use the delimiters for three different operations:
 
 * Evaluate : ```{{ }}``` - To insert any type of code such as variable declarations, loops, conditions, etc.
-* Extrapolate : ```{{= }}``` - To insert any elements from the response of the index.
-* Escape : ```{{- }}``` - To insert any elements from the response of the index using html escaping.
+* Extrapolate : ```{{= }}``` - To insert any element from the response of the index.
+* Escape : ```{{- }}``` - To insert any element from the response of the index using HTML escaping.
 
 For more details on these operations, read this [help page](https://developers.coveo.com/x/GwOwAQ).
 
-As you may have figured out already, the response of the index can be seen directly in the browser console or in any web debugging tools.
+As you may have figured out already, the response of the index can be seen directly in the browser developer tools or in any web debugging tools.
 
 ![Chrome Network Tab](/images/SiteSearchBestPractices/chromenetworktab.png)
 
-Now back to the result template, I can create my own result template, here is an example for a Sitecore template called Team Members:
+Now back to the result template, here is an example for a Sitecore template called Team Members:
 
 ```js
 <script id="team-member-result-template" type="text/underscore">
@@ -195,7 +198,7 @@ Will become:
 </script>
 ```
 
-So now your result-template class can be use to route your custom templates:
+Now your result-template class can be used to route your custom templates:
 
 ```js
 <script class="result-template" type="text/underscore">
@@ -220,16 +223,16 @@ By default, only the title field, URI field, and the extracted body of the docum
 This means that in order for your users to search for the content of an item, you need to generate a body or manually set certain fields to be free text searchable.
 
 In most Sitecore projects, fields on the items are only a fragment of what is displayed to the user when they visit the site. Most of the time, dynamic content will be generated when the page is rendered. This means that the best approach to create a document body when indexing is to simulate the visit of a user and index the rendered HTML of the pages.
-When installing Coveo for Sitecore, you will be prompted to index the rendered HTML, if you accept to do so, the HtmlContentInBodyWithRequestsProcessor is activated and will crawl the HTML content of each items with a layout.
+When installing Coveo for Sitecore, you will be prompted to index the rendered HTML, if you accept to do so, the [HtmlContentInBodyWithRequestsProcessor](https://developers.coveo.com/x/PADvAQ) is activated and will crawl the HTML content of each items with a layout.
 I will explain how to customize that processor in the next section.
 
 Alternatively, you might have a fairly simple project where field values is the majority of the content on your pages. In that case the [BasicHtmlContentInBodyProcessor](https://developers.coveo.com/x/dgDvAQ) could generate a simple body while improving your indexing performances. It does require more manual work, and you will need to plan ahead the development of your site. If you or anyone in your organisation decides to add dynamic content on your pages, you will need to find a way to add this content to the body. You could do so with a computed field or a processor in the indexing pipeline but I personaly prefer full HTML crawling since it greatly reduce setup and maintenance efforts.
 
 Appart from generating the body of the document, you might want your users to search against additional fields. Let say that you have a taxonomy field on your items. You might not show that field on your pages, but if a user searches for a keyword matching the value of the taxonomy field, you want the content tagged to be returned. You can make a field free text searchable in the field map section of the Coveo.SearchProvider.Custom.config file. See [here](https://developers.coveo.com/x/lIcdAg) for a step by step guide.
 
-#### Index the html body of pages and content of documents
+#### Index the HTML body of pages and content of documents
 
-I already mentioned the HtmlContentInBodyWithRequestsProcessor in the previous section. This processor will make everything on your page searchable. This is a great tool, but it can break your relevance if not configured properly.
+I already mentioned the [HtmlContentInBodyWithRequestsProcessor](https://developers.coveo.com/x/PADvAQ) in the previous section. This processor will make everything on your page searchable. This is a great tool, but it can break your relevance if not configured properly.
 
 Pages are full of repeating content (advertisements, links in the footer, navigation in the header, etc). Indexing this content will break relevance for keywords such as "home", "link", "back", "about", "contact" and more. 
 Fortunatly, this can be fixed by adding simple HMTL comments on your pages. Here is an example:
@@ -287,7 +290,7 @@ The template can be found in the same file:
 ```
 
 You can then modify it's style to fit your needs, or simply remove it. The Website Search Best Practices eBook recommends to use is on any results, but I would tend to disagree. 
-Some results are fairly basic and might not need a quick view; use it instead for rich documents such as pdf.
+Some results are fairly basic and might not need a quick view; use it instead for rich documents such as PDFs.
 
 #### Provide hit highlighting and excerpts
 
