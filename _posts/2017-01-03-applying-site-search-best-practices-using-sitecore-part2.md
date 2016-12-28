@@ -180,7 +180,7 @@ Now back to the result template, here is an example for a Sitecore template call
 </script>
 ```
 
-The class is the same as the default template and the condition will tell the framework when to load that template. The id is optionnal but helps to quickly identify the templates. The template itself has been customized to show a special thumbnail and excerpt.
+The class is the same as the default template and the condition will tell the framework when to load that template. The id is optionnal but helps to quickly identify the templates. The template itself has been customized to show a special thumbnail and excerpt. The date and the quick view has also been removed to offer a simpler look for this type of result.
 
 The default template will be left without any condition in order to load for all the other Sitecore templates.
 
