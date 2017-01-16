@@ -202,6 +202,7 @@ Here is another example based on file type field where the same query returns a 
 For more information on the result templates in Coveo for Sitecore, read the [documentation](https://developers.coveo.com/x/pgDvAQ).
 
 ### 7. Make your search results comprehensive
+
 #### Make everything your visitors need searchable
 
 By default, only the title field, URI field, and the extracted body of the document are searchable using free text queries.
@@ -244,6 +245,7 @@ The END NOINDEX and BEGIN NOINDEX in the example above will decide what is retri
 Take note that the for these comments to work, you need to set them as parameters in the processor. See this [guide](https://developers.coveo.com/x/eYUkAg) for a step by step approach.
 
 ### 8. Make it easy for users to assess relevance
+
 #### Offer a "Quick View" capability
 
 Coveo offers a [quick view](https://developers.coveo.com/x/ToGfAQ) component out of the box. This feature will open a modal box showing the extracted body of the document, which I explained how to retrieve in the previous section.
