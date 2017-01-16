@@ -1,24 +1,10 @@
 ---
 layout: base
 ---
-<div class="blog-cover" style="background-image:url({{ site.github.url }}/images/{{ site.inc.cover_image }});">
-
-    <section>
-        <div class="container">
-            <h1>{{ site.inc.title }}</h1>
-            {% if site.inc.subtitle %}<h3>{{ site.inc.subtitle }}</h3>{% endif %}
-
-            {% if site.inc.twitter %}
-            <a href="https://twitter.com/{{ site.inc.twitter }}" title="Follow on Twitter" target="_blank"><i class="icon icon-twitter"></i></a>
-            {% endif %}
-            {% if site.inc.facebook %}
-            <a href="http://facebook.com/{{ site.inc.facebook }}" title="Like on Facebook" target="_blank"><i class="icon icon-facebook"></i></a>
-            {% endif %}
-            <a href="{{ site.github.url }}/feed.xml" title="RSS Feed">
-                <i class="icon icon-rss"></i>
-            </a>
-        </div>
-    </section>
+<div class="illustration">
+    <div class="container">
+        <img src="{{ site.github.url }}/images/illustration-full.png" alt="">
+    </div>
 </div>
 
 
@@ -31,14 +17,13 @@ layout: base
 
         <div>
             <h2 class="title"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
-            <p>{{ post.excerpt }}</p>
-            <p class="readmore"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">Read more...</a></p>
             <div class="meta">
                 Written By <address>{{ post.author.name }}</address> &mdash;
                 <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date: "%B %d, %Y" }}">{{ post.date | date: "%B %d, %Y" }}</time>
             </div>
+            <p>{{ post.excerpt }}</p>
+            <p class="readmore"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">Read more...</a></p>
         </div>
-        <hr>
     </section>
     {% endunless %}
     {% endfor %}
