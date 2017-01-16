@@ -22,6 +22,7 @@ In technical term, the Coveo Search View rendering is a search result which cont
 If you followed my first set of best practices, chances are that the search interface search box is hidden, and the standalone search box is driving your search result page.
 
 ### 6. Make your search results "human friendly"
+
 #### Focus on the result
 
 Be careful with the size of the headers and banners on your search result page. You must keep the focus (the center of the screen) on the results and keep in mind that a page refresh will most likely send the user back to the top of the page. Having to scroll back down is a hit on the experience so keeping an anchor in the search results is the way to go.
@@ -201,6 +202,7 @@ Here is another example based on file type field where the same query returns a 
 For more information on the result templates in Coveo for Sitecore, read the [documentation](https://developers.coveo.com/x/pgDvAQ).
 
 ### 7. Make your search results comprehensive
+
 #### Make everything your visitors need searchable
 
 By default, only the title field, URI field, and the extracted body of the document are searchable using free text queries.
@@ -243,6 +245,7 @@ The END NOINDEX and BEGIN NOINDEX in the example above will decide what is retri
 Take note that the for these comments to work, you need to set them as parameters in the processor. See this [guide](https://developers.coveo.com/x/eYUkAg) for a step by step approach.
 
 ### 8. Make it easy for users to assess relevance
+
 #### Offer a "Quick View" capability
 
 Coveo offers a [quick view](https://developers.coveo.com/x/ToGfAQ) component out of the box. This feature will open a modal box showing the extracted body of the document, which I explained how to retrieve in the previous section.
