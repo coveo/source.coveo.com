@@ -2113,8 +2113,16 @@ a:hover {
     max-width:930px;
     margin-top:60px;
     text-align: center;
+    padding:20px;
 }
-
+.illustration .container img{
+    width:100%;
+    max-width:929px;
+}
+.illustration .container img.half-ill{
+    width:100%;
+    max-width:672px;
+}
 .article-cover, .blog-cover {
     max-width: 100%;
     margin-top: 0;
@@ -2434,6 +2442,8 @@ article .social > div {
     border: #B2BDC5 1px solid;
     border-radius: 2px;
     margin-bottom: 40px;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 .container .single .title{
     font-weight:700;
@@ -2973,8 +2983,10 @@ article .full.zoomable img.zoom {
     }
 
     .container > header, .container > section, .container > footer {
-        padding: 0;
-        margin: 1.5em 10%
+        /*padding: 0;
+        margin: 1.5em 10%*/
+        margin-right:2%;
+        margin-left:2%;
     }
 
     .container > section {
@@ -3078,8 +3090,9 @@ article .full.zoomable img.zoom {
     }
 
     .index {
-        padding: 0;
-        margin: 0 10%;
+        /*padding: 0;*/
+        margin-right:2%;
+        margin-left:2%;
     }
 
     .index > div {
