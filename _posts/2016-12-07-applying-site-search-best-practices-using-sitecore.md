@@ -2,7 +2,7 @@
 layout: post
 
 title: "Applying Site Search Best Practices using Sitecore Part 1"
-tags: [Sitecore, Coveo for Sitecore]
+tags: [Sitecore, Coveo for Sitecore, Site Search Best Practices Series]
 
 author:
   name: Simon Langevin
