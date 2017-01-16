@@ -22,6 +22,7 @@ In technical term, the Coveo Search View rendering is a search result which cont
 If you followed my first set of best practices, chances are that the search interface search box is hidden, and the standalone search box is driving your search result page.
 
 ### 6. Make your search results "human friendly"
+
 #### Focus on the result
 
 Be careful with the size of the headers and banners on your search result page. You must keep the focus (the center of the screen) on the results and keep in mind that a page refresh will most likely send the user back to the top of the page. Having to scroll back down is a hit on the experience so keeping an anchor in the search results is the way to go.
