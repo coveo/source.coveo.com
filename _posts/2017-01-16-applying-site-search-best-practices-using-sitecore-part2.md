@@ -17,7 +17,7 @@ For those of you who missed [part 1](http://source.coveo.com/2016/12/07/applying
 ## The Search Result Page
 ![Search Page](/images/SiteSearchBestPractices/standardresultpage.png)
 
-My first post was mostly about the standalone search box. It can get confusing since the search result page also contains it's own search box. 
+My first post was mostly about the standalone search box. It can get confusing since the search result page also contains its own search box. 
 In technical term, the Coveo Search View rendering is a search result which contains a result template and several placeholders for sub-components such as facets, sorts, related queries, recommendations, tabs and more.
 If you followed my first set of best practices, chances are that the search interface search box is hidden, and the standalone search box is driving your search result page.
 
