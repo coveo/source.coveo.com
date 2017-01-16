@@ -150,9 +150,11 @@ Now back to the result template, here is an example for a Sitecore template call
     <div class="coveo-result-row">
         <!-- Custom thumbnails using the image computed field. -->
         <div class="coveo-result-cell" style="width:85px;text-align:center;padding-top:7px;">
+          {% raw %}
           {{ var imageUrl = raw.@(Model.ToCoveoFieldName("imageurl", false)) || raw.@(Model.ToCoveoFieldName("iconurl", false)) }}
           {{ var imageAlt = raw.@(Model.ToCoveoFieldName("imagealt", false)) || raw.@(Model.ToCoveoFieldName("iconalt", false)) || "" }}
-          <span class="coveo-icon">{ {= image(imageUrl, { alt: imageAlt, width: "85px", height: "85px" }) } }</span>
+          <span class="coveo-icon">{{= image(imageUrl, { alt: imageAlt, width: "85px", height: "85px" }) }}</span>
+          {% endraw %}
         </div>
         <div class="coveo-result-cell" style="padding-left:15px;">
           <div class="coveo-result-row">
