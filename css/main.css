@@ -2559,8 +2559,9 @@ article h3 {
 }
 
 article h4 {
-    font-size: 1.2em;
-    font-weight: 600
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #373737;
 }
 
 article hr {
