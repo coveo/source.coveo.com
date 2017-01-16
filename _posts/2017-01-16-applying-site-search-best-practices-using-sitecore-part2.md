@@ -119,12 +119,15 @@ Also take note that both the Coveo Search View and the Coveo Tab View renderings
 Coveo for Sitecore leverages [underscore.js](http://underscorejs.org/) templating engine to render the result list on the search result page.
 When the page loads, the result list will load the default template declared in the SearchView.cshtml:
 
+{% raw %}
 ```js
 <script class="result-template" type="text/underscore">
    <!-- HTML -->
 </script>
 ```
+{% endraw %}
 
+{% raw %}
 Changing anything in-between these tags will change the look and feel of your result list. Now before I go further, let's make sure we are on the same page regarding underscore.js templating.
 
 In your HTML, you can use special sets of delimiters to indicate to the underscore.js framework that you are inserting dynamic presentation logic.
@@ -135,6 +138,7 @@ This said, you can use the delimiters for three different operations:
 * Evaluate : ```{{ }}``` - To insert any type of code such as variable declarations, loops, conditions, etc.
 * Extrapolate : ```{{= }}``` - To insert any element from the response of the index.
 * Escape : ```{{- }}``` - To insert any element from the response of the index using HTML escaping.
+{% endraw %}
 
 For more details on these operations, read this [help page](https://developers.coveo.com/x/GwOwAQ).
 
@@ -143,7 +147,7 @@ As you may have figured out already, the response of the index can be seen direc
 ![Chrome Network Tab](/images/SiteSearchBestPractices/chromenetworktab.png)
 
 Now back to the result template, here is an example for a Sitecore template called Team Members:
-
+{% raw %}
 ```js
 <script id="team-member-result-template" class="result-template" type="text/underscore" data-condition='raw.@(Model.ToCoveoFieldName("_templatename", false)) == "Team Member"'>
   <div class="coveo-result-frame">
@@ -179,6 +183,7 @@ Now back to the result template, here is an example for a Sitecore template call
   </div>
 </script>
 ```
+{% endraw %}
 
 The class is the same as the default template and the condition will tell the framework when to load that template. The id is optionnal but helps to quickly identify the templates. The template itself has been customized to show a special thumbnail and excerpt. The date and the quick view has also been removed to offer a simpler look for this type of result.
 
@@ -243,6 +248,7 @@ Take note that the for these comments to work, you need to set them as parameter
 Coveo offers a [quick view](https://developers.coveo.com/x/ToGfAQ) component out of the box. This feature will open a modal box showing the extracted body of the document, which I explained how to retrieve in the previous section.
 The quick view is declared in the default SearchView.cshtml file:
 
+{% raw %}
 ```js
 {{ if (hasHtmlVersion) { }}
     <div class='CoveoQuickview'
@@ -252,9 +258,11 @@ The quick view is declared in the default SearchView.cshtml file:
           data-template-id='CoveoQuickviewTemplate_@Model.Id'></div>
 {{ } }}
 ```
+{% endraw %}
 
 The template can be found in the same file:
 
+{% raw %}
 ```js
 <script class='result-template' id='CoveoQuickviewTemplate_@Model.Id' type='text/underscore'>
     <div class='coveo-quick-view-header'>
@@ -267,6 +275,7 @@ The template can be found in the same file:
     <div class='CoveoQuickviewDocument'></div>
 </script>
 ```
+{% endraw %}
 
 You can then modify it's style to fit your needs, or simply remove it. The Website Search Best Practices eBook recommends to use is on any results, but I would tend to disagree. 
 Some results are fairly basic and might not need a quick view; use it instead for rich documents such as PDFs.
@@ -276,11 +285,13 @@ Some results are fairly basic and might not need a quick view; use it instead fo
 Same as the quick view, the Coveo [excerpt component](https://coveo.github.io/search-ui/components/excerpt.html) will display the extracted body of the document, but since the space under the result is limited, the excerpt will be dynamic based on the keyword.
 The excerpt can be found on the default SearchView.cshtml file:
 
+{% raw %}
 ```html
 <div class="coveo-result-cell">
     <span class="CoveoExcerpt"></span>
 </div>
 ```
+{% endraw %}
 
 The class itself already contains code for highlighting, which will clearly indicate the matching keyword.
 
@@ -290,9 +301,11 @@ The Website Search Best Practices eBook recommends to always provide an excerpt.
 I would usually recommend to make your search good before making it pretty, but if you still want to replace it by something else, make sure you keep highlighting active.
 As an example, see our Team Member template created in the previous section:
 
+{% raw %}
 ```js
 {{= highlightStreamText(raw.@(Model.ToCoveoFieldName("abstract", false)) }}
 ```
+{% endraw %}
 
 The excerpt was replaced by a custom field. To activate highlighting, you can simply use the [highlightStreamText helper](https://developers.coveo.com/display/JsSearchV1/Result+Template+Helpers#ResultTemplateHelpers-highlightStreamText). 
 
