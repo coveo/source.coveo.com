@@ -127,7 +127,7 @@ When the page loads, the result list will load the default template declared in 
 
 Changing anything in-between these tags will change the look and feel of your result list. Now before I go further, let's make sure we are on the same page regarding underscore.js templating.
 
-In your html, you can use special sets of delimiters to indicate to the underscore.js framework that you are inserting dynamic presentation logic.
+In your HTML, you can use special sets of delimiters to indicate to the underscore.js framework that you are inserting dynamic presentation logic.
 The delimiters would be ```<% %>``` by default, but the framework also supports ```{{ }}```. This is what Coveo for Sitecore will use in order to avoid conflict with ASP.NET.
 
 This said, you can use the delimiters for three different operations:
