@@ -38,8 +38,6 @@ This will result in a fairly simple result page without the option for your user
 If you followed the first part of this series of blogs, you might have removed the search box already to use a global one in the header. 
 Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
 
-Just as a reminder, the global search box is simply a redirection to a specific search page. To have a seemless integration between that box and the result page, we added some code on the search box rendering to load 
-
 For the styling, well a listing page is a good example of results without the need for an excerpt, which I covered in Part 2 section 8. Simply use the underscore.js templates to provide the style you want like you would do with a standard search page.
 
 Finally, the scope. I have not yet covered the ways to filter the query scope so far, but this is an important part of any search solutions.
