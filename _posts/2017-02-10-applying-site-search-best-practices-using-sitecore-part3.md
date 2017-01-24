@@ -33,7 +33,7 @@ The Layout section will give you a large amount of options, so here is what I re
 * Display query summary
 * Display the tabs sections
 
-This will result in a fairly simple result page without the option for your users to search using free text queries.
+This will result in a simple result page without the option for your users to search using free text queries.
 
 If you followed the first part of this series of blogs, you might have removed the search box already to use a global one in the header. 
 Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
@@ -44,13 +44,13 @@ Finally, the scope. I have not yet covered the ways to filter the query scope so
 A query scope is simply a set of filtering expressions to focus on a part of the results. Security is not a part of the query scope, which means that you should not filters to hide content from certain users. 
 Instead, Coveo does a permission mapping at the index level, but this is another subject which I would not cover here, but if you want to learn more on security, read this [article](https://onlinehelp.coveo.com/en/cloud/security_identities.htm).
 
-The filtering expressions can be added programmaticaly or using the Sitecore rule engine if you have an Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template is a field in Sitecore and can be used for filtering. 
+The filtering expressions can be added programmatically or using the Sitecore rule engine if you have an Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template is a field in Sitecore and can be used for filtering. 
 
 Here is an example using the Sitecore rule engine directly in the properties of the component (ranking editor of the Enterprise edition):
 
 ![Ranking Editor](/images/SiteSearchBestPractices/ruleenginefilter.png)
 
-And a example through JavaScript code directly in a copy of the SearchView.cshtml file:
+And an example through JavaScript code directly in a copy of the SearchView.cshtml file:
 
 ```js
 Coveo.$('#@Model.Id')
@@ -67,7 +67,7 @@ A full step by step guide for the ranking editor is available [here](https://dev
 
 The above will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo, you can find the full guide [here](https://onlinehelp.coveo.com/en/ces/7.0/user/coveo_query_syntax_reference.htm).
 
-As a summary, we created a listing pafe by using the default Coveo Search View rendering and then cuztomizing the properties, the style and the scope, but not the logic underneath.
+As a summary, we created a listing page by using the default Coveo Search View rendering and then customizing the properties, the style, and the scope, but not the logic underneath.
 Which means that facets, sorts and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo Reveal ART and Reveal Recommendations if you use Coveo Cloud.
 Your static listing page will then start to learn, and can reorder the listing based on what is the most popular.
 
@@ -127,7 +127,7 @@ var radius = "10000";
   
 Coveo.$('#@Model.Id')
 .on(Coveo.QueryEvents.buildingQuery, function(e, args) {
-  // For this Query Funciton to work, you need to have a longitude and latitude field on your items.
+  // For this Query Function to work, you need to have a longitude and latitude field on your items.
   // If the latitude and longitude fields are Sitecore fields, use the ToCoveoFieldName helper.
   var geoQuery = "$qf(function:'dist(@latitude,@longitude," + refLat + "," + refLng + ")', fieldName: 'distance') @distance<" + radius;
   if (args && args.queryBuilder) {
@@ -145,7 +145,7 @@ This code sample was taken from this [help page](https://developers.coveo.com/x/
 Sitecore xDB gives you the opportunity to categorize your user (Patterns) and your content (Profiles). If this is done properly, you can change the experience of your users and give more priority to content more relevant to them.
 
 To change the experience, [rendering personalization](https://doc.sitecore.net/sitecore_experience_platform/digital_marketing/personalization/walkthrough_personalizing_components) can be used on all Coveo for Sitecore components.
-For example, I might use the same interface to show products and support documentation on these products. I created a pattern for propects and one for existing clients. 
+For example, I might use the same interface to show products and support documentation on these products. I created a pattern for prospects and one for existing clients. 
 The users will have a pattern assign to him/her when he/she sign in or visit a content with a certain profile card. 
 Once the pattern is assigned to the user, you can use personalization on the component directly from the Experience Editor. 
 You can then modify the behavior of the component using parameters items, or simply hide the component as shown on this screenshot:
@@ -155,7 +155,7 @@ You can then modify the behavior of the component using parameters items, or sim
 Back to the example of prospects and existing clients, you might use this to show a specific facet or tab only for existing users with advanced preferences related to the product.
 
 As for the results themselves, you can use the same logic I detailed in the previous version to boost or filter content based on the pattern of the current user.
-You can also filter content based on the profile card associated to this content. In order to do this, you will first need to index Analytics fields by adding the indexAnalyticsFields element to the Coveo.SearchProvider.Custom.config and setting it to true.
+You can also filter content based on the profile card associated to this content. To do this, you will first need to index Analytics fields by adding the indexAnalyticsFields element to the Coveo.SearchProvider.Custom.config and setting it to true.
 For more information on this element, please refer to this [guide](https://developers.coveo.com/x/jwHvAQ).
 
 Once you have the Analytics fields indexed, you can use them in any filtering or boosting rules, or if you have the Enterprise Edition, use [Automatic Boosting](https://developers.coveo.com/x/CQDvAQ).
