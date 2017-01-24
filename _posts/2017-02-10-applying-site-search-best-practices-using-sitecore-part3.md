@@ -43,15 +43,15 @@ When it comes to styling, you might want the listing page to show something diff
 Remember to always copy the .cshtml file before editing it! Editing a base file is bad and upgrading will quickly become a nightmare.
 
 Finally, the scope of the results displayed. I have not yet explained how to add filters to a query, but this is an important part of any search solutions.
-A query scope is simply a set of filtering expressions to focus on specific a set of the results. 
+A query scope is simply a set of filtering expressions to focus on a specific set of results. 
 
-The filtering expressions can be added programmatically or using the Sitecore rule engine if you have an Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template is a field in Sitecore and can be used for filtering. 
+The filtering expressions can be added programmatically or through the Sitecore rule engine if you have the Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template assigned to an item will be defined with the ```__templatename``` field in Sitecore and can be used for filtering.
 
 Here is an example using the Sitecore rule engine directly in the properties of the component (ranking editor of the Enterprise edition):
 
 ![Ranking Editor](/images/SiteSearchBestPractices/ruleenginefilter.png)
 
-And an example through JavaScript code directly in a copy of the SearchView.cshtml file:
+And an example with some JavaScript code directly in a copy of the SearchView.cshtml file:
 
 ```js
 Coveo.$('#@Model.Id')
@@ -60,18 +60,18 @@ Coveo.$('#@Model.Id')
   // We add a filter expression to display only items that are using the Team Member template.
   args.queryBuilder.advancedExpression.add('@(Model.ToCoveoFieldName("_templatename")) == "Team Member"'); 
 })
-// Then we pursue the initialization
+// Then we pursue the initialization of the search page.
 .coveoForSitecore('init', CoveoForSitecore.componentsOptions);
 ```
 
 A full step by step guide for the ranking editor is available [here](https://developers.coveo.com/x/q4EKAg), and for the JavaScript approach [here](https://developers.coveo.com/x/WADvAQ).
 
-The above will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo, you can find the full guide [here](https://onlinehelp.coveo.com/en/ces/7.0/user/coveo_query_syntax_reference.htm).
+The above code will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo and you can find the full guide [here](https://onlinehelp.coveo.com/en/ces/7.0/user/coveo_query_syntax_reference.htm).
 
-Do not mistake the query scope with permissions management, which controls who as access to what. I have seen several search solution where permissions are controled with filter queries, this is not a good practice. Permissions to access a document should simply respect what has been set in the Access Viewer. Coveo will index the permissions along with the document when crawling the Sitecore content, but this is another subject which I would not cover here. If you want to learn more on security, read this [article](https://onlinehelp.coveo.com/en/cloud/security_identities.htm).
+Do not mistake the query scope with permission management, which controls who as access to what. I have seen several search solutions where permissions are controled with filter queries, which is not a good practice. Permissions to access a document should simply respect what has been set in the Sitecore Access Viewer. Coveo will index the permissions along with the documents when crawling Sitecore. At query time, the index will map the permissions with the user sending the query. There are a lot of subtleties when it comes to security, but I will not go over all of them here here. If you want to learn more on permission management, read this [article](https://onlinehelp.coveo.com/en/cloud/security_identities.htm).
 
 As a summary, we created a listing page by using the default Coveo Search View rendering and then customizing the properties, the style, and the scope, but not the logic underneath.
-Which means that facets, sorts and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo Reveal ART and Reveal Recommendations if you use Coveo Cloud.
+Which means that facets, sorts and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo Reveal ART and Reveal Recommendations.
 Your static listing page will then start to learn, and can reorder the listing based on what is the most popular.
 
 ### 10. Offer facets to filter and navigate search-driven content
@@ -82,8 +82,7 @@ This means that adding a facet to a listing page is as easy as adding it to any 
 These facets are dynamic so their value will adapt to the filters set on the page. They also come with several [properties](https://developers.coveo.com/x/fwDvAQ) which can be set directly from the Experience Editor. 
 
 Manually setting the properties can be a lot of work if you have multiple listing pages. To speed up this process, use parameter items.
-I briefly mentioned parameters items in the first part of this series of blogs. In brief, you can create parameters items which inherit from the CoveoModule templates. 
-These items will contain preset options which you can use at a data-source when creating the item.
+I briefly mentioned parameters items in the first part of this series of blogs. In brief, you can create items inheriting from the CoveoModule templates and select their options upfront. With the options already selected, you can use them as data-source when inserting a Coveo component in a page.
 
 ![Parameter Select](/images/SiteSearchBestPractices/parameterselect.png)
 
@@ -91,7 +90,7 @@ This way you can fine tune your facets and use them across your entire site with
 
 ### 11. Leverage all the "Contextual Clues" you can
 
-I mentioned above that you can use a bit of JavaScript code to filter results based on certain conditions. You can obviously use this logic within any conditions set by your code. 
+We saw earlier that you can use JavaScript code to filter results based on certain conditions. 
 For example, a company selling desktop and mobile wallpapers might want to filter or boost images which fits the screen of the visitor:
 
 ```js
@@ -99,7 +98,7 @@ Coveo.$('#@Model.Id')
 .on(Coveo.QueryEvents.buildingQuery, function(e, args) {
   var pageWidth = window.innerWidth;
   if(pageWidth < 600){
-    // If the page width is smaller than 600 pixels, only show mobile wallpaper.
+    // If the page width is smaller than 600 pixels, only show mobile wallpapers.
     args.queryBuilder.advancedExpression.add('@(Model.ToCoveoFieldName("Product Category")) == "Mobile"'); 
     // Or boost instead of filtering.
     args.queryBuilder.advancedExpression.add("$qre(expression:'@(Model.ToCoveoFieldName("Product Category")) == \"Mobile\"', modifier:'60')");
@@ -115,8 +114,8 @@ Coveo.$('#@Model.Id')
 ```
 
 I introduced a new concept in the code snippet above; boosting. Boosting is done using [Query Ranking Expressions (QRE)](https://developers.coveo.com/x/eIGfAQ) which will accept a condition and a modifier. 
-The condition is using the same field query syntax used to define the query scope. The modifier is an integer which will tell the index by how much this result should be boosted. The number can be negative does not have any limits.
-I recommend setting it between ```-100``` and ```100``` since larger numbers will simply override basic relevance. Ranking management is a rich topic which I will not fully cover in this post, but you can read more about it [here](https://onlinehelp.coveo.com/en/ces/7.0/administrator/index_ranking_phases.htm).
+The condition is using the same field query syntax used to define the query scope. The modifier is an integer which will tell the index by how much this result should be boosted. The number can be negative and does not have any limits.
+I recommend setting it between ```-100``` and ```100``` since a larger number will simply override basic relevance. Ranking management is a rich topic which I will not fully cover in this post, but you can read more about it [here](https://onlinehelp.coveo.com/en/ces/7.0/administrator/index_ranking_phases.htm).
 
 Another great use of contextual clues is using geolocation to return the results closest to the user's location. Coveo supports [Query Functions](https://developers.coveo.com/x/XQCq) which allows you to generate a new field at query time based on the result of a mathematical operation.
 Here is an example of a query function to retrieve the distance between to points using the JavaScript [dist function](http://processingjs.org/reference/dist_/):
@@ -145,11 +144,12 @@ This code sample was taken from this [help page](https://developers.coveo.com/x/
 
 ### 12. Personalize with the Sitecore xDB
 
-Sitecore xDB gives you the opportunity to categorize your user (Patterns) and your content (Profiles). If this is done properly, you can change the experience of your users and give more priority to content more relevant to them.
+Sitecore xDB gives you the opportunity to categorize your user (Patterns) and your content (Profiles). If this is done properly, you can change the experience of your users and give more priority to content relevant to them.
 
 To change the experience, [rendering personalization](https://doc.sitecore.net/sitecore_experience_platform/digital_marketing/personalization/walkthrough_personalizing_components) can be used on all Coveo for Sitecore components.
-For example, I might use the same interface to show products and support documentation on these products. I created a pattern for prospects and one for existing clients. 
-The users will have a pattern assign to him/her when he/she sign in or visit a content with a certain profile card. 
+
+For example, I might use the same interface to show products and support documentation on these products. To do so, I created a pattern for prospects and one for existing clients. 
+The users will have a pattern assigned to him/her when he/she sign in or visit a content with a certain profile card. 
 Once the pattern is assigned to the user, you can use personalization on the component directly from the Experience Editor. 
 You can then modify the behavior of the component using parameters items, or simply hide the component as shown on this screenshot:
 
@@ -157,7 +157,7 @@ You can then modify the behavior of the component using parameters items, or sim
 
 Back to the example of prospects and existing clients, you might use this to show a specific facet or tab only for existing users with advanced preferences related to the product.
 
-As for the results themselves, you can use the same logic I detailed in the previous version to boost or filter content based on the pattern of the current user.
+As for the results themselves, you can use the same logic I detailed previously to boost or filter content based on the pattern of the current user.
 You can also filter content based on the profile card associated to this content. To do this, you will first need to index Analytics fields by adding the indexAnalyticsFields element to the Coveo.SearchProvider.Custom.config and setting it to true.
 For more information on this element, please refer to this [guide](https://developers.coveo.com/x/jwHvAQ).
 
@@ -171,3 +171,5 @@ Here are two example of the same page showing different content for two differen
 ![Marketer Profile](/images/SiteSearchBestPractices/marketerprofile.png)
 
 This is it folks, remember that a listing page is nothing more than a search result page with a custom style, scope and set of features. This means that everything about context and Sitecore xDB can be used on a standard search result page.
+
+If you wish to read other post on this series, click [here](https://search.coveo.com/#sort=date%20descending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
