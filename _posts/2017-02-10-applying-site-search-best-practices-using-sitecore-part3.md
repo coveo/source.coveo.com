@@ -12,12 +12,7 @@ author:
 
 This is the third installment on my journey to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
 
-If you missed the previous post:
-
-[Part 1](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/)
-<br>
-[Part 2]()
-
+If you missed the previous post, you can find the full series [here](https://search.coveo.com/#sort=date%20descending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
 <!-- more -->
 
 ## Search Driven Content Pages
@@ -30,7 +25,7 @@ On a technical side, a search driven content page is simply a Coveo Search View 
 
 ### 9. Use search to drive your listing pages
 
-Let's start by building the search driven listing page. You will firs start with the standard Coveo Search View rendering and use the [properties](https://developers.coveo.com/x/PgHvAQ) of the component to remove what you might not need.
+Let's start by building the search driven listing page. You will first start with the standard Coveo Search View rendering and use the [properties](https://developers.coveo.com/x/PgHvAQ) of the component to remove what you might not need.
 The Layout section will give you a large amount of options, so here is what I removed in the screenshot above:
 
 * Display the main search box
@@ -40,8 +35,10 @@ The Layout section will give you a large amount of options, so here is what I re
 
 This will result in a fairly simple result page without the option for your users to search using free text queries.
 
-If you followed the part 1 of this series of blogs, you might have removed the search box already to use a global one in the header. 
-Just make sure that the id of the search page use for listing is not the one being reference as an external component, since it will bind the search box to your listing page.
+If you followed the first part of this series of blogs, you might have removed the search box already to use a global one in the header. 
+Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
+
+Just as a reminder, the global search box is simply a redirection to a specific search page. To have a seemless integration between that box and the result page, we added some code on the search box rendering to load 
 
 For the styling, well a listing page is a good example of results without the need for an excerpt, which I covered in Part 2 section 8. Simply use the underscore.js templates to provide the style you want like you would do with a standard search page.
 
