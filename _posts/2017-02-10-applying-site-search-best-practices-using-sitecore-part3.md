@@ -42,7 +42,7 @@ When it comes to styling, you might want the listing page to show something diff
 
 Remember to always copy the .cshtml file before editing it! Editing a base file is bad and upgrading will quickly become a nightmare.
 
-Finally, the scope of the results displayed. I have not yet explained how ways to add filters to a query, but this is an important part of any search solutions.
+Finally, the scope of the results displayed. I have not yet explained how to add filters to a query, but this is an important part of any search solutions.
 A query scope is simply a set of filtering expressions to focus on specific set of the results. 
 
 The filtering expressions can be added programmatically or using the Sitecore rule engine if you have an Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template is a field in Sitecore and can be used for filtering. 
