@@ -38,7 +38,7 @@ This will result in a fairly simple result page without the option for your user
 If you followed the first part of this series of blogs, you might have removed the search box already to use a global one in the header. 
 Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
 
-When it comes to styling, you might want the listing page to show something different than the excerpt, since it is dynamic based on the query of the user, which is non-existant in our case. I explained how to swap fields displayed in Part 2 section 8 of this series. Simply use the underscore.js templates to provide the style you want like you would do with a standard search page.
+When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in Part 2 section 8 of this series
 
 Finally, the scope. I have not yet covered the ways to filter the query scope so far, but this is an important part of any search solutions.
 A query scope is simply a set of filtering expressions to focus on a part of the results. Security is not a part of the query scope, which means that you should not filters to hide content from certain users. 
