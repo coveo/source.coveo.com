@@ -42,9 +42,8 @@ When it comes to styling, you might want the listing page to show something diff
 
 Remember to always copy the .cshtml file before editing it! Editing a base file is bad and upgrading will quickly become a nightmare.
 
-Finally, the scope. I have not yet covered the ways to filter the query scope so far, but this is an important part of any search solutions.
-A query scope is simply a set of filtering expressions to focus on a part of the results. Security is not a part of the query scope, which means that you should not filters to hide content from certain users. 
-Instead, Coveo does a permission mapping at the index level, but this is another subject which I would not cover here, but if you want to learn more on security, read this [article](https://onlinehelp.coveo.com/en/cloud/security_identities.htm).
+Finally, the scope of the results displayed. I have not yet explained how ways to add filters to a query, but this is an important part of any search solutions.
+A query scope is simply a set of filtering expressions to focus on specific set of the results. 
 
 The filtering expressions can be added programmatically or using the Sitecore rule engine if you have an Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template is a field in Sitecore and can be used for filtering. 
 
@@ -68,6 +67,8 @@ Coveo.$('#@Model.Id')
 A full step by step guide for the ranking editor is available [here](https://developers.coveo.com/x/q4EKAg), and for the JavaScript approach [here](https://developers.coveo.com/x/WADvAQ).
 
 The above will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo, you can find the full guide [here](https://onlinehelp.coveo.com/en/ces/7.0/user/coveo_query_syntax_reference.htm).
+
+Do not mistake the query scope with permissions management, which controls who as access to what. I have seen several search solution where permissions are controled with filter queries, this is not a good practice. Permissions to access a document should simply respect what has been set in the Access Viewer. Coveo will index the permissions along with the document when crawling the Sitecore content, but this is another subject which I would not cover here. If you want to learn more on security, read this [article](https://onlinehelp.coveo.com/en/cloud/security_identities.htm).
 
 As a summary, we created a listing page by using the default Coveo Search View rendering and then customizing the properties, the style, and the scope, but not the logic underneath.
 Which means that facets, sorts and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo Reveal ART and Reveal Recommendations if you use Coveo Cloud.
