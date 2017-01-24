@@ -312,4 +312,4 @@ As an example, see our Team Member template created in the previous section:
 
 The excerpt was replaced by a custom field. To activate highlighting, you can simply use the [highlightStreamText helper](https://developers.coveo.com/display/JsSearchV1/Result+Template+Helpers#ResultTemplateHelpers-highlightStreamText). 
 
-That's enough for now folks! I will pursue my mission to cover all the best practices in the next few weeks.
+That's enough for now folks! If you wish to keep reading, the full series can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
