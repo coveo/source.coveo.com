@@ -248,4 +248,4 @@ Once the site is live, keep track of the usage of the search box using the [Cove
 
 Note: Coveo for Sitecore does not send the right data as an Origin 3, this is a bug which will be fixed in Q1 2017.
 
-This is enough for now. I will cover the remaining practices in the next few weeks.
+This is enough for now. If you wish to keep reading, the full series can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
