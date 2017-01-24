@@ -25,7 +25,7 @@ On a technical side, a search driven content page is simply a Coveo Search View 
 
 ### 9. Use search to drive your listing pages
 
-Let's start by building the search driven listing page. You will first start with the standard Coveo Search View rendering and use the [properties](https://developers.coveo.com/x/PgHvAQ) of the component to remove what you might not need.
+Let's start by building the search driven listing page. You will start with the standard Coveo Search View rendering and use the [properties](https://developers.coveo.com/x/PgHvAQ) of the component to remove what you might not need.
 The Layout section will give you a large amount of options, so here is what I removed in the screenshot above:
 
 * Display the main search box
@@ -38,7 +38,9 @@ This will result in a simple result page without the option for your users to se
 If you followed the first part of this series of blogs, you might have removed the search box already to use a global one in the header. 
 Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
 
-When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in Part 2 section 8 of this series
+When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in Part 2 section 8 of this series.
+
+Remember to always copy the .cshtml file before editing it! Editing a base file is bad and upgrading will quickly become a nightmare.
 
 Finally, the scope. I have not yet covered the ways to filter the query scope so far, but this is an important part of any search solutions.
 A query scope is simply a set of filtering expressions to focus on a part of the results. Security is not a part of the query scope, which means that you should not filters to hide content from certain users. 
