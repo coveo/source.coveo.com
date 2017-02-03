@@ -70,7 +70,7 @@ A full step by step guide for the ranking editor is available [here](https://dev
 
 The above code will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo and you can find the full guide [here](http://www.coveo.com/go?dest=adminhelp70&lcid=9&context=10005).
 
-Do not mistake the query scope with permission management, which controls who as access to what. I have seen several search solutions where permissions are controlled with filter queries, which is not a good practice. Permissions to access a document should simply respect what has been set in the Sitecore Access Viewer. Coveo will index the permissions along with the documents when crawling Sitecore. At query time, the index will map the permissions with the user sending the query. There are a lot of subtleties when it comes to security, but I will not go over all of them here here. If you want to learn more on permission management, read this [article](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=291).
+Do not mistake the query scope with permission management, which controls who has access to what. I have seen several search solutions where permissions are controlled with filter queries, which is not a good practice. Permissions to access a document should simply respect what has been set in the Sitecore Access Viewer. Coveo will index the permissions along with the documents when crawling Sitecore. At query time, the index will map the permissions with the user sending the query. There are a lot of subtleties when it comes to security, but I will not go over all of them here here. If you want to learn more on permission management, read this [article](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=291).
 
 As a summary, we created a listing page by using the default Coveo Search View rendering and then customizing the properties, the style, and the scope, but not the logic underneath.
 Which means that facets, sorts, and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo Reveal ART and Reveal Recommendations.
@@ -84,7 +84,7 @@ This means that adding a facet to a listing page is as easy as adding it to any 
 These facets are dynamic so their value will adapt to the filters set on the page. They also come with several [properties](https://developers.coveo.com/x/fwDvAQ) which can be set directly from the Experience Editor. 
 
 Manually setting the properties can be a lot of work if you have multiple listing pages. To speed up this process, use parameter items.
-I briefly mentioned parameters items in the first part of this series of blogs. In brief, you can create items inheriting from the CoveoModule templates and select their options upfront. With the options already selected, you can use them as data-source when inserting a Coveo component in a page.
+I briefly mentioned parameters items in the first part of this series of blogs. In brief, you can create items inheriting from the CoveoModule templates and select their options upfront. With the options already selected, you can use them as [Data Source](https://developers.coveo.com/x/HYEKAg) when inserting a Coveo component in a page.
 
 ![Parameter Select](/images/SiteSearchBestPractices/parameterselect.png)
 
@@ -117,10 +117,10 @@ Coveo.$('#@Model.Id')
 
 I introduced a new concept in the code snippet above: boosting. Boosting is done using [Query Ranking Expressions (QRE)](https://developers.coveo.com/x/eIGfAQ) which will accept a condition and a modifier. 
 The condition is using the same field query syntax used to define the query scope. The modifier is an integer which will tell the index by how much this result should be boosted. The number can be negative and does not have any limits.
-I recommend setting it between ```-100``` and ```100``` since a larger number will simply override basic relevance. Ranking management is a rich topic which I will not fully cover in this post, but you can read more about it [here](https://onlinehelp.coveo.com/en/ces/7.0/administrator/index_ranking_phases.htm).
+I recommend setting it between ``-100`` and ``100`` since a larger number will simply override basic relevance. Ranking management is a rich topic which I will not fully cover in this post, but you can read more about it [here](https://onlinehelp.coveo.com/en/ces/7.0/administrator/index_ranking_phases.htm).
 
 Another great use of contextual clues is using geolocation to return the results closest to the user's location. Coveo supports [Query Functions](https://developers.coveo.com/x/XQCq) which allows you to generate a new field at query time based on the result of a mathematical operation.
-Here is an example of a query function to retrieve the distance between to points using the JavaScript [dist function](http://processingjs.org/reference/dist_/):
+Here is an example of a query function to retrieve the distance between to points using the [dist Query Function](https://developers.coveo.com/display/SearchREST/Query+Function#QueryFunction-dist).
 
 ```js
 // The values are hardcoded; simply replace them with your logic to retrieve the location of the user.
@@ -160,7 +160,7 @@ You can then modify the behavior of the component using parameters items, or sim
 Back to the example of prospects and existing clients, you might use this to show a specific facet or tab only for existing users with advanced preferences related to the product.
 
 As for the results themselves, you can use the same logic I detailed previously to boost or filter content based on the pattern of the current user.
-You can also filter content based on the profile card associated to this content. To do this, you will first need to index Analytics fields by adding the ```indexAnalyticsFields``` element to the ```Coveo.SearchProvider.Custom.config``` and setting it to true.
+You can also filter content based on the profile card associated to this content. To do this, you will first need to index Analytics fields by adding the ``indexAnalyticsFields`` element to the ``Coveo.SearchProvider.Custom.config`` and setting it to true.
 For more information on this element, please refer to this [guide](https://developers.coveo.com/x/jwHvAQ).
 
 Once you have the Analytics fields indexed, you can use them in any filtering or boosting rules, or if you have the Enterprise Edition, use [Automatic Boosting](https://developers.coveo.com/x/CQDvAQ).
