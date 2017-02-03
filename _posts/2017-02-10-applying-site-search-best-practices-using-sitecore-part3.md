@@ -47,7 +47,7 @@ Remember to always copy the .cshtml file before editing it! Editing a base file 
 Finally, you may want to change the scope of the results displayed. I have not yet explained how to add filters to a query, but this is an important part of any search solutions.
 A query scope is simply a set of filtering expressions to focus on a specific set of results. 
 
-The filtering expressions can be added programmatically or through the Sitecore rule engine if you have the Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template assigned to an item will be defined with the ```__templatename``` field in Sitecore and can be used for filtering.
+The filtering expressions can be added programmatically or through the Sitecore rule engine if you have the Enterprise edition. In the example above, the listing page is only showing content from the Team Member template in Sitecore. The template assigned to an item will be defined with the ``__templatename`` field in Sitecore and can be used for filtering.
 
 Here is an example using the Sitecore rule engine directly in the properties of the component (ranking editor of the Enterprise edition):
 
