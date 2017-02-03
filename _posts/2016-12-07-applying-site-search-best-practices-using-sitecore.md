@@ -150,31 +150,36 @@ function setSearchboxPlaceholderText() {
 } 
 
 Coveo.$(function () {
-    if (!isOnSearchPage()) {
-        if (typeof(CoveoForSitecore) !== 'undefined') {
-            var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
-            
-            CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-            Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
-        } else {
-            Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
-        }
-        setSearchboxPlaceholderText();
-    } else {
-        //Here you will be able to use the Coveo.$ selector later in 2017. At the moment, the framework will only accept an html element
-        var searchBoxElement = document.getElementById('@Model.SearchboxId');
-        // Register the search box as an external component
-        var searchOptionsForSearchBox = {
-            externalComponents: [searchBoxElement]
-        };
+  // The ID being validated here is the one of the search component.
+  // It will be automatically generated on the component, so simply change it if needed.
+  function isOnSearchPage() {
+    return Coveo.$('#mainsearch').length > 0;
+  }
+  // Simple utility function to preserve the PlaceholderText attribute.
+  function setSearchboxPlaceholderText() {
+      Coveo.$('#@Model.SearchboxId').find('.magic-box-input input').attr('placeholder', '@Model.SearchboxPlaceholderText');
+  }
 
-        //Extend the options of the search box to include the search page
-        CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-
-        Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
-            setSearchboxPlaceholderText();
-        });
-    }
+  Coveo.$(function () {
+      if (!isOnSearchPage()) {
+          if (typeof(CoveoForSitecore) !== 'undefined') {
+              var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+              CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+              Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
+          } else {
+              Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
+          }
+          setSearchboxPlaceholderText();
+      } else {
+          var searchBoxElement = document.getElementById('@Model.SearchboxId');
+          // This line is the one doing all the magic, it will pass an array of external components to the main page.
+          // You can all additional components if needed, ex: Facets.
+          CoveoForSitecore.externalComponents = [searchBoxElement];
+          Coveo.$('#mainsearch').on('afterInitialization', function () {
+              setSearchboxPlaceholderText();
+          });
+      }
+  });
 });
 ```
 
@@ -189,10 +194,13 @@ Which simply grabs the properties of the search model, by:
 
 ```js
 Coveo.$(function() {
-    CoveoForSitecore.componentsOptions = Coveo.$.extend({}, @(Html.Raw(Model.GetJavaScriptInitializationOptions())), CoveoForSitecore.componentsOptions || {});
+    CoveoForSitecore.componentsOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+    if(CoveoForSitecore.externalComponents) {
+        CoveoForSitecore.componentsOptions.externalComponents = CoveoForSitecore.externalComponents;
+    }
 });
 ```
-Which extends the current options by adding the search box.
+Which extends the current options by adding the array of external components.
 
 If everything is done correctly, you should have a search box which behaves in two ways:
 
