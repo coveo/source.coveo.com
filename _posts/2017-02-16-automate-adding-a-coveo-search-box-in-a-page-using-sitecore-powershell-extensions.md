@@ -3,7 +3,7 @@ layout: post
 
 title: "Automate Adding a Coveo Search Box In a Page Using Sitecore PowerShell Extensions"
 
-tags: [Coveo Blitz]
+tags: [Coveo for Sitecore, Sitecore PowerShell Extensions, Sitecore, PowerShell]
 
 author:
   name: Jean-François L'Heureux
@@ -12,11 +12,11 @@ author:
   image: jflheureux.jpeg
 ---
 
-[Sitecore PowerShell Extensions](https://marketplace.sitecore.net/en/Modules/Sitecore_PowerShell_console.aspx) is an amazing tool every Sitecore developer should learn to use. I recently began to play with it. My first goal was to find a solution to a popular request: Automate adding a Coveo search box in a page.
+The [Sitecore PowerShell Extensions](https://marketplace.sitecore.net/en/Modules/Sitecore_PowerShell_console.aspx) is an amazing tool every Sitecore developer should learn to use. I recently started playing with it, my first goal being to find a solution to the popular request: automate adding a Coveo search box in a page.
 
 <!-- more -->
 
-In under 2 hours, I learnt the basics and wrote this script to add a Coveo search box in the presentation details of an item.
+In under 2 hours, I learned the basics and wrote this script to add a Coveo search box in the presentation details of an item.
 
 {% highlight powershell %}
 # Adds the Coveo Search Box Resources and Coveo Search Box components in the presentation details of an item.
@@ -24,11 +24,11 @@ In under 2 hours, I learnt the basics and wrote this script to add a Coveo searc
 
 #  Edit the variables to suit your needs
 
-# Item in which to add the components to.
+# Item in which to add the components.
 $item = Get-Item -Path "master:/sitecore/templates/Launch Sitecore/Home/__Standard Values"
-# Device in which to add the components to.
+# Device in which to add the components.
 $device = Get-LayoutDevice -Default
-# Placeholder in which to add the components to.
+# Placeholder in which to add the components.
 $placeHolder = "search-box"
 # Path to a preconfigured "Coveo Search Box Parameters" datasource item.
 $searchBoxParametersDatasourcePath = "/sitecore/content/Global/Settings/Coveo Parameters/Launch Search Box Parameters"
@@ -47,10 +47,10 @@ $searchBoxResourcesComponent = New-Rendering -Path $searchBoxResourcesComponentP
 $searchBoxComponent = New-Rendering -Path $searchBoxComponentPath
 
 Add-Rendering -Item $item -Instance $searchBoxResourcesComponent -PlaceHolder $placeHolder -Device $device
-Add-Rendering -Item $item -Instance $searchBoxComponent -DataSource $searchBoxParametersDatasourcePath -PlaceHolder $placeHolder -Device $device 
+Add-Rendering -Item $item -Instance $searchBoxComponent -DataSource $searchBoxParametersDatasourcePath -PlaceHolder $placeHolder -Device $device
 {% endhighlight %}
 
-The script sample is using the Web Forms Launch Sitecore demo. I included the MVC renrerings equivalents in the comments. I slightly modified the demo to replace the original search box in the header by a `search-box` placeholder.
+The script sample is using the Web Forms Launch Sitecore demo. I included the MVC renderings equivalents in the comments. I slightly modified the demo to replace the original search box in the header by a `search-box` placeholder.
 
 The script is configured to add the search box and its required resources sublayouts in the `__Standard Values` item of the `Home` template. It requires a datasource item for the search box parameters to reuse the same parameters for all the search boxes added in different items.
 
