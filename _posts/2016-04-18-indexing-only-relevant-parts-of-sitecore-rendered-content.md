@@ -7,7 +7,7 @@ tags: [Sitecore, Coveo for Sitecore, Indexing, Processor, Pipeline]
 
 author:
   name: Jean-François L'Heureux
-  bio: Trainer & Evangelist, Coveo for Sitecore Team
+  bio: Tech Evangelist, Coveo for Sitecore Team
   twitter: jflh
   image: jflheureux.jpeg
 ---
