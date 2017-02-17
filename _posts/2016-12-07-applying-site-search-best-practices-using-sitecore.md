@@ -233,7 +233,7 @@ If you have the Enterprise edition, simply use the filtering rules on each of th
 
 Keep in mind that providing a long list of results looks messy. Keep control of the number of results using the "Number of results" field.
 
-For the main search page, do not provide result suggestions. Instead switch for Reveal queries suggestions. It is enabled by default; you simply need to create the [Reveal Model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_query_suggestions_in_a_query_pipeline.htm#Manage_Query_Suggestions_(Coveo_Cloud_V2)) and wait a for it to learn. This can take a few weeks.
+For the main search page, do not provide result suggestions. Instead switch to Machine Learning queries suggestions. It is enabled by default; you simply need to create the [Machine Learning Model](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=168) and wait a for it to learn. This can take a few weeks.
 
 ### 5. Test it
 
