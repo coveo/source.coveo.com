@@ -73,7 +73,7 @@ The above code will make sure that our page is only listing content from our sel
 Do not mistake the query scope with permission management, which controls who has access to what. I have seen several search solutions where permissions are controlled with filter queries, which is not a good practice. Permissions to access a document should simply respect what has been set in the Sitecore Access Viewer. Coveo will index the permissions along with the documents when crawling Sitecore. At query time, the index will map the permissions with the user sending the query. There are a lot of subtleties when it comes to security, but I will not go over all of them here here. If you want to learn more on permission management, read this [article](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=291).
 
 As a summary, we created a listing page by using the default Coveo Search View rendering and then customizing the properties, the style, and the scope, but not the logic underneath.
-Which means that facets, sorts, and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo Reveal ART and Reveal Recommendations.
+Which means that facets, sorts, and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo ART and Machine Learning Recommendations.
 Your static listing page will then start to learn, and can reorder the listing based on what is the most popular.
 
 ### 10. Offer facets to filter and navigate search-driven content
