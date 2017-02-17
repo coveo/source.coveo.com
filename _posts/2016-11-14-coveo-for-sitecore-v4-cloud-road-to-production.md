@@ -11,7 +11,7 @@ author:
 ---
 Coveo for Sitecore 4.0 was released this spring and allowed Coveo for Sitecore users to move their index to the cloud, reducing maintenance effort and opening the way for the advanced cloud features, such as Reveal machine learning and the query pipelines.
 Integrating Coveo for Sitecore to your Sitecore solution is now easier than ever. You can download the package directly on [the Coveo website](http://www.coveo.com/en/solutions/coveo-for-sitecore/download) and follow the installation wizard in Sitecore.
-This is great to try the product with a trial organization, but how do can you manage a paid license?
+This is great to try the product with a trial organization, but how do you manage a paid license?
 I received several questions in the past few months about environment setup and license management. In this blog post, I will try to clarify a few things.
 <!-- more -->
 
@@ -46,7 +46,7 @@ In summary, it would look like the following
 
 ![Coveo for Sitecore Cloud Environment](/images/CoveoForSitecoreV4Cloud/CloudEnv.PNG)
 
-The diagram above is in a scenario where each developer has access to a unique Sitecore and database farm. If all the developers are sharing the same Sitecore, then a simple Coveo organization will be sufficient. 
+The diagram above is in a scenario where each developer has access to a unique Sitecore and database farm. If all the developers are sharing the same Sitecore, then a single Coveo organization will be sufficient. 
 In this case, Coveo for Sitecore needs to be configured according to [the Scaling Guide](https://developers.coveo.com/display/SitecoreV4/Coveo+for+Sitecore+Scaling+Guide).
 I hope this answers a few questions about how to get started with Coveo for Sitecore cloud.
 
