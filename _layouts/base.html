@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="google-site-verification" content="xWtehtrl92ZffHdBGNoyIRZyd7v7vZLHQ5LtJF5M2XE" /> <!-- Give Access to MAV -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} &mdash; {{ site.inc.title }}{% else %}{{ site.inc.title }} &mdash; {{ site.inc.subtitle }}{% endif %}</title>
     {% if site.inc.google_font %}<link href="https://fonts.googleapis.com/css?family={{ site.inc.google_font }}" rel="stylesheet" type="text/css">{% endif %}
+
+	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/coveo-search-ui_V1.1550.5/bin/css/CoveoFullSearchNewDesign.css">
+	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+
+	<!-- <link rel="stylesheet" href="/css/CoveoFullSearch.css" /> -->
+	{% include _search.html %}
+
     <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/css/main.css"/>
     <link rel="shortcut icon" href="{{ site.github.url }}/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{{ site.github.url }}/images/{{ site.inc.logo }}"/>
@@ -69,43 +77,43 @@
 {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
 {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
 
-    <link rel="stylesheet" href="/css/CoveoFullSearch.css" />
-    {% include _search.html %}
+
 </head>
 <body>
 
-<section class="site-nav">
-    <header>
-        <div class="container">
-            <div id="logo">
-    		    <a href="/">
-    			    <img src="https://s3.amazonaws.com/coveostatic/logo-coveo_community.png" title="back to home page" alt="Coveo Source Blog">
-    		    </a>
-    	    </div>
-            <nav id="navigation">
-                <ul>
-                  <li class="CurrentSite">
-                    Technical Blog
-                    <ul>
-                      <li><a href="https://developers.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/Developers.png">Developers</a></li>
-                      <li><a href="http://answers.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/Answers.png">Answers</a></li>
-                      <li><a href="http://onlinehelp.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/OnlineHelp.png">Online Help</a></li>
-                      <li><a href="http://api.developers.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/API.png">API Reference</a></li>
-                      <li class="LastMenuEntry"><a href="http://www.coveo.com"><img class="coveo-icon" src="https://s3.amazonaws.com/coveostatic/CoveoWebsite.png">Coveo Website</a></li>
-                    </ul>
-                  </li>
-                </ul>
-            </nav>
-            <div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true"></div>
-            <div class="CoveoTopFieldSuggestions"
-                 data-field="@systitle"
-                 data-header-title="Topic Titles"
-                 data-number-of-suggestions="10"></div>
-
-            <!--<div id="searchBox" class="CoveoSearchBox" data-activate-omnibox="true" data-auto-focus="false"></div>-->
-        </div>
-    </header>
-</section>
+	<header>
+		<div class="upHeader clear">
+			<div class="logos">
+				<a href="http://www.coveo.com" class="logo" title="Coveo community"></a>
+				<h3><a href="#">Community</a></h3></div>
+			<h1 class="currentSiteName"><em>Tech Blog</em> <span>Menu<i class="arrow"></i></span></h1>
+			<nav>
+				<ul class="menu floated">
+					<li><a id="jsSupport" href="https://support.coveo.com"  target="_blank">Support</a></li>
+					<li><a id="jsProductDocs" href="https://onlinehelp.coveo.com" target="_blank">Product docs</a></li>
+					<li><a id="jsDevDocs" href="https://developers.coveo.com" target="_blank">Developer docs</a></li>
+					<li><a id="jsAnswers" href="https://answers.coveo.com" target="_blank">Answers</a></li>
+					<li><a id="jsTraining" href="http://www.coveo.com/training" target="_blank">Training</a></li>
+					<li><a d="jsTechBlog" href="/"  class="current">Tech Blog</a></li>
+				</ul>
+				<ul class="externalbox with-sub">
+					<li>
+						<a href="#" class="sub">More <i class="arrow"></i></a>
+						<ul>
+							<li><a d="jsCloudAdminV1" target="_blank" href="https://cloud.coveo.com">Cloud V1 Administration Console</a></li>
+							<li><a d="jsCloudAdminV2" target="_blank" href="https://platform.cloud.coveo.com">Cloud V2 Administration Console</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="bottomHeader">
+			<div id="searchBox">
+				<div class="CoveoSearchbox" type="text" data-enable-omnibox="true" data-inline="false" data-enable-wildcards="true" data-enable-search-as-you-type="false" data-enable-reveal-query-suggest-addon="false" data-enable-query-syntax="true" data-enable-field-addon="true"></div>
+				<div class="CoveoFieldSuggestions" data-field="@systitle" data-header-title="Suggested topics"></div>
+			</div>
+		</div>
+	</header>
 </div>
 
 {{ content }}

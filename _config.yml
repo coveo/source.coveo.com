@@ -39,7 +39,9 @@ inc:
     google: true
     coveo: true
 
-  google_font: 'Droid+Sans:400,700'
+  google_font: 'Lato:300,400,700'
 
-gems: [jekyll-paginate]
+gems:
+    - jekyll-paginate
+    - jekyll-sitemap
 exclude: ['Gemfile', 'Gemfile.lock']
