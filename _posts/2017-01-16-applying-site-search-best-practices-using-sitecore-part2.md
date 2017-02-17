@@ -102,7 +102,7 @@ Tackling every single variant of a word can become an arduous task, which can be
 
 In the screenshot above, I created a few cards which uses the Query dimension combined with the Relevance Index metric for the first card and the Visit Count metric for the second one. The Relevance index is a mix of result position and frequency of query, the full equation can be found [here](https://answers.coveo.com/questions/7568/how-is-the-relevance-index-metric-calculated). The Visit Count metric will only tell you how many visitors tried that query. To make sure that I am only seeing queries without results, I used the ```HasResult = False``` filter on that same card. These two cards will give you a list of your problematic queries, on which you can spend most of your manual efforts.
 
-If you have a Coveo Cloud index, then [Reveal Automatic Relevance Tuning (ART)](https://onlinehelp.coveo.com/en/cloud/coveo_reveal_features.htm) will do the work for you; simply [create the model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_automatic_relevance_tuning_in_a_query_pipeline.htm) and then sit back and relax.
+If you have a Coveo Cloud index, then [Coveo Automatic Relevance Tuning (ART)](https://onlinehelp.coveo.com/en/cloud/coveo_reveal_features.htm) will do the work for you; simply [create the model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_automatic_relevance_tuning_in_a_query_pipeline.htm) and then sit back and relax.
 
 #### Sort results for relevance by default
 
