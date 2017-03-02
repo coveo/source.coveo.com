@@ -104,7 +104,8 @@ Although the formatting is a bit different, the content is the same.
 
 ### 14. Slice-and-dice by attribute
 
-The example in the last section used dimensions, metrics, and filters. By combining the three together, you have a rich toolbox which can be used to visualize everything happening with search on your site.
+The example in the last section used dimensions, [metrics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). By combining the three together, you have a rich toolbox which can be used to visualize everything happening with search on your site.
+
 Before we see how to extend this with custom events and metadata, the first thing you should do is to separate your search components in different reports.
 
 In the analytics event payload, you can see the origin key:
