@@ -17,7 +17,7 @@ The previous parts can be found [here](https://search.coveo.com/#sort=date%20asc
 
 ## Search Analytics and Reporting
 In previous posts, I covered the global search box, the search result pages and the search driven content listing pages. 
-It is now time to close this series with a more general topic that affect all the previously mentioned components: Analytics and tracking.
+It is now time to close this series with a more general topic affecting all the previously mentioned components: Analytics and tracking.
 
 ### 13. Track visitor activity
 
