@@ -60,8 +60,8 @@ The payload above shows a click event on the "Mike Casey" document from the "Cov
 From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` will be categorized in one of the three Event Causes: Search, Click, Custom. 
 In the example above, ```documentOpen``` is a Click event.
 The rest of metadata will be used to document the event. From a user's perspective, the metadata can be extracted in the Coveo Cloud platform. 
-It will be called "API Name" and can be combined with an Event Cause to create a Dimension.
-A Dimension can be defined as a metadata (defined by an API Name) in the context of one or more Event causes.
+It will be called "API Name" and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106).
+So in other words, a Dimension is a metadata (extracted through an API Name) in the context of one or more Event causes.
 This can seem a bit fuzzy, but you can refer to this [table](https://onlinehelp.coveo.com/en/cloud/creating_and_managing_dimensions_on_custom_metadata.htm#Custom_Metadata_Reference) for more details.
 
 Let's say I want to identify my queries without results, I will need to understand the concept of a dimension, a metric, and a filter. 
