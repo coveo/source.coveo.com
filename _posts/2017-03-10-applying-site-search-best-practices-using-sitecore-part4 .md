@@ -166,13 +166,13 @@ Coveo.$('#IdOfCartButton').click(function(e, args) {
 
 Now that you know how to add metadata to existing events and create custom events, you might want to track events outside of a search driven component. 
 You may think that tracking the rest of the solution is out of the scope of your search solution and you are not entirely wrong. 
-However, sending the entire journey of the user to Coveo Cloud will feed Coveo Machine Learning to improve the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
+However, sending the entire journey of the user to the Coveo Machine Learning engine will improve the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
 
-To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track; or even better, reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
+To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Or you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
 
-You can find a detailed guide of the Page Views Analytics [here](https://developers.coveo.com/x/9IYdAg).
+You can find a detailed guide for the Page Views Analytics component [here](https://developers.coveo.com/x/9IYdAg).
 
-Additionally, it is highly recommended to send additional [context](https://developers.coveo.com/x/5AkvAg) to Coveo Machine Learning. This will tell the recommendation engine to segment the users to provide items relevant to them. 
+Additionally, it is highly recommended to send additional [context](https://developers.coveo.com/x/5AkvAg) to the Coveo Recommendation engine. The context helps Coveo segment the users in order to provide items relevant to them. 
 To do so, simply integrate the [User Context component](https://developers.coveo.com/x/1wkvAg) after the Page Views Analytics on all pages you wish to track.
 The component will give you a few context options by default such as the xDB pattern card of the user. If needed, you can add to these options with the [UserContextPipeline](https://developers.coveo.com/x/5AkvAg).
 
