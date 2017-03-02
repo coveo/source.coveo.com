@@ -174,9 +174,9 @@ You can find a detailed guide for the Page Views Analytics component [here](http
 
 Additionally, it is highly recommended to send additional [context](https://developers.coveo.com/x/5AkvAg) to the Coveo Recommendation engine. The context helps Coveo segment the users in order to provide items relevant to them. 
 To do so, simply integrate the [User Context component](https://developers.coveo.com/x/1wkvAg) after the Page Views Analytics on all pages you wish to track.
-The component will give you a few context options by default such as the xDB pattern card of the user. If needed, you can add to these options with the [UserContextPipeline](https://developers.coveo.com/x/5AkvAg).
+The component will give you a few context options by default such as the xDB pattern card of the user. If needed, you can add to these options using the [UserContextPipeline](https://developers.coveo.com/x/5AkvAg).
 
-Keep in mind that sending a large amount of context can reduce the efficiency of the Recommendation Feature. Try to send no more than 5 different contexts.
+Keep in mind that sending a large amount of context can reduce the efficiency of the Coveo Recommendation engine. Try to send no more than 5 different contexts.
 
 In parallel to all of the above, you can send analytics data to the Sitecore Analytics API. I will not explain it in details since the underlying logic is the same as with the Coveo Usage Analytics, and it is well documented [here](https://developers.coveo.com/x/RgHvAQ).
 
@@ -241,7 +241,7 @@ But if you follow the 16 first best practices, you will have the right tools to 
 Sitecore gives you the opportuniy to improve the content and the experience over the years, as opposed to a fully custom web application or a standard CMS without the anaylics and marketing suite offered by the XP platform.
 Coveo, from a search perspective, allows you to do the same with the search and relevance aspect of your solution.
 
-Start simple and make sure you track everything happening on your search driven pages, keep your eyes on your analytics and Learn about your users before trying to categorize them. If you keep that in mind, you will be well on your way toward success.
+Start simple and make sure you track everything happening on your search driven pages. Keep your eyes on your analytics and learn about your users before trying to categorize them. If you keep that in mind, you will be well on your way toward success.
 
 I am happy to discuss more on this topic on [Sitecore Stack Exchange](http://sitecore.stackexchange.com/questions/tagged/coveo), Twitter or at one of the Sitecore User Group.
 
