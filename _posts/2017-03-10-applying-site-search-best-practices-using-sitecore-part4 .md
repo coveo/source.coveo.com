@@ -55,7 +55,7 @@ Here is an example of a payload send to the Coveo Cloud Usage Analytics API:
 }
 ```
 
-The payload above shows a click event on the "Mike Casey" document from the "CoveoSearch" interface. As you can see there is a lot more to it, and you can expand it if needed, but I will come back to this later in this post.
+The payload above shows a click event on the "Mike Casey" document from the "CoveoSearch" interface. As you can see there is a lot more to it, and you can expand it if needed, but I will cover this subject in a bit.
 
 From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` will be categorized in one of the three Event Causes: Search, Click, Custom. 
 In the example above, ```documentOpen``` is a Click event.
