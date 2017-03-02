@@ -23,9 +23,9 @@ It is now time to close this series with a more general topic affecting all the 
 
 Coveo for Sitecore components will track all events on the page and send the data to the Coveo Usage Analytics. 
 
-You can also send these events to the Sitecore reporting database by simply setting the [Enable Sitecore Analytics property](https://developers.coveo.com/x/PgHvAQ) on the Coveo Search View Rendering to true.
+You can also send these events to the Sitecore reporting database by setting the [Enable Sitecore Analytics property](https://developers.coveo.com/x/PgHvAQ) on the Coveo Search View Rendering to true.
 
-An event will only be sent on the published page. You can track it by simply by looking at the network traffic using a browser console or a web debugging proxy. 
+An event will only be sent on the published page. You can track it by looking at the network traffic using a browser console or a web debugging proxy. 
 Here is an example of a payload send to the Coveo Cloud Usage Analytics API:
 
 ```
