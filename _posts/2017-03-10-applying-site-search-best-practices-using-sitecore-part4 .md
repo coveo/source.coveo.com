@@ -21,8 +21,9 @@ It is now time to close this series with a more general topic affecting all the 
 
 ### 13. Track visitor activity
 
-Coveo for Sitecore components will track all events on the page and send the data to the Coveo Usage Analytics. The events are also declared in the Sitecore Content Editor under ```Settings/Analytics/Page Events/Coveo```. 
-You can send these events to the Sitecore reporting database by simply setting the [Enable Sitecore Analytics property](https://developers.coveo.com/x/PgHvAQ) on the Coveo Search View Rendering to true.
+Coveo for Sitecore components will track all events on the page and send the data to the Coveo Usage Analytics. 
+
+You can also send these events to the Sitecore reporting database by simply setting the [Enable Sitecore Analytics property](https://developers.coveo.com/x/PgHvAQ) on the Coveo Search View Rendering to true.
 
 An event will only be sent on the published page. You can track it by simply by looking at the network traffic using a browser console or a web debugging proxy. 
 Here is an example of a payload send to the Coveo Cloud Usage Analytics API:
@@ -72,7 +73,7 @@ Finally, the filter ```Has Results is false``` is added on the card to show quer
 
 With these basic principles in mind, it will be easier to understand the remaining best practices regarding Analytics.
 
-Below is an example of the same event sent to the Sitecore Analytics API, which will be sent if only if the search component has the ```Enable Sitecore Analytics``` [property enabled](https://developers.coveo.com/x/BAHvAQ):
+Below is an example of the same event sent to the Sitecore Analytics API:
 
 ```
 {
