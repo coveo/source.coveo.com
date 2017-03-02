@@ -145,7 +145,7 @@ This set of metadata will be static however, and since the items in a cart can a
 
 My favorite approach is to send the metadata programmatically by adding the key value directly to the ```analyticsCustomMetadata``` option of the component. 
 In the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
-You can use the same logic for custom analytics metadata so if you want to send the items in the cart of your site visitor, you could do something like this:
+You can use the same logic for custom analytics metadata, so if you want to send the items in the cart of your site visitor, you could do something like this:
 
 ```js
 var cartItems = // Code to retrieve the items in the cart of the user.
