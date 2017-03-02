@@ -132,7 +132,7 @@ The ```originLevel2``` is the ID of the current tab. If you do not have a [tab c
 The standalone global search box, which was the subject of the first part of this series of post, will not log any data in the ```originLevel1```, since it simply redirects the query without sending an analytics payload. 
 Instead, it will be logged in the ```originLevel3``` sent by the search component it redirects too. In brief, the ```originLevel3``` is the referrer.
 
-The origin is only a dimension among many. You could use the same logic with the Device Category dimension to show only mobile users, or the City and Country dimensions to for geographical mapping. 
+Although the origin is a very useful dimension, it is only one amongst many offered out of the box. You could use the same logic with the Device Category dimension to show only mobile users, or the City and Country dimensions to for geographical mapping. 
 You can also create your own dimension, which I will explain in the next section.
 
 ### 15. Track every search experience
