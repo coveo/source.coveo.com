@@ -129,7 +129,7 @@ This filter can be added at the card level, like my previous example with the co
 
 The ```originLevel2``` is the ID of the current tab. If you do not have a [tab component](https://coveo.github.io/search-ui/components/tab.html) on your page, then the value will be ```default```.
 
-The standalone global search box which was the subject of the first part of this series of post will not log any data in the ```originLevel1```, since it simply redirects the query without sending an analytics payload. 
+The standalone global search box, which was the subject of the first part of this series of post, will not log any data in the ```originLevel1```, since it simply redirects the query without sending an analytics payload. 
 Instead, it will be logged in the ```originLevel3``` sent by the search component it redirects too. In brief, the ```originLevel3``` is the referrer.
 
 The origin is only a dimension among many. You could use the same logic with the Device Category dimension to show only mobile users, or the City and Country dimensions to for geographical mapping. 
