@@ -141,7 +141,7 @@ By now you should have an idea on how to use the data sent to the Coveo Cloud Us
 With this information in hand, you might want to send more data, such as the item in the cart of the visitor.
 
 Metadata can be added directly on the [properties](https://developers.coveo.com/display/SitecoreV4/Adding+Custom+Metadata) of the Coveo Search View rendering. 
-This set of metadata will be static however, and since the items in a cart can always change, you will your set of metadata to be dynamic. 
+This set of metadata will be static however, and since the items in a cart can always change, you will need your set of metadata to be dynamic. 
 
 My favorite approach is to send the metadata programmatically by adding the key value directly to the ```analyticsCustomMetadata``` option of the component. 
 In the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
