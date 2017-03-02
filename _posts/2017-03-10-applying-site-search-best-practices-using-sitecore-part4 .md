@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-This is the last part of my crusade to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
+This is the last part of my long adventure to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
 The previous parts can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
 
 <!-- more -->
