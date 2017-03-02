@@ -243,6 +243,6 @@ Coveo, from a search perspective, allows you to do the same with the search and 
 
 Start simple and make sure you track everything happening on your search driven pages. Keep your eyes on your analytics and learn about your users before trying to categorize them. If you keep that in mind, you will be well on your way toward success.
 
-I am happy to discuss more on this topic on [Sitecore Stack Exchange](http://sitecore.stackexchange.com/questions/tagged/coveo), Twitter or at one of the Sitecore User Group.
+I would be happy to discuss more on this topic on [Sitecore Stack Exchange](http://sitecore.stackexchange.com/questions/tagged/coveo), Twitter or at one of the Sitecore User Group.
 
 Good coding!
