@@ -6,7 +6,7 @@ tags: [Sitecore, Coveo for Sitecore, Site Search Best Practices Series]
 
 author:
   name: Simon Langevin
-  bio:  Coveo for Sitecore Solution Architect
+  bio:  Coveo for Sitecore Product Manager | Sitecore MVP Technologist 2017
   image: slangevin.png
 ---
 
@@ -25,8 +25,8 @@ Coveo for Sitecore components will track all events on the page and send the dat
 
 You can also send these events to the Sitecore reporting database by setting the [Enable Sitecore Analytics property](https://developers.coveo.com/x/PgHvAQ) on the Coveo Search View Rendering to true.
 
-An event will only be sent on the published page. You can track it by looking at the network traffic using a browser console or a web debugging proxy. 
-Here is an example of a payload send to the Coveo Cloud Usage Analytics API:
+An event is only sent from a published page. You can track it by looking at the network traffic using a browser console or a web debugging proxy. 
+Here is an example of a payload sent to the Coveo Cloud Usage Analytics API:
 
 ```
 {
@@ -55,16 +55,16 @@ Here is an example of a payload send to the Coveo Cloud Usage Analytics API:
 }
 ```
 
-The payload above shows a click event on the "Mike Casey" document from the "CoveoSearch" interface. As you can see there is a lot more to it, and you can expand it if needed, but I will cover this subject in a bit.
+The payload above shows a click event on the "Mike Casey" document from the "CoveoSearch" interface. As you can see, there is a lot more to it, and you can expand it if needed. I will be covering this subject in a bit.
 
-From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` will be categorized in one of the three Event Causes: Search, Click, Custom. 
+From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` is categorized in one of the three Event Causes: Search, Click, and Custom.
 In the example above, ```documentOpen``` is a Click event.
-The rest of metadata will be used to document the event. From a user's perspective, the metadata can be extracted in the Coveo Cloud platform. 
-It will be called "API Name" and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106).
+The rest of the metadata will be used to document the event. From a user perspective, the metadata can be extracted in the Coveo Cloud platform. 
+It will be called "API Name" and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
 So in other words, a Dimension is a metadata (extracted through an API Name) in the context of one or more Event causes.
 This might be a bit confusing so far, but you can refer to this [table](https://onlinehelp.coveo.com/en/cloud/creating_and_managing_dimensions_on_custom_metadata.htm#Custom_Metadata_Reference) for more details.
 
-Let's say I want to identify my queries without results, I will need to understand the concept of a dimension, a metric, and a filter. 
+Let's say I want to identify my queries without results. I will need to understand the concepts of dimensions, [metrics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). 
 My dimension will be ```Query```, which is defined in the Dimensions menu as a Search event using a ```queryExpression``` Api name. 
 The metrics will be ```Query Count``` and ```Visit Count```, which is the number of time the query was made and the number of unique visits related to this query.
 Finally, the filter ```Has Results is false``` is added on the card to show queries without results.
@@ -104,7 +104,7 @@ Although the formatting is a bit different, the content is the same.
 
 ### 14. Slice-and-dice by attribute
 
-The example in the last section used dimensions, [metrics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). By combining the three together, you have a rich toolbox which can be used to visualize everything happening with search on your site.
+The example in the last section used dimensions, metrics, and filters. By combining the three together, you have a rich toolbox which can be used to visualize everything happening with search on your site.
 
 Before we see how to extend this with custom events and metadata, the first thing you should do is to separate your search components in different reports.
 
@@ -114,7 +114,7 @@ In the analytics event payload, you can see the origin key:
 "originLevel1 ": "CoveoSearch "
 ```
 
-Coveo for Sitecore will use the name of page hosting the Coveo Search View component when setting the origin key. In my case, ```CoveoSearch``` is the name of my search result page item.
+Coveo for Sitecore uses the name of the page hosting the Coveo Search View component when setting the origin key. In my case, ```CoveoSearch``` is the name of my search result page item.
 So to have different origins for each of your search driven pages, you simply need to name them differently in Sitecore.
 
 Now that you understand how to set the ```originLevel1```, you can use it in multiple ways. 
@@ -132,16 +132,16 @@ The ```originLevel2``` is the ID of the current tab. If you do not have a [tab c
 The standalone global search box, which was the subject of the first part of this series of post, will not log any data in the ```originLevel1```, since it simply redirects the query without sending an analytics payload. 
 Instead, it will be logged in the ```originLevel3``` sent by the search component it redirects too. In brief, the ```originLevel3``` is the referrer.
 
-Although the origin is a very useful dimension, it is only one amongst many offered out of the box. You could use the same logic with the Device Category dimension to show only mobile users, or the City and Country dimensions to for geographical mapping. 
+Although the origin is a very useful dimension, it is only one amongst many offered out of the box. You could use the same logic with the Device Category dimension to show only mobile users, or the City and Country dimensions for geographical mapping. 
 You can also create your own dimension, which I will explain in the next section.
 
 ### 15. Track every search experience
 
 By now you should have an idea on how to use the data sent to the Coveo Cloud Usage Analytics platform. 
-With this information in hand, you might want to send more data, such as the item in the cart of the visitor.
+With this information in hand, you might want to send more data, such as the item in the visitor cart.
 
-Metadata can be added directly on the [properties](https://developers.coveo.com/display/SitecoreV4/Adding+Custom+Metadata) of the Coveo Search View rendering. 
-This set of metadata will be static however, and since the items in a cart can always change, you will need your set of metadata to be dynamic. 
+Metadata can be added directly on the [properties](https://developers.coveo.com/x/RQHvAQ) of the Coveo Search View rendering. 
+However, this set of metadata will be static. Since the items in a cart can always change, you will need your set of metadata to be dynamic. 
 
 My favorite approach is to send the metadata programmatically by adding the key value directly to the ```analyticsCustomMetadata``` option of the component. 
 In the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
@@ -152,7 +152,7 @@ var cartItems = // Code to retrieve the items in the cart of the user.
 CoveoForSitecore.componentsOptions.analyticsCustomMetadata["cartItems"] = cartItems;
 ```
 
-The code above will add additional metadata to all the events happening on the page, but you might want to create your own events. The Coveo JavaScript Framework offers several [functions to send Search, Click or Custom events](https://developers.coveo.com/x/KoGfAQ).
+The code above will add additional metadata to all the events happening on the page, but you might want to create your own events. The Coveo JavaScript Framework offers several [functions to send Search, Click, or Custom events](https://developers.coveo.com/x/KoGfAQ).
 For example, you might have an "Add to Cart" button directly in the Search Result page or on a listing page; here is an example on how to do so:
 
 ```js
@@ -166,15 +166,15 @@ Coveo.$('#IdOfCartButton').click(function(e, args) {
 
 Now that you know how to add metadata to existing events and create custom events, you might want to track events outside of a search driven component. 
 You may think that tracking the rest of the solution is out of the scope of your search solution and you are not entirely wrong. 
-However, sending the entire journey of the user to the Coveo Machine Learning engine will improve the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
+However, sending the entire user journey to the Coveo Machine Learning engine will improve the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
 
-To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Or you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
+To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Alternatively, you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
 
 You can find a detailed guide for the Page Views Analytics component [here](https://developers.coveo.com/x/9IYdAg).
 
-Additionally, it is highly recommended to send additional [context](https://developers.coveo.com/x/5AkvAg) to the Coveo Recommendation engine. The context helps Coveo segment the users in order to provide items relevant to them. 
+Additionally, it is highly recommended to send [context](https://developers.coveo.com/x/5AkvAg) to the Coveo Recommendation engine. The context helps Coveo segment the users in order to provide items relevant to them. 
 To do so, simply integrate the [User Context component](https://developers.coveo.com/x/1wkvAg) after the Page Views Analytics on all pages you wish to track.
-The component will give you a few context options by default such as the xDB pattern card of the user. If needed, you can add to these options using the [UserContextPipeline](https://developers.coveo.com/x/5AkvAg).
+The component will give you a few context options by default such as the user xDB pattern card. If needed, you can add to these options using the [UserContextPipeline](https://developers.coveo.com/x/5AkvAg).
 
 Keep in mind that sending a large amount of context can reduce the efficiency of the Coveo Recommendation engine. Try to send no more than 5 different contexts.
 
@@ -214,7 +214,7 @@ On that first tab, you can see the "Product Added to Cart" card which is simply 
 
 ![Add To Cart Card](/images/SiteSearchBestPractices/addtocartcard.png)
 
-The dashboard also show a few additional metadata such as who are the visitors. 
+The dashboard also shows a few additional metadata such as who the visitors are. 
 
 On the second tab, you can see the same data by product:
 
@@ -231,9 +231,9 @@ Then the "Add to cart per product" card is based on both the "Product" dimension
 From a business perspective, this dashboard shows that the "Beattech Beatbox" is often added to wish lists, but not to cart. 
 You might use this information to launch a special discount to invite your visitors to move this item from the wish list to the cart.
 
-### 17. 18. 19. Curate your content, your experience and focus on the data
+### 17. 18. 19. Curate your content, your experience, and focus on the data
 
-The last three topics are business decisions that every organization must make when it comes to search, relevance, site navigation and content management.
+The last three topics are business decisions that every organization must make when it comes to search, relevance, site navigation, and content management.
 
 I do not have a step by step solution to curate your content or improve your experience. 
 But if you follow the 16 first best practices, you will have the right tools to help you in that task.
@@ -243,6 +243,6 @@ Coveo, from a search perspective, allows you to do the same with the search and 
 
 Start simple and make sure you track everything happening on your search driven pages. Keep your eyes on your analytics and learn about your users before trying to categorize them. If you keep that in mind, you will be well on your way toward success.
 
-I would be happy to discuss more on this topic on [Sitecore Stack Exchange](http://sitecore.stackexchange.com/questions/tagged/coveo), Twitter or at one of the Sitecore User Group.
+I would be happy to discuss more on this topic on [Sitecore Stack Exchange](http://sitecore.stackexchange.com/questions/tagged/coveo), [Twitter](https://twitter.com/SilaouO), or at one of the Sitecore User Group.
 
 Good coding!
