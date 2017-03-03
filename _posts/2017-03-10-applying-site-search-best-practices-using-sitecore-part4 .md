@@ -16,6 +16,7 @@ The previous parts can be found [here](https://search.coveo.com/#sort=date%20asc
 <!-- more -->
 
 ## Search Analytics and Reporting
+
 In previous posts, I covered the global search box, the search result pages and the search driven content listing pages. 
 It is now time to close this series with a more general topic affecting all the previously mentioned components: Analytics and tracking.
 
@@ -26,6 +27,7 @@ Coveo for Sitecore components will track all events on the page and send the dat
 You can also send these events to the Sitecore reporting database by setting the [Enable Sitecore Analytics property](https://developers.coveo.com/x/PgHvAQ) on the Coveo Search View Rendering to true.
 
 An event is only sent from a published page. You can track it by looking at the network traffic using a browser console or a web debugging proxy. 
+
 Here is an example of a payload sent to the Coveo Cloud Usage Analytics API:
 
 ```
@@ -58,15 +60,17 @@ Here is an example of a payload sent to the Coveo Cloud Usage Analytics API:
 The payload above shows a click event on the "Mike Casey" document from the "CoveoSearch" interface. As you can see, there is a lot more to it, and you can expand it if needed. I will be covering this subject in a bit.
 
 From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` is categorized in one of the three Event Causes: Search, Click, and Custom.
-In the example above, ```documentOpen``` is a Click event.
-The rest of the metadata will be used to document the event. From a user perspective, the metadata can be extracted in the Coveo Cloud platform. 
-It will be called "API Name" and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
-So in other words, a Dimension is metadata (extracted through an API Name) in the context of one or more Event causes.
+In the example above, ```documentOpen``` is a Click event. The rest of the metadata will be used to document the event. 
+
+From a user perspective, the metadata can be extracted in the Coveo Cloud platform. 
+The metadata will be called API Name and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
+
+In other words, a Dimension is metadata (extracted through an API Name) in the context of one or more Event causes.
 This might be a bit confusing so far, but you can refer to this [table](https://onlinehelp.coveo.com/en/cloud/creating_and_managing_dimensions_on_custom_metadata.htm#Custom_Metadata_Reference) for more details.
 
 Let's say I want to identify my queries without results. I will be using dimensions, [metrics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). 
-My dimension will be ```Query```, which is defined in the Dimensions menu as a Search event using a ```queryExpression``` Api name. 
-The metrics will be ```Query Count``` and ```Visit Count```, which is the number of time the query was made and the number of unique visits related to this query.
+My dimension will be ```Query```, which is defined in the Dimensions menu as a Search event using a ```queryExpression``` Api Name. 
+The metrics will be ```Query Count``` and ```Visit Count```, which is the number of times the query was executed and the number of unique visits related to this query.
 Finally, the filter ```Has Results is false``` is added on the card to show only queries without results.
 
 ![Basic Content Gap](/images/SiteSearchBestPractices/basiccontentgap.png)
@@ -101,7 +105,7 @@ This filter can be added at the card level, like my previous example with the co
 The ```originLevel2``` is the ID of the current tab. If you do not have a [tab component](https://coveo.github.io/search-ui/components/tab.html) on your page, then the value will be ```default```.
 
 The standalone global search box, which was the subject of the first part of this series of post, will not log any data in the ```originLevel1```, since it simply redirects the query without sending an analytics payload. 
-Instead, it will be logged in the ```originLevel3``` sent by the search component it redirects too. In short, the ```originLevel3``` is the referrer.
+Instead, it will be logged in the ```originLevel3``` sent by the search component it redirects to. In short, the ```originLevel3``` is the referrer.
 
 Although the origin is a very useful dimension, it is only one amongst many offered out of the box. You could use the same logic with the Device Category dimension to show only mobile users, or the City and Country dimensions for geographical mapping. 
 You can also create your own dimension, which I will explain in the next section.
@@ -127,17 +131,17 @@ The code above will add additional metadata to all the events happening on the p
 For example, you might have an "Add to Cart" button directly in the Search Result page or on a listing page; here is an example on how to send analytics data for this type of event:
 
 ```js
-Coveo.$('#IdOfCartButton').click(function(e, args) {
+document.getElementById('IdOfCartButton').onclick = function(e){
     var customEventCause = {name: 'Add To Cart', type:'Purchase'};
     // The metadata is optional, since the logCustomEvent function will already contain the metadata of the page, use it to expand the payload with data related to this event.
     var metadata = {key: "value"};
     Coveo.$('#<%= Model.Id %>').coveo('logCustomEvent', customEventCause, metadata);
-});
+}
 ```
 
 Now that you know how to add metadata to existing events and create custom events, you might want to track events outside of a search driven component. 
 You may think that tracking the rest of the solution is out of the scope of your search solution and you are not entirely wrong. 
-However, sending the entire user journey to the Coveo Machine Learning engine will improve the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
+However, sending the entire user journey to the Coveo Machine Learning engine will allow you to use the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
 
 To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Alternatively, you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
 
@@ -157,14 +161,14 @@ In parallel to all of the above, you can send analytics data to the Sitecore Ana
 
 We saw previously several ways to track everything happening on your search driven components. The next step is to use this data in a Coveo Cloud Usage Analytics report.
 
-Back to the add to cart example:
+Back to the "Add to Cart" example:
 
 ```js
-Coveo.$('#IdOfMyCartButton').click(function(e, args) {
+document.getElementById('IdOfCartButton').onclick = function(e){
     var customEventCause = {name: 'Add To Cart', type:'Purchase'};
     var metadata = {product: {code to retrieve the name of the selected product}};
     Coveo.$('#<%= Model.Id %>').coveo('logCustomEvent', customEventCause, metadata);
-});
+}
 ```
 
 The value of the ```name``` key will be added to the ```Event Value``` dimension, and the value of the ```type``` key to the ```Event Type``` dimension. 
