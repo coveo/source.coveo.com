@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coveo Search</title>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0,  maximum-scale=1.0, user-scalable=0">
+<!-- Needed libs for Coveo -->
+	<script src="lib/jsui/js/CoveoJsSearch.WithDependencies.js"></script> 
+	<script src="lib/jsui/js/templatesNew.js"></script> 
+	<link rel="stylesheet" href="lib/jsui/css/CoveoFullSearchNewDesign.css"/>
+<!-- End Needed libs for Coveo -->
+
+  <!-- Needed libs for Calendar/JQuery datepicker -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/lib/calendar/fullcalendar.min.css">
+    <script src="lib/calendar/moment.min.js"></script>
+    <script src="lib/calendar/fullcalendar.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+
+<!-- End Needed libs for Calendar/JQuery datepicker -->
+<!-- Needed libs for Google Maps -->
+	<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=YOUROWNKEY"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="lib/js/CoveoGoogleMap.js"></script> 
+	<script src="lib/js/CoveoMarkerclusterer.js"></script> 
+<!-- End Needed libs for Google Maps -->
+<!-- Connect to Search end point -->
+  <script type="text/javascript">
+    $(function () {
+     Coveo.SearchEndpoint.endpoints['default'] = new Coveo.SearchEndpoint({
+      restUri: 'https://platform.cloud.coveo.com/rest/search',
+      accessToken: 'YOURTOKEN',
+      queryStringArguments: {
+        organizationId: 'CLOUDORGID'
+      }
+    });
+      Coveo.$('#search').coveo('init');
+	
+    });
+  </script>
+</head>
+<body id="search" class="CoveoSearchInterface" data-enable-history="true" data-design="new">
+
+  <style>
+    .shadow {
+      -webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+      box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+    }
+    .calAvail{
+      background-color:#42d692;
+    }
+    .calAvailHalf {
+      background-color:#ee8a36;
+    }
+    .calNotAvail {
+      background-color:#f71313;
+	  color: yellow;
+    }
+    .ProposedHalf {
+      background-color:#ee8a36;
+    }
+    .Holiday {
+      border-color: green }
+    .Training {
+      border-color: red}
+    .Selected {
+      border-top: 2px;
+      border-bottom:2px;
+      border-color:black}
+    .NotSelected {
+      zoom: 1;
+      filter: alpha(opacity=30);
+      opacity: 0.3;
+    }
+    .calReserveHalf {
+      background-color:#ee8a36;
+    }
+    .calReserved {
+      background-color:#f71313;
+    }
+    .Calendar h2 {
+      font-size:1.1em;
+    }
+    .fc-bg tr td{
+      height: 20px;
+    }
+    .fc-content-skeleton tr {
+      height: 2px;
+    }
+	.fc-basic-view tbody .fc-row {
+       min-height: 1em; 
+	}
+	.fc-basic-view td.fc-day-number, .fc-basic-view td.fc-week-number span {
+		padding-right: 6px;
+		padding-top: 4px;
+	}
+	.fc-other-month { background-color:white;color:white;}
+	.coveo-main-section {
+	  max-width:none !important;
+	}
+	.coveo-search-section {
+		margin-top: 15px !important;
+		margin-bottom: 1px !important;
+}
+ .coveo-facet-column {
+    width: 20% !important;
+ }
+	.ui-widget{font-family:Arial,Helvetica,sans-serif;font-size:0.8em}
+  </style>
+  <script>
+  //--------------------------------------------
+  // ResultsRelated
+  // To show results related to the current result
+  //--------------------------------------------
+  
+  var Coveo;
+    (function (Coveo) {
+      var ResultsRelated = (function (_super) {
+        __extends(ResultsRelated, _super);
+        function ResultsRelated(element, options, bindings, result) {
+          _super.call(this, element, ResultsRelated.ID, bindings);
+          this.element = element;
+          this.options = options;
+          this.result = result;
+          this.showingMoreResults = false;
+          this.options = Coveo.ComponentOptions.initComponentOptions(this.element, ResultsRelated, options);
+          Coveo.Assert.exists(result);
+          this.buildElements();
+          this.updateElementVisibility();
+          if (this.options.alwaysShow)
+          {
+            this.showMoreResults();
+          }
+        }
+        ResultsRelated.prototype.buildElements = function () {
+          this.buildHeader();
+          this.buildResults();
+          if (!this.options.alwaysShow)
+          {
+            this.buildFooter();
+          }
+        };
+        ResultsRelated.prototype.showMoreResults = function () {
+          var _this = this;
+          this.updateElementVisibility();
+          this.showingMoreResults = true;
+          var queryBuilder = new Coveo.QueryBuilder();
+          queryBuilder.numberOfResults = this.options.numberOfResults;
+          var newquery=this.options.query;
+          var a = this.options.fields.split(";");
+          var i=0;
+          for (i = 0; i < a.length; i++) {
+            var fieldcontent='';
+            fieldcontent=''+this.result.raw[a[i]];
+            fieldcontent=fieldcontent.replace(/,/g," ");
+            //Ugly workaround to change , to ","
+            fieldcontent=fieldcontent.replace(/;/g,'","');
+            newquery=newquery.replace("[FIELD"+(i+1)+"]",fieldcontent);
+          }
+		  if (this.result.state!=undefined)
+		  {
+			newquery=newquery.replace('[QUERY]',this.result.state["q"]);
+		  }
+          queryBuilder.advancedExpression.add(newquery);
+          this.queryController.getEndpoint().search(queryBuilder.build()).done(function(data) {
+            _this.showingMoreResults = true;
+            _this.updateElementVisibility(data.results.length);
+            _this.displayThoseResults(data.results);
+          });
+        };
+        ResultsRelated.prototype.showLessResults = function () {
+          this.results.empty();
+          this.showingMoreResults = false;
+          this.updateElementVisibility();
+          this.scrollToResultElement();
+        };
+        ResultsRelated.prototype.buildHeader = function () {
+          var header = Coveo.$('<div/>').addClass('coveo-folding-header').appendTo(this.element);
+          if (this.options.normalCaption != undefined && this.options.expandedCaption != undefined) {
+            //                    this.normalCaption = Coveo.$('<div/>').addClass('coveo-folding-header-caption').text(this.options.normalCaption).appendTo(header);
+            //                  this.expandedCaption = Coveo.$('<div/>').addClass('coveo-folding-header-caption').text(this.options.expandedCaption).appendTo(header);
+          }
+        };
+        ResultsRelated.prototype.buildResults = function () {
+          this.results = Coveo.$('<div/>').addClass('coveo-folding-results').appendTo(this.element);
+          this.noResultsCaption = Coveo.$('<div/>').addClass('coveo-folding-header-caption').text(this.options.noResultsCaption).appendTo(this.results);
+        };
+        ResultsRelated.prototype.buildFooter = function () {
+          var _this = this;
+          var footer = Coveo.$('<div/>').addClass('coveo-folding-footer').appendTo(this.element.parentElement);
+          if (true) {
+            this.showMore = Coveo.$("<div/>").addClass("coveo-folding-footer-section-for-less").appendTo(footer).click(function () { return _this.showMoreResults(); });
+            this.showLess = Coveo.$("<div/>").addClass("coveo-folding-footer-section-for-more").appendTo(footer).click(function () { return _this.showLessResults(); });
+            var footerIconShowMore = Coveo.$("<div><span class='coveo-folding-footer-icon'></span></div>").addClass('coveo-more');
+            var footerIconShowLess = Coveo.$("<div><span class='coveo-folding-footer-icon'></span></div>").addClass('coveo-less');
+            var showMoreLink = Coveo.$('<a/>').addClass('coveo-folding-show-more').text(this.options.normalCaption);
+            var showLessLink = Coveo.$('<a/>').addClass('coveo-folding-show-less').text(this.options.expandedCaption);
+            this.showMore.append(showMoreLink);
+            this.showLess.append(showLessLink);
+            this.showMore.append(footerIconShowMore);
+            this.showLess.append(footerIconShowLess);
+            if (this.options.indent>0)
+            {
+              this.showMore.css('left',this.options.indent+'px');
+              this.showLess.css('left',this.options.indent+'px');
+            }
+          }
+        };
+        ResultsRelated.prototype.updateElementVisibility = function (subResultsLength) {
+          this.noResultsCaption.hide();
+          if (subResultsLength && subResultsLength == 0)
+          {
+            this.noResultsCaption.show();
+          }
+          if (!this.options.alwaysShow)
+          {
+            if (true) {
+              this.showMore.fastToggle(!this.showingMoreResults);
+              this.showLess.fastToggle(this.showingMoreResults);
+            }
+          }
+          Coveo.$(this.element).find('.coveo-show-if-normal').fastToggle(!this.showingMoreResults);
+          Coveo.$(this.element).find('.coveo-show-if-expanded').fastToggle(this.showingMoreResults);
+        };
+        ResultsRelated.prototype.scrollToResultElement = function () {
+          Coveo.$(window).scrollTop(Coveo.$(this.element).closest('.CoveoResult').position().top);
+        };
+        ResultsRelated.prototype.displayThoseResults = function (results) {
+          var _this = this;
+          this.results.empty();
+          if (results.length==0)
+          {
+            this.noResultsCaption = Coveo.$('<div/>').addClass('coveo-folding-header-caption').text(this.options.noResultsCaption).appendTo(this.results);
+          }
+          else
+          {
+            this.titleCaption = Coveo.$('<div/>').addClass('coveo-folding-footer-section-for-less coveo-folding-footer').text(this.options.titleCaption).appendTo(this.results);
+            this.titleCaption.css('position','relative').css('bottom','0px');
+          }
+          Coveo._.each(results, function (result) {
+            _this.renderChildResult(result);
+          });
+        };
+        ResultsRelated.prototype.renderChildResult = function (childResult) {
+          Coveo.QueryUtils.setStateObjectOnQueryResult(this.queryStateModel.get(), childResult);
+          var oneChild = Coveo.$(this.options.resultTemplate.instantiateToElement(childResult))
+          //.addClass('coveo-result-folding-child-result')
+          .appendTo(this.results);
+          oneChild.toggleClass('coveo-normal-child-result', !this.showingMoreResults);
+          oneChild.toggleClass('coveo-expanded-child-result', this.showingMoreResults);
+          this.autoCreateComponentsInsideResult(oneChild.get(0), childResult);
+        };
+        ResultsRelated.prototype.autoCreateComponentsInsideResult = function (element, result) {
+          Coveo.Assert.exists(element);
+          var initOptions = this.searchInterface.options;
+          var initParameters = { options: initOptions, bindings: this.getBindings(), result: result };
+          Coveo.CoveoJQuery.automaticallyCreateComponentsInside(element, initParameters);
+        };
+        ResultsRelated.ID = "ResultsRelated";
+        ResultsRelated.options = {
+          resultTemplate: Coveo.ComponentOptions.buildTemplateOption({ defaultFunction: function () { return new Coveo.DefaultResultTemplate(); } }),
+          normalCaption: Coveo.ComponentOptions.buildLocalizedStringOption(),
+          titleCaption: Coveo.ComponentOptions.buildLocalizedStringOption(),
+          expandedCaption: Coveo.ComponentOptions.buildLocalizedStringOption(),
+          noResultsCaption: Coveo.ComponentOptions.buildLocalizedStringOption(),
+          query:Coveo.ComponentOptions.buildLocalizedStringOption(),                 // The Advanced query to execute, fields are noted as [FIELD1][FIELD2] from the fields section
+          fields:Coveo.ComponentOptions.buildLocalizedStringOption(),                  // The fields to use from the current result
+          numberOfResults:Coveo.ComponentOptions.buildNumberOption(),
+          alwaysShow:Coveo.ComponentOptions.buildBooleanOption({ defaultValue: false }),
+          indent:Coveo.ComponentOptions.buildNumberOption()
+        };
+        return ResultsRelated;
+      })(Coveo.Component);
+      Coveo.ResultsRelated = ResultsRelated;
+      Coveo.CoveoJQuery.registerAutoCreateComponent(ResultsRelated);
+    })(Coveo || (Coveo = {}));
+  </script>
+  <script type="text/javascript">
+//--------------------------------------------
+// Code for the Calendar controls and datepickers
+//--------------------------------------------
+
+//Field which holds the datesavailable
+var FieldnameAvail = "@mydateavail";
+var FieldnameAvailClean = "mydateavail";
+var NrOfMonths = 0;
+
+//Function to get the query to construct, based on the selected dates
+function getFullDates(min, max) {
+	var result = "";
+	var minDate = new Date(min);
+	var maxDate = new Date(max);
+	var NrofDays = 0;
+	var one_day = 1000 * 60 * 60 * 24;
+	NrOfMonths = maxDate.getMonth() - minDate.getMonth() + 1;
+	NrofDays = Math.round((maxDate.getTime() - minDate.getTime()) / one_day);
+	for (i = 0; i <= NrofDays-1; i++) {
+		var check = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate() + i);
+		//Do not add saturday and sundays
+		if (check.getDay() % 6 == 0) {}
+		else {
+			if (result == "") {
+				result = FieldnameAvail + "=\"" + moment(check).format('YYYYMMDD') /*+ Hours.ToString() */ + "\"";
+			} else {
+				result = result + " AND " + FieldnameAvail + "=\"" +moment(check).format('YYYYMMDD') /*+ Hours.ToString() */ + "\"";
+			}
+		}
+	}
+	return result;
+}
+
+$(function () {
+	//Initialize the date pickers
+	var dates = $("#CALMinimumDateTxt, #CALMaximumDateTxt").datepicker({
+			defaultDate : '+0',
+			changeMonth : true,
+			dateFormat : 'dd-mm-yy',
+			showAnim : 'slideDown',
+			showWeek : true,
+			showButtonPanel : true,
+			firstday : 1,
+			numberOfMonths : 3,
+			onSelect : function (selectedDate) {
+				var option = this.id == "CALMinimumDateTxt" ? "minDate" : "maxDate",
+				instance = $(this).data("datepicker"),
+				date = $.datepicker.parseDate('dd-mm-yy', selectedDate, instance.settings);
+				dates.not(this).datepicker('option', option, date);
+				$('#CALMinimumDateTxt').trigger('change');
+			}
+		});
+	
+	//Hook up to the clearbreadcrumb
+	Coveo.$('#search').on('clearBreadcrumb', function (e, args) {
+		mapQuery = null;
+		mapQueryCircle = null;
+		resetMap();
+		initmap = true;
+		Coveo.$('#search').coveo('executeQuery');
+	});
+	
+	//When we have results rebuild the map
+	Coveo.$('#search').on('querySuccess', function (e, args) {
+		if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
+			mapQueryResults = args.queryBuilder.computeCompleteExpression();
+			if (Coveo.Utils.isNullOrUndefined(mapQueryResults)) {
+				mapQueryResults = '@uri @mylat2';
+			}
+			allreset = false;
+			createResultsMap(mapQueryResults, "mylat2", "mylon2","People");
+		}
+	});
+	//Hook up to the query to add the dates (if needed)
+	//We also will add the nested query to get resume content
+	Coveo.$('#search').on("buildingQuery", function (e, args) {
+	    //Only activate on people search interface
+		if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
+			var radiosel = $('input:radio[name=avail]:checked').val();
+			if (radiosel != 'All') {
+				var addquery = getFullDates($('#CALMinimumDateTxt').datepicker('getDate'), $('#CALMaximumDateTxt').datepicker('getDate'));
+				if (radiosel == 'Avail') {
+					args.queryBuilder.advancedExpression.add("(" + addquery + ")");
+				} else {
+					args.queryBuilder.advancedExpression.add("NOT (" + addquery + ")");
+				}
+			}
+			
+			//We also want to add a nested query against the resume's
+			// add the disjunction query to get all comments, attachments and tickets matching the query
+			var basicExpression = args.queryBuilder.expression.build();
+			var completeQuery = (typeof basicExpression === 'undefined') ? "" : "" + basicExpression + "";
+			var advancedExpression = args.queryBuilder.advancedExpression.build();
+			var advancedQuery = (typeof advancedExpression === 'undefined') ? "" : "(" + advancedExpression + ")";
+
+			if (completeQuery != "") {
+				//Be aware: in the nested queries the first key and the foreign key needs to be facets
+				args.queryBuilder.disjunctionExpression.add("@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   " + completeQuery + "] " + advancedQuery);
+			}
+		}
+	});
+	
+	//Add the calendar controls to the search results
+	Coveo.$('.CoveoSearchInterface').on('newResultDisplayed', function (e, args) {
+		//Add the calendar to the result, only if it is selected
+		var mycal = $(args.item).find('.Calendar');
+		mycal.empty();
+		if ($('#CALMinimumDateTxt').val() != "") {
+			var Start = $('#CALMinimumDateTxt').datepicker('getDate');
+			var StartDate = $('#CALMinimumDateTxt').datepicker('getDate');
+			var EndDate = $('#CALMaximumDateTxt').datepicker('getDate');
+			NrOfMonths = EndDate.getMonth() - StartDate.getMonth();
+			for (i = 0; i <= NrOfMonths; i++) {
+				var newcal = $('<div/>').addClass('mycalendar' + i).appendTo(mycal);
+				newcal.css('width', '200px').css('display', 'inline-block').css('margin', '5px');
+				newcal.fullCalendar({
+					height : 150,
+					width : 150,
+					weekNumbers : false,
+					columnFormat : 'dd',
+					defaultDate : Start,
+					contentHeight : 'auto',
+					aspectRatio : 5,
+					header : {
+						left : 'title',
+						center : '',
+						right : ''
+					},
+					dayRender : function (date, cell) {
+
+						if (date < StartDate || date > EndDate) {
+							//disable it
+							cell.addClass("NotSelected");
+						} else {
+							//disable it
+							cell.addClass("Selected");
+						}
+						//If our result contains this date then available else not
+						var curdate = moment(date).format('YYYYMMDD');
+						if (args.result.raw[FieldnameAvailClean] != undefined) {
+							if (args.result.raw[FieldnameAvailClean].indexOf(curdate) != -1) {
+								//disable it
+								cell.addClass("calAvail");
+								cell.attr('title', 'Available');
+							} else {
+								//disable it
+								cell.addClass("calNotAvail");
+								cell.attr('title', 'Not Available');
+							}
+						}
+
+					}
+				});
+				Start = new Date(Start.getFullYear(), Start.getMonth() + 1, Start.getDate());
+			}
+		}
+	});
+	//Coveo.$('#search').coveo('init');
+});
+  </script>
+  <div class="CoveoAnalytics">
+  </div>
+  <div class="coveo-tab-section">
+    <a class="CoveoTab" data-id="People" data-caption="People" data-expression="@syssource=WimPeople @mylat2">
+    </a>
+    <a class="CoveoTab" data-id="All" data-caption="All Content" data-expression="NOT @objecttype">
+    </a>
+  </div>
+  <div class="coveo-search-section">
+    <div class="CoveoSettings" data-include-in-menu=".CoveoShareQuery,.CoveoPreferencesPanel">
+    </div>
+    <div class="CoveoSearchbox" data-enable-omnibox="true">
+    </div>
+    <div class="coveo-search-section-wrapper" style="padding-top:5px" data-tab="People">
+	<table><tr><td>
+      Date range from: </td><td>
+      <input type="text" id="CALMinimumDateTxt" />
+     To: <input type="text" id="CALMaximumDateTxt" /></td></tr>
+	 <tr><td>
+      Show availability: </td><td>
+      <input type="radio" name="avail" value="All" checked="checked"/>
+      All 
+      <input type="radio" name="avail" value="Avail"/>
+      Only Available people
+      <input type="radio" name="avail" value="NotAvail"/>
+      Only NOT Available people
+      </td></tr><tr><td></td><td>
+	  <span style="font-size:0.8em">
+      Legend: 
+      <span class="calAvail">
+        Available
+      </span>
+      , 
+      <span class="calNotAvail">
+        Not Available
+      </span>
+      <br/>
+      People are listed based upon their content from Resume and Additional Info
+	  </span>
+	  </td></tr></table>
+    </div>
+  </div>
+  <div class="coveo-main-section">
+    <div class="coveo-facet-column">
+      <div class="CoveoFacet" data-title="Type" data-field="@objecttype" data-tab="All">
+      </div>
+      <div class="CoveoFacet" data-title="FileType" data-field="@filetype" data-tab="All">
+      </div>
+      <div class="CoveoFacet" data-title="Author" data-field="@author" data-tab="All">
+      </div>
+      <div class="CoveoFacet" data-title="Year" data-field="@year" data-tab="All">
+      </div>
+      <div class="CoveoFacet" data-title="Month" data-field="@month" data-tab="All">
+      </div>
+      <div class="CoveoFacet" data-title="Division" data-field="@mydivision" data-tab="People">
+      </div>
+      <div class="CoveoFacet" data-title="Function" data-field="@myjobfunction" data-tab="People">
+      </div>
+      <div class="CoveoFacet" data-title="Level" data-field="@myjoblevel" data-tab="People">
+      </div>
+      <div class="CoveoFacet" data-title="Country" data-field="@sfcountry" data-tab="People">
+      </div>
+      <div class="CoveoFacet" data-title="State" data-field="@sfstate" data-tab="People">
+      </div>
+    </div>
+    <div class="coveo-results-column">
+      <div class="CoveoShareQuery">
+      </div>
+      <div class="CoveoPreferencesPanel">
+        <div class="CoveoResultsPreferences">
+        </div>
+        <div class="CoveoResultsFiltersPreferences">
+        </div>
+      </div>
+      <div class="CoveoTriggers">
+      </div>
+      <div class="CoveoBreadcrumb">
+      </div>
+      <div class="CoveoSearchAlerts">
+      </div>
+      <div class="coveo-results-header">
+        <div class="coveo-summary-section">
+          <span class="CoveoQuerySummary">
+          </span>
+          <span class="CoveoQueryDuration">
+          </span>
+        </div>
+        <div class="coveo-sort-section">
+          <span class="CoveoSort" data-sort-criteria="relevancy" data-caption="Relevance">
+          </span>
+          <span class="CoveoSort" data-sort-criteria="date descending,date ascending" data-caption="Date">
+          </span>
+        </div>
+      </div>
+      <div class="CoveoHiddenQuery">
+      </div>
+      <div class="CoveoDidYouMean">
+      </div>
+      <div class="CoveoErrorReport" data-pop-up="false">
+      </div>
+      <div id="map-container"  data-tab="People">
+        <div style="float:left;margin-bottom:4px; margin-top:2px;margin-left:100px;width:500px;height:400px" class="shadow" id="map-canvas">
+        </div>
+		<div id="info" style="display:none;float:left;margin-top:2px;margin-left:12px;padding-left:5px;padding-right:5px;width:350px;height:400px" class="shadow"></div>
+		
+      </div>
+	  <div data-tab="People" style="clear:both;margin-left:100px">Only the first 1000 people are listed on the map!</div>
+      <div class="CoveoResultList" data-wait-animation="fade" data-auto-select-fields-to-include="true" data-fields-to-include="@mydateavail">
+        <script id="People" class="result-template" type="text/html" data-condition="raw.mylat2 != undefined">
+<div class="coveo-result-frame">
+  <div class="coveo-result-row">
+    <div class="coveo-result-cell" style="width:85px; text-align:center; padding-top:5px">
+      <img class="CoveoThumbnail shadow" data-no-thumbnail-class="coveo-sprites-user"  "/>
+      <div class="CoveoQuickview">
+          </div>
+          </div>
+    <div class="coveo-result-cell" style="padding-left:15px">
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="font-size:18px">
+          <a class="CoveoResultLink">
+          </a>
+          </div>
+          </div>
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="padding-top:5px; padding-bottom:5px; font-size:13px;">
+          <table class="CoveoFieldTable" data-use-json-template-fields="true" data-minimized-by-default="false" data-allow-minimization="false">
+            <tbody>
+              <tr data-field="@myjobfunction" data-caption="Function">
+          </tr>
+              <tr data-field="@myjoblevel" data-caption="Level">
+          </tr>
+              <tr data-field="@mydivision" data-caption="Division">
+          </tr>
+             
+          </tbody>
+          </table>
+           <div class="Calendar" style=""></div>
+		   <div class="CoveoResultsRelated"
+               data-result-template-id="RelatedResultsTemplate"
+               data-normal-caption="Show Resume's or Related files"
+			   data-title-caption="Resume's or Related files for the same user"
+               data-expanded-caption="Do not show Related Files"
+               data-no-results-caption="No related files found"
+			   data-query="@myusername=[FIELD1] @syssource=(WimPeopleAdd,WimPeopleResume)"
+			   data-fields="myusername" 
+			   data-number-Of-Results=5 ></div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+        </script>
+        <script id="MobilePeople" class="result-template" type="text/html" data-condition="raw.fullname != undefined &amp;&amp; Coveo.DeviceUtils.isSmallScreenWidth()">
+<div class="coveo-result-frame">
+  <div class="coveo-result-row">
+    <div class="coveo-result-cell" style="width:40px; text-align:center">
+      <img class="CoveoThumbnail" data-no-thumbnail-class="coveo-sprites-user-small"/>
+      <div class="CoveoQuickview">
+        <span class="coveo-sprites-quickview">
+          </span>
+          </div>
+          </div>
+    <div class="coveo-result-cell">
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="font-size:15px">
+          <a class="CoveoResultLink">
+          </a>
+          </div>
+          </div>
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="padding-top:5px; padding-bottom:5px">
+          <table class="CoveoFieldTable" data-use-json-template-fields="true">
+            <tbody>
+              <tr data-field="@worktitle" data-caption="Title">
+          </tr>
+              <tr data-field="@company" data-caption="Company">
+          </tr>
+              <tr data-field="@workemail" data-caption="Email">
+          </tr>
+              <tr data-field="@workphone" data-caption="Work Phone">
+          </tr>
+              <tr data-field="@mobilephone" data-caption="Mobile Phone">
+          </tr>
+              <tr data-field="@homephone" data-caption="Home Phone">
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+        </script>
+		 <script id="RelatedResultsTemplate" type="text/x-underscore-template">
+      <div> <div class="coveo-attachment-container" style="margin-left:20px;">
+         <div class="coveo-result-cell" style="font-size:14px">
+      <a class="CoveoResultLink">
+    </a>
+      <span class="CoveoQuickview">
+        <div class="coveo-icon-for-quickview">
+          Quickview
+    </div>
+    </span>
+    </div>
+    </div></div>
+  </script> 
+  <script id="RelatedResultsTemplateSide" type="text/x-underscore-template">
+      <div> <div class="coveo-attachment-container" style="margin-left:5px;">
+         <div class="coveo-result-cell" style="font-size:14px">
+      <a class="CoveoResultLink">
+    </a>
+      <span class="CoveoQuickview">
+        <div class="coveo-icon-for-quickview">
+          Quickview
+    </div>
+    </span>
+    </div>
+    </div></div>
+  </script> 
+   <script id="PeopleSide" class="result-template" type="text/html" data-condition="raw.mylat2 != undefined">
+<div class="coveo-result-frame">
+  <div class="coveo-result-row">
+    <div class="coveo-result-cell" style="width:85px; text-align:center; padding-top:5px">
+      <img class="CoveoThumbnail shadow" data-no-thumbnail-class="coveo-sprites-user"  "/>
+      <div class="CoveoQuickview">
+          </div>
+          </div>
+    <div class="coveo-result-cell" style="padding-left:15px">
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="font-size:18px">
+          <a class="CoveoResultLink">
+          </a>
+          </div>
+          </div>
+		 </div>
+		 </div>
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="padding-top:5px; padding-bottom:5px; font-size:13px;">
+          <table class="CoveoFieldTable" data-use-json-template-fields="true" data-minimized-by-default="false" data-allow-minimization="false">
+            <tbody>
+              <tr data-field="@myjobfunction" data-caption="Function">
+          </tr>
+              <tr data-field="@myjoblevel" data-caption="Level">
+          </tr>
+              <tr data-field="@mydivision" data-caption="Division">
+          </tr>
+             
+          </tbody>
+          </table>
+           <div class="Calendar" style=""></div>
+		   <div class="CoveoResultsRelated"
+               data-result-template-id="RelatedResultsTemplateSide"
+               data-normal-caption="Show Resume's or Related files"
+			   data-title-caption="Resume's or Related files for the same user"
+               data-expanded-caption="Do not show Related Files"
+               data-no-results-caption="No related files found"
+			   data-always-show="true"
+			   data-query="@myusername=[FIELD1] @syssource=(WimPeopleAdd,WimPeopleResume)"
+			   data-fields="myusername" 
+			   data-number-Of-Results=5 ></div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+        </script>
+        <script id="Default" class="result-template" type="text/html">
+<div class="coveo-result-frame">
+  <div class="coveo-result-row">
+    <div class="coveo-result-cell" style="width:85px;text-align:center;padding-top:7px;">
+      <span class="CoveoIcon">
+          </span>
+      <div class="CoveoQuickview">
+          </div>
+          </div>
+    <div class="coveo-result-cell" style="padding-left:15px;">
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell" style="font-size:18px;">
+          <a class="CoveoResultLink">
+          </a>
+          </div>
+        <div class="coveo-result-cell" style="width:120px; text-align:right; font-size:12px">
+          <span class="CoveoFieldValue" data-field="@date" data-helper="date">
+          </span>
+          </div>
+          </div>
+      <div class="coveo-result-row">
+        <div class="coveo-result-cell">
+          <span class="CoveoExcerpt">
+          </span>
+          </div>
+          </div>
+          </div>
+          </div>
+  <div class="coveo-result-row">
+    <div class="coveo-result-cell" style="width:85px;text-align:center">
+          </div>
+    <div class="coveo-result-cell" style="font-size:13px;padding-left: 15px;">
+      <table class="CoveoFieldTable">
+        <tbody>
+          <tr data-field="@author" data-caption="Author">
+          </tr>
+          <tr data-field="@source" data-caption="Source">
+          </tr>
+          <tr data-field="@language" data-caption="Language">
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          </div>
+          </div>
+        </script>
+      </div>
+      <div class="CoveoPager">
+      </div>
+      <div class="CoveoLogo">
+      </div>
+    </div>
+    
+  </div>
+
+</body>
+</html>
