@@ -55,9 +55,50 @@ The steps involved for enriching the data are:
 * Step 3. Getting an image for the person and add it to the thumbnail of the search result
 
 Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called [myerr]), so I can use the Coveo Content Browser to examine the progress/debugging of my script.
-![RL1]({{ site.baseurl }}/images/ResourceLocator/RL2.png)
+![RL2]({{ site.baseurl }}/images/ResourceLocator/RL2.png)
 
 ## Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database
+From the internet I got two files, one containing US Zip codes and one with the World cities coordinates. 
+For example: 
+US Zip codes found here [Zip Codes](https://gist.github.com/erichurst/7882666)
+World cities: [World Cities](http://simplemaps.com/data/world-cities)
+and a Python script to easily import txt/csv files into a DynamoDB: [Script](http://justprogrammng.blogspot.nl/2016/08/python-script-to-move-records-from-csv.html).
+
+Next, you load all that data into a DynamoDB database (using the above script) and, bam, you are ready with the geocoding part!
+![RL3]({{ site.baseurl }}/images/ResourceLocator/RL3.png)
+
+Now, you need to add that information to your people records. Each record in the directory contains a field called ‘locationzip’ or similar which we need to assign to a Coveo Field. In your Cloud Organization configuration [See](https://onlinehelp.coveo.com/en/cloud/fields.htm), add a brand new field called ‘myzip’ and assign the value %[locationzip] to it in the Person content source:
+![RL4]({{ site.baseurl }}/images/ResourceLocator/RL4.png)
+
+Note: In the Coveo Indexing Pipeline Extension you could use the metadata from the document directly or the mappings defined above. So in our case you could get the %[myzip] or directly the %[locationzip] fields. Mapping fields is only necessary if you want to display the field in the UI, use the field as a Facet, or use the field as a relevancy booster.
+
+You also need to create the following fields using the technique above:
+mylat2 (Decimal), mylon2 (Decimal), myusername (String), myrownr (String). 
+
+Next up: the Indexing Pipeline Extension script.
+Extension scripts are created in Python and the following libraries are available by default: requests, boto3, pymongo, msgpack-python and pytz.
+For more information: [Document API Ref](https://developers.coveo.com/display/public/CloudPlatform/Document+Object+Python+API+Reference). 
+
+To create the script: [Extensions](https://onlinehelp.coveo.com/en/cloud/extensions.htm).
+Make sure to check the boxes only for the type of content you really need (this will save valuable execution time):
+![RL5]({{ site.baseurl }}/images/ResourceLocator/RL5.png)
+
+For example, only select [Original File] if you want to change the original document.
+For this use case, you do not need to modify any of the original content, so none of the checkboxes are needed.
+
+Our script does the following:
+
+1. Gets the metadata field (myzip or locationzip)
+![RL6]({{ site.baseurl }}/images/ResourceLocator/RL6.png)
+
+2. Builds up a connection to Dynamo DB and our Table
+![RL7]({{ site.baseurl }}/images/ResourceLocator/RL7.png)
+
+3. Executes the query (note: primary key’s in Dynamo DB are case sensitive)
+![RL8]({{ site.baseurl }}/images/ResourceLocator/RL8.png)
+
+4. Retrieves the results and store them into our fields (mylat2, mylon2)
+![RL9]({{ site.baseurl }}/images/ResourceLocator/RL9.png)
 
 
 ## Changes to Vindinium
