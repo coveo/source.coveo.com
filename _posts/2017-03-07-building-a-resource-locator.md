@@ -562,8 +562,11 @@ By using the preview feature I can look into the person’s resume:
 As you can see from the above: We search not only in the People records, we also search inside the Resumes. Use the facets to drill into our data, drill even further by using the map as a filter!
 
 Sources:
+
 [Extension Script]({{ site.baseurl }}/images/ResourceLocator/Extension.py)
+
 [Javascript Files]({{ site.baseurl }}/images/ResourceLocator/JSScripts.zip)
+
 [Search Interface]({{ site.baseurl }}/images/ResourceLocator/PeopleMap.html)
 
 
