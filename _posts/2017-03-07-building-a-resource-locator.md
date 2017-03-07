@@ -563,7 +563,7 @@ As you can see from the above: We search not only in the People records, we also
 
 Sources:
 [Extension Script]({{ site.baseurl }}/images/ResourceLocator/Extension.py)
-[Javascript Files]({{ site.baseurl }}/images/ResourceLocator/JSFiles.zip)
+[Javascript Files]({{ site.baseurl }}/images/ResourceLocator/JSScripts.zip)
 [Search Interface]({{ site.baseurl }}/images/ResourceLocator/PeopleMap.html)
 
 
