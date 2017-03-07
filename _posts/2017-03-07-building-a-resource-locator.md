@@ -55,7 +55,19 @@ The steps involved for enriching the data are:
 * Step 3. Getting an image for the person and add it to the thumbnail of the search result
 
 Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called [myerr]), so I can use the Coveo Content Browser to examine the progress/debugging of my script.
-![RL2]({{ site.baseurl }}/images/ResourceLocator/RL2.png)
+``` python
+myerr=''
+
+#logging, both to myerr field and to document.log
+def mylog(message):
+    global myerr
+    
+    #Log using the normal logging
+    document.log(message)
+    myerr+=';'+message
+    #Log using a field
+    document.add_meta_data({"myerr":myerr})
+```
 
 ## Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database
 From the internet I got two files, one containing US Zip codes and one with the World cities coordinates. 
@@ -89,16 +101,50 @@ For this use case, you do not need to modify any of the original content, so non
 Our script does the following:
 
 1. Gets the metadata field (myzip or locationzip)
-![RL6]({{ site.baseurl }}/images/ResourceLocator/RL6.png)
+``` python
+city=document.get_meta_data_value('myzip')
+mylog("Zip:"+' '.join(city))
+```
 
 2. Builds up a connection to Dynamo DB and our Table
-![RL7]({{ site.baseurl }}/images/ResourceLocator/RL7.png)
+``` python
+# If city is there get the Lon/Lat from dynamoDB
+if (city):
+    try:
+        found=False
+
+        #Now we fetch the lat/lon from the db
+        dynamodb_session = Session(aws_access_key_id='xxxx',
+                  aws_secret_access_key='xxxx',
+                  region_name='us-east-1')
+        dynamodb = dynamodb_session.resource('dynamodb')
+        table=dynamodb.Table('GEOCODE')
+```
 
 3. Executes the query (note: primary key’s in Dynamo DB are case sensitive)
-![RL8]({{ site.baseurl }}/images/ResourceLocator/RL8.png)
+``` python
+        mycity=city[0].lower()
+        mycity2=mycity
+        if (mycity.isdigit()):
+            #Pad with zeros
+            mycity2=format(mycity, '05')
+        mylog("Execute query with city "+str(mycity2))
+    
+        response = table.query(
+            KeyConditionExpression=Key('City').eq(str(mycity2)) 
+        )
+```
 
 4. Retrieves the results and store them into our fields (mylat2, mylon2)
-![RL9]({{ site.baseurl }}/images/ResourceLocator/RL9.png)
+``` python
+        for i in response['Items']:
+            document.add_meta_data({"mylat2":str(i['Lat'])})
+            document.add_meta_data({"mylon2":str(i['Lon'])})
+            mylog("Getting lat"+str(i['Lat']))
+        
+    except Exception,e:
+        mylog("Error: "+str(e))
+```
 
 **Important:** a script has a maximum execution time of 5 seconds. It is possible to add multiple scripts, they will be executed in the order you add them to the source. If the above takes too much time, you could create 3 seperate scripts to do the work (which will result in a 15 seconds execution time).
 
@@ -120,7 +166,25 @@ In this scenario the end result of the script is a field called [mydateavail] wh
 ## Step 3. Getting an image for the person and add it to the thumbnail of the search result
 Indexing Pipeline Extensions have access to all content, they can read permissions, update permissions, have access to all the fields and to the content preview. Your current People record does not contain a thumbnail image to be shown when someone searches for a colleague or resource. The images are stored on a webserver with a naming convention [username.jpg]. 
 The extension script can download them, and store them in the datastream for the thumbnail.
-![RL10]({{ site.baseurl }}/images/ResourceLocator/RL10.png)
+``` python
+try:
+    imagenr=int(document.get_meta_data_value('myrownr')[0])
+    #Get the thumbnail
+    thumbnail = document.DataStream('$thumbnail$')
+    mylog("Nr to get:"+str(imagenr))
+    myurl="http://www.myimage.com/images/me/"+str(imagenr)+".jpg"
+    l = requests.get(myurl,timeout=4)
+    #Get the image
+    if "error" in l.content:
+        mylog("No Image")
+    else:
+        thumbnail.write(l.content)
+        mylog("Added Image")
+        document.add_data_stream(thumbnail)
+        
+except Exception,e:
+        mylog("Error: "+str(e))
+```
 
 Now that the script is ready, you need to assign it to your source. I first created the source ([See]( https://onlinehelp.coveo.com/en/cloud/add_edit_push_source.htm).
 
