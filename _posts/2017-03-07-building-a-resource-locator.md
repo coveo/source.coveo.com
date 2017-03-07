@@ -100,6 +100,108 @@ Our script does the following:
 4. Retrieves the results and store them into our fields (mylat2, mylon2)
 ![RL9]({{ site.baseurl }}/images/ResourceLocator/RL9.png)
 
+**Important:** a script has a maximum execution time of 5 seconds. It is possible to add multiple scripts, they will be executed in the order you add them to the source. If the above takes too much time, you could create 3 seperate scripts to do the work (which will result in a 15 seconds execution time).
+
+Later, when the content is indexed, you can check in the [Content Browser](https://onlinehelp.coveo.com/en/cloud/content_browser.htm) that the field [myerr] is popuated.
+Like: 
+```
+myerr Start;Zip:19103;Execute query with city 19110;Getting lat 39.952896
+```
+
+## Step 2. Getting the [Availability] for a person from a DynamoDB database
+The next step in your Extension script is to get the Availability of a person. Normally that information would be stored in a HR database. 
+
+You could again get that data from a Dynamo DB database which could be updated daily from the original database/repository. The only information you need in your database is: Username/userid and the dates when the employees are available (or not available). Most important is that your Coveo field contains the dates when a person IS available. 
+
+In this scenario the end result of the script is a field called [mydateavail] which is filled with values like:
+```
+20170601;20170602;20170603;20170604;20170605;20170606;20170607;20170608;20170609;20170610;20170611;20170612;20170613;20170614;20170615;20170616;20170617;20170618;20170619;20170620;20170621;20170622
+```
+## Step 3. Getting an image for the person and add it to the thumbnail of the search result
+Indexing Pipeline Extensions have access to all content, they can read permissions, update permissions, have access to all the fields and to the content preview. Your current People record does not contain a thumbnail image to be shown when someone searches for a colleague or resource. The images are stored on a webserver with a naming convention [username.jpg]. 
+The extension script can download them, and store them in the datastream for the thumbnail.
+![RL10]({{ site.baseurl }}/images/ResourceLocator/RL10.png)
+
+Now that the script is ready, you need to assign it to your source. I first created the source ([See]( https://onlinehelp.coveo.com/en/cloud/add_edit_push_source.htm).
+
+For now we need to manually embed a reference to the Extension into the JSON of our source:
+To do so: take note of the Indexing Pipeline Extension ID from the extensions page:
+![RL11]({{ site.baseurl }}/images/ResourceLocator/RL11.png)
+Goto your source, and hit ‘Edit JSON’.
+Scroll completely down and enter the above ID as:
+![RL12]({{ site.baseurl }}/images/ResourceLocator/RL12.png)
+
+You are now all set! You can start building up your index, check logs and start working on your search interface.
+
+# Phase B. Building a People Locator Search interface.
+The data is in our index, time to start building a search interface for it. These are our requirements:
+
+* Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
+* Step 2. Show the related records found for the current Person record. 
+* Step 3. Take the selected availability dates into consideration and show them at the result level.
+* Step 4. Provide a Google map to show the location of the people found and enable the map to be used as a filter.
+* Step 5. Enable to click on a person on the map to show detailed information in a “side panel”, inside the “side panel” execute a proximity search (to find people within 50 miles)
+The beauty of the Coveo Search Interfaces is that they are very flexible, all events can be intercepted and changed.
+
+## Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
+Our search interface should only show People records, but should search within the Resume and Additional records at the same time. Looks complicated, but this is part of Coveo’s capabilities. To do this, we need to add additional logic to our query. We do that by adding an event on the ‘buildingQuery’ event [See](https://developers.coveo.com/display/public/JsSearchV1/Events), but only when our ‘People’ interface is active.
+``` javascript
+Coveo.$('#search').on("buildingQuery", function (e, args) {
+	    //Only activate on people search interface
+		if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
+		}
+	});
+```
+The query which we want to add is what we call a nested query. A nested query is essentially an outer join to another query. The requirement here is that our key-field must be a faceted value. In our case the field [myusername] is used and defined as a facet.
+Before we can change our query, we first need to take the basic and advanced expressions from the current query.
+``` javascript
+var basicExpression = args.queryBuilder.expression.build();
+var completeQuery = (typeof basicExpression === 'undefined') ? "" : "" + basicExpression + "";
+var advancedExpression = args.queryBuilder.advancedExpression.build();
+var advancedQuery = (typeof advancedExpression === 'undefined') ? "" : "(" + advancedExpression + ")";
+```
+The completeQuery variable now contains the text entered in the search box, the advancedQuery parameter contains the facets and/or selection from the map.
+
+The nested query will look like:
+```
+@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   (" + completeQuery + ")] " + advancedQuery
+```
+This means:
+The nested query is the part between the []. In our example this translates in: 
+
+* Search in the sources WimPeopleAdd and WimPeopleResume for the text entered in the search box but
+* Report back the keyfield [@myusername]. 
+* The usernames returned by the nested query will be used in the full query.
+
+A practical example:
+If I search for “Artificial Intelligence”. Our nested query will look like:
+```
+@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume) (Artificial Intelligence)]
+```
+
+In addition, our nested query we also want to search the regular People records. The above nested query should be added as a disjunction expression (essentially an OR).
+
+Putting all the pieces together will result in:
+``` javascript
+	Coveo.$('#search').on("buildingQuery", function (e, args) {
+	    //Only activate on people search interface
+		if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
+			
+			//We also want to add a nested query against the resume's
+			// add the disjunction query to get all comments, attachments and tickets matching the query
+			var basicExpression = args.queryBuilder.expression.build();
+			var completeQuery = (typeof basicExpression === 'undefined') ? "" : "" + basicExpression + "";
+			var advancedExpression = args.queryBuilder.advancedExpression.build();
+			var advancedQuery = (typeof advancedExpression === 'undefined') ? "" : "(" + advancedExpression + ")";
+
+			if (completeQuery != "") {
+				//Be aware: in the nested queries the first key and the foreign key needs to be facets
+				args.queryBuilder.disjunctionExpression.add("@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   " + completeQuery + "] " + advancedQuery);
+			}
+		}
+	});
+
+```
 
 ## Changes to Vindinium
 
