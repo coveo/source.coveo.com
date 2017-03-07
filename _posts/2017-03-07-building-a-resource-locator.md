@@ -8,7 +8,7 @@ tags: [Index Extensions, Query Extensions, JS UI custom components, Geocoding, G
 author:
   name: Wim Nijmeijer
   bio: Sales Engineer
-  image: wim3.png
+  image: /images/wim3.png
 ---
 
 <i>This is the first blog post of a new serie entitled “Build it with Coveo”. The serie will present innovative use cases for the Coveo Platform, always including full code samples.</i>
