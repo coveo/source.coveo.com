@@ -183,25 +183,60 @@ In addition, our nested query we also want to search the regular People records.
 
 Putting all the pieces together will result in:
 ``` javascript
-	Coveo.$('#search').on("buildingQuery", function (e, args) {
-	    //Only activate on people search interface
-		if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
-			
-			//We also want to add a nested query against the resume's
-			// add the disjunction query to get all comments, attachments and tickets matching the query
-			var basicExpression = args.queryBuilder.expression.build();
-			var completeQuery = (typeof basicExpression === 'undefined') ? "" : "" + basicExpression + "";
-			var advancedExpression = args.queryBuilder.advancedExpression.build();
-			var advancedQuery = (typeof advancedExpression === 'undefined') ? "" : "(" + advancedExpression + ")";
-
-			if (completeQuery != "") {
-				//Be aware: in the nested queries the first key and the foreign key needs to be facets
-				args.queryBuilder.disjunctionExpression.add("@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   " + completeQuery + "] " + advancedQuery);
-			}
-		}
-	});
-
+Coveo.$('#search').on("buildingQuery", function (e, args) {
+   //Only activate on people search interface
+   if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
+	//We also want to add a nested query against the resume's
+	// add the disjunction query to get all comments, attachments and tickets matching the query
+	var basicExpression = args.queryBuilder.expression.build();
+	var completeQuery = (typeof basicExpression === 'undefined') ? "" : "" + basicExpression + "";
+	var advancedExpression = args.queryBuilder.advancedExpression.build();
+	var advancedQuery = (typeof advancedExpression === 'undefined') ? "" : "(" + advancedExpression + ")";
+	if (completeQuery != "") {
+ 	   //Be aware: in the nested queries the first key and the foreign key needs to be facets
+	   args.queryBuilder.disjunctionExpression.add("@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   " + completeQuery + "] " + advancedQuery);
+	}
+  }
+});
 ```
+
+## Step 2. Show the related records found for the current Person record.
+Since we are only reporting People records, it would be nice if we could show the related records (e.g.: resume and any additional info) with the current result. To do so we created a custom component called ResultsRelated. ResultsRelated will show a ‘Show details’ hyperlink, which in turn will execute a separate query to fetch the related content based upon the current result.
+![RL15]({{ site.baseurl }}/images/ResourceLocator/RL15.png)
+
+For easy configuration the custom component can take different properties:
+``` html
+<div class="CoveoResultsRelated"
+     data-result-template-id="RelatedResultsTemplate"
+     data-normal-caption="Show Resume's or Related files"
+     data-title-caption="Resume's or Related files for the same user"
+     data-expanded-caption="Do not show Related Files"
+     data-no-results-caption="No related files found"
+     data-query="@myusername=[FIELD1] @syssource=(WimPeopleAdd,WimPeopleResume)"
+     data-fields="myusername" 
+     data-number-Of-Results=5 ></div>
+```
+Using the properties you can specify which fields to use, which query to execute to get the details and which template to use to render the results.
+
+## Step 3. Take the selected availability dates into consideration and show them at the result level.
+To select an availability date range we added two calendar pickers using JQuery. Based on the selection of these dates we need to add these to the query.
+Each selected date must be checked on the field if it exists, so we are building a huge AND query of the selected date range. And we add it to the current query. 
+``` javascript
+var radiosel = $('input:radio[name=avail]:checked').val();
+if (radiosel != 'All') {
+	var addquery = getFullDates($('#CALMinimumDateTxt').datepicker('getDate'), $('#CALMaximumDateTxt').datepicker('getDate'));
+	if (radiosel == 'Avail') {
+		args.queryBuilder.advancedExpression.add("(" + addquery + ")");
+	} else {
+		args.queryBuilder.advancedExpression.add("NOT (" + addquery + ")");
+	}
+}
+```
+The resulting query would look like:
+```
+"((artificial intelligence) ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND @mydateavail="20170315" AND @mydateavail="20170316" AND @mydateavail="20170317" AND @mydateavail="20170320" AND @mydateavail="20170321" AND @mydateavail="20170322" AND @mydateavail="20170323" AND @mydateavail="20170324" AND @mydateavail="20170327" AND @mydateavail="20170328" AND @mydateavail="20170329" AND @mydateavail="20170330" AND @mydateavail="20170331" AND @mydateavail="20170403" AND @mydateavail="20170404" AND @mydateavail="20170405" AND @mydateavail="20170406" AND @mydateavail="20170407" AND @mydateavail="20170410" AND @mydateavail="20170411" AND @mydateavail="20170412" AND @mydateavail="20170413" AND @mydateavail="20170414" AND @mydateavail="20170417" AND @mydateavail="20170418" AND @mydateavail="20170419" AND @mydateavail="20170420" AND @mydateavail="20170421" AND @mydateavail="20170424" AND @mydateavail="20170425" AND @mydateavail="20170426" AND @mydateavail="20170427" AND @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")) (@syssource=WimPeople @mylat2)) OR (@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   ((artificial intelligence))] ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND @mydateavail="20170315" AND @mydateavail="20170316" AND @mydateavail="20170317" AND @mydateavail="20170320" AND @mydateavail="20170321" AND @mydateavail="20170322" AND @mydateavail="20170323" AND @mydateavail="20170324" AND @mydateavail="20170327" AND @mydateavail="20170328" AND @mydateavail="20170329" AND @mydateavail="20170330" AND @mydateavail="20170331" AND @mydateavail="20170403" AND @mydateavail="20170404" AND @mydateavail="20170405" AND @mydateavail="20170406" AND @mydateavail="20170407" AND @mydateavail="20170410" AND @mydateavail="20170411" AND @mydateavail="20170412" AND @mydateavail="20170413" AND @mydateavail="20170414" AND @mydateavail="20170417" AND @mydateavail="20170418" AND @mydateavail="20170419" AND @mydateavail="20170420" AND @mydateavail="20170421" AND @mydateavail="20170424" AND @mydateavail="20170425" AND @mydateavail="20170426" AND @mydateavail="20170427" AND @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")))"
+```
+
 
 ## Changes to Vindinium
 
