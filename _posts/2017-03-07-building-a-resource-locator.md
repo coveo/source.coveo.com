@@ -11,7 +11,7 @@ author:
   image: Wim3.png
 ---
 
-*This is the first blog post of a new serie entitled “Build it with Coveo”. The serie will present innovative use cases for the Coveo Platform, always including full code samples.*
+_This is the first blog post of a new serie entitled “Build it with Coveo”. The serie will present innovative use cases for the Coveo Platform, always including full code samples._
 
 Coveo customers use the platform in a multitude of ways. Many in the consulting, resource management business often ask us if our search technology could help them better match resources and project.
 
@@ -21,17 +21,17 @@ What if you want to find the best peer/employee with knowledge around “Artific
 
 Typical approach/solution:
 When using a search engine, your default behavior will be to organize your search journey as follow:
-* First search in your Resume database/repository for people with “Artificial Intelligence” in their resume
-* Once suitable individuals are identified, you’ll look up their locations
-* Once you know the locations, check in the HR database if they are working on a project in the next 2 months
++ First search in your Resume database/repository for people with “Artificial Intelligence” in their resume
++ Once suitable individuals are identified, you’ll look up their locations
++ Once you know the locations, check in the HR database if they are working on a project in the next 2 months
 It is very time consuming and arguably not very efficient. You can do better! How can we improve this whole journey? Easy: build an index containing all the data you need and surface it into a Resource Locator interface everybody can use.
 
 What do you need?
 Before you start building a UI, you need to have (at least part of) the following data available. The data you need is:
-* People records (are they in Active Directory, or in a Database?). 
-* For each Person you need an ID to identify them (like an employee unique ID)).
-* Resumes. The metadata of the resume should mention the unique employee ID.
-* Availability database. When is a person available should be stored in here (typically HR-IS systems, ERP, etc.).
++ People records (are they in Active Directory, or in a Database?). 
++ For each Person you need an ID to identify them (like an employee unique ID)).
++ Resumes. The metadata of the resume should mention the unique employee ID.
++ Availability database. When is a person available should be stored in here (typically HR-IS systems, ERP, etc.).
 Since you’ll probably want to geocode the cities so you can display everything nicely on a map, you’ll need a database with cities and/or zip codes (and their Latitude/Longitude).
 
 <!-- more -->
