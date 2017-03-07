@@ -11,7 +11,7 @@ author:
   image: Wim3.png
 ---
 
-<i>This is the first blog post of a new serie entitled “Build it with Coveo”. The serie will present innovative use cases for the Coveo Platform, always including full code samples.</i>
+*This is the first blog post of a new serie entitled “Build it with Coveo”. The serie will present innovative use cases for the Coveo Platform, always including full code samples.*
 
 Coveo customers use the platform in a multitude of ways. Many in the consulting, resource management business often ask us if our search technology could help them better match resources and project.
 
