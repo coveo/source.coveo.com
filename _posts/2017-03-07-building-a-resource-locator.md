@@ -38,7 +38,7 @@ Since you’ll probably want to geocode the cities so you can display everything
 
 <!-- more -->
 
-# Phase A. Getting the content into our index
+## Phase A. Getting the content into our index
 
 You first need to make sure that we get the content into a single index. Coveo provides connectors to index most of the data wherever it comes from (database, salesforce, sitemaps, custom repository using the push API, etc.). 
 
@@ -69,7 +69,7 @@ def mylog(message):
     document.add_meta_data({"myerr":myerr})
 ```
 
-## Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database
+### Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database
 From the internet I got two files, one containing US Zip codes and one with the World cities coordinates. 
 For example: 
 US Zip codes found here [Zip Codes](https://gist.github.com/erichurst/7882666)
@@ -154,7 +154,7 @@ Like:
 myerr Start;Zip:19103;Execute query with city 19110;Getting lat 39.952896
 ```
 
-## Step 2. Getting the [Availability] for a person from a DynamoDB database
+### Step 2. Getting the [Availability] for a person from a DynamoDB database
 The next step in your Extension script is to get the Availability of a person. Normally that information would be stored in a HR database. 
 
 You could again get that data from a Dynamo DB database which could be updated daily from the original database/repository. The only information you need in your database is: Username/userid and the dates when the employees are available (or not available). Most important is that your Coveo field contains the dates when a person IS available. 
@@ -163,7 +163,7 @@ In this scenario the end result of the script is a field called [mydateavail] wh
 ```
 20170601;20170602;20170603;20170604;20170605;20170606;20170607;20170608;20170609;20170610;20170611;20170612;20170613;20170614;20170615;20170616;20170617;20170618;20170619;20170620;20170621;20170622
 ```
-## Step 3. Getting an image for the person and add it to the thumbnail of the search result
+### Step 3. Getting an image for the person and add it to the thumbnail of the search result
 Indexing Pipeline Extensions have access to all content, they can read permissions, update permissions, have access to all the fields and to the content preview. Your current People record does not contain a thumbnail image to be shown when someone searches for a colleague or resource. The images are stored on a webserver with a naming convention [username.jpg]. 
 The extension script can download them, and store them in the datastream for the thumbnail.
 ``` python
@@ -191,13 +191,25 @@ Now that the script is ready, you need to assign it to your source. I first crea
 For now we need to manually embed a reference to the Extension into the JSON of our source:
 To do so: take note of the Indexing Pipeline Extension ID from the extensions page:
 ![RL11]({{ site.baseurl }}/images/ResourceLocator/RL11.png)
+
 Goto your source, and hit ‘Edit JSON’.
 Scroll completely down and enter the above ID as:
+``` json
+"additionalInfos": {},
+  "preConversionExtensions": [],
+  "postConversionExtensions": [
+    {
+      "extensionId": "sewimnijmeijer01-qqaprrgphlaiqieqp3vkg3cgga",
+      "parameters": {}
+    }
+  ],
+```
+
 ![RL12]({{ site.baseurl }}/images/ResourceLocator/RL12.png)
 
 You are now all set! You can start building up your index, check logs and start working on your search interface.
 
-# Phase B. Building a People Locator Search interface.
+## Phase B. Building a People Locator Search interface.
 The data is in our index, time to start building a search interface for it. These are our requirements:
 
 * Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
@@ -207,7 +219,7 @@ The data is in our index, time to start building a search interface for it. Thes
 * Step 5. Enable to click on a person on the map to show detailed information in a “side panel”, inside the “side panel” execute a proximity search (to find people within 50 miles)
 The beauty of the Coveo Search Interfaces is that they are very flexible, all events can be intercepted and changed.
 
-## Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
+### Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
 Our search interface should only show People records, but should search within the Resume and Additional records at the same time. Looks complicated, but this is part of Coveo’s capabilities. To do this, we need to add additional logic to our query. We do that by adding an event on the ‘buildingQuery’ event [See](https://developers.coveo.com/display/public/JsSearchV1/Events), but only when our ‘People’ interface is active.
 ``` javascript
 Coveo.$('#search').on("buildingQuery", function (e, args) {
@@ -264,7 +276,7 @@ Coveo.$('#search').on("buildingQuery", function (e, args) {
 });
 ```
 
-## Step 2. Show the related records found for the current Person record.
+### Step 2. Show the related records found for the current Person record.
 Since we are only reporting People records, it would be nice if we could show the related records (e.g.: resume and any additional info) with the current result. To do so we created a custom component called ResultsRelated. ResultsRelated will show a ‘Show details’ hyperlink, which in turn will execute a separate query to fetch the related content based upon the current result.
 
 ![RL15]({{ site.baseurl }}/images/ResourceLocator/RL15.png)
@@ -283,7 +295,7 @@ For easy configuration the custom component can take different properties:
 ```
 Using the properties you can specify which fields to use, which query to execute to get the details and which template to use to render the results.
 
-## Step 3. Take the selected availability dates into consideration and show them at the result level.
+### Step 3. Take the selected availability dates into consideration and show them at the result level.
 To select an availability date range we added two calendar pickers using JQuery. Based on the selection of these dates we need to add these to the query.
 Each selected date must be checked on the field if it exists, so we are building a huge AND query of the selected date range. And we add it to the current query. 
 ``` javascript
@@ -362,7 +374,7 @@ Coveo.$('.CoveoSearchInterface').on('newResultDisplayed', function (e, args) {
 Which will render the calendars as:
 ![RL20]({{ site.baseurl }}/images/ResourceLocator/RL20.png)
 
-## Step 4. Provide a Google map to show the location of the resources found and enable the map to be used as a filter.
+### Step 4. Provide a Google map to show the location of the resources found and enable the map to be used as a filter.
 Since we have Longitude and Latitude available, we can use Google Map. By default, our search result list only contains the first 10 results, so we want to get as much as results possible to show on the map. What we need to do is run a separate query to get the results of the first 1000 results (this is the max we can get from our REST api) and map them. This must be triggered after we have executed our normal search. So, we bind to the ‘querySuccess’ event:
 ``` javascript
 Coveo.$('#search').on('querySuccess', function (e, args) {
@@ -422,6 +434,7 @@ function createResultsMap(query, mylat, mylon, mytab) {
 }
 ```
 Important: first remove the ‘Idle’ event of the google map, draw the markers, and then add the idle event listener again.
+
 ![RL23]({{ site.baseurl }}/images/ResourceLocator/RL23.png)
 
 When people are zooming/panning the map, the mapEvent is called (after 1 second to make sure the map is completely loaded, including all the invisible tiles). The mapEvent will add an additional filter to our query, using:
@@ -464,7 +477,7 @@ The query added to the results is simply:
 
 The additional filters will indicate that the map has been used as a filter and can be easily cleared if necessary.
 
-## Step 5. Enable to click on a result on the map to show detailed information in a side-panel, inside the side-panel execute a proximity search (to find resources within 50 miles)
+### Step 5. Enable to click on a result on the map to show detailed information in a side-panel, inside the side-panel execute a proximity search (to find resources within 50 miles)
 
 ![RL26]({{ site.baseurl }}/images/ResourceLocator/RL26.png)
 
@@ -521,7 +534,7 @@ var btn = $('<input />', {
 	}
 });
 ```
-# The final end result
+## The final end result
 Use case: “I want to find a “project development” consultant, which is available from 5 March till 15 May:”
 
 ![RL30]({{ site.baseurl }}/images/ResourceLocator/RL30.png)
