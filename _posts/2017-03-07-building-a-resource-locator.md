@@ -202,6 +202,7 @@ Coveo.$('#search').on("buildingQuery", function (e, args) {
 
 ## Step 2. Show the related records found for the current Person record.
 Since we are only reporting People records, it would be nice if we could show the related records (e.g.: resume and any additional info) with the current result. To do so we created a custom component called ResultsRelated. ResultsRelated will show a ‘Show details’ hyperlink, which in turn will execute a separate query to fetch the related content based upon the current result.
+
 ![RL15]({{ site.baseurl }}/images/ResourceLocator/RL15.png)
 
 For easy configuration the custom component can take different properties:
@@ -234,38 +235,259 @@ if (radiosel != 'All') {
 ```
 The resulting query would look like:
 ```
-"((artificial intelligence) ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND @mydateavail="20170315" AND @mydateavail="20170316" AND @mydateavail="20170317" AND @mydateavail="20170320" AND @mydateavail="20170321" AND @mydateavail="20170322" AND @mydateavail="20170323" AND @mydateavail="20170324" AND @mydateavail="20170327" AND @mydateavail="20170328" AND @mydateavail="20170329" AND @mydateavail="20170330" AND @mydateavail="20170331" AND @mydateavail="20170403" AND @mydateavail="20170404" AND @mydateavail="20170405" AND @mydateavail="20170406" AND @mydateavail="20170407" AND @mydateavail="20170410" AND @mydateavail="20170411" AND @mydateavail="20170412" AND @mydateavail="20170413" AND @mydateavail="20170414" AND @mydateavail="20170417" AND @mydateavail="20170418" AND @mydateavail="20170419" AND @mydateavail="20170420" AND @mydateavail="20170421" AND @mydateavail="20170424" AND @mydateavail="20170425" AND @mydateavail="20170426" AND @mydateavail="20170427" AND @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")) (@syssource=WimPeople @mylat2)) OR (@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   ((artificial intelligence))] ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND @mydateavail="20170315" AND @mydateavail="20170316" AND @mydateavail="20170317" AND @mydateavail="20170320" AND @mydateavail="20170321" AND @mydateavail="20170322" AND @mydateavail="20170323" AND @mydateavail="20170324" AND @mydateavail="20170327" AND @mydateavail="20170328" AND @mydateavail="20170329" AND @mydateavail="20170330" AND @mydateavail="20170331" AND @mydateavail="20170403" AND @mydateavail="20170404" AND @mydateavail="20170405" AND @mydateavail="20170406" AND @mydateavail="20170407" AND @mydateavail="20170410" AND @mydateavail="20170411" AND @mydateavail="20170412" AND @mydateavail="20170413" AND @mydateavail="20170414" AND @mydateavail="20170417" AND @mydateavail="20170418" AND @mydateavail="20170419" AND @mydateavail="20170420" AND @mydateavail="20170421" AND @mydateavail="20170424" AND @mydateavail="20170425" AND @mydateavail="20170426" AND @mydateavail="20170427" AND @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")))"
+"((artificial intelligence) ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND .... @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")) (@syssource=WimPeople @mylat2)) OR (@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   ((artificial intelligence))] ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND @mydateavail="20170315" AND @mydateavail="20170316" AND @mydateavail="20170317" AND @mydateavail="20170320" AND .... @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")))"
+```
+The query is ready, but we also want to show the calendar availability for each result. So, when a result is rendered we need to add calendars (using fullcalendar.js) to it, and for each day we need to check if resources are available or not. We use the event ‘newResultDisplayed’ for that. We will use CSS to style the days.
+``` javascript
+//Add the calendar controls to the search results
+Coveo.$('.CoveoSearchInterface').on('newResultDisplayed', function (e, args) {
+	//Add the calendar to the result, only if it is selected
+	var mycal = $(args.item).find('.Calendar');
+	mycal.empty();
+	if ($('#CALMinimumDateTxt').val() != "") {
+		var Start = $('#CALMinimumDateTxt').datepicker('getDate');
+		var StartDate = $('#CALMinimumDateTxt').datepicker('getDate');
+		var EndDate = $('#CALMaximumDateTxt').datepicker('getDate');
+		NrOfMonths = EndDate.getMonth() - StartDate.getMonth();
+		for (i = 0; i <= NrOfMonths; i++) {
+			var newcal = $('<div/>').addClass('mycalendar' + i).appendTo(mycal);
+			newcal.css('width', '200px').css('display', 'inline-block').css('margin', '5px');
+			newcal.fullCalendar({
+				height : 150,
+				width : 150,
+				weekNumbers : false,
+				columnFormat : 'dd',
+				defaultDate : Start,
+				contentHeight : 'auto',
+				aspectRatio : 5,
+				header : {
+					left : 'title',
+					center : '',
+					right : ''
+				},
+				dayRender : function (date, cell) {
+
+					if (date < StartDate || date > EndDate) {
+						//disable it
+						cell.addClass("NotSelected");
+					} else {
+						//disable it
+						cell.addClass("Selected");
+					}
+					//If our result contains this date then available else not
+					var curdate = moment(date).format('YYYYMMDD');
+					if (args.result.raw[FieldnameAvailClean] != undefined) {
+						if (args.result.raw[FieldnameAvailClean].indexOf(curdate) != -1) {
+							//disable it
+							cell.addClass("calAvail");
+							cell.attr('title', 'Available');
+						} else {
+							//disable it
+							cell.addClass("calNotAvail");
+							cell.attr('title', 'Not Available');
+						}
+					}
+
+				}
+			});
+			Start = new Date(Start.getFullYear(), Start.getMonth() + 1, Start.getDate());
+		}
+	}
+});
+```
+Which will render the calendars as:
+![RL20]({{ site.baseurl }}/images/ResourceLocator/RL20.png)
+
+## Step 4. Provide a Google map to show the location of the resources found and enable the map to be used as a filter.
+Since we have Longitude and Latitude available, we can use Google Map. By default, our search result list only contains the first 10 results, so we want to get as much as results possible to show on the map. What we need to do is run a separate query to get the results of the first 1000 results (this is the max we can get from our REST api) and map them. This must be triggered after we have executed our normal search. So, we bind to the ‘querySuccess’ event:
+``` javascript
+Coveo.$('#search').on('querySuccess', function (e, args) {
+	if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
+		mapQueryResults = args.queryBuilder.computeCompleteExpression();
+		if (Coveo.Utils.isNullOrUndefined(mapQueryResults)) {
+			mapQueryResults = '@uri @mylat2';
+		}
+		allreset = false;
+		createResultsMap(mapQueryResults, "mylat2", "mylon2","People");
+	}
+});
+```
+This will trigger the update of our map with the fields [mylat2], [mylon2] and only on the search interface ‘People’.
+The createResultsMap function calls the Coveo REST service for a separate query (defined in CoveoGoogleMap.js):
+``` javascript
+function createResultsMap(query, mylat, mylon, mytab) {
+	$('#info').hide();
+	tab = mytab;
+	
+	if (initmap)
+	{
+		updatebounds = true;
+	}
+	else
+	{
+		//If query contains mylat<= then it is a boundary query
+		if (query.includes(mylat+"<="))
+		{
+			updatebounds=false;
+		}
+		else updatebounds=true;
+	}
+	google.maps.event.clearListeners(map, 'idle');
+	bounds = new google.maps.LatLngBounds();
+	initmap = false;
+	latfield = mylat;
+	lonfield = mylon;
+	Coveo.SearchEndpoint.endpoints['default'].search({
+		q : query,
+		enableDuplicateFiltering : false,
+		numberOfResults : 1000
+	}).done(function (result) {
+		createMarkers(result.results);
+		if (updatebounds) {
+			map.fitBounds(bounds);
+		}
+		setTimeout(
+			function () {
+			google.maps.event.addListener(map, 'idle', function (ev) {
+				setTimeout(function () {
+					mapEvent();
+				}, 1000);
+			});
+		}, 1000);
+	});
+}
+```
+Important: first remove the ‘Idle’ event of the google map, draw the markers, and then add the idle event listener again.
+![RL23]({{ site.baseurl }}/images/ResourceLocator/RL23.png)
+
+When people are zooming/panning the map, the mapEvent is called (after 1 second to make sure the map is completely loaded, including all the invisible tiles). The mapEvent will add an additional filter to our query, using:
+``` javascript
+var ne = bounds2.getNorthEast(); // LatLng of the north-east corner
+var sw = bounds2.getSouthWest(); // LatLng of the south-west corder
+var query = '';        |
+if (ne.lat() > sw.lat()) //ne=67>sw=-5
+{
+	query = '@' + latfield + '<=' + ne.lat() + ' AND @' + latfield + '>=' + sw.lat();
+} else {
+	query = '@' + latfield + '>=' + ne.lat() + ' AND @' + latfield + '<=' + sw.lat();
+}
+if (ne.lng() > sw.lng()) //ne=67>sw=-5  -70 -142
+{
+	query = query + ' @' + lonfield + '<=' + ne.lng() + ' AND @' + lonfield + '>=' + sw.lng();
+} else {
+	query = query + ' @' + lonfield + '>=' + ne.lng() + ' AND @' + lonfield + '<=' + sw.lng();
+}
+
+mapQuery = query;
+updatebounds = false;
+Coveo.$('#search').on('newQuery', function () {
+	if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == tab) {
+		//Check if the mapquery is there, if so we need to add it to the query
+		if (mapQuery != null) {
+			Coveo.$('#search').coveo('state', 'hd', 'Results are filtered based on the map');
+			Coveo.$('#search').coveo('state', 'hq', mapQuery);
+		}
+		mapQuery = null;
+	}
+});
+Coveo.$('#search').coveo('executeQuery');
+```
+The query added to the results is simply: 
+```
+@mylat2<=44.50728502178297 AND @mylat2>=37.904122033477144 @mylon2<=-67.79949543750001 AND @mylon2>=-78.78582356250001
+```
+![RL25]({{ site.baseurl }}/images/ResourceLocator/RL25.png)
+
+The additional filters will indicate that the map has been used as a filter and can be easily cleared if necessary.
+
+## Step 5. Enable to click on a result on the map to show detailed information in a side-panel, inside the side-panel execute a proximity search (to find resources within 50 miles)
+
+![RL26]({{ site.baseurl }}/images/ResourceLocator/RL26.png)
+
+The infobox created when adding the markers onto the map contains the logic for showing the result in a side-panel.
+``` javascript
+google.maps.event.addListener(marker, 'click', function () {
+	var resu = new Coveo.StandaloneResult(Coveo.$('.CoveoResultList').coveo('getBindings').searchInterface, 
+	Coveo.TemplateCache.getTemplate('PeopleSide'), marker.result);
+	var contentString = "<div id='mymaprelated'>";
+	contentString += "</div>"
+	$('#info').html(contentString);
+	var myres = Coveo.$('<div/>').addClass('coveo-folding-results').appendTo($('#info'));
+	resu.initialize();
+	myres.append(resu.element);
+	myres.append(btn);
+	$('#info').show();
+	marker.setIcon('/lib/js/right.png');
+});
+```
+The infobox will use a different result template (PeopleSide) which is defined in the page. As you can see the result template directly shows the related content (without having to expand it).
+
+To showcase the possibility to use distance searches we also added a button to show people within 50 miles from the current selected result.
+The Query Extensions can be used to add a query function to calculate the distance ([See]( https://developers.coveo.com/display/public/SearchREST/Standard+Query+Extensions). 
+
+In our case we add the following query to the results:
+```
+$qf(function:'dist(@mylat2, @mylon2, CURRENTLAT, CURRENTLON)<80467',fieldName:'distance') @distance=1
 ```
 
+This results in: all the results which are within 50 miles of the current lat/lon (80467 = 50 miles in meters) will get a dynamic field assigned called @distance. Since we only want to get the results which are within 50 miles we add an additional filter to our query: @distance=1.
+Simple, but very efficient!
+``` javascript
+var btn = $('<input />', {
+	type : 'button',
+	value : 'Show people within 50 miles',
+	id : 'btn_a',
+	on : {
+		click : function () {
+			//  Coveo.$('#search').on('newQuery', function () {
+			if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == tab) {
+				//Check if the mapquery is there, if so we need to add it to the query
+				mapQuery = "$qf(function:'dist(@" + latfield + ", @" + lonfield + ", " + 
+				marker.getPosition().lat() + ", " + marker.getPosition().lng() + ")<80467',fieldName:'distance') @distance=1";
+				if (mapQuery != null) {
+					Coveo.$('#search').coveo('state', 'hd', 'Only showing results within 50 miles of the selected point.');
+					Coveo.$('#search').coveo('state', 'hq', mapQuery);
+				}
+				mapQuery = null;
+				//updatebounds=true;
+			}
+			//});
+			Coveo.$('#search').coveo('executeQuery');
+		}
+	}
+});
+```
+# The final end result
+Use case: “I want to find a “project development” consultant, which is available from 5 March till 15 May:”
 
-## Changes to Vindinium
+![RL30]({{ site.baseurl }}/images/ResourceLocator/RL30.png)
 
-Vindinium out of the box was a great skeleton for our contest. However, it was missing some features in order to be Blitz ready. First, the way bots usually start Vindinium matches is by joining a queue. As soon as 4 bots are ready, the match starts. This was not an acceptable solution for us, as we needed to have a tournament bracket and we didn’t want participants to join a match that they weren’t supposed to. In order to do that, we added API calls to list, create, join, delete, and start games. We also added an administrator API key that was required to invoke these calls so meddling students wouldn’t create games. This allowed us to create games, send the game id to the appropriate teams, let them join, and start the game at our leisure. We even added a Slack integration to our UI that would automatically send an invite with the game id to teams whenever a game they were expected to join was created.
+I found 271 people (which have project development in their People, Resume or additional info records):
 
-Another thing we wanted to do was to prevent open source Vindinium bots from working. This ensured that lazy students wouldn’t simply copy a Github project, and  thus dominate all other teams. Consequently, we modified most constants such as the cost of visiting a tavern, the life provided by a tavern, and the damage done by hero's hits. We also added spikes, a new type of tile. Spikes can be passed through just like air but they deal damage to your hero.
+![RL31]({{ site.baseurl }}/images/ResourceLocator/RL31.png)
 
-These changes allowed us to easily manage the Vindinium server (through our custom UI) and created a fun and diverse environment for the participants. Spikes added a surprisingly nice complexity to the game and led to some interesting pathfinding strategies.
+I want to focus on ‘Engineering and Customer Service’:
 
-We also learned a lot while coding the challenge, this year we tackled with Scala, Akka, MongoDB, AWS, NodeJS, React, and TypeScript.
+![RL32]({{ site.baseurl }}/images/ResourceLocator/RL32.png)
 
-![image]({{ site.baseurl }}/images/blitz2016/tv.png)
+Let’s use the map to drill into the Philadelphia area:
 
-## The contenders
+![RL33]({{ site.baseurl }}/images/ResourceLocator/RL33.png)
 
-This year we made a roll call to our amazing colleagues to see if they were interested in also participating to Blitz. Needless to say, it took about 10 minutes to build two complete teams. We made sure the Coveo teams didn’t know about the challenge. They needed to be good, they represent Coveo! Luckily for us, the two Coveo teams finished first and second. Congrats to Brute Force It (Alexandre, Frédéric, Vincent, Pierre-Alexandre) and WOW BLITZ AWSOME (Mathieu, Charles, Denis, Jean-Philippe).
+Review one of our returned candidates:
 
-![image]({{ site.baseurl }}/images/blitz2016/coveoteams.png)
+![RL34]({{ site.baseurl }}/images/ResourceLocator/RL34.png)
 
-## The winners
+By using the preview feature I can look into the person’s resume:
 
-Since the first and second places were taken by the Coveo teams (which couldn't win the prizes), team *Comeo* (François Chantal, Olivier Précourt, and Samuel Thériault-Hall) got first prize and each member won a GoPro. Team *int elligence;* (Guillaume Chevalier, Nicolas Tremblay, Raphaël Gaudreault, and Jean-Benoît Harvey) members each got a Best Buy gift card for its second position. Kudos to those two teams!
+![RL35]({{ site.baseurl }}/images/ResourceLocator/RL35.png)
 
-![image]({{ site.baseurl }}/images/blitz2016/winners.png)
+As you can see from the above: We search not only in the People records, we also search inside the Resumes. Use the facets to drill into our data, drill even further by using the map as a filter!
 
-## Wrap up
+I hope you enjoyed this (lengthy) post. Let us know what else you have built with the Coveo Platform!
 
-We finished the day by having each team explaining the algorithms used to solve the challenge, grabbed a cold beer and a slice of pizza, and discussed with students. We’ve listed some solutions on the [Coveo Blitz 2016 GitHub account](https://github.com/coveoblitz2016). Send us your solution if yours isn’t listed! Also, be sure to check out the [Vindinium subreddit](https://www.reddit.com/r/vindinium) for great AI solutions.
 
-We hope you’ve enjoyed your day as much as we did and hope to see you next year for another awesome challenge. Be sure to take a look at the [video](https://youtu.be/MDVV4v82vz4), the [photo album](https://goo.gl/photos/qMLEorRdrejnjpx79) by [Nick Pelletier](https://twitter.com/habanhero), and read more about [past challenges](https://search.coveo.com/#q=blitz&sort=relevancy&f:sourceFacet=[Web%20-%20TechBlog]&f:languageFacet=[English]&f:platformFacet:not=[Coveo%20Platform%206.5]).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MDVV4v82vz4" frameborder="0" allowfullscreen></iframe>
+
+
+
