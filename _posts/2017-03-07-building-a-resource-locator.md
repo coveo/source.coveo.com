@@ -88,6 +88,7 @@ You also need to create the following fields using the technique above:
 mylat2 (Decimal), mylon2 (Decimal), myusername (String), myrownr (String). 
 
 Next up: the Indexing Pipeline Extension script.
+
 Extension scripts are created in Python and the following libraries are available by default: requests, boto3, pymongo, msgpack-python and pytz.
 For more information: [Document API Ref](https://developers.coveo.com/display/public/CloudPlatform/Document+Object+Python+API+Reference). 
 
@@ -186,9 +187,10 @@ except Exception,e:
         mylog("Error: "+str(e))
 ```
 
-Now that the script is ready, you need to assign it to your source. I first created the source ([See]( https://onlinehelp.coveo.com/en/cloud/add_edit_push_source.htm).
+Now that the script is ready, you need to assign it to your source. I first created the source [Add Push Source]( https://onlinehelp.coveo.com/en/cloud/add_edit_push_source.htm).
 
 For now we need to manually embed a reference to the Extension into the JSON of our source:
+
 To do so: take note of the Indexing Pipeline Extension ID from the extensions page:
 ![RL11]({{ site.baseurl }}/images/ResourceLocator/RL11.png)
 
@@ -204,8 +206,6 @@ Scroll completely down and enter the above ID as:
     }
   ],
 ```
-
-![RL12]({{ site.baseurl }}/images/ResourceLocator/RL12.png)
 
 You are now all set! You can start building up your index, check logs and start working on your search interface.
 
@@ -245,9 +245,9 @@ The nested query will look like:
 This means:
 The nested query is the part between the []. In our example this translates in: 
 
-* Search in the sources WimPeopleAdd and WimPeopleResume for the text entered in the search box but
-* Report back the keyfield [@myusername]. 
-* The usernames returned by the nested query will be used in the full query.
+* Search in the sources WimPeopleAdd and WimPeopleResume for the text entered in the search box 
+* From the above, Report back the keyfield [@myusername] 
+* The usernames returned by the nested query will be used in the full query
 
 A practical example:
 If I search for “Artificial Intelligence”. Our nested query will look like:
@@ -560,6 +560,8 @@ By using the preview feature I can look into the person’s resume:
 ![RL35]({{ site.baseurl }}/images/ResourceLocator/RL35.png)
 
 As you can see from the above: We search not only in the People records, we also search inside the Resumes. Use the facets to drill into our data, drill even further by using the map as a filter!
+
+Reference:
 
 I hope you enjoyed this (lengthy) post. Let us know what else you have built with the Coveo Platform!
 
