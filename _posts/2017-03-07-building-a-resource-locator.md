@@ -17,7 +17,7 @@ Coveo customers use the platform in a multitude of ways. Many in the consulting,
 
 ## Use case: 
 What if you want to find the best peer/employee with knowledge around “Artificial Intelligence”? Moreover, what if you need to add constraints such as “available for the next two months”?
-![image]({{ site.baseurl }}/images/ResourceLocator/RL1.png)
+![RL1]({{ site.baseurl }}/images/ResourceLocator/RL1.png)
 
 ## Typical approach/solution:
 When using a search engine, your default behavior will be to organize your search journey as follow:
@@ -38,11 +38,27 @@ Since you’ll probably want to geocode the cities so you can display everything
 
 <!-- more -->
 
-# Step 1
+# Phase A. Getting the content into our index
 
-We’ve wanted to do a challenge involving artificial intelligence for a long time. With a smaller team working on Blitz this year, we had to leverage existing projects to make it on time. We already knew [Scalatron](https://scalatron.github.io/), [Berlin AI](http://www.berlin-ai.com/), but our search allowed us to find a bunch of interesting projects, including [Vindinium](http://vindinium.org/), which turned out to be most compelling one. It covered most of our requirements: it was [open source](https://github.com/ornicar/vindinium), customizable, [worked with most programming languages](http://vindinium.org/starters) and had many available starter kits.
+You first need to make sure that we get the content into a single index. Coveo provides connectors to index most of the data wherever it comes from (database, salesforce, sitemaps, custom repository using the push API, etc.). 
 
-![image]({{ site.baseurl }}/images/blitz2016/finals.jpg)
+In this example I am using 3 “Push sources” to get the content we want inside the index. 
+For more info on Coveo’s Push API: [Push API](https://developers.coveo.com/display/public/CloudPlatform/Push+API+Reference)
+
+We have one challenge: our People records do not contain the Lat/Lon for the location and the availability data. We could of course gather that before we push the content, but we can also use an “Indexing Pipeline Extension” which can be called before each record is added to the Coveo index.
+For more info: [Extensions](https://onlinehelp.coveo.com/en/cloud/extensions.htm) and [Extension API](https://developers.coveo.com/display/public/CloudPlatform/Extension+API+Reference).
+
+The steps involved for enriching the data are:
+
+* Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database (hosted on AWS) - don’t worry: if you are an Azure fan, you can refactor the code
+* Step 2. Getting the [Availability] for a person from a DynamoDB database (hosted on AWS)
+* Step 3. Getting an image for the person and add it to the thumbnail of the search result
+
+Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called [myerr]), so I can use the Coveo Content Browser to examine the progress/debugging of my script.
+![RL1]({{ site.baseurl }}/images/ResourceLocator/RL2.png)
+
+## Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database
+
 
 ## Changes to Vindinium
 
