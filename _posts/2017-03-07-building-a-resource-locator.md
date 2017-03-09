@@ -11,50 +11,52 @@ author:
   image: Wim3.png
 ---
 
-_This is the first blog post of a new serie entitled “Build it with Coveo”. The serie will present innovative use cases for the Coveo Platform, always including full code samples._
+_This is the first blog post of a new series entitled “Build it with Coveo.”. The serie will present innovative use cases for the Coveo Platform, always including full code samples._
 
-Coveo customers use the platform in a multitude of ways. Many in the consulting, resource management business often ask us if our search technology could help them better match resources and project.
+Coveo customers use the platform in a multitude of ways. Many in the consulting and resource management business often ask us if our search technology could help them better match resources and project.
 
 ## Use case: 
-What if you want to find the best peer/employee with knowledge around “Artificial Intelligence”? Moreover, what if you need to add constraints such as “available for the next two months”?
+What if you want to find the best peer/employee with knowledge around “Artificial Intelligence.”? What if you need to add constraints such as “available for the next two months.”?
 ![RL1]({{ site.baseurl }}/images/ResourceLocator/RL1.png)
 
 ## Typical approach/solution:
-When using a search engine, your default behavior will be to organize your search journey as follow:
+When using a search engine, your default behavior will be to organize your search journey as follows:
 
 * First search in your Resume database/repository for people with “Artificial Intelligence” in their resume
-* Once suitable individuals are identified, you’ll look up their locations
-* Once you know the locations, check in the HR database if they are working on a project in the next 2 months
-It is very time consuming and arguably not very efficient. You can do better! How can we improve this whole journey? Easy: build an index containing all the data you need and surface it into a Resource Locator interface everybody can use.
+* Once suitable individuals are identified, look up their locations
+* Once you know their location, check in the HR database if they are working on a project in the next 2 months
+
+This is very time consuming and arguably not very efficient. You can do better! How can we improve this whole journey? Easy: build an index containing all the data you need and surface it into a Resource Locator interface everybody can use.
 
 ## What do you need?
-Before you start building a UI, you need to have (at least part of) the following data available. The data you need is:
+Before you start building a UI, you need to have (at least part of) the following data available. For each person you need:
 
-* People records (are they in Active Directory, or in a Database?). 
-* For each Person you need an ID to identify them (like an employee unique ID)).
-* Resumes. The metadata of the resume should mention the unique employee ID.
-* Availability database. When is a person available should be stored in here (typically HR-IS systems, ERP, etc.).
+* People records (are they in Active Directory, or in a Database?) 
+* For each Person you need an ID to identify them (like an employee unique ID))
+* Resumes. The metadata of the resume should mention the unique employee ID
+* Availability database. When is a person available should be stored in here (typically HR-IS systems, ERP, etc.)
+
 Since you’ll probably want to geocode the cities so you can display everything nicely on a map, you’ll need a database with cities and/or zip codes (and their Latitude/Longitude).
 
 <!-- more -->
 
-## Phase A. Getting the content into our index
+## Phase A. Getting the content into your index
 
-You first need to make sure that we get the content into a single index. Coveo provides connectors to index most of the data wherever it comes from (database, salesforce, sitemaps, custom repository using the push API, etc.). 
+You first need to make sure that all the content is in a single index. Coveo provides connectors to index most of the data wherever it comes from (database, Salesforce, sitemaps, custom repository using the push API, etc.). 
 
-In this example I am using 3 “Push sources” to get the content we want inside the index. 
-For more info on Coveo’s Push API: [Push API](https://developers.coveo.com/display/public/CloudPlatform/Push+API+Reference)
+In this example I am using 3 “Push sources” to get the desired content in the index. 
+For more info on Coveo’s Push API: [Push API Reference](https://developers.coveo.com/x/fIQAAg)
 
-We have one challenge: our People records do not contain the Lat/Lon for the location and the availability data. We could of course gather that before we push the content, but we can also use an “Indexing Pipeline Extension” which can be called before each record is added to the Coveo index.
-For more info: [Extensions](https://onlinehelp.coveo.com/en/cloud/extensions.htm) and [Extension API](https://developers.coveo.com/display/public/CloudPlatform/Extension+API+Reference).
+There is one more challenge: the People records do not contain the Latitude/Longitude for the location and the availability data. Of course I could gather that before I push the content, but I can also use an “Indexing Pipeline Extension” which can be called before each record is added to the Coveo index.
+For more info: [Extensions](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=326) and [Push API Reference](https://developers.coveo.com/x/fIQAAg).
 
 The steps involved for enriching the data are:
 
-* Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database (hosted on AWS) - don’t worry: if you are an Azure fan, you can refactor the code
-* Step 2. Getting the [Availability] for a person from a DynamoDB database (hosted on AWS)
-* Step 3. Getting an image for the person and add it to the thumbnail of the search result
+* 1. Getting the [Latitude/Longitude] for a Zipcode/City from a DynamoDB database (hosted on AWS) - don’t worry: if you are an Azure fan, you can refactor the code.
+* 2. Getting the [Availability] for a person from a DynamoDB database (hosted on AWS).
+* 3. Getting an image for the person and add it to the thumbnail of the search result.
 
-Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called [myerr]), so I can use the Coveo Content Browser to examine the progress/debugging of my script.
+Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called ```myerr```), so I can use the Coveo Content Browser to examine the progress/debugging of my script. Using a field for should only be enabled for debugging purposes.
 ``` python
 myerr=''
 
@@ -63,37 +65,33 @@ def mylog(message):
     global myerr
     
     #Log using the normal logging
-    document.log(message)
+    log(message)
     myerr+=';'+message
-    #Log using a field
+    #Log using a field ONLY for debugging purposes
     document.add_meta_data({"myerr":myerr})
 ```
 
-### Step 1. Getting the [Lat/Lon] for a Zipcode/City from a DynamoDB database
-From the internet I got two files, one containing US Zip codes and one with the World cities coordinates. 
-For example: 
-US Zip codes found here [Zip Codes](https://gist.github.com/erichurst/7882666)
-World cities: [World Cities](http://simplemaps.com/data/world-cities)
-and a Python script to easily import txt/csv files into a DynamoDB: [Script](http://justprogrammng.blogspot.nl/2016/08/python-script-to-move-records-from-csv.html).
+### 1. Getting the [Latitude/Longitude] for a Zipcode/City from a DynamoDB database
+From the internet I got two files, one containing US ZIP codes ([Zip Codes](https://gist.github.com/erichurst/7882666)) and one with the World cities ([World Cities](http://simplemaps.com/data/world-cities)) coordinates. I used a Python script to easily import txt/csv files into a DynamoDB ([Script](http://justprogrammng.blogspot.nl/2016/08/python-script-to-move-records-from-csv.html)).
 
 Next, you load all that data into a DynamoDB database (using the above script) and, bam, you are ready with the geocoding part!
 ![RL3]({{ site.baseurl }}/images/ResourceLocator/RL3.png)
 
-Now, you need to add that information to your people records. Each record in the directory contains a field called ‘locationzip’ or similar which we need to assign to a Coveo Field. In your Cloud Organization configuration [See](https://onlinehelp.coveo.com/en/cloud/fields.htm), add a brand new field called ‘myzip’ and assign the value %[locationzip] to it in the Person content source:
+Now, you need to add that information to your people records. Each record in the directory contains a field called ```locationzip``` or similar which we need to assign to a Coveo Field. In your Cloud Organization configuration ([Fields - Page](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=287)), add a brand new field called ```myzip``` and assign the value ```%[locationzip]``` to it in the Person content source:
 ![RL4]({{ site.baseurl }}/images/ResourceLocator/RL4.png)
 
-Note: In the Coveo Indexing Pipeline Extension you could use the metadata from the document directly or the mappings defined above. So in our case you could get the %[myzip] or directly the %[locationzip] fields. Mapping fields is only necessary if you want to display the field in the UI, use the field as a Facet, or use the field as a relevancy booster.
+Note: In the Coveo Indexing Pipeline Extension you could use the metadata from the document directly or the mappings defined above. So in our case you could get the ```%[myzip]``` or directly the ```%[locationzip]``` fields. Mapping fields is only necessary if you want to display the field in the UI, use the field as a Facet, or use the field as a relevancy booster.
 
 You also need to create the following fields using the technique above:
 mylat2 (Decimal), mylon2 (Decimal), myusername (String), myrownr (String). 
 
 Next up: the Indexing Pipeline Extension script.
 
-Extension scripts are created in Python and the following libraries are available by default: requests, boto3, pymongo, msgpack-python and pytz.
-For more information: [Document API Ref](https://developers.coveo.com/display/public/CloudPlatform/Document+Object+Python+API+Reference). 
+Extension scripts are created in Python and the following libraries are available by default: requests, boto3, pymongo, msgpack-python, and pytz.
+For more information: [Document Object Python API Reference](https://developers.coveo.com/x/OQMvAg). 
 
-To create the script: [Extensions](https://onlinehelp.coveo.com/en/cloud/extensions.htm).
-Make sure to check the boxes only for the type of content you really need (this will save valuable execution time):
+To create the script: [Extensions - Page](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=326).
+Make sure to check the boxes only for the type of content you really need; this will save valuable execution time:
 ![RL5]({{ site.baseurl }}/images/ResourceLocator/RL5.png)
 
 For example, only select [Original File] if you want to change the original document.
@@ -122,7 +120,7 @@ if (city):
         table=dynamodb.Table('GEOCODE')
 ```
 
-3. Executes the query (note: primary key’s in Dynamo DB are case sensitive)
+3. Executes the query (note: primary keys in Dynamo DB are case sensitive)
 ``` python
         mycity=city[0].lower()
         mycity2=mycity
@@ -136,7 +134,7 @@ if (city):
         )
 ```
 
-4. Retrieves the results and store them into our fields (mylat2, mylon2)
+4. Retrieves the results and stores them into our fields (mylat2, mylon2)
 ``` python
         for i in response['Items']:
             document.add_meta_data({"mylat2":str(i['Lat'])})
@@ -147,25 +145,25 @@ if (city):
         mylog("Error: "+str(e))
 ```
 
-**Important:** a script has a maximum execution time of 5 seconds. It is possible to add multiple scripts, they will be executed in the order you add them to the source. If the above takes too much time, you could create 3 seperate scripts to do the work (which will result in a 15 seconds execution time).
+**Important:** a script has a maximum execution time of 5 seconds. It is possible to add multiple scripts; they will be executed in the order you add them to the source. 
 
-Later, when the content is indexed, you can check in the [Content Browser](https://onlinehelp.coveo.com/en/cloud/content_browser.htm) that the field [myerr] is popuated.
-Like: 
+Later, when the content is indexed, you can check in the [Content Browser](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=289) that the field [myerr] is populated.
+As such: 
 ```
 myerr Start;Zip:19103;Execute query with city 19110;Getting lat 39.952896
 ```
 
-### Step 2. Getting the [Availability] for a person from a DynamoDB database
-The next step in your Extension script is to get the Availability of a person. Normally that information would be stored in a HR database. 
+### 2. Getting the [Availability] for a person from a DynamoDB database
+The next step in your Extension script is to get the Availability of a person. Normally, that information would be stored in a HR database. 
 
-You could again get that data from a Dynamo DB database which could be updated daily from the original database/repository. The only information you need in your database is: Username/userid and the dates when the employees are available (or not available). Most important is that your Coveo field contains the dates when a person IS available. 
+You could again get that data from a Dynamo DB database which could be updated daily from the original database/repository. The only information you need in your database is the username/userid and the dates when the employees are available. Most important is that your Coveo field contains the dates when a person IS available. 
 
-In this scenario the end result of the script is a field called [mydateavail] which is filled with values like:
+In this scenario the end result of the script is a field called ```mydateavail``` which is filled with values such as these:
 ```
 20170601;20170602;20170603;20170604;20170605;20170606;20170607;20170608;20170609;20170610;20170611;20170612;20170613;20170614;20170615;20170616;20170617;20170618;20170619;20170620;20170621;20170622
 ```
-### Step 3. Getting an image for the person and add it to the thumbnail of the search result
-Indexing Pipeline Extensions have access to all content, they can read permissions, update permissions, have access to all the fields and to the content preview. Your current People record does not contain a thumbnail image to be shown when someone searches for a colleague or resource. The images are stored on a webserver with a naming convention [username.jpg]. 
+### 3. Getting an image for the person and add it to the thumbnail of the search result
+Indexing Pipeline Extensions have access to all content; they can read permissions, update permissions, have access to all the fields, and to the content previews. Your current People record does not contain a thumbnail image to be shown when someone searches for a colleague or resource. The images are stored on a webserver with a naming convention [username.jpg]. 
 The extension script can download them, and store them in the datastream for the thumbnail.
 ``` python
 try:
@@ -187,7 +185,7 @@ except Exception,e:
         mylog("Error: "+str(e))
 ```
 
-Now that the script is ready, you need to assign it to your source. I first created the source [Add Push Source]( https://onlinehelp.coveo.com/en/cloud/add_edit_push_source.htm).
+Now that the script is ready, you need to assign it to your source. I first created the source [Add Push Source]( http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=272).
 
 For now we need to manually embed a reference to the Extension into the JSON of our source:
 
@@ -210,17 +208,18 @@ Scroll completely down and enter the above ID as:
 You are now all set! You can start building up your index, check logs and start working on your search interface.
 
 ## Phase B. Building a People Locator Search interface.
-The data is in our index, time to start building a search interface for it. These are our requirements:
+Now that the data is in your index, it is time to start building a search interface for it. These are the requirements.
 
-* Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
-* Step 2. Show the related records found for the current Person record. 
-* Step 3. Take the selected availability dates into consideration and show them at the result level.
-* Step 4. Provide a Google map to show the location of the people found and enable the map to be used as a filter.
-* Step 5. Enable to click on a person on the map to show detailed information in a “side panel”, inside the “side panel” execute a proximity search (to find people within 50 miles)
-The beauty of the Coveo Search Interfaces is that they are very flexible, all events can be intercepted and changed.
+* 1. Search in People, People Resume’s, and Additional information records. Only show People records.
+* 2. Show the related records found for the current Person record. 
+* 3. Take the selected availability dates into consideration, and show them at the result level.
+* 4. Provide a Google map to show the location of the people found, and enable the map to be used as a filter.
+* 5. Enable to click on a result on the map to show detailed information in a side-panel, including a proximity search.
 
-### Step 1. Search in People, People Resume’s and Additional information records, but only show People records.
-Our search interface should only show People records, but should search within the Resume and Additional records at the same time. Looks complicated, but this is part of Coveo’s capabilities. To do this, we need to add additional logic to our query. We do that by adding an event on the ‘buildingQuery’ event [See](https://developers.coveo.com/display/public/JsSearchV1/Events), but only when our ‘People’ interface is active.
+The beauty of the Coveo Search Interfaces is that they are very flexible, all events can be intercepted, and changed.
+
+### 1. Search in People, People Resume’s and Additional information records. Only show People records.
+Our search interface should only show People records, but should search within the Resume and Additional records at the same time. Looks complicated, but this is part of Coveo’s capabilities. To do this, we need to add additional logic to our query. We do that by adding an event on the ```buildingQuery``` event [See](https://developers.coveo.com/x/bYGfAQ), but only when our ```People``` interface is active.
 ``` javascript
 Coveo.$('#search').on("buildingQuery", function (e, args) {
 	    //Only activate on people search interface
@@ -228,7 +227,7 @@ Coveo.$('#search').on("buildingQuery", function (e, args) {
 		}
 	});
 ```
-The query which we want to add is what we call a nested query. A nested query is essentially an outer join to another query. The requirement here is that our key-field must be a faceted value. In our case the field [myusername] is used and defined as a facet.
+The query which we want to add is what we call a nested query. A nested query is essentially an outer join to another query. The requirement here is that our key-field must be a faceted value. In our case the field ```[myusername]``` is used and defined as a facet.
 Before we can change our query, we first need to take the basic and advanced expressions from the current query.
 ``` javascript
 var basicExpression = args.queryBuilder.expression.build();
@@ -236,13 +235,12 @@ var completeQuery = (typeof basicExpression === 'undefined') ? "" : "" + basicEx
 var advancedExpression = args.queryBuilder.advancedExpression.build();
 var advancedQuery = (typeof advancedExpression === 'undefined') ? "" : "(" + advancedExpression + ")";
 ```
-The completeQuery variable now contains the text entered in the search box, the advancedQuery parameter contains the facets and/or selection from the map.
+The completeQuery variable now contains the text entered in the search box, while the advancedQuery parameter contains the facets and/or selection from the map.
 
 The nested query will look like:
 ```
 @mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   (" + completeQuery + ")] " + advancedQuery
 ```
-This means:
 The nested query is the part between the []. In our example this translates in: 
 
 * Search in the sources WimPeopleAdd and WimPeopleResume for the text entered in the search box 
@@ -250,12 +248,12 @@ The nested query is the part between the []. In our example this translates in:
 * The usernames returned by the nested query will be used in the full query
 
 A practical example:
-If I search for “Artificial Intelligence”. Our nested query will look like:
+Let's search for ```Artificial Intelligence```. Our nested query will look like:
 ```
 @mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume) (Artificial Intelligence)]
 ```
 
-In addition, our nested query we also want to search the regular People records. The above nested query should be added as a disjunction expression (essentially an OR).
+In addition to the nested query, we also want to search the regular People records. The above nested query should be added as a disjunction expression (essentially an OR).
 
 Putting all the pieces together will result in:
 ``` javascript
@@ -276,7 +274,7 @@ Coveo.$('#search').on("buildingQuery", function (e, args) {
 });
 ```
 
-### Step 2. Show the related records found for the current Person record.
+### 2. Show the related records found for the current Person record.
 Since we are only reporting People records, it would be nice if we could show the related records (e.g.: resume and any additional info) with the current result. To do so we created a custom component called ResultsRelated. ResultsRelated will show a ‘Show details’ hyperlink, which in turn will execute a separate query to fetch the related content based upon the current result.
 
 ![RL15]({{ site.baseurl }}/images/ResourceLocator/RL15.png)
@@ -285,19 +283,19 @@ For easy configuration the custom component can take different properties:
 ``` html
 <div class="CoveoResultsRelated"
      data-result-template-id="RelatedResultsTemplate"
-     data-normal-caption="Show Resume's or Related files"
-     data-title-caption="Resume's or Related files for the same user"
+     data-normal-caption="Show Resumes or Related files"
+     data-title-caption="Resumes or Related files for the same user"
      data-expanded-caption="Do not show Related Files"
      data-no-results-caption="No related files found"
      data-query="@myusername=[FIELD1] @syssource=(WimPeopleAdd,WimPeopleResume)"
      data-fields="myusername" 
      data-number-Of-Results=5 ></div>
 ```
-Using the properties you can specify which fields to use, which query to execute to get the details and which template to use to render the results.
+Using the properties, you can specify which fields to use, which queries to execute to the details, and which templates to use to render the results.
 
-### Step 3. Take the selected availability dates into consideration and show them at the result level.
+### 3. Take the selected availability dates into consideration, and show them at the result level.
 To select an availability date range we added two calendar pickers using JQuery. Based on the selection of these dates we need to add these to the query.
-Each selected date must be checked on the field if it exists, so we are building a huge AND query of the selected date range. And we add it to the current query. 
+Each selected date must be checked on the field if it exists, so we are building a huge ```AND``` query of the selected date range. We then add it to the current query. 
 ``` javascript
 var radiosel = $('input:radio[name=avail]:checked').val();
 if (radiosel != 'All') {
@@ -309,11 +307,11 @@ if (radiosel != 'All') {
 	}
 }
 ```
-The resulting query would look like:
+The resulting query would look like this:
 ```
 "((artificial intelligence) ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND .... @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")) (@syssource=WimPeople @mylat2)) OR (@mylat2 @syssource=WimPeople @myusername=[[@myusername] @syssource=(WimPeopleAdd,WimPeopleResume)   ((artificial intelligence))] ((@mydateavail="20170306" AND @mydateavail="20170307" AND @mydateavail="20170308" AND @mydateavail="20170309" AND @mydateavail="20170310" AND @mydateavail="20170313" AND @mydateavail="20170314" AND @mydateavail="20170315" AND @mydateavail="20170316" AND @mydateavail="20170317" AND @mydateavail="20170320" AND .... @mydateavail="20170428" AND @mydateavail="20170501" AND @mydateavail="20170502" AND @mydateavail="20170503" AND @mydateavail="20170504" AND @mydateavail="20170505" AND @mydateavail="20170508" AND @mydateavail="20170509" AND @mydateavail="20170510" AND @mydateavail="20170511" AND @mydateavail="20170512")))"
 ```
-The query is ready, but we also want to show the calendar availability for each result. So, when a result is rendered we need to add calendars (using fullcalendar.js) to it, and for each day we need to check if resources are available or not. We use the event ‘newResultDisplayed’ for that. We will use CSS to style the days.
+The query is ready, but we also want to show the calendar availability for each result. When a result is rendered, we need to add calendars (using fullcalendar.js) to it. Make the date available if our field ```mydateavail``` contains it. We use the event ```newResultDisplayed``` for that. We will use CSS to style the days.
 ``` javascript
 //Add the calendar controls to the search results
 Coveo.$('.CoveoSearchInterface').on('newResultDisplayed', function (e, args) {
@@ -374,8 +372,8 @@ Coveo.$('.CoveoSearchInterface').on('newResultDisplayed', function (e, args) {
 Which will render the calendars as:
 ![RL20]({{ site.baseurl }}/images/ResourceLocator/RL20.png)
 
-### Step 4. Provide a Google map to show the location of the resources found and enable the map to be used as a filter.
-Since we have Longitude and Latitude available, we can use Google Map. By default, our search result list only contains the first 10 results, so we want to get as much as results possible to show on the map. What we need to do is run a separate query to get the results of the first 1000 results (this is the max we can get from our REST api) and map them. This must be triggered after we have executed our normal search. So, we bind to the ‘querySuccess’ event:
+### 4. Provide a Google map to show the location of the resources found, and enable the map to be used as a filter.
+Since we have Longitude and Latitude available, we can use Google Map. By default, our search result list only contains the first 10 results but we want to get as much as results possible to show on the map. What we need to do is run a separate query to get the results of the first 1000 results (this is the max we can get from our REST api) and map them. This must be triggered after we have executed our normal search. So, we bind to the ```querySuccess``` event:
 ``` javascript
 Coveo.$('#search').on('querySuccess', function (e, args) {
 	if (Coveo.$('.CoveoSearchInterface').coveo('state', 't') == 'People') {
@@ -388,8 +386,8 @@ Coveo.$('#search').on('querySuccess', function (e, args) {
 	}
 });
 ```
-This will trigger the update of our map with the fields [mylat2], [mylon2] and only on the search interface ‘People’.
-The createResultsMap function calls the Coveo REST service for a separate query (defined in CoveoGoogleMap.js):
+This will trigger the update of our map with the fields ```mylat2```, ```mylon2``` and only on the search interface ```People```.
+The ```createResultsMap``` function calls the Coveo REST service for a separate query (defined in CoveoGoogleMap.js):
 ``` javascript
 function createResultsMap(query, mylat, mylon, mytab) {
 	$('#info').hide();
@@ -437,7 +435,7 @@ Important: first remove the ‘Idle’ event of the google map, draw the markers
 
 ![RL23]({{ site.baseurl }}/images/ResourceLocator/RL23.png)
 
-When people are zooming/panning the map, the mapEvent is called (after 1 second to make sure the map is completely loaded, including all the invisible tiles). The mapEvent will add an additional filter to our query, using:
+When people are zooming/panning the map, the mapEvent is called. This happens after 1 second to make sure the map is completely loaded, including all the invisible tiles. The mapEvent will add an additional filter to our query, using:
 ``` javascript
 var ne = bounds2.getNorthEast(); // LatLng of the north-east corner
 var sw = bounds2.getSouthWest(); // LatLng of the south-west corder
@@ -477,7 +475,7 @@ The query added to the results is simply:
 
 The additional filters will indicate that the map has been used as a filter and can be easily cleared if necessary.
 
-### Step 5. Enable to click on a result on the map to show detailed information in a side-panel, inside the side-panel execute a proximity search (to find resources within 50 miles)
+### 5. Enable to click on a result on the map to show detailed information in a side-panel, including a proximity search.
 
 ![RL26]({{ site.baseurl }}/images/ResourceLocator/RL26.png)
 
@@ -497,17 +495,17 @@ google.maps.event.addListener(marker, 'click', function () {
 	marker.setIcon('/lib/js/right.png');
 });
 ```
-The infobox will use a different result template (PeopleSide) which is defined in the page. As you can see the result template directly shows the related content (without having to expand it).
+The infobox will use a different result template (PeopleSide) which is defined in the page. As you can see, the result template directly shows the related content (without having to expand it).
 
-To showcase the possibility to use distance searches we also added a button to show people within 50 miles from the current selected result.
-The Query Extensions can be used to add a query function to calculate the distance ([See]( https://developers.coveo.com/display/public/SearchREST/Standard+Query+Extensions). 
+To showcase the possibility to use distance searches, we also added a button to show people within 50 miles from the current selected result.
+The Query Extensions can be used to add a query function to calculate the distance ([See]( https://developers.coveo.com/x/ZQMv)). 
 
-In our case we add the following query to the results:
+In our case, we add the following query to the results:
 ```
 $qf(function:'dist(@mylat2, @mylon2, CURRENTLAT, CURRENTLON)<80467',fieldName:'distance') @distance=1
 ```
 
-This results in: all the results which are within 50 miles of the current lat/lon (80467 = 50 miles in meters) will get a dynamic field assigned called @distance. Since we only want to get the results which are within 50 miles we add an additional filter to our query: @distance=1.
+This way, all the results which are within a 50 mile radius of the current lat/lon (80467 = 50 miles in meters) will get a dynamic field assigned called ```@distance```. Since we only want to get the results which are within 50 miles, we add an additional filter to our query: ```@distance=1```.
 Simple, but very efficient!
 ``` javascript
 var btn = $('<input />', {
@@ -535,11 +533,11 @@ var btn = $('<input />', {
 });
 ```
 ## The final end result
-Use case: “I want to find a “project development” consultant, which is available from 5 March till 15 May:”
+Use case: “I want to find a “project development” consultant, which is available from March 5th to May 15th:”
 
 ![RL30]({{ site.baseurl }}/images/ResourceLocator/RL30.png)
 
-I found 271 people (which have project development in their People, Resume or additional info records):
+I found 271 people (which have project development in their People, Resume, or additional info records):
 
 ![RL31]({{ site.baseurl }}/images/ResourceLocator/RL31.png)
 
@@ -559,7 +557,7 @@ By using the preview feature I can look into the person’s resume:
 
 ![RL35]({{ site.baseurl }}/images/ResourceLocator/RL35.png)
 
-As you can see from the above: We search not only in the People records, we also search inside the Resumes. Use the facets to drill into our data, drill even further by using the map as a filter!
+As you can see from the above, we search not only in the People records, but also in the Resumes. Use the facets to drill into our data; drill even further by using the map as a filter!
 
 Sources:
 
@@ -571,9 +569,3 @@ Sources:
 
 
 I hope you enjoyed this (lengthy) post. Let us know what else you have built with the Coveo Platform!
-
-
-
-
-
-
