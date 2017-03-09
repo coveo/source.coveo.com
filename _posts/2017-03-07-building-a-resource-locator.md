@@ -19,6 +19,8 @@ Coveo customers use the platform in a multitude of ways. Many in the consulting 
 What if you want to find the best peer/employee with knowledge around “Artificial Intelligence.”? What if you need to add constraints such as “available for the next two months.”?
 ![RL1]({{ site.baseurl }}/images/ResourceLocator/RL1.png)
 
+<!-- more -->
+
 ## Typical approach/solution:
 When using a search engine, your default behavior will be to organize your search journey as follows:
 
@@ -38,7 +40,6 @@ Before you start building a UI, you need to have (at least part of) the followin
 
 Since you’ll probably want to geocode the cities so you can display everything nicely on a map, you’ll need a database with cities and/or zip codes (and their Latitude/Longitude).
 
-<!-- more -->
 
 ## Phase A. Getting the content into your index
 
