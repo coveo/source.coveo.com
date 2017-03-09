@@ -57,7 +57,7 @@ The steps involved for enriching the data are:
 * 2. Getting the [Availability] for a person from a DynamoDB database (hosted on AWS).
 * 3. Getting an image for the person and add it to the thumbnail of the search result.
 
-Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called ```myerr```), so I can use the Coveo Content Browser to examine the progress/debugging of my script. Using a field for should only be enabled for debugging purposes.
+Extensions can also log data, which can be retrieved later, but I found it easier to log the results into an index field (called ```myerr```), so I can use the Coveo Content Browser to examine the progress/debugging of my script. Should only be used for debugging purposes.
 ``` python
 myerr=''
 
