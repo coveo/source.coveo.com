@@ -19,11 +19,11 @@ It is easy to create Terraform code, plan, apply and push in a repo. But can you
 
 ## Build a module
 
-Like many programming languages, the way to have nice code, sharable is the modules. Terraform support also code as module, and guess what ? It is really esay to write one.
+Like many programming languages, the way to have nice code, sharable is the modules. Terraform support also code as module, and guess what ? It is really easy to write one.
 
-We already saw in [introduction]() when you use Terraform in a directory it will read all file prefixed by tf. It the same thing in a module except this tf files are in a folder. If I take the same exemple than introduction, we will create a module for handle a security group.
+We already saw in [introduction]({{ site.baseurl }}{% post_url %}) when you use Terraform in a directory it will read all file prefixed by tf. It the same thing in a module except there are in a multiple folders. If I take the same example than [introduction]({{ site.baseurl }}{% post_url %}), we will create a module for handle a security group.
 
-This is our file hierarchy
+This is our module files hierarchy
 ```
 -/serurity-group <-- module folder
  --| main.tf  <-- Terraform code
@@ -49,8 +49,9 @@ resource "aws_security_group" "demotf" {
   }
 }
 ```
+Congratulation your first module is created.
 
-Congratulation your first module is created. Now we have to call it. To do that we need a terraform file. Create a file infra.tf.
+Now we have to call it. To do that we need a terraform file. Create a file infra.tf.
 ```
 -/serurity-group
  --| main.tf  
@@ -63,11 +64,12 @@ It this file we will call our module
    source = "./serurity-group" # <-- relative path to our module folder
  }
 ```
-Done. Test a plan you will see the creation of a security group. The source variable can be a local directory, a git or mercurial repo, http urls, s3 bucket. If you use repo you can specify a branch, commit, tag(version), etc.
+Test a plan, you should see the creation of a security group.
+The source variable can be a local directory, a git or mercurial repo, http urls, s3 bucket. If you use repo you can specify a branch, commit, tag(version), etc.
 
-We have a module but it is note really modular. The best will be to add some variables. Let's do some change to have a name like we want.
+We have a module but it is note really modular. The best will be to add some variables. Let's do some changes to have a name like we want.
 
-First our infra.tf. We add argument in our module call
+First our infra.tf. We add argument in our module definition.
 ```bash
 # infra.tf
  module "security_group" {
@@ -77,7 +79,8 @@ First our infra.tf. We add argument in our module call
  }
 ```
 
-Now we have to add it on the module. Add a files name interfaces.tf. The name have note important, remember terraform will get all tf files. It is most a best practice, main.tf is for your enterpoint of your module and interfaces.tf is for the variable of your module.
+Now we have to add it on the module. Add a file name interfaces.tf.
+The name have note importance, remember terraform will get all tf files. It is a best practice, main.tf is for your entry point of your module and interfaces.tf is for the variable of your module.
 
 ```bash
 -/serurity-group
@@ -93,7 +96,7 @@ variable "name" {
 }
 ```
 
-It is important to add description, first when you miss a variable and you try a plan, Terraform will ask the variable and display the description. This can be a great help when somebody will use our module without knowing what it do.
+It is important to add description, first when you miss a variable and you try a plan, Terraform will ask to set the variable and display the description. This can be a great help when somebody will use our module without knowing what it do.
 
 ```bash
 terraform plan
@@ -123,7 +126,7 @@ resource "aws_security_group" "demotf" {
 }
 ```
 
-Now we can add new security group without copy all code. Ok security group with same permission have not to exist, it is just for the example.
+Now we can add new security group without copy all code. Ok security group with same permission have not reason to exist, it is just for the example.
 ```bash
 # infra.tf
 module "security_group" {
@@ -139,9 +142,9 @@ module "security_group2" { #<-- module can't have the same name
 }
 ```
 
-We call 2 times the security group module, and in the security group we set the provider. So we set the provider 2 times. We just call one module in our infra.tf and I think you will have more one module in your AWS infrastructure. We don't want to set the provider each time.
+We call 2 times the security group module, and in the security group we set the provider. So we set the provider 2 times. Right now, we just call one module in our infra.tf and I think you will have more than one module in your AWS infrastructure. We don't want to set the provider in each module.
 
-The solution is easy remove the provider ...
+The solution is easy remove the provider to module ...
 
 ```bash
 resource "aws_security_group" "demotf" {
@@ -176,11 +179,11 @@ module "security_group2" {
 }
 ```
 
-All module will herite the provider. Warning, it is not working for variables. If you create a variable on infra.tf, it will be inaccessible in module if you don't give it.
+All module will inherit the provider. Warning, it is not working for variables. If you create a variable on infra.tf, it will be inaccessible from module,  if you don't give it in definition.
 
 So we have a module who will create two security groups in a region. A nice module can be region agnostic, for that we can transform our infra.tf to module and add region as variable.
 
-First we change the hierarchy infra is our module now and security group a submodule.
+First we change the hierarchy infra is our module now and security group is a submodule.
 ```bash
 /infra
 --| main.tf #<-- Rename infra.tf to main.tf
@@ -219,13 +222,13 @@ module "security_group2" {
 }
 ```
 
-Finally we have a region agnostic module for create the base our new infrastructure. You can add all resources you need.
+Finally we have a region agnostic module to create the base of our new infrastructure. You can add all resources you need.
 
 ## Override
 
-If we want create the same infra in another region we just have to override the region. Terraform let us multiple way to override, by environment's variable, add variable in your command terraform, add a variable file, ...
+If we want create the same infra in another region we just have to override the region. Terraform let us multiple ways to override, by environment's variable, add variable in your command terraform, add a variable file, ...
 
-Our prefer solution is a to add a variable file (.tfvars), because in our case we have just one variable but as you can image there will have more than one.
+Our favorite solution is a to add a variable file (.tfvars), in our case we have just one variable but as you can imagine there will have more than one. And a file all variable in a file is the most elegant solution.
 
 Add a file us-east-2.tfvars at the root of your module infra.
 ```bash
