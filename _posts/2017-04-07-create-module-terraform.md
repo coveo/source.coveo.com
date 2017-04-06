@@ -245,6 +245,6 @@ Like that the region will be override by the 'us-east-2'. And of course you can 
 
 ## Best practices
 
-Name main.tf your entery point of the module
+Name main.tf your entry point of the module
 Name interfaces.tf you input/output variables
 Always add a description to variables
