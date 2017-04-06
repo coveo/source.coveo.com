@@ -23,19 +23,17 @@ I'll try to explain how we are leveraging it inside [our project](https://coveo.
 
 I would say there are 3 big performance factor when dealing with a modern web application that does heavy use of JavaScript :
 
-* Initial load time before the end user is able to interact with your application. 
-  
-  This is impacted by the total amount of JavaScript the user has to download (limited by their bandwidth), and that their browser has to parse.    
-* The rendering speed, and how much client side logic your code has to execute.
-* How fast the backend can process the various requests you are hammering it with.
+- Initial load time before the end user is able to interact with your application.     
+- The rendering speed, and how much client side logic your code has to execute.
+- How fast the backend can process the various requests you are hammering it with.
 
-Code splitting is designed to improve the first of those 3 points. The basic logic is relatively simple and logical : Minimize the amount of code needed for your application to "start", and progressively load more JavaScript as the user needs access to more feature while they are using your application.
+Code splitting is used to improve the first of those 3 points. The basic logic is relatively simple : minimize the amount of code needed for your application to "start", and progressively load more JavaScript as the user needs access to more feature while they are using your application.
 
 In a classic scenario (and what most tutorial describe on the web), you would achieve that by serving the needed code based on the path of your application.
 
 For example, for a `Todo` app (very original, I know), the initial load would download only the needed code for the `home` or `login` page. 
 
-Then, once the users starts navigating to, say `/view`, you would serve minimum amount of code to simply view the list of `Todo's`.
+Then, once the users starts navigating to, say `/view`, you would serve the minimum amount of code needed to simply view the list of `Todo's`.
 
 Very rarely, end users would want to access the `/edit` page, which would probably be the part of our imaginary application that would require the most amount of code to function properly. Only then would the user need to download that part of your application.
 
@@ -43,13 +41,13 @@ That's all very nice for a classic single page application, but we had different
 
 ## What we need
 
-What we are developing is not a single page application, but a library of multiple search page components. When someone wants to create a new search page using our library, they decide which of our components they will need, and mix and match them together to assemble their page.
+What we are developing is not a single page application, but a library of multiple search page components. When someone wants to create a new search page using our library, they decide which of our components they will need, and mix and match them together to assemble their page. This is all configured by modifying the markup of their page.
 
 So, for example, we offer a `Searchbox` component, a `Pager` component, a `ResultList` component, etc. We also offer some more "exotic" components, which are useful but either complex (so they need a lot of code to function), or more rarely used. A good example is the `Facet` component, which offers advanced filtering capabilities, but requires a good amount of client side code.
 
-The dilemma that we faced is that even a page with only a single `Searchbox` with a `ResultList` would still download the code for the 60+ components that we offer. This means a simple search page would have more than 90% "dead code" being downloaded by every user.
+Since we do not know ahead of time which combination of component will be used in a page (as every implementation is different), we ship a single JavaScript file, containing the code for every components.
 
-We do not know ahead of time which combination of component will be used in a page (as every implementation is different), so we need to ship all of them.
+The dilemma that we faced is that if someone needed a page with only a `Searchbox` and a `ResultList`, they would still download the code for the 60+ components that we offer. This means this theoretical simple search page would have more than 90% "dead code" being downloaded by every end user.
 
 ## The situation before code splitting
 
@@ -109,7 +107,7 @@ function createComponent(element: HTMLElement, id : string) {
  
 ```
 
-## Introducing lazy loading and code splitting
+## Lazy loading and code splitting
 
 What we ended designing is, instead of associating the ID with a constructor, we want to have an ID associated with a function that returns a `Promise` of a component.
 
@@ -148,22 +146,9 @@ export const registerLazySearchbox = ()=> {
 
 ```
 
-When the `LazySearchbox` file gets compiled, it creates a new JavaScript file called `Searchbox.js` (the name of the generated chunk by wepback), right next to our main entry point (which is `CoveoJsSearch.js` in our case).
+When the `LazySearchbox` file gets compiled, it creates a new JavaScript file called `Searchbox.js`. This is what the webpack terminology calls a "chunk". It will be created right next to our main "chunk", or entry point (which is `CoveoJsSearch.js` in our case).
 
-This means that in our entry point, we only reference the `LazySearchbox` file, and not the actual implementation of the `Searchbox`.
-
-```typescript
-// File Index.ts
-
-// Core represent the minimum amount of JavaScript needed to be able to "init" the search page.
-// This should be as little code as possible
-export * from './Core';
-
-import {registerLazySearchbox} from './ui/Searchbox.ts'
-registerLazySearchbox();
-
-[... repeat for all components ...]
-```
+The `Searchbox.js` file will contain all the code needed for the `Searchbox` component to function properly, while the `CoveoJsSearch.js` file will only contain the needed code to download the `Searchbox` component.
 
 Now, when we scan the DOM and find a `div` that match `Searchbox`, we need to do something like this :
 
@@ -176,10 +161,60 @@ function createComponent(element: HTMLElement, id : string) {
 }
 ```
 
-Only when we call the `getLazyComponent` function does it downloads the associated component JavaScript file. A component is also only downloaded once. This means that even if the search page has 10 searchbox, we will still only download it a single time.
-Since we only need to compile a minimum amount of code for each component (only the function returning the `Promise` for each component), we can cut down the resulting JavaScript code by a large amount.
+Only when we call the `getLazyComponent` function does it downloads the associated component JavaScript file. A component is also only downloaded once. This means that even if the search page has 10 `Searchbox`, we will still only download it a single time.
+Since we only need to compile a minimum amount of code for each component (only the function returning the `Promise` for each component), we can cut down the resulting JavaScript code needed to start the application by a large amount.
 
+## Webpack config
 
-The page load time will also linearly increase with the page complexity, where simple search pages that uses the most simple components will be (reasonably) faster that very complex one.
+In our entry point, we only reference the `LazySearchbox` file, and not the actual implementation of the `Searchbox`. Otherwise, the `Searchbox` implementation would get compiled and included in the main "chunk" (which we want to contain as little code as possible, if you remember).
+
+Here's what the `webpack.config.js` file ends up looking like :
+
+```js
+// File webpack.config.js
+
+module.exports = {
+    entry: {
+        'CoveoJsSearch': ['./src/Index.ts']
+    },
+    output: {
+        path: path.resolve('./bin/js'),
+        filename: '[name].js',
+        chunkFilename: '[name].js',
+        libraryTarget: 'umd',
+        library: 'Coveo'
+    },
+    resolve: {
+        extensions: ['.ts']
+    },
+    module: {
+        rules: [{
+            test: /\.ts$/,
+            use: [{
+                loader: 'ts-loader'
+            }]
+        }]
+    }
+}
+```
+
+And the `Index.ts` file :
+
+```typescript
+// File Index.ts
+
+// Core represent the minimum amount of JavaScript needed to be able to "init" the search page.
+// This should be as little code as possible, depending on your application
+export * from './Core';
+
+import {registerLazySearchbox} from './ui/LazySearchbox.ts'
+registerLazySearchbox();
+
+[... repeat for all components ...]
+```
+
+## Conclusion
+
+The page load time will now linearly increase with the page complexity, where simple search pages that uses the most simple components will be (reasonably) faster that very complex one.
 
 We are still not done with our tinkering, as there are a lot of further optimization and benchmark that we need to perform. But so far, we have been very pleased with the results we can see during our development process. 
