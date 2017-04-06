@@ -43,11 +43,11 @@ That's all very nice for a classic single page application, but we had different
 
 What we are developing is not a single page application, but a library of multiple search page components. When someone wants to create a new search page using our library, they decide which of our components they will need, and mix and match them together to assemble their page. This is all configured by modifying the markup of their page.
 
-So, for example, we offer a `Searchbox` component, a `Pager` component, a `ResultList` component, etc. We also offer some more "exotic" components, which are useful but either complex (so they need a lot of code to function), or more rarely used. A good example is the `Facet` component, which offers advanced filtering capabilities, but requires a good amount of client side code.
+So, for example, we offer a `Searchbox` component, a `Pager` component, a `ResultList` component, etc. We also offer some more "exotic" components, which are useful in their own rights, but either complex (so they need a lot of code to function), or used in some very particular deployments. A good example is the `Facet` component, which offers advanced filtering capabilities, but requires a good amount of client side code to function.
 
 Since we do not know ahead of time which combination of component will be used in a page (as every implementation is different), we ship a single JavaScript file, containing the code for every components.
 
-The dilemma that we faced is that if someone needed a page with only a `Searchbox` and a `ResultList`, they would still download the code for the 60+ components that we offer. This means this theoretical simple search page would have more than 90% "dead code" being downloaded by every end user.
+The dilemma that we face is that if someone needed a page with only a `Searchbox` and a `ResultList`, they would still download the code for the 60+ components that we offer. This means this theoretical simple search page would have more than 90% "dead code" being downloaded by every end user.
 
 ## The situation before code splitting
 
