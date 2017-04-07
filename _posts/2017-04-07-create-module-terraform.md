@@ -19,9 +19,9 @@ It is easy to create Terraform code, plan, apply and push in a repo. But can you
 
 ## Build a module
 
-Like many programming languages, the way to have nice code, sharable is the modules. Terraform support also code as module, and guess what ? It is really easy to write one.
+In many programming languages, the way to have sharable code is the modules. Terraform also support  code as module, and guess what ? It is really easy to write one.
 
-We already saw in [introduction]({{ site.baseurl }}{% post_url %}) when you use Terraform in a directory it will read all file prefixed by tf. It the same thing in a module except there are in a multiple folders. If I take the same example than [introduction]({{ site.baseurl }}{% post_url %}), we will create a module for handle a security group.
+We already saw in the [introduction]({{ site.baseurl }}{% post_url %}) when you use Terraform in a directory it will read all file prefixed by tf. It is the same thing in a module except there are multiple folders. If I take the same example as in the [introduction]({{ site.baseurl }}{% post_url %}), we will create a module for handling an AWS security group.
 
 This is our module files hierarchy
 ```
@@ -65,9 +65,9 @@ It this file we will call our module
  }
 ```
 Test a plan, you should see the creation of a security group.
-The source variable can be a local directory, a git or mercurial repo, http urls, s3 bucket. If you use repo you can specify a branch, commit, tag(version), etc.
+The source variable can be a local directory, a git or mercurial repo, http urls, s3 bucket. If you use a repository you can specify a branch, commit, tag(version), etc.
 
-We have a module but it is note really modular. The best will be to add some variables. Let's do some changes to have a name like we want.
+We have a module but it is not really modular.  Adding some variable will make it more modular. Let's make it that way.
 
 First our infra.tf. We add argument in our module definition.
 ```bash
@@ -80,7 +80,7 @@ First our infra.tf. We add argument in our module definition.
 ```
 
 Now we have to add it on the module. Add a file name interfaces.tf.
-The name have note importance, remember terraform will get all tf files. It is a best practice, main.tf is for your entry point of your module and interfaces.tf is for the variable of your module.
+The names don't have any importance. Remember, terraform will get all tf files. One of the best practices I can give you is to name your entrypoint "main.tf" and your module interface definition in "interfaces.tf",this one will contain variables and output, kinda like a Oriented Object interface
 
 ```bash
 -/serurity-group
@@ -96,7 +96,7 @@ variable "name" {
 }
 ```
 
-It is important to add description, first when you miss a variable and you try a plan, Terraform will ask to set the variable and display the description. This can be a great help when somebody will use our module without knowing what it do.
+It is important to add descriptions, first when you miss a variable and you try a terraform plan, Terraform will ask to set the variable and display the description. This can be a great help when somebody will use our module without knowing what it do.
 
 ```bash
 terraform plan
