@@ -86,7 +86,7 @@ Initialization.registerComponent(Searchbox);
 
 What happens when we call `Initialization.registerComponent(Searchbox)` is that, in an internal data structure, we simply associate the `Searchbox.ID` to its constructor.
 
-So we get something like this :
+So we get something like this:
  
 ```typescript
 {
@@ -152,7 +152,7 @@ The `Searchbox.js` file will contain all the code needed for the `Searchbox` com
 
 Now, when we scan the DOM and find a `div` that matches `Searchbox`, we need to do something like this:
 
-```
+```typescript
 function createComponent(element: HTMLElement, id: string) {
     return Initialization.getLazyComponent(id).then((componentConstructor)=> {
        const createdComponent = new componentConstructor(element);

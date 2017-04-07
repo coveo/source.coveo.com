@@ -2733,8 +2733,8 @@ article .full.zoomable img.zoom {
 }
 
 .highlight .err {
-    color: #a61717;
-    background-color: #e3d2d2
+    color: inherit;
+    background-color: inherit;
 }
 
 .highlight .k {
