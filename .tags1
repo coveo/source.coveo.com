@@ -1,0 +1,17 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Context	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^## Context$/;"	function	line:20
+The hard choice	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^## The hard choice$/;"	function	line:25
+Terraform introduction	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^## Terraform introduction$/;"	function	line:40
+main.tf	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^# main.tf$/;"	function	line:48
+We define were we will create our resource	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^# We define were we will create our resource$/;"	function	line:49
+And we create a Security group	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^# And we create a Security group$/;"	function	line:54
+main.tf	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^# main.tf$/;"	function	line:153
+We define were we will create our resource	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^# We define were we will create our resource$/;"	function	line:154
+And we create a Security group	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^# And we create a Security group$/;"	function	line:159
+Tips to start with Terraform	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^## Tips to start with Terraform$/;"	function	line:211
+It is the best choice ?	/Users/sohl/Repo/source.coveo.com/_posts/2017-04-05-terraform-module.md	/^## It is the best choice ?$/;"	function	line:218

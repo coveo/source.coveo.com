@@ -8,10 +8,10 @@ tags: [Terraform, Devops, Automation, AWS, Terraform]
 author:
   name: Serge Ohl
   bio: I am an engineer somewhere between code and infrastructure, but I have to admit I prefer one of them
-  image: sohl.png
+  image: sohl.jpg
 ---
 
-_In a [previous post]({{ site.baseurl }}{% post_url 2017-03-30-automate-infrastructure %}) we talked about automating infrastructure, now let's see a tool we use to do it_
+_In a [previous post]({{ site.baseurl }}{% post_url 2017-04-14-automate-infrastructure %}) we talked about automating infrastructure, now let's see a tool we use to do it_
 
 A few months ago, we started the project to automate all of our infrastructure. Where can we start? How to do it? What are the best tool? It is not easy to start, automate infrastructure is relatively new, tools too. Why did we choose Terraform?
 
