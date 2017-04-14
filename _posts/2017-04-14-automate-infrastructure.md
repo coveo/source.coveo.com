@@ -8,7 +8,7 @@ tags: [Automation, Devops, Coveo]
 author:
   name: Serge Ohl
   bio: I am an engineer somewhere between code and infrastructure, but I have to admit I prefer one of them
-  image: sohl.png
+  image: sohl.jpg
 ---
 
 _In my life, I really love to automate recurring tasks. In my private life, I've been conceptualizing, building, and developing my home automation for many years. At work, I automate everything: scripts, servers, deployments, etc. And now in the cloud, I am automating the infrastructure._
