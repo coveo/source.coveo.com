@@ -30,7 +30,9 @@ layout: base
             </header>
 
             <section>
-                {{ content }}
+                <div class="post_content">
+                    {{ content }}
+                </div>
                 {% include _social.html %}
                 {% if page.tags %}
                 <div class="tags">
