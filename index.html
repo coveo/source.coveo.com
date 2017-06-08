@@ -1,5 +1,6 @@
 ---
 layout: base
+sitemap: false
 ---
 <div class="illustration">
     <div class="container">
@@ -21,7 +22,7 @@ layout: base
                 Written By <address>{{ post.author.name }}</address> &mdash;
                 <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date: "%B %d, %Y" }}">{{ post.date | date: "%B %d, %Y" }}</time>
             </div>
-            <p>{{ post.excerpt }}</p>
+            <div class="post_content">{{ post.excerpt }}</div>
             <p class="readmore"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">Read more...</a></p>
         </div>
     </section>
