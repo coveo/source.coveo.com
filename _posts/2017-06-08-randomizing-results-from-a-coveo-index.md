@@ -5,7 +5,7 @@ tags: [Index Extensions, Query Extensions, coveo-search-ui, Custom Component]
 author:
   name: Alexandre Moreau & François Lachance-Guillemette
   bio: Technical Writer and Coveo for Sitecore Developer
-  image: 
+  image: amoreauflguillette.jpeg
 ---
 
 After reading the title of this post, you were probably wondering the same thing everyone asked us while working on this project:
