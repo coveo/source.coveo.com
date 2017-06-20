@@ -44,7 +44,7 @@ As an index built for _Enterprise_ search, the Coveo index is made to be relevan
 
 During the course of the hackathon, we were however able to make our search page work and behave in the way we wanted it to. It was a great learning experience for the both of us, allowing us to touch aspects of Coveo we don't usually touch in our day-to-day lives. But, as is the case with too many hackathon projects, we let the project sleep in folders on our hard drives, accumulating digital dust. As fun as the project was, we didn't think any of our customers would want to use it.
 
-But then, [this post](https://answers.coveo.com/questions/9226/how-to-add-a-random-number-to-ranking-weights.html) on [answers.coveo.com](answers.coveo.com) happened, and we knew we were not the only ones that wanted randomized results. That was when we decided to dust off the project and build it better so that we could share with the world the way we did it.
+But then, [this post](https://answers.coveo.com/questions/9226/how-to-add-a-random-number-to-ranking-weights.html) on [answers.coveo.com](https://answers.coveo.com) happened, and we knew we were not the only ones that wanted randomized results. That was when we decided to dust off the project and build it better so that we could share with the world the way we did it.
 
 ## Introducing a random field on items
 
