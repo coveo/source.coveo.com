@@ -17,8 +17,8 @@ And you would be right. Why would we want to remove Coveo's most useful features
 There are 4 reasons:
 
 * For fun
-* Trying to get _different results_ each time you execute a query
-* Test what we could achieve with the current infrastructure and tools
+* To try to get _different results_ each time you execute a query
+* To test what we could achieve with the current infrastructure and tools
 * But yeah, mostly for fun
 
 This post will cover the road we had to walk to achieve such results.
