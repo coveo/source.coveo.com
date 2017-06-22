@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Deploy Kubernetes in production automatically, with kops jenkins and terraform"
+title: "Deploy Kubernetes in Production Automatically with Kops, Jenkins, and Terraform"
 
 tags:
   - kubernetes
@@ -18,9 +18,9 @@ author:
   imageURL: https://avatars.githubusercontent.com/u/140675
 ---
 
-Kubernetes, one hip word we see everywhere in the cloud developers world, in the devops world. With reasons, Kubernetes does solve problems (and creates others) and simplify a lot of things. In this post we'll explore how we deployed k8s to production automatically with help from terraform, jenkins and kops.
+Kubernetes: one hip word we see everywhere  in the Cloud developer and Devops world. With reasons: Kubernetes does solve problems (and creates others) and simplify a lot of things. In this post we'll explore how we deployed k8s to production automatically with help from Terraform, Jenkins, and Kops.
 
-At Coveo we decided that Kubernetes was the tool of choice to run our docker containers in production. This is replacing a "homemade" setup with AWS Opsworks and dockers, it will save costs and resources, and enable faster deployments.
+At Coveo, we decided that Kubernetes was the tool of choice to run our docker containers in production. This is replacing a "homemade" setup with AWS Opsworks and dockers. It will save money and resources, and enable faster deployments.
 
 <!-- more -->
 
@@ -28,9 +28,9 @@ So how did we do it?
 
 # Deploy with Kops Automatically
 
-[kops](https://github.com/kubernetes/kops) is the kubernetes "official" tool to deploy a cluster to the AWS
+[kops](https://github.com/kubernetes/kops) is the kubernetes "official" tool to deploy a cluster to AWS.
 
-We created an initial cluster config using those settings and then ajusted the config to match our needs especially the vpc config and subnets creations since we create them elsewhere.
+We created an initial cluster config using those settings and then ajusted the config to match our needs, especially the VPC config and subnets creations since we create them elsewhere.
 
 ```sh
 kops create cluster k8s.coveodemo.com \
@@ -52,9 +52,9 @@ kops create cluster k8s.coveodemo.com \
    --authorization=RBAC
 ```
 
-We then pulled that config from the s3 bucket and versionned it (excluding the secrets obviously), so when we want to change the cluster configuration, a single commit is needed.
+We then pulled that config from the s3 bucket and versioned it, excluding the secrets obviously, so when we want to change the cluster configuration, a single commit is needed.
 
-The deployment is handled by a jenkins job and [terraform](https://www.terraform.io). It is done like so:
+The deployment is handled by a Jenkins job and [Terraform](https://www.terraform.io). It is done like so:
 
 ```sh
 aws s3 sync kops/${params.cluster} '${params.kopsStateStore}${params.cluster}'
@@ -70,7 +70,7 @@ cd terraform_toapply
 terraform plan -lock-timeout=20m -input=false
 ```
 
-You probably see in there that we generate the terraform files in a subdirectory, that is because kops creates the kubernetes terraform config but we also build things over it and include the kops generated terraform files as [modules](https://www.terraform.io/docs/configuration/modules.html)
+You probably see in there that we generate the terraform files in a subdirectory. This is because Kops creates the Kubernetes Terraform config, but we also add things over it. The generated Terraform configuration is included as a Terraform [module](https://www.terraform.io/docs/configuration/modules.html)
 
 The directory tree looks like this:
 
@@ -118,7 +118,7 @@ output "cluster_name" {
 
 ## Automatic rollout
 
-If it is not a pull request we rollout and do a rolling update automagically.
+If it is not a pull request, we rollout the Terraform changes and then do a rolling update of your nodes automagically ✨💫✨.
 
 ```sh
 terraform apply -lock-timeout=20m  -input=false
@@ -131,4 +131,4 @@ kops rolling-update cluster ${params.cluster} --yes \
 
 Simple enough.
 
-That's all, we now have an autodeployed kubernetes cluster with versionned configuration and terraform s3 backed state so everyone can reuse the kubernetes configuration for their needs.
+That's all, we now have an autodeployed Kubernetes cluster with versionned configuration and terraform s3 backed state so everyone can reuse the kubernetes configuration for their needs.
