@@ -34,7 +34,7 @@ We created an initial cluster config using those settings and then ajusted the c
 
 ```sh
 kops create cluster k8s.coveodemo.com \
-   --state=s3://coveo-ndev-config/develop/kops/testpastjean \
+   --state=s3://yourbucket/develop/kops/testpastjean \
    --zones=us-east-1a,us-east-1b,us-east-1c \
    --master-zones=us-east-1a,us-east-1b,us-east-1c \
    --networking=calico \
@@ -46,7 +46,7 @@ kops create cluster k8s.coveodemo.com \
    --cloud-labels="coveo:billing=infra__mt__kubernetes,coveo:environment=Development" \
    --cloud=aws \
    --topology=public \
-   --vpc=vpc-7ed1081b \
+   --vpc=vpc-xxxxxxxxx \
    --network-cidr=10.10.0.0/16 \
    --associate-public-ip=false \
    --authorization=RBAC
