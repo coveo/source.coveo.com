@@ -71,14 +71,14 @@ Insert the CreateSecureItemPreview.config in `YOUR_SITECORE_SITE\Website\App_Con
 There are 5 sections in the file:
 
 * `coveoPostItemProcessingPipeline`: adds the CreateSecuredItemPreviewProcessor to the pipeline;
-* `CreateSecuredItemPreviewProcessor` references the `Remove Fields` and the `Remove Fields` defined in step 1, and which suffix will be used on the copied items;
+* `CreateSecuredItemPreviewProcessor` references the `Remove Fields` and the `Remove Fields` fields defined in step 1, and the suffix to be used on the copied items;
 * `fieldMap`: defines the required fields for the new processor. All the fields are tagged as external;
 * `formsAuthConfiguration`: configures the HTML crawler authentication used to log into Sitecore. This needs to point to the admin login (`/sitecore/login`);
 * `event`: adds a handler to delete the duplicate items when the original item is deleted (see disclaimer below).
 
 #### 3. Install the processor
 
-There are advanced explanations on how to build the processor in the Github folder. Once built, you  need to drop the DLL in `YOUR_SITECORE_SITE\Website\bin`.The processor intercepts items tagged with either the field `Remove Field` or the `Remove Preview`, and creates a copy.
+There are advanced explanations on how to build the processor in the [GitHub project](https://github.com/coveo/samples/tree/master/coveo-for-sitecore/solutions/CreateSecuredItemPreview). Once built, you need to drop the DLL in `YOUR_SITECORE_SITE\Website\bin`. The processor intercepts items tagged with either the field `Remove Field` or the `Remove Preview`, and creates a copy.
 
 The copied item will:
 
@@ -129,7 +129,7 @@ Searching for any content in the PDF will return both items, but the limited one
 
 This processor has been tested in Launch Sitecore. To ensure that it works correctly in that environment, you'll have to:
 
-* Remove the `ExcludeCoveoUserAgentProcesso`. An exception was causing the HTML Content processor to crash;
+* Remove the `ExcludeCoveoUserAgentProcessor`. An exception was causing the HTML Content processor to crash;
 * Make sure you have configured a login page on your Sitecore site to redirect the un-authenticated user correctly.
 
 When you delete an item that has copies created with the HiddenButSearchable processor:
