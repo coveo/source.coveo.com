@@ -28,9 +28,9 @@ I can't stress enough how important sort keys are, so I decided to talk about th
 Dist keys will determine how the data of a table is distributed, or split, accross the nodes of the cluster. There are a couple of things to keep in mind when choosing a dist key:
 - It should result in an even distribution, so something like a UUID is a good choice
 - If some tables are often joined together, they should have the same dist key. 
- - This means that the data for both tables will be on the same node, and queries on this data will not be transferred between nodes. It will save you a ton of network time.
+  - This means that the data for both tables will be on the same node, and queries on this data will not be transferred between nodes. It will save you a ton of network time.
 - Watch out for those `DISTSTYLE ALL` (this one is not about dist key, but it's close enough). 
- - The `ALL` distribution style will greatly increase the space required, load time, and maintenance work for the same data.
+  - The `ALL` distribution style will greatly increase the space required, load time, and maintenance work for the same data.
 
 ## Use data compression
 
