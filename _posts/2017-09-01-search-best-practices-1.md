@@ -30,20 +30,22 @@ When users want to perform a search, they are used to scan the page looking for 
 You might also be tempted to add placeholder text in the input to help the user know what they can search for. Studies have shown that this is not a good practice because users do not see it as an open field. Once the user clicks on the field, the placeholder text disappears, so that text won’t be useful for the user anymore. If you really need to add information, place it below the field rather than in the field.
 
 ![Can be dangerous](/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
+
 <center>Can be dangerous</center>
 
 
 ![Recommended](/images/2017-09-05-search-best-practices-1/recommended.png)
+
 <center>Recommended</center>
 
 # Make it pop. A at least a little.
 
 Even if it looks pretty and sophisticated, try to avoid dark on dark and light on light search boxes. We talked about the importance of having an open search field for search tool, but if that field is the same color as the background, there is a high chance users will miss it. Contrast is essential to make the search box noticeable. That’s why you want to choose a background color or picture that will make the search box stand out. 
 
-![To avoid](/images/2017-09-05-search-best-practices-1/to-avoid.png)
+![To avoid](source.coveo.com/images/2017-09-05-search-best-practices-1/to-avoid.png)
 <center>To avoid</center>
 
-![Safe bet](/images/2017-09-05-search-best-practices-1/safe-bet.png)
+![Safe bet](source.coveo.com/images/2017-09-05-search-best-practices-1/safe-bet.png)
 <center>Safe bet</center>
 
 
