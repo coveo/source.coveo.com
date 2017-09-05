@@ -45,11 +45,8 @@ Even if it looks pretty and sophisticated, try to avoid dark on dark and light o
 
 ![To avoid](/source.coveo.com/images/2017-09-05-search-best-practices-1/to-avoid.png)
 
-<center>To avoid</center>
-
 ![Safe bet](/source.coveo.com/images/2017-09-05-search-best-practices-1/safe-bet.png)
 
-<center>Safe bet</center>
 
 
 # Middle or right, it’s up to you !
