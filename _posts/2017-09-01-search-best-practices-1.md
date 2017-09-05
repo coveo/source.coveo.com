@@ -29,7 +29,7 @@ When users want to perform a search, they are used to scan the page looking for 
 
 You might also be tempted to add placeholder text in the input to help the user know what they can search for. Studies have shown that this is not a good practice because users do not see it as an open field. Once the user clicks on the field, the placeholder text disappears, so that text won’t be useful for the user anymore. If you really need to add information, place it below the field rather than in the field.
 
-![Can be dangerous](/source.coveo.com/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
+<center>![Can be dangerous](/source.coveo.com/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)</center>
 
 <center>Can be dangerous</center>
 
