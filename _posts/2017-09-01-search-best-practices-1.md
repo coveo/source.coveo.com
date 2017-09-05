@@ -42,10 +42,10 @@ You might also be tempted to add placeholder text in the input to help the user 
 
 Even if it looks pretty and sophisticated, try to avoid dark on dark and light on light search boxes. We talked about the importance of having an open search field for search tool, but if that field is the same color as the background, there is a high chance users will miss it. Contrast is essential to make the search box noticeable. That’s why you want to choose a background color or picture that will make the search box stand out. 
 
-![To avoid](source.coveo.com/images/2017-09-05-search-best-practices-1/to-avoid.png)
+![To avoid](/images/2017-09-05-search-best-practices-1/to-avoid.png)
 <center>To avoid</center>
 
-![Safe bet](source.coveo.com/images/2017-09-05-search-best-practices-1/safe-bet.png)
+![Safe bet](/images/2017-09-05-search-best-practices-1/safe-bet.png)
 <center>Safe bet</center>
 
 
