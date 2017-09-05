@@ -8,7 +8,7 @@ tags: [Search, UX]
 author:
   name: Anne-Catherine Verrette
   bio: UX Specialist
-  image: /acverrette.jpg
+  image: acverrette.jpg
 ---
 
 Companies are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall experience.
@@ -32,12 +32,8 @@ You might also be tempted to add placeholder text in the input to help the user 
 
 ![Can be dangerous](/source.coveo.com/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
 
-<center>Can be dangerous</center>
-
-
 ![Recommended](/source.coveo.com/images/2017-09-05-search-best-practices-1/recommended.png)
 
-<center>Recommended</center>
 
 # Make it pop. A at least a little.
 
@@ -63,11 +59,8 @@ Be careful not to put something that looks like a search box in the right corner
 
 ![Bad idea](/source.coveo.com/images/2017-09-05-search-best-practices-1/bad-idea.png)
 
-<center>Bad idea</center>
-
 ![Better idea](/source.coveo.com/images/2017-09-05-search-best-practices-1/better-idea.png)
 
-<center>Better idea</center>
 
 # Conclusion
 
