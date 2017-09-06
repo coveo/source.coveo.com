@@ -71,4 +71,4 @@ There is no perfect recipe that will work with every website, but if you follow 
 
 <sup>1</sup> NIELSEN, J., SHADE, A. E-Commerce User Experience. _Nielsen Norman Group_. 5(3),148p. 
 
-<sup>2</sup> SHERWIN, K. (2014). Placeholders in Form Fields Are Harmful. _Nielsen Norman Group_. Retrieve from https://www.nngroup.com/articles/form-design-placeholders/
+<sup>2</sup> SHERWIN, K. (2014). Placeholders in Form Fields Are Harmful. _Nielsen Norman Group_. Retrieved from https://www.nngroup.com/articles/form-design-placeholders/
