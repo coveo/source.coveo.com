@@ -8,7 +8,7 @@ tags: [Search, UX]
 author:
   name: Anne-Catherine Verrette
   bio: UX Specialist
-  image: acverrette.jpg
+  image: (/source.coveo.com/images/2017-09-05-search-best-practices-1/acverrette.jpg)
 ---
 
 Organizations are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall user experience.
@@ -67,5 +67,8 @@ Be careful not to put something that looks like a search box in the right corner
 Overall you need to remember that your search box has to be prominent and easy to locate. In some use cases, minimalist search boxes might work fine, but before you choose this design, try to test it with real users to see if they really can find the search box easily. 
 There is no perfect recipe that will work with every website, but if you follow those best practices, it will surely increase the search engagement on your website and will certainly result in a higher conversion rate.
 
-<sup>1</sup> NIELSEN, J., SHADE, A. E-Commerce User Experience. _Nielsen Norman Group_. 5(3),148 p. 
+
+
+<sup>1</sup> NIELSEN, J., SHADE, A. E-Commerce User Experience. _Nielsen Norman Group_. 5(3),148p. 
+
 <sup>2</sup> SHERWIN, K. (2014). Placeholders in Form Fields Are Harmful. _Nielsen Norman Group_. Retrieve from https://www.nngroup.com/articles/form-design-placeholders/
