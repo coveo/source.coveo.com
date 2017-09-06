@@ -11,7 +11,7 @@ author:
   image: acverrette.jpg
 ---
 
-Organizations are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall user experience.
+Organizations are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a greater overall user experience.
 
 In this series of blog posts, I will explain why having a good search experience is vital for any website. This blog post will tell you about the importance of the search box.
 
