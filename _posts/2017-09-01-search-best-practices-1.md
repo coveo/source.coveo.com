@@ -11,15 +11,15 @@ author:
   image: acverrette.jpg
 ---
 
-Companies are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall experience.
+Organizations are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall user experience.
 
-In this series of blog posts, I will explain why having a good search is vital for any website. This blog post will tell you about the importance of the search box.
+In this series of blog posts, I will explain why having a good search experience is vital for any website. This blog post will tell you about the importance of the search box.
 
 <!-- more -->
 
 In order to deliver a good search experience, users have to be able to find the search box. It may seem obvious, but too many websites fail to make their search box prominent and easy to find. There are many reasons that can explain that. One of them is that, in the past years, there has been a design trend to hide the search box behind a link or a nice magnifying glass icon.
 
-However, while they please the eye and match the look and feel of the website, those search boxes can do more harm than you might think. For example, did you know that if your search box is hidden behind a link, users will assume that you are trying to hide your search because it is poor? To prevent that, always make sure that your search box is visible and prominent by following these tips.
+However, while they please the eye and match the look and feel of the website, those search boxes can do more harm than you might think. For example, did you know that if your search box is hidden behind a link, users will assume that you are trying to hide your search because it is poor?<sup>1</sup> To prevent that, always make sure that your search box is visible and prominent by following these tips.
 
 # First rule of good search: finding the search box
 
@@ -27,7 +27,7 @@ However, while they please the eye and match the look and feel of the website, t
 
 When users want to perform a search, they are used to scan the page looking for an open search field, not a link or an icon. Even if it might seem obvious for us, a lot of users don’t recognize the magnifying glass icon as the search tool.
 
-You might also be tempted to add placeholder text in the input to help the user know what they can search for. Studies have shown that this is not a good practice because users do not see it as an open field. Once the user clicks on the field, the placeholder text disappears, so that text won’t be useful for the user anymore. If you really need to add information, place it below the field rather than in the field.
+You might also be tempted to add placeholder text in the input to help the user know what they can search for. Studies have shown that this is not a good practice because users do not see it as an open field.<sup>2</sup> Once the user clicks on the field, the placeholder text disappears, so that text won’t be useful for the user anymore. If you really need to add information, place it below the field rather than in the field.
 
 
 ![Can be dangerous](/source.coveo.com/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
@@ -66,3 +66,6 @@ Be careful not to put something that looks like a search box in the right corner
 
 Overall you need to remember that your search box has to be prominent and easy to locate. In some use cases, minimalist search boxes might work fine, but before you choose this design, try to test it with real users to see if they really can find the search box easily. 
 There is no perfect recipe that will work with every website, but if you follow those best practices, it will surely increase the search engagement on your website and will certainly result in a higher conversion rate.
+
+<sup>1</sup> NIELSEN, J., SHADE, A. E-Commerce User Experience. _Nielsen Norman Group_. 5(3),148 p. 
+<sup>2</sup> SHERWIN, K. (2014). Placeholders in Form Fields Are Harmful. _Nielsen Norman Group_. Retrieve from https://www.nngroup.com/articles/form-design-placeholders/
