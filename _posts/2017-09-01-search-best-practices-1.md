@@ -8,7 +8,7 @@ tags: [Search, UX]
 author:
   name: Anne-Catherine Verrette
   bio: UX Specialist
-  image: /source.coveo.com/images/2017-09-05-search-best-practices-1/acverrette.jpg
+  image: acverrette.jpg
 ---
 
 Organizations are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall user experience.
@@ -32,16 +32,16 @@ You might also be tempted to add placeholder text in the input to help the user 
 
 ![Can be dangerous](/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
 
-![Recommended](/source.coveo.com/images/2017-09-05-search-best-practices-1/recommended.png)
+![Recommended](/images/2017-09-05-search-best-practices-1/recommended.png)
 
 
 # Make it pop. A at least a little.
 
 Even if it looks pretty and sophisticated, try to avoid dark on dark and light on light search boxes. We talked about the importance of having an open search field for search tool, but if that field is the same color as the background, there is a high chance users will miss it. Contrast is essential to make the search box noticeable. That’s why you want to choose a background color or picture that will make the search box stand out. 
 
-![To avoid](/source.coveo.com/images/2017-09-05-search-best-practices-1/to-avoid.png)
+![To avoid](/images/2017-09-05-search-best-practices-1/to-avoid.png)
 
-![Safe bet](/source.coveo.com/images/2017-09-05-search-best-practices-1/safe-bet.png)
+![Safe bet](/images/2017-09-05-search-best-practices-1/safe-bet.png)
 
 
 
@@ -57,9 +57,9 @@ Putting the search box in the upper left corner is usually considered a bad idea
 
 Be careful not to put something that looks like a search box in the right corner. Some websites put the mailing list subscription field in the right corner and users often confuse it with the search box.
 
-![Bad idea](/source.coveo.com/images/2017-09-05-search-best-practices-1/bad-idea.png)
+![Bad idea](/images/2017-09-05-search-best-practices-1/bad-idea.png)
 
-![Better idea](/source.coveo.com/images/2017-09-05-search-best-practices-1/better-idea.png)
+![Better idea](/images/2017-09-05-search-best-practices-1/better-idea.png)
 
 
 # Conclusion
