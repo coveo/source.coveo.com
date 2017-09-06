@@ -8,7 +8,7 @@ tags: [Search, UX]
 author:
   name: Anne-Catherine Verrette
   bio: UX Specialist
-  image: (/source.coveo.com/images/2017-09-05-search-best-practices-1/acverrette.jpg)
+  image: /source.coveo.com/images/2017-09-05-search-best-practices-1/acverrette.jpg
 ---
 
 Organizations are becoming more and more aware of the importance of offering a good search experience on their website. From increases in purchases on ecommerce websites to getting fewer cases on their support and community websites, companies are realizing that helping users find what they want faster and more easily results in a great overall user experience.
@@ -30,7 +30,7 @@ When users want to perform a search, they are used to scan the page looking for 
 You might also be tempted to add placeholder text in the input to help the user know what they can search for. Studies have shown that this is not a good practice because users do not see it as an open field.<sup>2</sup> Once the user clicks on the field, the placeholder text disappears, so that text won’t be useful for the user anymore. If you really need to add information, place it below the field rather than in the field.
 
 
-![Can be dangerous](/source.coveo.com/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
+![Can be dangerous](/images/2017-09-05-search-best-practices-1/can-be-dangerous.png)
 
 ![Recommended](/source.coveo.com/images/2017-09-05-search-best-practices-1/recommended.png)
 
