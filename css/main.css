@@ -2483,7 +2483,9 @@ article .container .single .tags a:hover{
 article address {
     margin: 0;
     font-size: 0.9em;
-    max-height: 48px
+    max-height: 48px;
+    display:flex;
+    align-items: center;
 }
 
 article address p {
@@ -2733,8 +2735,8 @@ article .full.zoomable img.zoom {
 }
 
 .highlight .err {
-    color: #a61717;
-    background-color: #e3d2d2
+    color: inherit;
+    background-color: inherit;
 }
 
 .highlight .k {
@@ -3214,3 +3216,20 @@ article .full.zoomable img.zoom {
 /*FIX UP BLUE HEADER*/
 header .upHeader nav ul {margin-bottom:0;}
 header .upHeader a { padding: 25px 10px 25px;}
+
+
+section .post_content ul{
+    margin:2em 2em;
+    padding: 0;
+}
+section .post_content ul li{
+    position:relative;
+    padding-left:25px;
+}
+
+section .post_content ul li:before{
+    content: '\2022';
+    position:absolute;
+    left: 0;
+    color:#1D4F76;
+}

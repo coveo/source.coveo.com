@@ -11,9 +11,9 @@ author:
   image: Wim3.png
 ---
 
-_This is the first blog post of a new series entitled “Build it with Coveo.”. The serie will present innovative use cases for the Coveo Platform, always including full code samples._
+_This is the first blog post of a new series entitled “Build it with Coveo”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
 
-Coveo customers use the platform in a multitude of ways. Many in the consulting and resource management business often ask us if our search technology could help them better match resources and project.
+Coveo customers use the platform in a multitude of ways. Many in the consulting and resource management business often ask us if our search technology could help them better match resources and projects.
 
 ## Use case: 
 What if you want to find the best peer/employee with knowledge around “Artificial Intelligence.”? What if you need to add constraints such as “available for the next two months.”?

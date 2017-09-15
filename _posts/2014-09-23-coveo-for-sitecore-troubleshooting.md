@@ -5,7 +5,7 @@ title: "Coveo for Sitecore troubleshooting"
 #subtitle: ""
 
 author:
-  name: Simon Langevin Ouellet
+  name: Simon Langevin
   bio: Product Expert, Coveo for Sitecore Support
   twitter: silaouo
   image: slangevin.png
