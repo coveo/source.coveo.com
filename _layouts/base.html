@@ -34,11 +34,11 @@
 
 {% if page.description %}
   <meta content="{{ page.description }}" property="og:description">
-  <meta name="description" content="{{ page.title }}"/>
 {% else %}
   <meta content="{{ site.description }}" property="og:description">
-  <meta name="description" content="{{ page.title }}"/>
 {% endif %}
+<meta name="description" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.title }}">
 
 {% if page.url %}
   <meta content="{{ site.github.url }}{{ page.url }}" property="og:url">
@@ -49,15 +49,18 @@
   <meta content="{{ site.github.url }}/about/" property="article:author">
 {% endif %}
 
+<meta name="twitter:card" content="summary" />
+
 {% if page.image %}
   <meta content="{{ site.github.url }}/{{ page.image }}" property="og:image">
 {% else %}
 {% if page.cover_image %}
-  <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}"/>
+  <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}">
 {% else %}
-  <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}"/>
+  <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}">
 {% endif %}
 {% endif %}
+<meta name="twitter:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}">
 
 {% if page.categories %}
   {% for category in page.categories limit:1 %}
