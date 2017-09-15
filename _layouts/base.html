@@ -15,68 +15,72 @@
 
     <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/css/main.css"/>
     <link rel="shortcut icon" href="{{ site.github.url }}/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url }}/images/apple-touch-icon-144x144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url }}/images/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url }}/images/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url }}/images/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url }}/images/apple-touch-icon-144x144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url }}/images/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url }}/images/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url }}/images/apple-touch-icon-precomposed.png" />
     <link href="{{ site.github.url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
-<meta content="{{ site.title }}" property="og:site_name">
+
+    <meta property="og:site_name" content="{{ site.title }}" />
+    <meta name="twitter:card" content="summary" />
 
 {% if page.title %}
-  <meta content="{{ page.title }}" property="title">
-  <meta content="{{ page.title }}" property="og:title">
-  <meta content="article" property="og:type">
+  <meta property="og:type" content="article" />
+  <meta property="title" content="{{ page.title }}" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta name="twitter:title" content="{{ page.title }}" />
 {% else %}
-  <meta content="{{ site.title }}" property="title">
-  <meta content="{{ site.title }}" property="og:title">
-  <meta content="website" property="og:type">
+  <meta property="og:type" content="website" />
+  <meta property="title" content="{{ site.title }}" />
+  <meta property="og:title" content="{{ site.title }}" />
+  <meta name="twitter:title" content="{{ site.title }}" />
 {% endif %}
 
 {% if page.description %}
-  <meta content="{{ page.description }}" property="og:description">
-  <meta name="twitter:description" content="{{ page.description }}">
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta name="twitter:description" content="{{ page.description }}" />
 {% else %}
-  <meta content="{{ site.description }}" property="og:description">
-  <meta name="twitter:description" content="{{ site.description }}">
+  <meta property="og:description" content="{{ site.description }}" />
+  <meta name="twitter:description" content="{{ site.description }}" />
 {% endif %}
 
 {% if page.url %}
-  <meta content="{{ site.github.url }}{{ page.url }}" property="og:url">
+  <meta content="{{ site.github.url }}{{ page.url }}" property="og:url" />
 {% endif %}
 
 {% if page.date %}
-  <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-  <meta content="{{ site.github.url }}/about/" property="article:author">
+  <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time" />
+  <meta content="{{ site.github.url }}/about/" property="article:author" />
 {% endif %}
-
-<meta name="twitter:card" content="summary" />
 
 {% if page.image %}
-  <meta content="{{ site.github.url }}/{{ page.image }}" property="og:image">
+  <meta property="og:image" content="{{ site.github.url }}/{{ page.image }}" />
 {% else %}
-{% if page.cover_image %}
-  <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}">
-{% else %}
-  <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}">
+  {% if page.cover_image %}
+    <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}">
+  {% else %}
+    <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}" />
+    <meta property="og:image:width" content="560" />
+    <meta property="og:image:height" content="560" />
+    <meta name="twitter:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}" />
+  {% endif %}
 {% endif %}
-{% endif %}
-<meta name="twitter:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}">
 
 {% if page.categories %}
   {% for category in page.categories limit:1 %}
-  <meta content="{{ category }}" property="article:section">
+  <meta property="article:section" content="{{ category }}" />
   {% endfor %}
 {% endif %}
 
 {% if page.tags %}
   <meta name="tags" content="{% for tag in page.tags %}{{ tag }};{% endfor %}" />
   {% for tag in page.tags %}
-  <meta content="{{ tag }}" property="article:tag">
+  <meta property="article:tag" content="{{ tag }}" />
   {% endfor %}
 {% endif %}
 
 {% if page.author.name %}
-  <meta name="author" content="{{ page.author.name }}">
+  <meta name="author" content="{{ page.author.name }}" />
 {% endif %}
 
 <link rel="canonical" href="{{ site.github.url }}{{ page.url }}">
