@@ -34,11 +34,11 @@
 
 {% if page.description %}
   <meta content="{{ page.description }}" property="og:description">
+  <meta name="twitter:description" content="{{ page.description }}">
 {% else %}
   <meta content="{{ site.description }}" property="og:description">
+  <meta name="twitter:description" content="{{ site.description }}">
 {% endif %}
-<meta name="description" content="{{ page.title }}">
-<meta name="twitter:description" content="{{ page.title }}">
 
 {% if page.url %}
   <meta content="{{ site.github.url }}{{ page.url }}" property="og:url">
