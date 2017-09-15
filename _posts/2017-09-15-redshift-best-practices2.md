@@ -20,7 +20,7 @@ In my [last post](http://source.coveo.com/2017/08/08/redshift-best-practices/), 
 I talked a lot in my last post about the importance of the sort keys and the data being sorted properly in Redshift. One way to do that is to run `VACUUM` and `ANALYZE` commands. The `VACUUM` will clean up the data, i.e. remove deleted rows to reclaim space and sort the newly inserted data and the `ANALYZE` will update metadata used by the query planner. Keep those things in mind when running those operations:
 - `VACUUM`s are heavy on both CPU and disk space, so it's better to run it during a period of low usage.
 - Depending on your use case, you may not need to run those operations often.
-  - From what we experienced, once a week is enough, once a day is optimal, but more often then that had negative performance impacts.
+  - From what we experienced, once a week is enough and once a day is optimal. More often then that had negative performance impacts.
 - Always run an `ANALYZE` after a `VACUUM`.
 - Be aware of the thresholds. By default, `VACUUM` will not sort if 95% of the rows in a table are already sorted and `ANALYZE` will be skipped for any table with less than 10% of changed rows.
   - This means that, at some point when you have a lot of data, cleanup operations might stop running as often as configured. Keep that in mind!
