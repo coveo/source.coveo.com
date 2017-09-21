@@ -16,7 +16,7 @@ Last week, we released Coveo for Sitecore 4.1, and with it the Coveo for Sitecor
 
 ## Coveo for Sitecore 4.1 VS Coveo for Sitecore Hive
 
-The first thing to understand about version 4.1 is that it is only a vessel carrying the Coveo for Sitecore Hive framework. You could use 4.1 the same way you used 4.0, which in a sense greatly reduces the upgrade effort. Coveo Hive is optional once you upgrate to 4.1, but it will become the main UI framework for all future versions of Coveo for Sitecore. This means that the legacy Coveo for Sitecore renderings and sublayouts will one day disappear. 
+The first thing to understand about version 4.1 is that it is only a vessel carrying the Coveo for Sitecore Hive framework. You could use 4.1 the same way you used 4.0, which in a sense greatly reduces the upgrade effort. Coveo Hive is optional once you upgrade to 4.1, but it will become the main UI framework for all future versions of Coveo for Sitecore. This means that the legacy Coveo for Sitecore renderings and sublayouts will one day disappear. 
 
 Keep in mind that Coveo Hive is MVC only, although if you are still using Web Forms, you are already due for an upgrade.
 
@@ -54,9 +54,9 @@ This was not the case with the legacy components and should make a difference wh
 
 ## JSUI 2.0
 
-Another advantage of using Coveo for Sitecore Hive is that it uses the new JavaScript framwork 2.0.
+Another advantage of using Coveo for Sitecore Hive is that it uses the new JavaScript Framework 2.0.
 
-JSUI 2.0 is more than just an iteration of the number. It introduced a large amount of features, with the most notable being lazy loading. With lazy loading, the JavaScript and CSS dependencies of the Coveo Hive renderings will be loaded only when needed. For example, let’s look at the network requests made for a full fledged search page with facets, tabs, sorts, and several filtering and boosting rules.
+Version 2.0 is more than just an iteration of the number. It introduced a large amount of features, with the most notable being lazy loading. With lazy loading, the JavaScript and CSS dependencies of the Coveo Hive renderings will be loaded only when needed. For example, let’s look at the network requests made for a full fledged search page with facets, tabs, sorts, and several filtering and boosting rules.
 
 ![Search Page Network](/images/coveoforsitecorehive/lazysearchpage.png)
 
@@ -76,7 +76,7 @@ Much lighter! And keep in mind that this search box is not limited like what was
 
 And if you don’t know already, the whole framework is [open source](https://github.com/coveo/search-ui) so help yourself if you want something to change.
 
-Oh, and don’t worry if you are upgrading from 4.0: the legacy component still uses the Coveo JavaScript UI 1.0. You can then upgrade your solution to 4.1 and upgrade your interface to Hive when you are ready. The upgrade guide has been release and is available [here](https://developers.coveo.com/x/QIY9Ag).
+Oh, and don’t worry if you are upgrading from 4.0: the legacy component still uses the Coveo JavaScript Framework 1.0. You can then upgrade your solution to 4.1 and upgrade your interface to Hive when you are ready. The upgrade guide has been release and is available [here](https://developers.coveo.com/x/QIY9Ag).
 
 ## So what’s next?
 
@@ -84,6 +84,6 @@ If you are an existing Coveo for Sitecore developer, I hope I convinced you to g
 If you have never used Coveo, be aware that we are now not only the most feature full search solution in Sitecore, but we are also (in my opinion) the easiest to use.
 So please go ahead and [download the trial](https://www.coveo.com/en/solutions/coveo-for-sitecore/download).
 
-As always, I am on [Sitecore Slack](https://sitecorechat.slack.com), [Sitecore Stack Exchange](https://sitecore.stackexchange.com/) and [Answers.coveo.com](https://answers.coveo.com/index.html) if you have questions or comments on this new release.
+As always, I am on [Sitecore Slack](https://sitecorechat.slack.com), [Sitecore Stack Exchange](https://sitecore.stackexchange.com/), and [Answers.coveo.com](https://answers.coveo.com/index.html) if you have questions or comments on this new release.
 
 See you there!
