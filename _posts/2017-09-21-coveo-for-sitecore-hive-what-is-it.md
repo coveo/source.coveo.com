@@ -47,7 +47,7 @@ To keep everything clean, data sources folders are set in branches and ready to 
 
 In brief, it decreases the gap between the development team and authors, allowing the first to build presets for the latter to use them when needed.
 
-![Bromance](/images/coveoforsitecorehive/bromance.png)
+![Bromance](/images/coveoforsitecorehive/bromance.jpeg)
 
 Finally, smaller components means rendering files with less code and a unique purpose. If you wish to change the behavior of the pager, then you can simply create a custom pager component instead of overriding the entire Coveo Search component. It makes it easier to keep track of changes and smooths the upgrade process.
 
