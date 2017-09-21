@@ -16,15 +16,13 @@ Last week, we released Coveo for Sitecore 4.1, and with it the Coveo for Sitecor
 
 ## Coveo for Sitecore 4.1 VS Coveo for Sitecore Hive
 
-The first thing to understand about version 4.1 is that it is only a vessel carrying the Coveo Hive framework. You could use 4.1 the same way you used 4.0, which in a sense greatly reduces the upgrade effort. However, it would be like adding a turbocharger on your car and never using it.
+The first thing to understand about version 4.1 is that it is only a vessel carrying the Coveo for Sitecore Hive framework. You could use 4.1 the same way you used 4.0, which in a sense greatly reduces the upgrade effort. Coveo Hive is optional once you upgrate to 4.1, but it will become the main UI framework for all future versions of Coveo for Sitecore. This means that the legacy Coveo for Sitecore renderings and sublayouts will one day disappear. 
 
-That turbocharger is Coveo Hive, and just like any modifications added to a car, it can be removed and used somewhere else. Coveo for Sitecore Hive is introduced in 4.1, but will not be exclusive to it. It will evolve and become the main UI framework for all future versions of Coveo for Sitecore.
-
-This also means that in the future, the legacy Coveo for Sitecore renderings and sublayouts in Sitecore will disappear. Keep in mind that Coveo Hive is MVC only, although if you are still using Web Forms, you are already due for an upgrade.
+Keep in mind that Coveo Hive is MVC only, although if you are still using Web Forms, you are already due for an upgrade.
 
 ![Rendering Folder](/images/coveoforsitecorehive/renderingfolder.png)
 
-As you can see in the image above, the two frameworks now coexist, but not for long!
+As you can see in the image above, the two frameworks now coexist, but for this version only!
 
 ## Experience Editor, code reuse, and easier upgrades
 
@@ -46,8 +44,6 @@ To keep everything clean, data sources folders are set in branches and ready to 
 ![Data Source Branches](/images/coveoforsitecorehive/branches.png)
 
 In brief, it decreases the gap between the development team and authors, allowing the first to build presets for the latter to use them when needed.
-
-![Bromance](/images/coveoforsitecorehive/bromance.jpg)
 
 Finally, smaller components means rendering files with less code and a unique purpose. If you wish to change the behavior of the pager, then you can simply create a custom pager component instead of overriding the entire Coveo Search component. It makes it easier to keep track of changes and smooths the upgrade process.
 
