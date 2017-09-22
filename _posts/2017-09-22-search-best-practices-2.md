@@ -30,7 +30,7 @@ Everytime we ask of our users to remember the query they entered,  we are adding
 
 <center>
 
-![Walmart](/images/2017-09-22-search-best-practices-2/walmart.png)
+![Walmart](/source.coveo.com/images/2017-09-22-search-best-practices-2/walmart.png)
 *On Walmart’s  search page, the query is repeated at the top of the page and is still visible in the search box. They also indicate the number of  results matching the query, which is good.*
 </center>
 
@@ -40,7 +40,7 @@ Some websites seem to be shy to show that no results were found. You don’t hav
 
 <center>
 
-![Genius Kitchen](/images/2017-09-22-search-best-practices-2/geniuskitchen.png)
+![Genius Kitchen](/source.coveo.com/images/2017-09-22-search-best-practices-2/geniuskitchen.png)
 *Geniuskitchen.com offer a good example of a no result page.  A message clearly indicates that there were no matches and invites the user to look through recommended content.*
 </center>
 
