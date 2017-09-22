@@ -24,7 +24,7 @@ Keep in mind that Coveo Hive is MVC only, although if you are still using Web Fo
 
 As you can see in the image above, the two frameworks now coexist, but for this version only!
 
-## Experience Editor, code reuse, and easier upgrades
+## Experience Editor, code reusability, and easier upgrades
 
 Sitecore is pushing everyone to the Experience (XP) Editor, and this is also where we are heading with Hive. Although the legacy renderings were editable in the XP Editor, adding and removing features was often controlled by a property on the main Coveo Search item.
 With Coveo Hive, you build a page block by block, which might feel harder at first, but will offer a lot more flexibility in the long run.
