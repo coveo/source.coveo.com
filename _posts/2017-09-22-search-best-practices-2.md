@@ -36,7 +36,9 @@ Everytime we ask of our users to remember the query they entered,  we are adding
 Some websites seem to be shy to show that no results were found. You don’t have to be. When that happens, clearly state that the search was run and that there were no matches. A page without results is also a good opportunity to offer recommendations based on the query without results, but be sure the user doesn’t confuse the recommended product as the real results. To avoid that, it can be a good idea to name the recommended results section with a title like : “you might be interested in…” etc.
 
 
-![Genius Kitchen](/source.coveo.com/images/2017-09-22-search-best-practices-2/geniuskitchen.png) *Geniuskitchen.com offer a good example of a no result page. A message clearly indicates that there were no matches and invites the user to look through recommended content.*
+![Genius Kitchen](/source.coveo.com/images/2017-09-22-search-best-practices-2/geniuskitchen.png) 
+
+*Geniuskitchen.com offer a good example of a no result page. A message clearly indicates that there were no matches and invites the user to look through recommended content.*
 
 
 When there are results (there is a problem if this is not the norm), you want to clearly indicate the number of results at the top of the page. This helps users decide if they need to use facets to further narrow their search or not.
