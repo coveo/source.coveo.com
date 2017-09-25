@@ -87,3 +87,5 @@ So please go ahead and [download the trial](https://www.coveo.com/en/solutions/c
 As always, I am on [Sitecore Slack](https://sitecorechat.slack.com), [Sitecore Stack Exchange](https://sitecore.stackexchange.com/), and [Answers.coveo.com](https://answers.coveo.com/index.html) if you have questions or comments on this new release.
 
 See you there!
+
+PS: Massive thanks to the Sitecore Community and especially the MVP who gave a lot of feedback on version 3 and 4. Also a very special thank you to [Kamruz Jaman](https://twitter.com/jammykam) for showing us how to do caching properly.
