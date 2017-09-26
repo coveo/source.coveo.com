@@ -29,7 +29,7 @@ Someone looking for a specific product might perform many searches on the same w
 Everytime we ask of our users to remember the query they entered,  we are adding cognitive load to the task. It is therefore essential that you repeat the user’s query at the top of the results page. Also, leave the query in the search box until the user enters another query or clears it. 
 
 ![Walmart](/images/2017-09-22-search-best-practices-2/walmart.png)
-> On Walmart’s search page, the query is repeated at the top of the page and is still visible in the search box. They also indicate the number of  results matching the query, which is good.
+> On Walmart’s search page, the query is repeated at the top of the page and is still visible in the search box. They also indicate the number of results matching the query, which is good.
 
 
 # Don’t Be Shy If You Come Back Empty Handed
