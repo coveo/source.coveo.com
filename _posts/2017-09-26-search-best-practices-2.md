@@ -52,9 +52,9 @@ A lot of websites have nice headers or banners on their homepage. However, the s
 
 Depending on the style you choose for the results (for instance, as cards or as a list), there will be a different number of search results on your page. There is no magic number of results to show on a screen.  You need to allow users to view more or View All results when they want to.
 
- If View All is not a option because it would cause too much performance issues, offer an opportunity to select the number of results viewed per page.<sup>1</sup> 
+If View All is not a option because it would cause too much performance issues, offer an opportunity to select the number of results viewed per page.
 
-Sometimes, websites choose to display 10 results per page by default because they don’t want users to scroll. Research shows people actually have no problem scrolling. However, people will only scroll if they feel there’s a hope of finding something relevant to them lower on the page.
+Sometimes, websites choose to display 10 results per page by default because they don’t want users to scroll. Research shows people actually have no problem scrolling<sup>1</sup>. However, people will only scroll if they feel there’s a hope of finding something relevant to them lower on the page.
 
 Knowing that, you might want to use infinite scrolling instead of pagination. We won’t enter in the debate of Infinite scrolling VS pagination, but I can tell you that infinite scroll is usually good for discovery interfaces like Pinterest, and pagination is usually better when the user is looking for something particular in the result list, such as on an ecommerce website. <sup>2</sup> 
 
