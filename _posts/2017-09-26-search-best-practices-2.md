@@ -17,7 +17,7 @@ In the previous blog post, I explained why having a prominent search box is esse
 
 <!-- more -->
 
-When we imagine a search results page, we generally think about what Google (maybe Yahoo!?) have taught us: a linear and prioritized list of results that appears on a new page.  As a company doing search for a living, we can’t count the times a client asked for a search results page that looked like Google or Amazon, and we cannot blame them. People like websites that work like the ones they know, and deviating from this expected design almost causes usability problems. 
+When we imagine a search results page, we generally think about what Google (maybe Yahoo!?) have taught us: a linear and prioritized list of results that appears on a new page.  As a company doing search for a living, we can’t count the times a client asked for a search results page that looked like Google or Amazon, and we cannot blame them. People like websites that work like the ones they know, and deviating from this expected design almost always causes usability problems. 
 
 Here are some guidelines to follow to ensure your search page results meet user expectations. 
 
@@ -68,7 +68,7 @@ Relevance is your secret magic to offer relevant results to users. Keep it that 
 
 # Conclusion
 
-Overall, the search page is a place where it’s alright to stick to basics and the well worn paths. You can of course still be creative, but try to not deviate too much from what users expect, as can often lead to confusion and frustration. In the next post, I will talk about another important thing in the result page: sorting and faceting. 
+Overall, the search page is a place where it’s alright to stick to basics and the well worn paths. You can of course still be creative, but try to not deviate too much from what users expect, as it can often lead to confusion and frustration. In the next post, I will talk about another important thing in the result page: sorting and faceting. 
 
 
 
