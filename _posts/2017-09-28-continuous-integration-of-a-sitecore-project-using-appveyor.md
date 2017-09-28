@@ -13,30 +13,32 @@ author:
 
 Continuous integration (CI) is the act of automatically compiling code and running its tests every time a change is made. It is an important step in a project to ensure quality and save time. It needs to be implemented before continuously deploying an application.
 
-[AppVeyor](https://www.appveyor.com/) is a continuous integration cloud service. It is free for public repositories. One of its key feature is the support of Windows, .net, Visual Studio, and MSBuild. It is a perfect tool for a Sitecore project.
-
-Let's explore how to use it with the Sitecore Habitat demo project.
+In this post, I will explore how to configure CI with [AppVeyor](https://www.appveyor.com/) using the Sitecore Habitat demo project.
 
 <!-- more -->
 
+## AppVeyor overview
+
+AppVeyor is a CI cloud service. It is free for public repositories. One of its key feature is the support of Windows, .NET, Visual Studio, and MSBuild. It is a perfect tool for a Sitecore project.
+
 ## Creating a project
 
-AppVeyor supports sign in with your VSTS, Bitbucket, or GitHub account. Once logged in, you can create a continuous integration project for any of your repositories. It supports a wide range of repositories sources. Here, I choose my GitHub Habitat fork.
+AppVeyor supports signing in with your VSTS, Bitbucket, or GitHub account. Once logged in, you can create a project for any of your repositories. It supports a wide range of repository sources. Here, I chose my GitHub Habitat fork.
 
 ![Add an AppVeyor project from GitHub](/images/20170922-appveyor/AppVeyor-CreateProject.png)
 
 ## Configuring the project
 
-AppVeyor has a complete settings user interface. It also supports storing the project configuration in an `appveyor.yml` file at the root of your repository. I recommend the configuration file for many reasons:
+AppVeyor has a complete settings user interface, but it alternatively supports storing the project configuration in an `appveyor.yml` file at the root of your repository. I recommend the configuration file for many reasons:
 
-* You have a complete view of all the configuration instead of having to navigate the various UI sections.
-* You can always view and modify your configuration, even when you work offline.
-* Every time you push a modification to the file, it automatically builds your project.
-* A contributor forking your project can also easily use AppVeyor to continuously integrate his work.
+* It provides a complete view of all the configuration, so you do not have to navigate the various UI sections.
+* It is always accessible, even when you work offline.
+* Every time a modification to the file is pushed, your project is automatically built.
+* It allows contributors forking your project to easily use AppVeyor to continuously integrate their work.
 
-You should note that the file is not merged with the UI settings except for the environment variables and notification settings. Build version format is taken from UI if it is not set in the file.
+You should note that the file is not merged with the UI settings except for the environment variables and notification settings. The build version format is taken from the UI if it is not set in the file.
 
-The configuration file requires only a few settings to get started.
+The configuration file requires only a few settings to get started:
 
 ```yml
 branches:
@@ -49,7 +51,7 @@ build:
   project: Habitat.sln
 ```
 
-I specify to compile the `Habitat.sln` solution on an environment with Visual Studio 2017 and to only run for the master branch commits.
+In the example above, I specified that I want to compile the `Habitat.sln` solution on an environment with Visual Studio 2017 and to only run for the master branch commits.
 
 Running the AppVeyor project with this configuration unveils a first problem.
 
@@ -87,7 +89,7 @@ Command exited with code 1
 
 ## Restoring NuGet packages
 
-Habitat relies on public NuGet packages from NuGet.org and the Sitecore NuGet feed. These sources are configured in the `nuget.config` file of the Habitat repository and NuGet automatically handles this file. To restore the packages in AppVeyor, you must add a command line instruction to run in the `before_build` section:
+Habitat relies on public NuGet packages from NuGet.org and from the Sitecore NuGet feed. These sources are configured in the `nuget.config` file of the Habitat repository and NuGet automatically handles this file. To restore the packages in AppVeyor, you must add a command line instruction to run in the `before_build` section:
 
 ```yml
 before_build:
@@ -122,7 +124,7 @@ Command exited with code 1
 
 ## Choosing tests
 
-AppVeyor automatically tries to detect the assemblies containing unit tests. In some cases, you must help it in the `test` section:
+AppVeyor automatically tries to detect assemblies containing unit tests. In some cases, you must help it in the `test` section:
 
 ```yml
 test:
@@ -131,7 +133,7 @@ test:
       - \src\**\Tests\bin\**\Sitecore.*.Tests.dll
 ```
 
-Habitat has a very good naming convention that helps you configure the list of assemblies to test. This time, the unit tests complain about the missing Sitecore license.
+Habitat has a very good naming convention that helps you configure the list of assemblies to test. When running the build, the unit tests now complain about the missing Sitecore license.
 
 ```
 Build succeeded.
@@ -152,7 +154,7 @@ xUnit.net Console Runner (32-bit .NET 4.0.30319.42000)
 
 ## The Sitecore license
 
-As you don't want to share your Sitecore license to the rest of the world, you don't store it in your repository. The AppVeyor solution for private files is to commit an encrypted version and add a decryption step in the `install` section, before the project is built:
+As you don't want to share your Sitecore license to the rest of the world, you don't store it in your repository. The AppVeyor solution for private files is to commit an encrypted version and to add a decryption step to the `install` section, before the project is built:
 
 ```yml
 install:
@@ -160,13 +162,13 @@ install:
   - secure-file\tools\secure-file -decrypt .\lib\license.xml.enc -secret "%LicenseEncryptionKey%"
 ```
 
-[secure-file](https://www.appveyor.com/docs/how-to/secure-files/) is an AppVeyor tool to encrypt and decrypt files using a private encryption key. Usage is simple but tricky.
+[`secure-file`](https://www.appveyor.com/docs/how-to/secure-files/) is an AppVeyor tool to encrypt and decrypt files using a private encryption key. Using it is simple but tricky.
 
 ### Encryption key
 
 1. Choose a long enough key for your files to be secure.
-2. Choose a key shorter than 32K characters as it will be stored as an environment variable. There is only 32K to store all the environment variables on Windows. Be considerate.
-3. Avoid special characters like ``/ \ | ~ % < > ` ' "`` in your encryption key as it is passed as a command line argument.
+2. Choose a key shorter than 32k characters as it will be stored as an environment variable. There are only 32k characters available to store all the environment variables on Windows. Be considerate.
+3. Avoid special characters like ``/ \ | ~ % < > ` ' "`` in your encryption key as it will be passed as a command line argument.
 4. Avoid the `^` character as AppVeyor will strip it from your environment variable.
 
 ### Environment variable
@@ -175,7 +177,7 @@ The encryption key must be stored securely in AppVeyor and not be visible in the
 
 ![Add an AppVeyor project from GitHub](/images/20170922-appveyor/AppVeyor-EnvironmentVariable.png)
 
-Here I choose to name my environment variable `LicenseEncryptionKey`. You have to set its value.
+Here, I chose to name my environment variable `LicenseEncryptionKey`. You have to set its value.
 
 ### Installing on your local computer
 
@@ -187,9 +189,9 @@ nuget install secure-file -ExcludeVersion
 
 ### Encryption
 
-Habitat gulp script copies the Sitecore license file from your webroot to the `lib` folder of the devroot.
+The Habitat gulp script copies the Sitecore license file from your webroot to the `lib` folder of the devroot.
 
-Encrypt your Sitecore license file using this command. The location of the file may vary. Replace `YOUR_ENCRYPTION_KEY` by the one you defined earlier.
+Encrypt your Sitecore license file using the following command. The location of the file may vary. Replace `YOUR_ENCRYPTION_KEY` by the key you defined earlier.
 
 ```
 secure-file\tools\secure-file -encrypt .\lib\license.xml -secret "YOUR_ENCRYPTION_KEY"
@@ -219,7 +221,7 @@ Build success
 
 ## Improving build performance
 
-By default, the log level is very verbose. For improved build time, you can set the build verbosity in the `build` section:
+By default, the log level is very verbose. To improve build time, you can set the build verbosity in the `build` section:
 
 ```yml
 build:
@@ -265,8 +267,8 @@ When a build is successful, AppVeyor can package the artifacts and publish them 
 
 ## Conclusion
 
-Before using AppVeyor, I tried to setup another local continuous integration tool. After countless hours, it was still not working. I was discouraged and had hard feelings towards continuous integration.
+Before using AppVeyor, I tried to setup another local continuous integration tool. After countless hours, it was still not working. I was discouraged and had hard feelings towards CI.
 
-Needless to say I was happy and impressed by AppVeyor. It took me under 4 hours to learn the basics and have my first successful build of the Sitecore Habitat project. I really like the product as it has a low barrier of entry, and the fact that it is free for public repositories. I plan to use it for a more complex Sitecore project in the near future. Stay tuned as I share my experiences as I progress.
+Needless to say I was happy and impressed by AppVeyor. It took me under 4 hours to learn the basics and have my first successful build of the Sitecore Habitat project. I really like the product as it has a low barrier of entry and is free for public repositories. I plan to use it for a more complex Sitecore project in the near future. Stay tuned as I share my experiences as I progress.
 
-I encourage everybody who believe continuous integration is hard to try AppVeyor and experience how easy it can be.
+If you believe continuous integration is hard, I encourage you to try AppVeyor and experience how easy it can be.
