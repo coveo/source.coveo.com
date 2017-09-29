@@ -166,10 +166,10 @@ install:
 
 ### Encryption key
 
-1. Choose a long enough key for your files to be secure.
-2. Choose a key shorter than 32k characters as it will be stored as an environment variable. There are only 32k characters available to store all the environment variables on Windows. Be considerate.
-3. Avoid special characters like ``/ \ | ~ % < > ` ' "`` in your encryption key as it will be passed as a command line argument.
-4. Avoid the `^` character as AppVeyor will strip it from your environment variable.
+* Choose a long enough key for your files to be secure.
+* Choose a key shorter than 32k characters as it will be stored as an environment variable. There are only 32k characters available to store all the environment variables on Windows. Be considerate.
+* Avoid special characters like ``/ \ | ~ % < > ` ' "`` in your encryption key as it will be passed as a command line argument.
+* Avoid the `^` character as AppVeyor will strip it from your environment variable.
 
 ### Environment variable
 
