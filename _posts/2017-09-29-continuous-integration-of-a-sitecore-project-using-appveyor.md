@@ -34,9 +34,9 @@ AppVeyor has a complete settings user interface, but it alternatively supports s
 * It provides a complete view of all the configuration, so you do not have to navigate the various UI sections.
 * It is always accessible, even when you work offline.
 * Every time a modification to the file is pushed, your project is automatically built.
-* It allows contributors forking your project to easily use AppVeyor to continuously integrate their work.
+* It allows contributors to continuously integrate their work using AppVeyor when they fork your project.
 
-You should note that the file is not merged with the UI settings except for the environment variables and notification settings. The build version format is taken from the UI if it is not set in the file.
+You should note that the file is not merged with the settings UI, except for the environment variables and notification settings. The build version format is taken from the UI if it is not set in the file.
 
 The configuration file requires only a few settings to get started:
 
@@ -89,7 +89,7 @@ Command exited with code 1
 
 ## Restoring NuGet packages
 
-Habitat relies on public NuGet packages from NuGet.org and from the Sitecore NuGet feed. These sources are configured in the `nuget.config` file of the Habitat repository and NuGet automatically handles this file. To restore the packages in AppVeyor, you must add a command line instruction to run in the `before_build` section:
+Habitat relies on public NuGet packages from NuGet.org and from the [Sitecore NuGet feed](https://sitecore.myget.org/gallery/sc-packages). These sources are configured in the `nuget.config` file of the Habitat repository and NuGet automatically handles this file. To restore the packages in AppVeyor, you must add a command line instruction to run in the `before_build` section:
 
 ```yml
 before_build:
@@ -154,7 +154,7 @@ xUnit.net Console Runner (32-bit .NET 4.0.30319.42000)
 
 ## The Sitecore license
 
-As you don't want to share your Sitecore license to the rest of the world, you don't store it in your repository. The AppVeyor solution for private files is to commit an encrypted version and to add a decryption step to the `install` section, before the project is built:
+Since you do not want to share your Sitecore license to the rest of the world, you must not store it in your repository. AppVeyor's solution to manage private files is to commit an encrypted version and to add a decryption step to the `install` section, before the project is built:
 
 ```yml
 install:
@@ -162,7 +162,7 @@ install:
   - secure-file\tools\secure-file -decrypt .\lib\license.xml.enc -secret "%LicenseEncryptionKey%"
 ```
 
-[`secure-file`](https://www.appveyor.com/docs/how-to/secure-files/) is an AppVeyor tool to encrypt and decrypt files using a private encryption key. Using it is simple but tricky.
+[Secure-file](https://www.appveyor.com/docs/how-to/secure-files/) is an AppVeyor tool to encrypt and decrypt files using a private encryption key. Using it is simple but tricky.
 
 ### Encryption key
 
