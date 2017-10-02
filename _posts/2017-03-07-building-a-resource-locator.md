@@ -562,11 +562,11 @@ As you can see from the above, we search not only in the People records, but als
 
 Sources:
 
-[Extension Script](https://github.com/coveo/samples/ResourceLocator/Extension.py)
+[Extension Script](https://github.com/coveo/samples/blob/master/ResourceLocator/Extension.py)
 
-[Javascript Files](https://github.com/coveo/samples/ResourceLocator/JSScripts.zip)
+[Javascript Files](https://github.com/coveo/samples/blob/master/ResourceLocator/JSScripts.zip)
 
-[Search Interface](https://github.com/coveo/samples/ResourceLocator/PeopleMap.html)
+[Search Interface](https://github.com/coveo/samples/blob/master/ResourceLocator/PeopleMap.html)
 
 
 I hope you enjoyed this (lengthy) post. Let us know what else you have built with the Coveo Platform!
