@@ -5841,7 +5841,7 @@ a.coveo-folding-show-more, a.coveo-folding-show-less {
 .coveo-clear {
   clear: both; }
 
-@font-face {
+/*@font-face {
   font-family: 'Arimo';
   font-style: normal;
   font-weight: 400;
@@ -5864,7 +5864,7 @@ a.coveo-folding-show-more, a.coveo-folding-show-less {
   font-style: italic;
   font-weight: 700;
   src: local('Arimo Bold Italic'), local('Arimo-BoldItalic'), url(../fonts/Arimo_Bold_Italic.woff) format('woff'); }
-
+*/
 .CoveoSearchInterface {
   min-height: 100%;
   *zoom: 1;

@@ -9,3 +9,4 @@ Thumbs.db
 *.lock
 
 .idea
+.tags*

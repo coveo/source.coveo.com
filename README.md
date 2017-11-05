@@ -54,7 +54,7 @@ author:
 3. Run these commands:
 ```
 cd /path/to/your/repo
-docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll
+docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll jekyll server
 ```
 You can then access your local copy of the blog via [localhost:4000](http://localhost:4000/)
 

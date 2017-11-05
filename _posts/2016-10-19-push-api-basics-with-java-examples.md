@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Push API Basics with Java Examples
-excerpt: The Coveo Cloud Push API is a must-have feature that allows Coveo Cloud to index on-premise content management systems, including metadata and security permissions. While most content management systems include a built-in search engine, they are often underpowered, incapable of combining content from multiple repositories, and lack advanced features like Coveo's Usage Analytics and machine learning based Reveal.
+excerpt: The Coveo Cloud Push API is a must-have feature that allows Coveo Cloud to index on-premise content management systems, including metadata and security permissions. While most content management systems include a built-in search engine, they are often underpowered, incapable of combining content from multiple repositories, and lack advanced features like Coveo's Usage Analytics and Coveo Machine Learning.
 tags:
   - Java
   - Push API
@@ -14,7 +14,7 @@ published: true
 
 Hello!  I am excited to write my first post for the Coveo Technology blog. As Platform Evangelist, my role is to act as a bridge between the software and our customers, helping them discover, design and implement Coveo Cloud solutions.  And with that, I am going to dive right in to some technical information about the Coveo Cloud Push API.
 
-The Push API is a must-have feature that allows Coveo Cloud to index on-premise content management systems, including metadata and security permissions. While most content management systems include a built-in search engine, they are often underpowered, incapable of combining content from multiple repositories, and lack advanced features like Coveo's Usage Analytics and machine learning based Reveal.
+The Push API is a must-have feature that allows Coveo Cloud to index on-premise content management systems, including metadata and security permissions. While most content management systems include a built-in search engine, they are often underpowered, incapable of combining content from multiple repositories, and lack advanced features like Coveo's Usage Analytics and Coveo Machine Learning.
 
 Indexing your managed content in Coveo Cloud is a great alternative.  But with Coveo Cloud being, as the name suggests, a cloud-based search engine, it might not be immediately obvious how to accomplish this securely and efficiently.
 
