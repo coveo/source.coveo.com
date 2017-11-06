@@ -13,13 +13,13 @@ author:
 
 I've been working with the Salesforce platform at Coveo for about 3 years. In those 3 years, I always had the feeling that there was something missing in our continuous integration setup. A couple of years ago, we've automated the process of creating a managed package using PhantomJS. As an ISV, this is a well-deserved upgrade.
 
-Since then, we were able to gain a lot of speed in our release process. But still, there was something missing. There was a void in my developer life. Demoing, reviewing, and testing new features on our package was near impossible and needed a lot of effort. Since Salesforce organization can't be created easily, a developer had to create a new org, push all the code to that org from their machine, give credentials to everyone, etc. A lot of _works on my machine(TM)_ and _Jenkins is weird_ hapenned using that method.
+Since then, we were able to gain a lot of speed in our release process. But still, there was something missing. There was a void in my developer life. Demoing, reviewing, and testing new features on our package was near impossible and needed a lot of effort. Since Salesforce organizations can't be created easily, a developer had to create a new org, push all the code to that org from their machine, give credentials to everyone, etc. A lot of _works on my machine(TM)_ and _Jenkins is weird_ happened using that method.
 
 <!-- more -->
 
 ## Salesforce DX
 
-At last year's Dreamforce, Salesforce introduced Salesforce DX and, since Winter '18, the wait is over. Salesforce DX is now GA and as a bonus, it's free
+At last year's Dreamforce, Salesforce introduced Salesforce DX and, since Winter '18, the wait is over. Salesforce DX is now GA and as a bonus, it's free.
 
 From a high-level perspective, SFDX is a set of tools exposed through a CLI meant for Salesforce developers (DX = Developer Experience). It eases a lot of task with data manipulation, package management, source code management, and org management.
 
@@ -36,7 +36,7 @@ sfdx force:auth:web:login -s
 sfdx force:org:create -f config/scratch-def.json
 ```
 
-And here's the `scratch-def.json`
+And here's the `scratch-def.json`:
 
 ```json
 {
@@ -60,7 +60,7 @@ Let's start by making sure SFDX is correctly installed on each machine and works
 
 Then, using our source of truth, the next step is figuring out how to make it work for everyone. On previous projects, I've used the [phantomjs-prebuilt](http://phantomjs.org/) open source project to successfully install PhantomJs.
 
-I really liked the idea that, whatever the context (developer, windows, OS X, linux, Jenkins, Travis), it will install the needed binary correctly in the _install_ phase of NPM. That's the reason I've created [sfdx-prebuilt](https://github.com/coveo/sfdx-prebuilt). It's an open source project that will install, if needed, SFDX and return the right path to it. To use it, run a simple npm command:
+I really liked the idea that, whatever the context (developer, Windows, OS X, Linux, Jenkins, Travis), it will install the needed binary correctly in the _install_ phase of NPM. That's the reason I've created [sfdx-prebuilt](https://github.com/coveo/sfdx-prebuilt). It's an open source project that will install, if needed, SFDX and return the right path to it. To use it, run a simple npm command:
 
 ```
 npm install sfdx-prebuilt
@@ -91,17 +91,17 @@ Now that we have a good solution to run SFDX commands easily, the next problem i
 
 There are two ways you can authenticate to the SFDX CLI using only the command line: the `force:auth:sfdxurl:store` and the `force:auth:jwt:grant` commands. To the naked eye, both authentication seems equivalent but, don't get fooled: they are not.
 
-When you create a scratch org using the `force:auth:sfdxurl:store` command, you will not be able to re-authenticate the scratch org later on. By using the JWT token, you can easily and painlessly re-authenticate by simply using the scratch org username and the JWT token. So, right now, take my word for it: use the JWT flow. There is [good documentation to help you create all the needed certificate](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_jwt_flow.htm).
+When you create a scratch org using the `force:auth:sfdxurl:store` command, you will not be able to re-authenticate the scratch org later on. By using the JWT token, you can easily and painlessly re-authenticate to it by simply using the scratch org username and the JWT token. So, right now, take my word for it: use the JWT flow. There is [good documentation to help you create all the needed certificate](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_jwt_flow.htm).
 
 When you have the certificate, I've personally decided to use environment variable to pass them along to the code. CI systems can easily inject environment variable and developers can set them easily on their machihe or use something like [dotenv](https://github.com/motdotla/dotenv).
 
 ### Reuse Scratch Orgs
 
-One problem is still present: the fact that we must cleaning up unused scratch org.
+One problem is still present: the fact that we must clean up unused scratch org.
 
 There are some limits in Salesforce that force you to be smart about how many active scratch orgs you have. I've decided to go with one scratch org per SCM branch.
 
-The next problem is that, if you create any scratch org using the CI, the CI doesn't remember everything between each build. I've tried multiple things, but at the end of the day, I've decided to use the field called `AlmReference` on the `ActiveScratchOrg` object in Dev Hub.
+The next problem is that, if you create any scratch org using the CI, it doesn't remember everything between each build. I've tried multiple things, but at the end of the day, I've decided to use the field called `AlmReference` on the `ActiveScratchOrg` object in Dev Hub.
 
 Basically, Salesforce has a default field specifically made so your build systems can add information. I've decided to feed the field with a custom JSON file containing the current branch name. Since scratch org are simply a record in the dev org, you can delete them easily using standard record manipulation API.
 
