@@ -71,6 +71,6 @@ One problem is still present, the fact that we must cleaning up unused scratch o
 We are almost over, there is only one last issue: we cannot demo it easily. People still need to have a lot of knowledge about how to open a scratch org (Auth to SFDX, find the right org username, auth to the scratch org, open the scratch org, etc…). I’ve decided to create a gulp helper to encapsulate the complexity. Now, users simply have to “npm install” the project and write, `gulp openScratchOrg –-alias <branchName>`. It’s still a bit technical, but for me it's good enough. One thing I could do is create a web service that do all the hard part and returns the login URL prefilled with the session id for a specific branche name. Since this solution also need to have a way to authenticate user and make sure they are able to “open scratch org”, I’ve decided to wrap it up there and maybe do it in a future project.
 
 ## Conclusion and scripts
-So that’s it folks! Here’s, in my opinion, the best way to set up a Salesforce project today. I’ve shared [all the scripts I've used on github](https://github.com/coveo/sfdx-js/blob/master/examples/setupScratchOrg.js) Feel free to comment and create a pull request.
+So that’s it folks! Here’s, in my opinion, the best way to set up a Salesforce project today. I’ve shared [all the scripts I've used on github](https://github.com/coveo/sfdx-js/blob/master/examples/setupScratchOrg.js). Feel free to comment and create a pull request.
 
 Cheers!
