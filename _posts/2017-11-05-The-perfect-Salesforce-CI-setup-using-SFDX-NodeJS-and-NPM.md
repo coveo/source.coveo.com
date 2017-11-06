@@ -11,7 +11,7 @@ author:
 ---
 
 
-I've been working with the Salesforce platform at Coveo for about 3 years. In those 3 years, I always had the feeling that there was something missing in our continuous integration setup. A couple of years ago, we've automated the process of creating a managed package using PhantomJS. As an ISV, this is a well-deserved upgrade.
+I've been working with the Salesforce platform at Coveo for about 3 years. In those 3 years, I always had the feeling that there was something missing in our continuous integration setup. A couple of years ago, we've automated the process of creating a managed package using PhantomJS. As software developer, this is a well-deserved upgrade.
 
 Since then, we were able to gain a lot of speed in our release process. But still, there was something missing. There was a void in my developer life. Demoing, reviewing, and testing new features on our package was near impossible and needed a lot of effort. Since Salesforce organizations can't be created easily, a developer had to create a new org, push all the code to that org from their machine, give credentials to everyone, etc. A lot of _works on my machine(TM)_ and _Jenkins is weird_ happened using that method.
 
