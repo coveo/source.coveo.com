@@ -76,7 +76,7 @@ Much lighter! And keep in mind that this search box is not limited like what was
 
 And if you don’t know already, the whole framework is [open source](https://github.com/coveo/search-ui) so help yourself if you want something to change.
 
-Oh, and don’t worry if you are upgrading from 4.0: the legacy component still uses the Coveo JavaScript Framework 1.0. You can then upgrade your solution to 4.1 and upgrade your interface to Coveo Hive when you are ready. The upgrade guide has been release and is available [here](https://developers.coveo.com/x/QIY9Ag).
+Oh, and don’t worry if you are upgrading from 4.0: the legacy component still uses the Coveo JavaScript Framework 1.0. You can then upgrade your solution to 4.1 and upgrade your interface to Coveo Hive when you are ready. The upgrade guide has been released and is available [here](https://developers.coveo.com/x/QIY9Ag).
 
 ## So what’s next?
 
