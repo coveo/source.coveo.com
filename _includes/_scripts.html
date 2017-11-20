@@ -36,9 +36,6 @@
   })();
 </script>
 {% endif %}
-{% if site.inc.analytics.google %}
-  {% include _google-analytics.html %}
-{% endif %}
 {% if site.inc.analytics.coveo %}
   {% include _coveo-analytics.html %}
 {% endif %}
@@ -52,7 +49,7 @@ function enableSelectBoxes(){
   $('div.selectBox').each(function(){
 
     $(this).children('span.selected').html("Blog");
-    
+
     $(this).children('span.selected,span.selectArrow').click(function(){
       $('span.selectArrow').toggleClass('active');
       $('div.selectBox').toggleClass('active');
@@ -62,12 +59,12 @@ function enableSelectBoxes(){
         $(this).parent().children('div.selectOptions').css('display','none');
       }
     });
-    
+
     $(this).find('span.selectOption').click(function() {
       $(this).parent().css('display','none');
       location.replace($(this).attr('value'));
     });
-  });       
+  });
 }
 
 </script>

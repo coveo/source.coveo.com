@@ -83,6 +83,10 @@
   <meta name="author" content="{{ page.author.name }}" />
 {% endif %}
 
+{% if site.inc.analytics.google %}
+  {% include _google-analytics.html %}
+{% endif %}
+
 <link rel="canonical" href="{{ site.github.url }}{{ page.url }}">
 {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
 {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
