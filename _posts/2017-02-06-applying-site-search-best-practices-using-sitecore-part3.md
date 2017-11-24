@@ -12,7 +12,7 @@ author:
 
 This is the third installment on my journey to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook. The goal of this series is to explain in details how to apply each best practice using Coveo for Sitecore V4.
 
-If you missed the previous posts, you can find the full series [here](https://search.coveo.com/#sort=date%20descending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
+If you missed the previous posts, you can find the full series [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).
 <!-- more -->
 
 ## Search Driven Content Pages
@@ -174,4 +174,4 @@ Here are two example of the same page showing different content for two differen
 
 This is it for this part folks! Remember that a listing page is nothing more than a search result page with a custom style, scope, and set of features. This means that everything about context and Sitecore xDB can be used on a standard search result page.
 
-If you wish to read other post on this series, click [here](https://search.coveo.com/#sort=date%20descending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
+If you wish to read other post on this series, click [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).

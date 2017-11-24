@@ -11,7 +11,7 @@ author:
 ---
 
 This is the last part of my long adventure to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
-The previous parts can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
+The previous parts can be found [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).
 
 <!-- more -->
 
