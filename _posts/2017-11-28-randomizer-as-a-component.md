@@ -77,7 +77,7 @@ export class CoveoFeelingLucky extends Component {
                                           randomField: IFieldOption,
                                           maximumRandomRange: number): void {
     const randomNumber = Math.floor(Math.random() * maximumRandomRange);
-    // Creates a ranking expression, shifts every randomField value to a random number, and wraps them with the maximum range.
+    // Creates a ranking expression, which shifts every randomField value to a random number and wraps them with the maximum range.
     // This ensures that we have different results every time.
     const rankingFunction: IRankingFunction = {
       expression: `(@${randomField} + ${randomNumber}) % ${maximumRandomRange}`,
@@ -262,18 +262,6 @@ We also wanted to allow front-end developers to toggle the state using JavaScrip
 
 ```ts
 export class CoveoFeelingLucky extends Component {
-  static options: ICoveoFeelingLuckyOptions = {
-    ...
-    randomField: ComponentOptions.buildFieldOption({
-      defaultValue: 'randomfield'
-    }),
-    maximumRandomRange: ComponentOptions.buildNumberOption({
-      defaultValue: 1000000
-    }),
-    numberOfResults: ComponentOptions.buildNumberOption({
-      defaultValue: 1
-    })
-  };
   ...
   public toggle(): void {
     this.feelingLucky = !this.feelingLucky;
