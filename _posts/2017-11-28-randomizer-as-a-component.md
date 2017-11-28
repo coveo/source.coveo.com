@@ -77,7 +77,7 @@ export class CoveoFeelingLucky extends Component {
                                           randomField: IFieldOption,
                                           maximumRandomRange: number): void {
     const randomNumber = Math.floor(Math.random() * maximumRandomRange);
-    // Create a ranking expression, shifting every randomField value to a random number, and wrapping them with the maximum range.
+    // Creates a ranking expression, shifts every randomField value to a random number, and wraps them with the maximum range.
     // This ensures that we have different results every time.
     const rankingFunction: IRankingFunction = {
       expression: `(@${randomField} + ${randomNumber}) % ${maximumRandomRange}`,
@@ -86,7 +86,7 @@ export class CoveoFeelingLucky extends Component {
     queryBuilder.rankingFunctions.push(rankingFunction);
     // Adds @randomField to the expression to ensure the results have the required field.
     queryBuilder.advancedExpression.add(`@${randomField}`);
-    // Use the empty pipeline to remove Featured Results, Automatic Ranking, and all the other pipeline features.
+    // Uses the empty pipeline to remove Featured Results, Automatic Ranking, and all the other pipeline features.
     queryBuilder.pipeline = '';
     queryBuilder.sortCriteria = 'relevancy';
     queryBuilder.maximumAge = 0;
@@ -220,7 +220,7 @@ export class CoveoFeelingLucky extends Component {
 }
 ```
 
-Our three personalizable options for the actual randomizer would then look like this.
+The actual randomizer could also be personalizable, so we added three options for it:
 
 ```ts
 export interface ICoveoFeelingLuckyOptions {
@@ -253,6 +253,41 @@ export class CoveoFeelingLucky extends Component {
     if (this.isFeelingLucky()) {
       args.queryBuilder.numberOfResults = this.options.numberOfResults;
     }
+  }
+  ...
+}
+```
+
+We also wanted to allow front-end developers to toggle the state using JavaScript code, so we extracted the content of the `handleClickEvent()` method into its own public method:
+
+```ts
+export class CoveoFeelingLucky extends Component {
+  static options: ICoveoFeelingLuckyOptions = {
+    ...
+    randomField: ComponentOptions.buildFieldOption({
+      defaultValue: 'randomfield'
+    }),
+    maximumRandomRange: ComponentOptions.buildNumberOption({
+      defaultValue: 1000000
+    }),
+    numberOfResults: ComponentOptions.buildNumberOption({
+      defaultValue: 1
+    })
+  };
+  ...
+  public toggle(): void {
+    this.feelingLucky = !this.feelingLucky;
+    this.element.classList.toggle('selected');
+    this.hideElementsWithClassesToHide();
+    this.searchInterface.queryController.executeQuery();
+  }
+
+  public getCurrentState(): boolean {
+    return this.feelingLucky;
+  }
+
+  private handleClickEvent(): void {
+    this.toggle();
   }
   ...
 }
