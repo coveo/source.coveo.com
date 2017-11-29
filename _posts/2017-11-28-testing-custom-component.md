@@ -216,10 +216,10 @@ See that we can simulate two queries and compare them? Pretty useful!
 
 There are many more things that we could test, like:
 
-* Validating the other, less-fun attributes
-* Validate that it hides the components to hide when activated and that it un-hides them when deactivated.
-* Other possibilities, only limited to the human creativity.
+* Validating the other attributes.
+* Validating that specified components are hidden when the randomizer is active and displayed when the randomizer is deactivated.
+* Other possibilities, only limited to human creativity.
 
-But those in this post cover many scenarios that you might cross when you want to test your own components, so the rest will be left "as an exercise to the reader" <sup>tm</sup>.
+The tests in this post cover many scenarios that you might cross when you want to test your own components, so the rest will be left "as an exercise to the reader" <sup>tm</sup>.
 
 In the next and final installment, we will integrate this component into the Coveo for Sitecore Hive Framework.
