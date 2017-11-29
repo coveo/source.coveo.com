@@ -9,7 +9,7 @@ author:
 ---
 Now that we have [created a custom component](), we want to test its interactions with the Coveo JavaScript Search Framework.
 
-This post offers a deep dive into the Custom Coveo JavaScript Component Testing world.
+This post offers a deep dive into the Custom Coveo JavaScript component testing world.
 
 <!-- more -->
 
@@ -38,6 +38,7 @@ describe('CoveoFeelingLucky', () => {
     });
 
     afterEach(() => {
+        // Safe-guard to ensure that you don't use `feelingLucky` inbetween tests.
         feelingLucky = null;
     });
 
@@ -49,7 +50,7 @@ describe('CoveoFeelingLucky', () => {
 });
 ```
 
-WE have added a simple test to ensure that the tests are run. Execute the `npm run test` command (defined in the `coveo-search-ui-seed`'s `package.json` file) and validate that your test is executed (and passing 🙏).
+We have added a simple test to ensure that the tests are run. Execute the `npm run test` command (defined in the `coveo-search-ui-seed`'s `package.json` file) and validate that your test is executed (and passing 🙏).
 
 `Mock.basicComponentSetup<CoveoFeelingLucky>(CoveoFeelingLucky);` is a utility that creates the given component with a mocked environment. `feelingLucky` is now an object that has two properties, `cmp` and `env`.
 
@@ -59,7 +60,7 @@ WE have added a simple test to ensure that the tests are run. Execute the `npm r
 
 ## Our first tests
 
-Let's start with a very simple test. We want to ensure that the default state is `disabled`.
+Let's start with a very simple test. We want to ensure that the component is `disabled` by default.
 
 ```ts
 it('should be disabled on initialization', () => {
@@ -83,13 +84,13 @@ describe('when active and with the default options', () => {
 });
 ```
 
-The first part in the `beforeEach` block activates the component. We will reuse this block when we want the component to be active. As you have guessed, testing a disabled components has some limitations.
+The first part in the `beforeEach` block activates the component. We will reuse this block when we want the component to be active; As you have guessed, testing a disabled components has some limitations.
 
-`Simulate.query` is a very useful helper from the `coveo-search-ui-tests` library that simulate [the whole query events stack](https://developers.coveo.com/x/bYGfAQ#Events-QueryEvents), similar to when a user enters a new query in the search box.
+`Simulate.query` is a very useful helper from the `coveo-search-ui-tests` library that simulates [the whole query event stack](https://developers.coveo.com/x/bYGfAQ#Events-QueryEvents), similar to when a user enters a new query in the search box.
 
 It returns an object containing the results of the complete event flow, which is very useful to validate that some attributes have changed.
 
-We now have proof that our component, when enabled, modifies the number of results.
+We have proof that our component, when enabled, modifies the number of results.
 
 Even more important, we also want to be sure that the component does *not* override the number of results when disabled. That would be disastrous.
 
@@ -121,9 +122,9 @@ We now have basic testing and can safely explore into more dangerous fields*.
 
 ## Testing the component options
 
-Now we want to set the `randomField` to some value. Sure, it has a default value, but if I have a way better field name and definitely want to use, it _has_ to be used.
+We want to set the `randomField` to some specific value and test that my new, better name is using instead of the ugly, default one.
 
-So, let's validate that with the `aq` part of the query.
+So, let's validate this with the `aq` part of the query.
 
 ```ts
 describe('when active and setting the randomfield option', () => {
@@ -150,9 +151,9 @@ describe('when active and setting the randomfield option', () => {
 });
 ```
 
-First difference here, we use a another initialization method: `Mock.optionsComponentSetup<CoveoFeelingLucky, ICoveoFeelingLuckyOptions>(CoveoFeelingLucky, options);`.
+First difference here, we use another initialization method: `Mock.optionsComponentSetup<CoveoFeelingLucky, ICoveoFeelingLuckyOptions>(CoveoFeelingLucky, options);`.
 
-This method is the same as the `basicComponentSetup` but ensures that you pass the correct options type as a second argument, and type-safing is always nice! Kudos to TypeScript for type-safing my tests! 👏
+This method is the same as `basicComponentSetup` but ensures that you pass the correct options type as a second argument, and type safety is always better! Kudos to TypeScript for type-safing my tests! 👏
 
 We could also validate that we have a query ranking function that defines this random field:
 
@@ -164,17 +165,19 @@ it('should add the random field in the ranking function expression', () => {
 });
 ```
 
-We could test the other options, but they would be tested similarly and would be more boring. Let's skip to another fun part.
+We could test the other options, but they would be tested similarly and would be redundant. Let's skip to another fun part.
 
 ## Core features testing
 
 Our component is a button, it would be very useful to validate that it gets activated when the button is clicked:
 
 ```ts
-it('should toggle the state', () => {
-    $$(feelingLucky.cmp.element).trigger('click');
+describe('when clicking on the button', () => {
+    it('should toggle the state', () => {
+        $$(feelingLucky.cmp.element).trigger('click');
 
-    expect(feelingLucky.cmp.getCurrentState()).toBe(true);
+        expect(feelingLucky.cmp.getCurrentState()).toBe(true);
+    });
 });
 ```
 
