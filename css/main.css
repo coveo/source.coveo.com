@@ -2105,8 +2105,8 @@ a:hover {
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .illustration .container{
@@ -2152,9 +2152,7 @@ a:hover {
     margin-bottom:40px;
     transition:0.2s ease all;
 }
-.index:hover{
-    box-shadow: 0 0px 17px #b5b5b5;
-}
+
 .index > div {
     display: table-cell
 }
@@ -2423,7 +2421,7 @@ body.nav-hidden .site-nav {
 
 article {
     background: transparent;
-    padding: 60px 0;
+    padding: 60px 20px;
     font-size: 18px
 }
 
