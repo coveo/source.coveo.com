@@ -7,7 +7,7 @@ author:
   bio: Coveo for Sitecore Developer
   image: flguillemette.jpeg
 ---
-Now that we have [created a custom component](), we want to test its interactions with the Coveo JavaScript Search Framework.
+Now that we have [created a custom component](http://source.coveo.com/2017/11/30/randomizer-as-a-component/), we want to test its interactions with the Coveo JavaScript Search Framework.
 
 This post offers a deep dive into the Custom Coveo JavaScript component testing world.
 
@@ -19,11 +19,11 @@ Our last project started with the [search-ui-seed](https://github.com/coveo/sear
 
 This starter project references the [coveo-search-ui-tests](https://github.com/coveo/search-ui-tests), which is a simple library used to initialize environment variables that match the Coveo JavaScript Search Framework behavior.
 
-It uses the [jasmine](https://jasmine.github.io/) framework for testing, so this article will use jasmine too, but other frameworks should also work.
+It uses the [jasmine](https://jasmine.github.io/) framework for testing, so this article will use jasmine too. However, other frameworks should also work.
 
 We already have a test file for the `HelloWorld` component in the `tests/ui` folder. Duplicate the `HelloWorld.spec.ts` file, and name it `CoveoFeelingLucky.spec.ts`.
 
-Replace some names in this file, scrap the code that does not belong to the `CoveoFeelingLucky` component, and you should end up with something similar to:
+Replace some names in this file, scrap the code that does not belong to the `CoveoFeelingLucky` component, and you should end up with something that looks similar to this:
 
 ```ts
 import { CoveoFeelingLucky, ICoveoFeelingLuckyOptions } from '../../src/ui/CoveoFeelingLucky';
@@ -44,7 +44,7 @@ describe('CoveoFeelingLucky', () => {
 
     // Remove this after you have validated that tests from this file are run.
     it('should work', () => {
-        // 🙏 very hard that this does not fail.
+        // Run fast if this test fails.
         expect(true).toBe(true);
     });
 });
@@ -52,11 +52,11 @@ describe('CoveoFeelingLucky', () => {
 
 We have added a simple test to ensure that the tests are run. Execute the `npm run test` command (defined in the `coveo-search-ui-seed`'s `package.json` file) and validate that your test is executed (and passing 🙏).
 
-`Mock.basicComponentSetup<CoveoFeelingLucky>(CoveoFeelingLucky);` is a utility that creates the given component with a mocked environment. `feelingLucky` is now an object that has two properties, `cmp` and `env`.
+`Mock.basicComponentSetup<CoveoFeelingLucky>(CoveoFeelingLucky);` is a utility that creates the given component with a mocked environment. `feelingLucky` is now an object that has two properties: `cmp` and `env`.
 
 `cmp` should be used when you want to interact with the component.
 
-`env` should be used when you want to interface with the environment.
+`env` should be used when you want to interact with the environment.
 
 ## Our first tests
 
@@ -116,9 +116,9 @@ describe('when disabled', () => {
 
 In this example, we provided our own query builder. This simulates an existing environment that has already configured the query builder.
 
-We now have basic testing and can safely explore into more dangerous fields*.
+We now have basic testing and can safely explore into more dangerous fields\*.
 
-<sub><sup>*aforementioned fields are not actually dangerous.</sup></sub>
+<sub><sup>\*aforementioned fields are not actually dangerous.</sup></sub>
 
 ## Testing the component options
 
@@ -151,7 +151,7 @@ describe('when active and setting the randomfield option', () => {
 });
 ```
 
-First difference here, we use another initialization method: `Mock.optionsComponentSetup<CoveoFeelingLucky, ICoveoFeelingLuckyOptions>(CoveoFeelingLucky, options);`.
+The first difference is that we use another initialization method: `Mock.optionsComponentSetup<CoveoFeelingLucky, ICoveoFeelingLuckyOptions>(CoveoFeelingLucky, options);`.
 
 This method is the same as `basicComponentSetup` but ensures that you pass the correct options type as a second argument, and type safety is always better! Kudos to TypeScript for type-safing my tests! 👏
 
@@ -169,7 +169,7 @@ We could test the other options, but they would be tested similarly and would be
 
 ## Core features testing
 
-Our component is a button, it would be very useful to validate that it gets activated when the button is clicked:
+Our component is a button, so it would be very useful to validate that it gets activated when the button is clicked:
 
 ```ts
 describe('when clicking on the button', () => {
@@ -196,7 +196,7 @@ it('should execute a new query', () => {
 });
 ```
 
-Remember that this is a randomizer? We should check that the ranking changes between queries:
+Remember how this is a randomizer? We should check that the ranking changes between queries:
 
 ```ts
 it('should return different ranking function expressions for each query', () => {
@@ -218,8 +218,8 @@ There are many more things that we could test, like:
 
 * Validating the other attributes.
 * Validating that specified components are hidden when the randomizer is active and displayed when the randomizer is deactivated.
-* Other possibilities, only limited to human creativity.
+* Other possibilities, only limited by human creativity.
 
-The tests in this post cover many scenarios that you might cross when you want to test your own components, so the rest will be left "as an exercise to the reader" <sup>tm</sup>.
+The tests in this post cover many scenarios that you might come across when you want to test your own components, so the rest will be left as an "exercise to the reader" <sup>tm</sup>.
 
-In the next and final installment, we will integrate this component into the Coveo for Sitecore Hive Framework.
+In the next and final installment, we will integrate this component in the Coveo for Sitecore Hive Framework.
