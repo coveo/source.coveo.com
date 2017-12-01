@@ -122,7 +122,7 @@ We now have basic testing and can safely explore into more dangerous fields\*.
 
 ## Testing the component options
 
-We want to set the `randomField` to some specific value and test that my new, better name is using instead of the ugly, default one.
+We want to set the `randomField` to some specific value and test that my new, (arguably) better name is used instead of the (arguably) ugly default one.
 
 So, let's validate this with the `aq` part of the query.
 
