@@ -2,7 +2,7 @@
 layout: post
 
 title: "CoveoBlitz - the journey to a memorable event"
-tags: [Blitz]
+tags: [Blitz, Coveo Blitz]
 
 author:
   name: Andy Emond
