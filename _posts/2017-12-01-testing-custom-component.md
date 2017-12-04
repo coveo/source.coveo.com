@@ -5,7 +5,7 @@ tags: [coveo-search-ui, Custom Component, TypeScript, CoveoFeelingLucky]
 author:
   name: François Lachance-Guillemette
   bio: Coveo for Sitecore Developer
-  image: flguillemette.jpeg
+  image: flguillemette.jpg
 ---
 Now that we have [created a custom component](http://source.coveo.com/2017/11/30/randomizer-as-a-component/), we want to test its interactions with the Coveo JavaScript Search Framework.
 
