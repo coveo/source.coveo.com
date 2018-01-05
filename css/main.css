@@ -2105,8 +2105,8 @@ a:hover {
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .illustration .container{
@@ -2152,9 +2152,7 @@ a:hover {
     margin-bottom:40px;
     transition:0.2s ease all;
 }
-.index:hover{
-    box-shadow: 0 0px 17px #b5b5b5;
-}
+
 .index > div {
     display: table-cell
 }
@@ -2423,7 +2421,7 @@ body.nav-hidden .site-nav {
 
 article {
     background: transparent;
-    padding: 60px 0;
+    padding: 60px 20px;
     font-size: 18px
 }
 
@@ -2483,7 +2481,9 @@ article .container .single .tags a:hover{
 article address {
     margin: 0;
     font-size: 0.9em;
-    max-height: 48px
+    max-height: 48px;
+    display:flex;
+    align-items: center;
 }
 
 article address p {
@@ -2559,8 +2559,9 @@ article h3 {
 }
 
 article h4 {
-    font-size: 1.2em;
-    font-weight: 600
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #373737;
 }
 
 article hr {
@@ -2732,8 +2733,8 @@ article .full.zoomable img.zoom {
 }
 
 .highlight .err {
-    color: #a61717;
-    background-color: #e3d2d2
+    color: inherit;
+    background-color: inherit;
 }
 
 .highlight .k {
@@ -3213,3 +3214,45 @@ article .full.zoomable img.zoom {
 /*FIX UP BLUE HEADER*/
 header .upHeader nav ul {margin-bottom:0;}
 header .upHeader a { padding: 25px 10px 25px;}
+
+/*Post Content*/
+section .post_content em{
+    font-style:italic;
+}
+section .post_content ul,section .post_content ol{
+    margin:2em 2em;
+    padding: 0;
+}
+section .post_content ul ol,
+section .post_content ul ul{
+    margin:.5em 0;
+}
+section .post_content ol ul{
+    padding-left:25px;
+    margin:.5em 0;
+}
+section .post_content ul li{
+    position:relative;
+    padding-left:25px;
+}
+
+section .post_content ul li:before{
+    content: '\2022';
+    position:absolute;
+    left: 0;
+    color:#1D4F76;
+}
+
+section .post_content ul li ul li:before{
+    content: '-';
+}
+
+section .post_content ol>li {
+    counter-increment: step-counter;
+}
+section .post_content ol>li:before{
+   content: counter(step-counter)'.';
+   margin-right: 5px;
+   padding-right:7px;
+   color:#1D4F76;
+}
