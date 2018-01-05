@@ -2,7 +2,7 @@
 layout: post
 
 title: "Applying Site Search Best Practices using Sitecore Part 1"
-tags: [Sitecore, Coveo for Sitecore]
+tags: [Sitecore, Coveo for Sitecore, Site Search Best Practices Series]
 
 author:
   name: Simon Langevin
@@ -111,7 +111,7 @@ First of all, you will want to customize your copy (never the original!) of the 
 
 ```js
 function isOnSearchPage() {
-    return Coveo.$('#{idofmysearchpage}').length > 0;
+  return Coveo.$('#{idofmysearchpage}').length > 0;
 }
 ```
 
@@ -124,16 +124,16 @@ All of these components are then passed in the init method of the search page:
 
 ```js
 Coveo.$(function() {
-    Coveo.$('#@Model.Id').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
+  Coveo.$('#@Model.Id').coveoForSitecore('init', CoveoForSitecore.componentsOptions);
 });
 ```
 
-Which means that in order to "give control" of your search page to the search box, you need to add it as a component. 
+Which means that in order to "give control" of your search page to the search box, you need to add it as an external component. 
 This said, the search box is included before the options are defined, so you need to extend these options from the search box.
 
 ```js
-var searchOptionsForSearchBox = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
-CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+var searchBoxElement = document.getElementById('@Model.SearchboxId');
+CoveoForSitecore.externalComponents = [searchBoxElement];
 ```
 
 In the Coveo Search component, you will then also extend the options of the search box.
@@ -142,39 +142,30 @@ The end result would look like this for the SearchBoxView.cshtml:
 
 ```js
 function isOnSearchPage() {
-    return Coveo.$('#{idofmysearchpage}').length > 0;
+  return Coveo.$('#{id of my search page}').length > 0;
 }
-// This additional function is used to tell the search page to retrieve the Placeholder Text and place it in the search box
+// Simple utility function to preserve the PlaceholderText attribute.
 function setSearchboxPlaceholderText() {
-    Coveo.$('#@Model.SearchboxId').find('input.CoveoQueryBox').attr('placeholder', '@Model.SearchboxPlaceholderText');
-} 
+    Coveo.$('#@Model.SearchboxId').find('.magic-box-input input').attr('placeholder', '@Model.SearchboxPlaceholderText');
+}
 
 Coveo.$(function () {
-    if (!isOnSearchPage()) {
-        if (typeof(CoveoForSitecore) !== 'undefined') {
-            var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
-            
-            CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-            Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
-        } else {
-            Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
-        }
-        setSearchboxPlaceholderText();
-    } else {
-        //Here you will be able to use the Coveo.$ selector later in 2017. At the moment, the framework will only accept an html element
-        var searchBoxElement = document.getElementById('@Model.SearchboxId');
-        // Register the search box as an external component
-        var searchOptionsForSearchBox = {
-            externalComponents: [searchBoxElement]
-        };
-
-        //Extend the options of the search box to include the search page
-        CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
-
-        Coveo.$('#{idofmysearchpage}').on('afterInitialization', function () {
-            setSearchboxPlaceholderText();
-        });
-    }
+  if (!isOnSearchPage()) {
+      if (typeof(CoveoForSitecore) !== 'undefined') {
+          var searchOptionsForSearchBox =  @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+          CoveoForSitecore.componentsOptions = Coveo.$.extend({}, CoveoForSitecore.componentsOptions, searchOptionsForSearchBox);
+          Coveo.$('#@Model.SearchboxId').coveoForSitecore('initSearchbox', CoveoForSitecore.componentsOptions);
+      } else {
+          Coveo.$('#@Model.SearchboxId').coveo('initSearchbox', '@Model.GetSearchPageUrl()');
+      }
+      setSearchboxPlaceholderText();
+  } else {
+      var searchBoxElement = document.getElementById('@Model.SearchboxId');
+      CoveoForSitecore.externalComponents = [searchBoxElement];
+      Coveo.$('#{id of my search page}').on('afterInitialization', function () {
+          setSearchboxPlaceholderText();
+      });
+  }
 });
 ```
 
@@ -182,17 +173,20 @@ And for the SearchView.cshtml, replace the default:
 
 ```js
 Coveo.$(function() {
-    CoveoForSitecore.componentsOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+  CoveoForSitecore.componentsOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
 });
 ```
 Which simply grabs the properties of the search model, by:
 
 ```js
 Coveo.$(function() {
-    CoveoForSitecore.componentsOptions = Coveo.$.extend({}, @(Html.Raw(Model.GetJavaScriptInitializationOptions())), CoveoForSitecore.componentsOptions || {});
+  CoveoForSitecore.componentsOptions = @(Html.Raw(Model.GetJavaScriptInitializationOptions()));
+  if(CoveoForSitecore.externalComponents) {
+      CoveoForSitecore.componentsOptions.externalComponents = CoveoForSitecore.externalComponents;
+  }
 });
 ```
-Which extends the current options by adding the search box.
+Which extends the current options by adding the array of external components.
 
 If everything is done correctly, you should have a search box which behaves in two ways:
 
@@ -239,7 +233,7 @@ If you have the Enterprise edition, simply use the filtering rules on each of th
 
 Keep in mind that providing a long list of results looks messy. Keep control of the number of results using the "Number of results" field.
 
-For the main search page, do not provide result suggestions. Instead switch for Reveal queries suggestions. It is enabled by default; you simply need to create the [Reveal Model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_query_suggestions_in_a_query_pipeline.htm#Manage_Query_Suggestions_(Coveo_Cloud_V2)) and wait a for it to learn. This can take a few weeks.
+For the main search page, do not provide result suggestions. Instead switch to Machine Learning queries suggestions. It is enabled by default; you simply need to create the [Machine Learning Model](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=168) and wait a for it to learn. This can take a few weeks.
 
 ### 5. Test it
 
@@ -248,4 +242,4 @@ Once the site is live, keep track of the usage of the search box using the [Cove
 
 Note: Coveo for Sitecore does not send the right data as an Origin 3, this is a bug which will be fixed in Q1 2017.
 
-This is enough for now. I will cover the remaining practices in the next few weeks.
+This is enough for now. If you wish to keep reading, the full series can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).

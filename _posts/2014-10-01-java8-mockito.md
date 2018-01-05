@@ -11,6 +11,8 @@ author:
   image: guisim.jpg
 ---
 
+EDIT: With Mockito 2 you no longer need to use the following method. Lambdas are supported out of the box. You can use `argThat(str -> str.length >5)`.
+
 Java 8 is pretty cool. We (finally!) got Lambda Expressions in Java and a lot of other goodies. At Coveo, we started working with Java 8 as soon as the first stable release was available. As mentioned in [my previous blog post]({% post_url 2014-09-23-better-assertions %}), one way we're using Java 8 is in our unit tests.
 
 <!-- more -->

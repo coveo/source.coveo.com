@@ -3231,6 +3231,12 @@ section .post_content ol ul{
     padding-left:25px;
     margin:.5em 0;
 }
+
+
+section .post_content ul{
+    margin:2em 2em;
+    padding: 0;
+}
 section .post_content ul li{
     position:relative;
     padding-left:25px;

@@ -14,7 +14,7 @@ The excellent [Sitecore PowerShell Extension](https://marketplace.sitecore.net/M
 
 <!-- more -->
 
-Coveo has a [REST Search API](https://developers.coveo.com/display/SearchREST/REST+Search+API+Home) which gives you the opportunity to send complex queries, but the advantage of the SPE is its usability across all your search providers. For example, I might want to compare the amount of results returned between Lucene, Solr, and Coveo indexes with the same script. 
+Coveo has a [REST Search API](https://developers.coveo.com/x/RQEv) which gives you the opportunity to send complex queries, but the advantage of the SPE is its usability across all your search providers. For example, I might want to compare the amount of results returned between Lucene, Solr, and Coveo indexes with the same script. 
 
 ## Example with Lucene
 
@@ -142,14 +142,14 @@ $item.Fields | Format-List -Property *
 
 ```
 
-## What is different?
+## What's different?
 
 
 * Contains is considered an advanced field query in Coveo, which required the field to be a facet. I would not recommend _uniqueid as a facet since it contains a lot of unique values, so I changed the operator to an Equals.
 
 * Coveo usually creates one index per database, which means that the _uniqueid field will return a single value against the Coveo_master_index, not two like in the Lucene example.
 
-* When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo, by default, will return less values for performance reasons. You can increase this value in the config file: https://developers.coveo.com/display/SitecoreV4/Retrieving+Large+Sets+of+Items+Using+LINQ
+* When returning a specific amount of results, the Lucene example used a First 1000. I changed it to 100, since Coveo, by default, will return less values for performance reasons. You can increase this value in the configuration file: https://developers.coveo.com/x/NwHvAQ
 
 * _template does not contain any dashes when indexed by Coveo. However, templateid will . So I removed the dashes in my query, but I could also simply change the field for templateid.
 
