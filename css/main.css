@@ -3215,6 +3215,23 @@ article .full.zoomable img.zoom {
 header .upHeader nav ul {margin-bottom:0;}
 header .upHeader a { padding: 25px 10px 25px;}
 
+/*Post Content*/
+section .post_content em{
+    font-style:italic;
+}
+section .post_content ul,section .post_content ol{
+    margin:2em 2em;
+    padding: 0;
+}
+section .post_content ul ol,
+section .post_content ul ul{
+    margin:.5em 0;
+}
+section .post_content ol ul{
+    padding-left:25px;
+    margin:.5em 0;
+}
+
 
 section .post_content ul{
     margin:2em 2em;
@@ -3230,4 +3247,18 @@ section .post_content ul li:before{
     position:absolute;
     left: 0;
     color:#1D4F76;
+}
+
+section .post_content ul li ul li:before{
+    content: '-';
+}
+
+section .post_content ol>li {
+    counter-increment: step-counter;
+}
+section .post_content ol>li:before{
+   content: counter(step-counter)'.';
+   margin-right: 5px;
+   padding-right:7px;
+   color:#1D4F76;
 }
