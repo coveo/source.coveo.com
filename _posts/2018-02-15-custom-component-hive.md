@@ -23,7 +23,7 @@ The Coveo for Sitecore Hive Framework offers multiple entry points for customiza
 
 Previously in the series, we created the `CoveoFeelingLucky` component. Take its compiled JavaScript file (`coveo.feelinglucky.js`), available in the `bin` folder of your project, and copy it in a folder in your Sitecore's Website folder. For instance, mine is located in the `MySitecoreInstance/Website/CoveoCustom` folder. Also, don't forget to copy the `CoveoFeelingLucky.css` file, else (eyes beware) the component looks like this:
 
-![Ew](/images/coveoforsitecorehive/Feeling Lucky - Ew.png)
+![Ew](/images/coveoforsitecorehive/FeelingLucky_Ew.png)
 
 ## Creating a custom Resources component
 
@@ -56,7 +56,7 @@ No rocket science up to here.
 
 In Sitecore's Content Editor, in the Renderings section, create a new folder that will contain all of our custom components.
 
-![Custom Rendering Folder](/images/coveoforsitecorehive/Feeling Lucky - Renderings Custom Folder.png)
+![Custom Rendering Folder](/images/coveoforsitecorehive/FeelingLucky_RenderingsCustomFolder.png)
 
 Create a new `View Rendering` named `Custom Coveo Resources`.
 
@@ -70,11 +70,11 @@ In Sitecore's Content Editor, in the `Placeholder Settings` item, create a new `
 
 In the `Placeholder key` field, you can select existing placeholders. In our case, pick `/Coveo Hive/Layout/UI Resources`. In the `Allowed controls` field, add the `Custom Coveo Resources` rendering created in the previous step.
 
-![Placeholder Extender](/images/coveoforsitecorehive/Feeling Lucky - Patching the Allowed Controls.png)
+![Placeholder Extender](/images/coveoforsitecorehive/FeelingLucky_PatchingtheAllowedControls.png)
 
 This item will patch an existing placeholder with your custom allowed controls. It should now be visible when you add a new component in the `UI Resources` placeholder, just like magic!
 
-![Just Like Magic](/images/coveoforsitecorehive/Feeling Lucky - Just Like Magic.png)
+![Just Like Magic](/images/coveoforsitecorehive/FeelingLucky_JustLikeMagic.png)
 
 Use the extender items as much as you can if you want to customize Coveo placeholders.
 
@@ -96,7 +96,7 @@ In your Search Page, in Sitecore's Experience Editor, insert both the `Custom Co
 
 You should end up with your component initialized and ready to go:
 
-![Could not be luckier than with this book recommendation](/images/coveoforsitecorehive/Feeling Lucky - Result.png)
+![Could not be luckier than with this book recommendation](/images/coveoforsitecorehive/FeelingLucky_Result.png)
 
 ## Next Steps
 
