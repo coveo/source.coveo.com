@@ -7,7 +7,7 @@ author:
   bio: Coveo for Sitecore Developer
   image: flguillemette.jpg
 ---
-Now that we have [created](http://source.coveo.com/2017/11/30/randomizer-as-a-component/) and [tested](http://source.coveo.com/2017/12/01/testing-custom-component/) our custom component, we want to integrate it like any other component in Coveo for Sitecore Hive Framework.
+Now that we have [created](http://source.coveo.com/2017/11/30/randomizer-as-a-component/) and [tested](http://source.coveo.com/2017/12/01/testing-custom-component/) our custom component, we want to integrate it like any other component in the Coveo for Sitecore Hive Framework.
 
 This post offers a step by step approach to adding a custom component in the Coveo for Sitecore integration.
 
@@ -35,7 +35,7 @@ Since we need to include custom resources, the best way to go is to create our o
 
 In the `Website/Views` folder, create a new folder named `Coveo Hive Custom`. In it, create a new file named `CustomResources.cshtml`.
 
-All you need in this file is the following lines:
+All you need in this file are the following lines:
 
 ```html
 @using Coveo.UI.Components
@@ -54,7 +54,7 @@ No rocket science up to here.
 
 ### Adding the item in Sitecore
 
-In Sitecore's Content Editor, in the Renderings section, create a new folder that will contain all of our custom components.
+In the Sitecore Content Editor, in the Renderings section, create a new folder that will contain all of our custom components.
 
 ![Custom Rendering Folder](/images/coveoforsitecorehive/FeelingLucky_ RenderingsCustomFolder.png "Custom Rendering Folder")
 
@@ -64,9 +64,9 @@ In the `Path` field on this item, put the path of the view created in the previo
 
 ### Integrating this resources file in existing placeholders
 
-Now, this is the cool integration part. It allows our users to upgrade without the pain of losing customization in Coveo's placeholder allowed controls.
+We're now getting to the cool integration part. It allows our users to upgrade without the pain of losing customization in Coveo's placeholder allowed controls.
 
-In Sitecore's Content Editor, in the `Placeholder Settings` item, create a new `Coveo Hive Custom` folder. Insert a new item from the template `Templates/Coveo Hive/Structure/Placeholder Extender`. Name it `Allow My Custom Resources`.
+In the Sitecore Content Editor, in the `Placeholder Settings` item, create a new `Coveo Hive Custom` folder. Insert a new item from the template `Templates/Coveo Hive/Structure/Placeholder Extender`. Name it `Allow My Custom Resources`.
 
 In the `Placeholder key` field, you can select existing placeholders. In our case, pick `/Coveo Hive/Layout/UI Resources`. In the `Allowed controls` field, add the `Custom Coveo Resources` rendering created in the previous step.
 
@@ -82,9 +82,9 @@ Use the extender items as much as you can if you want to customize Coveo placeho
 
 The steps to integrate the `Feeling Lucky` component are similar to the resources file:
 
-* Create a new view file `Website/Views/Coveo Hive Custom/CoveoFeelingLucky.cshtml` and put `<div class="CoveoFeelingLucky" data-title="Feeling lucky?"></div>` for its content
-* Add a new item in Sitecore `Coveo Feeling Lucky`.
-* Integrate it in the placeholders that you want. The `Coveo Hive/Search Boxes/Searchbox Settings` is an interesting one since components in this placeholder are located right beside the search box.
+1. Create a new view file `Website/Views/Coveo Hive Custom/CoveoFeelingLucky.cshtml` and put `<div class="CoveoFeelingLucky" data-title="Feeling lucky?"></div>` for its content.
+2. Add a new item in Sitecore `Coveo Feeling Lucky`.
+3. Integrate it in the placeholders that you want. The `Coveo Hive/Search Boxes/Searchbox Settings` is an interesting one since components in this placeholder are located right beside the search box.
 
 ## Attaching the randomized field to a Sitecore source
 
@@ -92,7 +92,7 @@ This step is a reminder that you need to have your `randomfield` set on your ite
 
 ## Testing it out
 
-In your Search Page, in Sitecore's Experience Editor, insert both the `Custom Coveo Resources` component in the `UI Resources` placeholder and the `Coveo Feeling Lucky` component in the `Searchbox Settings` placeholder (besides the Search box).
+In the Sitecore Experience Editor of your search page, insert both the `Custom Coveo Resources` component in the `UI Resources` placeholder and the `Coveo Feeling Lucky` component in the `Searchbox Settings` placeholder (besides the Search box).
 
 You should end up with your component initialized and ready to go:
 
@@ -103,12 +103,12 @@ You should end up with your component initialized and ready to go:
 You might want to have a deep integration of the component in Sitecore like the actual existing components:
 
 * Leverage Sitecore's Rendering Parameters and use them as parameters for your `Coveo Feeling Lucky` view.
-* Show debugging information when you check Coveo's very useful `Show Debug Information`
-* Inject your own logic from a model
+* Show debugging information when you check Coveo's very useful `Show Debug Information`.
+* Inject your own logic from a model.
 
 I will instead refer to the more complete [Creating a Custom Coveo for Sitecore Hive Component - Multi-Sort Tutorial](https://developers.coveo.com/x/4QJPAg) which goes into far more details than this (already lengthy) blog post.
 
-You can also read about specific custom components topics here: [Coveo for Sitecore Hive Custom Components Reference](https://developers.coveo.com/display/SitecoreV4/Coveo+for+Sitecore+Hive+Custom+Components+Reference)
+You can also read about specific custom components topics here: [Coveo for Sitecore Hive Custom Components Reference](https://developers.coveo.com/x/0QJPAg)
 
 ## Coveo for Sitecore Hive with Custom Components wrap-up
 
