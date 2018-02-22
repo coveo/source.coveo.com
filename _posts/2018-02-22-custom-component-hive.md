@@ -56,7 +56,7 @@ No rocket science up to here.
 
 In the Sitecore Content Editor, in the Renderings section, create a new folder that will contain all of our custom components.
 
-![Custom Rendering Folder](/images/coveoforsitecorehive/FeelingLucky_ RenderingsCustomFolder.png "Custom Rendering Folder")
+![Custom Rendering Folder](/images/coveoforsitecorehive/FeelingLucky_RenderingsCustomFolder.png "Custom Rendering Folder")
 
 Create a new `View Rendering` named `Custom Coveo Resources`.
 
