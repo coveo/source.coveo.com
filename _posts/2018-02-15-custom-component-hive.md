@@ -21,7 +21,7 @@ The Coveo for Sitecore Hive Framework offers multiple entry points for customiza
 
 ## Copying the Resources files
 
-Previously in the series, we created the `CoveoFeelingLucky` component. Take its compiled JavaScript file (`coveo.feelinglucky.js`), available in the `bin` folder of your project, and copy it in a folder in your Sitecore's Website folder. For instance, mine is located in the `MySitecoreInstance/Website/CoveoCustom` folder. Also, don't forget to copy the `CoveoFeelingLucky.css` file, else (eyes beware) the component looks like this:
+Previously in the series, we created the `CoveoFeelingLucky` component. Take its compiled JavaScript file (`coveo.feelinglucky.js`), available in the `bin` folder of your project, and copy it in a folder in your Sitecore's `Website` folder. For instance, mine is located in the `MySitecoreInstance/Website/CoveoCustom` folder. Also, don't forget to copy the `CoveoFeelingLucky.css` file, else (eyes beware) the component looks like this:
 
 ![Ew](/images/coveoforsitecorehive/FeelingLucky_Ew.png)
 
@@ -114,7 +114,7 @@ You can also read about specific custom components topics here: [Coveo for Sitec
 
 The primary design choice of the Coveo for Sitecore Hive framework was to better reflect the features from the Coveo JavaScript Search Framework in Coveo for Sitecore.
 
-A whole set of components was created to mimic the behavior of the "Legacy" UI. Each of the components was created using the same process explained in this blog series, using a TypeScript component, testing it, and then integrating it into Coveo for Sitecore. This design even allows us to test those components _outside_ of Sitecore since they are merely an extension of the Coveo JavaScript Search Framework.
+A whole set of components was created to mimic the behavior of the "Legacy" UI. Each of the components was created using the same process explained in this blog series, [using a TypeScript component](http://source.coveo.com/2017/11/30/randomizer-as-a-component/), [testing it](http://source.coveo.com/2017/12/01/testing-custom-component/), and then integrating it into Coveo for Sitecore. This design even allows us to test those components _outside_ of Sitecore since they are merely an extension of the Coveo JavaScript Search Framework.
 
 All the components are included as a `coveo-search-ui` extension named `coveoforsitecore-search-ui`. You can see the full list of components included in the extension here: [Coveo for Sitecore Hive Components Reference](https://developers.coveo.com/x/JCcvAg)
 
