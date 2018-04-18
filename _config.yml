@@ -20,7 +20,7 @@ inc:
   # Company information
   company:      Coveo
   url:          http://www.coveo.com/
-  twitter:      coveodev
+  twitter:      coveo
 
   # Comments
   disqus:
