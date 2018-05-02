@@ -8,7 +8,7 @@ tags: [Index Extensions, Query Extensions, JS UI custom components, Push API]
 author:
   name: Wim Nijmeijer
   bio: Technical Evangelist
-  image: /images/wim.jpg
+  image: wim.jpg
 ---
 
 _This is the second blog post of a new series entitled “Build it with Coveo”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
