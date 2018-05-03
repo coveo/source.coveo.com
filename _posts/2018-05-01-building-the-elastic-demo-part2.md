@@ -17,6 +17,7 @@ _This is the third blog post of a new series entitled “Build it with Coveo”.
 - Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
 - Use public content that everybody is familiar with. 
 - Build it in 2-4 weeks time.
+
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
@@ -34,127 +35,76 @@ The Movie database result template looks like:
 ``` html
 <script id="Movie" class="result-template" type="text/html" data-layout="list" data-field-mytype="Movie">
 	<div class="coveo-result-frame movie">
-	<span class="CoveoMyBackground" data-show-poster="true"></span>
-	<div class="result-float-right role-based-text-color">
-		<span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
-		<span class="CoveoMySentiment"></span>
-		<div class="CoveoQuickview"></div>
-		<div class="CoveoFieldValue" data-field="@myvoteaverage" data-text-caption="★" style="display:block"></div>
-		<div class="CoveoFieldValue" data-field="@mysentimentvalue"></div>
-		<div class="CoveoFieldValue" data-field="@myprofitvalue" data-text-caption="Profit (x100M):" style="display:block"></div>
-		<div class="CoveoFieldValue" data-field="@mypopularity" data-text-caption="Popularity:" data-helper="currency" data-helper-options-decimals="0" data-helper-options-symbol=" " style="display:block"></div>
-		<div class="CoveoMyFeatured"></div>
-		<div class="CoveoMyART"></div>
-	</div>
-	<a class="CoveoResultLink"></a>
+            <span class="CoveoMyBackground" data-show-poster="true"></span>
+            <div class="result-float-right role-based-text-color">
+                <span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
+                <span class="CoveoMySentiment"></span>
+                <div class="CoveoQuickview"></div>
+                <div class="CoveoFieldValue" data-field="@myvoteaverage" data-text-caption="★" style="display:block"></div>
+                <div class="CoveoFieldValue" data-field="@mysentimentvalue"></div>
+                <div class="CoveoFieldValue" data-field="@myprofitvalue" data-text-caption="Profit (x100M):" style="display:block"></div>
+                <div class="CoveoFieldValue" data-field="@mypopularity" data-text-caption="Popularity:" data-helper="currency" data-helper-options-decimals="0" data-helper-options-symbol=" " style="display:block"></div>
+                <div class="CoveoMyFeatured"></div>
+                <div class="CoveoMyART"></div>
+            </div>
+            <a class="CoveoResultLink"></a>
 
-	<div class="CoveoExcerpt"></div>
+            <div class="CoveoExcerpt"></div>
 
-	<span class="CoveoResultFolding"
-		data-result-template-id="Review"
-		data-normal-caption="Reviews"
-		data-more-caption="Show more reviews"
-		data-expanded-caption="Reviews"
-		data-less-caption="Show less reviews"
-		data-one-result-caption="Only one review"></span>
+            <span class="CoveoResultFolding"
+                data-result-template-id="Review"
+                data-normal-caption="Reviews"
+                data-more-caption="Show more reviews"
+                data-expanded-caption="Reviews"
+                data-less-caption="Show less reviews"
+                data-one-result-caption="Only one review"></span>
 
-	<div class="CoveoDetailsAndRelated">
-		<table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
-			<tr data-field="@source" data-caption="Source"></tr>
-			<tr data-field="@mystatus" data-caption="Status"></tr>
-		<tr data-field="@mycountries" data--caption="Production Countries"></tr>
-		<tr data-field="@mygenre" data-caption="Genres"></tr>
-		<tr data-field="@myrelatedartist" data-caption="Soundtrack (artists)" data-split-values="true"></tr>
-		<tr data-field="@myrelatedsongs" data-caption="Soundtrack (songs)"></tr>
-		</table>
-	</div>
+            <div class="CoveoDetailsAndRelated">
+                <table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
+                    <tr data-field="@source" data-caption="Source"></tr>
+                    <tr data-field="@mystatus" data-caption="Status"></tr>
+                <tr data-field="@mycountries" data--caption="Production Countries"></tr>
+                <tr data-field="@mygenre" data-caption="Genres"></tr>
+                <tr data-field="@myrelatedartist" data-caption="Soundtrack (artists)" data-split-values="true"></tr>
+                <tr data-field="@myrelatedsongs" data-caption="Soundtrack (songs)"></tr>
+                </table>
+            </div>
 
-	<div class="CoveoResultsRelated youtube"
-	data-result-template-id="YouTubeVideoList"
-	data-name="Videos"
-	data-normal-caption="Videos"
-	data-title-caption="Related videos (based upon title)"
-	data-expanded-caption="Hide Related Youtube Videos"
-	data-no-results-caption="No related videos found"
-	data-query='@title="[FIELD1]" @filetype=YoutubeVideo'
-	data-key-check='@filetype;YoutubeVideo'
-	data-expanded-comment="Show YouTube videos which title contains '[FIELD1]'"
-	data-extra-boost=false
-	data-fields="title"
-	data-partial-match=false
-	data-number-Of-Results=5
-	data-help='#ResultHelpYoutube'>
-	</div>
+            <div class="CoveoResultsRelated youtube"
+            data-result-template-id="YouTubeVideoList"
+            data-name="Videos"
+            data-normal-caption="Videos"
+            data-title-caption="Related videos (based upon title)"
+            data-expanded-caption="Hide Related Youtube Videos"
+            data-no-results-caption="No related videos found"
+            data-query='@title="[FIELD1]" @filetype=YoutubeVideo'
+            data-key-check='@filetype;YoutubeVideo'
+            data-expanded-comment="Show YouTube videos which title contains '[FIELD1]'"
+            data-extra-boost=false
+            data-fields="title"
+            data-partial-match=false
+            data-number-Of-Results=5
+            data-help='#ResultHelpYoutube'>
+            </div>
 
-	<div class="CoveoResultsRelated music"
-	data-result-template-id="Music"
-	data-name="Music"
-	data-normal-caption="Music"
-	data-title-caption="Related music (based upon related songs and related artists)"
-	data-expanded-caption="Hide Related Music"
-	data-no-results-caption="No related music found"
-	data-query='@myrelatedsongs=("[FIELD1]") @myrelatedartist=("[FIELD2]") @source=Music $qre(expression: &#39;soundtrack&#39;,modifier:&#39;300&#39;, isConstant:&#39;true&#39;)'
-	data-key-check='@source;Music'
-	data-expanded-comment="Show Music with Related Songs/Artists of: [FIELD1] and [FIELD2]"
-	data-extra-boost=false
-	data-fields="myrelatedsongs;myrelatedartist"
-	data-filter-field="@myalbum"
-	data-partial-match=false
-	data-number-Of-Results=5
-	data-help='#ResultHelpMusic'>
-	</div>
-
-	<div class="CoveoResultsRelated book"
-	data-result-template-id="DefaultBook"
-	data-name="Scripts"
-	data-normal-caption="Scripts"
-	data-title-caption="Related scripts (based upon title)"
-	data-expanded-caption="Hide Related Scripts"
-	data-no-results-caption="No related Scripts found"
-	data-query='@title="[FIELD1]" @source=Books'
-	data-key-check='@source;Books'
-	data-expanded-comment="Show Scripts with matching title: [FIELD1]"
-	data-extra-boost=false
-	data-fields="title"
-	data-partial-match=false
-	data-number-Of-Results=5
-	data-help='#ResultHelpScript'>
-	</div>
-
-	<div class="CoveoResultsRelated Wiki"
-	data-result-template-id="DefaultWiki"
-	data-name="Wikipedia"
-	data-normal-caption="Wikipedia"
-	data-title-caption="Related wikipedia (based upon movie id)"
-	data-expanded-caption="Hide Related Wikipedia"
-	data-no-results-caption="No related Wikipedia found"
-	data-query="@myimdb=[FIELD1] @mytype=Wikipedia"
-	data-key-check='@mytype;Wikipedia'
-	data-expanded-comment="Show Wikipedia with movie id: [FIELD1]"
-	data-extra-boost=false
-	data-fields="myimdb"
-	data-partial-match=false
-	data-number-Of-Results=5
-	data-help='#ResultHelpWiki'>
-	</div>
-	<div class="CoveoResultsRelated Play"
-	data-result-template-id="DefaultWiki"
-	data-name="Playing"
-	data-normal-caption="Playing"
-	data-title-caption="Today playing:"
-	data-expanded-caption="Hide Playing nearby"
-	data-no-results-caption="Nothing found playing today nearby {LOC} (retrieved from Google)"
-	data-query='https://www.google.com/search?q=[FIELD1]&amp;oq=[FIELD1]&amp;near={LOC}'
-	data-key-check=''
-	data-div-to-get='div.tb_c;.lr_c_fcb;a.vk_bk.lr-s-din;div.lr_c_fce'
-	data-expanded-comment=""
-	data-extra-boost=false
-	data-fields="title"
-	data-partial-match=false
-	data-number-Of-Results=5
-	data-help='#ResultHelpWiki'>
-	</div>
-</div>
+            <div class="CoveoResultsRelated music"
+            data-result-template-id="Music"
+            data-name="Music"
+            data-normal-caption="Music"
+            data-title-caption="Related music (based upon related songs and related artists)"
+            data-expanded-caption="Hide Related Music"
+            data-no-results-caption="No related music found"
+            data-query='@myrelatedsongs=("[FIELD1]") @myrelatedartist=("[FIELD2]") @source=Music $qre(expression: &#39;soundtrack&#39;,modifier:&#39;300&#39;, isConstant:&#39;true&#39;)'
+            data-key-check='@source;Music'
+            data-expanded-comment="Show Music with Related Songs/Artists of: [FIELD1] and [FIELD2]"
+            data-extra-boost=false
+            data-fields="myrelatedsongs;myrelatedartist"
+            data-filter-field="@myalbum"
+            data-partial-match=false
+            data-number-Of-Results=5
+            data-help='#ResultHelpMusic'>
+            </div>
+    </div>
 
 </script>
 ```
@@ -162,13 +112,13 @@ The Movie database result template looks like:
 And will show in the interface like:
 ![RL1]({{ site.baseurl }}/images/20180501/RL1.png)
 
-Lots of the components inside the resulttemplate are out of the box (CoveoFieldValue, CoveoExcerpt, CoveoResultLink), others (CoveoMyBackground, CoveoResultsRelated) are custom made (see next section).
+Lots of the components inside the resulttemplate are out of the box (```CoveoFieldValue```, ```CoveoExcerpt```, ```CoveoResultLink```), others (```CoveoMyBackground```, ```CoveoResultsRelated```) are custom made (see next section).
 
 ## Custom controls
 You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files, and that is what we have used for the demo. A few of the components will be discussed in detail. You can always view them [here](https://elastic.coveodemo.com/demo/js/pages.js).
 
 ### CoveoMyBackground
-The first custom control is CoveoMyBackground. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also uses the color gradient (from the Indexing Pipeline Extension) to create a nice gradient color, based upon the image of the movie/album.
+The first custom control is ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also uses the color gradient (from the Indexing Pipeline Extension) to create a nice gradient color, based upon the image of the movie/album.
 ``` javascript
 //***************************
 //MyBackground
@@ -248,7 +198,7 @@ Coveo.CoveoJQuery.registerAutoCreateComponent(MyBackground);
 ```
 
 ### CoveoMyART
-Our next custom control is CoveoMyArt, it shows a 'Featured' label on the result when the result was promoted by our Machine Learning [Art](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
+Our next custom control is ```CoveoMyArt```, it shows a 'Featured' label on the result when the result was promoted by our Machine Learning [Art](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
 ``` javascript
 //***************************
 //ART result
@@ -269,7 +219,7 @@ Coveo.CoveoJQuery.registerAutoCreateComponent(MyART);
 ```
 
 ### CoveoResultsRelated
-One of my favorites: CoveoResultsRelated, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). We can configure the Custom control by using the properties:
+One of my favorites: ```CoveoResultsRelated```, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). We can configure the Custom control by using the properties:
 ``` html
 <div class="CoveoResultsRelated youtube"
             data-result-template-id="YouTubeVideoList"
@@ -288,10 +238,10 @@ One of my favorites: CoveoResultsRelated, it shows (based upon a user action) an
             data-help='#ResultHelpYoutube'>
           </div>
 ```
-In the above example we specify the data-query to execute as '@title="[FIELD1]" @filetype=YoutubeVideo'. The data-fields (in this case title) will be used to fill up the [FIELD1] in the query. So only when the end user clicks on a button, the query will be executed... at least that was the first behavior of the component. 
+In the above example we specify the ```data-query``` to execute as '@title="[FIELD1]" @filetype=YoutubeVideo'. The ```data-fields``` (in this case title) will be used to fill up the [FIELD1] in the query. So only when the end user clicks on a button, the query will be executed... at least that was the first behavior of the component. 
 
 Because we changed the layout to use tabs on a result, it does not look very professional if people see 4 different tabs and when they click on them 'No results' are shown. Bad user-experience! 
-So we added an additional check inside the CoveoDetailsAndRelated component, which is executing a query with the data-key-check field. If the key with the value is not present in the data, we can hide the tab. A much better user-experience. BUT BE AWARE, if 10 results are displayed this means 10 additional queries!!!
+So we added an additional check inside the ```CoveoDetailsAndRelated``` component, which is executing a query with the ```data-key-check``` field. If the key with the value is not present in the data, we can hide the tab. A much better user-experience. BUT BE AWARE, if 10 results are displayed this means 10 additional queries!!!
 ``` javascript
 //***************************
 //composeQuery
@@ -488,13 +438,13 @@ const usersMap = {
 };
 ```
 
-The above will change in the future when we will support rankingfunctions, then the whole set of @mypopularity will be replaced by a single decay function.
+The above will change in the future when we will support rankingfunctions, then the whole set of ```@mypopularity``` will be replaced by a single decay function.
 
 ## UI, tips and tricks
 Some special tips and tricks.
 
 ### Adding context
-In order to use context like a userRole we added [context](https://docs.coveo.com/en/399) to our Queries using the following code:
+In order to use context like a ```userRole``` we added [context](https://docs.coveo.com/en/399) to our Queries using the following code:
 ``` javascript
 $('#search').on("buildingQuery", function (e, args) {
 	//Add the context
@@ -507,7 +457,7 @@ $('#search').on("buildingQuery", function (e, args) {
 All [events](https://docs.coveo.com/en/417) in Coveo can be adjusted to fit to your needs.
 
 ### Adding a Relevancy boost when a user profile is selected
-When a user profile is selected we want to set the [hiddenQuery](https://docs.coveo.com/en/3) so it will change the relevancy based upon what was set for the current profile. In this case: hd means the description provided to the user (in the breadcrumb section), hq is the actual hidden query to execute.
+When a user profile is selected we want to set the [hiddenQuery](https://docs.coveo.com/en/3) so it will change the relevancy based upon what was set for the current profile. In this case: ```hd``` means the description provided to the user (in the breadcrumb section), ```hq``` is the actual hidden query to execute.
 ``` javascript
 $('#search').on("buildingQuery", function (e, args) {
 	//Set the proper pipeline
@@ -692,7 +642,7 @@ function changeQuery(query) {
 ```
 
 ### Add additional (missing or cleaning) metadata fields to our retrieved results
-Sometimes you want to enrich the result set with your own result fields (on rendering time). In our case a default field called 'collection' was missing in our data. So we add it to our results. Coveo has an event for that:
+Sometimes you want to enrich the result set with your own result fields (on rendering time). In our case a default field ```collection``` was missing in our data. So we add it to our results. 
 ``` javascript
 $('#search').on("preprocessResults", (e, args) => {
 	//We want to add an additional field (if it is missing) to the results
@@ -740,7 +690,7 @@ window.location.reload();
 ```
 
 ### Get query suggestions on our landing page
-In our [Partner demo](https://elastic.coveodemo.com/demo-partners) we provide a landing page with popular queries. Based upon the userRole the [querySuggestions](https://developers.coveo.com/x/iQGwAQ) will be retrieved using our api, using the following code:
+In our [Partner demo](https://elastic.coveodemo.com/demo-partners) we provide a landing page with popular queries. Based upon the ```userRole``` the [querySuggestions](https://developers.coveo.com/x/iQGwAQ) will be retrieved using our api, using the following code:
 ``` javascript
 
 function getQuerySuggest(profile) {
@@ -903,7 +853,7 @@ function setSearchParams() {
 ```
 
 ### Sending a PageView event when clicking on a URL
-In a normal situation your public website or other system could sent additional PageView events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The Recommendations component will look at your current journey and will use our Machine Learning to start recommending articles based upon other peoples journey.
+In a normal situation your public website or other system could sent additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based upon other peoples journey.
 
 In our case we simply want to add such an event whenever end-users are clicking on the preview/and or are following the hyperlink.
 ``` javascript

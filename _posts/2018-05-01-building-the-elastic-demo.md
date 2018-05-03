@@ -17,6 +17,7 @@ _This is the second blog post of a new series entitled “Build it with Coveo”
 - Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
 - Use public content that everybody is familiar with. 
 - Build it in 2-4 weeks time.
+
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
