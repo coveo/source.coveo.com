@@ -521,4 +521,4 @@ except Exception as e:
 
 ```
 
-Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](2018/05/01/building-the-elastic-demo-part2).
+Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](~/2018/05/01/building-the-elastic-demo-part2).
