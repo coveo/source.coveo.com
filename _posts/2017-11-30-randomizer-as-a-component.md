@@ -7,7 +7,7 @@ author:
   bio: Technical Writer and Coveo for Sitecore Developer
   image: amoreauflguillemette.jpeg
 ---
-In our last post about [Randomizing Results from a Coveo Index](http://source.coveo.com/2017/06/20/randomizing-results-from-a-coveo-index/), we talked about how we managed to create a search page that returns random results from our index.
+In our last post about [Randomizing Results from a Coveo Index](https://source.coveo.com/2017/06/20/randomizing-results-from-a-coveo-index/), we talked about how we managed to create a search page that returns random results from our index.
 Following this, we wanted to have a full-fledged custom component for the sake of doing things cleanly (we love "clean" at Coveo).
 
 This post will go in-depth about our journey to "Component-ize" our randomizer using TypeScript.

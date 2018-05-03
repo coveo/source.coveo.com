@@ -119,7 +119,7 @@ Metadata can be added directly on the [properties](https://developers.coveo.com/
 However, this set of metadata will be static. Since the items in a cart can always change, you will need your set of metadata to be dynamic. 
 
 My favorite approach is to send the metadata programmatically by adding the key value directly to the ```analyticsCustomMetadata``` option of the component. 
-In the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
+In the [first part of this series](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
 You can use the same logic for custom analytics metadata, so if you want to send the item(s) in the cart of your site visitor, you could do something like this:
 
 ```js
@@ -143,7 +143,7 @@ Now that you know how to add metadata to existing events and create custom event
 You may think that tracking the rest of the solution is out of the scope of your search solution and you are not entirely wrong. 
 However, sending the entire user journey to the Coveo Machine Learning engine will allow you to use the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
 
-To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Alternatively, you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
+To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Alternatively, you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
 
 You can find a detailed guide for the Page Views Analytics component [here](https://developers.coveo.com/x/9IYdAg).
 

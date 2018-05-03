@@ -37,10 +37,10 @@ The Layout section will give you a large amount of options, so here is what I re
 
 This will result in a simple result page without the option for your users to search using free text queries.
 
-If you followed the [first part](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/) of this series of blogs, you might have removed the search box already to use a global one in the header. 
+If you followed the [first part](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/) of this series of blogs, you might have removed the search box already to use a global one in the header. 
 Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
 
-When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in [Part 2 section 8](http://source.coveo.com/2017/01/16/applying-site-search-best-practices-using-sitecore-part2) of this series.
+When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in [Part 2 section 8](https://source.coveo.com/2017/01/16/applying-site-search-best-practices-using-sitecore-part2) of this series.
 
 Remember to always copy the .cshtml file before editing it! Editing a base file is a bad practice, and it quickly turns upgrading into a nightmare.
 

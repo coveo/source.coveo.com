@@ -7,7 +7,7 @@ author:
   bio: Coveo for Sitecore Developer
   image: flguillemette.jpg
 ---
-Now that we have [created a custom component](http://source.coveo.com/2017/11/30/randomizer-as-a-component/), we want to test its interactions with the Coveo JavaScript Search Framework.
+Now that we have [created a custom component](https://source.coveo.com/2017/11/30/randomizer-as-a-component/), we want to test its interactions with the Coveo JavaScript Search Framework.
 
 This post offers a deep dive into the Custom Coveo JavaScript component testing world.
 

@@ -13,13 +13,13 @@
 	<!-- <link rel="stylesheet" href="/css/CoveoFullSearch.css" /> -->
 	{% include _search.html %}
 
-    <link rel="stylesheet" type="text/css" href="{{ site.github.url | replace: 'http://', '//' }}/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/css/main.css"/>
     <link rel="shortcut icon" href="{{ site.github.url }}/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-144x144-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-114x114-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-72x72-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-precomposed.png" />
-    <link href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url }}/images/apple-touch-icon-144x144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url }}/images/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url }}/images/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url }}/images/apple-touch-icon-precomposed.png" />
+    <link href="{{ site.github.url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
 
     <meta property="og:site_name" content="{{ site.title }}" />
     <meta name="twitter:card" content="summary" />
@@ -45,24 +45,24 @@
 {% endif %}
 
 {% if page.url %}
-  <meta content="{{ site.github.url | replace: 'http://', '//' }}{{ page.url }}" property="og:url" />
+  <meta content="{{ site.github.url }}{{ page.url }}" property="og:url" />
 {% endif %}
 
 {% if page.date %}
   <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time" />
-  <meta content="{{ site.github.url | replace: 'http://', '//' }}/about/" property="article:author" />
+  <meta content="{{ site.github.url }}/about/" property="article:author" />
 {% endif %}
 
 {% if page.image %}
-  <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/{{ page.image }}" />
+  <meta property="og:image" content="{{ site.github.url }}/{{ page.image }}" />
 {% else %}
   {% if page.cover_image %}
-    <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ page.cover_image }}">
+    <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}">
   {% else %}
-    <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ site.inc.logo }}" />
+    <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}" />
     <meta property="og:image:width" content="560" />
     <meta property="og:image:height" content="560" />
-    <meta name="twitter:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ site.inc.logo }}" />
+    <meta name="twitter:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}" />
   {% endif %}
 {% endif %}
 
@@ -87,7 +87,7 @@
   {% include _google-analytics.html %}
 {% endif %}
 
-<link rel="canonical" href="{{ site.github.url | replace: 'http://', '//' }}{{ page.url }}">
+<link rel="canonical" href="{{ site.github.url }}{{ page.url }}">
 {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
 {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
 
@@ -149,7 +149,7 @@
             {% if site.inc.facebook %}
             <a href="http://facebook.com/{{ site.inc.facebook }}" title="Follow on Facebook" target="_blank"><i class="icon icon-facebook black"></i></a>
             {% endif %}
-            <a href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" title="RSS Feed">
+            <a href="{{ site.github.url }}/feed.xml" title="RSS Feed">
                 <i class="icon icon-rss black"></i>
             </a>
         </nav>

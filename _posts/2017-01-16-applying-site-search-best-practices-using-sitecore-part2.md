@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-For those of you who missed [part 1](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), this series of blogs is to provide technical details on each of the best practices mentioned in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
+For those of you who missed [part 1](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), this series of blogs is to provide technical details on each of the best practices mentioned in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
 
 <!-- more -->
 

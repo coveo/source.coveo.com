@@ -7,7 +7,7 @@ author:
   bio: Coveo for Sitecore Developer
   image: flguillemette.jpg
 ---
-Now that we have [created](http://source.coveo.com/2017/11/30/randomizer-as-a-component/) and [tested](http://source.coveo.com/2017/12/01/testing-custom-component/) our custom component, we want to integrate it like any other component in the Coveo for Sitecore Hive Framework.
+Now that we have [created](https://source.coveo.com/2017/11/30/randomizer-as-a-component/) and [tested](https://source.coveo.com/2017/12/01/testing-custom-component/) our custom component, we want to integrate it like any other component in the Coveo for Sitecore Hive Framework.
 
 This post offers a step by step approach to adding a custom component in the Coveo for Sitecore integration.
 
@@ -88,7 +88,7 @@ The steps to integrate the `Feeling Lucky` component are similar to the resource
 
 ## Attaching the randomized field to a Sitecore source
 
-This step is a reminder that you need to have your `randomfield` set on your items! Take a look back at [the first randomizer article](http://source.coveo.com/2017/06/20/randomizing-results-from-a-coveo-index/#introducing-a-random-field-on-items) and apply the Indexing Pipeline Extension to your Sitecore sources. Follow this link if you want to know how to do this: [Applying an Extension to a Source](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=335)
+This step is a reminder that you need to have your `randomfield` set on your items! Take a look back at [the first randomizer article](https://source.coveo.com/2017/06/20/randomizing-results-from-a-coveo-index/#introducing-a-random-field-on-items) and apply the Indexing Pipeline Extension to your Sitecore sources. Follow this link if you want to know how to do this: [Applying an Extension to a Source](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=335)
 
 ## Testing it out
 
@@ -114,7 +114,7 @@ You can also read about specific custom components topics here: [Coveo for Sitec
 
 The primary design choice of the Coveo for Sitecore Hive framework was to better reflect the features from the Coveo JavaScript Search Framework in Coveo for Sitecore.
 
-A whole set of components was created to mimic the behavior of the "Legacy" UI. Each of the components was created using the same process explained in this blog series, [using a TypeScript component](http://source.coveo.com/2017/11/30/randomizer-as-a-component/), [testing it](http://source.coveo.com/2017/12/01/testing-custom-component/), and then integrating it into Coveo for Sitecore. This design even allows us to test those components _outside_ of Sitecore since they are merely an extension of the Coveo JavaScript Search Framework.
+A whole set of components was created to mimic the behavior of the "Legacy" UI. Each of the components was created using the same process explained in this blog series, [using a TypeScript component](https://source.coveo.com/2017/11/30/randomizer-as-a-component/), [testing it](https://source.coveo.com/2017/12/01/testing-custom-component/), and then integrating it into Coveo for Sitecore. This design even allows us to test those components _outside_ of Sitecore since they are merely an extension of the Coveo JavaScript Search Framework.
 
 All the components are included as a `coveo-search-ui` extension named `coveoforsitecore-search-ui`. You can see the full list of components included in the extension here: [Coveo for Sitecore Hive Components Reference](https://developers.coveo.com/x/JCcvAg)
 

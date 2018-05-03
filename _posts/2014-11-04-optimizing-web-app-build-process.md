@@ -47,7 +47,7 @@ gulp.task('watch', function () {
 
 ###[Template compile](https://github.com/ingro/gulp-template-compile)
 
-The Cloud Admin Web Application is a [Single Page Application](http://en.wikipedia.org/wiki/Single-page_application) built with [Marionette.JS](http://marionettejs.com/) and our template engine of choice is [Underscore.JS](http://underscorejs.org/). When developing, we want each template separated in their own [EJS files](http://www.embeddedjs.com/), but in production we need the best performance. Sure, we could use underscore’s _.template method on the client as stated in [Vincent’s latest post](http://source.coveo.com/2014/10/19/reusing-templates-underscore/) but [gulp-template-compile](https://github.com/ingro/gulp-template-compile) goes a step further by concatenating all of our templates into a single file and generating plain JavaScript functions that are usable later.
+The Cloud Admin Web Application is a [Single Page Application](http://en.wikipedia.org/wiki/Single-page_application) built with [Marionette.JS](http://marionettejs.com/) and our template engine of choice is [Underscore.JS](http://underscorejs.org/). When developing, we want each template separated in their own [EJS files](http://www.embeddedjs.com/), but in production we need the best performance. Sure, we could use underscore’s _.template method on the client as stated in [Vincent’s latest post](https://source.coveo.com/2014/10/19/reusing-templates-underscore/) but [gulp-template-compile](https://github.com/ingro/gulp-template-compile) goes a step further by concatenating all of our templates into a single file and generating plain JavaScript functions that are usable later.
 
 {% highlight javascript %}
 var gulp = require('gulp');

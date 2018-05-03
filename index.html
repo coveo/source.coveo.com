@@ -4,7 +4,7 @@ sitemap: false
 ---
 <div class="illustration">
     <div class="container">
-        <img src="{{ site.github.url | replace: 'http://', '//' }}/images/illustration-full.png" alt="Tech Blog">
+        <img src="{{ site.github.url }}/images/illustration-full.png" alt="Tech Blog">
     </div>
 </div>
 
@@ -13,30 +13,30 @@ sitemap: false
 {% for post in paginator.posts %}
   {% unless post.draft %}
     <section class="index">
-        {% if post.author.image %}<img src="{{ site.github.url | replace: 'http://', '//' }}/images/{{ post.author.image }}" class="avatar">{% endif %}
+        {% if post.author.image %}<img src="{{ site.github.url }}/images/{{ post.author.image }}" class="avatar">{% endif %}
         {% if post.author.imageURL %}<img src="{{ post.author.imageURL }}" class="avatar">{% endif %}
 
         <div>
-            <h2 class="title"><a href="{{ site.github.url | replace: 'http://', '//' }}{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
+            <h2 class="title"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
             <div class="meta">
                 Written By <address>{{ post.author.name }}</address> &mdash;
                 <time pubdate datetime="{{ post.date | date: "%Y-%d-%B" }}" title="{{ post.date | date: "%B %d, %Y" }}">{{ post.date | date: "%B %d, %Y" }}</time>
             </div>
             <div class="post_content">{{ post.excerpt }}</div>
-            <p class="readmore"><a href="{{ site.github.url | replace: 'http://', '//' }}{{ post.url }}" rel="prefetch">Read more...</a></p>
+            <p class="readmore"><a href="{{ site.github.url }}{{ post.url }}" rel="prefetch">Read more...</a></p>
         </div>
     </section>
     {% endunless %}
     {% endfor %}
     <section class="pagination" style="text-align:center">
       {% if paginator.next_page %}
-        <a href="{{ site.github.url | replace: 'http://', '//' }}/page{{ paginator.next_page }}" class="btn btn-outline">< Older</a>
+        <a href="{{ site.github.url }}/page{{ paginator.next_page }}" class="btn btn-outline">< Older</a>
       {% endif %}
       {% if paginator.previous_page %}
         {% if paginator.previous_page == 1 %}
-        <a href="{{ site.github.url | replace: 'http://', '//' }}" class="btn btn-outline">Newer ></a>
+        <a href="{{ site.github.url }}" class="btn btn-outline">Newer ></a>
         {% else %}
-        <a href="{{ site.github.url | replace: 'http://', '//' }}/page{{ paginator.previous_page }}" class="btn btn-outline">Newer ></a>
+        <a href="{{ site.github.url }}/page{{ paginator.previous_page }}" class="btn btn-outline">Newer ></a>
         {% endif %}
       {% endif %}
     </section>
