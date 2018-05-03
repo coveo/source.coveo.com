@@ -32,7 +32,7 @@ Another big difference compared to the full Coveo version is that it is not poss
 
 * Our [open-source UI framework](https://github.com/coveo/search-ui) & query pipeline are extremely configurable, and are great tools to build search pages that fit customer's specific needs.
 * Our Usage Analytics solution records everything that happens in the aforementioned UI, and allows building reports providing very detailed insights about how users are making use of the search page, what content they are using, etc.
-* Our Coveo [Machine Learning](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=177) technology uses the data accumulated in our Usage Analytics to immensely enhance the quality of search results, among other things.
+* Our Coveo [Machine Learning](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=177) technology uses the data accumulated in our Usage Analytics to immensely enhance the quality of search results, among other things.
 
 In our opinion, combining those features on top of the Salesforce index makes perfect sense, and we can clearly see integrators making use of this to help deliver great value to their customers. And in the case where a customer really needs external connectivity, we'll provide an easy upgrade path to using the Coveo index.
 

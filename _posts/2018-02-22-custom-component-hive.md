@@ -88,7 +88,7 @@ The steps to integrate the `Feeling Lucky` component are similar to the resource
 
 ## Attaching the randomized field to a Sitecore source
 
-This step is a reminder that you need to have your `randomfield` set on your items! Take a look back at [the first randomizer article](https://source.coveo.com/2017/06/20/randomizing-results-from-a-coveo-index/#introducing-a-random-field-on-items) and apply the Indexing Pipeline Extension to your Sitecore sources. Follow this link if you want to know how to do this: [Applying an Extension to a Source](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=335)
+This step is a reminder that you need to have your `randomfield` set on your items! Take a look back at [the first randomizer article](https://source.coveo.com/2017/06/20/randomizing-results-from-a-coveo-index/#introducing-a-random-field-on-items) and apply the Indexing Pipeline Extension to your Sitecore sources. Follow this link if you want to know how to do this: [Applying an Extension to a Source](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=335)
 
 ## Testing it out
 

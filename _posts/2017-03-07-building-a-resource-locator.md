@@ -49,7 +49,7 @@ In this example I am using 3 “Push sources” to get the desired content in th
 For more info on Coveo’s Push API: [Push API Reference](https://developers.coveo.com/x/fIQAAg)
 
 There is one more challenge: the People records do not contain the Latitude/Longitude for the location and the availability data. Of course I could gather that before I push the content, but I can also use an “Indexing Pipeline Extension” which can be called before each record is added to the Coveo index.
-For more info: [Extensions](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=326) and [Push API Reference](https://developers.coveo.com/x/fIQAAg).
+For more info: [Extensions](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=326) and [Push API Reference](https://developers.coveo.com/x/fIQAAg).
 
 The steps involved for enriching the data are:
 
@@ -78,7 +78,7 @@ From the internet I got two files, one containing US ZIP codes ([Zip Codes](http
 Next, you load all that data into a DynamoDB database (using the above script) and, bam, you are ready with the geocoding part!
 ![RL3]({{ site.baseurl }}/images/ResourceLocator/RL3.png)
 
-Now, you need to add that information to your people records. Each record in the directory contains a field called ```locationzip``` or similar which we need to assign to a Coveo Field. In your Cloud Organization configuration ([Fields - Page](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=287)), add a brand new field called ```myzip``` and assign the value ```%[locationzip]``` to it in the Person content source:
+Now, you need to add that information to your people records. Each record in the directory contains a field called ```locationzip``` or similar which we need to assign to a Coveo Field. In your Cloud Organization configuration ([Fields - Page](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=287)), add a brand new field called ```myzip``` and assign the value ```%[locationzip]``` to it in the Person content source:
 ![RL4]({{ site.baseurl }}/images/ResourceLocator/RL4.png)
 
 Note: In the Coveo Indexing Pipeline Extension you could use the metadata from the document directly or the mappings defined above. So in our case you could get the ```%[myzip]``` or directly the ```%[locationzip]``` fields. Mapping fields is only necessary if you want to display the field in the UI, use the field as a Facet, or use the field as a relevancy booster.
@@ -91,7 +91,7 @@ Next up: the Indexing Pipeline Extension script.
 Extension scripts are created in Python and the following libraries are available by default: requests, boto3, pymongo, msgpack-python, and pytz.
 For more information: [Document Object Python API Reference](https://developers.coveo.com/x/OQMvAg). 
 
-To create the script: [Extensions - Page](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=326).
+To create the script: [Extensions - Page](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=326).
 Make sure to check the boxes only for the type of content you really need; this will save valuable execution time:
 ![RL5]({{ site.baseurl }}/images/ResourceLocator/RL5.png)
 
@@ -148,7 +148,7 @@ if (city):
 
 **Important:** a script has a maximum execution time of 5 seconds. It is possible to add multiple scripts; they will be executed in the order you add them to the source. 
 
-Later, when the content is indexed, you can check in the [Content Browser](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=289) that the field [myerr] is populated.
+Later, when the content is indexed, you can check in the [Content Browser](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=289) that the field [myerr] is populated.
 As such: 
 ```
 myerr Start;Zip:19103;Execute query with city 19110;Getting lat 39.952896
@@ -186,7 +186,7 @@ except Exception,e:
         mylog("Error: "+str(e))
 ```
 
-Now that the script is ready, you need to assign it to your source. I first created the source [Add Push Source]( http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=272).
+Now that the script is ready, you need to assign it to your source. I first created the source [Add Push Source]( https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=272).
 
 For now we need to manually embed a reference to the Extension into the JSON of our source:
 

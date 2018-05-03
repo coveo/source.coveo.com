@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-This is the last part of my long adventure to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
+This is the last part of my long adventure to cover all the best practices listed in the [Best Practices for Site Search](https://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
 The previous parts can be found [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).
 
 <!-- more -->
@@ -63,12 +63,12 @@ From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` is categ
 In the example above, ```documentOpen``` is a Click event. The rest of the metadata will be used to document the event. 
 
 From a user perspective, the metadata can be extracted in the Coveo Cloud platform. 
-The metadata will be called API Name and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
+The metadata will be called API Name and can be combined with an Event Cause to create a [Dimension](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
 
 In other words, a Dimension is metadata (extracted through an API Name) in the context of one or more Event causes.
 This might be a bit confusing so far, but you can refer to this [table](https://onlinehelp.coveo.com/en/cloud/creating_and_managing_dimensions_on_custom_metadata.htm#Custom_Metadata_Reference) for more details.
 
-Let's say I want to identify my queries without results. I will be using dimensions, [metrics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). 
+Let's say I want to identify my queries without results. I will be using dimensions, [metrics](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). 
 My dimension will be ```Query```, which is defined in the Dimensions menu as a Search event using a ```queryExpression``` Api Name. 
 The metrics will be ```Query Count``` and ```Visit Count```, which is the number of times the query was executed and the number of unique visits related to this query.
 Finally, the filter ```Has Results is false``` is added on the card to show only queries without results.
