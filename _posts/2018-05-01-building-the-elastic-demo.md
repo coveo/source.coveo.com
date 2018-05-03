@@ -45,6 +45,10 @@ Now we only need to find that content to index it...
 
 After investigating where the content is available (and also public available), we found a number of content repositories. The bad news was that most of them had throttling defined so we really needed to have some scripts which 'slowly' downloads all the content from the respective API's. Below is the list of the content we indexed and which connector was used.
 
+<table cellpadding=2 border=1>
+<tr><th>Content Type</th><th>Connector</th><th>Content</th></tr>
+<tr><td>Books</td><td>Web</td><td>Movie scripts (web and PDF’s)</td></tr>
+</table>
 | Content Type     | Connector | Content                                          |
 | --------------------- | -------------- | ---------------------------------------------- |
 | Books                | Web       | Movie scripts (web and PDF’s) |
