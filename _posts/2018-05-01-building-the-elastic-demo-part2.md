@@ -219,7 +219,7 @@ Coveo.CoveoJQuery.registerAutoCreateComponent(MyART);
 ```
 
 ### CoveoResultsRelated
-One of my favorites: ```CoveoResultsRelated```, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). We can configure the Custom control by using the properties:
+One of my favorites: ```CoveoResultsRelated```, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). We can configure the Custom control by setting the properties:
 ``` html
 <div class="CoveoResultsRelated youtube"
             data-result-template-id="YouTubeVideoList"
@@ -424,14 +424,12 @@ const usersMap = {
     Producer: {
         sel: "Producer",
         activeTab: "Movies",
-        help: "They like Documentaries, not Rock music. Movies are boosted with profit and popularity.<BR>Results are influenced with:<br><font style='font-size:small'><i>Using: $qre(expression: \'@mygenre=Documentaries @mytype=Movie\',modifier:\'400\', isConstant:\'true\')  $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-420\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>100\',modifier:\'200\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>200\',modifier:\'200\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>300\',modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity<15\', modifier:\'-400\', isConstant:\'true\') $qre(expression: \'@mypopularity>15\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>250\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>500\', modifier:\'200\', isConstant:\'true\')</i></font><br>Only results for user producer@coveo.com and their memberships are shown.<br>They can NOT see reviews.",
-        booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mygenre=Documentaries @mytype=Movie\',modifier:\'400\', isConstant:\'true\')  $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-420\', isConstant:\'true\') $qre(expression: \'@myprofitvalue<=5\',modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>100\',modifier:\'200\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>200\',modifier:\'200\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>300\',modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity<15\', modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@mypopularity>15\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>250\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>500\', modifier:\'200\', isConstant:\'true\')",
+        booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mygenre=Documentaries @mytype=Movie\',modifier:\'400\', isConstant:\'true\')  $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-420\', isConstant:\'true\') $qre(expression: \'@myprofitvalue<=5\',modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>100\',modifier:\'200\', isConstant:\'true\') ",
         musicbooster: " $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-500\', isConstant:\'true\')",
     },
     Anonymous: {
         sel: "Anonymous",
         activeTab: "Movies",
-        help: "They like Movies. Movies are boosted with popularity.<BR>Results are influenced with:<br><font style='font-size:small'><i>Using: $qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mytype=Review\',modifier:\'-1200\', isConstant:\'true\') $qre(expression: \'@mypopularity<15\', modifier:\'-400\', isConstant:\'true\') $qre(expression: \'@mypopularity>15\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>250\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>500\', modifier:\'200\', isConstant:\'true\')</i></font><br>They CANNOT see reviews/customer support cases.<br>Only results for Anonymous and their memberships are shown. <br>",
         booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mytype=Review\',modifier:\'-1200\', isConstant:\'true\') $qre(expression: \'@mypopularity<15\', modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@mypopularity>15\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>250\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>500\', modifier:\'200\', isConstant:\'true\')",
         musicbooster: "",
     }
