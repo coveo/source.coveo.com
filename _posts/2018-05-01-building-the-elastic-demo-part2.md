@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Building the Elastic Search Demo, Part 2 the UI"
+title: "The Elastic Search Demo, Part 2 build the UI"
 
 tags: [Index Extensions, Query Extensions, JS UI custom components, Push API]
 
@@ -20,7 +20,7 @@ _This is the third blog post of a new series entitled “Build it with Coveo”.
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
-This post is divided into two parts [Part 1, build the Index]((/2018/05/01/building-the-elastic-demo), [Part 2, the UI]((/2018/05/01/building-the-elastic-demo-part2).
+This post is divided into two parts [Part 1, build the Index]((/2018/05/01/building-the-elastic-demo), [Part 2, build the UI]((/2018/05/01/building-the-elastic-demo-part2).
 
 ## Building the UI
 Coveo offers out of the box a [Javascript Framework](https://docs.coveo.com/en/375) for building the UI. It offers a ton of components which you can simply drag and drop using an [Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). Using the editor you can quickly design the basic layout of your UI, create search interfaces, add facets and you are ready to go for a basic search experience. Since we wanted to have very specific result templates, completely tailored to the search audience, we needed some additional configuration directly into the HTML/JS files.

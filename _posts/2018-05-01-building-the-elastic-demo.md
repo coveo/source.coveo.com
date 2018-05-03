@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Building the Elastic Search Demo, Part 1 build the Index"
+title: "The Elastic Search Demo, Part 1 build the Index"
 
 tags: [Index Extensions, Query Extensions, JS UI custom components, Push API]
 
@@ -20,7 +20,7 @@ _This is the second blog post of a new series entitled “Build it with Coveo”
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
-This post is divided into two parts [Part 1, build the Index]((/2018/05/01/building-the-elastic-demo), [Part 2, the UI]((/2018/05/01/building-the-elastic-demo-part2).
+This post is divided into two parts [Part 1, build the Index]((/2018/05/01/building-the-elastic-demo), [Part 2, build the UI]((/2018/05/01/building-the-elastic-demo-part2).
 
 
 ## Requirements for the demo:
@@ -523,4 +523,4 @@ except Exception as e:
 
 ```
 
-Now we can start building the UI, covered in: [Building the Elastic Search Demo, Part 2 the UI](/2018/05/01/building-the-elastic-demo-part2).
+Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](/2018/05/01/building-the-elastic-demo-part2).
