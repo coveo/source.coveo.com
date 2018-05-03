@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-This is the third installment on my journey to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook. The goal of this series is to explain in details how to apply each best practice using Coveo for Sitecore V4.
+This is the third installment on my journey to cover all the best practices listed in the [Best Practices for Site Search](https://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook. The goal of this series is to explain in details how to apply each best practice using Coveo for Sitecore V4.
 
 If you missed the previous posts, you can find the full series [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).
 <!-- more -->
@@ -37,10 +37,10 @@ The Layout section will give you a large amount of options, so here is what I re
 
 This will result in a simple result page without the option for your users to search using free text queries.
 
-If you followed the [first part](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/) of this series of blogs, you might have removed the search box already to use a global one in the header. 
+If you followed the [first part](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/) of this series of blogs, you might have removed the search box already to use a global one in the header. 
 Just make sure that the id of the search page used for listing is not the one being referenced as an external component, since it will bind the search box to your listing page.
 
-When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in [Part 2 section 8](http://source.coveo.com/2017/01/16/applying-site-search-best-practices-using-sitecore-part2) of this series.
+When it comes to styling, you might want the listing page to show something different than the excerpt under the result link. The excerpt is relevant to the keywords typed by the user, and since we don't provide a search box, the excerpt will be static. To change the excerpt, change the underscore.js templates directly in the .csthtml file. I explained how to do this in [Part 2 section 8](https://source.coveo.com/2017/01/16/applying-site-search-best-practices-using-sitecore-part2) of this series.
 
 Remember to always copy the .cshtml file before editing it! Editing a base file is a bad practice, and it quickly turns upgrading into a nightmare.
 
@@ -68,9 +68,9 @@ Coveo.$('#@Model.Id')
 
 A full step by step guide for the ranking editor is available [here](https://developers.coveo.com/x/q4EKAg). The JavaScript approach is available [here](https://developers.coveo.com/x/WADvAQ).
 
-The above code will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo and you can find the full guide [here](http://www.coveo.com/go?dest=adminhelp70&lcid=9&context=10005).
+The above code will make sure that our page is only listing content from our selected template. The query syntax used is unique to Coveo and you can find the full guide [here](https://www.coveo.com/go?dest=adminhelp70&lcid=9&context=10005).
 
-Do not mistake the query scope with permission management, which controls who has access to what. I have seen several search solutions where permissions are controlled with filter queries, which is not a good practice. Permissions to access a document should simply respect what has been set in the Sitecore Access Viewer. Coveo will index the permissions along with the documents when crawling Sitecore. At query time, the index will map the permissions with the user sending the query. There are a lot of subtleties when it comes to security, but I will not go over all of them here here. If you want to learn more on permission management, read this [article](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=291).
+Do not mistake the query scope with permission management, which controls who has access to what. I have seen several search solutions where permissions are controlled with filter queries, which is not a good practice. Permissions to access a document should simply respect what has been set in the Sitecore Access Viewer. Coveo will index the permissions along with the documents when crawling Sitecore. At query time, the index will map the permissions with the user sending the query. There are a lot of subtleties when it comes to security, but I will not go over all of them here here. If you want to learn more on permission management, read this [article](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=291).
 
 As a summary, we created a listing page by using the default Coveo Search View rendering and then customizing the properties, the style, and the scope, but not the logic underneath.
 Which means that facets, sorts, and every other feature of a Coveo search result component can still be used. It also means that everything happening on your page will be tracked by Coveo Usage Analytics and can be used to power Coveo ART and Machine Learning Recommendations.

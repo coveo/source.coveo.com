@@ -3158,7 +3158,7 @@ article .full.zoomable img.zoom {
     display: table-cell;
     position: relative;
     padding: 6px 12px;
-    background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir.png') no-repeat 90% 50%;
+    background: #f7f7f7 url('https://source.coveo.com/images/fleche_noir.png') no-repeat 90% 50%;
     cursor: pointer;
     width: 160px;
     height: 36px;
@@ -3180,7 +3180,7 @@ article .full.zoomable img.zoom {
 }
 
 #navigation ul li:hover {
-  background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir_reverse.png') no-repeat 90% 50%;
+  background: #f7f7f7 url('https://source.coveo.com/images/fleche_noir_reverse.png') no-repeat 90% 50%;
 }
 
 #navigation ul li ul {
