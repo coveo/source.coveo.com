@@ -418,7 +418,6 @@ More and more we see requests coming in around personalization, one of the reaso
 
 With Coveo you can use the [QRE](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357) syntax to start boosting results with your preferences to a higher position.
 ``` javascript
-
 //Create a usermap with help and booster information.
 const usersMap = {
     Producer: {
@@ -763,7 +762,7 @@ ResultsRelated.prototype.expandQuery = function () {
 
 ### Adding an advanced search
 In our case we wanted to add an advanced search feature, so end-users could easily change the results to their preferences. First of all we need to add the settings we want to the HTML page:
-``` HTML
+``` html
 <div class="CoveoPreferencesPanel">
     <fieldset class="coveo-form-group">
         <span class="coveo-form-group-label">Personalize results</span>
