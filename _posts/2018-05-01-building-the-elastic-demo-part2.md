@@ -593,9 +593,7 @@ exports.handler = (event, context, callback) => {
   }
 
 };
-
 ```
-
 And in our JS we fetch the token:
 ``` javascript
 //On Load...
@@ -766,46 +764,46 @@ ResultsRelated.prototype.expandQuery = function () {
 ### Adding an advanced search
 In our case we wanted to add an advanced search feature, so end-users could easily change the results to their preferences. First of all we need to add the settings we want to the HTML page:
 ``` HTML
-      <div class="CoveoPreferencesPanel">
-        <fieldset class="coveo-form-group">
-          <span class="coveo-form-group-label">Personalize results</span>
-          <div class="perso-menu-content">
-            <div class="perso-menu-item Filter">
-              <label>
-                <input class="user-personalisation-option" id="b1" name="choice-personalize" type="radio" value="choice-personalize-b1" />
-                 Filter Action movies
-              </label>
-            </div>
-            <div class="perso-menu-item Boost">
-              <label>
-                <input class="user-personalisation-option" id="b2" name="choice-personalize" type="radio" value="choice-personalize-b2" />
-                Boost Action and Willis movies
-              </label>
-            </div>
-            <div class="perso-menu-item Boost">
-              <label>
-                <input class="user-personalisation-option" id="b3" name="choice-personalize" type="radio" value="choice-personalize-b3" />
-                Boost Comedy lower
-              </label>
-            </div>
-            <div class="perso-menu-item Boost">
-              <label>
-                <input class="user-personalisation-option" id="b4" name="choice-personalize" type="radio" value="choice-personalize-b4" />
-                Ignore Title for ranking
-              </label>
-            </div>
-            <div class="perso-menu-item Standard">
-              <label>
-                <input class="user-personalisation-option" id="standard" name="choice-personalize" type="radio" value="choice-personalize-nothing"/>
-                Standard search
-              </label>
-            </div>
-          </div>
-        </fieldset>
+<div class="CoveoPreferencesPanel">
+    <fieldset class="coveo-form-group">
+        <span class="coveo-form-group-label">Personalize results</span>
+        <div class="perso-menu-content">
+        <div class="perso-menu-item Filter">
+            <label>
+            <input class="user-personalisation-option" id="b1" name="choice-personalize" type="radio" value="choice-personalize-b1" />
+                Filter Action movies
+            </label>
+        </div>
+        <div class="perso-menu-item Boost">
+            <label>
+            <input class="user-personalisation-option" id="b2" name="choice-personalize" type="radio" value="choice-personalize-b2" />
+            Boost Action and Willis movies
+            </label>
+        </div>
+        <div class="perso-menu-item Boost">
+            <label>
+            <input class="user-personalisation-option" id="b3" name="choice-personalize" type="radio" value="choice-personalize-b3" />
+            Boost Comedy lower
+            </label>
+        </div>
+        <div class="perso-menu-item Boost">
+            <label>
+            <input class="user-personalisation-option" id="b4" name="choice-personalize" type="radio" value="choice-personalize-b4" />
+            Ignore Title for ranking
+            </label>
+        </div>
+        <div class="perso-menu-item Standard">
+            <label>
+            <input class="user-personalisation-option" id="standard" name="choice-personalize" type="radio" value="choice-personalize-nothing"/>
+            Standard search
+            </label>
+        </div>
+        </div>
+    </fieldset>
 
-        <div class="CoveoResultsPreferences"></div>
-        <div class="CoveoResultsFiltersPreferences"></div>
-      </div>
+    <div class="CoveoResultsPreferences"></div>
+    <div class="CoveoResultsFiltersPreferences"></div>
+</div>
 ```
 Support that with additional code in our JS:
 ``` javascript
