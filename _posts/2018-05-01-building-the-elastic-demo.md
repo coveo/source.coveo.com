@@ -20,7 +20,7 @@ _This is the second blog post of a new series entitled “Build it with Coveo”
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
-This post is divided into two parts [Part 1, build the Index]((/2018/05/01/building-the-elastic-demo), [Part 2, build the UI]((/2018/05/01/building-the-elastic-demo-part2).
+This post is divided into two parts [Part 1, build the Index](2018/05/01/building-the-elastic-demo), [Part 2, build the UI](2018/05/01/building-the-elastic-demo-part2).
 
 
 ## Requirements for the demo:
@@ -178,7 +178,6 @@ The JSON we get from the Movie Database:
 ```
 We call their API to get the movies for each year:
 ``` python
-
 #Get Results from TMDB for a specific year
 def parseTMDBResults(year):
     response = requests.get("https://api.themoviedb.org/3/discover/movie?api_key="+mykey+"&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&primary_release_year="+str(year))
@@ -264,7 +263,6 @@ def getMovieDetails(date,id, update):
         file.close()
 
 ```
-
 As you can see above, we are also parsing the IDMB Web Page (```parseIDMBPage```). We found out that the REST api does not offer the Songs and Artists of the soundtrack of the movie, but it is displayed on the IMDB Web Page so in order to get that, we scrape the IDMB Page with the following script:
 ``` python
 def parseIDMBPage(id):
@@ -523,4 +521,4 @@ except Exception as e:
 
 ```
 
-Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](/2018/05/01/building-the-elastic-demo-part2).
+Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](2018/05/01/building-the-elastic-demo-part2).
