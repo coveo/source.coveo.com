@@ -19,7 +19,7 @@ inc:
 
   # Company information
   company:      Coveo
-  url:          http://www.coveo.com/
+  url:          https://www.coveo.com/
   twitter:      coveo
 
   # Comments
@@ -41,7 +41,7 @@ inc:
 
   google_font: 'Lato:300,400,700'
 
-gems:
+plugins:
     - jekyll-paginate
     - jekyll-sitemap
 exclude: ['Gemfile', 'Gemfile.lock']
