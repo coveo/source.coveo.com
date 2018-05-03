@@ -932,36 +932,10 @@ Our UABOT file:
 						"offset": 0,
 						"probability": 0.5
 					}
-				},
-				{
-					"type": "Click",
-					"arguments": {
-						"docNo": -1,
-						"offset": 0,
-						"probability": 0.25
-					}
+				}
 				}
 			]
-		}, {
-			"name": "BQ -> C(+10,33%)",
-			"weight": 2,
-			"events": [{
-					"type": "Search",
-					"arguments": {
-						"queryText": "",
-						"goodQuery": false
-					}
-				},
-				{
-					"type": "Click",
-					"arguments": {
-						"docNo": -1,
-						"offset": 10,
-						"probability": 0.10
-					}
-				}
-			]
-		},
+		}, 
 		{
 			"name": "(G) red willis",
 			"weight": 3,
@@ -975,30 +949,8 @@ Our UABOT file:
 				}
 			}
 		]
-	},
-	{
-		"name": "(G) red2 willis",
-		"weight": 1,
-		"events": [{
-				"type": "SearchAndClick",
-				"arguments": {
-					"queryText": "red willis",
-					"docClickTitle": "RED 2",
-					"probability": 0.50
-				}
-			}]
-		}, {
-			"name": "QC(Eye of the Tiger, 95%)",
-			"weight": 1,
-			"events": [{
-				"type": "SearchAndClick",
-				"arguments": {
-					"queryText": "Eye of the Tiger",
-					"docClickTitle": "Eye of the Tiger by Survivor",
-					"probability": 0.95
-				}
-			}]
-		}, {
+    }, 
+    {
 			"name": "QC(The Rock, 95%)",
 			"weight": 1,
 			"events": [{
@@ -1034,73 +986,8 @@ Our UABOT file:
 					"probability": 0.85
 				}
 			}]
-		}, {
-			"name": "QC(Night at the Museum, 95%)",
-			"weight": 3,
-			"events": [{
-				"type": "SearchAndClick",
-				"arguments": {
-					"queryText": "history museum",
-					"matchField": "title",
-					"matchValue": "Night at the Museum",
-					"probability": 0.95
-				}
-			}]
-		},
-		{
-			"name": "QC(Night at the Museum, 95%)",
-			"weight": 3,
-			"events": [{
-				"type": "SearchAndClick",
-				"arguments": {
-					"queryText": "history museum",
-					"docClickTitle": "Night at the Museum: Secret of the Tomb",
-					"offset":10,
-					"probability": 0.95
-				}
-			}]
-		}, {
-			"name": "GQ(fast racing) -> QC(Fast Five, 95%)",
-			"weight": 4,
-			"events": [{
-					"type": "Search",
-					"arguments": {
-						"queryText": "fast racing",
-						"goodQuery": true
-					}
-				},
-				{
-					"type": "SearchAndClick",
-					"arguments": {
-						"queryText": "fast racing",
-						"matchField": "title",
-						"matchValue": "Fast & Furious",
-						"offset": 10,
-						"probability": 0.85
-					}
-				},
-				{
-					"type": "SearchAndClick",
-					"arguments": {
-						"queryText": "fast racing",
-						"docClickTitle": "Fast & Furious 6",
-						"offset": 20,
-						"probability": 0.95
-					}
-				},
-				{
-					"type": "SearchAndClick",
-					"arguments": {
-						"queryText": "fast racing",
-						"docClickTitle": "The Fast and the Furious: Tokyo Drift",
-						"offset": 30,
-						"probability": 0.95
-					}
-				}
-			]
 		}
-	]
-
+    ]
 }
 ```
 
