@@ -20,7 +20,7 @@ _This is the second blog post of a new series entitled “Build it with Coveo”
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
-This post is divided into two parts [Part 1, build the Index](2018-05-01-building-the-elastic-demo.md), [Part 2, build the UI](2018-05-01-building-the-elastic-demo-part2.md).
+This post is divided into two parts [Part 1, build the Index](/2018/05/01/building-the-elastic-demo), [Part 2, build the UI](/2018/05/01/building-the-elastic-demo-part2).
 
 ## Requirements for the demo:
 We wanted to have content which is publicly available. We all liked the concept of 'Movies', based on that, we constructed an index with everything related to movie content. The demo should also showcases 'the art of the possible', so that customers and partners can see what and how they can leverage the Coveo Platform. It should include a number of connectors, extension scripts and UI customizations.
@@ -45,10 +45,10 @@ Now we only need to find that content to index it...
 
 After investigating where the content is available (and also public available), we found a number of content repositories. The bad news was that most of them had throttling defined so we really needed to have some scripts which 'slowly' downloads all the content from the respective API's. Below is the list of the content we indexed and which connector was used.
 
-| Content Type        | Connector           | Content  |
-| ------------- |-------------| -----|
-| Books       | Web       | Movie scripts (web and PDF’s) |
-| Concerts  | Push | Concert information coming from https://api.songkick.com |
+| Content Type     | Connector | Content                                          |
+| --------------------- | -------------- | ---------------------------------------------- |
+| Books                | Web       | Movie scripts (web and PDF’s) |
+| Concerts           | Push | Concert information coming from https://api.songkick.com |
 | Movies     | Push | Movie information coming from https://www.imdb.com |
 | Music      | Push | Music tracks from https://www.lastfm.com |
 | Wikipedia | Push | enwiki from wikipedia |
@@ -520,4 +520,4 @@ except Exception as e:
 
 ```
 
-Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](2018-05-01-building-the-elastic-demo-part2.md).
+Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](/2018/05/01/building-the-elastic-demo-part2).
