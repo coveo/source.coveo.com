@@ -14,9 +14,9 @@ author:
 _This is the second blog post of a new series entitled “Build it with Coveo”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
 
 ## Use case: 
-* Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
-* Use public content that everybody is familiar with. 
-* Build it in 2-4 weeks time.
+- Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
+- Use public content that everybody is familiar with. 
+- Build it in 2-4 weeks time.
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
@@ -34,10 +34,10 @@ From finding a movie, to a great new music album and finally visiting a concert!
 
 Basically to support the features above, we need the following content inside our index:
 
-* Movie content
-* Music/track content
-* Additional content, like scripts library, wikipedia content
-* Concerts content
+- Movie content
+- Music/track content
+- Additional content, like scripts library, wikipedia content
+- Concerts content
 
 Now we only need to find that content to index it...
 
@@ -45,10 +45,6 @@ Now we only need to find that content to index it...
 
 After investigating where the content is available (and also public available), we found a number of content repositories. The bad news was that most of them had throttling defined so we really needed to have some scripts which 'slowly' downloads all the content from the respective API's. Below is the list of the content we indexed and which connector was used.
 
-<table cellpadding=2 border=1>
-<tr><th>Content Type</th><th>Connector</th><th>Content</th></tr>
-<tr><td>Books</td><td>Web</td><td>Movie scripts (web and PDF’s)</td></tr>
-</table>
 | Content Type     | Connector | Content                                          |
 | --------------------- | -------------- | ---------------------------------------------- |
 | Books                | Web       | Movie scripts (web and PDF’s) |

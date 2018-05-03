@@ -14,9 +14,9 @@ author:
 _This is the third blog post of a new series entitled “Build it with Coveo”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
 
 ## Use case: 
-* Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
-* Use public content that everybody is familiar with. 
-* Build it in 2-4 weeks time.
+- Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
+- Use public content that everybody is familiar with. 
+- Build it in 2-4 weeks time.
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
