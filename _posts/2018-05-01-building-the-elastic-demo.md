@@ -17,10 +17,10 @@ _This is the second blog post of a new series entitled “Build it with Coveo”
 * Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
 * Use public content that everybody is familiar with. 
 * Build it in 2-4 weeks time.
-This post is divided into two parts [Part 1]((/2018/05/01/building-the-elastic-demo), [Part 2]((/2018/05/01/building-the-elastic-demo-part2).
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
+This post is divided into two parts [Part 1]((/2018/05/01/building-the-elastic-demo), [Part 2]((/2018/05/01/building-the-elastic-demo-part2).
 
 ## Requirements for the demo:
 We wanted to have content which is publicly available. We all liked the concept of 'Movies', based on that, we constructed an index with everything related to movie content. The demo should also showcases 'the art of the possible', so that customers and partners can see what and how they can leverage the Coveo Platform. It should include a number of connectors, extension scripts and UI customizations.
