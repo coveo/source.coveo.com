@@ -3262,3 +3262,29 @@ section .post_content ol>li:before{
    padding-right:7px;
    color:#1D4F76;
 }
+/*Table*/
+.post_content table {
+  margin: 25px 0;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  font-size: .9em;
+  width: 100%;
+  max-width: 100%;
+}
+.post_content table tr:hover {
+  background: #f4f4f4;
+}
+.post_content table tr:hover td {
+  color: #555;
+}
+.post_content table th, table td {
+  border: 1px solid #eee;
+  padding: 12px;
+  border-collapse: collapse;
+}
+.post_content table th {
+  background: #e2e2e2;
+}
+.post_content table th.last {
+  border-right: none;
+}
