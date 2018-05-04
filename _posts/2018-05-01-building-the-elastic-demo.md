@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "The Elastic Search Demo, Part 1 build the Index"
+title: "The Elastic Search Demo, Part 1: Build the Index"
 
 tags: [Index Extensions, Query Extensions, JS UI custom components, Push API]
 
@@ -11,9 +11,9 @@ author:
   image: 20180501/wim.jpg
 ---
 
-_This is the second blog post of a new series entitled “Build it with Coveo”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
+_This is the second blog post of a new series entitled “Build it with the Coveo Cloud Platform”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
 
-## Use case: 
+## Use case 
 - Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
 - Use public content that everybody is familiar with. 
 - Build it in 2-4 weeks time.
@@ -21,26 +21,26 @@ _This is the second blog post of a new series entitled “Build it with Coveo”
 ![RL1]({{ site.baseurl }}/images/20180501/intro.png)
 
 <!-- more -->
-This post is divided into two parts [Part 1, build the Index](/2018/05/01/building-the-elastic-demo), [Part 2, build the UI](/2018/05/01/building-the-elastic-demo-part2).
+This post is divided in two parts [Part 1, build the Index](/2018/05/01/building-the-elastic-demo) and [Part 2, build the UI](/2018/05/01/building-the-elastic-demo-part2).
 
-## Requirements for the demo:
-We wanted to have content which is publicly available. We all liked the concept of 'Movies', based on that, we constructed an index with everything related to movie content. The demo should also showcases 'the art of the possible', so that customers and partners can see what and how they can leverage the Coveo Platform. It should include a number of connectors, extension scripts and UI customizations.
+## Requirements for the demo
+We wanted to have content which is publicly available. We all liked the concept of 'Movies', based on that, we constructed an index with everything related to movie content. The demo should also showcases 'the art of the possible', so that customers and partners can see what and how they can leverage the Coveo Platform. It should include a number of connectors, extension scripts, and UI customizations.
 
 
 ## What we wanted to show
-Before we even start indexing, we first need to think about the UI. 
+Before we even start indexing, we first needed to think about the UI. 
 
-We wanted to have a Movie search, with a very rich interface (facets, related content). But besides Movies, it would also be interesting to also leverage the Soundtrack data which is available for most of the Movies. Using the Soundtrack data we know the artists and the tracks played in each movie. Going one step further, we also want to **find** those soundtracks, including the albums of each artist. Our ultimate goal would be to show the concerts where those artists are performing!
+We wanted to have a Movie search, with a very rich interface. But besides Movies, it would also be interesting to leverage the Soundtrack data which is available for most of the Movies. Using the Soundtrack data we know the artists and the tracks played in each movie. Going one step further, we also wanted to **find** those soundtracks, including the albums of each artist. Our ultimate goal would be to show the concerts where those artists are performing!
 From finding a movie, to a great new music album and finally visiting a concert!
 
-Basically to support the features above, we need the following content inside our index:
+To support the features above, we needed the following content inside our index:
 
 - Movie content
 - Music/track content
 - Additional content, like scripts library, wikipedia content
 - Concerts content
 
-Now we only need to find that content to index it...
+Now we only needed to find that content to index it...
 
 ## What we indexed
 
@@ -61,8 +61,8 @@ Since the Movie source is the most complicated one, we will deep dive into that 
 ## Deep dive into indexing the Movies.
 
 ### Step 1: Crawling.
-The Movie database ([TheMovieDb](https://api.themoviedb.org)) has a very rich REST api where we can get all the information we want from a movie. We can get the general information, like budget, revenue but also people playing, crew and even reviews. 
-The JSON we get from the Movie Database:
+The Movie database ([TheMovieDb](https://api.themoviedb.org)) has a very rich REST api where we can get all the information we want from a movie. We can get the general information, like budget and revenue, but also the featured actors, crew and even reviews. 
+We get the following JSON from the Movie Database:
 ``` json
 {
     "alternative_titles": {
@@ -193,7 +193,7 @@ def parseTMDBResults(year):
         print "Parsing page " +str(x) + " from "+str(year)
         parsePage(json_data, False)
 ```
-We now can retrieve all the movies. For each movie we parse the details and output it directly into a JSON file for later use. We are splitting the reviews into seperate files because we want to send them to seperate indexes.
+We can now retrieve all the movies. For each movie, we parse the details and output it directly into a JSON file for later use. We are splitting the reviews into seperate files because we want to send them to seperate indexes.
 
 ### Adding sentiment analysis (by Meaningcloud) on the fly
 What we also would like is to have sentiment analysis performed on the reviews, so that we could search for 'Positive' reviews. Since Coveo does not offer sentiment analysis, we used [MeaningCloud](https://www.meaningcloud.com). We push the ```reviewtext``` content to [MeaningCloud](http://api.meaningcloud.com/sentiment-2.1), which reports back the sentiment.
@@ -256,16 +256,16 @@ def getMovieDetails(date,id, update):
         json_data["relatedsongs"]=""
 		#Scrape the webpage for songs and artists
         if (json_data["imdb_id"]!=""):
-            json_data["relatedartist"],json_data["relatedsongs"]=parseIDMBPage(json_data["imdb_id"])
+            json_data["relatedartist"],json_data["relatedsongs"]=parseIMDBPage(json_data["imdb_id"])
 
 
         file.write(json.dumps(json_data).encode('utf-8'))
         file.close()
 
 ```
-As you can see above, we are also parsing the IDMB Web Page (```parseIDMBPage```). We found out that the REST api does not offer the Songs and Artists of the soundtrack of the movie, but it is displayed on the IMDB Web Page so in order to get that, we scrape the IDMB Page with the following script:
+As you can see above, we are also parsing the IMDB Web Page (```parseIMDBPage```). We found out that the REST api does not offer the Songs and Artists of the soundtrack of the movie, but it is displayed on the IMDB Web Page so in order to get that, we scrape the IMDB Page with the following script:
 ``` python
-def parseIDMBPage(id):
+def parseIMDBPage(id):
     global meta
     #Slow down the parsing
     time.sleep(0.3)
@@ -310,26 +310,29 @@ def parseIDMBPage(id):
     return toparse, tosongs
 ```
 
-Now are capable of retrieving all the information which the API is offering us. This gives us around 250-300K movies in JSON files. 
+We are now able to retrieve all the information which the API is offering us. This gives us around 250-300K movies in JSON files. 
 
 
-### Step 2: Pushing the data.
+### Step 2: Pushing the data
 We have the JSON files, but they are still not in our index. So we need to use our [Push API](https://docs.coveo.com/en/54) to get it into our index.
 
-Before we start pushing we first need to create the necessary [mapping fields](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=338) into our Push Source. Each mapping reserves space to store our fields we need into our UI (for example: @mygenre, @myrelatedartist, @mymovieid).
+Before we start pushing we first need to create the necessary [mapping fields](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=338) into our Push Source. Each mapping reserves space to store our fields we need for our UI (e.g., @mygenre, @myrelatedartist, @mymovieid).
 
-Since we are uploading a lot of data, we should use Batch API calls instead of single API calls. It combines single JSON and combines them into one big call, which is way more efficient.
+Since we are uploading a lot of data, we should use Batch API calls instead of single API calls. It takes single JSON and combines them into one big call, which is way more efficient.
 
-Before we start pushing the data, we wanted to add some essential metadata to the JSON we got from the previous process.
-For example: adding necessary Coveo fields, like ```documentId```, ```date```, ```clickableUri```.
+Before we start pushing the data, we wanted to add some essential metadata to the JSON we got from the previous process, for example by adding the necessary Coveo fields, like ```documentId```, ```date```, ```clickableUri```.
+
 We also need to provide a preview of the content so that people do not have to navigate to IMDB to read it.
-An example of that:
+
+Here is an example:
 ![RL2]({{ site.baseurl }}/images/20180501/RL2.png)
-As you can see above, the HTML also include CSS to render the preview properly. All of that information is provided when creating the preview for the push call. The final step is to encode the HTML properly: 
+As you can see above, the HTML also includes CSS to render the preview properly. All of that information is provided when creating the preview for the push call. 
+
+The final step is to encode the HTML properly: 
 ``` python
-	#content contains the actual HTML text
-	compresseddata = zlib.compress(content.encode('utf8'), zlib.Z_BEST_COMPRESSION) # Compress the file content
-	encodeddata = base64.b64encode(compresseddata)  # Base64 encode the compressed content
+#content contains the actual HTML text
+compresseddata = zlib.compress(content.encode('utf8'), zlib.Z_BEST_COMPRESSION) # Compress the file content
+encodeddata = base64.b64encode(compresseddata)  # Base64 encode the compressed content
 ```
 
 The script below builds up the JSON we need.
@@ -401,7 +404,7 @@ def add_document(movie):
 	return body  
 ```
 
-The JSON is now ready! Our Push API can consume batches of 250Mb, so all we need is keep gathering the JSON until we reach this limit. Once hit, we can build our Request. This process is [documented here].(https://docs.coveo.com/en/54).
+The JSON is now ready! Our Push API can consume batches of 250Mb, so all we need is keep gathering the JSON until we reach this limit. Once hit, we can build our Request. This process is documented in our [Push API Tutorial].(https://docs.coveo.com/en/54).
 
 We first get a ```fileId``` and an ```uploadUri``` from our Push API, which will be used to upload the file to an Amazon S3 bucket. Then we let our Push API know that a new file is available.
 ``` python
@@ -437,11 +440,13 @@ def batchPush(jsoncontent):
     print '\nReturn from Push call: '+str(r.status_code)
 ```
 
-Not completely ready yet. We found out that the Movie Database creates a very nice interface with some color gradients based upon the movie picture. And (of course) we wanted to offer the same experience. Coveo offers [Indexing Pipeline Extensions](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=510). It enables the execution of a script for each item that will be indexed. Using those scripts, we can add additional metadata to the content before it is finally pushed to our index.
+Not completely ready yet. We found out that the Movie Database creates a very nice interface with some color gradients based upon the movie picture. And (of course) we wanted to offer the same experience. 
 
-The script will first check if the color was not already available in a DynamoDB table. If so retrieve it from there, else use [GM](http://www.graphicsmagick.org/GraphicsMagick.html) to color code the image. Store the retrieved values in a metadata field so that we can retrieve it in the UI.
+Coveo offers [Indexing Pipeline Extensions](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=510). It enables the execution of a script for each item that will be indexed. Using those scripts, we can add additional metadata to the content before it is finally pushed to our index.
 
-Our Indexing Pipeline Extension script:
+The script will first check if the color was not already available in a DynamoDB table. If it is, the script retrieves it from there. Otherwise, it uses [GM](http://www.graphicsmagick.org/GraphicsMagick.html) to color code the image. It then stores the retrieved values in a metadata field so that we can retrieve it in the UI.
+
+The Indexing Pipeline Extension script looks like this:
 ``` python
 import subprocess
 import boto3
@@ -521,4 +526,4 @@ except Exception as e:
 
 ```
 
-Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2 build the UI](/2018/05/01/building-the-elastic-demo-part2).
+Now we can start building the UI, covered in: [The Elastic Search Demo, Part 2: Build the UI](/2018/05/01/building-the-elastic-demo-part2).
