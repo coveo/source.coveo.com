@@ -11,7 +11,7 @@ author:
   image: 20180501/wim.jpg
 ---
 
-_This is the second blog post of a new series entitled “Build it with the Coveo Cloud Platform”. The series will present innovative use cases for the Coveo Platform, always including full code samples._
+_This is the second blog post of a new series entitled “Build it with the Coveo Cloud Platform”. The series will present innovative use cases for the Coveo Platform, always including full code samples. Read the previous post [Building a resource locator](https://source.coveo.com/2017/03/07/building-a-resource-locator/)._
 
 ## Use case 
 - Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
