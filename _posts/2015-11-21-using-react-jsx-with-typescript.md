@@ -12,7 +12,7 @@ author:
   image: wfortin.jpeg
 ---
 
-In the last months, we [experienced with React](http://source.coveo.com/2015/08/21/dreamforce-session-explorer/) and we enjoyed it a lot. As you may know, all Coveo's web applications are built using TypeScript, so with the release of [TypeScript 1.6 announcing support for React JSX](https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript#typescript-16) syntax, we were stoked!
+In the last months, we [experienced with React](https://source.coveo.com/2015/08/21/dreamforce-session-explorer/) and we enjoyed it a lot. As you may know, all Coveo's web applications are built using TypeScript, so with the release of [TypeScript 1.6 announcing support for React JSX](https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript#typescript-16) syntax, we were stoked!
 
 <!-- more -->
 

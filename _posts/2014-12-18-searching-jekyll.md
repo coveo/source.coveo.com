@@ -28,7 +28,7 @@ In addition to creating a new Web Pages Connector [source](http://onlinehelp.cov
 
 ## "Installing" the Coveo JavaScript Search Framework in Jekyll
 
-The [JavaScript Search Framework](https://developers.coveo.com/display/public/JsSearch/Home) is simply a [zip file](http://www.coveo.com/go/download.aspx?product=jssearch&v=ind&mv=0.9) containing image, css and JavaScript files. For this straightforward integration, we added the following files to the [Jekyll](http://jekyllrb.com/) folder structure:
+The [JavaScript Search Framework](https://developers.coveo.com/display/public/JsSearch/Home) is simply a [zip file](https://www.coveo.com/go/download.aspx?product=jssearch&v=ind&mv=0.9) containing image, css and JavaScript files. For this straightforward integration, we added the following files to the [Jekyll](http://jekyllrb.com/) folder structure:
 
 - `css/CoveoFullSearch.css`
 - `js/CoveoJsSearch.WithDependencies.min.js`
