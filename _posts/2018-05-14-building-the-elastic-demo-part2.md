@@ -26,50 +26,52 @@ _This is the third blog post of a new series entitled “Build it with the Coveo
 Coveo offers out of the box a [Javascript Framework](https://docs.coveo.com/en/375) for building the UI. It offers a ton of components which you can simply drag and drop using an [Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). Using the editor you can quickly design the basic layout of your UI, create search interfaces, add facets and you are ready to go for a basic search experience. Since we wanted to have very specific result templates, completely tailored to the search audience, we needed some additional configuration directly into the HTML/JS files.
 
 ### Result templates
-For almost all the content types we had indexed we wanted to have more dedicated [result templates](https://docs.coveo.com/en/413), than offered out of the box. The Movie result template is probably the most complicated one. It uses a couple of custom controls and custom formatting.
-Coveo offers out of the box different [result layouts](https://docs.coveo.com/en/360) (eg. list, card and table). For each layout different result templates can be configured.
-The Javascript framework will pick the first template where the condition is met. If none of the conditions is met and there is NO default template, then nothing is shown.
+For almost all the content types we had indexed we wanted to have more dedicated [result templates](https://docs.coveo.com/en/413), than offered out of the box. 
+
+The Movie result template is probably the most complicated one. It uses a couple of custom controls and custom formatting.
+Out of the box, Coveo offers different [result layouts](https://docs.coveo.com/en/360) (eg. list, card and table). For each layout different result templates can be configured.
+The Javascript framework will pick the first template where the condition is met. 
 
 The Movie database result template looked like:
 ``` html
 <script id="Movie" class="result-template" type="text/html" data-layout="list" data-field-mytype="Movie">
 	<div class="coveo-result-frame movie">
-            <span class="CoveoMyBackground" data-show-poster="true"></span>
-            <div class="result-float-right role-based-text-color">
-                <span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
-                <span class="CoveoMySentiment"></span>
-                <div class="CoveoQuickview"></div>
-                <div class="CoveoFieldValue" data-field="@myvoteaverage" data-text-caption="★" style="display:block"></div>
-                <div class="CoveoFieldValue" data-field="@mysentimentvalue"></div>
-                <div class="CoveoFieldValue" data-field="@myprofitvalue" data-text-caption="Profit (x100M):" style="display:block"></div>
-                <div class="CoveoFieldValue" data-field="@mypopularity" data-text-caption="Popularity:" data-helper="currency" data-helper-options-decimals="0" data-helper-options-symbol=" " style="display:block"></div>
-                <div class="CoveoMyFeatured"></div>
-                <div class="CoveoMyART"></div>
-            </div>
-            <a class="CoveoResultLink"></a>
+        <span class="CoveoMyBackground" data-show-poster="true"></span>
+        <div class="result-float-right role-based-text-color">
+            <span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
+            <span class="CoveoMySentiment"></span>
+            <div class="CoveoQuickview"></div>
+            <div class="CoveoFieldValue" data-field="@myvoteaverage" data-text-caption="★" style="display:block"></div>
+            <div class="CoveoFieldValue" data-field="@mysentimentvalue"></div>
+            <div class="CoveoFieldValue" data-field="@myprofitvalue" data-text-caption="Profit (x100M):" style="display:block"></div>
+            <div class="CoveoFieldValue" data-field="@mypopularity" data-text-caption="Popularity:" data-helper="currency" data-helper-options-decimals="0" data-helper-options-symbol=" " style="display:block"></div>
+            <div class="CoveoMyFeatured"></div>
+            <div class="CoveoMyART"></div>
+        </div>
+        <a class="CoveoResultLink"></a>
 
-            <div class="CoveoExcerpt"></div>
+        <div class="CoveoExcerpt"></div>
 
-            <span class="CoveoResultFolding"
-                data-result-template-id="Review"
-                data-normal-caption="Reviews"
-                data-more-caption="Show more reviews"
-                data-expanded-caption="Reviews"
-                data-less-caption="Show less reviews"
-                data-one-result-caption="Only one review"></span>
+        <span class="CoveoResultFolding"
+            data-result-template-id="Review"
+            data-normal-caption="Reviews"
+            data-more-caption="Show more reviews"
+            data-expanded-caption="Reviews"
+            data-less-caption="Show less reviews"
+            data-one-result-caption="Only one review"></span>
 
-            <div class="CoveoDetailsAndRelated">
-                <table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
-                    <tr data-field="@source" data-caption="Source"></tr>
-                    <tr data-field="@mystatus" data-caption="Status"></tr>
-                <tr data-field="@mycountries" data--caption="Production Countries"></tr>
-                <tr data-field="@mygenre" data-caption="Genres"></tr>
-                <tr data-field="@myrelatedartist" data-caption="Soundtrack (artists)" data-split-values="true"></tr>
-                <tr data-field="@myrelatedsongs" data-caption="Soundtrack (songs)"></tr>
-                </table>
-            </div>
+        <div class="CoveoDetailsAndRelated">
+            <table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
+                <tr data-field="@source" data-caption="Source"></tr>
+                <tr data-field="@mystatus" data-caption="Status"></tr>
+            <tr data-field="@mycountries" data--caption="Production Countries"></tr>
+            <tr data-field="@mygenre" data-caption="Genres"></tr>
+            <tr data-field="@myrelatedartist" data-caption="Soundtrack (artists)" data-split-values="true"></tr>
+            <tr data-field="@myrelatedsongs" data-caption="Soundtrack (songs)"></tr>
+            </table>
+        </div>
 
-            <div class="CoveoResultsRelated youtube"
+        <div class="CoveoResultsRelated youtube"
             data-result-template-id="YouTubeVideoList"
             data-name="Videos"
             data-normal-caption="Videos"
@@ -84,9 +86,9 @@ The Movie database result template looked like:
             data-partial-match=false
             data-number-Of-Results=5
             data-help='#ResultHelpYoutube'>
-            </div>
+        </div>
 
-            <div class="CoveoResultsRelated music"
+        <div class="CoveoResultsRelated music"
             data-result-template-id="Music"
             data-name="Music"
             data-normal-caption="Music"
@@ -102,22 +104,21 @@ The Movie database result template looked like:
             data-partial-match=false
             data-number-Of-Results=5
             data-help='#ResultHelpMusic'>
-            </div>
+        </div>
     </div>
-
 </script>
 ```
 
-And will show in the interface like:
+This is shown like this in the interface:
 ![RL1]({{ site.baseurl }}/images/20180514/RL1.png)
 
-Lots of the components inside the resulttemplate are out of the box (```CoveoFieldValue```, ```CoveoExcerpt```, ```CoveoResultLink```), others (```CoveoMyBackground```, ```CoveoResultsRelated```) are custom made.
+Lots of the components inside the resulttemplate are out of the box (```CoveoFieldValue```, ```CoveoExcerpt```, ```CoveoResultLink```), while others (```CoveoMyBackground```, ```CoveoResultsRelated```) are custom made.
 
 ## Custom controls
-You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files, and that is what we have used for the demo. A few of the components will be discussed in detail. You can always view them in our [demo](https://elastic.coveodemo.com/demo/js/pages.js).
+You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files, and that is what we have used for the demo. A few of the components will be discussed in details. You can always view them in our [demo](https://elastic.coveodemo.com/demo/js/pages.js).
 
 ### CoveoMyBackground
-The first custom control we build was ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also used the color gradient (from the Indexing Pipeline Extension) to create a gradient color.
+The first custom control we built was ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also used the color gradient (from the Indexing Pipeline Extension) to create a gradient color.
 ![RL5]({{ site.baseurl }}/images/20180514/RL5.png)
 ``` javascript
 //***************************
@@ -125,70 +126,70 @@ The first custom control we build was ```CoveoMyBackground```. It offers a custo
 //  Adds a background image and sets the background gradient of the result
 //***************************
 let MyBackground = function (element, options, bindings, result) {
-    __extends(MyBackground, Coveo.Component);
-    Coveo.ComponentOptions.initComponentOptions(element, MyBackground, options);
+  __extends(MyBackground, Coveo.Component);
+  Coveo.ComponentOptions.initComponentOptions(element, MyBackground, options);
 
-    if (options.showPoster) {
-        let url = result.raw.myimage;
-        if (result.raw.mytype === 'Movie') {
-            url = url ? '//image.tmdb.org/t/p/w185_and_h278_bestv2' + url : '//elastic.coveodemo.com/icons/noimage-nofill.png';
-        }
-        else if (result.raw.mytype === 'Music') {
-            url = url ? '//lastfm-img2.akamaized.net/i/u/174s/' + url : '//elastic.coveodemo.com/icons/noimage-nofill.png';
-        }
-        else if (result.raw.mytype === 'Concert') {
-            url = url ? `//images.sk-static.com/images/media/profile_images/artists/${url}/large_avatar` : '//elastic.coveodemo.com/icons/noimage-nofill.png';
-        }
+  if (options.showPoster) {
+      let url = result.raw.myimage;
+      if (result.raw.mytype === 'Movie') {
+          url = url ? '//image.tmdb.org/t/p/w185_and_h278_bestv2' + url : '//elastic.coveodemo.com/icons/noimage-nofill.png';
+      }
+      else if (result.raw.mytype === 'Music') {
+          url = url ? '//lastfm-img2.akamaized.net/i/u/174s/' + url : '//elastic.coveodemo.com/icons/noimage-nofill.png';
+      }
+      else if (result.raw.mytype === 'Concert') {
+          url = url ? `//images.sk-static.com/images/media/profile_images/artists/${url}/large_avatar` : '//elastic.coveodemo.com/icons/noimage-nofill.png';
+      }
 
-        $(element).closest('.coveo-result-frame').css('background-image', `url(${url})`).on('click', (e) => {
-            $(e.target).find('.CoveoQuickview').coveo('open');
-        });
+      $(element).closest('.coveo-result-frame').css('background-image', `url(${url})`).on('click', (e) => {
+          $(e.target).find('.CoveoQuickview').coveo('open');
+      });
 
-    }
+  }
 
-    // calculate gradient
-    // the mycolors is added with an IPE during indexing
-    let colors = result.raw.mycolors;
-    if (colors) {
-        colors = colors.split(' ');
-        if (colors.length) {
-            let i = 0;
-            // make sure we have at least 5 colors, by adding previous colors when array is short.
-            while (colors.length < 5) {
-                colors.push(colors[i++]);
-            }
-            colors = colors.map((c, idx) => {
-                let trans=0.05;
-                if (userIdToAdd.sel=="Anonymous" && options.showPoster)
-                { 
-                    trans=0.95;
-                }                
-                let t = ((5 - idx) * trans).toFixed(2);
-                return c.replace('(', 'rgba(').replace(')', `,${t})`); // add transparency
-            });
-            
-            if (userIdToAdd.sel=="Anonymous" && options.showPoster)
-            {
-                let gradient = `linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]}, ${colors[4]})`;
-                $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', gradient);
-            }
-            else
-            {
-                let gradient = `linear-gradient(to bottom right, ${colors[0]}, ${colors[1]}), radial-gradient(circle, ${colors[2]}, ${colors[3]}, ${colors[4]})`;
-                $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', gradient);
-            }
-        }
-    }
-    else {
-        if (userIdToAdd.sel=="Anonymous" && options.showPoster)
-        {
-            $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', 'linear-gradient(to right, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)');
-        }
-        else
-        {
-            $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', 'linear-gradient(45deg, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)');
-        }
-    }
+  // calculate gradient
+  // the mycolors is added with an IPE during indexing
+  let colors = result.raw.mycolors;
+  if (colors) {
+      colors = colors.split(' ');
+      if (colors.length) {
+          let i = 0;
+          // make sure we have at least 5 colors, by adding previous colors when array is short.
+          while (colors.length < 5) {
+              colors.push(colors[i++]);
+          }
+          colors = colors.map((c, idx) => {
+              let trans=0.05;
+              if (userIdToAdd.sel=="Anonymous" && options.showPoster)
+              { 
+                  trans=0.95;
+              }                
+              let t = ((5 - idx) * trans).toFixed(2);
+              return c.replace('(', 'rgba(').replace(')', `,${t})`); // add transparency
+          });
+          
+          if (userIdToAdd.sel=="Anonymous" && options.showPoster)
+          {
+              let gradient = `linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]}, ${colors[4]})`;
+              $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', gradient);
+          }
+          else
+          {
+              let gradient = `linear-gradient(to bottom right, ${colors[0]}, ${colors[1]}), radial-gradient(circle, ${colors[2]}, ${colors[3]}, ${colors[4]})`;
+              $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', gradient);
+          }
+      }
+  }
+  else {
+      if (userIdToAdd.sel=="Anonymous" && options.showPoster)
+      {
+          $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', 'linear-gradient(to right, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)');
+      }
+      else
+      {
+          $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', 'linear-gradient(45deg, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)');
+      }
+  }
 };
 MyBackground.ID = 'MyBackground';
 MyBackground.options = {
@@ -198,7 +199,7 @@ Coveo.CoveoJQuery.registerAutoCreateComponent(MyBackground);
 ```
 
 ### CoveoMyART
-Custom control ```CoveoMyArt```, shows a 'Featured' label on the result when the result is promoted by our Machine Learning [Art](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
+The  ```CoveoMyArt``` custom control shows a 'Featured' label on the result when it is promoted by our Machine Learning [ART](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
 ``` javascript
 //***************************
 //ART result
@@ -219,7 +220,7 @@ Coveo.CoveoJQuery.registerAutoCreateComponent(MyART);
 ```
 
 ### CoveoResultsRelated
-One of my favorites: ```CoveoResultsRelated```, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). 
+One of my favorite component was the ```CoveoResultsRelated```, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). 
 ![RL4]({{ site.baseurl }}/images/20180514/RL4.png)
 
 We configured the Custom control by setting the properties:
@@ -241,10 +242,11 @@ We configured the Custom control by setting the properties:
             data-help='#ResultHelpYoutube'>
           </div>
 ```
-In the above example we specified the ```data-query``` to be executed as '@title="[FIELD1]" @filetype=YoutubeVideo'. The ```data-fields``` (in this case title) was used to fill up the [FIELD1] in the query. So only when the end user clicked a button, the query would be executed. That was the first behavior of the component. 
+In the above example we specified the ```data-query``` to be executed as ```'@title="[FIELD1]" @filetype=YoutubeVideo'```. The ```data-fields``` (in this case title) was used to fill up the [FIELD1] in the query. So only when the end user clicked a button, the query would be executed. That was the first behavior of the component. 
 
-Because we changed the layout to use tabs on a result, it did not look very professional if people would see 4 different tabs and when they would click on them a 'No results' message was shown. Bad user-experience! 
-We added an additional check inside the ```CoveoDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. BUT BE AWARE, if 10 results are displayed this means 10 additional queries!!!
+Because we changed the layout to use tabs on a result, it did not look very professional. That's because if someone was to click on one of the 4 different tabs, they would be presented with a 'No results' message. Bad user experience!
+
+We added an additional check inside the ```CoveoDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. However, be aware. If 10 results are displayed this will perform an additional 10 queries!
 ``` javascript
 //***************************
 //composeQuery
@@ -373,9 +375,9 @@ function checkQueries(queries){
 For the full code of the component see our [demo](https://elastic.coveodemo.com/demo/js/page.js).
 
 ## Styling the UI with custom CSS
-The search interface rendered out of the box looks already quite usefull. In our case we wanted to change them to our own branding. Everything can be [overruled](https://docs.coveo.com/en/423). Always create your own custom CSS files, and never overwrite the ones provided by Coveo out of the box.
+The search interface rendered out of the box looks already quite useful. In our case we wanted to change them to our own branding. Everything can be [overruled](https://docs.coveo.com/en/423). Always create your own custom CSS files, and never overwrite the ones provided by Coveo out of the box.
 
-Our resulttemplate is formatted like:
+Our resulttemplate is formatted as such:
 ``` css
 .coveo-results-column {
     .coveo-list-layout .coveo-result-frame {
@@ -417,7 +419,9 @@ Our resulttemplate is formatted like:
 ```
 
 ## Personalization
-More and more we see requests coming in around personalization, one of the reasons why we added it to our demo. In our case we had two profiles: Movie Fan and a Movie Producer. Each had its own color schema and its own relevancy rules. Using the profiles we could not only change the UI styling, but we also added specific relevancy rules. In a normal scenario this would could come from all kinds of systems: for example department/country from Active Directory or information from a userprofile in Salesforce or Sharepoint.
+More and more we see requests coming in around personalization, which is one of the reasons why we added it to our demo. In our case we had two profiles: Movie Fan and a Movie Producer. Each had its own color schema and its own relevancy rules. 
+
+Using the profiles we could not only change the UI styling, but we also added specific relevancy rules. In a normal scenario this would come from all kinds of systems: for example department/country from Active Directory or information from a userprofile in Salesforce or Sharepoint.
 
 With Coveo you can use the [QRE](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357) syntax to start boosting results with your preferences to a higher position.
 ``` javascript
@@ -447,27 +451,27 @@ Some special tips and tricks.
 In order to use context like a ```userRole``` we added [context](https://docs.coveo.com/en/399) to our Queries using the following code:
 ``` javascript
 $('#search').on("buildingQuery", function (e, args) {
-	//Add the context
-	//A custom context is added so we can react on it in Query Pipelines and Analytics
-	args.queryBuilder.addContext({
-		"userRole": userIdToAdd.sel
-	});
+  //Add the context
+  //A custom context is added so we can react on it in Query Pipelines and Analytics
+  args.queryBuilder.addContext({
+      "userRole": userIdToAdd.sel
+  });
 });
 ```
 All [events](https://docs.coveo.com/en/417) in Coveo can be adjusted to fit to your needs.
 
 ### Adding a Relevancy boost when a user profile is selected
-When a user profile is selected we wanted to set the [hiddenQuery](https://docs.coveo.com/en/3) so it will change the relevancy based upon what was set for the current profile. In this case: ```hd``` means the description provided to the user (in the breadcrumb section), ```hq``` is the actual hidden query.
+When a user profile is selected we wanted to set the [hiddenQuery](https://coveo.github.io/search-ui/components/hiddenquery.html) so it will change the relevancy based upon what was set for the current profile. In this case: ```hd``` means the description provided to the user (in the breadcrumb section), ```hq``` is the actual hidden query.
 ``` javascript
 $('#search').on("buildingQuery", function (e, args) {
-	//Set the proper pipeline
-	args.queryBuilder.pipeline = (MLactive ? 'ML' : 'default');
+  //Set the proper pipeline
+  args.queryBuilder.pipeline = (MLactive ? 'ML' : 'default');
 
-	if (userBoost) {
-		Coveo.$('.CoveoSearchInterface').coveo('state', 'hd', userHelp.split('<BR>')[0]);
-		Coveo.$('.CoveoSearchInterface').coveo('state', 'hq', userBoost);
-		userBoost = "";
-	}
+  if (userBoost) {
+    Coveo.$('.CoveoSearchInterface').coveo('state', 'hd', userHelp.split('<BR>')[0]);
+    Coveo.$('.CoveoSearchInterface').coveo('state', 'hq', userBoost);
+    userBoost = "";
+  }
 });
 ```
 
@@ -596,7 +600,7 @@ exports.handler = (event, context, callback) => {
 
 };
 ```
-And in our JS we fetched the token:
+In our JavaScript file, we fetch the token:
 ``` javascript
 //On Load...
 	//We set default values
@@ -626,7 +630,7 @@ And in our JS we fetched the token:
 ```
 
 ### Reacting on 'popular queries', manually execute a query
-We added (for demo purposes) a couple of popular queries to the UI. This would execute a query directly.  When you execute a new query by code you also need to add the proper analytics events! We used the following code to do that:
+We added (for demo purposes) a couple of popular queries to the UI. This would execute a query directly. When you execute a new query by code you also need to add the proper analytics events! We used the following code to do that:
 ``` javascript
 //Change the query based upon the popular ones. This will also add an analytics event
 function changeQuery(query) {
@@ -688,7 +692,7 @@ window.location.reload();
 ```
 
 ### Get query suggestions on our landing page
-In our [Partner demo](https://elastic.coveodemo.com/demo-partners) we provided a landing page with popular queries. Based upon the ```userRole``` the [querySuggestions](https://developers.coveo.com/x/iQGwAQ) will be retrieved by our api:
+In our [Partner demo](https://elastic.coveodemo.com/demo-partners) we provided a landing page with popular queries. Based upon the ```userRole``` the [querySuggestions](https://developers.coveo.com/x/iQGwAQ) will be retrieved by our API:
 ``` javascript
 
 function getQuerySuggest(profile) {
@@ -807,7 +811,7 @@ One of our requirements was an advanced search feature. End-users then could eas
     <div class="CoveoResultsFiltersPreferences"></div>
 </div>
 ```
-With additional code in our JS:
+With additional code in our JavaScript:
 ``` javascript
 //***************************
 //setSearchParams
@@ -851,7 +855,7 @@ function setSearchParams() {
 ```
 
 ### Sending a PageView event when clicking on a URL
-In a normal situation the public website or other system could sent additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based upon other peoples journeys.
+In a normal situation the public website or other system could send additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based upon other peoples journeys.
 
 In our case we simply wanted to add such an event whenever end-users clicked on the preview/and or followed the hyperlink.
 ``` javascript
@@ -881,7 +885,8 @@ $('#search').on('changeAnalyticsCustomData', function (e, args) {
 ```
 
 ## Pushing Analytics events using the UABOT
-In a normal production system the Search Analytics would work together with our Machine Learning to constantly improve the relevancy. Because of the limited use of demo's, this would not work for us. We still wanted to show our [Search Analytics Dashboards](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=238). In order to show them we would need data. That is where our [UABOT](https://github.com/coveo/uabot) comes in. Based upon a JSON configuration file it will start pushing Analytics events to our Analytics service. The Search Analytics events are used by our Machine Learning which will provide [query suggestions](https://onlinehelp.coveo.com/en/cloud/enabling_coveo_machine_learning_query_suggestions_in_a_coveo_js_search_framework_search_box.htm) and [relevancy boosting](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=166).
+In a normal production system the Search Analytics would work together with our Machine Learning to constantly improve the relevancy. Because of the limited use of demo's, this would not work for us. We still wanted to show our [Search Analytics Dashboards](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=238), to show them we would need data. 
+That is where our [UABOT](https://github.com/coveo/uabot) comes in. Based upon a JSON configuration file it will start pushing Analytics events to our Analytics service. The Search Analytics events are used by our Machine Learning which will provide [query suggestions](https://onlinehelp.coveo.com/en/cloud/enabling_coveo_machine_learning_query_suggestions_in_a_coveo_js_search_framework_search_box.htm) and [relevancy boosting](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=166).
 
 Our UABOT file:
 ``` json
