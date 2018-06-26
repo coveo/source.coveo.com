@@ -6,7 +6,7 @@ title: "Deep Learning Showdown"
 
 author:
   name: Joseph Szymborski
-  bio: Machine Learning Developer @ Coveo R&D, and maker of funky graphs
+  bio: Machine Learning Developer @ Coveo R&D, and habitual maker of funky graphs
   twitter: jszym
   image: jszym.jpg
 ---
@@ -23,7 +23,7 @@ I compared these frameworks based on three categories that we value most (Suppor
 
 Without further ado, let's meet the frameworks.
 
-## The Belidgerents 
+## Frameworks in this Comparison: The Belidgerents
 
 This isn't an exauhstive list of *all deep learning frameworks in existence&trade;*, but it's a pretty comprehensive list of frameworks that have either (1) some sort of following or (2) interesting properties.
 
@@ -44,5 +44,43 @@ This isn't an exauhstive list of *all deep learning frameworks in existence&trad
 |<img src="{{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/logos/torch.png" width="60" />|[Torch](http://torch.ch)|Ronan, Clément, Koray, & Soumith|[2002](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=CBB0C8A5FE34F6D6DAFF997F6B6A205A?doi=10.1.1.8.9850&rep=rep1&type=pdf)|Lua, Started out with S. Bengio et al.|
 |<img src="{{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/logos/theano.png" width="60" />|[Theano](http://www.deeplearning.net/software/theano/)|[MILA](https://mila.quebec/)/LISA|At least 2008|No longer supported by MILA.|
 
-## Final Results
-I'm going to cut straight to the chase and show you what the final scores are for each framework. 
+## Methodology Summary: Match Rules
+
+Each framework was scored on three categories, each with its own sub-criteria:
+
+* **Support &amp; Community**
+  * Sponsor --- *How is this framework funded?*
+  * Activity --- *Is it actively developped?*
+  * Ecosystem --- *Are people using it?*
+
+* **API**
+  * Sym/Dyn Autodiff --- *Does the framework support dynamic, or old-school symbolic automatic differentiation?*
+  * Numerics --- *What numeric backend is being used? Is it actively developped? Easy to use?*
+  * OOTB NN Ops --- *What are the out-of-the box neural network layers and operations that are supported?*
+
+* **Platform**
+  * Scalability --- *Does this framework support (easy-to-use) multi-machine training/prediction?*
+  * Languages --- *Are there many, mature, language bindings?*
+  * OS Support --- *Are many environments supported?*
+  * AWS Support --- *Is it easy to use in the AWS cloud?*
+  * ONNX Support --- *Can we serialise models to the ONNX format?*
+
+Each of these categories has a sub-section, where I describe how I calculate each of those sub-criteria and show you how each framework fared.
+
+## Overall Results: The Podium
+
+We've all got deadlines, so I'll cut straight to the overall scores of each framework (below). For my fellow detail-geeks, I break down each category in the sections to come 🤓.
+
+<div style="text-align:center;">
+<img src="{{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/annotated-overall.svg.png">
+</div>
+
+You can get a break down of how every framework performs in each category and every sub-criteria in the sections below to get a better idea of how a framework got to be scored as it has.
+
+<div style="text-align:center;">
+<img src="{{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/radar-tiers.png">
+</div>
+
+The tiers here (and elsewhere in this document) aren't standardised and don't have a whole lot of meaning outside of the fact that it's a convenient way of thinking about how frameworks have clustered in their scores.
+
+With that disclaimer, MXNet
