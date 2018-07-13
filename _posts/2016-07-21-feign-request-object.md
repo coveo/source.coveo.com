@@ -167,5 +167,5 @@ public class EditDimensionRequest extends BaseRequest
 }
 ```
 
-There you have it: a very simple HTTP client built with Feign, using a request object. It made coding our functional tests way easier and made them much cleaner. The next steps for us would be to combine that with [better exception handling](http://source.coveo.com/2016/02/19/microservices-and-exception-handling/) (awesome post by my friend Jacques-Etienne Beaudet, go check it out) and we would be unstoppable!
+There you have it: a very simple HTTP client built with Feign, using a request object. It made coding our functional tests way easier and made them much cleaner. The next steps for us would be to combine that with [better exception handling](https://source.coveo.com/2016/02/19/microservices-and-exception-handling/) (awesome post by my friend Jacques-Etienne Beaudet, go check it out) and we would be unstoppable!
 

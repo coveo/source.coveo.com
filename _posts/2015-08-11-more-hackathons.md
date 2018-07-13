@@ -27,7 +27,7 @@ We’re pretty enthusiastic when it comes to creating software. Sadly, due to th
 
 ## So we introduced Hackathons
 
-In order to force people to free their schedule and give their ideas a try, we’ve [started doing Hackathons at Coveo](http://source.coveo.com/2014/11/11/hackathon/). Everyone is free from their usual schedule for one afternoon followed by one full day during which everyone can work on … whatever, really!
+In order to force people to free their schedule and give their ideas a try, we’ve [started doing Hackathons at Coveo](https://source.coveo.com/2014/11/11/hackathon/). Everyone is free from their usual schedule for one afternoon followed by one full day during which everyone can work on … whatever, really!
 
 There are only two rules:
 
