@@ -19,7 +19,7 @@ I've done a lot of the leg work for you, having made a pretty comprehensive repo
 
 <!-- more -->
 
-I compared these frameworks based on three categories that we value most (Support & Community, Internals, and Platform), and used (as much as possible) quantitative measures to compare each one.
+I compared these frameworks based on three categories that we value most (Support & Community, API, and Platform), and used (as much as possible) quantitative measures to compare each one.
 
 Without further ado, let's meet the frameworks.
 
@@ -65,22 +65,80 @@ Each framework was scored on three categories, each with its own sub-criteria:
   * AWS Support --- *Is it easy to use in the AWS cloud?*
   * ONNX Support --- *Can we serialise models to the ONNX format?*
 
-Each of these categories has a sub-section, where I describe how I calculate each of those sub-criteria and show you how each framework fared.
+*"How are each of these criteria measured?!"* I hear the throng of data-hungry quants cry out in anguish and anticipation --- don't worry, I go into detail for each category's methodology in sections to come 🤓.
+
+{:#foot0_origin}
+A perhaps noticeable omission in this list is Keras, a framework headed by François Chollet, whose API is easy to use and aims to be a sort of *lingua franca*, fronting a TensorFlow, Theano, or CNTK backend<sup>[0](#foot0)</sup>. Keras got excluded from this comparison for a couple of reasons, not least of which are:
+
+0. Most of the criteria here would change depending on what backend Keras is using.
+1. All of Keras' stable and experimental backends are contestants in the showdown.
+
+If you're currently evaluating Keras as a solution and want to use this guide, the API score of the framework you're using as a backend is probably the most relevant part for you.
 
 ## Overall Results: The Podium
 
-We've all got deadlines, so I'll cut straight to the overall scores of each framework (below). For my fellow detail-geeks, I break down each category in the sections to come 🤓.
+We've all got deadlines, so I'll cut straight to the overall scores of each framework (below). These overall scores are an average of the three category score. Again, for my fellow detail-geeks, I break down each category in later sections.
 
-<div style="text-align:center;">
-<img src="{{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/annotated-overall.svg.png">
-</div>
+{:.center}
+![Overall Scores]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/annotated-overall-white.svg.png)
 
-You can get a break down of how every framework performs in each category and every sub-criteria in the sections below to get a better idea of how a framework got to be scored as it has.
+You can get a break down of how every framework performs in each category and sub-criteria in the sections below to get a better idea of how a framework got its score.
 
-<div style="text-align:center;">
-<img src="{{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/radar-tiers.png">
-</div>
+{:.center}
+![Radar Plots of Categories]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/radars-double-white.svg.png)
+
+{:.caption}
+I promise the marketing team didn't make me make the radar plots look like the Coveo logo
 
 The tiers here (and elsewhere in this document) aren't standardised and don't have a whole lot of meaning outside of the fact that it's a convenient way of thinking about how frameworks have clustered in their scores.
 
-With that disclaimer, MXNet
+<!-- TODO: a brief write-up of overall results -->
+
+## Round One: Support &amp; Community
+
+If you're going to invest time and effort in a code-base that depends on a framework, you want to know that there's a community of  battle-testing, bug-reporting, ticket-answering, and fix-merging devs somewhere in the world. 
+
+Another great side-effect of having a large user-base is that it's more and more common to find implementations of popular papers and architectures that were originally written in another framework or (sadly more often) not supplied at all.
+
+### Category Criteria
+
+|Criterion|Question it answers|Rationale|Scoring|
+|---|-------|----------|----------|
+|Sponsor|*How is the development of the framework funded?*|The more money a framework has, the more likely it's going to stay active long term.|**0** for an individual,<br/>**1** for sponsors who allocated few resorces, and<br/>**2** for sponsors who allocated many resources.
+|Activity|*What is the dev't acitivity of the framework?*|Bugs are more likely to be patched and features to be merged with active dev't.|Score is assigned as the sum of (1) the inverse of the last **commit in weeks**, and (2) the number of **push requests merged** this month.|
+|Ecosystem|*Are people building models with this framework?*|Having ready-made models of popular architectures and pre-trained weights can be a huge speed-up to development.|Sum of the number of the log **GitHub repos** and the log of **StackOverflow questions**<sup>1</sup>.|
+|Documentation|*Are the docs complete?*|Ever try writing code for a framework with bad documentation? Nigh impossible. Undocumented features might as well not exist.|Currently qualitiative score from one to three<sup>2</sup>.|
+
+### Results
+Below are the Support & Community scores, as well as a break down of each criteria by framework.
+
+{:.center}
+![Support & Community Overall Score]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/annotated-snc3-white.svg.png)
+
+{:.center}
+![Criteria Score Breakdown for Support & Community Category]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/snc_criteria_annotated-white.svg)
+
+{:.caption}
+Breakdown of each criteria in this category by framework. 
+
+Older frameworks like Torch, Caffe, and Theano are buoyed by their ecosystem, but are still rivaled in that criteria by 1 year old PyTorch and 3 year old TensorFlow.
+
+
+<!-- TODO: a brief write-up of overall results -->
+
+## Round Two: API
+
+## Footnotes
+{:#foot0}
+0. There are a number of experimental backends like MXNet and DL4J also in the pipeline. Writing backends for Keras is actually not a horrible experience, which is pretty cool. [&#x2B8C;](#foot0_origin)
+
+<style>
+.center {
+  text-align: center;
+}
+.caption {
+  text-align: center;
+  margin-top:-30px;
+  font-style:italic;
+}
+</style>
