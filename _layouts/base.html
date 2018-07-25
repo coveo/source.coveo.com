@@ -7,10 +7,12 @@
     <title>{% if page.title %}{{ page.title }} &mdash; {{ site.inc.title }}{% else %}{{ site.inc.title }} &mdash; {{ site.inc.subtitle }}{% endif %}</title>
     {% if site.inc.google_font %}<link href="https://fonts.googleapis.com/css?family={{ site.inc.google_font }}" rel="stylesheet" type="text/css">{% endif %}
 
-	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/coveo-search-ui_V1.1550.5/bin/css/CoveoFullSearchNewDesign.css">
-	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+  <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
+  <link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+  <link rel="stylesheet" href="css/community-unified-navigation-custom.css"/>
 
-	<!-- <link rel="stylesheet" href="/css/CoveoFullSearch.css" /> -->
+
+
 	{% include _search.html %}
 
     <link rel="stylesheet" type="text/css" href="{{ site.github.url | replace: 'http://', '//' }}/css/main.css"/>
@@ -123,8 +125,16 @@
 		</div>
 		<div class="bottomHeader">
 			<div id="searchBox">
-				<div class="CoveoSearchbox" type="text" data-enable-omnibox="true" data-inline="false" data-enable-wildcards="true" data-enable-search-as-you-type="false" data-enable-reveal-query-suggest-addon="false" data-enable-query-syntax="true" data-enable-field-addon="true"></div>
-				<div class="CoveoFieldSuggestions" data-field="@systitle" data-header-title="Suggested topics"></div>
+        <div class="CoveoSearchbox" type="text"
+          data-enable-omnibox="true"
+          data-inline="false"
+          data-enable-wildcards="true"
+          data-enable-search-as-you-type="false"
+          data-enable-reveal-query-suggest-addon="true"
+          data-enable-query-syntax="true"
+          data-enable-field-addon="true">
+        </div>
+				<div class="CoveoFieldSuggestions" data-field="@techblogtitle" data-header-title="Posts"></div>
 			</div>
 		</div>
 	</header>
