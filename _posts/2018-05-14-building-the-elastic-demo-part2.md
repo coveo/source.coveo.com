@@ -34,76 +34,76 @@ The Movie database result template looked like:
 ``` html
 <script id="Movie" class="result-template" type="text/html" data-layout="list" data-field-mytype="Movie">
 	<div class="coveo-result-frame movie">
-            <span class="CoveoMyBackground" data-show-poster="true"></span>
-            <div class="result-float-right role-based-text-color">
-                <span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
-                <span class="CoveoMySentiment"></span>
-                <div class="CoveoQuickview"></div>
-                <div class="CoveoFieldValue" data-field="@myvoteaverage" data-text-caption="★" style="display:block"></div>
-                <div class="CoveoFieldValue" data-field="@mysentimentvalue"></div>
-                <div class="CoveoFieldValue" data-field="@myprofitvalue" data-text-caption="Profit (x100M):" style="display:block"></div>
-                <div class="CoveoFieldValue" data-field="@mypopularity" data-text-caption="Popularity:" data-helper="currency" data-helper-options-decimals="0" data-helper-options-symbol=" " style="display:block"></div>
-                <div class="CoveoMyFeatured"></div>
-                <div class="CoveoMyART"></div>
-            </div>
-            <a class="CoveoResultLink"></a>
-
-            <div class="CoveoExcerpt"></div>
-
-            <span class="CoveoResultFolding"
-                data-result-template-id="Review"
-                data-normal-caption="Reviews"
-                data-more-caption="Show more reviews"
-                data-expanded-caption="Reviews"
-                data-less-caption="Show less reviews"
-                data-one-result-caption="Only one review"></span>
-
-            <div class="CoveoDetailsAndRelated">
-                <table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
-                    <tr data-field="@source" data-caption="Source"></tr>
-                    <tr data-field="@mystatus" data-caption="Status"></tr>
-                <tr data-field="@mycountries" data--caption="Production Countries"></tr>
-                <tr data-field="@mygenre" data-caption="Genres"></tr>
-                <tr data-field="@myrelatedartist" data-caption="Soundtrack (artists)" data-split-values="true"></tr>
-                <tr data-field="@myrelatedsongs" data-caption="Soundtrack (songs)"></tr>
-                </table>
-            </div>
-
-            <div class="CoveoResultsRelated youtube"
-            data-result-template-id="YouTubeVideoList"
-            data-name="Videos"
-            data-normal-caption="Videos"
-            data-title-caption="Related videos (based upon title)"
-            data-expanded-caption="Hide Related Youtube Videos"
-            data-no-results-caption="No related videos found"
-            data-query='@title="[FIELD1]" @filetype=YoutubeVideo'
-            data-key-check='@filetype;YoutubeVideo'
-            data-expanded-comment="Show YouTube videos which title contains '[FIELD1]'"
-            data-extra-boost=false
-            data-fields="title"
-            data-partial-match=false
-            data-number-Of-Results=5
-            data-help='#ResultHelpYoutube'>
-            </div>
-
-            <div class="CoveoResultsRelated music"
-            data-result-template-id="Music"
-            data-name="Music"
-            data-normal-caption="Music"
-            data-title-caption="Related music (based upon related songs and related artists)"
-            data-expanded-caption="Hide Related Music"
-            data-no-results-caption="No related music found"
-            data-query='@myrelatedsongs=("[FIELD1]") @myrelatedartist=("[FIELD2]") @source=Music $qre(expression: &#39;soundtrack&#39;,modifier:&#39;300&#39;, isConstant:&#39;true&#39;)'
-            data-key-check='@source;Music'
-            data-expanded-comment="Show Music with Related Songs/Artists of: [FIELD1] and [FIELD2]"
-            data-extra-boost=false
-            data-fields="myrelatedsongs;myrelatedartist"
-            data-filter-field="@myalbum"
-            data-partial-match=false
-            data-number-Of-Results=5
-            data-help='#ResultHelpMusic'>
-            </div>
+    <span class="CoveoMyBackground" data-show-poster="true"></span>
+    <div class="result-float-right role-based-text-color">
+      <span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
+      <span class="CoveoMySentiment"></span>
+      <div class="CoveoQuickview"></div>
+      <div class="CoveoFieldValue" data-field="@myvoteaverage" data-text-caption="★" style="display:block"></div>
+      <div class="CoveoFieldValue" data-field="@mysentimentvalue"></div>
+      <div class="CoveoFieldValue" data-field="@myprofitvalue" data-text-caption="Profit (x100M):" style="display:block"></div>
+      <div class="CoveoFieldValue" data-field="@mypopularity" data-text-caption="Popularity:" data-helper="currency" data-helper-options-decimals="0" data-helper-options-symbol=" " style="display:block"></div>
+      <div class="CoveoMyFeatured"></div>
+      <div class="CoveoMyART"></div>
     </div>
+    <a class="CoveoResultLink"></a>
+
+    <div class="CoveoExcerpt"></div>
+
+    <span class="CoveoResultFolding"
+      data-result-template-id="Review"
+      data-normal-caption="Reviews"
+      data-more-caption="Show more reviews"
+      data-expanded-caption="Reviews"
+      data-less-caption="Show less reviews"
+      data-one-result-caption="Only one review"></span>
+
+    <div class="CoveoDetailsAndRelated">
+      <table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
+        <tr data-field="@source" data-caption="Source"></tr>
+        <tr data-field="@mystatus" data-caption="Status"></tr>
+        <tr data-field="@mycountries" data--caption="Production Countries"></tr>
+        <tr data-field="@mygenre" data-caption="Genres"></tr>
+        <tr data-field="@myrelatedartist" data-caption="Soundtrack (artists)" data-split-values="true"></tr>
+        <tr data-field="@myrelatedsongs" data-caption="Soundtrack (songs)"></tr>
+      </table>
+    </div>
+
+    <div class="CoveoResultsRelated youtube"
+      data-result-template-id="YouTubeVideoList"
+      data-name="Videos"
+      data-normal-caption="Videos"
+      data-title-caption="Related videos (based upon title)"
+      data-expanded-caption="Hide Related Youtube Videos"
+      data-no-results-caption="No related videos found"
+      data-query='@title="[FIELD1]" @filetype=YoutubeVideo'
+      data-key-check='@filetype;YoutubeVideo'
+      data-expanded-comment="Show YouTube videos which title contains '[FIELD1]'"
+      data-extra-boost=false
+      data-fields="title"
+      data-partial-match=false
+      data-number-Of-Results=5
+      data-help='#ResultHelpYoutube'>
+    </div>
+
+    <div class="CoveoResultsRelated music"
+      data-result-template-id="Music"
+      data-name="Music"
+      data-normal-caption="Music"
+      data-title-caption="Related music (based upon related songs and related artists)"
+      data-expanded-caption="Hide Related Music"
+      data-no-results-caption="No related music found"
+      data-query='@myrelatedsongs=("[FIELD1]") @myrelatedartist=("[FIELD2]") @source=Music $qre(expression: &#39;soundtrack&#39;,modifier:&#39;300&#39;, isConstant:&#39;true&#39;)'
+      data-key-check='@source;Music'
+      data-expanded-comment="Show Music with Related Songs/Artists of: [FIELD1] and [FIELD2]"
+      data-extra-boost=false
+      data-fields="myrelatedsongs;myrelatedartist"
+      data-filter-field="@myalbum"
+      data-partial-match=false
+      data-number-Of-Results=5
+      data-help='#ResultHelpMusic'>
+    </div>
+  </div>
 
 </script>
 ```
@@ -120,102 +120,154 @@ You can use [Typescript](https://docs.coveo.com/en/361) to create custom control
 The first custom control we build was ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also used the color gradient (from the Indexing Pipeline Extension) to create a gradient color.
 ![RL5]({{ site.baseurl }}/images/20180514/RL5.png)
 ``` javascript
-//***************************
-//MyBackground
-//  Adds a background image and sets the background gradient of the result
-//***************************
-let MyBackground = function (element, options, bindings, result) {
-    __extends(MyBackground, Coveo.Component);
-    Coveo.ComponentOptions.initComponentOptions(element, MyBackground, options);
-
-    if (options.showPoster) {
-        let url = result.raw.myimage;
-        if (result.raw.mytype === 'Movie') {
-            url = url ? '//image.tmdb.org/t/p/w185_and_h278_bestv2' + url : '//elastic.coveodemo.com/icons/noimage-nofill.png';
-        }
-        else if (result.raw.mytype === 'Music') {
-            url = url ? '//lastfm-img2.akamaized.net/i/u/174s/' + url : '//elastic.coveodemo.com/icons/noimage-nofill.png';
-        }
-        else if (result.raw.mytype === 'Concert') {
-            url = url ? `//images.sk-static.com/images/media/profile_images/artists/${url}/large_avatar` : '//elastic.coveodemo.com/icons/noimage-nofill.png';
-        }
-
-        $(element).closest('.coveo-result-frame').css('background-image', `url(${url})`).on('click', (e) => {
-            $(e.target).find('.CoveoQuickview').coveo('open');
-        });
-
+export class MyBackground extends Coveo.Component {
+  constructor(element, options, bindings, result) {
+    super(element, MyBackground.ID);
+    this.result = result;
+    this.element = element;
+    this.options = Coveo.ComponentOptions.initComponentOptions(element, MyBackground, options);
+    if (this.options.showPoster) {
+      this.addImage();
     }
-
-    // calculate gradient
-    // the mycolors is added with an IPE during indexing
     let colors = result.raw.mycolors;
     if (colors) {
-        colors = colors.split(' ');
-        if (colors.length) {
-            let i = 0;
-            // make sure we have at least 5 colors, by adding previous colors when array is short.
-            while (colors.length < 5) {
-                colors.push(colors[i++]);
-            }
-            colors = colors.map((c, idx) => {
-                let trans=0.05;
-                if (userIdToAdd.sel=="Anonymous" && options.showPoster)
-                { 
-                    trans=0.95;
-                }                
-                let t = ((5 - idx) * trans).toFixed(2);
-                return c.replace('(', 'rgba(').replace(')', `,${t})`); // add transparency
-            });
-            
-            if (userIdToAdd.sel=="Anonymous" && options.showPoster)
-            {
-                let gradient = `linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]}, ${colors[4]})`;
-                $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', gradient);
-            }
-            else
-            {
-                let gradient = `linear-gradient(to bottom right, ${colors[0]}, ${colors[1]}), radial-gradient(circle, ${colors[2]}, ${colors[3]}, ${colors[4]})`;
-                $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', gradient);
-            }
-        }
+      this.addColors(colors);
+    } else {
+      this.addTopBorder(element);
     }
-    else {
-        if (userIdToAdd.sel=="Anonymous" && options.showPoster)
-        {
-            $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', 'linear-gradient(to right, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)');
-        }
-        else
-        {
-            $(element).closest('.CoveoResult').prepend("<div class='TopBorder'></div>").css('background', 'linear-gradient(45deg, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)');
-        }
+  }
+
+  addImage() {
+    let url = this.result.raw.myimage;
+    let imagesPerTypeMap = {
+      Movie: `//image.tmdb.org/t/p/w185_and_h278_bestv2/${url}`,
+      Music: `//lastfm-img2.akamaized.net/i/u/174s/${url}`,
+      Concert: `//images.sk-static.com/images/media/profile_images/artists/${url}/large_avatar`,
+      People: `//image.tmdb.org/t/p/w138_and_h175_face${url}`,
+      'Movie People': `//image.tmdb.org/t/p/w138_and_h175_face${url}`
+    };
+
+    let imageUrl = imagesPerTypeMap[this.result.raw.mytype];
+    if (imageUrl && !url) {
+      // right type (Movie, Music, Concert) but a specific image wasn't set.
+      imageUrl = '//elastic.coveodemo.com/icons/noimage-nofill.png';
     }
-};
+    $(this.element)
+    .closest('.coveo-result-frame')
+    .css('background-image', `url(${imageUrl})`)
+    .on('click', e => {
+        $(e.target)
+        .find('.CoveoQuickview')
+        .coveo('open');
+    });
+  }
+
+  addColors(colors) {
+    colors = colors.split(' ');
+    if (colors.length) {
+      let i = 0;
+      // make sure we have at least 5 colors, by repeating previous colors when array is short.
+      while (colors.length < 5) {
+        colors.push(colors[i++]);
+      }
+      colors = colors.map((c, idx) => {
+        let trans = 0.05;
+        if (this.options.showPoster) {
+          trans = 0.2;
+        }
+
+        let t = ((5 - idx) * trans).toFixed(2);
+        return c.replace('(', 'rgba(').replace(')', `,${t})`); // add transparency
+      });
+
+      let gradient = `linear-gradient(to right, ${colors[0]}, ${colors[1]}), radial-gradient(circle, ${colors[2]}, ${colors[3]}, ${
+        colors[4]
+      })`;
+
+      this.addTopBorder(this.element, gradient);
+    }
+  }
+
+  /**
+   * Sets the baackground gradient on a border
+   * @param {domElement} element
+   * @param {string?} gradient (optional) CSS for background's gradient
+   */
+  addTopBorder(element, gradient) {
+    let backgroundGradient = gradient || 'linear-gradient(45deg, rgba(193,193,193,0.35) 0%,rgba(0,0,0,0) 100%)'; // gradient or default.
+    $(element)
+      .closest('.CoveoResult')
+      .prepend('<div class="TopBorder"></div>')
+      .css('background', backgroundGradient);
+  }
+}
+
 MyBackground.ID = 'MyBackground';
 MyBackground.options = {
-    showPoster: Coveo.ComponentOptions.buildBooleanOption({ defaultValue: false })
+  showPoster: Coveo.ComponentOptions.buildBooleanOption({ defaultValue: false }),
+  showUser: Coveo.ComponentOptions.buildBooleanOption({ defaultValue: false })
 };
-Coveo.CoveoJQuery.registerAutoCreateComponent(MyBackground);
+Coveo.Initialization.registerAutoCreateComponent(MyBackground);
 ```
 
 ### CoveoMyART
 Custom control ```CoveoMyArt```, shows a 'Featured' label on the result when the result is promoted by our Machine Learning [Art](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
 ``` javascript
-//***************************
-//ART result
-//  Is triggered when ART (Machine Learning) is kicking in
-//***************************
-let MyART = function (element, options, bindings, result) {
-    __extends(MyART, Coveo.Component);
-    this.element = element;
-    this.options = Coveo.ComponentOptions.initComponentOptions(element, MyART, options);
-    this.bindings = bindings;
-    this.result = result;
-    if (this.result.isRecommendation) {
-        Coveo.$('<div style="position:relative"><div class="coveo-result-highlight coveo-custom-ART" ><div class="mytextART">ML Boost</div></div></div>').addClass('custom-coveo-badge').prependTo($(element).closest('.coveo-result-frame'));
+
+/**
+ * ART result
+ * Is triggered when ART (Machine Learning) is kicking in
+ */
+export class MyART extends Coveo.Component {
+  constructor(element, options, bindings, result) {
+    super(element, MyART.ID);
+    if (result.isRecommendation) {
+      const badge = this.getBadge();
+      const resultFrame = $$(this.element).closest('.coveo-result-frame');
+      $$(resultFrame).prepend(badge.el);
     }
-};
+  }
+
+  getBadge() {
+    const container = this.getBadgeContainer();
+    const highlight = this.getBadgeHighlight();
+    const text = this.getBadgeText();
+    highlight.append(text.el);
+
+    container.append(highlight.el);
+    return container;
+  }
+
+  getBadgeContainer() {
+    const container = $$('div', {
+      className: 'custom-coveo-badge'
+    });
+    container.el.style.position = 'relative';
+    return container;
+  }
+
+  getBadgeText() {
+    const text = $$(
+      'div',
+      {
+        className: 'mytextART'
+      },
+      'ML Boost'
+    );
+    return text;
+  }
+
+  getBadgeHighlight() {
+    const highlight = $$('div', {
+      className: 'coveo-result-highlight coveo-custom-ART'
+    });
+
+    return highlight;
+  }
+}
+
 MyART.ID = 'MyART';
-Coveo.CoveoJQuery.registerAutoCreateComponent(MyART);
+Coveo.Initialization.registerAutoCreateComponent(MyART);
 ```
 
 ### CoveoResultsRelated
@@ -225,21 +277,21 @@ One of my favorites: ```CoveoResultsRelated```, it shows (based upon a user acti
 We configured the Custom control by setting the properties:
 ``` html
 <div class="CoveoResultsRelated youtube"
-            data-result-template-id="YouTubeVideoList"
-            data-name="Videos"
-            data-normal-caption="Videos"
-            data-title-caption="Related videos (based upon title)"
-            data-expanded-caption="Hide Related Youtube Videos"
-            data-no-results-caption="No related videos found"
-            data-query='@title="[FIELD1]" @filetype=YoutubeVideo'
-            data-key-check='@filetype;YoutubeVideo'
-            data-expanded-comment="Show YouTube videos which title contains '[FIELD1]'"
-            data-extra-boost=false
-            data-fields="title"
-            data-partial-match=false
-            data-number-Of-Results=5
-            data-help='#ResultHelpYoutube'>
-          </div>
+     data-result-template-id="YouTubeVideoList"
+     data-name="Videos"
+     data-normal-caption="Videos"
+     data-title-caption="Related videos (based upon title)"
+     data-expanded-caption="Hide Related Youtube Videos"
+     data-no-results-caption="No related videos found"
+     data-query='@title="[FIELD1]" @filetype=YoutubeVideo'
+     data-key-check='@filetype;YoutubeVideo'
+     data-expanded-comment="Show YouTube videos which title contains '[FIELD1]'"
+     data-extra-boost=false
+     data-fields="title"
+     data-partial-match=false
+     data-number-Of-Results=5
+     data-help='#ResultHelpYoutube'>
+</div>
 ```
 In the above example we specified the ```data-query``` to be executed as '@title="[FIELD1]" @filetype=YoutubeVideo'. The ```data-fields``` (in this case title) was used to fill up the [FIELD1] in the query. So only when the end user clicked a button, the query would be executed. That was the first behavior of the component. 
 
@@ -247,39 +299,39 @@ Because we changed the layout to use tabs on a result, it did not look very prof
 We added an additional check inside the ```CoveoDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. BUT BE AWARE, if 10 results are displayed this means 10 additional queries!!!
 ``` javascript
 //***************************
-//composeQuery
-//  Creates a new query for the checkQuery function
-//***************************
-function composeQuery(result, dataset){
+  //composeQuery
+  //  Creates a new query for the checkQuery function
+  //***************************
+  composeQuery(result, dataset) {
     let newquery = dataset.query;
-    let a = dataset.fields.split(";");
+    let a = dataset.fields.split(';');
     let i = 0;
     let allfieldsmissing = true;
     for (i = 0; i < a.length; i++) {
-        let fieldcontent = result.raw[a[i]];
-        if (fieldcontent) {
-            allfieldsmissing = false;
-            fieldcontent = '' + fieldcontent;//make sure it's a string
-            //Seems that if you format the field in the UI, it gets the formatted value
-            fieldcontent = fieldcontent.replace(/[;()]/g, ' ');
-            //Comma's must be replaced by ","
-            fieldcontent = fieldcontent.replace(/,/g, '","');
-            //In Elastic the : means a field query
-            newquery = newquery.replace("[FIELD" + (i + 1) + "]", fieldcontent.replace(':', ' '));
-        }
-        else
-        {
-            newquery = newquery.replace("[FIELD" + (i + 1) + "]", "");
-        }
+      let fieldcontent = result.raw[a[i]];
+      if (fieldcontent) {
+        allfieldsmissing = false;
+        fieldcontent = '' + fieldcontent; //make sure it's a string
+        //Seems that if you format the field in the UI, it gets the formatted value
+        fieldcontent = fieldcontent.replace(/[;()]/g, ' ');
+        //Comma's must be replaced by ","
+        fieldcontent = fieldcontent.replace(/,/g, '","');
+        //In Elastic the : means a field query
+        newquery = newquery.replace('[FIELD' + (i + 1) + ']', fieldcontent.replace(':', ' '));
+      } else {
+        newquery = newquery.replace('[FIELD' + (i + 1) + ']', '');
+      }
     }
+    //ugly but for now fine, you would normally do this in a IPE or just before indexing.
+    newquery = newquery.replace('movie script - Screenplays for You', '');
     return newquery;
-}
+  }
 
-//***************************
-//checkQuery
-//  Checks the query for all the relatedTabs. Based upon the groupby fields the tab will be made visible or not
-//***************************
-function checkQuery(fields, query, partial, dataset){
+  //***************************
+  //checkQuery
+  //  Checks the query for all the relatedTabs. Based upon the groupby fields the tab will be made visible or not
+  //***************************
+  checkQuery(fields, query, partial, dataset) {
     let queryBuilder = new Coveo.QueryBuilder();
     queryBuilder.locale = GetBindings().queryController.lastQueryBuilder.locale;
     queryBuilder.pipeline = 'default';
@@ -287,87 +339,86 @@ function checkQuery(fields, query, partial, dataset){
     queryBuilder.enableDebug = false;
     queryBuilder.enableQuerySyntax = true;
     queryBuilder.enableDuplicateFiltering = false;
-    queryBuilder.excerptLength = 0;
+    queryBuilder.excerptLength = 200;
 
     queryBuilder.timezone = GetBindings().queryController.lastQueryBuilder.timezone;
     queryBuilder.numberOfResults = 0;
     queryBuilder.groupByRequests = fields;
 
     queryBuilder.expression.add(query);
-    if (partial=="true") {
-        queryBuilder.enablePartialMatch = true;
-        queryBuilder.partialMatchKeywords = 4;
-        queryBuilder.partialMatchThreshold = "50%";
+    if (partial === 'true') {
+      queryBuilder.enablePartialMatch = true;
+      queryBuilder.partialMatchKeywords = 4;
+      queryBuilder.partialMatchThreshold = '50%';
     }
-    GetBindings().queryController.getEndpoint().search(queryBuilder.build()).done(function (data) {
-        let showit= data.results.length !== 0;
+    GetBindings()
+      .queryController.getEndpoint()
+      .search(queryBuilder.build())
+      .done(function(data) {
         dataset.forEach(f => {
-            if (f.dataset.partialMatch==partial && f.dataset.keyCheck!="")
-            {
-                //Check if we have the key in the result, if so enable the tab else disable it
-                let field=f.dataset.keyCheck.split(';')[0];
-                let value=f.dataset.keyCheck.split(';')[1];
-                let found=false;
-                data.groupByResults.forEach(res => {
-                    res.values.forEach(groupval => {
-                        if (groupval.value.toLowerCase()==value.toLowerCase() )
-                        {
-                            //We have it
-                            found=true;
-                        }
-                    });
-                });
-                let $newTab = $('.RelatedTab[data-name="'+f.tab+'"]', f.parent);
-                if (found){
-                    $newTab.show();
+          if (f.dataset.partialMatch === partial && f.dataset.keyCheck) {
+            //Check if we have the key in the result, if so enable the tab else disable it
+            let value = f.dataset.keyCheck.split(';')[1];
+            let found = false;
+            data.groupByResults.forEach(res => {
+              res.values.forEach(groupval => {
+                if (groupval.value.toLowerCase() === value.toLowerCase()) {
+                  //We have it
+                  found = true;
                 }
-                else
-                {
-                    $newTab.hide();
-                }
+              });
+            });
+            let $newTab = $('.RelatedTab[data-name="' + f.tab + '"]', f.parent);
+            if (found) {
+              $newTab.show();
+            } else {
+              $newTab.hide();
             }
+          }
         });
-    });
-}
+      });
+  }
 
-//***************************
-//checkQueries
-//  builds up the total query to execute for the relatedTabs
-//***************************
-function checkQueries(queries){
-    //Partial match queries
-    let fields=[];
-    let query=[];
-    queries.forEach(f => {
-        if (f.dataset.partialMatch=="true" && f.dataset.keyCheck!="")
-        {
-            //Build a single query with an OR on all queries
-            //The key will be used to check if we have results
-            //Add keyfield to fields to retrieve
-            fields.push({ field: f.dataset.keyCheck.split(';')[0], sortCriteria:'nosort'});
-            query.push('('+composeQuery(f.result, f.dataset)+')');
-        }
+  doWeHaveIt(tocheck, value) {
+    let wehaveit = false;
+    $.each(tocheck, function(index, obj) {
+      if (obj.field === value) {
+        wehaveit = true;
+      }
     });
-    if (query.length!=0) {
-        checkQuery( fields, query.join(' OR '), "true", queries );
-    }
-    //Non partial match queries
-    query=[];
-    fields=[];
-    queries.forEach(f => {
-        if (f.dataset.partialMatch=="false" && f.dataset.keyCheck!="")
-        {
-            //Build a single query with an OR on all queries
-            //The key will be used to check if we have results
-            //Add keyfield to fields to retrieve
-            fields.push({ field: f.dataset.keyCheck.split(';')[0], sortCriteria:'nosort'});
-            query.push('('+composeQuery(f.result, f.dataset)+')');
+    return wehaveit;
+  }
+
+  //***************************
+  //  checkQueries
+  //  builds up the total query to execute for the relatedTabs
+  //***************************
+  checkQueries(queries) {
+    // Partial match queries
+    let checkQueriesWithPartialMatch = partialMatch => {
+      let fields = [];
+      let query = [];
+
+      queries.forEach(f => {
+        if (f.dataset.partialMatch === partialMatch && f.dataset.keyCheck) {
+          // Build a single query with an OR on all queries
+          // The key will be used to check if we have results
+          // Add keyfield to fields to retrieve
+          let field = f.dataset.keyCheck.split(';')[0];
+          if (!this.doWeHaveIt(fields, field)) {
+            fields.push({ field, sortCriteria: 'nosort' });
+          }
+          query.push('(' + this.composeQuery(f.result, f.dataset) + ')');
         }
-    });
-    if (query.length!=0) {
-        checkQuery( fields, query.join(' OR '), "false", queries );
-    }
-}
+      });
+      if (query.length) {
+        this.checkQuery(fields, query.join(' OR '), partialMatch, queries);
+      }
+    };
+
+    checkQueriesWithPartialMatch('true');
+    checkQueriesWithPartialMatch('false');
+  }
 ```
 
 For the full code of the component see our [demo](https://elastic.coveodemo.com/demo/js/page.js).
@@ -378,41 +429,41 @@ The search interface rendered out of the box looks already quite usefull. In our
 Our resulttemplate is formatted like:
 ``` css
 .coveo-results-column {
-    .coveo-list-layout .coveo-result-frame {
-        padding: 10px;
-        background: #FFFFFF;
-        border-radius: 2px;
-        background-repeat: no-repeat;
-        
-        &.movie {
-            padding-left: 200px;
-            min-height: 278px;
-            background-size: 185px auto !important;
-        }
-        &.people {
-            padding-left: 200px;
-            min-height: 278px;
-            background-size: 138px auto  !important;
-            background-position: 20px 20px !important;
-        }
-        &.default {
-            padding-left: 1px;
-            min-height: 278px;
-        }
-        &.music {
-            padding-left: 200px;
-            min-height: 190px;
-            background-size: 174px auto  !important;
-        }
-        &.concert {
-            padding-left: 200px;
-            min-height: 160px;
-            background-size: 160px auto  !important;
-        }
-        &.no-image {
-            padding-left: 10px;
-        }
-    }
+  .coveo-list-layout .coveo-result-frame {
+      padding: 10px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      background-repeat: no-repeat;
+      
+      &.movie {
+          padding-left: 200px;
+          min-height: 278px;
+          background-size: 185px auto !important;
+      }
+      &.people {
+          padding-left: 200px;
+          min-height: 278px;
+          background-size: 138px auto  !important;
+          background-position: 20px 20px !important;
+      }
+      &.default {
+          padding-left: 1px;
+          min-height: 278px;
+      }
+      &.music {
+          padding-left: 200px;
+          min-height: 190px;
+          background-size: 174px auto  !important;
+      }
+      &.concert {
+          padding-left: 200px;
+          min-height: 160px;
+          background-size: 160px auto  !important;
+      }
+      &.no-image {
+          padding-left: 10px;
+      }
+  }
 }
 ```
 
@@ -423,18 +474,18 @@ With Coveo you can use the [QRE](http://www.coveo.com/go?dest=cloudhelp&lcid=9&c
 ``` javascript
 //Create a usermap with help and booster information.
 const usersMap = {
-    Producer: {
-        sel: "Producer",
-        activeTab: "Movies",
-        booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mygenre=Documentaries @mytype=Movie\',modifier:\'400\', isConstant:\'true\')  $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-420\', isConstant:\'true\') $qre(expression: \'@myprofitvalue<=5\',modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>100\',modifier:\'200\', isConstant:\'true\') ",
-        musicbooster: " $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-500\', isConstant:\'true\')",
-    },
-    Anonymous: {
-        sel: "Anonymous",
-        activeTab: "Movies",
-        booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mytype=Review\',modifier:\'-1200\', isConstant:\'true\') $qre(expression: \'@mypopularity<15\', modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@mypopularity>15\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>250\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>500\', modifier:\'200\', isConstant:\'true\')",
-        musicbooster: "",
-    }
+  Producer: {
+    sel: "Producer",
+    activeTab: "Movies",
+    booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mygenre=Documentaries @mytype=Movie\',modifier:\'400\', isConstant:\'true\')  $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-420\', isConstant:\'true\') $qre(expression: \'@myprofitvalue<=5\',modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@myprofitvalue>100\',modifier:\'200\', isConstant:\'true\') ",
+    musicbooster: " $qre(expression: \'@mygenre=Rock @mytype=Music\',modifier:\'-500\', isConstant:\'true\')",
+  },
+  Anonymous: {
+    sel: "Anonymous",
+    activeTab: "Movies",
+    booster: "$qre(expression: \'@mytype=Movie\',modifier:\'1600\', isConstant:\'true\') $qre(expression: \'@mytype=Review\',modifier:\'-1200\', isConstant:\'true\') $qre(expression: \'@mypopularity<15\', modifier:\'-800\', isConstant:\'true\') $qre(expression: \'@mypopularity>15\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>250\', modifier:\'200\', isConstant:\'true\') $qre(expression: \'@mypopularity>500\', modifier:\'200\', isConstant:\'true\')",
+    musicbooster: "",
+  }
 };
 ```
 
@@ -599,44 +650,65 @@ exports.handler = (event, context, callback) => {
 And in our JS we fetched the token:
 ``` javascript
 //On Load...
-	//We set default values
-    Coveo.Analytics.options.endpoint.defaultValue = 'https://usageanalytics.coveo.com';
-    Coveo.Analytics.options.searchHub.defaultValue = 'Movie';
-    Coveo.Analytics.options.organization.defaultValue = ORG_ID;
-    Coveo.Analytics.options.pipeline = 'ML';
 
-    //Retrieve the access token
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://5qgxnbkr4f.execute-api.us-east-1.amazonaws.com/prod');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = ()=>{
-        let token = JSON.parse(xhr.response).token;
-        //Set it for both the interface as the analytics token
-        Coveo.SearchEndpoint.endpoints['default'].options.accessToken = token;
-        Coveo.Analytics.options.token.defaultValue = token;
-		//Init our Components
-        Coveo.init(document.querySelector('#search'));
-		//And the recommendation component
-        Coveo.initRecommendation(document.querySelector('#MyRecommendationsMusic'));
-    };
-    xhr.send(JSON.stringify({
-        org: ORG_ID,
-        role: userIdToAdd.sel
-    }));
+  //We set default values
+  Coveo.Analytics.options.endpoint.defaultValue = 'https://usageanalytics.coveo.com';
+  Coveo.Analytics.options.searchHub.defaultValue = 'Movie';
+  Coveo.Analytics.options.organization.defaultValue = ORG_ID;
+  Coveo.Analytics.options.pipeline = 'ML';
+
+  //Retrieve the access token
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://5qgxnbkr4f.execute-api.us-east-1.amazonaws.com/prod');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = ()=>{
+    let token = JSON.parse(xhr.response).token;
+    //Set it for both the interface as the analytics token
+    Coveo.SearchEndpoint.endpoints['default'].options.accessToken = token;
+    Coveo.Analytics.options.token.defaultValue = token;
+    //Init our Components
+    Coveo.init(document.querySelector('#search'));
+    //And the recommendation component
+    Coveo.initRecommendation(document.querySelector('#MyRecommendationsMusic'));
+  };
+  xhr.send(JSON.stringify({
+    org: ORG_ID,
+    role: userIdToAdd.sel
+  }));
 ```
 
 ### Reacting on 'popular queries', manually execute a query
 We added (for demo purposes) a couple of popular queries to the UI. This would execute a query directly.  When you execute a new query by code you also need to add the proper analytics events! We used the following code to do that:
 ``` javascript
-//Change the query based upon the popular ones. This will also add an analytics event
-function changeQuery(query) {
-    Coveo.$('.CoveoSearchInterface').coveo('state', 'q', query );
-    //We are not executing analytics if we call executeQuery directly
-    var customEventCause = {name: 'searchboxSubmit', type:'search box'};
-    $('#search').coveo('logSearchEvent', customEventCause, {});
-    
-    $('#search').coveo('executeQuery');
+export class MyPopularQueries extends Coveo.Component {
+  constructor(element) {
+    super(element, MyPopularQueries.ID);
+    ['Jungle Book', 'Fast Racing', 'Upcoming', 'Playing now', 'Suprise me', 'History Museum'].forEach(value => {
+      const link = this.buildLink(value);
+      Coveo.$$(this.element).append(link.el);
+    });
+  }
+
+  buildLink(value) {
+    const link = Coveo.$$('a', { href: '#' }, value);
+    link.on('click', e => {
+      e.preventDefault();
+      this.changeQuery(value);
+    });
+
+    return link;
+  }
+
+  changeQuery(query) {
+    Coveo.state(this.root, 'q', query);
+    const customEventCause = { name: 'searchboxSubmit', type: 'search box' };
+    Coveo.logSearchEvent(this.root, customEventCause, {});
+    Coveo.executeQuery(this.root);
+  }
 }
+
+MyPopularQueries.ID = 'MyPopularQueries';
+Coveo.Initialization.registerAutoCreateComponent(MyPopularQueries);
 ```
 
 ### Add additional (missing or cleaning) metadata fields to our retrieved results
@@ -655,27 +727,27 @@ Providing a UI in several languages is very user friendly. We did it in our [Par
 ``` javascript
 //Setting the translation for the custom strings, which would not be in the out-of-the-box translation set
 String.toLocaleString({
-    "es-es": {
-        "Movies, Scripts and Music": "Películas, guiones y música",       
-        "All Content": "Todo el contenido",
-        "Type": "Tipo",
-        "Genre": "Género",
-        "Artist (Soundtrack)": "Artista (Banda sonora)",
-    },
-    "nl": {
-        "Movies, Scripts and Music": "Films, script en Muziek",       
-        "All Content": "Alles",
-        "Type": "Type",
-        "Genre": "Genre",
-        "Artist (Soundtrack)": "Artiest (soundtrack)",
-    },
-    "fr": {
-        "Movies, Scripts and Music": "Films, Scripts et Musique",       
-        "All Content": "Tout le contenu",
-        "Type": "Type",
-        "Genre": "Genre",
-        "Artist (Soundtrack)": "Artist (soundtrack)",
-    }
+  "es-es": {
+    "Movies, Scripts and Music": "Películas, guiones y música",       
+    "All Content": "Todo el contenido",
+    "Type": "Tipo",
+    "Genre": "Género",
+    "Artist (Soundtrack)": "Artista (Banda sonora)",
+  },
+  "nl": {
+    "Movies, Scripts and Music": "Films, script en Muziek",       
+    "All Content": "Alles",
+    "Type": "Type",
+    "Genre": "Genre",
+    "Artist (Soundtrack)": "Artiest (soundtrack)",
+  },
+  "fr": {
+    "Movies, Scripts and Music": "Films, Scripts et Musique",       
+    "All Content": "Tout le contenu",
+    "Type": "Type",
+    "Genre": "Genre",
+    "Artist (Soundtrack)": "Artist (soundtrack)",
+  }
 });
 ```
 Then we set the locale and culture to the selected one:
@@ -690,44 +762,40 @@ window.location.reload();
 ### Get query suggestions on our landing page
 In our [Partner demo](https://elastic.coveodemo.com/demo-partners) we provided a landing page with popular queries. Based upon the ```userRole``` the [querySuggestions](https://developers.coveo.com/x/iQGwAQ) will be retrieved by our api:
 ``` javascript
-
-function getQuerySuggest(profile) {
-    var token = Coveo.SearchEndpoint.endpoints['default'].options.accessToken;
-    var url = 'https://platform.cloud.coveo.com/rest/search/v2/querySuggest?'
-    + 'access_token='
-    + token
-    + '&language=en'
-    +' &pipeline=MLIntranet'
-    + '&context={"userrole": "'+profile+'"}'
-    + '&searchHub=Intranet';
-
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', function () {
-    handleQuerySuggestResponse(JSON.parse(this.responseText));
-    });
-    xhr.open("GET", url);
-    xhr.send();
-}
-
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function(txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
 function handleQuerySuggestResponse(response) {
-    let addLi = html => {
-        var query = toTitleCase( html.expression );
-        var a= `<a class="CoveoResultLink RecResult" href="" onClick="changeQuery('${query}');return false;">${query}</a>`;
-        return `<div class="coveo-list-layout CoveoResult popquery-item" style="height:32px">${a}</div>`;
-      };
-    var suggestions = [];
-    response.completions.forEach(function(query) {
-      suggestions.push(query);
-    });
-    //Set it up in the UI
-    let html = suggestions
-    .map(addLi);
-    $('#PopularQueries').empty().html(html);
+  let queries = response.completions || [];
+  queries = queries.map(q => toTitleCase(q.expression));
+
+  Coveo.load('MyPopularQueries').then(MyPopularQueries => {
+    return new MyPopularQueries(document.getElementById('PopularQueries'), { queries }, GetBindings());
+  });
+}
+
+function getQuerySuggest(profile) {
+  var token = Coveo.SearchEndpoint.endpoints['default'].options.accessToken;
+  var url =
+    'https://platform.cloud.coveo.com/rest/search/v2/querySuggest?' +
+    'access_token=' +
+    token +
+    '&language=en' +
+    ' &pipeline=MLIntranet' +
+    '&context={"userrole": "' +
+    profile +
+    '"}' +
+    '&searchHub=Intranet';
+
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function() {
+    handleQuerySuggestResponse(JSON.parse(this.responseText));
+  });
+  xhr.open('GET', url);
+  xhr.send();
 }
 ```
 
@@ -735,31 +803,31 @@ function handleQuerySuggestResponse(response) {
 In our Search Analytics dashboard we wanted to report if a recommended result was being clicked. For that we needed to add some additional [metadata](https://support.coveo.com/s/article/ka132000000LMYcAAO/2096) on our Analytics events.
 ``` javascript
 $('#search').on('changeAnalyticsCustomData', function (e, args) {
-	//We want to inject custom Data into each Analytics call
-	args.metaObject.user = userIdToAdd.name;
-	args.metaObject.role = userIdToAdd.sel;
-	if (args.resultData!=undefined)
-	{
-		//The below values are first added as Dimensions in the Administration Console
-		args.metaObject.c_istop = args.resultData.isTopResult;
-		args.metaObject.c_isrecommended =  args.resultData.isRecommendation;
-	}
+  //We want to inject custom Data into each Analytics call
+  args.metaObject.user = userIdToAdd.name;
+  args.metaObject.role = userIdToAdd.sel;
+  if (args.resultData!=undefined)
+  {
+    //The below values are first added as Dimensions in the Administration Console
+    args.metaObject.c_istop = args.resultData.isTopResult;
+    args.metaObject.c_isrecommended =  args.resultData.isRecommendation;
+  }
 });
 ```
 
 ### Sending a custom Analytics event
 We wanted to track if end-users where clicking on the 'Expand to' links in the ResultsRelated component. For that to work, we needed to send a custom event to our Analytics API.
 ``` javascript
-ResultsRelated.prototype.expandQuery = function () {
-	Coveo.$('.CoveoFacet').coveo('reset');
-	Coveo.$('#search').coveo('state', 'hd', this.expandedComment);
-	Coveo.$('#search').coveo('state', 'hq', this.expandquery);
-	Coveo.$('#search').coveo('state', 'q', '');
-	//Seems we are not executing analytics if we call executeQuery directly
-	var customEventCause = {name: 'expand '+this.options.name, type:'search box'};
-	Coveo.$('#search').coveo('logSearchEvent', customEventCause, {});
-	Coveo.$('#search').coveo('executeQuery');
-};
+expandQuery() {
+  Coveo.$('.CoveoFacet').coveo('reset');
+  Coveo.$('#search').coveo('state', 'hd', this.expandedComment);
+  Coveo.$('#search').coveo('state', 'hq', this.expandquery);
+  Coveo.$('#search').coveo('state', 'q', '');
+  //Seems we are not executing analytics if we call executeQuery directly
+  var customEventCause = { name: 'expand ' + this.options.name, type: 'search box' };
+  Coveo.$('#search').coveo('logSearchEvent', customEventCause, {});
+  Coveo.$('#search').coveo('executeQuery');
+}
 
 ```
 
@@ -767,44 +835,44 @@ ResultsRelated.prototype.expandQuery = function () {
 One of our requirements was an advanced search feature. End-users then could easily change the results to their preferences. First we added the needed preferences to the HTML page:
 ``` html
 <div class="CoveoPreferencesPanel">
-    <fieldset class="coveo-form-group">
-        <span class="coveo-form-group-label">Personalize results</span>
-        <div class="perso-menu-content">
-        <div class="perso-menu-item Filter">
-            <label>
-            <input class="user-personalisation-option" id="b1" name="choice-personalize" type="radio" value="choice-personalize-b1" />
-                Filter Action movies
-            </label>
-        </div>
-        <div class="perso-menu-item Boost">
-            <label>
-            <input class="user-personalisation-option" id="b2" name="choice-personalize" type="radio" value="choice-personalize-b2" />
-            Boost Action and Willis movies
-            </label>
-        </div>
-        <div class="perso-menu-item Boost">
-            <label>
-            <input class="user-personalisation-option" id="b3" name="choice-personalize" type="radio" value="choice-personalize-b3" />
-            Boost Comedy lower
-            </label>
-        </div>
-        <div class="perso-menu-item Boost">
-            <label>
-            <input class="user-personalisation-option" id="b4" name="choice-personalize" type="radio" value="choice-personalize-b4" />
-            Ignore Title for ranking
-            </label>
-        </div>
-        <div class="perso-menu-item Standard">
-            <label>
-            <input class="user-personalisation-option" id="standard" name="choice-personalize" type="radio" value="choice-personalize-nothing"/>
-            Standard search
-            </label>
-        </div>
-        </div>
-    </fieldset>
+  <fieldset class="coveo-form-group">
+    <span class="coveo-form-group-label">Personalize results</span>
+    <div class="perso-menu-content">
+      <div class="perso-menu-item Filter">
+        <label>
+        <input class="user-personalisation-option" id="b1" name="choice-personalize" type="radio" value="choice-personalize-b1" />
+            Filter Action movies
+        </label>
+      </div>
+      <div class="perso-menu-item Boost">
+        <label>
+        <input class="user-personalisation-option" id="b2" name="choice-personalize" type="radio" value="choice-personalize-b2" />
+        Boost Action and Willis movies
+        </label>
+      </div>
+      <div class="perso-menu-item Boost">
+        <label>
+        <input class="user-personalisation-option" id="b3" name="choice-personalize" type="radio" value="choice-personalize-b3" />
+        Boost Comedy lower
+        </label>
+      </div>
+      <div class="perso-menu-item Boost">
+        <label>
+        <input class="user-personalisation-option" id="b4" name="choice-personalize" type="radio" value="choice-personalize-b4" />
+        Ignore Title for ranking
+        </label>
+      </div>
+      <div class="perso-menu-item Standard">
+        <label>
+        <input class="user-personalisation-option" id="standard" name="choice-personalize" type="radio" value="choice-personalize-nothing"/>
+        Standard search
+        </label>
+      </div>
+    </div>
+  </fieldset>
 
-    <div class="CoveoResultsPreferences"></div>
-    <div class="CoveoResultsFiltersPreferences"></div>
+  <div class="CoveoResultsPreferences"></div>
+  <div class="CoveoResultsFiltersPreferences"></div>
 </div>
 ```
 With additional code in our JS:
@@ -815,39 +883,39 @@ With additional code in our JS:
 //***************************
 let persoFilter = "standard";
 function setSearchParams() {
-    let detail = '';
+  let detail = '';
 
-    let queries = {
-        b1: `@mygenre=Action`,
-        b2: `($qre(expression: '@mygenre=Action',modifier:'220')) ($qre(expression: '@mypeople=Willis',modifier:'220', isConstant:'true'))`,
-        b3: `($qre(expression: '@mygenre=Comedy',modifier:'-200', isConstant:'true'))`,
-        b4: `$weight(name:'Title', value:'0')`,
-    };
+  let queries = {
+    b1: `@mygenre=Action`,
+    b2: `($qre(expression: '@mygenre=Action',modifier:'220')) ($qre(expression: '@mypeople=Willis',modifier:'220', isConstant:'true'))`,
+    b3: `($qre(expression: '@mygenre=Comedy',modifier:'-200', isConstant:'true'))`,
+    b4: `$weight(name:'Title', value:'0')`,
+  };
 
-    let query = queries[persoFilter] || '';
-    if (query) {
-        let $elem = $('#' + persoFilter).prop('checked', true);
-        detail = $elem.closest('label').text();
-    }
-    else {
-        $('#standard').prop("checked", true);
-    }
-	//Set the hiddenQuery parameters
-    $('#search').coveo('state', 'hd', detail);
-    $('#search').coveo('state', 'hq', query);
+  let query = queries[persoFilter] || '';
+  if (query) {
+    let $elem = $('#' + persoFilter).prop('checked', true);
+    detail = $elem.closest('label').text();
+  }
+  else {
+    $('#standard').prop("checked", true);
+  }
+  //Set the hiddenQuery parameters
+  $('#search').coveo('state', 'hd', detail);
+  $('#search').coveo('state', 'hq', query);
 }
 
 //On Load...
 
-    //If the Advanced search is changed we need to trigger the change
-    $('.user-personalisation-option').change(function () {
-        persoFilter = $(this).attr('id');
-        setSearchParams();
-		//Set analytics event
-        var customEventCause = {name: 'changePreferences', type:'search box'};
-        $('#search').coveo('logSearchEvent', customEventCause, {});
-        $('#search').coveo('executeQuery');
-    });
+  //If the Advanced search is changed we need to trigger the change
+  $('.user-personalisation-option').change(function () {
+    persoFilter = $(this).attr('id');
+    setSearchParams();
+    //Set analytics event
+    var customEventCause = {name: 'changePreferences', type:'search box'};
+    $('#search').coveo('logSearchEvent', customEventCause, {});
+    $('#search').coveo('executeQuery');
+  });
 ```
 
 ### Sending a PageView event when clicking on a URL
