@@ -218,7 +218,7 @@ Being able to integrate a framework into your existing code base and stack is a 
 {:.caption}
 Breakdown of each criteria in this category by framework.
 
-Well, there's no other way to say it: MXNet blew past the competition here. It's not much of a surprise, however, as being able to run on a wide variety of machines is pretty much MXNet's *raison d'être*. It's tagline "A Scalable Deep Learning Framework", after all.
+Well, there's no other way to say it: MXNet blew past the competition here. It's not much of a surprise, however, as being able to run on a wide variety of machines is pretty much MXNet's *raison d'être*. It's tagline is "A Scalable Deep Learning Framework", after all.
 
 ONNX invites the very interesting proposition of writing your code in a framework you find flexible and easy to debug (*e.g.* PyTorch) and deploy it on a framework which has either the language bindings you need, or works well in a certain cloud environment (*e.g.* Apache MXNet or CNTK). The only more recent framework not to have some degree of built-in support of ONNX is really TensorFlow, and that's largely due to some boring politicking. Worth mentioning, while I couldn't find any references to ONNX support in DL4J, they do support import Keras models, which can be a useful way of designing architectures or training networks and deploying them on the JVM. All the same, it's not quite ONNX, as Keras isn't exactly a panacea (despite being very popular).
 
