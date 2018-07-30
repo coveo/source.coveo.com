@@ -1,7 +1,7 @@
 # Source @ Coveo
 ## A technical blog by the fine people at Coveo
 
-See our blog posts at [source.coveo.com](http://source.coveo.com)
+See our blog posts at [source.coveo.com](https://source.coveo.com)
 
 Interested in creating a new post? See [How to create a post](https://github.com/Coveo/source.coveo.com/wiki/How-to-create-a-post)
 
@@ -54,7 +54,7 @@ author:
 3. Run these commands:
 ```
 cd /path/to/your/repo
-docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll
+docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll jekyll server
 ```
 You can then access your local copy of the blog via [localhost:4000](http://localhost:4000/)
 

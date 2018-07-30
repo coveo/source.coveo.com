@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-For those of you who missed [part 1](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), this series of blogs is to provide technical details on each of the best practices mentioned in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
+For those of you who missed [part 1](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), this series of blogs is to provide technical details on each of the best practices mentioned in the [Best Practices for Site Search](https://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
 
 <!-- more -->
 
@@ -312,4 +312,4 @@ As an example, see our Team Member template created in the previous section:
 
 The excerpt was replaced by a custom field. To activate highlighting, you can simply use the [highlightStreamText helper](https://developers.coveo.com/display/JsSearchV1/Result+Template+Helpers#ResultTemplateHelpers-highlightStreamText). 
 
-That's enough for now folks! If you wish to keep reading, the full series can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
+That's enough for now folks! If you wish to keep reading, the full series can be found [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).

@@ -37,7 +37,7 @@ This way, it is much easier for developers to remember to update the documentati
 
 This also means that anyone playing with the open-source code is able to see the documentation right next to the component code without having to refer to an external website.
 
-Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
+Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
 
 ### Removed internal jQuery dependencies
 
