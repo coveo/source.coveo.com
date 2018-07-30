@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "The Elastic Search Demo, Part 2: Build the UI"
+title: "The Elastic Search Demo, Part 2: Built the UI"
 
 tags: [Index Extensions, Query Extensions, JS UI custom components, Push API]
 
@@ -23,12 +23,14 @@ _This is the third blog post of a new series entitled “Build it with the Coveo
 <!-- more -->
 
 ## Building the UI
-Coveo offers out of the box a [Javascript Framework](https://docs.coveo.com/en/375) for building the UI. It offers a ton of components which you can simply drag and drop using an [Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). Using the editor you can quickly design the basic layout of your UI, create search interfaces, add facets and you are ready to go for a basic search experience. Since we wanted to have very specific result templates, completely tailored to the search audience, we needed some additional configuration directly into the HTML/JS files.
+Out of the box, Coveo offers the [Coveo Javascript Framework](https://docs.coveo.com/en/375) for building the UI. It offers a ton of components which you can simply drag and drop using an [Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). Using the editor you can quickly design the basic layout of your UI, create search interfaces, add facets, and you are ready to go for a basic search experience. Since we wanted to have very specific result templates, completely tailored to the search audience, we needed some additional configuration directly into the HTML/JS files.
 
 ### Result templates
 For almost all the content types we had indexed we wanted to have more dedicated [result templates](https://docs.coveo.com/en/413), than offered out of the box. The Movie result template is probably the most complicated one. It uses a couple of custom controls and custom formatting.
-Coveo offers out of the box different [result layouts](https://docs.coveo.com/en/360) (eg. list, card and table). For each layout different result templates can be configured.
-The Javascript framework will pick the first template where the condition is met. If none of the conditions is met and there is NO default template, then nothing is shown.
+Coveo offers out of the box different [result layouts](https://docs.coveo.com/en/360) (eg. list, card and table). 
+
+For each layout, different result templates can be configured.
+The Coveo Javascript framework will pick the first template where the condition is met. If none of the conditions are met and there is NO default template, then nothing is shown.
 
 The Movie database result template looked like:
 ``` html
@@ -114,10 +116,10 @@ And will show in the interface like:
 Lots of the components inside the resulttemplate are out of the box (```CoveoFieldValue```, ```CoveoExcerpt```, ```CoveoResultLink```), others (```CoveoMyBackground```, ```CoveoResultsRelated```) are custom made.
 
 ## Custom controls
-You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files, and that is what we have used for the demo. A few of the components will be discussed in detail. You can always view them in our [demo](https://elastic.coveodemo.com/demo/js/pages.js).
+You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files. That is what we have used for the demo. A few of the components will be discussed in detail. You can always view them in our [demo](https://elastic.coveodemo.com/demo/js/pages.js).
 
 ### CoveoMyBackground
-The first custom control we build was ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also used the color gradient (from the Indexing Pipeline Extension) to create a gradient color.
+The first custom control we built was ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also used the color gradient (from the Indexing Pipeline Extension) to create a gradient color.
 ![RL5]({{ site.baseurl }}/images/20180514/RL5.png)
 ``` javascript
 export class MyBackground extends Coveo.Component {
@@ -211,7 +213,7 @@ Coveo.Initialization.registerAutoCreateComponent(MyBackground);
 ```
 
 ### CoveoMyART
-Custom control ```CoveoMyArt```, shows a 'Featured' label on the result when the result is promoted by our Machine Learning [Art](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
+Custom control ```CoveoMyART```, shows a 'Featured' label on the result when the result is promoted by our Machine Learning [ART](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=183).
 ``` javascript
 
 /**
@@ -271,7 +273,7 @@ Coveo.Initialization.registerAutoCreateComponent(MyART);
 ```
 
 ### CoveoResultsRelated
-One of my favorites: ```CoveoResultsRelated```, it shows (based upon a user action) an additional result list. The current result is used as the context. For example we want to show a tab with related youtube video's on the current result (based upon the title of the movie). 
+One of my favorites: ```CoveoResultsRelated```. It shows (based upon a user action) an additional result list. The current result is used as the context. For example, we wanted to show a tab with related YouTube videos on the current result based on the title of the movie. 
 ![RL4]({{ site.baseurl }}/images/20180514/RL4.png)
 
 We configured the Custom control by setting the properties:
@@ -293,10 +295,10 @@ We configured the Custom control by setting the properties:
      data-help='#ResultHelpYoutube'>
 </div>
 ```
-In the above example we specified the ```data-query``` to be executed as '@title="[FIELD1]" @filetype=YoutubeVideo'. The ```data-fields``` (in this case title) was used to fill up the [FIELD1] in the query. So only when the end user clicked a button, the query would be executed. That was the first behavior of the component. 
+In the above example we specified the ```data-query``` to be executed as '@title="[FIELD1]" @filetype=YoutubeVideo'. The ```data-fields``` (in this case title) was used to fill up the [FIELD1] in the query. So only when the end user clicked a button would the query be executed. That was the first behavior of the component. 
 
-Because we changed the layout to use tabs on a result, it did not look very professional if people would see 4 different tabs and when they would click on them a 'No results' message was shown. Bad user-experience! 
-We added an additional check inside the ```CoveoDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. BUT BE AWARE, if 10 results are displayed this means 10 additional queries!!!
+We changed the layout to use tabs on results, which could look unprofessional. For each result, someone would see four different tabs. When they selected one, they may have received a 'No results' message. Bad user experience!
+We added an additional check inside the ```CoveoDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. However, be aware: if 10 results are displayed, you will perform an additional 10 queries.
 ``` javascript
 //***************************
   //composeQuery
@@ -305,7 +307,6 @@ We added an additional check inside the ```CoveoDetailsAndRelated``` component. 
   composeQuery(result, dataset) {
     let newquery = dataset.query;
     let a = dataset.fields.split(';');
-    let i = 0;
     let allfieldsmissing = true;
     for (i = 0; i < a.length; i++) {
       let fieldcontent = result.raw[a[i]];
@@ -424,7 +425,7 @@ We added an additional check inside the ```CoveoDetailsAndRelated``` component. 
 For the full code of the component see our [demo](https://elastic.coveodemo.com/demo/js/page.js).
 
 ## Styling the UI with custom CSS
-The search interface rendered out of the box looks already quite usefull. In our case we wanted to change them to our own branding. Everything can be [overruled](https://docs.coveo.com/en/423). Always create your own custom CSS files, and never overwrite the ones provided by Coveo out of the box.
+The search interface rendered out of the box looks already quite useful. In our case we wanted to change them to our own branding. Everything can be overruled using CSS rules (see [Styling the Coveo Javascript Search Framework](https://docs.coveo.com/en/423)). Always create your own custom CSS files, and never overwrite the ones provided by Coveo out of the box.
 
 Our resulttemplate is formatted like:
 ``` css
@@ -468,9 +469,9 @@ Our resulttemplate is formatted like:
 ```
 
 ## Personalization
-More and more we see requests coming in around personalization, one of the reasons why we added it to our demo. In our case we had two profiles: Movie Fan and a Movie Producer. Each had its own color schema and its own relevancy rules. Using the profiles we could not only change the UI styling, but we also added specific relevancy rules. In a normal scenario this would could come from all kinds of systems: for example department/country from Active Directory or information from a userprofile in Salesforce or Sharepoint.
+More and more we see requests coming in around personalization, which is one of the reasons why we added it to our demo. In our case we had two profiles: Movie Fan and a Movie Producer. Each had its own color schema and its own relevancy rules. Using the profiles we could not only change the UI styling, but we also added specific relevancy rules. In a normal scenario this would come from all kinds of systems: for example department/country from Active Directory or information from a userprofile in Salesforce or Sharepoint.
 
-With Coveo you can use the [QRE](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357) syntax to start boosting results with your preferences to a higher position.
+With Coveo you can use the ```$qre``` syntax to start boosting results with your preferences to a higher position (see [Coveo Cloud Query Syntax](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357)).
 ``` javascript
 //Create a usermap with help and booster information.
 const usersMap = {
@@ -489,16 +490,15 @@ const usersMap = {
 };
 ```
 
-The above will change in the future when we will support rankingfunctions, then the whole set of ```@mypopularity``` expressions will be replaced by a single decay function.
+The above will change in the future when we will support rankingfunctions. Then, the whole set of ```@mypopularity``` expressions will be replaced by a single decay function.
 
-## UI, tips and tricks
-Some special tips and tricks.
+## UI, tips, and tricks
+Here are some tips and tricks that we developed over our implementation, and which could help you during yours.
 
 ### Adding context
 In order to use context like a ```userRole``` we added [context](https://docs.coveo.com/en/399) to our Queries using the following code:
 ``` javascript
 $('#search').on("buildingQuery", function (e, args) {
-	//Add the context
 	//A custom context is added so we can react on it in Query Pipelines and Analytics
 	args.queryBuilder.addContext({
 		"userRole": userIdToAdd.sel
@@ -508,7 +508,7 @@ $('#search').on("buildingQuery", function (e, args) {
 All [events](https://docs.coveo.com/en/417) in Coveo can be adjusted to fit to your needs.
 
 ### Adding a Relevancy boost when a user profile is selected
-When a user profile is selected we wanted to set the [hiddenQuery](https://docs.coveo.com/en/3) so it will change the relevancy based upon what was set for the current profile. In this case: ```hd``` means the description provided to the user (in the breadcrumb section), ```hq``` is the actual hidden query.
+When a user profile is selected we wanted to set the [hiddenQuery](https://docs.coveo.com/en/3/ui-api-reference/coveo-javascript-search-framework-api-reference#hiddenquery-component) so it changes the relevancy based upon what was set for the current profile. In this case: ```hd``` means the description provided to the user (in the breadcrumb section), ```hq``` is the actual hidden query.
 ``` javascript
 $('#search').on("buildingQuery", function (e, args) {
 	//Set the proper pipeline
@@ -523,7 +523,7 @@ $('#search').on("buildingQuery", function (e, args) {
 ```
 
 ### Getting a proper access token from a Lambda function
-As mentioned before you should not use public API keys inside your code. We created a Lambda function for the retrieval of our Access Token.
+As mentioned before, you should not use public API keys inside your code. We created a Lambda function for the retrieval of our Access Token.
 The Lambda function:
 ``` javascript
 'use strict';
@@ -647,7 +647,7 @@ exports.handler = (event, context, callback) => {
 
 };
 ```
-And in our JS we fetched the token:
+And in our Javascript file, we fetched the token:
 ``` javascript
 //On Load...
 
@@ -678,7 +678,7 @@ And in our JS we fetched the token:
 ```
 
 ### Reacting on 'popular queries', manually execute a query
-We added (for demo purposes) a couple of popular queries to the UI. This would execute a query directly.  When you execute a new query by code you also need to add the proper analytics events! We used the following code to do that:
+We added (for demo purposes) a couple of popular queries to the UI. This would execute a query directly. When you execute a new query by code you also need to add the proper analytics events! We used the following code to do that:
 ``` javascript
 export class MyPopularQueries extends Coveo.Component {
   constructor(element) {
@@ -715,10 +715,10 @@ Coveo.Initialization.registerAutoCreateComponent(MyPopularQueries);
 We wanted to enrich the result set with our own result fields (on rendering time). In our case a default field ```collection``` was missing in our data. So we added it to our results. 
 ``` javascript
 $('#search').on("preprocessResults", (e, args) => {
-	//We want to add an additional field (if it is missing) to the results
-	((args && args.results && args.results.results) || []).forEach(r=>{
-		r.raw.collection = (r.raw.collection || 'default');
-	});
+  //We want to add an additional field (if it is missing) to the results
+  ((args && args.results && args.results.results) || []).forEach(r=>{
+    r.raw.collection = (r.raw.collection || 'default');
+  });
 });
 ```
 
@@ -800,7 +800,7 @@ function getQuerySuggest(profile) {
 ```
 
 ### Setting customData on our Analytics Events
-In our Search Analytics dashboard we wanted to report if a recommended result was being clicked. For that we needed to add some additional [metadata](https://support.coveo.com/s/article/ka132000000LMYcAAO/2096) on our Analytics events.
+In our Search Analytics dashboard we wanted to report if a recommended result was being clicked. The below values should first be added as Dimensions in the Coveo Cloud Administration Console (see [Dimensions](https://support.coveo.com/s/article/ka132000000LMYcAAO/2096)).
 ``` javascript
 $('#search').on('changeAnalyticsCustomData', function (e, args) {
   //We want to inject custom Data into each Analytics call
@@ -823,7 +823,7 @@ expandQuery() {
   Coveo.$('#search').coveo('state', 'hd', this.expandedComment);
   Coveo.$('#search').coveo('state', 'hq', this.expandquery);
   Coveo.$('#search').coveo('state', 'q', '');
-  //Seems we are not executing analytics if we call executeQuery directly
+  //If you manually trigger a query, you always must add your own Analytics event
   var customEventCause = { name: 'expand ' + this.options.name, type: 'search box' };
   Coveo.$('#search').coveo('logSearchEvent', customEventCause, {});
   Coveo.$('#search').coveo('executeQuery');
@@ -919,146 +919,146 @@ function setSearchParams() {
 ```
 
 ### Sending a PageView event when clicking on a URL
-In a normal situation the public website or other system could sent additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based upon other peoples journeys.
+In a normal situation the public website or other system could sent additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based on other people's journeys.
 
-In our case we simply wanted to add such an event whenever end-users clicked on the preview/and or followed the hyperlink.
+In our case we simply wanted to add such an event whenever end-users clicked on the preview and/or followed the hyperlink.
 ``` javascript
 $('#search').on('changeAnalyticsCustomData', function (e, args) {
-	//Register a pageview when clicking on a result (used for Recommendations)
-	// Normally this would be done by the website directly
-	if (args.type === 'ClickEvent') {
-		let contentType = null;
-		if ((/themoviedb/).test(args.metaObject.documentURL)) {
-			contentType = "Movie";
-		}
-		if ((/last\.fm/).test(args.metaObject.documentURL)) {
-			contentType = "Music";
-		}
+  //Register a pageview when clicking on a result (used for Recommendations)
+  // Normally this would be done by the website directly
+  if (args.type === 'ClickEvent') {
+    let contentType = null;
+    if ((/themoviedb/).test(args.metaObject.documentURL)) {
+      contentType = "Movie";
+    }
+    if ((/last\.fm/).test(args.metaObject.documentURL)) {
+      contentType = "Music";
+    }
 
-		if (contentType) {
-			let meta = args.metaObject;
-			coveoua("init", Coveo.Analytics.options.token.defaultValue);
-			coveoua('send', 'pageview', {
-				contentIdKey: meta.contentIDKey,
-				contentIdValue: meta.contentIDValue,
-				contentType: contentType
-			});
-		}
-	}
+    if (contentType) {
+      let meta = args.metaObject;
+      coveoua("init", Coveo.Analytics.options.token.defaultValue);
+      coveoua('send', 'pageview', {
+        contentIdKey: meta.contentIDKey,
+        contentIdValue: meta.contentIDValue,
+        contentType: contentType
+      });
+    }
+  }
 });
 ```
 
 ## Pushing Analytics events using the UABOT
-In a normal production system the Search Analytics would work together with our Machine Learning to constantly improve the relevancy. Because of the limited use of demo's, this would not work for us. We still wanted to show our [Search Analytics Dashboards](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=238). In order to show them we would need data. That is where our [UABOT](https://github.com/coveo/uabot) comes in. Based upon a JSON configuration file it will start pushing Analytics events to our Analytics service. The Search Analytics events are used by our Machine Learning which will provide [query suggestions](https://onlinehelp.coveo.com/en/cloud/enabling_coveo_machine_learning_query_suggestions_in_a_coveo_js_search_framework_search_box.htm) and [relevancy boosting](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=166).
+In a normal production system the Search Analytics would work together with our Machine Learning to constantly improve the relevancy. Because of the limited use of the demo, this would not work for us. We still wanted to show our [Search Analytics Dashboards](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=238). In order to show them we would need data. That is where our [UABOT](https://github.com/coveo/uabot) comes in. Based upon a JSON configuration file it will start pushing Analytics events to our Analytics service. The Search Analytics events are used by our Machine Learning which will provide [query suggestions](https://onlinehelp.coveo.com/en/cloud/enabling_coveo_machine_learning_query_suggestions_in_a_coveo_js_search_framework_search_box.htm) and [relevancy boosting](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=166).
 
 Our UABOT file:
 ``` json
 {
-	"searchendpoint": "https://platform.cloud.coveo.com/rest/search/",
-	"analyticsendpoint": "https://usageanalytics.coveo.com/rest/v15/analytics/",
-	"orgName": "platformdemoelastic3zlf3f2p",
-	"pipeline": "ML",
-	"searchHub": "Movie",
-	"defaultOriginLevel1": "Movie",
-	"defaultOriginLevel2": "default",
-	"allowAnonymousVisits": true,
-	"anonymousThreshold": 0.3,
-	"emailSuffixes": [
-		"@coveo.com"
-	],
-	"timeBetweenVisits": 20,
-	"timeBetweenActions": 3,
-	"randomGoodQueries": [
-		"red willis",
-		"captain america",
-		"jungle",
-		"dinosaur",
-		"spaceship",
-		"last knight",
-		"I Don't Want to Miss a Thing"
-	],
-	"randomBadQueries": [
-		"woopi godberg",
-		"Ghostbutter",
-		"Gostbuster",
-		"star treq",
-	],
-	"randomCustomData": [
-		{
-			"apiname": "context_userRole",
-			"values": [
-				"Anonymous",
-				"Producer"
-			]
-		},
-		{
-			"apiname": "role",
-			"values": [
-				"Anonymous",
-				"Producer"
-			]
-		},
-		{
-			"apiname": "c_isbot",
-			"values": [
-				"true"
-			]
-		}
-	],
-	"globalFilter": "NOT @mytype=Wikipedia",
-	"scenarios": [
-		{
-			"name": "(G) red willis",
-			"weight": 3,
-			"events": [
-				{
-					"type": "SearchAndClick",
-					"arguments": {
-						"queryText": "red willis",
-						"matchField": "title",
-						"matchValue": "RED",
-						"probability": 0.95
-					}
-				}
-			]
-		},
-		{
-			"name": "QC(The Rock, 95%)",
-			"weight": 1,
-			"events": [
-				{
-					"type": "Search",
-					"arguments": {
-						"queryText": "The Rock",
-						"goodQuery": true
-					}
-				},
-				{
-					"type": "FacetChange",
-					"arguments": {
-						"facetTitle": "Supporting people",
-						"facetValue": "Dwayne Johnson",
-						"facetField": "@mypeople"
-					}
-				}
-			]
-		},
-		{
-			"name": "QC(Night at the Museum, 95%)",
-			"weight": 3,
-			"events": [
-				{
-					"type": "SearchAndClick",
-					"arguments": {
-						"queryText": "history museum",
-						"matchField": "title",
-						"matchValue": "Night at the Museum",
-						"probability": 0.95
-					}
-				}
-			]
-		}
-	]
+  "searchendpoint": "https://platform.cloud.coveo.com/rest/search/",
+  "analyticsendpoint": "https://usageanalytics.coveo.com/rest/v15/analytics/",
+  "orgName": "platformdemoelastic3zlf3f2p",
+  "pipeline": "ML",
+  "searchHub": "Movie",
+  "defaultOriginLevel1": "Movie",
+  "defaultOriginLevel2": "default",
+  "allowAnonymousVisits": true,
+  "anonymousThreshold": 0.3,
+  "emailSuffixes": [
+    "@coveo.com"
+  ],
+  "timeBetweenVisits": 20,
+  "timeBetweenActions": 3,
+  "randomGoodQueries": [
+    "red willis",
+    "captain america",
+    "jungle",
+    "dinosaur",
+    "spaceship",
+    "last knight",
+    "I Don't Want to Miss a Thing"
+  ],
+  "randomBadQueries": [
+    "woopi godberg",
+    "Ghostbutter",
+    "Gostbuster",
+    "star treq",
+  ],
+  "randomCustomData": [
+    {
+      "apiname": "context_userRole",
+      "values": [
+        "Anonymous",
+        "Producer"
+      ]
+    },
+    {
+      "apiname": "role",
+      "values": [
+        "Anonymous",
+        "Producer"
+      ]
+    },
+    {
+      "apiname": "c_isbot",
+      "values": [
+        "true"
+      ]
+    }
+  ],
+  "globalFilter": "NOT @mytype=Wikipedia",
+  "scenarios": [
+    {
+      "name": "(G) red willis",
+      "weight": 3,
+      "events": [
+        {
+          "type": "SearchAndClick",
+          "arguments": {
+            "queryText": "red willis",
+            "matchField": "title",
+            "matchValue": "RED",
+            "probability": 0.95
+          }
+        }
+      ]
+    },
+    {
+      "name": "QC(The Rock, 95%)",
+      "weight": 1,
+      "events": [
+        {
+          "type": "Search",
+          "arguments": {
+            "queryText": "The Rock",
+            "goodQuery": true
+          }
+        },
+        {
+          "type": "FacetChange",
+          "arguments": {
+            "facetTitle": "Supporting people",
+            "facetValue": "Dwayne Johnson",
+            "facetField": "@mypeople"
+          }
+        }
+      ]
+    },
+    {
+      "name": "QC(Night at the Museum, 95%)",
+      "weight": 3,
+      "events": [
+        {
+          "type": "SearchAndClick",
+          "arguments": {
+            "queryText": "history museum",
+            "matchField": "title",
+            "matchValue": "Night at the Museum",
+            "probability": 0.95
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 

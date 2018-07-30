@@ -527,7 +527,7 @@ except Exception as e:
 
 ```
 
-Read the next post [The Elastic Search Demo, Part 2: Build the UI](https://source.coveo.com/2018/05/14/building-the-elastic-demo-part2/) on how we build the UI.
+Read the next post [The Elastic Search Demo, Part 2: Built the UI](https://source.coveo.com/2018/05/14/building-the-elastic-demo-part2/) on how we build the UI.
 
-Special thanks to my colleague Jérôme Devost who helped me to build this!
+Special thanks to my colleague Jérôme Devost who helped me to built this!
 
