@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "The Elastic Search Demo, Part 2: Built the UI"
+title: "The Elastic Search Demo, Part 2: Build the UI"
 
 tags: [Index Extensions, Query Extensions, JS UI custom components, Push API]
 
@@ -23,11 +23,11 @@ _This is the third blog post of a new series entitled “Build it with the Coveo
 <!-- more -->
 
 ## Building the UI
-Out of the box, Coveo offers the [Coveo Javascript Framework](https://docs.coveo.com/en/375) for building the UI. It offers a ton of components which you can simply drag and drop using an [Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). Using the editor you can quickly design the basic layout of your UI, create search interfaces, add facets, and you are ready to go for a basic search experience. Since we wanted to have very specific result templates, completely tailored to the search audience, we needed some additional configuration directly into the HTML/JS files.
+Out of the box, Coveo offers the [Coveo Javascript Framework](https://docs.coveo.com/en/375) for building the UI. It offers a ton of components which you can simply drag and drop using an [Interface Editor](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). Using the editor you can quickly design the basic layout of your UI, create search interfaces, add facets, and you are ready to go for a basic search experience. Since we wanted to have very specific result templates, completely tailored to the search audience, we needed some additional configuration directly into the HTML/JS files.
 
 ### Result templates
 For almost all the content types we had indexed we wanted to have more dedicated [result templates](https://docs.coveo.com/en/413), than offered out of the box. The Movie result template is probably the most complicated one. It uses a couple of custom controls and custom formatting.
-Coveo offers out of the box different [result layouts](https://docs.coveo.com/en/360) (eg. list, card and table). 
+Coveo offers out of the box different [result layouts](https://docs.coveo.com/en/360) (eg. list, card, and table). 
 
 For each layout, different result templates can be configured.
 The Coveo Javascript framework will pick the first template where the condition is met. If none of the conditions are met and there is NO default template, then nothing is shown.
@@ -52,15 +52,7 @@ The Movie database result template looked like:
 
     <div class="CoveoExcerpt"></div>
 
-    <span class="CoveoResultFolding"
-      data-result-template-id="Review"
-      data-normal-caption="Reviews"
-      data-more-caption="Show more reviews"
-      data-expanded-caption="Reviews"
-      data-less-caption="Show less reviews"
-      data-one-result-caption="Only one review"></span>
-
-    <div class="CoveoDetailsAndRelated">
+    <div class="CoveoMyDetailsAndRelated">
       <table class="CoveoFieldTable coveo-details related-content Details query-done" data-allow-minimization="false">
         <tr data-field="@source" data-caption="Source"></tr>
         <tr data-field="@mystatus" data-caption="Status"></tr>
@@ -71,7 +63,7 @@ The Movie database result template looked like:
       </table>
     </div>
 
-    <div class="CoveoResultsRelated youtube"
+    <div class="CoveoMyResultsRelated youtube"
       data-result-template-id="YouTubeVideoList"
       data-name="Videos"
       data-normal-caption="Videos"
@@ -88,7 +80,7 @@ The Movie database result template looked like:
       data-help='#ResultHelpYoutube'>
     </div>
 
-    <div class="CoveoResultsRelated music"
+    <div class="CoveoMyResultsRelated music"
       data-result-template-id="Music"
       data-name="Music"
       data-normal-caption="Music"
@@ -113,10 +105,10 @@ The Movie database result template looked like:
 And will show in the interface like:
 ![RL1]({{ site.baseurl }}/images/20180514/RL1.png)
 
-Lots of the components inside the resulttemplate are out of the box (```CoveoFieldValue```, ```CoveoExcerpt```, ```CoveoResultLink```), others (```CoveoMyBackground```, ```CoveoResultsRelated```) are custom made.
+Lots of the components inside the resulttemplate are out of the box (```CoveoFieldValue```, ```CoveoExcerpt```, ```CoveoResultLink```), others (```CoveoMyBackground```, ```CoveoMyResultsRelated```) are custom made.
 
 ## Custom controls
-You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files. That is what we have used for the demo. A few of the components will be discussed in detail. You can always view them in our [demo](https://elastic.coveodemo.com/demo/js/pages.js).
+You can use [Typescript](https://docs.coveo.com/en/361) to create custom controls, or you can simply embed them within your HTML/[Javascript](https://docs.coveo.com/en/305) files. That is what we have used for the demo. A few of the components will be discussed in detail. You can always view them in our [demo](https://elastic.coveodemo.com/demo/page.js).
 
 ### CoveoMyBackground
 The first custom control we built was ```CoveoMyBackground```. It offers a custom background based upon a reference to the images we gathered during the indexing process. It also used the color gradient (from the Indexing Pipeline Extension) to create a gradient color.
@@ -272,13 +264,13 @@ MyART.ID = 'MyART';
 Coveo.Initialization.registerAutoCreateComponent(MyART);
 ```
 
-### CoveoResultsRelated
-One of my favorites: ```CoveoResultsRelated```. It shows (based upon a user action) an additional result list. The current result is used as the context. For example, we wanted to show a tab with related YouTube videos on the current result based on the title of the movie. 
+### CoveoMyResultsRelated
+One of my favorites: ```CoveoMyResultsRelated```. It shows (based upon a user action) an additional result list. The current result is used as the context. For example, we wanted to show a tab with related YouTube videos on the current result based on the title of the movie. 
 ![RL4]({{ site.baseurl }}/images/20180514/RL4.png)
 
 We configured the Custom control by setting the properties:
 ``` html
-<div class="CoveoResultsRelated youtube"
+<div class="CoveoMyResultsRelated youtube"
      data-result-template-id="YouTubeVideoList"
      data-name="Videos"
      data-normal-caption="Videos"
@@ -298,7 +290,7 @@ We configured the Custom control by setting the properties:
 In the above example we specified the ```data-query``` to be executed as '@title="[FIELD1]" @filetype=YoutubeVideo'. The ```data-fields``` (in this case title) was used to fill up the [FIELD1] in the query. So only when the end user clicked a button would the query be executed. That was the first behavior of the component. 
 
 We changed the layout to use tabs on results, which could look unprofessional. For each result, someone would see four different tabs. When they selected one, they may have received a 'No results' message. Bad user experience!
-We added an additional check inside the ```CoveoDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. However, be aware: if 10 results are displayed, you will perform an additional 10 queries.
+We added an additional check inside the ```CoveoMyDetailsAndRelated``` component. It will execute a query with the ```data-key-check``` field. If the key with the value is not present in the data, the associated tab is hidden. A much better user-experience. However, be aware: if 10 results are displayed, you will perform an additional 10 queries.
 ``` javascript
 //***************************
   //composeQuery
@@ -422,7 +414,7 @@ We added an additional check inside the ```CoveoDetailsAndRelated``` component. 
   }
 ```
 
-For the full code of the component see our [demo](https://elastic.coveodemo.com/demo/js/page.js).
+For the full code of the component see our [demo](https://elastic.coveodemo.com/demo/page.js).
 
 ## Styling the UI with custom CSS
 The search interface rendered out of the box looks already quite useful. In our case we wanted to change them to our own branding. Everything can be overruled using CSS rules (see [Styling the Coveo Javascript Search Framework](https://docs.coveo.com/en/423)). Always create your own custom CSS files, and never overwrite the ones provided by Coveo out of the box.
@@ -471,7 +463,7 @@ Our resulttemplate is formatted like:
 ## Personalization
 More and more we see requests coming in around personalization, which is one of the reasons why we added it to our demo. In our case we had two profiles: Movie Fan and a Movie Producer. Each had its own color schema and its own relevancy rules. Using the profiles we could not only change the UI styling, but we also added specific relevancy rules. In a normal scenario this would come from all kinds of systems: for example department/country from Active Directory or information from a userprofile in Salesforce or Sharepoint.
 
-With Coveo you can use the ```$qre``` syntax to start boosting results with your preferences to a higher position (see [Coveo Cloud Query Syntax](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357)).
+With Coveo you can use the ```$qre``` syntax to start boosting results with your preferences to a higher position (see [Coveo Cloud Query Syntax](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357)).
 ``` javascript
 //Create a usermap with help and booster information.
 const usersMap = {
@@ -919,7 +911,7 @@ function setSearchParams() {
 ```
 
 ### Sending a PageView event when clicking on a URL
-In a normal situation the public website or other system could sent additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based on other people's journeys.
+In a normal situation the public website or other system could sent additional ```PageView``` events to our Analytics engine. You need that if you want to use our [Recommendations](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=237) component. The ```Recommendations``` component will look at your current journey and will use our Machine Learning to start recommending articles based on other people's journeys.
 
 In our case we simply wanted to add such an event whenever end-users clicked on the preview and/or followed the hyperlink.
 ``` javascript
@@ -949,7 +941,7 @@ $('#search').on('changeAnalyticsCustomData', function (e, args) {
 ```
 
 ## Pushing Analytics events using the UABOT
-In a normal production system the Search Analytics would work together with our Machine Learning to constantly improve the relevancy. Because of the limited use of the demo, this would not work for us. We still wanted to show our [Search Analytics Dashboards](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=238). In order to show them we would need data. That is where our [UABOT](https://github.com/coveo/uabot) comes in. Based upon a JSON configuration file it will start pushing Analytics events to our Analytics service. The Search Analytics events are used by our Machine Learning which will provide [query suggestions](https://onlinehelp.coveo.com/en/cloud/enabling_coveo_machine_learning_query_suggestions_in_a_coveo_js_search_framework_search_box.htm) and [relevancy boosting](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=166).
+In a normal production system the Search Analytics would work together with our Machine Learning to constantly improve the relevancy. Because of the limited use of the demo, this would not work for us. We still wanted to show our [Search Analytics Dashboards](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=238). In order to show them we would need data. That is where our [UABOT](https://github.com/coveo/uabot) comes in. Based upon a JSON configuration file it will start pushing Analytics events to our Analytics service. The Search Analytics events are used by our Machine Learning which will provide [query suggestions](https://onlinehelp.coveo.com/en/cloud/enabling_coveo_machine_learning_query_suggestions_in_a_coveo_js_search_framework_search_box.htm) and [relevancy boosting](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=166).
 
 Our UABOT file:
 ``` json
@@ -1064,4 +1056,4 @@ Our UABOT file:
 
 And that is it! I hope you enjoyed it.
 
-Special thanks to my colleague Jérôme Devost who helped me to build this!
+Special thanks to my colleague Jérôme Devost who helped me build this!
