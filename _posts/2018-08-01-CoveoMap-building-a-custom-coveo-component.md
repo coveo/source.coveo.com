@@ -45,6 +45,10 @@ Some extra steps would be required to incorporate the component in a CMS framewo
 A realistic data set was the first requirement for CoveoMap. Real street addresses, with exact latitude and longitude, are indeed the base of any good geospatial search. A user also needs to be able to search (and filter) results based on city names, regions, or any other useful information available on the results. To mock the data, we used a dataset of Australian Addresses, freely available,  to which was added fields generated using "Mockaroo", an online mockup tool. The items were pushed to Coveo using the Push-API.
 
 ### Items
+An item in CoveoMap is displayed  on the map, and for the relevant markers, on the result list. Here is a close view of a result template:
+
+![Result Template]({{ site.baseurl }}/images/2018-08-01/ResultTemplate.png)
+
 Here is the basic structure of the items in Coveo Map:
 
 | Field | Type | Required? |
@@ -61,11 +65,6 @@ Here is the basic structure of the items in Coveo Map:
 | phone | To display in the result template |   |
 | email | To display in the result template |   |
 | rating | Used for rating and also in facets |   |
-
-The information indexed can be retreived in Result Templates to customize the Search Experience.
-
-![Result Template]({{ site.baseurl }}/images/2018-08-01/ResultTemplate.png)
-
 
 ### Using Coveo Push-API
 Coveo Push-API is a type of connector available in Coveo Cloud and is commonly used to push files into Coveo Cloud, hence the name Push-API. Since the data used in this project was stored in JSON documents, the Python-Push-API was a perfect fit for the job. This small Python script loops through every JSON documents in a folder and pushes them to Coveo.
@@ -97,8 +96,18 @@ In this project, relevance as been achieved by combining distance, ratings and p
 ### Distance from the center of the map
 The relation between the user and markers is used as a dynamic input in the ranking algorithm. Items near the user will be score higher the the ones further. The following formula is used:
 
+` y = 300 - @distance^0.72 `
+
+![Distance function]({{ site.baseurl }}/images/2018-08-01/Distance.png)
+
+
 ### Ratings
 Ratings helps quickstart the ranking algorithm prior to machine learning. Once enough users interacts with the CoveoMap, analytics will collect behavioral data, feeding the Coveo Automatic Relevance Tuning (ART) model. The rating system used in this project have values from 0.1 to 5.0, so we used a more linear expression.
+
+` y = (@ratings) * 5 `
+
+![Rating function]({{ site.baseurl }}/images/2018-08-01/Ratings.png)
+
 
 ### Relation to City names
 The relevance of the markers still  needs to be overridable by a query stating the name of another city.
