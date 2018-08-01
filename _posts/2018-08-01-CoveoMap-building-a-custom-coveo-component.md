@@ -52,7 +52,7 @@ An item in CoveoMap is displayed  on the map, and for the relevant markers, on t
 Here is the basic structure of the items in Coveo Map:
 
 | Field | Type | Required? |
-| ------|------|-----------|
+| ------|------|:-----------:|
 | URI | Unique identifier used in the Plaform. Usually correspond to the item URL | ✔︎ |
 | uniqueId | Used by CoveoMap to link a Result with a Marker | ✔︎ |
 | longitude | Decimal coordinate | ✔︎ |
@@ -66,16 +66,20 @@ Here is the basic structure of the items in Coveo Map:
 | email | To display in the result template |   |
 | rating | Used for rating and also in facets |   |
 
-### Using Coveo Push-API
+### Mapping fields in Coveo Cloud
+When using the Push-API, the fields available in the JSON items will be converter to Coveo values Coveo finds a field that have the same name. Prior to indexing, one must create all the fields and select the correct attributes in Coveo Cloud Fields section.
+
+![Mapping Fields]({{ site.baseurl }}/images/2018-08-01/MappingFields.png)
+
+### Pushing the Content
 Coveo Push-API is a type of connector available in Coveo Cloud and is commonly used to push files into Coveo Cloud, hence the name Push-API. Since the data used in this project was stored in JSON documents, the Python-Push-API was a perfect fit for the job. This small Python script loops through every JSON documents in a folder and pushes them to Coveo.
 
 The Push-API is fast and this was largely appreciated as the data set changed and adapted during the project to make everything smooth. Processing the 2000 items took on average 4 minutes.
 
 ### Importance of Clean Data
-As mentioned in the Coveo for Sitecore Project Guide, clean data will solve most of the indexing issue. With consistent data, transformed correctly prior indexing, the development process is smoother and relevance is better. Without consistent data, result templates are not uniform, and some workaround are required in the code to handle exceptions. Clean data = cleaner code.
+As mentioned in the Coveo for Sitecore Project Guide, clean data will solve most of the indexing issue. With consistent data, transformed correctly prior indexing, the development process is smoother and relevance is better. Without consistent data, result templates are not uniform, and some workaround are required in the code to handle exceptions. 
 
-### Mapping fields in Coveo Cloud
-When using the Push-API, the fields available in the JSON items will be converter to Coveo values Coveo finds a field that have the same name. Prior to indexing, one must create all the fields and select the correct attributes in Coveo Cloud Fields section.
+> Clean data = cleaner code.
 
 ## UX
 ### Designing Relevance
@@ -112,8 +116,13 @@ Ratings helps quickstart the ranking algorithm prior to machine learning. Once e
 ### Relation to City names
 The relevance of the markers still  needs to be overridable by a query stating the name of another city.
 
+![Ranking Expression]({{ site.baseurl }}/images/2018-08-01/RankingExpression.png)
+
 ### Date
 By default, Coveo ranks recent documents higher than older ones. This, while useful in website search, has no meaning in our use case. The relative weight of the indexed date has been turned down to 0 in Coveo Ranking Weight.
+
+![Ranking Weight]({{ site.baseurl }}/images/2018-08-01/RankingWeight.png)
+
 
 ## Implementation
 
@@ -128,8 +137,12 @@ As with any Coveo project, the Coveo Cloud Organization is the backend. In this 
 ### Analytics
 Since Coveo ML uses analytic events to work, basic events have been implemented in CoveoMap. The Coveo JavaScript Framework, with the CoveoAnalytic component, will send searches, facets clicks, and other event to Coveo Cloud. We needed 
 
-### Ranking Inspector 
-Fine-tuning relevance can be achieved using the Relevance Inspector. Use #debug=true in the page URL to enable this new feature.
+### Ranking Inspector
+Fine-tuning relevance can be achieved using the Relevance Inspector. Add `#debug=true` tp the page URL to enable this  feature.
 
-### Coveo Search Box
-One of the Coveo JavaScript Search Interface features, the query syntax, allow user to experiment with Coveo Query Syntax directly in the search box. Here is an example of the distance tests conducted at the beginning of the project. This feature can be enabled by adding this snipper to the CoveoSearchBox component : data-enable-query-syntax="true".
+![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/RankingInspector.png)
+
+### Coveo Search Box Query Syntax
+One of the Coveo JavaScript Search Interface features, the query syntax, allow user to experiment with Coveo Query Syntax directly in the search box. Here is an example of the distance tests conducted at the beginning of the project. This feature can be enabled by adding this snipper to the CoveoSearchBox component : `data-enable-query-syntax="true"`.
+
+![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/QuerySyntax.png)
