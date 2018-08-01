@@ -11,7 +11,7 @@ author:
   image: jszym.jpg
 ---
 
-![Showdown Cover]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/showdown-cover.jpg)
+![Showdown Cover]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/showdown-cover.png)
 
 If you're one of the many passengers on the deep learning hype-train (welcome aboard), you've at some point almost certainly experienced the great confusion of having to choose a deep learning framework.
 
