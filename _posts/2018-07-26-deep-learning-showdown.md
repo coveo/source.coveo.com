@@ -11,20 +11,22 @@ author:
   image: jszym.jpg
 ---
 
+![Showdown Cover]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/showdown-cover.jpg)
+
 If you're one of the many passengers on the deep learning hype-train (welcome aboard), you've at some point almost certainly experienced the great confusion of having to choose a deep learning framework.
 
 If you're trying to choose a framework, or maybe re-evaluating your choices, I might be able to help! 
 
-I've done a lot of the leg work for you, having made a pretty comprehensive report on the state of DL frameworks that compares their strengths and weaknesses.
+I've done a lot of the leg work for you, having made a pretty comprehensive report on the state of deep learning frameworks that compares their strengths and weaknesses.
 
 <!-- more -->
 
-I compared these frameworks based on three categories that we value most (Support & Community, API, and Platform), and used (as much as possible) quantitative measures to compare each one. A bit of warning, this is a long post, so you can always [**skip ahead to the overall results**](#podium) if you're impatient.
+I compared these frameworks based on three categories that we value most (Support & Community, API, and Platform), and used (as much as possible) quantitative measures to compare each one. A bit of warning: this is a long post, so you can always [**skip ahead to the overall results**](#podium) if you're impatient.
 
 ## Table of Contents
 
 * [**Methodology Summary**](#matchrules)
-* [**Frameworks in this Comparison**](#belidgerents)
+* [**Frameworks in this Comparison**](#belligerents)
 * [**Overall Results**](#podium)
 * [**Round One: Support & Community**](#round1)
 * [**Round Two: API & Internals**](#round2)
@@ -52,13 +54,13 @@ Each framework was scored on three categories, each with its own sub-criteria:
   * Languages --- *Are there many, mature, language bindings?*
   * OS Support --- *Are many OS environments supported?*
   * AWS Support --- *Is it easy to use in the AWS cloud?*
-  * ONNX Support --- *Can we serialise models to the ONNX format?*
+  * ONNX Support --- *Can we serialize models to the ONNX format?*
 
-*"How are each of these criteria measured?!"* I hear the throng of data-hungry quants cry out in anguish and anticipation --- don't worry, I go into detail for each category's methodology in sections to come 🤓.
+*"How are each of these criteria measured?!"* I hear the throng of data-hungry quants cry out in anguish and anticipation --- don't worry, I go into details for each category's methodology in sections to come 🤓.
 
 Without further ado, let's meet the frameworks.
 
-{:#belidgerents}
+{:#belligerents}
 
 ## The Belligerents: Frameworks in this Comparison
 
@@ -97,9 +99,9 @@ If you're currently evaluating Keras as a solution and want to use this guide, t
 
 We've all got deadlines, so I'll cut straight to the overall scores of each framework (below). These overall scores are an average of the three category score. Again, for my fellow detail-geeks, I break down each category in later sections.
 
-Apache MXNet takes the crown as the best all-around-er, followed closely by PyTorch and TensorFlow. Although it has the lowest Support & Community scores out of the top 3 frameworks, MXNet's lead is eked out largely due to its dominant Platform score and its strong API & Internals score. MXNet was clearly benefitted in this overview by its focus on portability, with over 6 language bindings including Perl (really?), as well as its modern Gluon API, complete with dynamic graph building and great scale-conscious NDArray library.
+Apache MXNet takes the crown as the best all-around-er, followed closely by PyTorch and TensorFlow. Although it has the lowest Support & Community scores out of the top 3 frameworks, MXNet sneaks into the lead largely due to its dominant Platform score and its strong API & Internals score. MXNet was clearly benefitted in this overview by its focus on portability, with over 6 language bindings including Perl (really?), as well as its modern Gluon API, complete with dynamic graph building and great scale-conscious NDArray library.
 
-Of course, Perhaps developer mindshare is far more important to you than MXNet's Perl support, or its [multi-node-friendly NDArray library](https://mxnet.incubator.apache.org/versions/master/api/python/ndarray/ndarray.html). In those cases, TensorFlow or PyTorch might be far better bets, with your desire for mature dynamic graph building or dependence on the Google Cloud Platform being the most likely tie-breakers.
+Of course, perhaps developer mindshare is far more important to you than MXNet's Perl support, or its [multi-node-friendly NDArray library](https://mxnet.incubator.apache.org/versions/master/api/python/ndarray/ndarray.html). In those cases, TensorFlow or PyTorch might be far better bets, with your desire for mature dynamic graph building or dependence on the Google Cloud Platform being the most likely tie-breakers.
 
 Tier 2 is comprised of frameworks that scored very similarly in each category, with the exception of Chainer's strong API & Internals score and weaker Support & Community score.
 
@@ -112,9 +114,9 @@ Frameworks that ranked outside of the first two tiers appear to be either abando
 ![Radar Plots of Categories]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/radars-double-white.svg.png)
 
 {:.caption}
-I promise the marketing team didn't make me make the radar plots look like the Coveo logo
+I promise the marketing team didn't force me to make the radar plots look like the Coveo logo
 
-The tiers here (and elsewhere in this document) aren't standardised and don't have a whole lot of meaning outside of the fact that it's a convenient way of thinking about how frameworks have clustered in their scores.
+The tiers here (and elsewhere in this document) aren't standardized and don't have a whole lot of meaning outside of the fact that it's a convenient way of thinking about how frameworks are clustered in their scores.
 
 You can continue on to the break-down of how frameworks fared in each category below, or [skip ahead to the discussion](#discussion) that attempts to tie all these findings up in a nice narrative bow.
 
@@ -132,9 +134,9 @@ Another great side-effect of having a large user base is that it's more and more
 |Criterion|Question it answers|Rationale|Scoring|
 |---|-------|----------|----------|
 |Sponsor|*How is the development of the framework funded?*|The more money a framework has, the more likely it's going to stay active long term.|**0** for an individual,<br/>**1** for sponsors who allocated few resources, and<br/>**2** for sponsors who allocated many resources.
-|Activity|*What is the dev't activity of the framework?*|Bugs are more likely to be patched and features to be merged with active dev't.|Score is assigned as the sum of (1) the inverse of the last **commit in weeks**, and (2) the number of **pull requests merged** this month.|
+|Activity|*What is the development activity of the framework?*|Bugs are more likely to be patched and features to be merged with active dev't.|Score is assigned as the sum of (1) the inverse of the last **commit in weeks**, and (2) the number of **pull requests merged** this month.|
 |Ecosystem|*Are people building models with this framework?*|Having ready-made models of popular architectures and pre-trained weights can be a huge speed-up to development.|Sum of the number of the log **GitHub repos** and the log of **StackOverflow questions**<sup>[1](#foot1)</sup>.|
-|Documentation|*Are the docs complete?*|Ever try writing code for a framework with bad documentation? Nigh impossible. Undocumented features might as well not exist.|Currently qualitative score from one to three<sup>[2](#foot2)</sup>.|
+|Documentation|*Are the docs complete?*|Ever tried writing code for a framework with bad documentation? Nigh impossible. Undocumented features might as well not exist.|Currently qualitative score from one to three<sup>[2](#foot2)</sup>.|
 
 ### Results
 Below are the Support & Community scores, as well as a break down of each criterion by framework.
@@ -149,7 +151,7 @@ Below are the Support & Community scores, as well as a break down of each criter
 Breakdown of each criterion in this category by framework.
 
 {:#foot3_origin}
-One of the more interesting scores in this category, in my opinion, is the `ecosystem` score. No framework's `ecosystem` score can really hold a candle to TensorFlow. It should be said, however, that while it is far and away from 3 year-old TensorFlow's score<sup>[3](#foot3)</sup>, PyTorch has in 1 year amassed an `ecosystem` that is not dissimilar to that of the far-older leaders of yesteryear like Theano, Caffé, or it's older brother Torch. With growth like that, it's not hard to see PyTorch as a challenger to TensorFlow's current seat on the throne of developer mind-share.
+One of the more interesting scores in this category, in my opinion, is the `ecosystem` score. No framework's `ecosystem` score can really hold a candle to TensorFlow. It should be said, however, that while it is far and away from the 3 year-old TensorFlow's score<sup>[3](#foot3)</sup>, PyTorch has in 1 year amassed an `ecosystem` that is not dissimilar to that of the far-older leaders of yesteryear like Theano, Caffé, or its older brother Torch. With growth like that, it's not hard to see PyTorch as a challenger to TensorFlow's current seat on the throne of developer mind-share.
 
 CNTK and MXNet are two other frameworks with deep-pocket sponsors, but are hobbled in this category by middling ecosystem and development activity scores.
 
@@ -169,7 +171,7 @@ This a under-the-hood, wheel-kicking section, where we look at what these framew
 |---|-------|----------|----------|
 |Sym/Dyn Graph<sup>[4](#foot4)</sup>|*Does the framework support dynamic, or old-school symbolic computational graph building?*|There's too much to say on the topic to fit here, but here's [a great talk](https://insidehpc.com/2017/12/deep-learning-automatic-differentiation-theano-pytorch/). The main take-away for us is that symbolic graph builders need their own API and require a compile step while dynamic ones don't.|**2** for dynamic,<br/>**1** for symbolic, and<br/>**0** for neither/manual.
 |Numerics|*What numeric backend is being used? Is it actively developed? Easy to use?*|Deep learning libraries are often deeply integrated with numerics libraries, and having mature, easy-to-use numerics libraries is very important to being able to write custom layers as well as downstream applications.|Score of **0-5** for maturity, score of **0-5** for ease-of-use, activity score equal to sum of the inverse of the **number of weeks since last commit** and number of **merged pull requests** in the last month. |
-|OOTB NN Ops|*What are the out-of-the box neural network layers and operations that are supported?*|The pre-built Legos that make up all networks, you definitely want to be able to reach for a wide variety of layer types, ranging from run-of-the-mill convolutional layers, to LSTMs.|**1** point for every implemented layer/optimiser of a sample of 32 that I identified. **0.5** for cases where implementing the layer is particularly trivial.|
+|OOTB NN Ops|*What are the out-of-the box neural network layers and operations that are supported?*|The pre-built Legos that make up all networks, you definitely want to be able to reach for a wide variety of layer types, ranging from run-of-the-mill convolutional layers, to LSTMs.|**1** point for every implemented layer/optimizer of a sample of 32 that I identified. **0.5** for cases where implementing the layer is particularly trivial.|
 
 ### Results
 
@@ -189,9 +191,9 @@ I wasn't able to determine a numerics score for Caffé, Caffé2, and PaddlePaddl
 {:#foot5_origin}
 This category is largely skewed by the `symbolic/dynamic graph building` score, but that's as intended. From personal experience and the anecdotal experience of [smart people I respect](http://www.fast.ai/2017/09/08/introducing-pytorch-for-fastai/), dynamic-graph building offers a flexibility and natural flow that Keras/Lasagne's<sup>[5](#foot5)</sup> familiar and forgiving "stacked-layers" approach is often incapable of.
 
-I can't help but precognise the grumblings of TensorFlow loyalists who have by now realised I've marked TensorFlow as having a symbolic computational graph builder despite the new "[Eager Execution](https://www.tensorflow.org/guide/eager)" mode it rolled out fairly recently. While there are a number of reasons why I did not consider it, it mostly boils down to TF's "eager" mode striking me as a bit of a second thought; suffering from [performance issues](https://github.com/tensorflow/tensorflow/issues/14130) and likely not being suitable for production use. Still, it's very cool to see that TensorFlow has the introspective capacity (and developer hours) to address concerns over a more usable PyTorch developer experience.
+I can't help but foresee the grumblings of TensorFlow loyalists who have by now realized I've marked TensorFlow as having a symbolic computational graph builder despite the new "[Eager Execution](https://www.tensorflow.org/guide/eager)" mode it rolled out fairly recently. While there are a number of reasons why I did not consider it, it mostly boils down to TF's "eager" mode striking me as a bit of a second thought, as it suffers from [performance issues](https://github.com/tensorflow/tensorflow/issues/14130) and likely is not suitable for production use. Still, it's very cool to see that TensorFlow has the introspective capacity (and developer hours) to address concerns over a more usable PyTorch developer experience.
 
-In regard to out-of-box neural network operations, most modern networks have more or less coalesced on a set of flexible and reusable operations that make everyones life easier. Still, some more exotic but useful layers like Hierarchical Softmax are few and far in-between (which is probably fine, but I'd personally would love not having to reimplement it every time I move between frameworks). I know I might be "dynamic graph fanboy"'ing a bit, but having a dynamic graph also helps you to use operations in a more portable way, freeing you from having to always rely on built-in ops and the framework's specific API when.
+In regard to out-of-the-box neural network operations, most modern networks have more or less coalesced on a set of flexible and reusable operations that make everyone's life easier. Still, some more exotic but useful layers like Hierarchical Softmax are few and far between (which is probably fine, but I'd personally love not having to reimplement it every time I move between frameworks). I know I might be "dynamic graph fanboy"'ing a bit, but having a dynamic graph also helps you to use operations in a more portable way, freeing you from having to always rely on built-in ops and the framework's specific API.
 
 {:#round3}
 
@@ -204,10 +206,10 @@ Being able to integrate a framework into your existing code base and stack is a 
 |Criterion|Question it answers|Rationale|Scoring|
 |---|-------|----------|----------|
 |API Languages|*Are there many, mature, language bindings?*|Having multiple language bindings offers flexibility for integrating into existing code bases, as well as ergonomics when APIs are written in expressive, dynamic languages like Python.|**+1** for each language, weighted by maturity **(0-1)** of the binding.|
-|Scalability|*Does this framework support (easy-to-use) multi-machine training/prediction?*|Deep Learning is a fellow hype-word and best friend to Big Data, which means easy cluster computer and data parallelism is very valuable.|**0** if none available,<br/>**1** for 3<sup>rd</sup> party solutions, and<br/>**2** for out-of-the-box support|
+|Scalability|*Does this framework support (easy-to-use) multi-machine training/prediction?*|Deep Learning is a fellow hype-word and best friend to Big Data, which means easy cluster computing and data parallelism are very valuable.|**0** if none available,<br/>**1** for 3<sup>rd</sup> party solutions, and<br/>**2** for out-of-the-box support|
 |OS Support|*Are many OS environments supported?*|Being able to develop and deploy on any OS makes developing in teams and in heterogeneous environments a lot easier.|**+1** for each OS *officially* supported.|
 |AWS Support|*Is it easy to use in the Amazon cloud?*|Being able to deploy to autoscaling clusters in the cloud is a beautiful thing. We're focusing on AWS here because Coveo's cloud services are powered by Amazon.|**3** for officially endorsed,<br/>**2** for officially supported,<br/>**1** for example of it working,<br/>**0** for no information.|
-|ONNX Support|*Can we serialise models to the ONNX format?*|[ONNX is an exciting open format](https://onnx.ai/) whose goal is to make models and their weights portable between frameworks.|**2** for built-in support,<br/>**1** for community support,<br/>**0** for no support.|
+|ONNX Support|*Can we serialize models to the ONNX format?*|[ONNX is an exciting open format](https://onnx.ai/) whose goal is to make models and their weights portable between frameworks.|**2** for built-in support,<br/>**1** for community support,<br/>**0** for no support.|
 
 {:.center}
 ![Oveall Platform Score]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/platform_white.svg.png)
@@ -218,18 +220,18 @@ Being able to integrate a framework into your existing code base and stack is a 
 {:.caption}
 Breakdown of each criteria in this category by framework.
 
-Well, there's no other way to say it: MXNet blew past the competition here. It's not much of a surprise, however, as being able to run on a wide variety of machines is pretty much MXNet's *raison d'être*. It's tagline is "A Scalable Deep Learning Framework", after all.
+Well, there's no other way to say it: MXNet blew past the competition here. It's not much of a surprise, however, as being able to run on a wide variety of machines is pretty much MXNet's *raison d'être*. Its tagline is "A Scalable Deep Learning Framework", after all.
 
-ONNX invites the very interesting proposition of writing your code in a framework you find flexible and easy to debug (*e.g.* PyTorch) and deploy it on a framework which has either the language bindings you need, or works well in a certain cloud environment (*e.g.* Apache MXNet or CNTK). The only more recent framework not to have some degree of built-in support of ONNX is really TensorFlow, and that's largely due to some boring politicking. Worth mentioning, while I couldn't find any references to ONNX support in DL4J, they do support import Keras models, which can be a useful way of designing architectures or training networks and deploying them on the JVM. All the same, it's not quite ONNX, as Keras isn't exactly a panacea (despite being very popular).
+ONNX invites the very interesting proposition of writing your code in a framework you find flexible and easy to debug (*e.g.* PyTorch) and deploy it on a framework which has either the language bindings you need, or works well in a certain cloud environment (*e.g.* Apache MXNet or CNTK). The only more recent framework not to have some degree of built-in support of ONNX is really TensorFlow, and that's largely due to some boring politicking. Worth mentioning: while I couldn't find any references to ONNX support in DL4J, they do support import Keras models, which can be a useful way of designing architectures or training networks and deploying them on the JVM. All the same, it's not quite ONNX, as Keras isn't exactly a panacea (despite being very popular).
 
 {:#discussion}
 ## Discussion
 
 ### Closing the Hardware-Software Gap
 
-If you haven't already heard the much-repeated and over-simplified<sup>[6](#foot6)</sup> parable of how Neural Network came to be the stuff of hype-legend, it begins with [some](https://en.wikipedia.org/wiki/Walter_Pitts) [ahead-of-their-time](https://en.wikipedia.org/wiki/Celeste_McCollough) [visionaries](https://en.wikipedia.org/wiki/Frank_Rosenblatt) in the 60's that [over-promised](https://www.nytimes.com/1958/07/08/archives/new-navy-device-learns-by-doing-psychologist-shows-embryo-of.html), [under-performed](https://www.quora.com/Why-cant-the-XOR-problem-be-solved-by-a-one-layer-perceptron), and eventually lead the field into becoming a [research-funding pariah](https://en.wikipedia.org/wiki/AI_winter). Not to discount the [theoretical](https://doi.org/10.1007/BF01931367) [advances](https://doi.org/10.1038/323533a0) that happened during that time, but one of the largest barriers that were lifted between the AI winter of the 1970s and the deep-learning mania of the 2010s is the **hardware barrier**<sup>[7](#foot7)</sup>. Accessible and affordable compute units were being pumped out *en masse* in the form of consumer GPUs marketed towards the gaming and PC enthusiast community.
+If you haven't already heard the much-repeated and over-simplified<sup>[6](#foot6)</sup> parable of how Neural Network came to be the stuff of hype-legend, it begins with [some](https://en.wikipedia.org/wiki/Walter_Pitts) [ahead-of-their-time](https://en.wikipedia.org/wiki/Celeste_McCollough) [visionaries](https://en.wikipedia.org/wiki/Frank_Rosenblatt) in the 60's that [over-promised](https://www.nytimes.com/1958/07/08/archives/new-navy-device-learns-by-doing-psychologist-shows-embryo-of.html), [under-performed](https://www.quora.com/Why-cant-the-XOR-problem-be-solved-by-a-one-layer-perceptron), and eventually led the field into becoming a [research-funding pariah](https://en.wikipedia.org/wiki/AI_winter). Not to discount the [theoretical](https://doi.org/10.1007/BF01931367) [advances](https://doi.org/10.1038/323533a0) that happened during that time, but one of the largest barriers that was lifted between the AI winter of the 1970s and the deep-learning mania of the 2010s is the **hardware barrier**<sup>[7](#foot7)</sup>. Accessible and affordable compute units were being pumped out *en masse* in the form of consumer GPUs marketed towards the gaming and PC enthusiast community.
 
-I think that if the explosion of the number of deep learning frameworks and the lack of clear winner tells us that we're behind the eight-ball when it comes to mature software solutions to take advantage of the surprisingly bountiful compute harvest GPUs have given us. Part of that is that while the hype-train is traveling with great acceleration, it only left the station somewhere around 2012. We'll close the gap eventually, and post like these will disappear, but what that future will look like is, as always, uncertain...
+I think that if the explosion of the number of deep learning frameworks and the lack of clear winner tells us that we're behind the eight-ball when it comes to mature software solutions to take advantage of the surprisingly bountiful compute harvest GPUs have given us. Part of that is that while the hype-train is travelling with great acceleration, it only left the station somewhere around 2012. We'll close the gap eventually, and posts like these will disappear, but what that future will look like is, as always, uncertain...
 
 {:.center}
 ![The number of GPU cores has exploded over the ears, and interest in Deep Learning has followed behind.]({{ site.baseurl }}/images/2018-06-26-deep-learning-showdown/hardware_and_usage_white.svg.png)
@@ -239,7 +241,7 @@ I'm not asserting [correlation implies causation](http://www.tylervigen.com/spur
 
 ### Monoculture, Triumvirate, or Plurality?
 
-It's clear that Google is banking on a TensorFlow hegemony; from their hesistance to join ONNX, to how they've positioned TensorFlow in the [Google Cloud Platform](https://cloud.google.com/ml-engine/), not to mention the resources they've spent on software and [hardware](https://www.tomshardware.com/news/google-tensor-processing-unit-machine-learning,31834.html) development.
+It's clear that Google is banking on a TensorFlow hegemony, from their hesistance to join ONNX to how they've positioned TensorFlow in the [Google Cloud Platform](https://cloud.google.com/ml-engine/), not to mention the resources they've spent on software and [hardware](https://www.tomshardware.com/news/google-tensor-processing-unit-machine-learning,31834.html) development.
 
 However, with the efforts of Facebook's devs and Amazon's platform support, we might just as likely see a triumvirate of tech giants; each sharing equal bits of market share and staking out segments like academics or people running on the Google Cloud. While that might seem to be the case at the moment, much like the Roman Triumvirates, I don't foresee them being [particularly stable or lasting long](https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar). Developers long for interoperability and the ability to bring tech to whatever stack is in fashion.
 
@@ -251,9 +253,9 @@ My advice? You don't need to chose a framework that's both great at prototyping/
 
 First, find a framework that you enjoy programming in that exports to ONNX (my personal favourite is PyTorch). Then, when/if you need to move to a non-Python code-base or need to deploy to a cluster or mobile environment that your prototyping framework doesn't play nicely with, switch to a framework that supports your environment best and can import ONNX (which is likely going to be Apache MXNet).
 {:.foot8_origin}
-Projects like [TVM](https://tvm.ai/about)<sup>[8](#foot8)</sup> have already embraced this hybrid approach, leaving the programmer productivity to existing frameworks, and focusing on support a diverse number of deploy languages and platforms.
+Projects like [TVM](https://tvm.ai/about)<sup>[8](#foot8)</sup> have already embraced this hybrid approach, leaving the programmer productivity to existing frameworks, and focusing on support for a large number of diverse deploy languages and platforms.
 
-I hope that was helpful! Leave any questions, concerns, or overwhelmingly positive feedback down in the comments box below!
+I hope that was helpful! Leave any questions, concerns, or overwhelmingly positive feedback down in the comment box below!
 
 ## Footnotes
 {:#foot0}
@@ -271,7 +273,7 @@ I hope that was helpful! Leave any questions, concerns, or overwhelmingly positi
 {:#foot6}
 **6.** For an in-depth version that doesn't resort to simplifications bordering on apocrypha for narrative's sake, you can check out [this great article](http://www.andreykurenkov.com/writing/ai/a-brief-history-of-neural-nets-and-deep-learning/). [&#x2B8C;](#discussion)
 {:#foot7}
-**7.** Let me be clear, the hardware barrier wasn't the only hurdle to clear on the road to practical and efficient deep learning. We weren't always able to store and process data at the scales that we currently are, and seeing as data is the fuel which machine learning runs on, the "data barrier" was a considerable one. Furthermore, essential advances [made in optimisation](https://doi.org/10.1109/5.726791) also contributed to bringing us to where we are today. [&#x2B8C;](#discussion)
+**7.** Let me be clear, the hardware barrier wasn't the only hurdle to clear on the road to practical and efficient deep learning. We weren't always able to store and process data at the scales that we currently are, and seeing as data is the fuel which machine learning runs on, the "data barrier" was a considerable one. Furthermore, essential advances [made in optimization](https://doi.org/10.1109/5.726791) also contributed to bringing us to where we are today. [&#x2B8C;](#discussion)
 {:#foot8}
 **8.** TVM wasn't included in this comparison because it's less of a framework for the designing of networks, and more of a way to compile models into environments the original frameworks don't support. It's a super interesting project that I think deserves more attention. [&#x2B8C;](#foot8_origin)
 
