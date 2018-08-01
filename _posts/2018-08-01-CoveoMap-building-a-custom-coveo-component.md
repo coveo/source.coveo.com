@@ -47,20 +47,25 @@ A realistic data set was the first requirement for CoveoMap. Real street address
 ### Items
 Here is the basic structure of the items in Coveo Map:
 
-- longitude
-- latitude
-- businessname
-- city
-- state
-- category
-- phone
-- email
-- rating
-- distance
-- uniqueId
-- URI
+| Field | Type | Required? |
+| ------|------|-----------|
+| URI | Unique identifier used in the Plaform. Usually correspond to the item URL | ✔︎ |
+| uniqueId | Used by CoveoMap to link a Result with a Marker | ✔︎ |
+| longitude | Decimal coordinate | ✔︎ |
+| latitude | Decimal coordinate | ✔︎ |
+| distance | Computed at query time, used for ranking | ✔︎ |
+| businessname | A name used in the Result Template to identity the marker |   |
+| city | A facet field |    |
+| state | A facet field |  ︎ |
+| category | Fake business categories, used as facet field |   |
+| phone | To display in the result template |   |
+| email | To display in the result template |   |
+| rating | Used for rating and also in facets |   |
 
-These values are used in the result templates, both available on the map and in the result list. They are also used in the ranking algorithm.
+The information indexed can be retreived in Result Templates to customize the Search Experience.
+
+![Result Template]({{ site.baseurl }}/images/2018-08-01/ResultTemplate.png)
+
 
 ### Using Coveo Push-API
 Coveo Push-API is a type of connector available in Coveo Cloud and is commonly used to push files into Coveo Cloud, hence the name Push-API. Since the data used in this project was stored in JSON documents, the Python-Push-API was a perfect fit for the job. This small Python script loops through every JSON documents in a folder and pushes them to Coveo.
