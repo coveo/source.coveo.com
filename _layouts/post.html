@@ -4,14 +4,14 @@ layout: base
 
 <div class="illustration">
     <div class="container">
-        <a href="/"><img src="{{ site.github.url }}/images/illustration-half.png" alt="Tech Blog" class="half-ill"></a>
+        <a href="/"><img src="{{ site.github.url | replace: 'http://', '//' }}/images/illustration-half.png" alt="Tech Blog" class="half-ill"></a>
     </div>
 </div>
 
 {% if page.cover_image %}
 <div class="article-cover">
     <div>
-        <img src="{{ site.github.url }}/images/{{ page.cover_image }}" class="image">
+        <img src="{{ site.github.url | replace: 'http://', '//' }}/images/{{ page.cover_image }}" class="image">
     </div>
 </div>
 {% endif %}
@@ -38,9 +38,9 @@ layout: base
                 <div class="tags">
                       {% for tag in page.tags %}
                         {% if forloop.last %}
-                          <a href="https://search.coveo.com/#sort=relevancy&f:sourceFacet=[Web%20-%20TechBlog]&f:TagsFacet=[{{ tag }}]">{{ tag }}</a>
+                          <a href="https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[{{ tag }}]">{{ tag }}</a>                          
                         {% else %}
-                          <a href="https://search.coveo.com/#sort=relevancy&f:sourceFacet=[Web%20-%20TechBlog]&f:TagsFacet=[{{ tag }}]">{{ tag }}</a>
+                          <a href="https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[{{ tag }}]">{{ tag }}</a>                          
                         {% endif %}
                       {% endfor %}
                   </div>
@@ -51,7 +51,7 @@ layout: base
             <footer>
             <address>
                {% if page.author.imageURL %}<img src="{{ page.author.imageURL }}" />{% endif %}
-               {% if page.author.image %}<img src="{{ site.github.url }}/images/{{ page.author.image }}"/>{% endif %}
+               {% if page.author.image %}<img src="{{ site.github.url | replace: 'http://', '//' }}/images/{{ page.author.image }}"/>{% endif %}
                 <p>Written by <strong>{% if page.author.twitter %}<a rel="author" href="https://twitter.com/{{ page.author.twitter }}" title="{{ page.author_name }}" target="_blank">{% endif %}{{ page.author.name }}{% if page.author.twitter %}</a>{% endif %}</strong><br>
                 <span class="muted">{{ page.author.bio }}</span>
                 </p>

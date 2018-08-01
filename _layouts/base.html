@@ -7,73 +7,89 @@
     <title>{% if page.title %}{{ page.title }} &mdash; {{ site.inc.title }}{% else %}{{ site.inc.title }} &mdash; {{ site.inc.subtitle }}{% endif %}</title>
     {% if site.inc.google_font %}<link href="https://fonts.googleapis.com/css?family={{ site.inc.google_font }}" rel="stylesheet" type="text/css">{% endif %}
 
-	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/coveo-search-ui_V1.1550.5/bin/css/CoveoFullSearchNewDesign.css">
-	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+  <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
+  <link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+  <link rel="stylesheet" href="css/community-unified-navigation-custom.css"/>
 
-	<!-- <link rel="stylesheet" href="/css/CoveoFullSearch.css" /> -->
+
+
 	{% include _search.html %}
 
-    <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/css/main.css"/>
-    <link rel="shortcut icon" href="{{ site.github.url }}/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{{ site.github.url }}/images/{{ site.inc.logo }}"/>
-    <link href="{{ site.github.url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
-<meta content="{{ site.title }}" property="og:site_name">
+    <link rel="stylesheet" type="text/css" href="{{ site.github.url | replace: 'http://', '//' }}/css/main.css"/>
+    <link rel="shortcut icon" href="{{ site.github.url | replace: 'http://', '//' }}/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-144x144	-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-precomposed.png" />
+    <link href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
+
+    <meta property="og:site_name" content="{{ site.title }}" />
+    <meta name="twitter:card" content="summary" />
 
 {% if page.title %}
-  <meta content="{{ page.title }}" property="title">
-  <meta content="{{ page.title }}" property="og:title">
-  <meta content="article" property="og:type">
+  <meta property="og:type" content="article" />
+  <meta property="title" content="{{ page.title }}" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta name="twitter:title" content="{{ page.title }}" />
 {% else %}
-  <meta content="{{ site.title }}" property="title">
-  <meta content="{{ site.title }}" property="og:title">
-  <meta content="website" property="og:type">
+  <meta property="og:type" content="website" />
+  <meta property="title" content="{{ site.title }}" />
+  <meta property="og:title" content="{{ site.title }}" />
+  <meta name="twitter:title" content="{{ site.title }}" />
 {% endif %}
 
 {% if page.description %}
-  <meta content="{{ page.description }}" property="og:description">
-  <meta name="description" content="{{ page.title }}"/>
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta name="twitter:description" content="{{ page.description }}" />
 {% else %}
-  <meta content="{{ site.description }}" property="og:description">
-  <meta name="description" content="{{ page.title }}"/>
+  <meta property="og:description" content="{{ site.description }}" />
+  <meta name="twitter:description" content="{{ site.description }}" />
 {% endif %}
 
 {% if page.url %}
-  <meta content="{{ site.github.url }}{{ page.url }}" property="og:url">
+  <meta content="{{ site.github.url | replace: 'http://', '//' }}{{ page.url }}" property="og:url" />
 {% endif %}
 
 {% if page.date %}
-  <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-  <meta content="{{ site.github.url }}/about/" property="article:author">
+  <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time" />
+  <meta content="{{ site.github.url | replace: 'http://', '//' }}/about/" property="article:author" />
 {% endif %}
 
 {% if page.image %}
-  <meta content="{{ site.github.url }}/{{ page.image }}" property="og:image">
+  <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/{{ page.image }}" />
 {% else %}
-{% if page.cover_image %}
-  <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}"/>
-{% else %}
-  <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}"/>
-{% endif %}
+  {% if page.cover_image %}
+    <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ page.cover_image }}">
+  {% else %}
+    <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ site.inc.logo }}" />
+    <meta property="og:image:width" content="560" />
+    <meta property="og:image:height" content="560" />
+    <meta name="twitter:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ site.inc.logo }}" />
+  {% endif %}
 {% endif %}
 
 {% if page.categories %}
   {% for category in page.categories limit:1 %}
-  <meta content="{{ category }}" property="article:section">
+  <meta property="article:section" content="{{ category }}" />
   {% endfor %}
 {% endif %}
 
 {% if page.tags %}
   <meta name="tags" content="{% for tag in page.tags %}{{ tag }};{% endfor %}" />
   {% for tag in page.tags %}
-  <meta content="{{ tag }}" property="article:tag">
+  <meta property="article:tag" content="{{ tag }}" />
   {% endfor %}
 {% endif %}
 
 {% if page.author.name %}
-  <meta name="author" content="{{ page.author.name }}">
+  <meta name="author" content="{{ page.author.name }}" />
 {% endif %}
 
-<link rel="canonical" href="{{ site.github.url }}{{ page.url }}">
+{% if site.inc.analytics.google %}
+  {% include _google-analytics.html %}
+{% endif %}
+
+<link rel="canonical" href="{{ site.github.url | replace: 'http://', '//' }}{{ page.url }}">
 {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
 {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
 
@@ -84,7 +100,7 @@
 	<header>
 		<div class="upHeader clear">
 			<div class="logos">
-				<a href="http://www.coveo.com" class="logo" title="Coveo community"></a>
+				<a href="https://www.coveo.com" class="logo" title="Coveo community"></a>
 				<h3><a href="#">Community</a></h3></div>
 			<h1 class="currentSiteName"><em>Tech Blog</em> <span>Menu<i class="arrow"></i></span></h1>
 			<nav>
@@ -93,7 +109,7 @@
 					<li><a id="jsProductDocs" href="https://onlinehelp.coveo.com" target="_blank">Product docs</a></li>
 					<li><a id="jsDevDocs" href="https://developers.coveo.com" target="_blank">Developer docs</a></li>
 					<li><a id="jsAnswers" href="https://answers.coveo.com" target="_blank">Answers</a></li>
-					<li><a id="jsTraining" href="http://www.coveo.com/training" target="_blank">Training</a></li>
+					<li><a id="jsTraining" href="https://www.coveo.com/training" target="_blank">Training</a></li>
 					<li><a d="jsTechBlog" href="/"  class="current">Tech Blog</a></li>
 				</ul>
 				<ul class="externalbox with-sub">
@@ -109,8 +125,16 @@
 		</div>
 		<div class="bottomHeader">
 			<div id="searchBox">
-				<div class="CoveoSearchbox" type="text" data-enable-omnibox="true" data-inline="false" data-enable-wildcards="true" data-enable-search-as-you-type="false" data-enable-reveal-query-suggest-addon="false" data-enable-query-syntax="true" data-enable-field-addon="true"></div>
-				<div class="CoveoFieldSuggestions" data-field="@systitle" data-header-title="Suggested topics"></div>
+        <div class="CoveoSearchbox" type="text"
+          data-enable-omnibox="true"
+          data-inline="false"
+          data-enable-wildcards="true"
+          data-enable-search-as-you-type="false"
+          data-enable-reveal-query-suggest-addon="true"
+          data-enable-query-syntax="true"
+          data-enable-field-addon="true">
+        </div>
+				<div class="CoveoFieldSuggestions" data-field="@techblogtitle" data-header-title="Posts"></div>
 			</div>
 		</div>
 	</header>
@@ -135,7 +159,7 @@
             {% if site.inc.facebook %}
             <a href="http://facebook.com/{{ site.inc.facebook }}" title="Follow on Facebook" target="_blank"><i class="icon icon-facebook black"></i></a>
             {% endif %}
-            <a href="{{ site.github.url }}/feed.xml" title="RSS Feed">
+            <a href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" title="RSS Feed">
                 <i class="icon icon-rss black"></i>
             </a>
         </nav>

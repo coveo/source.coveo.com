@@ -10,8 +10,8 @@ author:
   image: slangevin.png
 ---
 
-This is the last part of my long adventure to cover all the best practices listed in the [Best Practices for Site Search](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
-The previous parts can be found [here](https://search.coveo.com/#sort=date%20ascending&f:TagsFacet=[Site%20Search%20Best%20Practices%20Series]&f:TagsFacet:operator=or).
+This is the last part of my long adventure to cover all the best practices listed in the [Best Practices for Site Search](https://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search) eBook.
+The previous parts can be found [here](https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[Site%20Search%20Best%20Practices%20Series]).
 
 <!-- more -->
 
@@ -63,12 +63,12 @@ From the Coveo Cloud Usage Analytics perspective, the ```actionCause``` is categ
 In the example above, ```documentOpen``` is a Click event. The rest of the metadata will be used to document the event. 
 
 From a user perspective, the metadata can be extracted in the Coveo Cloud platform. 
-The metadata will be called API Name and can be combined with an Event Cause to create a [Dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
+The metadata will be called API Name and can be combined with an Event Cause to create a [Dimension](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=352).
 
 In other words, a Dimension is metadata (extracted through an API Name) in the context of one or more Event causes.
 This might be a bit confusing so far, but you can refer to this [table](https://onlinehelp.coveo.com/en/cloud/creating_and_managing_dimensions_on_custom_metadata.htm#Custom_Metadata_Reference) for more details.
 
-Let's say I want to identify my queries without results. I will be using dimensions, [metrics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). 
+Let's say I want to identify my queries without results. I will be using dimensions, [metrics](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=107), and [filters](https://onlinehelp.coveo.com/en/cloud/adding_global_dimension_filters.htm). 
 My dimension will be ```Query```, which is defined in the Dimensions menu as a Search event using a ```queryExpression``` Api Name. 
 The metrics will be ```Query Count``` and ```Visit Count```, which is the number of times the query was executed and the number of unique visits related to this query.
 Finally, the filter ```Has Results is false``` is added on the card to show only queries without results.
@@ -119,7 +119,7 @@ Metadata can be added directly on the [properties](https://developers.coveo.com/
 However, this set of metadata will be static. Since the items in a cart can always change, you will need your set of metadata to be dynamic. 
 
 My favorite approach is to send the metadata programmatically by adding the key value directly to the ```analyticsCustomMetadata``` option of the component. 
-In the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
+In the [first part of this series](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/), I explained how to retrieve and extend the options of a Coveo component.
 You can use the same logic for custom analytics metadata, so if you want to send the item(s) in the cart of your site visitor, you could do something like this:
 
 ```js
@@ -143,7 +143,7 @@ Now that you know how to add metadata to existing events and create custom event
 You may think that tracking the rest of the solution is out of the scope of your search solution and you are not entirely wrong. 
 However, sending the entire user journey to the Coveo Machine Learning engine will allow you to use the [Recommendation Feature](https://developers.coveo.com/x/aIskAg).
 
-To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Alternatively, you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](http://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
+To track page visits, simply add the Coveo Page Views Analytics View rendering on each pages you want to track. Alternatively, you could reference the rendering directly in the layout of your pages the same way you added the global search box in the [first part of this series](https://source.coveo.com/2016/12/07/applying-site-search-best-practices-using-sitecore/).
 
 You can find a detailed guide for the Page Views Analytics component [here](https://developers.coveo.com/x/9IYdAg).
 

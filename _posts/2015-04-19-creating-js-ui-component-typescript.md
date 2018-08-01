@@ -72,7 +72,7 @@ The constructor takes 3 parameters : the actual HTML element, any options that c
 
 Finally, we use the framework to register the component. This line is really important, as it will indicate the JSUI to consider your block of code as an authentic component. From now on, you could compile your TypeScript code and integrate it in your page, right after CoveoJsSearch.min.js. 
 
-*Be sure to check out Will's [excellent blog post](http://source.coveo.com/2014/11/04/optimizing-web-app-build-process/) on how to create a successful build process.*
+*Be sure to check out Will's [excellent blog post](https://source.coveo.com/2014/11/04/optimizing-web-app-build-process/) on how to create a successful build process.*
 
 ## Adding some functionality
 
