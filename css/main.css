@@ -2099,6 +2099,10 @@ a {
     transition: all 0.2s ease
 }
 
+h2 a {
+    color: #1D4F76;
+}
+
 a:hover {
     color: #009DDC;
     text-decoration: none;
