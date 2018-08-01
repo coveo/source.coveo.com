@@ -25,7 +25,7 @@ Maps are awesome. A good map will react to users' current context and will provi
 
 <!-- more -->
 
-## Project Timeline
+# Project Timeline
 The project, including this article, was achieved in one month, with all contributors working part-time on the code base. If a project requires this kind of component, a realistic timeline needs to consider:
 
 - Expertise in Coveo JavaScript Search Framework
@@ -34,14 +34,14 @@ The project, including this article, was achieved in one month, with all contrib
 - Expertise in Coveo Relevance
 ![Project Timeline]({{ site.baseurl }}/images/2018-08-01/ProjectTimeline.png)
 
-## High Level Solution
+### High Level Solution
 The solution is quite simple from a technological point of view. The CoveoMap front-end is run locally using all the tools provided by the Coveo search-ui-seed project. A 30-day free trial is used for the Coveo Cloud Organization. A folder with all the JSON files is crawled locally using a Python crawler script.
 
 ![Project Architecture]({{ site.baseurl }}/images/2018-08-01/ProjectArchitecture.png)
 
 Some extra steps would be required to incorporate the component in a CMS framework such as Coveo for Sitecore, however, most of the work required to make a relevant map is documented in this article.
 
-## Indexing
+# Indexing
 A realistic data set was the first requirement for CoveoMap. Real street addresses, with exact latitude and longitude, are indeed the base of any good geospatial search. A user also needs to be able to search (and filter) results based on city names, regions, or any other useful information available on the results. To mock the data, we used a dataset of Australian Addresses, freely available,  to which was added fields generated using "Mockaroo", an online mockup tool. The items were pushed to Coveo using the Push-API.
 
 ### Items
@@ -77,22 +77,29 @@ Coveo Push-API is a type of connector available in Coveo Cloud and is commonly u
 The Push-API is fast and this was largely appreciated as the data set changed and adapted during the project to make everything smooth. Processing the 2000 items took on average 4 minutes.
 
 ### Importance of Clean Data
-As mentioned in the Coveo for Sitecore Project Guide, clean data will solve most of the indexing issue. With consistent data, transformed correctly prior indexing, the development process is smoother and relevance is better. Without consistent data, result templates are not uniform, and some workaround are required in the code to handle exceptions. 
-
 > Clean data = cleaner code.
 
-## UX
+As mentioned in the Coveo for Sitecore Project Guide, clean data will solve most of the indexing issue. With consistent data, transformed correctly prior indexing, the development process is smoother and relevance is better. Without consistent data, result templates are not uniform, and some workaround are required in the code to handle exceptions. 
+
+# UX
 ### Designing Relevance
 Relevance on a map is a bit different from a regular list. The distance between the users' current point of view and the items in the result set need to be considered in the ranking algorithm, but some corner cases needs to be handled. Different behaviour are observed from users when interacting with a map. A user is often looking for information near him, but he can also gather information for an upcoming trip, reducing the relative importance of the distance between his current physical location and the result set.
 
 ### How Many Results Should Be Returned
 Users need to have enough data to work with. If the map render only items returned by the index, the user might miss some points of interest filtered out by the query. To compensate for this weakness, CoveoMap is handling two different kind of results:
+
 - Relevant markers, based on the user query
 - Background markers, always displayed for reference. 
 
+![Marker Type]({{ site.baseurl }}/images/2018-08-01/MarkerType.png)
+
 CoveoMap is overlays relevant markers over background markers. To reduce incidence on query consumption, the CoveoMap project uses persistent query to populate background markers. This feature helps implementing query intensives components that are not based on relevance.
 
-## Implementing Relevance
+### Front-End Components
+To help the user navigate in the results, the CoveoMap component is inserted alongside other Coveo components such as Query Suggest, Facets, Result Templates and Results per Page. 
+
+
+# Implementing Relevance
 Making the indexed items relevant is quite different in this project since there's almost no data to search against. We used
 
 In this project, relevance as been achieved by combining distance, ratings and popularity. Query Functions are computing the distance, and Ranking Functions are modifying the ranking dynamically.
@@ -124,7 +131,7 @@ By default, Coveo ranks recent documents higher than older ones. This, while use
 ![Ranking Weight]({{ site.baseurl }}/images/2018-08-01/RankingWeight.png)
 
 
-## Implementation
+# Implementation
 
 ### Coveo Custom Component (Seed UI Project)
 The project uses TypeScript,  just like the Coveo JavaScript Search Framework.  This approach, used in advanced Coveo implementation, allows to extend the Coveo framework and integrate third party libraries like Google Map. 
