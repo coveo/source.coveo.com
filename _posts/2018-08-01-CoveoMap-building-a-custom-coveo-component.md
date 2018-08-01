@@ -88,12 +88,16 @@ Relevance on a map is a bit different from a regular list. The distance between 
 ### How Many Results Should Be Returned
 Users need to have enough data to work with. If the map render only items returned by the index, the user might miss some points of interest filtered out by the query. To compensate for this weakness, CoveoMap is handling two different kind of results:
 
-- Relevant markers, based on the user query
-- Background markers, always displayed for reference. 
+- Relevant markers, based on the user query (represented in blue markers)
+- Background markers, always displayed for reference (represented in red markers)
 
 ![Marker Type]({{ site.baseurl }}/images/2018-08-01/MarkerType.png)
 
+### Leveraging Persistent Queries
+
 CoveoMap is overlays relevant markers over background markers. To reduce incidence on query consumption, the CoveoMap project uses persistent query to populate background markers. This feature helps implementing query intensives components that are not based on relevance.
+
+To do so, we use a separate Query Pipeline, called "persistent", to inject in the query the 
 
 ### Front-End Components
 To help the user navigate in the results, the CoveoMap component is inserted alongside other Coveo components such as Query Suggest, Facets, Result Templates and Results per Page. 
