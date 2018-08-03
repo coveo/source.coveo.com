@@ -6,9 +6,9 @@ title: "CoveoMap: Building a custom Coveo Component"
 tags: [Map, Geospatial search, Custom Analytics Events, TypeScript Components, Push API]
 
 author:
-  name: Vincent Bernard
-  bio: Solution Architect
-  image: vbernard.png
+  name: Vincent Bernard & David Auclair
+  bio: Solution Architect & Product Analyst
+  image: vbernard_dauclair.png
 ---
 
 Maps are awesome. A good map implementation will react to user's current context and will provide relevant information. Since maps are great at visualizing relevance, the Coveo for Sitecore product team decided to experiment with that concept. While exploring the concept, several use cases related to customer requests have emerged. This article will serve as a guide for these specific cases while remaining primarily focused on geospatial research.
