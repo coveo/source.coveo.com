@@ -30,7 +30,7 @@ I looked into [Spring Boot External Configuration](https://docs.spring.io/spring
 Since we've been using this integration in production for over a year now, and it worked pretty well so far, we decided to open source it a few months ago. Here it is on github: [spring-boot-parameter-store-integration](https://github.com/coveo/spring-boot-parameter-store-integration) and on [maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-boot-parameter-store-integration%22).
 
 # Adding a Property Source to Spring Boot
-To create a Property Source with Spring Boot, there is one simple classe to code. This class needs to extend `PropertySource<T>` where `T` is a source of properties. This can basically be any class. So implementing a Property Source for the Parameter Store would go like this:
+To create a Property Source with Spring Boot, there is one simple class to code. This class needs to extend `PropertySource<T>` where `T` is a source of properties. This can basically be any class. So implementing a Property Source for the Parameter Store would go like this:
 
 {% highlight java %}
 public class ParameterStorePropertySource extends PropertySource<AWSSimpleSystemsManagement> {
@@ -72,7 +72,7 @@ That's almost it, to enable an `EnvironmentPostProcessor`, you need to add a `sp
 org.springframework.boot.env.EnvironmentPostProcessor=com.coveo.configuration.parameterstore.ParameterStorePropertySourceEnvironmentPostProcessor
 {% endhighlight %}
 
-If you try to boot this, it will try to fetch _every_ property to the Parameter Store before looking into other default Property Sources. This is probably not a good idea. Making that much calls to the Parameter Store for lots of properties that will end up being resolved locally is not great. Lets see what we can do about that.
+If you try to boot this, it will try to fetch _every_ property to the Parameter Store before looking into other default Property Sources. This is probably not a good idea. Making that much calls to the Parameter Store for lots of properties that will end up being resolved locally is not great. Let's see what we can do about that.
 
 ## Limit Calls to AWS 
 To limit the AWS calls to a minimum, I've added a required prefix. Since the Parameter Store supports `/` to simulate folders, it seemed natural to force it as a prefix. Here is what our `getProperty` method looks like with this change:
@@ -125,7 +125,7 @@ and finally this parameter in the Parameter Store:
 /prod/password=azerty
 {% endhighlight %}
 
-Lets take a look at what would happen here. First, if you boot this app locally without the environment variable, the value `"qwerty"` would be injected in the field `myPassword`. Things gets exciting when you then run it in production with the environment variable above. In that situation, Spring Boot prioritize environment variables over the `application.yaml` and will resolve `${password}` to `${/prod/password}`. Then it figures out it should look for a property named `/prod/password` because of the surrounding `${}`. Finally, using our custom Property Source, it finds it in the Parameter Store and injects the production password `"azerty"` in `myPassword`.
+Lets take a look at what would happen here. First, if you boot this app locally without the environment variable, the value `"qwerty"` would be injected in the field `myPassword`. Things gets exciting when you then run it in production with the environment variable above. In that situation, Spring Boot prioritizes environment variables over the `application.yaml` and will resolve `${password}` to `${/prod/password}`. Then it figures out it should look for a property named `/prod/password` because of the surrounding `${}`. Finally, using our custom Property Source, it finds it in the Parameter Store and injects the production password `"azerty"` in `myPassword`.
 
 This right there saved us an incredible amount of work and added lots of flexibility to change names in the Parameter Store on the fly.
 
