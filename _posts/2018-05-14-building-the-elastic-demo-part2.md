@@ -11,7 +11,7 @@ author:
   image: 20180514/wim.jpg
 ---
 
-_This is the third blog post of a new series entitled “Build it with the Coveo Cloud Platform”. The series will present innovative use cases for the Coveo Platform, always including full code samples. Read the previous post [The Elastic Search Demo, Part 1: Build the Index](https://source.coveo.com/2018/05/01/building-the-elastic-demo/) on how we got the content inside our index._
+_This post is the second part on how we built our Elastic Search demo. You can read the previous post [The Elastic Search Demo, Part 1: Build the Index](https://source.coveo.com/2018/05/01/building-the-elastic-demo/) on how we got the content inside our index._
 
 ## Use case 
 - Build a demo on top of [Coveo for Elasticsearch](https://elastic.coveodemo.com/demo) to show what you can do with the platform. 
