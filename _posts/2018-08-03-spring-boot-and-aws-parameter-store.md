@@ -125,7 +125,7 @@ and finally this parameter in the Parameter Store:
 /prod/password=azerty
 {% endhighlight %}
 
-Lets take a look at what would happen here. First, if you boot this app locally without the environment variable, the value `"qwerty"` would be injected in the field `myPassword`. Things gets exciting when you then run it in production with the environment variable above. In that situation, Spring Boot prioritizes environment variables over the `application.yaml` and will resolve `${password}` to `${/prod/password}`. Then it figures out it should look for a property named `/prod/password` because of the surrounding `${}`. Finally, using our custom Property Source, it finds it in the Parameter Store and injects the production password `"azerty"` in `myPassword`.
+Lets take a look at what would happen here. First, if you boot this app locally without the environment variable, the value `"qwerty"` would be injected in the field `myPassword`. Things get exciting when you run it in production with the environment variable above. In that situation, Spring Boot prioritizes environment variables over the `application.yaml` and will resolve `${password}` to `${/prod/password}`. Then it figures out it should look for a property named `/prod/password` because of the surrounding `${}`. Finally, using our custom Property Source, it finds it in the Parameter Store and injects the production password `"azerty"` in `myPassword`.
 
 This right there saved us an incredible amount of work and added lots of flexibility to change names in the Parameter Store on the fly.
 
