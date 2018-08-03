@@ -129,7 +129,7 @@ Lets take a look at what would happen here. First, if you boot this app locally 
 
 This right there saved us an incredible amount of work and added lots of flexibility to change names in the Parameter Store on the fly.
 
-# Halting the Boot to Prevent Production Incidents
+# Halt Boot to Prevent Production Incidents
 
 Looking at the last example, you can easily guess what happens if someone forgets to add the parameter `/prod/password` in the production Parameter Store... Yup, you guessed right, the local environment password ends up in production. There are multiple ways to fix this. A simple way is to ship code without any `yaml` configuration. This way your app won't boot because of the missing property. In our case that is not possible, at least not easily. We have a default configuration for every microservice that makes it easy for a developer to pick up a repository, clone it, and boot the app in his favourite IDE to debug it. So to prevent production incidents, I added a wrapper around the Parameter Store client to halt the boot if any property prefixed by `/` isn't found in AWS. Here is the resulting class:
 
