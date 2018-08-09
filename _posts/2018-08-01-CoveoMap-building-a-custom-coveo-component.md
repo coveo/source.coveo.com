@@ -163,5 +163,5 @@ One of the Coveo JavaScript Search Framework feature, [Coveo Query Syntax](http:
 
 ![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/QuerySyntax.png)
 
-### Go have fun with it
+## Go have fun with it
 The code for the CoveoMap has been documented thoroughly, you can have a look at it, fork it, have fun and explore more possibilities. Once you fork the open source project you will have to put in your own Google maps api key and a Cloud organisation key. We also made all the fake data available in the same project, you can try the Python-Pusher and use the same data as we did.
