@@ -106,6 +106,8 @@ To do so, we use a separate Query Pipeline, called "persistent", to inject in th
 ### Front-End Components
 To help the user navigate through results, the CoveoMap component is inserted alongside other Coveo components such as Query Suggest, Facets, Result Templates, and Results per Page. 
 
+![Front-End Component]({{ site.baseurl }}/images/2018-08-01/ComponentCollection.PNG)
+
 
 ## Implementing Relevance
 Making the indexed items relevant is quite different in this project since there's almost no data to search against. We had to use different strategies to bring relevance and achieved it by combining distance, ratings, and popularity. Query Functions compute the distance and Ranking Functions modify the ranking dynamically.
