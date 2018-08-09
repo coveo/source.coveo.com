@@ -13,6 +13,8 @@ author:
 
 Maps are awesome. A good map implementation reacts to user's current context and provides relevant information. Since maps are great at visualizing relevance, the Coveo for Sitecore product team decided to experiment with that concept. While exploring the concept, several use cases related to customer requests have emerged. This article will serve as a guide for these specific cases while remaining primarily focused on geospatial research.
 
+Before we start, you can refer to the code [here](https://github.com/davaucl/CoveoMap), and have a look at the live map [here](https://coveo-map.herokuapp.com/)
+
 ## On The Menu 
 - Geospatial Search
 - Persistent Queries
@@ -164,4 +166,4 @@ One of the Coveo JavaScript Search Framework feature, [Coveo Query Syntax](http:
 ![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/QuerySyntax.png)
 
 ## Go have fun with it
-The code for the CoveoMap has been documented thoroughly, you can have a look at it, fork it, have fun and explore more possibilities. Once you fork the open source project you will have to put in your own Google maps api key and a Cloud organisation key. We also made all the fake data available in the same project, you can try the Python-Pusher and use the same data as we did.
+The [code for the CoveoMap](https://github.com/davaucl/CoveoMap) has been documented thoroughly, you can have a look at it, fork it, have fun and explore more possibilities. Once you fork the open source project you will have to put in your own Google maps api key and a Cloud organisation key. We also made all the fake data available in the same project, you can try the Python-Pusher and use the same data as we did.
