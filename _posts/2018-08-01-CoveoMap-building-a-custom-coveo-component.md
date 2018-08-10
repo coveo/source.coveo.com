@@ -20,7 +20,7 @@ Before we start, you can refer to the code [here](https://github.com/davaucl/Cov
 - Persistent Queries
 - Custom TypeScript Coveo Components
 - Push API
-- Automatic Relevance Tuning 
+- Advanced Relevance Tuning 
 
 
 ![CoveoMap]({{ site.baseurl }}/images/2018-08-01/CoveoMap.png)
@@ -28,7 +28,7 @@ Before we start, you can refer to the code [here](https://github.com/davaucl/Cov
 <!-- more -->
 
 ## Project Timeline
-The project, including this article, was achieved in one month, with all contributors working part-time on the code base. This kind of implementation requires some expertise, you will need to consider the following when building your project timeline.
+The project, including this article, was achieved in one month, with all contributors working part-time on the code base. This kind of implementation requires some expertise. You will need to consider the following when building your project timeline.
 
 - Expertise in Coveo JavaScript Search Framework
 - Expertise in Google Map APIs (or any other third-party map provider)
@@ -44,10 +44,10 @@ The solution is quite simple from a technological point of view. The CoveoMap fr
 Some extra steps would be required to incorporate the component in a CMS framework such as Coveo for Sitecore. However, most of the work required to make a relevant map is documented in this article.
 
 ## Indexing
-A realistic data set was the first requirement for CoveoMap. Real street addresses, with exact latitude and longitude, are indeed the base of any good geospatial search. A user also needs to be able to search (and filter) results based on city name, region, or any other useful information available on the results. To mock the data, we used a dataset of Australian addresse, available online for free,  to which was added fields generated using [Mockaroo](https://mockaroo.com/), an online mockup tool. The items were then pushed to Coveo using the Push API.
+A realistic data set was the first requirement for CoveoMap. Real street addresses, with exact latitude and longitude, are indeed the base of any good geospatial search. A user also needs to be able to search (and filter) results based on city name, region, or any other useful information available on the results. To mock the data, we used a dataset of Australian addresses, available online for free, to which was added fields generated using [Mockaroo](https://mockaroo.com/), an online mockup tool. The items were then pushed to Coveo using the Push API.
 
 ### Items
-Upon page loading, all of the indexed items are displayed on the CoveoMap as red markers. As for the results list, it is populated with the most relevant items. After the first query is performed, the list will be updated displaying only the most relevant items, and the map will display the relevant items with blue markers and the less relevant with lighter red markers.
+Upon page loading, all of the indexed items are displayed on the CoveoMap as red markers. After the first query is performed, the result list will be updated displaying only the most relevant items. The map will display the same items as the list as blue markers, and the less relevant with lighter red markers.
 
 Here is a close view of a result template:
 
@@ -68,17 +68,17 @@ Here is the basic structure of the items in Coveo Map:
 | category | Fake business categories, used as facet field |   |
 | phone | To display in the result template |   |
 | email | To display in the result template |   |
-| rating | Used for rating in the context of restaurants or shop. It is used as a facets |   |
+| rating | Used for rating in the context of restaurants or shop. It is used as a facet |   |
 
 ### Mapping fields in Coveo Cloud
-Prior to indexing, one must create all the fields and select the correct attributes in Coveo Cloud Fields section. When using the Push API, the fields available in the JSON items will be converted to Coveo values. Coveo will find the previously created field that has the same name as the JSON item field, and map them together.
+Prior to indexing, you must create all the fields and select the correct attributes in Coveo Cloud Fields section. When using the Push API, the fields available in the JSON items will be converted to Coveo values. Coveo will find the previously created field that has the same name as the JSON item field, and map them together.
 
 ![Mapping Fields]({{ site.baseurl }}/images/2018-08-01/MappingFields.png)
 
 ### Pushing the Content
-The Coveo Push API is a type of connector available in Coveo Cloud and is commonly used to push files into Coveo Cloud, hence the name Push-API. Since the data used in this project was stored in JSON documents, the [Python-Pusher](https://github.com/coveo/samples/tree/master/push-api/python-pusher) was a perfect fit for the job. This small Python script loops through every JSON documents in a folder and pushes them to Coveo Cloud.
+The Coveo Push API is a type of connector available in Coveo Cloud and is commonly used to push files into Coveo Cloud, hence the name Push API. Since the data used in this project was stored in JSON documents, the [Python-Pusher](https://github.com/coveo/samples/tree/master/push-api/python-pusher) was a perfect fit for the job. This small Python script loops through every JSON documents in a folder and pushes them to Coveo Cloud.
 
-The Push API is fast and this was appreciated as the data set kept evolving during the project. Processing the 2000 items took on average 4 minutes.
+The Push API is fast, which was appreciated as the data set kept evolving during the project. Processing the 2000 items took on average 4 minutes.
 
 ### Importance of Clean Data
 > Clean data = cleaner code.
@@ -95,7 +95,7 @@ Users need to have enough data to work with. If the only rendered items are retu
 - Relevant markers, based on the user query (represented in blue markers)
 - Background markers, always displayed for reference (represented in light red markers)
 
-This is really interresting in a estate context. If someone is looking to buy a house in a certain area and searches for this specific area, only the returned results would be displayed on the map. We want to avoid this as we think this same user might also be interrested in a house right next to the specified area. The same idea applies to searching by price.
+This is really interesting in an estate context. If someone is looking to buy a house in a certain area and searches for this specific area, only the returned results would be displayed on the map. We want to avoid this as we think this same user might also be interested in a house right next to the specified area. The same idea applies to searching by price.
 
 ![Marker Type]({{ site.baseurl }}/images/2018-08-01/MarkerType.png)
 
@@ -103,7 +103,7 @@ This is really interresting in a estate context. If someone is looking to buy a 
 
 CoveoMap overlays relevant markers over background markers. The project uses persistent query to populate background markers and reduce incidence on query consumption. This feature helps implementing query intensive components that are not relevance based.
 
-To do so, we use a separate Query Pipeline, called "persistent", to inject in the query the Query Pipeline 
+To do so, we use a separate Query Pipeline, called "persistent", to tag all the queries done in this pipeline as persistent. 
 
 ### Front-End Components
 To help the user navigate through results, the CoveoMap component is inserted alongside other Coveo components such as Query Suggest, Facets, Result Templates, and Results per Page. 
@@ -161,9 +161,9 @@ Fine-tuning relevance can be achieved using the Relevance Inspector. It was very
 ![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/RankingInspector.png)
 
 ### Coveo Search Box Query Syntax
-One of the Coveo JavaScript Search Framework feature, [Coveo Query Syntax](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357), allows a user to experiment directly in the search box. Here is an example of the distance test conducted at the beginning of the project. This feature can be enabled by adding this snippet to the CoveoSearchBox component: `data-enable-query-syntax="true"`.
+One of the Coveo JavaScript Search Framework feature, [Coveo Query Syntax](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357), allows a user to experiment directly in the search box. Here is an example of the distance test conducted at the beginning of the project. This feature can be enabled by adding this snippet to the CoveoSearchbox component: `data-attribute-query-syntax="true"`.
 
 ![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/QuerySyntax.png)
 
 ## Go have fun with it
-The [code for the CoveoMap](https://github.com/davaucl/CoveoMap) has been documented thoroughly, you can have a look at it, fork it, have fun and explore more possibilities. Once you fork the open source project you will have to put in your own Google maps api key and a Cloud organisation key. We also made all the fake data available in the same project, you can try the Python-Pusher and use the same data as we did.
+The [code for the CoveoMap](https://github.com/davaucl/CoveoMap) has been documented thoroughly. You can have a look at it, fork it, have fun, and explore more possibilities. Once you fork the open source project you will have to put in your own Google maps API key and a Cloud organization key. We also made all the fake data available in the same project. You can try the Python-Pusher and use the same data as we did.
