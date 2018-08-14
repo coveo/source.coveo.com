@@ -161,7 +161,7 @@ Fine-tuning relevance can be achieved using the Relevance Inspector. It was very
 ![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/RankingInspector.png)
 
 ### Coveo Search Box Query Syntax
-One of the Coveo JavaScript Search Framework feature, [Coveo Query Syntax](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357), allows a user to experiment directly in the search box. Here is an example of the distance test conducted at the beginning of the project. This feature can be enabled by adding this data-attribute to the CoveoSearchbox component: `data-enable-query-syntax="true"`.
+One of the Coveo JavaScript Search Framework feature, [Coveo Query Syntax](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=357), allows a user to experiment directly in the search box. Here is an example of the distance test conducted at the beginning of the project. This feature can be enabled by adding this data attribute to the CoveoSearchbox component: `data-enable-query-syntax="true"`.
 
 ![Ranking Inspector]({{ site.baseurl }}/images/2018-08-01/QuerySyntax.png)
 
