@@ -39,7 +39,7 @@ public class ParameterStorePropertySource extends PropertySource<AWSSimpleSystem
     }
 
     @Override
-    public Object getProperty(String name) {
+    public Object getProperty(String propertyName) {
         try {
             return source.getParameter(new GetParameterRequest().withName(propertyName)
                                                                 .withWithDecryption(true))
@@ -79,7 +79,7 @@ To limit the AWS calls to a minimum, I've added a required prefix. Since the Par
 
 {% highlight java %}
 @Override
-public Object getProperty(String name) {
+public Object getProperty(String propertyName) {
     if (name.startsWith("/")) {
         try {
             return ssmClient.getParameter(new GetParameterRequest().withName(propertyName)
@@ -167,9 +167,9 @@ public class ParameterStorePropertySource extends PropertySource<ParameterStoreS
     }
 
     @Override
-    public Object getProperty(String name) {
+    public Object getProperty(String propertyName) {
         if (name.startsWith("/")) {
-            return source.getProperty(name);
+            return source.getProperty(propertyName);
         }
         return null;
     }
