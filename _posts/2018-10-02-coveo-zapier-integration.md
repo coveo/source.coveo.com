@@ -12,7 +12,7 @@ author:
   image: amoreauCoveo.png
 ---
 
-At Coveo, there's one thing we like above all: making sure we have all the data we might need at the same place. Coveo already offers a [plethora of connectors](https://docs.coveo.com/en/1997/cloud-v2-administrators/available-coveo-cloud-v2-source-types) to do so, but there are still many more places where you can have relevant data.
+At Coveo, there's one thing we like above all: making sure we have all the data we might need at the same place. Coveo already offers a [plethora of connectors](https://docs.coveo.com/en/1997/cloud-v2-administrators/available-coveo-cloud-v2-source-types) to do so, but there are still many more places where you could find relevant data.
 
 Enter [Zapier](https://zapier.com), a web service that allows you to connect different applications or services together, to perform actions in an application when something happens in another. With over 1000 available apps, it soon became clear that a Zapier integration would be a great solution to surface all that data.
 
@@ -53,7 +53,7 @@ Now that we have the limitations out of the way, we can dive straight into how I
 
 ## Indexing Trello cards in a Coveo index
 
-[Trello](https://trello.com/) is a great tool to keep track of things to do, and I use it in both my professional and personal life. However, being the usual geek that I am, I like to have all of my information at the same place. And that, to me, means being able to index all of the data that's relevant to me in my Coveo index to make it accessible in my Coveo Search page.
+[Trello](https://trello.com/) is a great tool to keep track of things to do, and I use it in both my professional and personal life. However, being the usual geek that I am, I like to have all of my information at the same place - in a unified index. And that, to me, means being able to index all of the data that's relevant to me in my Coveo index to make it accessible in my Coveo Search page.
 
 The Coveo Zapier integration allows me to do just that.
 
