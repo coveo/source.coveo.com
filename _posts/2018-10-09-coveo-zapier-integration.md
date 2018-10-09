@@ -138,4 +138,4 @@ I would be lying if I said that integrating Trello to my Coveo index using Zapie
 
 You are more than welcome to try your hand at our Zapier integration with any of the other Zapier integrations. If you find some other nice use cases with Zapier, don't hesitate to [tweet at us](https://twitter.com/Coveo) and let us know how you are integrating Coveo with other applications. I would personally love to know!
 
-You can also have a look at [Zapier's own blogpost on the new Coveo integration](https://zapier.com/blog/updates/1828/coveo-integrations). If you prefer to have another Coveo point of view, I welcome you to have a look at [Coveo's official blogpost on the matter](https://blog.coveo.com).
+You can also have a look at [Zapier's own blogpost on the new Coveo integration](https://zapier.com/blog/updates/1828/coveo-integrations). If you prefer to have another Coveo point of view, I welcome you to have a look at [Coveo's official blogpost on the matter](https://blog.coveo.com/zap-to-it-zapier-now-connects-with-coveo/).
