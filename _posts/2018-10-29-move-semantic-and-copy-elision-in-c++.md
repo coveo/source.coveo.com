@@ -12,9 +12,7 @@ author:
 
 ---
 
-# Move Semantic and Copy Elision in C++
-
-C++11 introduced the [move semantic](https://en.cppreference.com/w/cpp/utility/move), which allows, as its name suggest, to move objects instead of copying them.
+C++11 introduced [move semantic](https://en.cppreference.com/w/cpp/utility/move), which allows, as its name suggest, to move objects instead of copying them.
 The *move* process typically involves copying pointers to some resources and then setting the original pointers to `nullptr` so that they cannot be used to access the resources anymore.
 Of course, all of this is done transparently to the user of the class.
 
@@ -29,7 +27,6 @@ This introduction is then used to present an interesting difference between `g++
 ## Returning a local variable
 
 Consider the code
-
 ```c++
 class Verbose {
 public:
@@ -48,9 +45,7 @@ int main() {
     return 0;
 }
 ```
-
 When compiled with `clang++ -std=c++14 -fno-elide-constructors move.cpp`, this code prints
-
 ```bash
 Constructed
 Moved
@@ -61,7 +56,6 @@ This happpens because the variable `result` is eligible for copy elision, and in
 
 Notice that the compilation option `-fno-elide-constructors` was used.
 If it's not used, the output is
-
 ```bash
 Constructed
 ```
@@ -69,7 +63,6 @@ The object is constructed in place and it is never copied or moved: this is [cop
 Notice that, in C++14, it is an optimization (so it might not happen), but in C++17, it is be required by the standard.
 
 Consider adding a `std::move()` on the `return` line in `create`,
-
 ```c++
 Verbose create() {
     Verbose result;
@@ -77,7 +70,6 @@ Verbose create() {
 }
 ```
 When compiled with `clang++ -std=c++14 move.cpp`, i.e. without `-fno-elide-constructors`, we observed
-
 ```bash
 Constructed
 Moved
@@ -89,7 +81,6 @@ More precisely, the wording on [cppreference](https://en.cppreference.com/w/cpp/
 
 Let's now discuss a confusing differences between `g++` and on `clang++`.
 Consider
-
 ```c++
 class VerboseChild: public Verbose {
 public:
@@ -107,17 +98,15 @@ Click <a href="https://gcc.godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:
 As you can see, this compiles without any problems with `g++`, but this does *not* compile with `clang++`.
 This is because we are using [covariance](https://cpptruths.blogspot.com/2015/11/covariance-and-contravariance-in-c.html) here.
 Hence, the return type in the signature of the function is not the same than the type of the object returned.
-It seems that the `clang++` developers decided that, since the types are actually different, `pointer` should not be eligible for copy elision, hence it should not be moved.
+It seems that the `clang++` 3.8 developers decided that, since the types are actually different, `pointer` should not be eligible for copy elision, hence it should not be moved.
 On the other hand, the `g++` developers seem to have decided that implementing covariance properly required that the covariant types to behave as a single type in this particular case.
 The solution for the code to compile is to add a `std::move` in these cases, and to add a comment to explain why it is required since somebody compiling your code with `g++` could be surprise by this `std::move` and be tempted to remove it during a refactoring,
-
 ```c++
 std::unique_ptr<Verbose> createPointer() {
     auto pointer = std::make_unique<VerboseChild>();
     pointer->functionOnlyOnChild();
-    return std::move(pointer); // required by clang++ since covariant
+    return std::move(pointer); // required by clang++ 3.8 since covariant
 }
 ```
-
 An alternative fix is to use a version of clang greater or equal to 3.9.0.
 This might seem like an easy fix considering that the latest version of clang is 7.0.0, but many people still use 3.8.0 since the popular Ubuntu 16.04 is packaged with it.
