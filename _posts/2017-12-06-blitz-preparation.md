@@ -12,6 +12,8 @@ author:
 
 ---
 
+_Update: Links to the Blitz registration page were added._
+
 ## A New Competition Appears! And Its Name Is Coveo Blitz
 
 The first time I heard about the Coveo Blitz was through a spam^H^H^H^H email from my school faculty informing me that some company I’d never heard of from Quebec was organizing a coding competition. Having nothing else to do and looking for some way to hone my coding skills, I enlisted my friends to register for the competition as a group. After all, the only requirement they asked for registration was to be able to send an email (something I, [and others apparently](https://blogs.technet.microsoft.com/exchange/2004/04/08/me-too/), still fail to properly do even today).
@@ -46,7 +48,7 @@ Well, you know, I thought [I knew](https://www.youtube.com/watch?v=cphNpqKpKc4).
 
 Before I take a deep dive into the madness that is Coveo Blitz, I’d like to take a moment to underline how AWESOME this kind of event is. It’s been six years and I can still remember all those details from the preparation that preceded the day of the event. On my best days, I can barely remember what I had for lunch a day ago. But Coveo Blitz bucks that forgetfulness and is ingrained as one of those memories you constantly look back on with pride and joy, easily one of my highlights from my college years. I had the chance to develop friendships, meet like-minded passionate devs, got to learn what the heck Coveo is, and truly learn how great the company is. 
 
-Stay tuned for the next post - there, I’ll talk about the big day. Maybe you’ll even pick up some interesting tidbits for you and your team. I mean, if you plan on participating. You are participating, right? 
+Stay tuned for the next post - there, I’ll talk about the big day. Maybe you’ll even pick up some interesting tidbits for you and your team. I mean, if you plan on participating. You are participating, right? If not: [https://blitz.coveo.com](https://blitz.coveo.com).
 
 Andy out
 
