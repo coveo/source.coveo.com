@@ -60,7 +60,7 @@ If it's not used, the output is:
 Constructed
 ```
 The object is *constructed in place* and it is never copied or moved; this is [copy elision](https://en.cppreference.com/w/cpp/language/copy_elision) in action.
-Notice that, in C++14, it is an optimization (so it might not happen), but in C++17, [it is required by the standard](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf#page=250).
+Notice that, in C++14, it is an optimization (so it might not happen), but in C++17, [it is required by the standard](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf#page=258).
 
 Consider adding a `std::move()` on the `return` line in `create`:
 ```c++
@@ -74,8 +74,8 @@ When compiled with `clang++ -std=c++14 move.cpp`, i.e., without `-fno-elide-cons
 Constructed
 Moved
 ```
-Copy elision does not take place since NRVO can only happen when the expression on the `return` line is [*the name of a non-volatile object with automatic storage duration*](https://en.cppreference.com/w/cpp/language/copy_elision).
-More precisely, the wording on [cppreference](https://en.cppreference.com/w/cpp/language/copy_elision), which is similar to the wording [in the standard's draft](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf#page=294), suggests that NRVO can only take place with an [lvalue](https://en.cppreference.com/w/cpp/language/value_category) and RVO with a [prvalue](https://en.cppreference.com/w/cpp/language/value_category), while `std::move(result)` is an [xvalue](https://en.cppreference.com/w/cpp/language/value_category).
+Copy elision does not take place since NRVO can only happen when the expression on the `return` line is [*the name of a non-volatile object with automatic storage duration*](https://en.cppreference.com/w/cpp/language/copy_elision#Explanation).
+More precisely, the wording on [cppreference](https://en.cppreference.com/w/cpp/language/copy_elision#Explanation), which is similar to the wording [in the standard's draft](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf#page=308), suggests that NRVO can only take place with an [lvalue](https://en.cppreference.com/w/cpp/language/value_category#lvalue) and RVO with a [prvalue](https://en.cppreference.com/w/cpp/language/value_category#prvalue), while `std::move(result)` is an [xvalue](https://en.cppreference.com/w/cpp/language/value_category#xvalue).
 
 ## Compilers with different perspectives
 
