@@ -119,6 +119,6 @@ One of the goal of the design of move semantic seems to be transparency.
 When possible, the user of a class defining a move constructor should be able to enjoy the performance gain due to move semantic without any special syntax required.
 The interaction of move semantic with copy elision follow that principle: what could be simpler than returning by value?
 
-There *is* a complexity, but a typical user should be shielded from it, especially if they follow leading practices like writing small functions.
+There *is* a complexity, but a typical user should be shielded from it, especially if they follow leading practices like the [single responsibility principle (SRP)](https://en.wikipedia.org/wiki/Single_responsibility_principle).
 This goes along with what seems to be the usual philosophy of C++, i.e., to make a language which is performant and easy to use at the cost of a high complexity behind the scene.
 After all, did you understand [overloading](https://en.cppreference.com/w/cpp/language/overload_resolution) in depth the first time you wrote `std::cout << "Hello World" << std::endl;`?
