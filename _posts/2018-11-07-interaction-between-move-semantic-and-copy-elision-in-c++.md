@@ -53,7 +53,7 @@ Moved
 Moved
 ```
 The result object is `Constructed`, and then it is `Moved`. At first, it is moved from the `create` to the `main` function, and then from the right hand side to the left hand side of `Verbose v = create();`.
-This happpens because the `result` variable is eligible for copy elision, and in C++11 or more, a variable eligible for copy elision will be moved if the optimization doesn't take place (see [return statement](https://en.cppreference.com/w/cpp/language/return#Notes)).
+This happens because the `result` variable is eligible for copy elision, and in C++11 or more, a variable eligible for copy elision will be moved if the optimization doesn't take place (see [return statement](https://en.cppreference.com/w/cpp/language/return#Notes)).
 
 Notice that the compilation option `-fno-elide-constructors` was used.
 If it's not used, the output is:
