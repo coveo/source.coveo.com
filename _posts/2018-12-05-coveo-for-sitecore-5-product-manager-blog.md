@@ -13,7 +13,7 @@ author:
 
 Coveo for Sitecore 5 is now publicly available. Two years have passed since the release of the version 4, which paved the way for Coveo Cloud.
 
-The cloud adoption allowed Coveo users to quickly deploy their Coveo solutions and gave access to powerful features such as Usage Analytics, Machine Learning and cloud connectors.
+The Cloud adoption allowed Coveo users to quickly deploy their Coveo solutions and gave users access to powerful features such as Usage Analytics, Machine Learning, and cloud connectors.
 
 Now that Coveo for Sitecore is fully connected to Coveo Cloud and managing an infrastructure is no longer a worry, we decided to focus on the integration into the Sitecore technology stack. The goal is to make every project faster and easier to deploy, so that you can spend more time building the cloud relevance engine you want, and less time in configuring the index and search interface underneath.
 <!-- more -->
@@ -25,16 +25,15 @@ To reach this goal, we focused on four key principles:
 * Agility
 * Performance
 
-In this blog post, I will explain how Coveo for Sitecore 5 benefits from  improvements in all above mentioned points.
+In this blog post, I will explain how Coveo for Sitecore 5 benefits from improvements in all of the points above.
 
 ## Compatibility
 
-Are you using Sitecore xConnect, Sitecore Experience Accelerator (SXA) or Sitecore Commerce? We guarantee the support of the most popular Sitecore features and modules.
+Are you using Sitecore xConnect, Sitecore Experience Accelerator (SXA), or Sitecore Commerce? We supports the most popular Sitecore features and modules.
 
-Are you deploying in Azure Web Applications or in your private server farm? Lucky for you, we support all deployment scenarios.
-Are you using continuous deployment and delivery to manage your Sitecore instances?
+Are you deploying in Azure Web Applications or in your private server farm? We support all Sitecore deployment scenarios.
 
-Coveo for Sitecore 5 now has a set of APIs allowing you to perform remotely, all of the operations currently available in a UI. Using the scripting language of your choice, you can activate Coveo for Sitecore, manage the fields which need to be indexed, configure indexing options, start a rebuild, and much more.
+Are you using continuous deployment and delivery to manage your Sitecore instances? Coveo for Sitecore 5 now has a set of APIs allowing you to perform remotely, all of the operations currently available in a UI. Using the scripting language of your choice you can activate Coveo for Sitecore, manage the fields which need to be indexed, configure indexing options, start a rebuild, and perform many more configuration actions.
 
 We will keep supporting all of the above and make sure that Coveo will fit in any deployment, with any modules and with the deployment scenario of your choice. No other search and recommendations engine is this deeply integrated with Sitecore.
 
@@ -42,7 +41,7 @@ We will keep supporting all of the above and make sure that Coveo will fit in an
 
 In the earlier versions of Coveo for Sitecore 4, the Coveo JavaScript UI was not used at its full potential inside of Sitecore. Creating search pages was easy, but extending and customizing them often required code that would complexify future upgrades.
 
-Version 4.1 introduced the Coveo for Sitecore Hive Framework, which allowed content authors and developers to build search interfaces and search driven listings from the ground up, offering maximum flexibility while reducing the upgrade complexity. The Hive framework became a fan favorite amongst the Coveo community and will now be the only framework in Coveo for Sitecore 5. Allowing us, the product team, to fully focus on its deployment and simplify the documentation.
+Version 4.1 introduced the Coveo for Sitecore Hive Framework, which allowed content authors and developers to build search interfaces and search driven listings from the ground up, offering maximum flexibility while reducing the upgrade complexity. The Hive framework became a fan favorite amongst the Coveo community and will now be the only framework in Coveo for Sitecore 5, allowing us, the product team, to fully focus on its deployment and simplify the documentation.
 
 The Hive framework is now available in a SXA format, which means that you can drag and drop Coveo Hive search component in any SXA projects.
 
@@ -52,7 +51,7 @@ All of the above is to ensure that Coveo for Sitecore 5 is not only the most fea
 
 ## Agility
 
-The previous indexing process was a bit vague for newcomers and veterans alike. The Sitecore Indexing Manager did not offer much when it comes to feedback, which meant that users had to dig into logs to find the relevant information. Field management was done in the configuration files, forcing users to require server access for every field inclusion and exclusion.The Coveo for Sitecore Command Center centralizes all configurations related to indexing, field management and cloud communication actions in one comprehensive user interface embedded in Sitecore.
+The previous indexing process was a bit vague for newcomers and veterans alike. The Sitecore Indexing Manager did not offer much when it comes to feedback, which meant that users had to dig into logs to find the relevant information. Field management was done in the configuration files, forcing users to require server access for every field inclusion and exclusion. The Coveo for Sitecore Command Center centralizes all configurations related to indexing, field management, and cloud communication actions in one comprehensive user interface embedded in Sitecore.
 
 This new piece of the Coveo for Sitecore software includes the Coveo indexing manager, which allows you start and closely monitor the indexing process to see exactly what’s happening at every stage.
 
