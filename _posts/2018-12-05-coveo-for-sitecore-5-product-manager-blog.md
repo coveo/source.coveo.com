@@ -2,6 +2,7 @@
 layout: post
 
 title: "Coveo for Sitecore 5 - Product Manager Blog"
+
 tags: [Sitecore, Coveo for Sitecore]
 
 author:
@@ -59,7 +60,7 @@ This new piece of the Coveo for Sitecore software includes the Coveo indexing ma
 
 Also in the Command Center is the field manager, where you can include each field individually without ever stepping foot in a configuration file.
 
-[Command Center Field Manager](/images/CoveoforSitecore5/FieldFiltered.png)
+![Command Center Field Manager](/images/CoveoforSitecore5/FieldFiltered.png)
 
 We believe the Command Center will become both a developer and administrator favorite tool by simplifying the most basic configurations which would often turn to be the most painful in complex environments.
 
