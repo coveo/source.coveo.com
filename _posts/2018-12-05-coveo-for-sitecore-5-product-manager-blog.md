@@ -8,7 +8,7 @@ tags: [Sitecore, Coveo for Sitecore]
 author:
   name: Simon Langevin
   bio: Coveo for Sitecore Sr. Product Manager | Sitecore Strategy MVP 2018
-  image: slangevin.jpg
+  image: slangevin.png
 
 ---
 
