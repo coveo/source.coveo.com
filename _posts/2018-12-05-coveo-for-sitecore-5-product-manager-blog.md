@@ -29,7 +29,7 @@ In this blog post, I will explain how Coveo for Sitecore 5 benefits from improve
 
 ## Compatibility
 
-Are you using Sitecore xConnect, Sitecore Experience Accelerator (SXA), or Sitecore Commerce? We supports the most popular Sitecore features and modules.
+Are you using Sitecore xConnect, Sitecore Experience Accelerator (SXA), or Sitecore Commerce? We support the most popular Sitecore features and modules.
 
 Are you deploying in Azure Web Applications or in your private server farm? We support all Sitecore deployment scenarios.
 
