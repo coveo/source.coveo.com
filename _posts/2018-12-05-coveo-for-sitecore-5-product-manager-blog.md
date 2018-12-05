@@ -56,7 +56,7 @@ The previous indexing process was a bit vague for newcomers and veterans alike. 
 
 This new piece of the Coveo for Sitecore software includes the Coveo indexing manager, which allows you start and closely monitor the indexing process to see exactly what’s happening at every stage.
 
-![Command Center Indexing Manager](/images/CoveoforSitecore5/indexes.png)
+![Command Center Indexing Manager](/images/CoveoforSitecore5/Indexes.png)
 
 Also in the Command Center is the field manager, where you can include each field individually without ever stepping foot in a configuration file.
 
