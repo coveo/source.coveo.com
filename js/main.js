@@ -63,17 +63,6 @@ var searchToken = 'xx15d10ab2-cb6c-4c13-addb-aa871471c00e';
 var hostname = window.location.hostname; //To manage dev/staging/prod environment
 var TechDocSearchPage = 'https://support.coveo.com/s/search/All/Home/%40uri';
 
-/*if (hostname == "onlinehelp.coveo.com") {
-	// Use the production org (coveosearch)
-	searchToken = '7b9b9300-3901-437b-bafd-51ae596f1b16';
-	uaToken = searchToken;
-} else {
-	// Use the staging org (coveosupport) for UA
-	uaToken = '25b8fab8-089b-4325-8d0f-d3145dd282ec';
-	// Use the production org (coveosearch) for search
-	searchToken = '7b9b9300-3901-437b-bafd-51ae596f1b16';
-}*/
-
 $(function(){
 	Coveo.SearchEndpoint.endpoints["default"] = new Coveo.SearchEndpoint({
 		restUri: 'https://platform.cloud.coveo.com/rest/search',
