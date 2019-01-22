@@ -11,7 +11,7 @@ author:
   image: jflheureux.jpeg
 ---
 
-There are only a few things more frustrating than getting a simple no results message when you are searching something. Luckily with the Coveo JavaScript Search Framework (JS UI), it is very easy to propose popular search results to the visitor when that happens by adding a few components, lines of JavaScript, and CSS statements. It is especially important on a commerce website where all opportunities to display products may result in increased sales.
+There are only a few things more frustrating than getting a simple no results message when you are searching something. Luckily, with the Coveo JavaScript Search Framework (JS UI), it is very easy to propose popular search results to the visitor when that happens by adding a few components, lines of JavaScript, and CSS statements. It is especially important on a commerce website where all opportunities to display products may result in increased sales.
 
 ![Popular Products on No Results](/images/201901-popular-results/recommendations.png)
 
@@ -157,7 +157,7 @@ Popular results might mean different things to different people. For Coveo, it i
 ![Popular Products on No Results](/images/201901-popular-results/pipelines.png)
 ![Popular Products on No Results](/images/201901-popular-results/ART.png)
 
-The popular products feature can be implemented by adding a second search interface that uses the same query pipeline to the page.
+The popular products feature can be implemented by adding a second search interface that uses the same query pipeline.
 
 ```html
 <div id="search"
@@ -200,7 +200,7 @@ The popular products feature can be implemented by adding a second search interf
 </div>
 ```
 
-It does not have a search box and does not automatically trigger a query when initialized. Thanks to the `data-auto-trigger-query="false"` option. It has 2 result lists and support for Coveo usage analytics.
+It does not have a search box and does not automatically trigger a query when initialized thanks to the `data-auto-trigger-query="false"` option. It has 2 result lists and support for Coveo usage analytics.
 
 The layout is very simple with a results column, a results header, and header message. All those containers are defined only for their associated CSS styles.
 
@@ -225,7 +225,7 @@ Some CSS rules were needed to offer a unified experience across devices and redu
   margin-bottom: 0;
 }
 
-/* Ensure empty pagers are taking no vertical space */
+/* Ensure empty pagers are not taking any vertical space */
 .coveo-no-results .CoveoPager {
   display: none;
 }
@@ -337,4 +337,4 @@ Coveo.init(noResultsPopularSearchElement);
 
 ## Conclusion
 
-It is very easy to act when there are no results. Thanks to the flexibility of the Coveo JavaScript Search Framework and its event model. The key is the `querySuccess` event where the number of returned results can be evaluated.
+It is very easy to act when there are no results thanks to the flexibility of the Coveo JavaScript Search Framework and its event model. The key is the `querySuccess` event where the number of returned results can be evaluated.
