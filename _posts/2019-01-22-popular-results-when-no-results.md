@@ -167,7 +167,7 @@ The popular products feature can be implemented by adding a second search interf
   ...
 </div>
 
-<div id="NoResultsPopularSection" class="hidden">
+<div id="NoResultsPopularSection" class="no-results-popular-section hidden">
   <div id="NoResultsPopularSearch"
        class="CoveoSearchInterface"
        data-results-per-page="3"
@@ -238,17 +238,17 @@ Some CSS rules were also needed for the new search interface.
 
 ```css
 /* Ensure the initialization placeholder animation is hidden */
-#NoResultsPopularSection.hidden {
+.no-results-popular-section.hidden {
   display: none;
 }
 
 /* Hide the popular search interface layout switcher */
-#NoResultsPopularSection .CoveoResultLayout {
+.no-results-popular-section .CoveoResultLayout {
   display: none;
 }
 
 /* Remove line under the section title */
-#NoResultsPopularSection .coveo-results-header {
+.no-results-popular-section .coveo-results-header {
   box-shadow: none;
 }
 ```
