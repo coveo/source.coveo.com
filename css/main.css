@@ -2094,9 +2094,13 @@ h1, h2 {
 }
 
 a {
-    color:#1D4F76;;
+    color:#0E7FED;
     text-decoration: none;
     transition: all 0.2s ease
+}
+
+h2 a {
+    color: #1D4F76;
 }
 
 a:hover {
@@ -2105,8 +2109,8 @@ a:hover {
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .illustration .container{
@@ -2152,9 +2156,7 @@ a:hover {
     margin-bottom:40px;
     transition:0.2s ease all;
 }
-.index:hover{
-    box-shadow: 0 0px 17px #b5b5b5;
-}
+
 .index > div {
     display: table-cell
 }
@@ -2423,7 +2425,7 @@ body.nav-hidden .site-nav {
 
 article {
     background: transparent;
-    padding: 60px 0;
+    padding: 60px 20px;
     font-size: 18px
 }
 
@@ -3160,7 +3162,7 @@ article .full.zoomable img.zoom {
     display: table-cell;
     position: relative;
     padding: 6px 12px;
-    background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir.png') no-repeat 90% 50%;
+    background: #f7f7f7 url('https://source.coveo.com/images/fleche_noir.png') no-repeat 90% 50%;
     cursor: pointer;
     width: 160px;
     height: 36px;
@@ -3182,7 +3184,7 @@ article .full.zoomable img.zoom {
 }
 
 #navigation ul li:hover {
-  background: #f7f7f7 url('http://source.coveo.com/images/fleche_noir_reverse.png') no-repeat 90% 50%;
+  background: #f7f7f7 url('https://source.coveo.com/images/fleche_noir_reverse.png') no-repeat 90% 50%;
 }
 
 #navigation ul li ul {
@@ -3217,6 +3219,23 @@ article .full.zoomable img.zoom {
 header .upHeader nav ul {margin-bottom:0;}
 header .upHeader a { padding: 25px 10px 25px;}
 
+/*Post Content*/
+section .post_content em{
+    font-style:italic;
+}
+section .post_content ul,section .post_content ol{
+    margin:2em 2em;
+    padding: 0;
+}
+section .post_content ul ol,
+section .post_content ul ul{
+    margin:.5em 0;
+}
+section .post_content ol ul{
+    padding-left:25px;
+    margin:.5em 0;
+}
+
 
 section .post_content ul{
     margin:2em 2em;
@@ -3232,4 +3251,44 @@ section .post_content ul li:before{
     position:absolute;
     left: 0;
     color:#1D4F76;
+}
+
+section .post_content ul li ul li:before{
+    content: '-';
+}
+
+section .post_content ol>li {
+    counter-increment: step-counter;
+}
+section .post_content ol>li:before{
+   content: counter(step-counter)'.';
+   margin-right: 5px;
+   padding-right:7px;
+   color:#1D4F76;
+}
+/*Table*/
+.post_content table {
+  margin: 25px 0;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  font-size: .9em;
+  width: 100%;
+  max-width: 100%;
+}
+.post_content table tr:hover {
+  background: #f4f4f4;
+}
+.post_content table tr:hover td {
+  color: #555;
+}
+.post_content table th, table td {
+  border: 1px solid #eee;
+  padding: 12px;
+  border-collapse: collapse;
+}
+.post_content table th {
+  background: #e2e2e2;
+}
+.post_content table th.last {
+  border-right: none;
 }

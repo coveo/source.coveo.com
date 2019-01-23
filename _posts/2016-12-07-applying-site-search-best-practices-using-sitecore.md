@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-A few months ago, the Coveo for Sitecore Product and Marketing teams released an eBook on [Site Search Best Practices](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search).
+A few months ago, the Coveo for Sitecore Product and Marketing teams released an eBook on [Site Search Best Practices](https://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search).
 The guide is great for high level planning, but when it comes to execution, there are some gaps that need to be filled.
 In this series of blog posts, I will go over each of the 19 points and explain in details how to implement them properly.
 
@@ -233,12 +233,12 @@ If you have the Enterprise edition, simply use the filtering rules on each of th
 
 Keep in mind that providing a long list of results looks messy. Keep control of the number of results using the "Number of results" field.
 
-For the main search page, do not provide result suggestions. Instead switch to Machine Learning queries suggestions. It is enabled by default; you simply need to create the [Machine Learning Model](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=168) and wait a for it to learn. This can take a few weeks.
+For the main search page, do not provide result suggestions. Instead switch to Machine Learning queries suggestions. It is enabled by default; you simply need to create the [Machine Learning Model](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=168) and wait a for it to learn. This can take a few weeks.
 
 ### 5. Test it
 
 How to test the search box is up to you, but we can tell you if visitors use it or not.
-Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=89). Keep in mind that the Origin 3 (Referrer) [dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106), will tell you where the user was coming from; which will tell you if your search box is used or not.
+Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=89). Keep in mind that the Origin 3 (Referrer) [dimension](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106), will tell you where the user was coming from; which will tell you if your search box is used or not.
 
 Note: Coveo for Sitecore does not send the right data as an Origin 3, this is a bug which will be fixed in Q1 2017.
 

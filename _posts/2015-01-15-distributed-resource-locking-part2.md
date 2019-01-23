@@ -12,11 +12,11 @@ author:
 ---
 
 
-Following some strong reactions about [my last post](http://source.coveo.com/2014/12/29/distributed-resource-locking/) (that were caused, I believe, by a poor use of the word lock on my part), I decided to write a little follow up post to remedy the situation. 
+Following some strong reactions about [my last post](https://source.coveo.com/2014/12/29/distributed-resource-locking/) (that were caused, I believe, by a poor use of the word lock on my part), I decided to write a little follow up post to remedy the situation. 
 <!-- more -->
 I will explain why what we wanted was to avoid duplicate work, not prevent it at all cost[^footnote].
 
-  [^footnote]: Special thanks to M. Sean Cribbs for [this way of saying it](http://source.coveo.com/2014/12/29/distributed-resource-locking/#comment-1787329448)
+  [^footnote]: Special thanks to M. Sean Cribbs for [this way of saying it](https://source.coveo.com/2014/12/29/distributed-resource-locking/#comment-1787329448)
 
 Let's start by taking a look at the definition of a lock. [Wikipedia](http://en.wikipedia.org/wiki/Lock_(computer_science)) says : 
 

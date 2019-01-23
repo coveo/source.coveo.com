@@ -7,19 +7,21 @@
     <title>{% if page.title %}{{ page.title }} &mdash; {{ site.inc.title }}{% else %}{{ site.inc.title }} &mdash; {{ site.inc.subtitle }}{% endif %}</title>
     {% if site.inc.google_font %}<link href="https://fonts.googleapis.com/css?family={{ site.inc.google_font }}" rel="stylesheet" type="text/css">{% endif %}
 
-	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/coveo-search-ui_V1.1550.5/bin/css/CoveoFullSearchNewDesign.css">
-	<link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+  <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
+  <link rel="stylesheet" href="https://s3.amazonaws.com/coveostatic/community-unified-navigation/css/styles.css" />
+  <link rel="stylesheet" href="https://source.coveo.com/css/community-unified-navigation-custom.css"/>
 
-	<!-- <link rel="stylesheet" href="/css/CoveoFullSearch.css" /> -->
+
+
 	{% include _search.html %}
 
-    <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/css/main.css"/>
-    <link rel="shortcut icon" href="{{ site.github.url }}/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url }}/images/apple-touch-icon-144x144-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url }}/images/apple-touch-icon-114x114-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url }}/images/apple-touch-icon-72x72-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url }}/images/apple-touch-icon-precomposed.png" />
-    <link href="{{ site.github.url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
+    <link rel="stylesheet" type="text/css" href="{{ site.github.url | replace: 'http://', '//' }}/css/main.css"/>
+    <link rel="shortcut icon" href="{{ site.github.url | replace: 'http://', '//' }}/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-144x144	-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-precomposed.png" />
+    <link href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
 
     <meta property="og:site_name" content="{{ site.title }}" />
     <meta name="twitter:card" content="summary" />
@@ -45,24 +47,24 @@
 {% endif %}
 
 {% if page.url %}
-  <meta content="{{ site.github.url }}{{ page.url }}" property="og:url" />
+  <meta content="{{ site.github.url | replace: 'http://', '//' }}{{ page.url }}" property="og:url" />
 {% endif %}
 
 {% if page.date %}
   <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time" />
-  <meta content="{{ site.github.url }}/about/" property="article:author" />
+  <meta content="{{ site.github.url | replace: 'http://', '//' }}/about/" property="article:author" />
 {% endif %}
 
 {% if page.image %}
-  <meta property="og:image" content="{{ site.github.url }}/{{ page.image }}" />
+  <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/{{ page.image }}" />
 {% else %}
   {% if page.cover_image %}
-    <meta property="og:image" content="{{ site.github.url }}/images/{{ page.cover_image }}">
+    <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ page.cover_image }}">
   {% else %}
-    <meta property="og:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}" />
+    <meta property="og:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ site.inc.logo }}" />
     <meta property="og:image:width" content="560" />
     <meta property="og:image:height" content="560" />
-    <meta name="twitter:image" content="{{ site.github.url }}/images/{{ site.inc.logo }}" />
+    <meta name="twitter:image" content="{{ site.github.url | replace: 'http://', '//' }}/images/{{ site.inc.logo }}" />
   {% endif %}
 {% endif %}
 
@@ -83,7 +85,11 @@
   <meta name="author" content="{{ page.author.name }}" />
 {% endif %}
 
-<link rel="canonical" href="{{ site.github.url }}{{ page.url }}">
+{% if site.inc.analytics.google %}
+  {% include _google-analytics.html %}
+{% endif %}
+
+<link rel="canonical" href="{{ site.github.url | replace: 'http://', '//' }}{{ page.url }}">
 {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
 {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
 
@@ -94,16 +100,15 @@
 	<header>
 		<div class="upHeader clear">
 			<div class="logos">
-				<a href="http://www.coveo.com" class="logo" title="Coveo community"></a>
+				<a href="https://www.coveo.com" class="logo" title="Coveo community"></a>
 				<h3><a href="#">Community</a></h3></div>
 			<h1 class="currentSiteName"><em>Tech Blog</em> <span>Menu<i class="arrow"></i></span></h1>
 			<nav>
 				<ul class="menu floated">
 					<li><a id="jsSupport" href="https://support.coveo.com"  target="_blank">Support</a></li>
-					<li><a id="jsProductDocs" href="https://onlinehelp.coveo.com" target="_blank">Product docs</a></li>
-					<li><a id="jsDevDocs" href="https://developers.coveo.com" target="_blank">Developer docs</a></li>
+					<li><a id="jsProductDocs" href="https://docs.coveo.com" target="_blank">Product docs</a></li>
 					<li><a id="jsAnswers" href="https://answers.coveo.com" target="_blank">Answers</a></li>
-					<li><a id="jsTraining" href="http://www.coveo.com/training" target="_blank">Training</a></li>
+					<li><a id="jsTraining" href="https://academy.coveo.com/" target="_blank">Academy</a></li>
 					<li><a d="jsTechBlog" href="/"  class="current">Tech Blog</a></li>
 				</ul>
 				<ul class="externalbox with-sub">
@@ -119,8 +124,16 @@
 		</div>
 		<div class="bottomHeader">
 			<div id="searchBox">
-				<div class="CoveoSearchbox" type="text" data-enable-omnibox="true" data-inline="false" data-enable-wildcards="true" data-enable-search-as-you-type="false" data-enable-reveal-query-suggest-addon="false" data-enable-query-syntax="true" data-enable-field-addon="true"></div>
-				<div class="CoveoFieldSuggestions" data-field="@systitle" data-header-title="Suggested topics"></div>
+        <div class="CoveoSearchbox" type="text"
+          data-enable-omnibox="true"
+          data-inline="false"
+          data-enable-wildcards="true"
+          data-enable-search-as-you-type="false"
+          data-enable-reveal-query-suggest-addon="true"
+          data-enable-query-syntax="true"
+          data-enable-field-addon="true">
+        </div>
+				<div class="CoveoFieldSuggestions" data-field="@techblogtitle" data-header-title="Posts"></div>
 			</div>
 		</div>
 	</header>
@@ -135,7 +148,7 @@
         <nav>
             <a href="{{ site.inc.url }}">{{ site.inc.company }}</a> &middot;
             <a href="https://answers.coveo.com">Answers</a>
-            <a href="https://developers.coveo.com">Documentation</a>
+            <a href="https://docs.coveo.com">Documentation</a>
         </nav>
 
         <nav class="social">
@@ -145,7 +158,7 @@
             {% if site.inc.facebook %}
             <a href="http://facebook.com/{{ site.inc.facebook }}" title="Follow on Facebook" target="_blank"><i class="icon icon-facebook black"></i></a>
             {% endif %}
-            <a href="{{ site.github.url }}/feed.xml" title="RSS Feed">
+            <a href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" title="RSS Feed">
                 <i class="icon icon-rss black"></i>
             </a>
         </nav>

@@ -7,7 +7,7 @@ tags: [JavaScript, SearchFramework, Open-Source, Search UI]
 author:
   name: Alexandre Moreau
   bio:  Technical Writer
-  image: amoreauCoveo.jpg
+  image: amoreauCoveo.png
 ---
 
 In July 2016, the Coveo Search UI, also known as the Coveo JavaScript Search Framework, became open-source. This means that, from now on, anyone will be able to go on GitHub, take the Coveo Search UI, and modify the code itself to adapt it to their own needs.
@@ -37,7 +37,7 @@ This way, it is much easier for developers to remember to update the documentati
 
 This also means that anyone playing with the open-source code is able to see the documentation right next to the component code without having to refer to an external website.
 
-Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
+Furthermore, the TypeDoc generated documentation can be easily implemented directly in the UI components, such as the [JavaScript Search Interface Editor](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=230). This way, the components can be used even by people who are not familiar with coding.
 
 ### Removed internal jQuery dependencies
 
