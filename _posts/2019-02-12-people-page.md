@@ -11,7 +11,7 @@ author:
 ---
 
 Our company is rapidly growing and fast moving. It can be a challenge to keep track of newcomers or what our colleagues are working on.
-We created a _People page_ showing recent contributions by someone. It's also quite a useful tool for new employees to learn about their new co-workers.
+We created a _People page_ showing recent contributions by someone and it became quite a useful tool for new employees to learn about their new co-workers.
 
 
 ![My Activities summary](/images/201901-people-page/activity-summary.png)
@@ -41,7 +41,7 @@ The _Google Drive_ source uses `author` for `@authors` and `lastmodifyingyser.em
 ![Google Drive mappings](/images/201901-people-page/mappings-google.png)
 
 
-To create this Employee page (taken from [our intranet demo](https://elastic.coveodemo.com/demo-intranet)), we are using a few tricks:
+To create this Employee page (taken from [our intranet demo](https://labs.coveodemo.com/demo-intranet)), we are using a few tricks:
 - Browser cache for Basic Employee info
 - GroupBy/Facets for the bar charts, with Query Event
 - Search Interface and Result templates.
@@ -156,7 +156,7 @@ generateStatsSection(name, results) {
 
 The query is:
 ```text
-q: @authors==("jdevost@coveo.com", "Jérôme Devost") OR @contributors==("jdevost@coveo.com", "Jérôme Devost")
+q: @authors==("Alex_Winter@elasticdemo.com", "Alex Winter") OR @contributors==("Alex_Winter@elasticdemo.com", "Alex Winter")
 aq: @date>="today-30d"
 groupBy: [
   {"field":"@source","injectionDepth":1000},
@@ -169,7 +169,7 @@ groupBy: [
 
 and for the team:
 ```text
-q: @authors==("grobe@coveo.com", "Gauthier Robe", "amoreau@coveo.com", "Alexandre Moreau", "wnijmeijer@coveo.com", "Wim Nijmeijer") OR @contributors==("grobe@coveo.com", "Gauthier Robe", "amoreau@coveo.com", "Alexandre Moreau", "wnijmeijer@coveo.com", "Wim Nijmeijer")
+q: @authors==("Partrick_Kong@elasticdemo.com", "Partrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler") OR @contributors==("Partrick_Kong@elasticdemo.com", "Partrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler")
 ```
 
 ## Brower cache
