@@ -147,10 +147,7 @@ generateStatsSection(name, results) {
 
 ## Browser cache
 
-and for the team:
-```text
-q: @authors==("Partrick_Kong@elasticdemo.com", "Partrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler") OR @contributors==("Partrick_Kong@elasticdemo.com", "Partrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler")
-```
+![Org chart](/images/201901-people-page/org-chart.png)
 
 
 ```javascript
