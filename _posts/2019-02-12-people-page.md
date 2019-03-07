@@ -28,133 +28,27 @@ For each people, we get their basic information (name, email) and their reportin
 
 We also have multiple other sources in our Corporate index: Salesforce, JIRA, Discourse, Google Drive, Internal Documentation, Online Help, etc.
 Most sources have their own fields describing who created what and who modified it.
-To reduce complexity at query time, we use common fields for all sources to identify who worked on a document. We call them `@authors` (document creators) and `@contributors` (who modified the document, can be multiple people).
-
-Most sources have their versions of authors and contributors and use different field names and identifiers for users. We add a mapping to each source to populate the fields `@authors` and `@contributors`.
+To reduce complexity at query time, we normalized the fields using common field names for all sources to identify who worked on a document. We call them `@authors` for document creators and `@contributors` for whom modified the document (that one is a multi-value field).
 
 For example:
 
-The _Jira_ source uses  `author.emailaddress` for `@authors` and `fields.assignee.emailaddress & fields.comment.comments.author.emailaddress` for `@contributors`.
+Our _Jira_ source maps  `author.emailaddress` to `@authors` and `fields.assignee.emailaddress & fields.comment.comments.author.emailaddress` to `@contributors`.
 ![JIRA mappings](/images/201901-people-page/mappings-jira.png)
 
-The _Google Drive_ source uses `author` for `@authors` and `lastmodifyingyser.emailaddress, coveo.owner.email & coveo.comments.authors` for `@contributors`.
+Our _Google Drive_ source maps `author` to `@authors` and `lastmodifyingyser.emailaddress, coveo.owner.email & coveo.comments.authors` to `@contributors`.
 ![Google Drive mappings](/images/201901-people-page/mappings-google.png)
 
 
-To create this Employee page (taken from [our intranet demo](https://labs.coveodemo.com/demo-intranet)), we are using a few tricks:
-- Browser cache for Basic Employee info
+To create this Employee page (taken from [our intranet demo](https://labs.coveodemo.com/demo-intranet)), we are using a few more tricks:
 - GroupBy/Facets for the bar charts, with Query Event
+- Browser cache for Basic Employee info
 - Search Interface and Result templates.
 
 ![Employee summary](/images/201901-people-page/employee-summary.png)
 
-This is what we generate for the bar using the `numberOfResults` in the `groupBy` response:
+## Getting contributions
 
-JSON:
-```json
-[{
-  "field": "@source",
-  "values": [{
-    "value": "Youtube Movietrailers",
-    "numberOfResults": 471
-  }, {
-    "value": "PeopleMovie",
-    "numberOfResults": 28
-  }, {
-    "value": "Movies",
-    "numberOfResults": 28
-  }, {
-    "value": "Youtube Speedbit",
-    "numberOfResults": 1
-  }, {
-    "value": "Sharepoint",
-    "numberOfResults": 1
-  }, {
-    "value": "People",
-    "numberOfResults": 1
-  }, {
-    "value": "Doc FitBit",
-    "numberOfResults": 1
-  }]
-}, {
-  "field": "@myjob",
-  "values": [{
-    "value": "Acting",
-    "numberOfResults": 13
-  }, {
-    "value": "Director",
-    "numberOfResults": 10
-  }, {
-    "value": "Writer",
-    "numberOfResults": 3
-  }, {
-    "value": "Producer",
-    "numberOfResults": 2
-  }]
-}, {
-  "field": "@myrole",
-  "values": [{
-    "value": "Director",
-    "numberOfResults": 11
-  }, {
-    "value": "Writer",
-    "numberOfResults": 3
-  }, {
-    "value": "Himself",
-    "numberOfResults": 3
-  }, {
-    "value": "Producer",
-    "numberOfResults": 2
-  }, {
-    "value": "Bill S. Preston",
-    "numberOfResults": 2
-  }, {
-    "value": "Schatzi Greenspace",
-    "numberOfResults": 1
-  }, {
-    "value": "Marko",
-    "numberOfResults": 1
-  }]
-}]
-```
-
-```html
-<div class="userpage-stats-item">
-  <div class="userpage-stats-label" title="Acting">Acting</div>
-  <svg width="200" height="20" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-    <line x1="0" y1="10" x2="160" data-value="13" data-max="13" y2="10" stroke-width="10" stroke="#F58020"></line>
-    <text x="170" y="15" fill="#F58020">13</text>
-  </svg>
-</div>
-```
-
-We use this code to generate it:
-```javascript
-generateStatsSection(name, results) {
-  const max = Math.max(...(results.map(v => v.numberOfResults)));
-  let colorIdx = 0;
-  let aHtml = results.map(v => {
-      const color = COLORS[colorIdx++ % COLORS.length]; // we use a prefined array of colors, in which we cycle through
-      const xPos = Math.min(160, (160 * v.numberOfResults) / max); // Max value will be set at 160px
-
-      // html for a bar
-      return `<div class="userpage-stats-item">
-          <div class="userpage-stats-label" title="${e(v.value)}">${e(v.value)}</div>
-          <svg width="200" height="20" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="10" x2="${xPos}" data-value="${v.numberOfResults}" data-max="${max}" y2="10" stroke-width="10" stroke="${color}"></line>
-            <text x="${xPos + 10}" y="15" fill="${color}">${v.numberOfResults}</text>
-          </svg>
-        </div>`;
-    });
-
-  // return generated html
-  return aHtml.join('\n');
-}
-```
-
-> Tip: you can use inline _SVG_ to generate other types of visualizations, or use third party libraries like D3 with the results numbers from groupBy.
-
-The query is:
+Using the fields we mapped in the Indexing phase, we are getting the contributions of a person using the following query. Since some systems only identified people using their full names.
 ```text
 q: @authors==("Alex_Winter@elasticdemo.com", "Alex Winter") OR @contributors==("Alex_Winter@elasticdemo.com", "Alex Winter")
 aq: @date>="today-30d"
@@ -167,12 +61,97 @@ groupBy: [
 ]
 ```
 
+And we do the same query for the team, expanding all team members :
+```text
+q: @authors==("Patrick_Kong@elasticdemo.com", "Patrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler") OR @contributors==("Patrick_Kong@elasticdemo.com", "Patrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler")
+```
+
+
+## Facets as bar charts
+
+![Facet as bar chart](/images/201901-people-page/bar-chart.png)
+
+In search responses, the facets information is stored in the JSON as `groupBy`. It's an array of `field` and their `values` to show in the facets, along with the count for each value as `numberOfResults`. For example:
+
+```json
+[{
+  "field": "@source",
+  "values": [
+    { "value": "PeopleMovie", "numberOfResults": 28 },
+    { "value": "Movies", "numberOfResults": 28 },
+    { "value": "Youtube Speedbit", "numberOfResults": 1 },
+    { "value": "Sharepoint", "numberOfResults": 1 },
+    { "value": "People", "numberOfResults": 1 },
+    { "value": "Doc FitBit", "numberOfResults": 1 }
+  ]
+}, {
+  "field": "@myjob",
+  "values": [
+    { "value": "Acting", "numberOfResults": 13 },
+    { "value": "Director", "numberOfResults": 10 },
+    { "value": "Writer", "numberOfResults": 3 },
+    { "value": "Producer", "numberOfResults": 2 }
+  ]
+}, {
+  "field": "@myrole",
+  "values": [
+    { "value": "Director", "numberOfResults": 11 },
+    { "value": "Writer", "numberOfResults": 3 },
+    { "value": "Himself", "numberOfResults": 3 },
+    { "value": "Producer", "numberOfResults": 2 },
+    { "value": "Bill S. Preston", "numberOfResults": 2 },
+    { "value": "Schatzi Greenspace", "numberOfResults": 1 },
+    { "value": "Marko", "numberOfResults": 1 }
+  ]
+}]
+```
+
+Each value becomes one bar in the chart, and is represented using this HTML code:
+```html
+<div class="userpage-stats-item">
+  <div class="userpage-stats-label" title="Acting">Acting</div>
+  <svg width="200" height="20" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="10" x2="160" data-value="13" data-max="13" y2="10" stroke-width="10" stroke="#F58020"></line>
+    <text x="170" y="15" fill="#F58020">13</text>
+  </svg>
+</div>
+```
+
+We use this JavaScript code to generate the HTML from above:
+```javascript
+generateStatsSection(name, results) {
+  // calculate the maximun value for this section, to get relative sizes for the bars.
+  const max = Math.max(...(results.map(v => v.numberOfResults)));
+
+  // Creates an array of bars (in HTML code)
+  let aHtml = results.map( (v, idx) => {
+      const color = COLORS[idx % COLORS.length]; // we use a prefined array of colors, in which we cycle through
+      const xPos = Math.min(160, (160 * v.numberOfResults) / max); // Max value will be set at 160px
+
+      // HTML code for a bar, using JavaScript's template literals.
+      return `<div class="userpage-stats-item">
+          <div class="userpage-stats-label" title="${e(v.value)}">${e(v.value)}</div>
+          <svg width="200" height="20" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="10" x2="${xPos}" data-value="${v.numberOfResults}" data-max="${max}" y2="10" stroke-width="10" stroke="${color}"></line>
+            <text x="${xPos + 10}" y="15" fill="${color}">${v.numberOfResults}</text>
+          </svg>
+        </div>`;
+    });
+
+  // return generated html for all bars in this section
+  return aHtml.join('\n');
+}
+```
+
+> Tip: you can use inline _SVG_ to generate other types of visualizations, or use third party libraries like D3 with the results numbers from groupBy.
+
+## Browser cache
+
 and for the team:
 ```text
 q: @authors==("Partrick_Kong@elasticdemo.com", "Partrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler") OR @contributors==("Partrick_Kong@elasticdemo.com", "Partrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler")
 ```
 
-## Brower cache
 
 ```javascript
 /**
