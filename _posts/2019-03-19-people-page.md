@@ -14,7 +14,7 @@ Our company is rapidly growing and fast moving. It can be a challenge to keep tr
 We created a _People page_ showing recent contributions by someone and it became quite a useful tool for new employees to learn about their new co-workers.
 
 
-![My Activities summary](/images/201901-people-page/activity-summary.png)
+![My Activities summary](/images/2019-03-19-people-page/activity-summary.png)
 
 <!-- more -->
 
@@ -38,10 +38,10 @@ To reduce complexity at query time, we normalized the fields using common field 
 For example:
 
 Our _Jira_ source maps  `author.emailaddress` to `@authors` and `fields.assignee.emailaddress & fields.comment.comments.author.emailaddress` to `@contributors`.
-![JIRA mappings](/images/201901-people-page/mappings-jira.png)
+![JIRA mappings](/images/2019-03-19-people-page/mappings-jira.png)
 
 Our _Google Drive_ source maps `author` to `@authors` and `lastmodifyingyser.emailaddress, coveo.owner.email & coveo.comments.authors` to `@contributors`.
-![Google Drive mappings](/images/201901-people-page/mappings-google.png)
+![Google Drive mappings](/images/2019-03-19-people-page/mappings-google.png)
 
 
 To create the Employee page below (taken from [our intranet demo](https://labs.coveodemo.com/demo-intranet)), we are using a few more tricks:
@@ -49,7 +49,7 @@ To create the Employee page below (taken from [our intranet demo](https://labs.c
 - Browser cache for Basic Employee info
 - Search Interface and Result templates.
 
-![Employee summary](/images/201901-people-page/employee-summary.png)
+![Employee summary](/images/2019-03-19-people-page/employee-summary.png)
 
 ## Getting contributions
 
@@ -74,7 +74,7 @@ q: @authors==("Patrick_Kong@elasticdemo.com", "Patrick Kong", "James_Arama@coveo
 
 ## Facets as bar charts
 
-![Facet as bar chart](/images/201901-people-page/bar-chart.png)
+![Facet as bar chart](/images/2019-03-19-people-page/bar-chart.png)
 
 In search responses, the facets information is stored in the JSON as `groupBy`. It's an array of `field` and their `values` to show in the facets, along with the count for each value as `numberOfResults`. For example:
 
@@ -179,9 +179,9 @@ We are building the Team section and the org chart dynamically, on the client si
 While being quite simple to use, it would be inefficient to redo the same queries for the same members when _browsing the org chart_. We use the Browsers session storage to make it more efficient. We will fetch one member information only once per _web session_, and that is perfect for this case. This way we get the efficiency of doing one request only per member, and we don't have to manage the cache ourselves, the browsers do it and the members cache stays fresh.
 
 
-<img alt="Team contributions" src="../images/201901-people-page/team-contributions.png" width="75%">
+<img alt="Team contributions" src="../images/2019-03-19-people-page/team-contributions.png" width="75%">
 
-<img alt="Org chart" src="../images/201901-people-page/org-chart.png" width="20%" style="vertical-align: top">
+<img alt="Org chart" src="../images/2019-03-19-people-page/org-chart.png" width="20%" style="vertical-align: top">
 
 We use JavaScript promise to get the User (member) info. We first check if the members in the cache (sessionStorage is a key-value map), and if not, we query for it, store it then return it.
 
