@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Who is Who and What They Do"
+title: "Intranet People page"
 tags: [JS UI, JS UI custom components, Push Api, Query Events]
 
 author:
@@ -17,6 +17,11 @@ We created a _People page_ showing recent contributions by someone and it became
 ![My Activities summary](/images/201901-people-page/activity-summary.png)
 
 <!-- more -->
+
+The page shows a list of recent contributions by an employee, her team members, her partial organization chart, her active projects, and recent contributions from her team. You can use this page to see her area of expertise within the company.
+
+The People page is still a Coveo Search page with the same great features like Security. You won't see _secret projects_ from other members here if you don't have access to these projects yourself.
+
 
 ## The Data
 
@@ -39,7 +44,7 @@ Our _Google Drive_ source maps `author` to `@authors` and `lastmodifyingyser.ema
 ![Google Drive mappings](/images/201901-people-page/mappings-google.png)
 
 
-To create this Employee page (taken from [our intranet demo](https://labs.coveodemo.com/demo-intranet)), we are using a few more tricks:
+To create the Employee page below (taken from [our intranet demo](https://labs.coveodemo.com/demo-intranet)), we are using a few more tricks:
 - GroupBy/Facets for the bar charts, with Query Event
 - Browser cache for Basic Employee info
 - Search Interface and Result templates.
@@ -117,9 +122,27 @@ Each value becomes one bar in the chart, and is represented using this HTML code
 </div>
 ```
 
-We use this JavaScript code to generate the HTML from above:
+We use a Query Event (`querySuccess`) to process the results into the bar charts:
 ```javascript
-generateStatsSection(name, results) {
+
+// handler for the search response, will call generateStatsSection for each categories
+// the generated HTML will update a DOM node (id="userpage-stats") already present in the page.
+let onSuccess = function(e, args) {
+  let groupByResults = args.results.groupByResults;
+  if (groupByResults.length) {
+    let barChartsHtml = [
+      generateStatsForSection('Sources', groupByResults[0].values),
+      generateStatsForSection('Jobs', groupByResults[1].values),
+      generateStatsForSection('Characters', groupByResults[2].values)
+    ];
+
+    $('#userpage-stats')
+      .empty()
+      .html( barChartsHtml.join('') );
+  }
+};
+
+let generateStatsForSection = function(name, results) {
   // calculate the maximun value for this section, to get relative sizes for the bars.
   const max = Math.max(...(results.map(v => v.numberOfResults)));
 
@@ -128,7 +151,7 @@ generateStatsSection(name, results) {
       const color = COLORS[idx % COLORS.length]; // we use a prefined array of colors, in which we cycle through
       const xPos = Math.min(160, (160 * v.numberOfResults) / max); // Max value will be set at 160px
 
-      // HTML code for a bar, using JavaScript's template literals.
+      // HTML+SVG code for a bar, using JavaScript's template literals.
       return `<div class="userpage-stats-item">
           <div class="userpage-stats-label" title="${e(v.value)}">${e(v.value)}</div>
           <svg width="200" height="20" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
@@ -140,15 +163,29 @@ generateStatsSection(name, results) {
 
   // return generated html for all bars in this section
   return aHtml.join('\n');
-}
+};
+
+// set up the Query Event
+Coveo.$$(root).on('querySuccess', onSuccess);
+
 ```
 
 > Tip: you can use inline _SVG_ to generate other types of visualizations, or use third party libraries like D3 with the results numbers from groupBy.
 
-## Browser cache
+## Optimizations using Browser cache
 
-![Org chart](/images/201901-people-page/org-chart.png)
+We are building the Team section and the org chart dynamically, on the client side (browser). To keep it simple we are fetching one user at a time, and its manager if it has one, then the manager's manager, and so on.
 
+While being quite simple to use, it would be inefficient to redo the same queries for the same members when _browsing the org chart_. We use the Browsers session storage to make it more efficient. We will fetch one member information only once per _web session_, and that is perfect for this case. This way we get the efficiency of doing one request only per member, and we don't have to manage the cache ourselves, the browsers do it and the members cache stays fresh.
+
+
+<img alt="Team contributions" src="../images/201901-people-page/team-contributions.png" width="75%">
+
+<img alt="Org chart" src="../images/201901-people-page/org-chart.png" width="20%" style="vertical-align: top">
+
+We use JavaScript promise to get the User (member) info. We first check if the members in the cache (sessionStorage is a key-value map), and if not, we query for it, store it then return it.
+
+Here's the code to get the user info:
 
 ```javascript
 /**
@@ -192,19 +229,53 @@ getUserInfo(userEmail) {
 }
 ```
 
-then
+Now, putting it all together in a Class to create an Org chart:
 
 ```javascript
 
+class OrgChart {
 
+  getUserInfo(user) {
+    // see above
+  }
+
+  getUsersInfo(users) {
+    if (users) {
+      return Promise.all(
+        users.map(workemail => {
+          return this.getUserInfo(`@workemail=="${workemail}"`);
+        })
+      );
+    }
+    return Promise.resolve([]);
+  }
+
+  showOrg(userEmail) {
+    this.getUserInfo(userEmail).then(userJson=>{
+      // get all managers
+      this.getUserInfo(userJson.managers).then(managersJson => {
+        // get all direct reports
+        this.getUserInfo(userJson.directreports).then(directReportsJson  => {
+          // show the user in the page.
+          this.renderOrg(userJson, managersJson, directReportsJson);
+        })
+      })
+    })
+  }
+
+  renderOrg(user, managers, directReports) {
+    // Create your own layout for your Company
+  }
+
+}
 ```
-
 
 
 ## Conclusion
 
-- Using Query Events and groupBy results you can create visualisations.
-- Security is applied - no worries
-- Can be used on a Welcome page
+We saw that a Search page can be useful without a search input box but as an aggregator of useful content for one _topic_ (in this case an Employee).
 
+We used a few tricks from the Coveo platform like Query Events and Facets to create different visualizations and we still have the piece of mind from Coveo's support of secured content that sensitive information won't be surfaced to the wrong user.
+
+Using the same approach, many applications such as a Landing/Welcome page for an Intranet or Products pages can be created using Coveo the platform.
 
