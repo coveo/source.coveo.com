@@ -177,7 +177,7 @@ Coveo.$$(root).on('querySuccess', onSuccess);
 
 The *Team* section and the organization chart are built dynamically client side, in the browser. To keep it simple, we are fetching one user at a time, then their manager if they have one, then the manager's manager, and so on.
 
-While being quite simple to use, it would be inefficient to redo the same queries for the same members when _browsing the org chart_. We use the browser's session storage to make it more efficient. We will fetch one member information only once per _web session_, which is perfect for this case. This way we get the efficiency of doing only one request per member, and we don't have to manage the cache ourselves; the browsers do it and the member's cache stays fresh.
+While being quite simple to use, it would be inefficient to redo the same queries for the same members when _browsing the org chart_. We use the browser's session storage to make it more efficient. We will fetch one member information only once per _web session_, which is perfect for this case. This way we get the efficiency of doing only one request per member, and we don't have to manage the cache ourselves; the browsers do it and the cache for the members stays fresh.
 
 
 <img alt="Team contributions" src="../images/2019-03-19-people-page/team-contributions.png" width="75%">
