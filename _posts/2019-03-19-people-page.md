@@ -35,7 +35,7 @@ For each person, we get their basic information (name, email, etc.) and their re
 
 We also have multiple other sources in our index: Salesforce, Jira, Discourse, Google Drive, Internal Documentation, Public Documentation, etc. Most sources have their own fields describing who created what and who modified it.
 
-To reduce complexity at query time, we normalize the fields using common field names for all sources to identify who worked on a document. We called those fields `@authors` for document creators ,and `@contributors` for people who modified the document; the latter is set as a multi-value fields on the Coveo platform.
+To reduce complexity at query time, we normalize the fields using common field names for all sources to identify who worked on a document. We called those fields `@authors` for document creators, and `@contributors` for people who modified the document; the fields are set as multi-value fields on the Coveo platform.
 
 For example:
 
@@ -126,7 +126,7 @@ Each value becomes one bar in the chart, and is represented using this HTML code
 We use a Query Event (`querySuccess`) to process the results into the bar charts:
 
 ```javascript
-// Handler for the search response; it will call generateStatsSection for each category
+// Handler for the search response
 // The generated HTML will update a DOM node (id="userpage-stats") already present on the page
 let onSuccess = function(e, args) {
   let groupByResults = args.results.groupByResults;
@@ -143,21 +143,22 @@ let onSuccess = function(e, args) {
   }
 };
 
+// Generate the HTML and SVG code (bar chard) for a category.
 let generateStatsForSection = function(name, results) {
   // Calculate the maximum value for this section, to get relative sizes for the bars
-  const max = Math.max(...(results.map(v => v.numberOfResults)));
+  const max = Math.max(...(results.map(result => result.numberOfResults)));
 
   // Creates an array of bars (in HTML code)
-  let aHtml = results.map( (v, idx) => {
+  let aHtml = results.map( (result, idx) => {
       const color = COLORS[idx % COLORS.length]; // We use a prefined array of colors, and we cycle through them
-      const xPos = Math.min(160, (160 * v.numberOfResults) / max); // Maximum value will be set at 160px
+      const xPos = Math.min(160, (160 * result.numberOfResults) / max); // Maximum value will be set at 160px
 
       // HTML + SVG code for a bar, using JavaScript's template literals
       return `<div class="userpage-stats-item">
-          <div class="userpage-stats-label" title="${e(v.value)}">${e(v.value)}</div>
+          <div class="userpage-stats-label" title="${e(result.value)}">${e(result.value)}</div>
           <svg width="200" height="20" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="10" x2="${xPos}" data-value="${v.numberOfResults}" data-max="${max}" y2="10" stroke-width="10" stroke="${color}"></line>
-            <text x="${xPos + 10}" y="15" fill="${color}">${v.numberOfResults}</text>
+            <line x1="0" y1="10" x2="${xPos}" data-value="${result.numberOfResults}" data-max="${max}" y2="10" stroke-width="10" stroke="${color}"></line>
+            <text x="${xPos + 10}" y="15" fill="${color}">${result.numberOfResults}</text>
           </svg>
         </div>`;
     });
@@ -166,7 +167,6 @@ let generateStatsForSection = function(name, results) {
   return aHtml.join('\n');
 };
 
-// Set up the Query Event
 Coveo.$$(root).on('querySuccess', onSuccess);
 
 ```
@@ -254,9 +254,9 @@ class OrgChart {
   showOrg(userEmail) {
     this.getUserInfo(userEmail).then(userJson=>{
       // Get all managers
-      this.getUserInfo(userJson.managers).then(managersJson => {
+      this.getUsersInfo(userJson.managers).then(managersJson => {
         // Get all direct reports
-        this.getUserInfo(userJson.directreports).then(directReportsJson  => {
+        this.getUsersInfo(userJson.directreports).then(directReportsJson  => {
           // Show the user on the page
           this.renderOrg(userJson, managersJson, directReportsJson);
         })
