@@ -72,6 +72,7 @@ We then do the same query for that person's team, expanding all team members:
 ```text
 q: @authors==("Patrick_Kong@elasticdemo.com", "Patrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler") OR @contributors==("Patrick_Kong@elasticdemo.com", "Patrick Kong", "James_Arama@coveo.com", "James Arama", "Walter_Sittler@coveo.com", "Walter Sittler")
 ```
+_We show how we get the team members below, when we build the Org chart._
 
 ## Facets as bar charts
 
