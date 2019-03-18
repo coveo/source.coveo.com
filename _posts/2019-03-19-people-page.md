@@ -195,7 +195,7 @@ Here's the code to get the user info:
  * @param userEmail {string} email of the user to get
  * @returns {Promise}
  */
-getUserInfo(userEmail) {
+async getUserInfo(userEmail) {
   const key = `@email=="${userEmail}"`;
 
   // Check storage using email query as key
@@ -236,32 +236,27 @@ Now, we put it all together in a Class to create an organization chart:
 
 class OrgChart {
 
-  getUserInfo(user) {
+  async getUserInfo(user) {
     // See the code above
   }
 
-  getUsersInfo(users) {
+  async getUsersInfo(users) {
     if (users) {
       return Promise.all(
-        users.map(workemail => {
-          return this.getUserInfo(`@workemail=="${workemail}"`);
+        users.map(email => {
+          return this.getUserInfo(email);
         })
       );
     }
     return Promise.resolve([]);
   }
 
-  showOrg(userEmail) {
-    this.getUserInfo(userEmail).then(userJson=>{
-      // Get all managers
-      this.getUsersInfo(userJson.managers).then(managersJson => {
-        // Get all direct reports
-        this.getUsersInfo(userJson.directreports).then(directReportsJson  => {
-          // Show the user on the page
-          this.renderOrg(userJson, managersJson, directReportsJson);
-        })
-      })
-    })
+  async showOrg(userEmail) {
+    const userJson = await this.getUserInfo(userEmail);
+    const managersJson = await this.getUsersInfo(userJson.managers);
+    const directReportsJson = await this.getUsersInfo(userJson.directreports);
+
+    this.renderOrg(userJson, managersJson, directReportsJson);
   }
 
   renderOrg(user, managers, directReports) {
