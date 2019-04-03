@@ -12,12 +12,12 @@ author:
 
 ---
 
-It's been a few months since the 2019 edition of the Coveo Blitz, our yearly coding competition, where student from across the province must design the best algorithm to outplay their rivals. This year again, the quality of the participants was fantastic and left us to the edge of our seats until the very end of the event. Unfortunately, today's post isn't about giving you all the juicy details of the competition (more posts are coming on that topic ;) ), but to announce that this year's competition source code is available on our [GitHub](https://github.com/coveo/Blitz2019)! You will find in this repository the main challenge, the "micro-challenges" and a local "test" environment for you to test your bots and solutions.
+It's been a few months since the 2019 edition of the Coveo Blitz, our yearly coding competition, where student from across the province must design the best algorithm to outplay their rivals. This year again, the quality of the participants was fantastic and left us to the edge of our seats until the very end of the event. Unfortunately, today's post isn't about giving you all the juicy details of the competition (more posts are coming on that topic 😉 ), but to announce that this year's competition source code is available on our [GitHub](https://github.com/coveo/Blitz2019)! You will find in this repository the main challenge, the "micro-challenges" and a local "test" environment for you to test your bots and solutions.
 
 <!-- more -->
 
 
-![What took you so long?](/images/2019-03-15/whattookyousolong.gif "What took you so long?")
+![What took you so long?](/images/2019-04-03/whattookyousolong.gif "What took you so long?")
 
 ### The Coveo Blitz was 4 months ago, what took you so long??
 
