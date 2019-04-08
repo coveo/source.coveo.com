@@ -12,7 +12,7 @@ author:
 
 ---
 
-It's been a few months since the 2019 edition of the Coveo Blitz, our yearly coding competition, where student from across the province must design the best algorithm to outplay their rivals. This year again, the quality of the participants was fantastic and left us to the edge of our seats until the very end of the event. Unfortunately, today's post isn't about giving you all the juicy details of the competition (more posts are coming on that topic 😉 ), but to announce that this year's competition source code is available on our [GitHub](https://github.com/coveo/Blitz2019)! You will find in this repository the main challenge, the "micro-challenges" and a local "test" environment for you to test your bots and solutions.
+It's been a few months since the 2019 edition of Coveo Blitz, our yearly coding competition, where students from across the province must design the best algorithm to outplay their rivals. This year again, the quality of the participants was fantastic and left us to the edge of our seats until the very end of the event. Unfortunately, today's post isn't about giving you all the juicy details of the competition (more posts are coming on that topic 😉 ), but to announce that this year's competition source code is available on our [GitHub](https://github.com/coveo/Blitz2019)! You will find in this repository the main challenge, the "micro-challenges" and a local "test" environment for you to test your bots and solutions.
 
 <!-- more -->
 
