@@ -181,9 +181,7 @@ The *Team* section and the organization chart are built dynamically client side,
 While being quite simple to use, it would be inefficient to redo the same queries for the same members when _browsing the org chart_. We use the browser's session storage to make it more efficient. We will fetch one member information only once per _web session_, which is perfect for this case. This way we get the efficiency of doing only one request per member, and we don't have to manage the cache ourselves; the browsers do it and the cache for the members stays fresh.
 
 
-<img alt="Team contributions" src="../images/2019-03-19-people-page/team-contributions.png" width="75%">
-
-<img alt="Org chart" src="../images/2019-03-19-people-page/org-chart.png" width="20%" style="vertical-align: top">
+<img alt="Team contributions" src="/images/2019-03-19-people-page/team-contributions.png" width="75%"><img alt="Org chart" src="/images/2019-03-19-people-page/org-chart.png" width="20%" style="vertical-align: top">
 
 We use a JavaScript promise to get the User (member) info. We first check if the member is in the cache. If not, we query it, store it, and then resolve the promise.
 
