@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Salesforce Lightning Web Components Framework"
+title: "Coveo and the Lightning Web Components framework"
 tags: [Salesforce, Lightning Web Components, LWC, Framework]
 
 author:
@@ -12,9 +12,15 @@ author:
 
 ---
 
-In 2018, Salesforce introduced a new programming model for building Lightning components (Lightning components are the building blocks used to create applications within Salesforce). This new framework was designed with respect to the new web standards in order to allow web developers to keep using the knowledge they have acquired over the years outside Salesforce. This new building model is alligned with the Web Components standard from the World Wide Web Consortium (W3C) and is using native browser features and language such as pure HTML and JavaScript. This blog post will document our team's experience in using this new framework to build the Coveo for Salesforce integration using Lightning Web Components (LWC).
+In 2018, Salesforce introduced a new programming model for building Lightning components (Lightning components are the building blocks used to create applications within Salesforce). This new framework was designed with respect to the new web standards in order to allow web developers to keep using the knowledge they have acquired over the years outside of Salesforce. This new building model is alligned with the Web Components standard from the World Wide Web Consortium (W3C) and is using native browser features and language such as pure HTML and JavaScript. This blog post will document our team's experience with this new framework to build the Coveo for Salesforce integration using Lightning Web Components (LWC).
 
 <!-- more -->
+
+## What is this Lightning Web Component thing?
+
+Lightning Web Component includes two concepts, first the **Web Components**. It is the result of three technologies that, when used in combination, allow you to define custom and reusable web elements. It leverages *Custom elements* which allows you to define custom web elements in JavaScript and some behaviour which in turn can be rendered in a web browser. These custom elements also use the *Shadow DOM* which is an encapsulation of the DOM tree attached to a specific element. This is used to separate features and behaviour of your element from other parts of the document. And finally, Web Components use the `<template>` and `<slot>` elements that allow you to write markup that is not displayed in your page but can be reused where you want in your page.
+
+And now for the *Lightning* portion of the *Lightning Web Components*. Lightning is a Salesforce related term which defines their UI or front-end applicative framework (by opposition to "Classic" or "Visualforce"). So if you put the two together, you get Web Components that can interact with Salesforce, either to access data or to be part of their application rendering loop. Which means Salesforce has made available this new bleeding edge web technology (Web Components) and allowed it to communicate very easily with Salesforce (Lightning).
 
 ## Meet the team
 
@@ -22,23 +28,29 @@ Before jumping on our experience with LWC, here are the members of our team that
 
 ### Jeremie Robert
 
+> At Coveo for over a year, I am constantly working at better integrating Coveo with the Salesforce platform. Using Salesforce technologies (Apex, Visualforce, Aura, and now LWC) and other web technologies (ES6, TypeScript, CSS, and SASS) I build solutions that can be personalized by our clients and that respect the highest standards in terms of quality.
+
 ### Louis Bompart
+
+> I've been a Software Developer at Coveo since August 2017, working mostly on the front-end side of the Salesforce integration and also the tooling associated with that project. I've started my web development learning process with [Polymer](https://www.polymer-project.org/) around early 2015 and I've been convinced of the potential of Web Components since then.
 
 ### Andre Theriault
 
+> I've been part of the Salesforce Integration team for 4 years now as a developer. Most of my experience before that was as a backend software engineer. With Salesforce's efforts to use newer techs and up to date web standards, I learned to enjoy the frontend aspect of it all. It also got me interested in other frontend frameworks like "React" and Vue.js" and I was please to discover that Salesforce was planning to get more inline with current web standards with LWC.
+
 ### Etienne Rocheleau
 
-At Coveo for about 4 years, my main job consists of the exploration of all new technology from Salesforce. I am always looking for new ways to integrate Coveo with Salesforce to create a better experience for users. I produce a lot of demos, POCs, and prototypes as part of my exploration and I really love when people find new and interesting ways to use Coveo to solve an issue they have. I am very familiar with Salesforce technologies (Aura, Apex, Visualforce, etc.) and outside of that, I have experience with JavaScript/TypeScript and some web frameworks such as React, Angular and others.
+> At Coveo for 4 years, my job consists of the exploration of all new technology from Salesforce. I am always looking for new ways to integrate Coveo with Salesforce to create a better experience for users. I produce a lot of demos, POCs, and prototypes as part of my exploration and I really love when people find new and interesting ways to use Coveo to solve an issue they have. I am very familiar with Salesforce technologies (Aura, Apex, Visualforce, Lightning, etc.) and outside of that, I have experience with JavaScript/TypeScript and some web frameworks such as React, Angular and others.
 
 ## Why switch to LWC when you are so involved with Aura?
 
-We have about 5 years of experience with the Aura framework from Salesforce. Coveo was an early adopter of this new framework when it was announced and we jumped on the idea of creating these new Lightning components quickly. The majority of our Coveo for Salesforce integration's frontend is created using the Aura framework. So why decide to jump on this new framework when we already have a lot of experience with Aura?
+We have about 3-4 years of experience with the Aura framework from Salesforce. Coveo was an early adopter of this new framework when it was announced and we jumped on the idea of creating these new Lightning components quickly. The majority of our Coveo for Salesforce integration's frontend is created using the Aura framework. So why decide to jump on this new framework when we already have a lot of experience with Aura?
 
 > We saw an opportunity to streamline our integration and I think this was the deciding factor. We are a growing team for the Salesforce integration and after my initial exploration of the LWC framework I was convinced that it would allow for a much quicker development lifecycle, especially because we were embracing more the `sfdx` methodology at the same time. The opportunity was also there to reduce the ramp-up time for any new member of the team to learn to be productive with Salesforce technologies. Since all the development is made with mainly HTML/JavaScript, it was a lot quicker to try new things and verify the feasibility of a new feature we wanted to develop.
 
 \- Etienne
 
-> From a developer point of view, switching from Aura to LWC meant an access to better tools and following current web standards. We had put a lot of efforts to be able to have relatively good tests with Aura components, but with LWC it was part of the framework which in turn would mean a faster release cycle and higher product quality. To compare both, with Aura we could mainly do integration tests and we had to deploy the code to a Salesforce organization in order to test it. With LWC I knew we could do local unit tests which meant a lot faster developement.
+> From a developer point of view, switching from Aura to LWC meant an access to better tools and following current web standards. We had put a lot of efforts to be able to have relatively good tests with Aura components, but with LWC it was part of the framework which in turn would mean a faster release cycle and higher product quality. To compare both, with Aura we could mainly do integration tests but we had to deploy the code to a Salesforce organization in order to test it. With LWC I knew we could do local unit tests which meant a lot quicker developement.
 > 
 > Also because I was already used to other web frameworks, I liked the simplicity of the boilerplate needed for LWC. Compared to Aura from a readability standpoint, LWC is better because of how the code is written. It makes the code clearer and clearer code means less mistakes.
 
@@ -47,7 +59,7 @@ We have about 5 years of experience with the Aura framework from Salesforce. Cov
 
 ## What did you decide to create as your first experience with LWC?
 
-> Our Salesforce integration uses our own UI framework we have developed in house called the [Coveo Search-UI](https://github.com/coveo/search-ui). It is a collection of UI components all written in pure TypeScript that are used to build a search page. Our first component was a wrapper around this framework to integrate it within Salesforce and with LWC. This component is responsible of loading the required Static Resources.
+> Our Salesforce integration uses our own UI framework we have developed in house called the [Coveo Search-UI](https://github.com/coveo/search-ui). It is a collection of UI components all written in pure TypeScript that are used to build a search page. Our first component was a wrapper around this framework to integrate it within Salesforce and with LWC. This component is responsible of loading the required Static Resources and then initializing our framework.
 
 \- Jeremie
 
@@ -87,7 +99,7 @@ export default class SearchUi extends LightningElement {
 }
 ```
 
-> Having done a lot of the initial investigation on LWC, I was eager to be able to share my knowledge with the rest of the team. And let's not forget [Trailhead](https://trailhead.salesforce.com/) which offers very well built learning paths for content such as the LWC framework. It was a very good introduction to understand how this new programming model worked and integrated with Salesforce.
+> Having done a lot of the initial investigation on LWC, I was eager to be able to share my knowledge with the rest of the team. And let's not forget [Trailhead](https://trailhead.salesforce.com/) which offers very well built learning paths for content such as the LWC framework. It was a very good introduction to understand how this new programming model worked and integrated with Salesforce. I knew it would be easy to pick up for my teammates and that they would love working with LWC.
 
 \- Etienne
 
@@ -114,7 +126,7 @@ export default class MyComponent extends LightningElement {
   };
 }
 ```
-> You clearly see what is exposed publicly outside of your component. It makes it easy to composition of components, it is similar to React, but uses the shadow DOM to process rendering. And the `@wire` decorator makes it very simple to understand clearly that you are calling Apex declaratively and letting Salesforce take care of caching the information.
+> You clearly see what is exposed publicly outside of your component. It makes it easy to use composition of components, it is similar to React, but uses the shadow DOM to process rendering and to encapsulate behavior and data. And the `@wire` decorator makes it very simple to understand clearly that you are calling Apex declaratively and letting Salesforce take care of caching the information.
 
 \- Jeremie
 
@@ -145,7 +157,6 @@ export default class MyComponent extends LightningElement {
 
 ## What would be the lessons learned for someone who would want to start using Lightning Web Components?
 
-
 > Don't try to change or implement everything at once. Just like learning a new language or framework, you want to start with a solid base and build on top of it. I would say, start with a minimum viable component, along with unit tests (around 75% code coverage) to get familiar with LWC. You can switch to the `sfdx` format later if you already have a package because this is a pretty big leap to take. You can apply the rule that new features you add should be made in LWC instead of in an Aura component and that should help you migrate. This is what we chose to do, a simple but solid base component and we will be building around it in the future knowing it is well tested.
 
 \- Louis
@@ -157,7 +168,9 @@ export default class MyComponent extends LightningElement {
 
 \- Jeremie
 
-> Andre
+> Don't be afraid to make "utils" component. LWC allows you to easily import multiple component into one so make sure your code is clean and well seperated. It also makes thing easier to test and allows you to re-use  specific part of your application in other components.
+
+\- Andre
 
 > It feels very natural to develop with LWC. It seems like the design decisions make sense and the integration with Salesforce's backend feels seamless. I am sure it will be easier to ramp up a new member of the team with LWC. One of the best lesson learned over the years is to *keep it simple* and LWC lets us do that. We can have clearly defined building blocks (components) that are designed to be re-used by our multiple integration points within Salesforce. Our package structure is simpler and well organized because one component regroups HTML, JavaScript and CSS. And LWC grants us enough freedom to keep most of the (Coveo Search-UI)[https://github.com/coveo/search-ui] simply as a Static Resource. And that way we can control the DOM of our search page manually while the LWC integration is in charge of the connection to Salesforce's data and API that we need to provide a great user experience.
 
@@ -165,4 +178,12 @@ export default class MyComponent extends LightningElement {
 
 ## What will the future look like for the Coveo for Salesforce integration team?
 
-> Andre
+> The Coveo for Salesforce integration package grew a lot over the past years. We've obviously added a lot of new features, but with the transition from Visualforce to Aura, and now the transition to LWC, our package is full of relics. We look forward to committing more resources to LWC and phasing out more and more Visualforce bit by bit. With LWC being closer to web standards than either Visualforce and Aura, we hope to be able to grow the team even faster by bringing in more web developers into the Salesforce ecosystem. Looking back at the past years and seeing what our integration package will be like in a short time once we achieve what we are planning makes us excited to see what Salesforce will become in the future.
+
+\- Andre
+
+## Would you like to know more?
+
+### Read more on [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) (MDN)
+
+### Read more on [Lightning Web Components](https://developer.salesforce.com/docs/component-library/documentation/lwc/lwc.get_started_introduction) (developer.salesforce)
