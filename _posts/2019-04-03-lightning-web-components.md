@@ -20,9 +20,9 @@ In 2018, Salesforce introduced a new programming model for building Lightning co
 
 Lightning Web Component includes two concepts in its name.
 
-First the **Lightning** part of the *Lightning Web Components*. Lightning is a Salesforce related term which defines their UI or front-end applicative framework (by opposition to "Classic" or "Visualforce"). 
+The **Lightning** part of the *Lightning Web Components*. Lightning is a Salesforce related term which defines their UI or front-end applicative framework (by opposition to "Classic" or "Visualforce"). 
 
-Second, the **Web Components** part. It is the result of three technologies that, when used in combination, allow you to define custom and reusable web elements. It leverages *Custom elements* which allows you to define custom web elements in JavaScript and some behaviour which in turn can be rendered in a web browser. These custom elements also use the *Shadow DOM* which is an encapsulation of the DOM tree attached to a specific element. This is used to separate features and behaviour of your element from other parts of the document. And finally, Web Components use the `<template>` and `<slot>` elements that allow you to write markup that is not displayed in your page but can be reused where you want in your page.
+Second, **Web Components** are the result of three technologies that, when used in combination, allow you to define custom and reusable web elements. It leverages *Custom elements* which allows you to define custom web elements in JavaScript and some behaviour which in turn can be rendered in a web browser. These custom elements also use the *Shadow DOM* which is an encapsulation of the DOM tree attached to a specific element. This is used to separate features and behaviour of your element from other parts of the document. And finally, Web Components use the `<template>` and `<slot>` elements that allow you to write markup that is not displayed in your page but can be reused where you want in your page.
 
 So if you put the two together, you get Web Components that can interact with Salesforce, either to access data or to be part of their application rendering loop. Which means Salesforce has made available this new bleeding edge web technology (Web Components) and allowed it to communicate very easily with Salesforce (Lightning).
 
