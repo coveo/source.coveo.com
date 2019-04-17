@@ -103,6 +103,18 @@ export default class SearchUi extends LightningElement {
 }
 ```
 
+```html
+<template>
+  <lightning-card>
+    <div class='search-ui-container' lwc:dom="manual"></div>
+  </lightning-card>
+</template>
+```
+
+> Above is an example of our first LWC component. It loads the CSS and JS files we need on the `connectedCallback` which is a lifecycle method that is called on component initialization by Salesforce. And then on the `renderedCallback` it initializes our framework, this method is also called by Salesforce when a component is rendered (our framework is designed to only initialize itself once). 
+>
+> Unfortunately, we cannot rely on some of the DOM improvements provided by the shadowDOM since we handle our own rendering loop of our components. This is done in the template file by activating `lwc:dom="manual"` on our element container. But since we are already pure JavaScript and following web design principles, it is still really fast.
+>
 > Having done a lot of the initial investigation on LWC, I was eager to be able to share my knowledge with the rest of the team. And let's not forget [Trailhead](https://trailhead.salesforce.com/) which offers very well built learning paths for content such as the LWC framework. It was a very good introduction to understand how this new programming model worked and integrated with Salesforce. I knew it would be easy to pick up for my teammates and that they would love working with LWC.
 
 \- Etienne
