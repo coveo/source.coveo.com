@@ -8,7 +8,7 @@ author:
   name: Etienne Rocheleau & Andre Theriault & Jeremie Robert & Louis Bompart
   bio: Software Developers
   twitter: 
-  image: 
+  image: erocheleau.jpg
 
 ---
 
