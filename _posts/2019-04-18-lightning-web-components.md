@@ -159,8 +159,6 @@ export default class MyComponent extends LightningElement {
 
 \- Louis
 
-> Quote from Andre about previous pain points around not using sfdx/Aura components.
-
 ## And if I understand correctly LWC allowed the team to vastly improve the automatic tests of the product?
 
 > With the support of local unit testing with [Jest](https://jestjs.io/) of Lightning Web Components, we can now truly say that we are testing the great majority of our package. We had tests before with [Mocha](https://mochajs.org/) for all of our TypeScript components which were used by our Aura components. And we recently also started using the [Lightning Testing Service](https://github.com/forcedotcom/LightningTestingService) to test our Aura components. We also pushed it further using [Nightwatch](http://nightwatchjs.org/) for end-to-end testing. But nothing compares to the simplicity of having local running unit tests with Jest on our Lightning Web Components. Instead of having to deploy our entire code to Salesforce to test a new feature, we can now simply write and run tests locally on the components we create. Which also means all these tests can easily be automated in the context of Continuous Integration. This adds a quality layer that was much harder to have before LWC.
