@@ -22,13 +22,13 @@ Lightning Web Components include two concepts in its name.
 
 **Lightning**: It is a Salesforce related term which defines their UI or front-end applicative framework (by opposition to "Classic" or "Visualforce"). 
 
-**Web Components**: These are the result of three technologies that, when used in combination, allow you to define custom and reusable web elements. It leverages *Custom elements* which allows you to define custom web elements in JavaScript and some behaviour which in turn can be rendered in a web browser. These custom elements also use the *Shadow DOM* which is an encapsulation of the DOM tree attached to a specific element. This is used to isolate features and behaviour of your element from other parts of the document. And finally, Web Components use the `<template>` and `<slot>` elements that allow you to write markup that is not displayed in your page but can be reused where you want in your page.
+**Web Components**: These are the result of three technologies that, when used in combination, allow you to define custom and reusable HTML elements. It leverages *Custom elements* which allows you to define custom web elements in JavaScript and some behavior which in turn can be rendered in a web browser. These custom elements also use the *Shadow DOM* which is an encapsulation of the DOM tree attached to a specific element. This is used to isolate the features and behavior of your element from other parts of the document. And finally, Web Components use the `<template>` and `<slot>` elements that allow you to write markup that is not displayed in your page but can be reused where you want in your page.
 
 So if you put the two together, you get Web Components that can interact with Salesforce, either to access data or to be part of their application rendering loop. Which means Salesforce has made available this new bleeding edge web technology (Web Components) and allowed it to communicate very easily with Salesforce (Lightning).
 
 ## Meet the team
 
-Before jumping on our experience with LWC, here are the members of our team that took part in the original exploration of this new framework.
+Before jumping on our experience with LWC, here are the members of our team that took part in the original exploration of this new framework. This post will be structured in the form of a Q&A with the different team members. Below you can have a better idea of their level of knowledge of Salesforce, experience at Coveo, and knowledge of web development.
 
 ### Jeremie Robert
 
@@ -142,7 +142,7 @@ export default class MyComponent extends LightningElement {
   };
 }
 ```
-> You clearly see what is exposed publicly outside of your component. It makes it easy to use composition of components; it is similar to React, but uses the shadow DOM to process rendering and to encapsulate behaviour and data. And the `@wire` decorator makes it very simple to understand clearly that you are calling Apex declaratively and letting Salesforce take care of caching the information.
+> You clearly see what is exposed publicly outside of your component. It makes it easy to use composition of components; it is similar to React, but uses the shadow DOM to process rendering and to encapsulate behavior and data. And the `@wire` decorator makes it very simple to understand clearly that you are calling Apex declaratively and letting Salesforce take care of caching the information.
 
 \- Jeremie
 
@@ -178,7 +178,7 @@ export default class MyComponent extends LightningElement {
 > Some gotchas to take into account that had me searching for a little while:
 >
 > 1. As of writing this post, LWC does not allow for custom decorators, only the ones provided by Salesforce and the LWC framework. JavaScript decorators are still only a proposition to ECMAScript, but seeing the decorators offered by Salesforce makes me want to be able to create my own. For example, I would like to create a `@log({level: 'info'})` decorator to mark a method to log to the console for tracking purposes. Or one of the frequently seen use cases with LWC: `@executeOnce` could be useful too.
-> 2. Be wary of the difference between `this.querySelector`, `this.template.querySelector`, and `element.shadowRoot.querySelector`. The first one is used to search the DOM in a *slot*, the second one is used to search within the body of your LWC, and the third one is used within unit tests.
+> 2. Be wary of the difference between `this.querySelector` and `this.template.querySelector`. You normally should use `this.template.querySelector` to access DOM elements. However, when you are using *slots*, the elements within the *slot* do not belong to your component, so you use `this.querySelector`. 
 
 \- Jeremie
 
