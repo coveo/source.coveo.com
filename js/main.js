@@ -61,7 +61,7 @@ var SuggestionScope = '@syssource=("source.coveo.com")'; //Search Box suggestion
 var searchTokenCloudV1 = '7b9b9300-3901-437b-bafd-51ae596f1b16'; //API Key allowing to query
 var searchToken = 'xx15d10ab2-cb6c-4c13-addb-aa871471c00e';
 var hostname = window.location.hostname; //To manage dev/staging/prod environment
-var TechDocSearchPage = 'https://support.coveo.com/s/search/All/Home/%40uri';
+var TechDocSearchPage = 'https://connect.coveo.com/s/global-search/%40uri';
 
 $(function(){
 	Coveo.SearchEndpoint.endpoints["default"] = new Coveo.SearchEndpoint({
