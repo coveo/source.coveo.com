@@ -21,7 +21,9 @@ For example some benchmark give the following metrics :
 * 120 000 sample/second
 * 300 000 active time series
 * 3 Go of ram
+
 Us :
+
 * 640 target
 * 20 000 sample/second
 * 1 M active time series ( sum(scrape_samples_scraped) )
@@ -32,8 +34,10 @@ But first let's take a quick overview of prometheus2 and its storage
 
 ## Vocabulary
 
-**Datapoint** : Tuple composed by a timestamp and a value
+**Datapoint** : Tuple composed by a timestamp and a value.
+
 **Metric** : specifies the general feature of a system that is measured (e.g. http_requests_total - the total number of HTTP requests received).
+
 **Time series** : Set of datapoint in a unique combinaison of a metric name and labels set.
 ```
 Ex:
@@ -58,15 +62,15 @@ This is 3 different time series from the 'up' metric.
 
 ## Prometheus Storage (tsdb)
 
-### STORAGE
+### Storage
 
 When prometheus scrape a target it retrieve thousand of metrics, which will be compact into chunk and store in block before being write on the disk. Only the head block is writable all other blocks are immutable. By default a block contain 2h of data.
 
-To prevent data loss, all incoming data is also written to a temporary write ahead log, which is the set of files in our “wal” directory, from which we can re-populate the in-memory database on restart.
+To prevent data loss, all incoming data is also written to a temporary write ahead log, which is a set of files in the “wal” directory, from which we can re-populate the in-memory database on restart.
 
-While the head block is kept in memory, blocks containing older blocks are accessed through mmap().Mmap act like the swap, it will link a memory region to a file. This means we can treat all contents of our database as if they were in memory without occupying any physical RAM, but also means you need to allocate plenty of memory for OS Cache if you want to query data older than fits in the head block.
+While the head block is kept in memory, blocks containing older blocks are accessed through mmap().Mmap act like the swap, it will link a memory region to a file. This means we can treat all contents of the database as if they were in memory without occupying any physical RAM, but also means you need to allocate plenty of memory for OS Cache if you want to query data older than fits in the head block.
 
-### COMPACTIONS
+### Compactions
 
 The head block is flushed to disk periodically, while at the same time, compactions to merge a few blocks together are performed to avoid need to scan too many blocks for queries.
 
@@ -74,7 +78,7 @@ The wal files are only deleted once the head chunk has been flushed to disk.
 
 ## Investigation
 
-### EVALUATE OUR USAGE
+### Usage evaluation
 
 **Disk usage**
 
@@ -88,7 +92,7 @@ Needed_ram = number_of_serie_in_head * 8Kb (approximate size of a time series. n
 
 5 500 000 * 8 = 44 Go
 
-### ANALYZE RAM USAGE
+### Analyze memory usage
 
 Prometheus expose go profiling tools, so let see what we have.
 ```
@@ -118,7 +122,7 @@ First thing we see that the memory usage is only 10 Go which means all 30Go rema
 
 Secondly we see that we have a huge amount of memory used by labels which indicate a probably high cardinality issue. High cardinality mean a metrics using a label which has plenty of different value
 
-### ANALYZE LABELS USAGE
+### Analyze labels usage
 
 The tsdb binary has an analyze option which can retrieve many useful statistics on the tsdb database. 
 
@@ -256,27 +260,27 @@ Here the only action we will take will be to drop the id label which brings any 
 ### DEV
 
 **Before optimization**
-(/images/2019-05-17-prometheus-memory/image2.png)
+![](/images/2019-05-17-prometheus-memory/image2.png)
 
 **After**
-(/images/2019-05-17-prometheus-memory/image4.png)
+![](/images/2019-05-17-prometheus-memory/image4.png)
 
-**PROD**
-(/images/2019-05-17-prometheus-memory/image3.png)
+### PROD
+
+![](/images/2019-05-17-prometheus-memory/image3.png)
 
 After applying optimization sample rate has been divided by 4
-(/images/2019-05-17-prometheus-memory/image2019-5-13_15-27-4.png)
+![](/images/2019-05-17-prometheus-memory/image2019-5-13_15-27-4.png)
 
 Pod memory usage has been immediately divided by 2 after deploying our optimization and is now at 8 Go which represent an improvement of 375% of the memory usage.
 
 ## What we learned
 
-* Labels in metrics have more impact than the metrics itself
-* Memory see by docker is not the memory really used by prometheus
-* Go profiling is a nice thing for debug
+* Labels in metrics have more impact, on the memory usage, than the metrics itself.
+* Memory see by docker is not the memory really used by prometheus.
+* Go profiling is a nice thing for debug.
 
+###### Useful urls
 
-
-**Useful urls**
-[https://github.com/prometheus/tsdb/blob/master/head.go]
-[https://fabxc.org/tsdb/]
+* <https://github.com/prometheus/tsdb/blob/master/head.go>
+* <https://fabxc.org/tsdb/>
