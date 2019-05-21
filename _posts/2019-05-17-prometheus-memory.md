@@ -11,67 +11,68 @@ author:
   image: tdegiacinto.jpg
 ---
 
-Here at coveo we are using [Prometheus 2](https://prometheus.io/) for collecting all our monitoring metrics. It's known for being able to handle millions of time series with few resources. So when our pod was hiting its 30Gi memory limit we decided to dive into it to understand how memory is allocated.
+At Coveo, we use [Prometheus 2](https://prometheus.io/) for collecting all of our monitoring metrics. Prometheus is known for being able to handle millions of time series with only a few resources. So when our pod was hiting its 30Gi memory limit, we decided to dive into it to understand how memory is allocated, and get to the root of the issue.
 
 <!-- more -->
 
-Recently we ran in an issue were our prometheus pod was killed by kubenertes because it was reaching its 30Gi memory limit. Which was surprising considering the numbers of metrics we were collecting.
-For comparaison, some benchmark available on internet give the following statistics :
+Recently, we ran into an issue were our Prometheus pod was killed by Kubenertes because it was reaching its 30Gi memory limit. This surprised us, considering the amount of metrics we were collecting.
+
+For comparison, some benchmark available on the Internet gives the following statistics:
 
 * 800 microservice  + k8s
-* 120 000 sample/second
-* 300 000 active time series
-* 3 Go of ram
+* 120,000 sample/second
+* 300,000 active time series
+* 3Go of ram
 
-Us :
+On our end, we had the following:
 
 * 640 target
-* 20 000 sample/second
+* 20,000 sample/second
 * 1 M active time series ( sum(scrape_samples_scraped) )
-* 5,5 M total time series
+* 5.5 M total time series
 * 40Go of ram
 
-But first let's take a quick overview of Prometheus 2 and its storage ([tsdb v3](https://github.com/prometheus/tsdb)).
+Before diving into our issue, let's first have a quick overview of Prometheus 2 and its storage ([tsdb v3](https://github.com/prometheus/tsdb)).
 
 ## Vocabulary
 
-**Datapoint** : Tuple composed of a timestamp and a value.
+**Datapoint**: Tuple composed of a timestamp and a value.
 
-**Metric** : specifies the general feature of a system that is measured (e.g. http_requests_total - the total number of HTTP requests received).
+**Metric**: Specifies the general feature of a system that is measured (e.g., `http_requests_total` is the total number of HTTP requests received).
 
-**Time series** : Set of datapoint in a unique combinaison of a metric name and labels set. For instance, here are 3 different time series from the up metric:
+**Time series**: Set of datapoint in a unique combinaison of a metric name and labels set. For instance, here are 3 different time series from the up metric:
+
 ```
-Ex:
 up{endpoint="9106",instance="100.99.226.5:9106",job="cw-exp-efs-pp",namespace="infrastructure",pod="cw-exp-efs-pp-74f9898c48-4r9p5",service="cw-exp-efs-pp"}	
 up{endpoint="9115",instance="100.100.99.15:9115",job="blackbox-exporter",namespace="monitoring",pod="blackbox-exporter-7848648fd5-ndrtk",service="blackbox-exporter"}	
 up{endpoint="9115",instance="100.106.50.198:9115",job="blackbox-exporter",namespace="monitoring",pod="blackbox-exporter-7848648fd5-mqjjf",service="blackbox-exporter"}
 ```
 
-**Target** : Monitoring endpoint that expose metrics in the prometheus format
+**Target**: Monitoring endpoint that exposes metrics in the Prometheus format.
 
-**Chunk** : Batch of scraped time series.
+**Chunk**: Batch of scraped time series.
 
-**Series churn** : Describe that a set of time series becomes inactive, i.e. receives no more data points, and a new set of active series appears instead. Rolling updates can create this kind of situation.
+**Series Churn**: Describes when a set of time series becomes inactive (i.e., receives no more data points) and a new set of active series is created instead. Rolling updates can create this kind of situation.
 
-**Blocks** : A fully independent database containing all time series data for its time window. Hence, it has its own index and set of chunk files.
+**Blocks**: A fully independent database containing all time series data for its time window. It has its own index and set of chunk files.
 
-**Head Block** : The currently open block where all incoming chunks are written.
+**Head Block**: The currently open block where all incoming chunks are written.
 
-**Sample** : A collection of all datapoint grabs on a target in one scrape.
+**Sample**: A collection of all datapoint grabbed on a target in one scrape.
 
 ## Prometheus Storage (tsdb)
 
 ### Storage
 
-When prometheus scrape a target it retrieve thousands of metrics, which will be compacted into chunk and stored in block before being written on disk. Only the head block is writable, all other blocks are immutable. By default, a block contain 2h of data.
+When Prometheus scrapes a target, it retrieves thousands of metrics, which are compacted into chunks and stored in blocks before being written on disk. Only the head block is writable; all other blocks are immutable. By default, a block contain 2 hours of data.
 
 To prevent data loss, all incoming data is also written to a temporary write ahead log, which is a set of files in the `wal` directory, from which we can re-populate the in-memory database on restart.
 
-While the head block is kept in memory, blocks containing older blocks are accessed through mmap(). This system call act like the swap, it will link a memory region to a file. This means we can treat all contents of the database as if they were in memory without occupying any physical RAM, but also means you need to allocate plenty of memory for OS Cache if you want to query data older than fits in the head block.
+While the head block is kept in memory, blocks containing older blocks are accessed through `mmap()`. This system call acts like the swap; it will link a memory region to a file. This means we can treat all the content of the database as if they were in memory without occupying any physical RAM, but also means you need to allocate plenty of memory for OS Cache if you want to query data older than fits in the head block.
 
 ### Compactions
 
-The head block is flushed to disk periodically, while at the same time, compactions to merge a few blocks together are performed to avoid the need to scan too many blocks for queries.
+The head block is flushed to disk periodically, while at the same time, compactions to merge a few blocks together are performed to avoid needing to scan too many blocks for queries.
 
 The `wal` files are only deleted once the head chunk has been flushed to disk.
 
@@ -93,7 +94,8 @@ Needed_ram = number_of_serie_in_head * 8Kb (approximate size of a time series. n
 
 ### Analyze memory usage
 
-Prometheus expose [Go](https://golang.org/) [profiling tools](https://golang.org/pkg/runtime/pprof/), so let see what we have.
+Prometheus exposes [Go](https://golang.org/) [profiling tools](https://golang.org/pkg/runtime/pprof/), so let see what we have.
+
 ```
 $ go tool pprof -symbolize=remote -inuse_space https://monitoring.prod.cloud.coveo.com/debug/pprof/heap
 File: prometheus
@@ -117,15 +119,16 @@ Showing top 10 nodes out of 64
   304.51MB  2.92% 84.87%   304.51MB  2.92%  github.com/prometheus/tsdb.(*decbuf).uvarintStr /app/vendor/github.com/prometheus/tsdb/encoding_helpers.go
 ```
 
-First, we see that the memory usage is only 10 Gb which means all the remaining 30GB used is, in fact, the cached memory allocated by mmap.
+First, we see that the memory usage is only 10Gb, which means the remaining 30GB used is, in fact, the cached memory allocated by mmap.
 
-Secondly we see that we have a huge amount of memory used by labels which indicate a probably high cardinality issue. High cardinality mean a metrics using a label which has plenty of different value
+Second, we see that we have a huge amount of memory used by labels, which likely indicates a high cardinality issue. High cardinality means a metrics is using a label which has plenty of different values.
 
-### Analyze labels usage
+### Analyze label usage
 
 The tsdb binary has an `analyze` option which can retrieve many useful statistics on the tsdb database.
 
-So we decided to copy the disk storing our data from prometheus and mount it on a dedicated instance to run the analyze.
+So we decided to copy the disk storing our data from prometheus and mount it on a dedicated instance to run the analysis.
+
 ```
 Block path: /prometheus/prometheus-db/01D9CMTKZAB0R8T4EM95PKXKQ6
 Duration: 2h0m0s
@@ -250,11 +253,11 @@ Highest cardinality metric names:
 120963 container_spec_memory_reservation_limit_bytes
 ```
 
-We can see that the monitoring of one of the Kubernetes service(kubelet) seems to generate a lot of churn (which is normal considering that it expose all of the container metrics and that container rotate often ) and that the id label has an high cardinality.
+We can see that the monitoring of one of the Kubernetes service(kubelet) seems to generate a lot of churn, which is normal considering that it exposes all of the container metrics and that container rotate often, and that the id label has high cardinality.
 
 ## Actions
 
-Here, the only action we will take will be to dropping the `id` label which doesn't bring any interesting information.
+The only action we will take here is to drop the `id` label, since it doesn't bring any interesting information.
 
 ### DEV
 
@@ -268,18 +271,18 @@ Here, the only action we will take will be to dropping the `id` label which does
 
 ![](/images/2019-05-17-prometheus-memory/image3.png)
 
-After applying optimization, sample rate has been divided by 4
+After applying optimization, the sample rate was reduced by 75%.
 ![](/images/2019-05-17-prometheus-memory/image2019-5-13_15-27-4.png)
 
-Pod memory usage has been immediately divided by 2 after deploying our optimization and is now at 8 Gb which represent a 375% improvement of the memory usage.
+Pod memory usage was immediately halved after deploying our optimization and is now at 8Gb, which represents a 375% improvement of the memory usage.
 
 ## What we learned
 
 * Labels in metrics have more impact on the memory usage than the metrics itself.
-* Memory seen by docker is not the memory really used by prometheus.
-* Go profiling is a nice debugging tool.
+* Memory seen by Docker is not the memory really used by Prometheus.
+* The Go profiler is a nice debugging tool.
 
-###### Useful urls
+## Useful urls
 
 * <https://github.com/prometheus/tsdb/blob/master/head.go>
 * <https://fabxc.org/tsdb/>
