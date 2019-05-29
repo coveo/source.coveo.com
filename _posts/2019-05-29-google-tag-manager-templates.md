@@ -50,11 +50,11 @@ In the `Tags` section of your Google Tag Manager workspace, create a new Tag. Yo
 
 ![Selecting Coveo Analytics Load Script]({{"/images/posts/googletagmanager-template/gtm-custom-tag-section.png" | relative_url }})
 
-The tag requires a Coveo Analytics API key. For this, you need to get into your Coveo Cloud instance, and create an API key with the `Push` access level on the `Analytics Data` privilege. I recommend creating a variable with this value so that you can easily change it later.
+The tag requires a Coveo Analytics API key. For this, you need to get into your Coveo Cloud instance and create an API key with the `Push` access level on the `Analytics Data` privilege. I recommend creating a variable with this value so that you can easily change it later.
 
 Set the script version to the latest release version of the [coveo.analytics release](https://github.com/coveo/coveo.analytics.js/releases) (at least 1.0).
 
-Add a new trigger to this tag, preferably on `Page View` so that the script is loaded thorough your site.
+Add a new trigger to this tag, preferably on `Page View` so that the script is loaded in all of your site pages.
 
 Your final tag should look like this one:
 
@@ -78,7 +78,7 @@ Select an Event Value. In this case, you want to event to be associated with the
 
 You also need to provide the `Language` key. Create a `Page Language` variable and assign its value with the method of your choice.
 
-You can also provide additional metadata, filled from other variable. In this case, I wanted to track whether the user was a returning customer when it clicked the link, so I added the `isReturningCustomer` key and assigned its value to a variable. For it to appear in Coveo Cloud, I had to create a custom dimension on the `isReturningCustomer` custom event metadata.
+You can also provide additional metadata, filled from other variables. In this case, I wanted to track whether the user was a returning customer when it clicked the link, so I added the `isReturningCustomer` key and assigned its value to a variable. For it to appear in Coveo Cloud, I had to create a custom dimension on the `isReturningCustomer` custom event metadata.
 
 ![Coveo Cloud Custom Dimension]({{"/images/posts/googletagmanager-template/coveo-cloud-custom-dimensions.png" | relative_url }})
 
