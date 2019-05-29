@@ -12,10 +12,6 @@ author:
 
 ---
 
-This post explains how to leverage Coveo Analytics in your Google Tag Manager instance using the new `Custom Templates` feature!
-
-<!-- more -->
-
 ## Why
 
 In the past few weeks, I had the goal to improve the [coveo.analytics](https://github.com/coveo/coveo.analytics.js) project and its integration into [Google Tag Manager](https://developers.google.com/tag-manager/).
@@ -24,9 +20,9 @@ I wanted to leverage its API to automatically deploy tags and variables that peo
 
 Then magic happened, and the Google Tag Manager team released on May 23rd [Custom Templates](https://developers.google.com/tag-manager/templates/), which serves the exact purpose of what I wanted to integrate using the API.
 
-There was my new goal: Create a template to better integrate Coveo Analytics.
+This post explains how to leverage the new Google Tag Manager templates created for Coveo Cloud.
 
-I won't go over how to build a template since this has already been explained thoroughly in Simo Ahava's [Custom Templates Guide for Google Tag Manager](https://www.simoahava.com/analytics/custom-templates-guide-for-google-tag-manager/).
+<!-- more -->
 
 ## Importing the Coveo Scripts
 
