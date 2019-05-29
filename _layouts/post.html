@@ -38,9 +38,9 @@ layout: base
                 <div class="tags">
                       {% for tag in page.tags %}
                         {% if forloop.last %}
-                          <a href="https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[{{ tag }}]">{{ tag }}</a>                          
+                          <a href="https://connect.coveo.com/s/global-search/%40uri#t=All&sort=relevancy&f:resourceType=[Blog]&f:@blogtags=[{{ tag }}]">{{ tag }}</a>                          
                         {% else %}
-                          <a href="https://support.coveo.com/s/search/All/Home/%40uri#t=All&sort=relevancy&f:@sitename=[Technical%20Blog]&f:@tags=[{{ tag }}]">{{ tag }}</a>                          
+                          <a href="https://connect.coveo.com/s/global-search/%40uri#t=All&sort=relevancy&f:resourceType=[Blog]&f:@blogtags=[{{ tag }}]">{{ tag }}</a>                          
                         {% endif %}
                       {% endfor %}
                   </div>
