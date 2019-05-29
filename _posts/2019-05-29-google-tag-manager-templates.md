@@ -1,8 +1,8 @@
 ---
 layout: post
 
-title: "Coveo + Google Tag Manager Templates"
-tags: [Coveo, Google Tag Manager, gtm, Analytics]
+title: "Using Coveo's Google Tag Manager Templates to Log Analytics"
+tags: [Coveo, Analytics, Google Tag Manager, gtm]
 
 author:
   name: François Lachance-Guillemette
@@ -12,15 +12,13 @@ author:
 
 ---
 
-## Why
-
 In the past few weeks, I had the goal to improve the [coveo.analytics](https://github.com/coveo/coveo.analytics.js) project and its integration into [Google Tag Manager](https://developers.google.com/tag-manager/).
 
 I wanted to leverage its API to automatically deploy tags and variables that people would fill to easily configure page views and custom events in an existing Google Tag Manager workspace.
 
 Then magic happened, and the Google Tag Manager team released on May 23rd [Custom Templates](https://developers.google.com/tag-manager/templates/), which serves the exact purpose of what I wanted to integrate using the API.
 
-This post explains how to leverage the new Google Tag Manager templates created for Coveo Cloud.
+This post explains how to use Coveo's official Google Tag Manager templates.
 
 <!-- more -->
 
