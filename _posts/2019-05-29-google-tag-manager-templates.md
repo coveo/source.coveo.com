@@ -30,7 +30,7 @@ You need to download the two `.tpl` files located in the sub-folders of this lin
 
 Then, in the `Templates` section of your Google Tag Manager workspace, create a new Tag Templates. Click on the menu button on the top right corner, and then `Import`.
 
-![Import a Tag]({{"/images/posts/googletagmanager-template/gtm-import-template.png" | relative_url }})
+![Import a Tag]({{ site.baseurl }}/images/googletagmanager-template/gtm-import-template.png)
 
 Start by importing both templates.
 
@@ -42,11 +42,11 @@ The `Coveo Analytics Log Event.tpl` template is the tag that sends at actual ana
 
 In the `Tags` section of your Google Tag Manager workspace, create a new Tag. You should now see `Coveo Analytics Load Script`. Select it.
 
-![Selecting Coveo Analytics Load Script]({{"/images/posts/googletagmanager-template/gtm-custom-tag-section.png" | relative_url }})
+![Selecting Coveo Analytics Load Script]({{ site.baseurl }}/images/posts/googletagmanager-template/gtm-custom-tag-section.png)
 
 The tag requires a Coveo Analytics API key. For this, you need to get into your Coveo Cloud instance and create an API key with the `Push` access level on the `Analytics Data` privilege. I recommend creating a variable with this value so that you can easily change it later.
 
-![Selecting Coveo Analytics Load Script]({{"/images/posts/googletagmanager-template/cloud-api-key-privilege.png" | relative_url }})
+![Selecting Coveo Analytics Load Script]({{ site.baseurl }}/images/googletagmanager-template/cloud-api-key-privilege.png)
 
 Set the script version to the latest release version of the [coveo.analytics release](https://github.com/coveo/coveo.analytics.js/releases) (at least 1.0).
 
