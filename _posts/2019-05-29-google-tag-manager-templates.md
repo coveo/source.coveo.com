@@ -46,6 +46,8 @@ In the `Tags` section of your Google Tag Manager workspace, create a new Tag. Yo
 
 The tag requires a Coveo Analytics API key. For this, you need to get into your Coveo Cloud instance and create an API key with the `Push` access level on the `Analytics Data` privilege. I recommend creating a variable with this value so that you can easily change it later.
 
+![Selecting Coveo Analytics Load Script]({{"/images/posts/googletagmanager-template/cloud-api-key-privilege.png" | relative_url }})
+
 Set the script version to the latest release version of the [coveo.analytics release](https://github.com/coveo/coveo.analytics.js/releases) (at least 1.0).
 
 Add a new trigger to this tag, preferably on `Page View` so that the script is loaded in all of your site pages.
@@ -66,9 +68,9 @@ Create a new Tag based on `Coveo Analytics Log Event`.
 
 Select `Custom` as the Event Type, if not already selected.
 
-You need to choose a custom event type. This is the name that appears in your Coveo Cloud Analytics visits.
+Choose a custom event type. This is the name that appears in your Coveo Cloud Analytics visits.
 
-Select an Event Value. In this case, you want to event to be associated with the clicked URL, so it would be wise to use Google Tag Manager's Built-in Variable `Click URL`.
+Select an Event Value. In this case, the event needs to be associated with the clicked URL, so it would be wise to use Google Tag Manager's Built-in Variable `Click URL`.
 
 You also need to provide the `Language` key. Create a `Page Language` variable and assign its value with the method of your choice.
 
