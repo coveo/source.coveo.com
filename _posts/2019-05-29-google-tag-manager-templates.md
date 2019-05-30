@@ -54,11 +54,11 @@ Add a new trigger to this tag, preferably on `Page View` so that the script is l
 
 Your final tag should look like this one:
 
-![Coveo - Load Script Configuration]({{"/images/posts/googletagmanager-template/gtm-load-script-configuration.png" | relative_url }})
+![Coveo - Load Script Configuration]({{ site.baseurl }}/images/googletagmanager-template/gtm-load-script-configuration.png")
 
 You can validate that it is working by entering `Preview` mode in Google Tag Manager and visiting your page.
 
-![Coveo - Load Script Triggered]({{"/images/posts/googletagmanager-template/gtm-load-script-tag-triggered.png" | relative_url }})
+![Coveo - Load Script Triggered]({{ site.baseurl }}/images/googletagmanager-template/gtm-load-script-tag-triggered.png)
 
 ## Logging Custom Events into Coveo Cloud
 
@@ -76,19 +76,19 @@ You also need to provide the `Language` key. Create a `Page Language` variable a
 
 You can also provide additional metadata, filled from other variables. In this case, I wanted to track whether the user was a returning customer when it clicked the link, so I added the `isReturningCustomer` key and assigned its value to a variable. For it to appear in Coveo Cloud, I had to create a custom dimension on the `isReturningCustomer` custom event metadata.
 
-![Coveo Cloud Custom Dimension]({{"/images/posts/googletagmanager-template/coveo-cloud-custom-dimensions.png" | relative_url }})
+![Coveo Cloud Custom Dimension]({{ site.baseurl }}/images/googletagmanager-template/coveo-cloud-custom-dimensions.png)
 
 Your final tag should look like this one:
 
-![Coveo - Log Click Configuration]({{"/images/posts/googletagmanager-template/gtm-log-click-configuration.png" | relative_url }})
+![Coveo - Log Click Configuration]({{ site.baseurl }}/images/googletagmanager-template/gtm-log-click-configuration.png)
 
 Once you load `Preview` mode in Google Tag Manager and visit your site, every link clicked will be logged into Coveo Cloud as part of the current visit.
 
-![Coveo - Log Event Triggered]({{"/images/posts/googletagmanager-template/gtm-click-on-link-tag.png" | relative_url }})
+![Coveo - Log Event Triggered]({{ site.baseurl }}/images/googletagmanager-template/gtm-click-on-link-tag.png)
 
 You can then track your visit in Coveo Cloud in the Visit Browser.
 
-![Coveo Cloud Visit]({{"/images/posts/googletagmanager-template/coveo-cloud-visit.png" | relative_url }})
+![Coveo Cloud Visit]({{ site.baseurl }}/images/googletagmanager-template/coveo-cloud-visit.png)
 
 Now, you are ready to create some reports on this event!
 
