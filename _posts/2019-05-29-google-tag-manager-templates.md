@@ -92,8 +92,16 @@ You can then track your visit in Coveo Cloud in the Visit Browser.
 
 Now, you are ready to create some reports on this event!
 
+## About Logging Coveo Events in Google Services
+
+While this article is about logging Coveo Events **from** Google Tag Manager, there is also some work done to log events the other way around: From Coveo **to** Google Tag Manager.
+
+The feature allows your Coveo Search Interface to automatically fill the `dataLayer` with Coveo metadata. This will make it very easy to leverage Coveo events directly from Google Tag Manager.
+
+It will be available pretty soon in the next JavaScript Search Framework release! For more details technical details, you can [see this pull request](https://github.com/coveo/search-ui/pull/1072/files).
+
 ## Next steps
 
-This is just a basic event reporting for Coveo Cloud through Google Tag Manager. The template currently only supports `custom` and `view` events, but you can get creative with just `custom` events!
+This example here is just basic event reporting for Coveo Cloud through Google Tag Manager. The template currently only supports `custom` and `view` events, but you can get creative with just `custom` events to get all kinds of reporting in Coveo!
 
 Coveo plans to support more types of events in the future. Stay tuned for improvements on the templates!
