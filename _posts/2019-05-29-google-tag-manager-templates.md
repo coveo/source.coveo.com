@@ -12,11 +12,11 @@ author:
 
 ---
 
-In the past few weeks, I had the goal to improve the [coveo.analytics](https://github.com/coveo/coveo.analytics.js) project and its integration into [Google Tag Manager](https://developers.google.com/tag-manager/).
+In the past few weeks, I had the goal to improve the [coveo.analytics.js](https://github.com/coveo/coveo.analytics.js) project and its integration into [Google Tag Manager](https://developers.google.com/tag-manager/).
 
 I wanted to leverage its API to automatically deploy tags and variables that people would fill to easily configure page views and custom events in an existing Google Tag Manager workspace.
 
-Then magic happened, and the Google Tag Manager team released on May 23rd [Custom Templates](https://developers.google.com/tag-manager/templates/), which serves the exact purpose of what I wanted to integrate using the API.
+Then, magic happened, and the Google Tag Manager team released on May 23rd [Custom Templates](https://developers.google.com/tag-manager/templates/), which serves the exact purpose of what I wanted to integrate using the API.
 
 This post explains how to use Coveo's official Google Tag Manager templates.
 
@@ -34,13 +34,13 @@ Then, in the `Templates` section of your Google Tag Manager workspace, create a 
 
 Start by importing both templates.
 
-The `Coveo Analytics Load Script.tpl` template allows you to include the `coveo.analytics` script in your page.
+The `Coveo Analytics Load Script.tpl` template allows you to include the `coveo.analytics.js` script in your page.
 
-The `Coveo Analytics Log Event.tpl` template is the tag that sends at actual analytics event to Coveo Cloud.
+The `Coveo Analytics Log Event.tpl` template is the tag that sends the actual analytics event to Coveo Cloud.
 
-## Loading the Script in your Pages
+## Loading the Script in Your Pages
 
-In the `Tags` section of your Google Tag Manager workspace, create a new Tag. You should now see `Coveo Analytics Load Script`. Select it.
+In the `Tags` section of your Google Tag Manager workspace, create a new Tag. You should now see **Coveo Analytics Load Script**. Select it.
 
 ![Selecting Coveo Analytics Load Script]({{ site.baseurl }}/images/googletagmanager-template/gtm-custom-tag-section.png)
 
@@ -48,7 +48,7 @@ The tag requires a Coveo Analytics API key. For this, you need to get into your 
 
 ![Coveo - Add API Key]({{ site.baseurl }}/images/googletagmanager-template/cloud-api-key-privilege.png)
 
-Set the script version to the latest release version of the [coveo.analytics release](https://github.com/coveo/coveo.analytics.js/releases) (at least 1.0).
+Set the script version to the latest release version of the [coveo.analytics.js release](https://github.com/coveo/coveo.analytics.js/releases) (at least 1.0).
 
 Add a new trigger to this tag, preferably on `Page View` so that the script is loaded in all of your site pages.
 
