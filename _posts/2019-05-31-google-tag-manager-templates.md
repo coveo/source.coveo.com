@@ -94,11 +94,11 @@ Now, you are ready to create some reports on this event!
 
 ## About Logging Coveo Events in Google Services
 
-While this article is about logging Coveo Events **from** Google Tag Manager, there is also some work done to log events the other way around: From Coveo **to** Google Tag Manager.
+While this article is about logging Coveo Events **from** Google Tag Manager, there is also some work done to log events the other way around: from Coveo **to** Google Tag Manager.
 
-The feature allows your Coveo Search Interface to automatically fill the `dataLayer` with Coveo metadata. This will make it very easy to leverage Coveo events directly from Google Tag Manager.
+The feature allows your Coveo Search Interface to automatically fill the `dataLayer` with Coveo metadata. This makes it very easy to leverage Coveo events directly from Google Tag Manager.
 
-It will be available pretty soon in the next JavaScript Search Framework release! For more details technical details, you can [see this pull request](https://github.com/coveo/search-ui/pull/1072/files).
+It will be available pretty soon in the next JavaScript Search Framework release! For more technical details, you can [see this pull request](https://github.com/coveo/search-ui/pull/1072/files).
 
 ## Next steps
 
