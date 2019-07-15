@@ -12,34 +12,41 @@ author:
   image: cebelanger.jpg
 ---
 
-This article is an overview of a powerful strategy to increase search results relevance called scoped search. Its purpose is to introduce scoped search and set the stage for upcoming posts that will address various aspects of its implementation.
-
-<!-- more -->
-
 ![People searching through lots of items](/images/2019-07-11-scoped-search-introduction/anthony-martino-335460-unsplash.jpg)
-> <small>Photo by Anthony Martino on Unsplash</small>
-
-# What Is Scoped Search
+<figcaption>Photo by <a href="https://unsplash.com/@amartino20" target="_blank">Anthony Martino</a> on <a href="https://unsplash.com/" target="_blank">Unsplash</a></figcaption>
 
 It is safe to say that most web users have taken advantage (or been victim) of scoped search at least once in their life, be that deliberate or not. According to the <a href="https://www.nngroup.com/articles/scoped-search/" target="_blank">Nielsen Norman Group</a>, scoped search refers to the principle that “**allows users to limit their search to a section or type of content [...] instead of searching everything in one go.**” <sup>1</sup>.
 
 If you have ever used a **drop-down list linked to the search field** on a website, consulted scope information displayed **within the autocomplete suggestions**, clicked **tabs**, or even checked **top-level facets** in the search engine results page (SERP), then you have most probably experienced scoped search. If not, it might as well be because it happened automatically according to your search terms and you just did not notice it.
 
-![Search box](/images/2019-07-11-scoped-search-introduction/search-box-amazon-01.png)
-> <small>Search box, with scope selection drop-down menu on the left, set to search in all departments</small>
-
-![Scope list](/images/2019-07-11-scoped-search-introduction/scope-selection-amazon-01.png)
-> <small>All available search scopes on Amazon’s website</small>
-
-![Autocomplete suggestions](/images/2019-07-11-scoped-search-introduction/autocomplete-walmart.png)
-> <small>Autocomplete suggestions for the keyword “brush” on Walmart’s website, including scope in colored italic text</small>
-
-
-We often see scoped search on big websites (like Amazon) while on smaller websites that's rarely the case.
-
-Well, that’s no coincidence. 
+We often see scoped search on big websites (like Amazon) while on smaller websites that's rarely the case. Well, that’s no coincidence. 
 
 Let’s take a look at why.
+
+<!-- more -->
+
+---
+
+<small class="muted">This article is an overview of a powerful strategy to increase search results relevance called scoped search. Its purpose is to introduce scoped search and set the stage for upcoming posts that will address various aspects of its implementation.</small>  
+
+---
+
+
+<!-- # What Is Scoped Search -->
+
+![Search box](/images/2019-07-11-scoped-search-introduction/search-box-amazon-01.png)
+<figcaption>Search box, with scope selection drop-down menu on the left, set to search in all departments</figcaption>
+
+![Scope list](/images/2019-07-11-scoped-search-introduction/scope-selection-amazon-01.png)
+<figcaption>All available search scopes on Amazon’s website</figcaption>
+
+<p class="text-center">
+  <img 
+    src="/images/2019-07-11-scoped-search-introduction/autocomplete-walmart.png"
+    alt="Search Box"
+  />
+</p>
+<figcaption>Autocomplete suggestions for the keyword “brush” on Walmart’s website, including scope in colored italic text</figcaption>
 
 # When Is it Useful
 
@@ -48,7 +55,7 @@ On large websites with lots of products or content, being able to search within 
 Since specific terms can refer to various objects within different categories, unscoped search can lead to result lists that are filled with irrelevant content on the first result pages. This is exactly what happens when a customer, in need of a BBQ brush to enjoy the first hot summer day that we get here in Quebec City (and they are pretty rare), search for it on the Walmart website.
 
 ![Product list](/images/2019-07-11-scoped-search-introduction/result-list-walmart-01.jpg)
-> <small>Tough Brush found on the 8th search results list page, due to the absence of scope selection on Walmart’s website, using the keyword “brush”</small>
+<figcaption>Tough Brush found on the 8th search results list page, due to the absence of scope selection on Walmart’s website, using the keyword “brush”</figcaption>
 
 <span id="large-catalogs">On smaller websites though, scoped search tends to generate narrow or even empty search result lists, which adds unnecessary steps and effort to get what we want. This is why scoped search should **only be implemented on websites with large and diverse catalogs** <sup>3</sup>.</span> 
 
@@ -76,8 +83,9 @@ More precisely, businesses tend to **map content categorization on internal stru
 
 The risk about implementing scoped search is that it has somewhat of a thankless role in the search ecosystem. If it does not help users, it can be the determining factor that makes them leave the site. On the other hand, if it manages to solve the user’s problem, scoped search becomes the savior of the situation and generates a high level of trust and satisfaction. 
 
-![User journey](/images/2019-07-11-scoped-search-introduction/user-journey-table-01.png)
-> <small>Representation of users journey when they use scoped search</small>
+<!-- ![User journey](/images/2019-07-11-scoped-search-introduction/user-journey-table-01.png) 
+<figcaption class="">Representation of users journey when they use scoped search</figcaption> -->
+
 
 As with most bad implementations, bad scoped search can **confuse users and add friction** to their journey towards the goal they have in mind. More specifically, it can lead users to **think that the website does not have the information or item that they are looking for**, which in turn is likely to lead to site abandonment <sup>4</sup>. 
 
@@ -93,7 +101,7 @@ When well implemented, scoped search can **help your users find what they are lo
 
 1. The **information architecture** behind the content categorization.
 1. The **user interface (UI)** that makes the category in which the search is performed visible and suggests alternative categories to users while allowing them to modify the targeted category as needed.
-1. The **behavior of the system** that will assign a default category and may or may not activate a category based on the performed search (which is precisely what the Coveo Dynamic Navigation Experience feature allow to do, by the way).
+1. The **behavior of the system** that will assign a default category and may or may not activate a category based on the performed search (which is precisely what the <a href="https://docs.coveo.com/en/1671/coveo-machine-learning/coveo-machine-learning-features#dynamic-navigation-experience-dne-feature" target="_blank">Coveo Dynamic Navigation Experience feature</a> allow to do, by the way).
 
 If you consider implementing scoped search for your website, wait for my next posts in which I will dive deeper into **how to implement scoped search the right way**.
 
