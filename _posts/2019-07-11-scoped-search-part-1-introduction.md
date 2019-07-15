@@ -17,13 +17,15 @@ author:
 
 It is safe to say that most web users have taken advantage (or been victim) of scoped search at least once in their life, be that deliberate or not. According to the <a href="https://www.nngroup.com/articles/scoped-search/" target="_blank">Nielsen Norman Group</a>, scoped search refers to the principle that “**allows users to limit their search to a section or type of content [...] instead of searching everything in one go.**” <sup>1</sup>.
 
+<!-- more -->
+
 If you have ever used a **drop-down list linked to the search field** on a website, consulted scope information displayed **within the autocomplete suggestions**, clicked **tabs**, or even checked **top-level facets** in the search engine results page (SERP), then you have most probably experienced scoped search. If not, it might as well be because it happened automatically according to your search terms and you just did not notice it.
 
-We often see scoped search on big websites (like Amazon) while on smaller websites that's rarely the case. Well, that’s no coincidence. 
+We often see scoped search on big websites (like Amazon) while on smaller websites that's rarely the case. 
+
+Well, that’s no coincidence. 
 
 Let’s take a look at why.
-
-<!-- more -->
 
 ---
 
@@ -83,8 +85,8 @@ More precisely, businesses tend to **map content categorization on internal stru
 
 The risk about implementing scoped search is that it has somewhat of a thankless role in the search ecosystem. If it does not help users, it can be the determining factor that makes them leave the site. On the other hand, if it manages to solve the user’s problem, scoped search becomes the savior of the situation and generates a high level of trust and satisfaction. 
 
-<!-- ![User journey](/images/2019-07-11-scoped-search-introduction/user-journey-table-01.png) 
-<figcaption class="">Representation of users journey when they use scoped search</figcaption> -->
+![User journey](/images/2019-07-11-scoped-search-introduction/new-data-services-UO-QYR28hS0-unsplash.jpg) 
+<figcaption class="">Photo by <a href="https://unsplash.com/@new_data_services" target="_blank">NEW DATA SERVICES</a> on <a href="https://unsplash.com/" target="_blank">Unsplash</a></figcaption>
 
 
 As with most bad implementations, bad scoped search can **confuse users and add friction** to their journey towards the goal they have in mind. More specifically, it can lead users to **think that the website does not have the information or item that they are looking for**, which in turn is likely to lead to site abandonment <sup>4</sup>. 
