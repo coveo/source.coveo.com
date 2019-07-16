@@ -12,7 +12,7 @@ author:
   image: cebelanger.jpg
 ---
 
-![People searching through lots of items](/images/2019-07-11-scoped-search-introduction/anthony-martino-335460-unsplash.jpg)
+![People searching through lots of items]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/anthony-martino-335460-unsplash.jpg)
 <figcaption>Photo by <a href="https://unsplash.com/@amartino20" target="_blank">Anthony Martino</a> on <a href="https://unsplash.com/" target="_blank">Unsplash</a></figcaption>
 
 It is safe to say that most web users have taken advantage (or been victim) of scoped search at least once in their life, be that deliberate or not. According to the <a href="https://www.nngroup.com/articles/scoped-search/" target="_blank">Nielsen Norman Group</a>, scoped search refers to the principle that “**allows users to limit their search to a section or type of content [...] instead of searching everything in one go.**” <sup>1</sup>.
@@ -36,10 +36,10 @@ Let’s take a look at why.
 
 <!-- # What Is Scoped Search -->
 
-![Search box](/images/2019-07-11-scoped-search-introduction/search-box-amazon-01.png)
+![Search box]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/search-box-amazon-01.png)
 <figcaption>Search box, with scope selection drop-down menu on the left, set to search in all departments</figcaption>
 
-![Scope list](/images/2019-07-11-scoped-search-introduction/scope-selection-amazon-01.png)
+![Scope list]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/scope-selection-amazon-01.png)
 <figcaption>All available search scopes on Amazon’s website</figcaption>
 
 <p class="text-center">
@@ -56,7 +56,7 @@ On large websites with lots of products or content, being able to search within 
 
 Since specific terms can refer to various objects within different categories, unscoped search can lead to result lists that are filled with irrelevant content on the first result pages. This is exactly what happens when a customer, in need of a BBQ brush to enjoy the first hot summer day that we get here in Quebec City (and they are pretty rare), search for it on the Walmart website.
 
-![Product list](/images/2019-07-11-scoped-search-introduction/result-list-walmart-01.jpg)
+![Product list]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/result-list-walmart-01.jpg)
 <figcaption>Tough Brush found on the 8th search results list page, due to the absence of scope selection on Walmart’s website, using the keyword “brush”</figcaption>
 
 <span id="large-catalogs">On smaller websites though, scoped search tends to generate narrow or even empty search result lists, which adds unnecessary steps and effort to get what we want. This is why scoped search should **only be implemented on websites with large and diverse catalogs** <sup>3</sup>.</span> 
@@ -85,7 +85,7 @@ More precisely, businesses tend to **map content categorization on internal stru
 
 The risk about implementing scoped search is that it has somewhat of a thankless role in the search ecosystem. If it does not help users, it can be the determining factor that makes them leave the site. On the other hand, if it manages to solve the user’s problem, scoped search becomes the savior of the situation and generates a high level of trust and satisfaction. 
 
-![User journey](/images/2019-07-11-scoped-search-introduction/new-data-services-UO-QYR28hS0-unsplash.jpg) 
+![User journey]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/new-data-services-UO-QYR28hS0-unsplash.jpg) 
 <figcaption class="">Photo by <a href="https://unsplash.com/@new_data_services" target="_blank">NEW DATA SERVICES</a> on <a href="https://unsplash.com/" target="_blank">Unsplash</a></figcaption>
 
 
