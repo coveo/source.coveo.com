@@ -29,7 +29,7 @@ Let’s take a look at why.
 
 ---
 
-<small class="muted">This article is an overview of a powerful strategy to increase search results relevance called scoped search. Its purpose is to introduce scoped search and set the stage for upcoming posts that will address various aspects of its implementation.</small>  
+<small class="muted">This article is an overview of a powerful strategy to increase search results relevance called scoped search. Its purpose is to introduce scoped search and set the stage for upcoming posts that will address various aspects of scope search implementation.</small>  
 
 ---
 
