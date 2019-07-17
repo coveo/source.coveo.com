@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Using Scoped Search to Improve Large Site Search Relevance Part 1: Introducing Scoped Search"
+title: "Improving Large Site Search Relevance Part 1: Introducing Scoped Search"
 
 tags: [Scope, Search, UX, Best Practices]
 
@@ -33,9 +33,6 @@ Let’s take a look at why.
 
 ---
 
-
-<!-- # What Is Scoped Search -->
-
 ![Search box]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/search-box-amazon-01.png)
 <figcaption>Search box, with scope selection drop-down menu on the left, set to search in all departments</figcaption>
 
@@ -54,7 +51,7 @@ Let’s take a look at why.
 
 On large websites with lots of products or content, being able to search within a specific category **can help find what we are looking for faster**, as it filters out a big bunch of irrelevant search results right off the bat. 
 
-Since specific terms can refer to various objects within different categories, unscoped search can lead to result lists that are filled with irrelevant content on the first result pages. This is exactly what happens when a customer, in need of a BBQ brush to enjoy the first hot summer day that we get here in Quebec City (and they are pretty rare), search for it on the Walmart website.
+Since specific terms can refer to various objects within different categories, unscoped search can lead to result lists that are filled with irrelevant content on the first result pages. This is exactly what happens when customers, in need of a brush to clean their BBQ and enjoy the first hot summer day that we get here in Quebec City (and they are pretty rare), searches for it using the keyword "brush" on the Walmart website.
 
 ![Product list]({{ site.baseurl }}/images/2019-07-11-scoped-search-introduction/result-list-walmart-01.jpg)
 <figcaption>Tough Brush found on the 8th search results list page, due to the absence of scope selection on Walmart’s website, using the keyword “brush”</figcaption>
@@ -71,7 +68,7 @@ They only use it once they’ve figured out that the system has not “understoo
 
 If at all, they will therefore use scoped search **for their subsequent searches, not the first one**. 
 
-Keeping that in mind is really important because it means that **scoped search usually happens after a failed attempt**. Said differently there already is friction in the user’s journey when this feature is used, which makes good implementation even more important. 
+Keeping that in mind is really important because it means that **scoped search usually happens after a failed attempt**. In other words there already is friction in the user’s journey when this feature is used, which makes good implementation even more important. 
 
 # The Impact of Bad Implementation
 
@@ -103,9 +100,9 @@ When well implemented, scoped search can **help your users find what they are lo
 
 1. The **information architecture** behind the content categorization.
 1. The **user interface (UI)** that makes the category in which the search is performed visible and suggests alternative categories to users while allowing them to modify the targeted category as needed.
-1. The **behavior of the system** that will assign a default category and may or may not activate a category based on the performed search (which is precisely what the <a href="https://docs.coveo.com/en/1671/coveo-machine-learning/coveo-machine-learning-features#dynamic-navigation-experience-dne-feature" target="_blank">Coveo Dynamic Navigation Experience feature</a> allow to do, by the way).
+1. The **behavior of the system** that will assign a default category and may or may not activate a category based on the performed search (which is precisely what the <a href="https://docs.coveo.com/en/1671/coveo-machine-learning/coveo-machine-learning-features#dynamic-navigation-experience-dne-feature" target="_blank">Coveo Dynamic Navigation Experience feature</a> allows you to do, by the way).
 
-If you consider implementing scoped search for your website, wait for my next posts in which I will dive deeper into **how to implement scoped search the right way**.
+If you are considering implementing scoped search for your website, wait for my next posts in which I will dive deeper into **how to implement scoped search the right way**.
 
 
 ---
