@@ -47,7 +47,7 @@ Let’s take a look at why.
 </p>
 <figcaption>Autocomplete suggestions for the keyword “brush” on Walmart’s website, including scope in colored italic text</figcaption>
 
-# When Is it Useful
+## When Is it Useful
 
 On large websites with lots of products or content, being able to search within a specific category **can help find what we are looking for faster**, as it filters out a big bunch of irrelevant search results right off the bat. 
 
@@ -60,7 +60,7 @@ Since specific terms can refer to various objects within different categories, u
 
 On sites with smaller catalogs, the use of filter facets that can be selected when in the search results page, after the initial search, is often enough to provide a good search experience.
 
-# How Do People Use It
+## How Do People Use It
 
 <a href="https://baymard.com/" target="blank">Studies</a> show that the vast majority of users do not use scoped search for their first search <sup>2</sup>. 
 
@@ -70,7 +70,7 @@ If at all, they will therefore use scoped search **for their subsequent searches
 
 Keeping that in mind is really important because it means that **scoped search usually happens after a failed attempt**. In other words there already is friction in the user’s journey when this feature is used, which makes good implementation even more important. 
 
-# The Impact of Bad Implementation
+## The Impact of Bad Implementation
 
 The most common implementation mistakes that I have seen throughout the years, in relation to scoped search, are mostly centered around three aspects:
 
@@ -90,7 +90,7 @@ As with most bad implementations, bad scoped search can **confuse users and add 
 
 The need that led them to the website in the first place still being unanswered, they are then very **likely to go to a competitor**. 
 
-# Final Thought
+## Final Thought
 
 If your website has a **lot of content and a large variety of categories**, you should consider implementing scoped search. 
 
@@ -107,14 +107,14 @@ If you are considering implementing scoped search for your website, wait for my 
 
 ---
 
-> ### Key Takeaways
+> <h2 class="h3">Key Takeaways</h2>
 >
 > 1. <a href="#large-catalogs">Only use scoped search for websites with large and diverse catalogs.</a>
 > 1. <a href="#to-consider">For good scoped search implementation, make sure to take into account the information architecture behind your categorization, user interfaces that have to be involved as well as the behavior of the system.</a> 
 
 ---
 
-### References
+<h2 class="h3">References</h2>
 
 <small>1, 2 SHERWIN, K. (2015). Scoped Search: Dangerous, but Sometimes Useful. Nielsen Norman Group. Retrieved from https://www.nngroup.com/articles/scoped-search/</small>
 
