@@ -71,4 +71,4 @@ For dinner, we have a company come cook a [Méchoui](https://en.wikipedia.org/wi
 
 ## What's next
 
-We expect to be close to 200 persons next year and with so many people, part of *Coveo Camp* needs to be reserved in advanced. We are already making some preparations and I'm sure people are looking forward to it. And, of course, we are already brainstorming ideas for the next challenge!
+We expect to be close to 200 people next year, and with so many people attending, we already need to start preparing a long time in advance and I'm sure people are looking forward to it. And, of course, we are already brainstorming ideas for the next challenge!
