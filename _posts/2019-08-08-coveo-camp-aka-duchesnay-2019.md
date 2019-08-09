@@ -20,7 +20,7 @@ This year marked the 14th edition of our summer party for the R&D team at Coveo.
 
 ## It all started because...
 
-Coveo was founded in 2005 out of a spin off from [Copernic](https://en.wikipedia.org/wiki/Copernic). As most startup, we worked really hard to come up with the hottest features customers would want and to deliver the first official release of *Coveo Enterprise Search*. After close to 18 months of working on the release, the R&D team needed a well deserved break, so Richard Tessier (Richard is one of Coveo's co-founder) and I had the idea of doing a one-half-day and one-night off site to have fun.
+Coveo was founded in 2005 out of a spin off of [Copernic](https://en.wikipedia.org/wiki/Copernic). As most startup, we worked really hard to come up with the hottest features customers would want and to deliver the first official release of *Coveo Enterprise Search*. After close to 18 months of working on the release, the R&D team needed a well deserved break, so Richard Tessier (one of Coveo's co-founder) and I had the idea of doing a one-half-day and one-night off site to have fun.
 
 It was in June of 2006 that the first *Duchesnay* was held. It consisted of a tree-top adventure in the afternoon and free time afterwards, which meant for most of us volley-ball and beer until dinner and, well, more beers, games, and fun until late at night. The event was highly appreciated by everyone present and we still use several pictures from that event once in a while - sorry, can't share them!
 
