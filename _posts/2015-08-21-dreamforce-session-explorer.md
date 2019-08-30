@@ -110,4 +110,4 @@ Overall, we really enjoyed our experience. We developed an expertise in React an
 
 It was a really intense project, which ended in a really nice app we’re proud of. It’s obviously not perfect and we dropped some features along the way (such as implementing the desktop mockups, adding some facets etc.), but we’re proud of the result and really hope the Dreamforce crowd will enjoy it. It also offers us an app template that we could maybe reuse for some other events!
 
-Don't forget to go [download the app](http://df15.coveo.com/app), and huge thanks for everyone that contributed in the app!
+Don't forget to go download the app, and huge thanks for everyone that contributed in the app!

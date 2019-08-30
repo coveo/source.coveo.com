@@ -105,7 +105,7 @@ Now that this is fixed, you will want to load only one search box. A Coveo searc
 This is of course the simple approach, but you might want to keep the same style accross the site and keep the header box instead. The interface's search box can be removed simply by unchecking the "Display the main search box" checkbox on the [properties of the component](https://developers.coveo.com/x/PgHvAQ).
 
 Once this is done, you will have a header search powering your search interface, but it is not perfect yet. The search box is a simple redirect to the search page, so using that search box will constantly reload your search page, which is not ideal.
-The right approach is to load this search box as a component of the search result page. This was well explained in this [post](https://answers.coveo.com/questions/4830/adding-search-box-hides-the-coveo-search-sublayout), but let me go over it in details.
+The right approach is to load this search box as a component of the search result page. This was well explained in this [post](https://answers.coveo.com/questions/6477/adding-search-box-hides-the-coveo-search-sublayout.html), but let me go over it in details.
 
 First of all, you will want to customize your copy (never the original!) of the SearchBoxView.cshtml file in order to add a new Boolean function detecting if the search box is on a search page:
 

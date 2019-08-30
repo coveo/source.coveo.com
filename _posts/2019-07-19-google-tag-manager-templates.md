@@ -44,7 +44,7 @@ In the `Tags` section of your Google Tag Manager workspace, create a new Tag. Yo
 
 ![Selecting Coveo Analytics Load Script]({{ site.baseurl }}/images/googletagmanager-template/gtm-custom-tag-section.png)
 
-The tag requires a Coveo Analytics API key. For this, you need to get into your [Coveo Cloud](platform.cloud.coveo.com) instance and create an API key with the `Push` access level on the `Analytics Data` privilege. I recommend creating a variable with this value so that you can easily change it later.
+The tag requires a Coveo Analytics API key. For this, you need to get into your [Coveo Cloud](https://platform.cloud.coveo.com) instance and create an API key with the `Push` access level on the `Analytics Data` privilege. I recommend creating a variable with this value so that you can easily change it later.
 
 ![Coveo - Add API Key]({{ site.baseurl }}/images/googletagmanager-template/cloud-api-key-privilege.png)
 

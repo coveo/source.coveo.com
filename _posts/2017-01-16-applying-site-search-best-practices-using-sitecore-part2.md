@@ -26,7 +26,7 @@ If you followed my first set of best practices, chances are that the search inte
 #### Focus on the result
 
 Be careful with the size of the headers and banners on your search result page. You must keep the focus (the center of the screen) on the results and keep in mind that a page refresh will most likely send the user back to the top of the page. Having to scroll back down is a hit on the experience so keeping an anchor in the search results is the way to go.
-For more details, visit this [forum post](https://answers.coveo.com/questions/6113/clearing-facet-brings-the-focus-back-to-the-top-of-the-page).
+For more details, visit this [forum post](https://answers.coveo.com/questions/7760/clearing-facet-brings-the-focus-back-to-the-top-of.html).
 
 #### Limit the number of facets
 
@@ -100,7 +100,7 @@ Tackling every single variant of a word can become an arduous task, which can be
 
 ![Content Gap](/images/SiteSearchBestPractices/contentgap.png)
 
-In the screenshot above, I created a few cards which uses the Query dimension combined with the Relevance Index metric for the first card and the Visit Count metric for the second one. The Relevance index is a mix of result position and frequency of query, the full equation can be found [here](https://answers.coveo.com/questions/7568/how-is-the-relevance-index-metric-calculated). The Visit Count metric will only tell you how many visitors tried that query. To make sure that I am only seeing queries without results, I used the ```HasResult = False``` filter on that same card. These two cards will give you a list of your problematic queries, on which you can spend most of your manual efforts.
+In the screenshot above, I created a few cards which uses the Query dimension combined with the Relevance Index metric for the first card and the Visit Count metric for the second one. The Relevance index is a mix of result position and frequency of query, the full equation can be found [here](https://answers.coveo.com/questions/9214/how-is-the-relevance-index-metric-calculated.html). The Visit Count metric will only tell you how many visitors tried that query. To make sure that I am only seeing queries without results, I used the ```HasResult = False``` filter on that same card. These two cards will give you a list of your problematic queries, on which you can spend most of your manual efforts.
 
 If you have a Coveo Cloud index, then [Coveo Automatic Relevance Tuning (ART)](https://onlinehelp.coveo.com/en/cloud/coveo_reveal_features.htm) will do the work for you; simply [create the model](https://onlinehelp.coveo.com/en/cloud/managing_reveal_automatic_relevance_tuning_in_a_query_pipeline.htm) and then sit back and relax.
 
