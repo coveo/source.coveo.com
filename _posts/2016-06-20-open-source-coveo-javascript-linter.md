@@ -78,7 +78,7 @@ that can be tweaked
 
 Since `ESLint` is extremely extensible, I have created a [shareable config rule
 set](https://github.com/coveo/eslint-config-coveo) to help my fellow colleagues
-here at [Coveo](www.coveo.com) who write Pure JavaScript.
+here at [Coveo](https://www.coveo.com) who write Pure JavaScript.
 
 ### Open-sourcing
 
