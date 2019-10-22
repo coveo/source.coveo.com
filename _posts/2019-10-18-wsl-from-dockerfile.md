@@ -73,7 +73,11 @@ docker cp newvars.txt $containerName:/etc/profile
 
 ## AWS credentials
 
-The goal is to re-use the AWS credentials of the Windows user inside of the WSL distribution. On an EC2 instance using an [instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html), the AWS command-line tools hit a [local URI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) to determine the access keys to use. But for a developer, they will usually have their own configuration files in their home folder. It is thus necessary to link the Windows home folder to the Linux home folder, and share the AWS_PROFILE environment variable. In Powershell, this looks like:
+Our goal is to re-use the AWS credentials of the Windows user inside of the WSL distribution. 
+
+On an EC2 instance using an [instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html), the AWS command-line tools hit a [local URI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) to determine the access keys to use. But for a developer, they will usually have their own configuration files in their home folder. 
+
+It is thus necessary to link the Windows home folder to the Linux home folder and share the AWS_PROFILE environment variable. In Powershell, this looks like:
 ```
 Write-Host "Symlink for AWS config..."
 $translatedHome = "/mnt/" + ${env:USERPROFILE}.Replace("C:","c").Replace("\","/")
@@ -94,7 +98,7 @@ if(![string]::IsNullOrEmpty($newValue)){
 
 ## Exporting and importing
 
-The easy part! On the CI server, the tarball is simply gzipped then uploaded to an [S3 bucket](https://aws.amazon.com/s3/), and on Windows the tar.gz file is directly imported.
+The easy part! On the CI server, the tarball is simply gzipped then uploaded to an [S3 bucket](https://aws.amazon.com/s3/), On Windows, the tar.gz file is directly imported.
 ```
 gzip $distroName.tar
 aws s3 cp $distroName.tar.gz s3://$bucketName/$distroName.tar.gz
