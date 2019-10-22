@@ -21,7 +21,11 @@ Setting up a new computer is always long and difficult. From time to time, a new
 
 Windows users can leverage a technology called [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/faq) to easily switch between Windows and Linux tools. It is possible to run multiple Linux distributions simultaneously, making it great for cross-platform development.
 
-Setting up the Linux distribution remains just as difficult as setting up a new Linux computer. To ease the task, one can use Docker tools to describe the configuration of the distribution in a [dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/). This dockerfile details every library to install, all the tools to download and extract, as well as the necesary environment variables. Usually this container image is used by the [CI system](https://jenkins.io/download/) to build the code on every commit.
+Setting up the Linux distribution remains just as difficult as setting up a new Linux computer. 
+
+To ease the task, one can use Docker tools to describe the configuration of the distribution in a [dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/). This dockerfile details each library to install, all the tools to download and extract, as well as the necessary environment variables. 
+
+Usually, this container image is used by the [CI system](https://jenkins.io/download/) to build the code on every commit.
 
 In this post, I will show how to transform a dockerfile into a WSL distribution in an automated fashion. This allows the Windows developer to build and test the code on Linux using the same build environment as the CI system.
 
