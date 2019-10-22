@@ -32,6 +32,7 @@ In this post, I will show how to transform a dockerfile into a WSL distribution 
 ## Overview of the procedure
 
 Let's assume that the team already has Docker images used by the CI system to build the code. The procedure is (almost) as simple as:
+
 1. Build the Docker image from the Dockerfile.
 2. Run the newly created image in a container.
 3. Export the container filesystem using 'docker export' command. 
