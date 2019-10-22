@@ -32,12 +32,12 @@ Let's assume that the team already has Docker images used by the CI system to bu
 2. Run the newly created image in a container.
 3. Export the container filesystem using 'docker export' command. 
 4. Import the filesystem in WSL using 'wsl --import' command.
-```bash
+```
 docker build --file $containerName.dockerfile --tag $imageTag .
 docker run --name $containerName $imageTag
 docker export --output=$distroName.tar $containerName
 ```
-```bat
+```
 wsl.exe --import $distroName $installLocation $distroName.tar
 ```
 
@@ -56,11 +56,11 @@ The environment variables are not save in the filesystem by Docker. They are in 
 docker inspect --format="{% raw %}{{range .Config.Env}}{{printf \"export %s\n\" .}}{{end}}{% endraw %}" $containerName > vars.txt
 ```
 - Get the current global profile
-```bash
+```
 docker cp $containerName:/etc/profile oldvars.txt
 ```
 - Update the global profile
-```bash
+```
 cat oldvars.txt vars.txt > newvars.txt
 docker cp newvars.txt $containerName:/etc/profile
 ```
