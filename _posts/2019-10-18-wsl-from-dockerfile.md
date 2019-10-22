@@ -52,8 +52,8 @@ So let's take a closer look at each issue and how to solve them.
 
 The environment variables are not save in the filesystem by Docker. They are in the image metadata and applied at runtime, but only in-memory. To retrieve them, the [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect/) command is used, along with some golang goodness to format the output.
 - Create a file containing the export definition of the variables
-```bash
-docker inspect --format="{{range .Config.Env}}{{printf \"export %s\n\" .}}{{end}}" $containerName > vars.txt
+```
+docker inspect --format="{% raw %}{{range .Config.Env}}{{printf \"export %s\n\" .}}{{end}}{% endraw %}" $containerName > vars.txt
 ```
 - Get the current global profile
 ```bash
