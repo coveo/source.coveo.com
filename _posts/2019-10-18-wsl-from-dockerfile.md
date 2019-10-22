@@ -37,6 +37,7 @@ Let's assume that the team already has Docker images used by the CI system to bu
 2. Run the newly created image in a container.
 3. Export the container filesystem using 'docker export' command. 
 4. Import the filesystem in WSL using 'wsl --import' command.
+
 ```
 docker build --file $containerName.dockerfile --tag $imageTag .
 docker run --name $containerName $imageTag
