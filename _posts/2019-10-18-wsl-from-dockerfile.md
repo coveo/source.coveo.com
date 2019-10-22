@@ -88,7 +88,7 @@ if(![string]::IsNullOrEmpty($newValue)){
 
 ## Exporting and importing
 
-The easy part! On the CI server, the tarball is simply gzipped then uploaded to and [S3 bucket](https://aws.amazon.com/s3/), and on Windows the tar.gz file is directly imported.
+The easy part! On the CI server, the tarball is simply gzipped then uploaded to an [S3 bucket](https://aws.amazon.com/s3/), and on Windows the tar.gz file is directly imported.
 ```
 gzip $distroName.tar
 aws s3 cp $distroName.tar.gz s3://$bucketName/$distroName.tar.gz
