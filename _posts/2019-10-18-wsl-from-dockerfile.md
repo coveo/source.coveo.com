@@ -15,6 +15,8 @@ author:
 
 Setting up a new computer is always long and difficult. From time to time, a new developer joins the team and must setup his computer to build the code from the team's repository. This can be a long and frustrating exercise. This is even more difficult when the code is cross-platform and has to be built under Linux and Windows.
 
+In this post, I will show how to transform a dockerfile into a WSL distribution in an automated fashion. This allows the Windows developer to build and test the code on Linux using the same build environment as the CI system.
+
 <!-- more -->
 
 ## Leveraging the existing tools
@@ -26,8 +28,6 @@ Setting up the Linux distribution remains just as difficult as setting up a new 
 To ease the task, one can use Docker tools to describe the configuration of the distribution in a [dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/). This dockerfile details each library to install, all the tools to download and extract, as well as the necessary environment variables. 
 
 Usually, this container image is used by the [CI system](https://jenkins.io/download/) to build the code on every commit.
-
-In this post, I will show how to transform a dockerfile into a WSL distribution in an automated fashion. This allows the Windows developer to build and test the code on Linux using the same build environment as the CI system.
 
 ## Overview of the procedure
 
