@@ -50,7 +50,7 @@ wsl.exe --import $distroName $installLocation $distroName.tar
 Of course, if it was that easy, I wouldn't be writing a post about it, right? Some of the issues with this procedure:
 - Environment variables defined in the Dockerfile are lost
 - If the CI system is running in an [AWS EC2](https://aws.amazon.com/ec2/) instance, the AWS profile/credentials are lost
-- The export and import and done on different computers in real life.
+- The export and import are done on different computers in real life.
 
 So let's take a closer look at each issue and how to solve them.
 
