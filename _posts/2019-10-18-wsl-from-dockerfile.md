@@ -13,7 +13,7 @@ author:
 
 ## The problem
 
-Setting up a new computer is always long and difficult. From time to time, a new developer joins the team and must setup his computer to build the code from the team's repository. This can be a long and frustrating exercise. This is even more difficult when the code is cross-platform and has to be built under Linux and Windows.
+Setting up a new computer is always long and difficult. From time to time, a new developer joins the team and must setup their computer to build the code from the team's repository. This can be a long and frustrating exercise. This is even more difficult when the code is cross-platform and has to be built under Linux and Windows.
 
 In this post, I will show how to transform a dockerfile into a WSL distribution in an automated fashion. This allows the Windows developer to build and test the code on Linux using the same build environment as the CI system.
 
@@ -25,7 +25,7 @@ Windows users can leverage a technology called [Windows Subsystem for Linux](htt
 
 Setting up the Linux distribution remains just as difficult as setting up a new Linux computer. 
 
-To ease the task, one can use Docker tools to describe the configuration of the distribution in a [dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/). This dockerfile details each library to install, all the tools to download and extract, as well as the necessary environment variables. 
+To ease the task, you can use Docker tools to describe the configuration of the distribution in a [dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/). This dockerfile details each library to install, all the tools to download and extract, as well as the necessary environment variables. 
 
 Usually, this container image is used by the [CI system](https://jenkins.io/download/) to build the code on every commit.
 
@@ -35,8 +35,8 @@ Let's assume that the team already has Docker images used by the CI system to bu
 
 1. Build the Docker image from the Dockerfile.
 2. Run the newly created image in a container.
-3. Export the container filesystem using 'docker export' command. 
-4. Import the filesystem in WSL using 'wsl --import' command.
+3. Export the container filesystem using the 'docker export' command. 
+4. Import the filesystem in WSL using the 'wsl --import' command.
 
 ```
 docker build --file $containerName.dockerfile --tag $imageTag .
@@ -47,7 +47,7 @@ docker export --output=$distroName.tar $containerName
 wsl.exe --import $distroName $installLocation $distroName.tar
 ```
 
-Of course, if it was that easy, I wouldn't be writing a post about it, right? Some of the issues with this procedure:
+Of course, if it was that easy, I wouldn't be writing a post about it, right? Some of the issues with this procedure include:
 - Environment variables defined in the Dockerfile are lost
 - If the CI system is running in an [AWS EC2](https://aws.amazon.com/ec2/) instance, the AWS profile/credentials are lost
 - The export and import are done on different computers in real life.
@@ -98,7 +98,7 @@ if(![string]::IsNullOrEmpty($newValue)){
 
 ## Exporting and importing
 
-The easy part! On the CI server, the tarball is simply gzipped then uploaded to an [S3 bucket](https://aws.amazon.com/s3/), On Windows, the tar.gz file is directly imported.
+The easy part! On the CI server, the tarball is simply gzipped then uploaded to an [S3 bucket](https://aws.amazon.com/s3/). On Windows, the tar.gz file is directly imported.
 ```
 gzip $distroName.tar
 aws s3 cp $distroName.tar.gz s3://$bucketName/$distroName.tar.gz
@@ -113,4 +113,4 @@ wsl.exe --import $distroName $installLocation ${distroName}.tar.gz
 
 ## Wrapping up
 
-We have shown how to take a typical Dockerfile used on the CI server, and transform it into a fully functional WSL distribution. The Windows developers can then compile and test on their computer Windows and Linux binaries, without spending the whole day (or week!) trying to setup their computer. This time saving becomes a great efficiency boost as your team grows.
+We have shown how to take a typical Dockerfile used on the CI server, and transform it into a fully functional WSL distribution. The Windows developers can then compile and test on their computer Windows and Linux binaries, without spending the whole day (or week!) trying to setup their computer. This time-saving trick becomes extremely useful to give your team an efficiency boost as it continues to grow.
