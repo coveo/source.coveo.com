@@ -16,7 +16,7 @@ Here at coveo we are using [Prometheus 2](https://prometheus.io/) for collecting
 <!-- more -->
 
 Recently we ran in an issue were our prometheus pod was killed by kubenertes because it was reaching its 30Gi memory limit. Which was surprising considering the numbers of metrics we were collecting.
-For comparaison, some benchmark available on internet give the following statistics :
+For comparison, benchmarks for a typical Prometheus installation usually look something like this :
 
 * 800 microservice  + k8s
 * 120 000 sample/second
