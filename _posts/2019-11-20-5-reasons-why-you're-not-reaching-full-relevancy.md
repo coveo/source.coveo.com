@@ -30,11 +30,11 @@ For current implementations, we invite you to [log in to the platform](https://p
 
 ## #2-You're not tracking analytics
 
-You might have created a Query suggestion model and might already be sending a lot of queries, but are wondering why you still do not have query suggestions. One common error that we see in customer implementations is **untracked usage analytics** which included **search events** and **click events**. Both events are essential in order for a query to be considered as successful. A search event is created when the end user interacts with the search interface in a way that triggers a query to the Search API. Click events are triggered when the end user clicks on, or preview a result. The reason why machine learning needs both events is because machine learning will use click events to understand which results are getting some interest from end user for a specific search event.
+You might have created a Query suggestion model and might already be sending a lot of queries, but are wondering why you still do not have query suggestions. One common error that we see in customer implementations is **untracked usage analytics** which includes **search events** and **click events**. Both events are essential in order for a query to be considered as successful. A search event is created when the end user interacts with the search interface in a way that triggers a query to the Search API. Click events are triggered when the end user clicks on, or previews a result. The reason why machine learning needs both events is because machine learning will use click events to understand which results are getting some interest from end user for a specific search event.
 
 There are many reasons why usage analytics are not being tracked. In most cases, the [CoveoAnalytics](https://coveo.github.io/search-ui/components/analytics.html) component is missing. Note that, if you are a Coveo for Sitecore customer, you will want to use the [Coveo For Sitecore Analytics](https://docs.coveo.com/en/2186/coveo-for-sitecore-v5/coveo-for-sitecore-analytics) component instead.
 
-If you do have the component but are asking yourself why you aren't tracking clicks, this is probably due to the absence of the [CoveoResultLink](https://coveo.github.io/search-ui/components/resultlink.html) component. This automatically transforms a search result title into a clickable link pointing to the original item.
+If you do have the component but are asking yourself why you aren't tracking clicks, this is probably due to the absence of the [CoveoResultLink](https://coveo.github.io/search-ui/components/resultlink.html) component. This component automatically transforms a search result title into a clickable link pointing to the original item.
 
 Yes. Sometimes you are only one component away from relevance.
 
@@ -51,6 +51,8 @@ The reason why we recommend having these two models is that they are simple to i
 QS provides visitors with relevant query completion suggestions based on previous successful queries. Visitors are familiar with this behavior because Google provides a similar experience. Plus, visitors tend to use query suggestions since it makes it faster for them to complete a query.
 
 As for ART, this machine learning feature can optimize search results relevance based on user search behavior. The top result is no longer the last item that was added to the website but the most relevant result for a certain query. With ART, visitors no longer need to scroll down to the bottom of the page or worse, go to the second page to find their answer. 
+
+Once a machine learning model has been created, do not forget to [associate the model to a query pipeline](https://docs.coveo.com/en/2816/cloud-v2-administrators/managing-the-coveo-machine-learning-model-associations-with-query-pipelines).
 
 ## #4-Typos are not being corrected
 
