@@ -20,7 +20,7 @@ Coveo is a powerful tool, but to be able to unleash its power you need to implem
 
 <!-- more -->
 
-## #1-You do not have the proper architecture. 
+## #1-You do not have the proper architecture 
 
 If you're just starting out, it's a ~~good idea~~ mandatory to invest time in designing the architecture of your Coveo search project. This helps you understand how relevance is achieved. 
 
