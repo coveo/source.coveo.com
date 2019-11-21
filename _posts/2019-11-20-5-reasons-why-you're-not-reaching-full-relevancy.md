@@ -1,9 +1,9 @@
 ---
 layout: post
 
-title: "5 reasons why you're not reaching full relevancy"
+title: "5 reasons why you're not reaching full relevance"
 
-tags: [Analytics, Machine Learning, Relevancy]
+tags: [Analytics, Machine Learning, Relevance]
 
 author:
   name: Alexandra Rioux
