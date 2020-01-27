@@ -9,7 +9,7 @@ author:
   name: Alex Moreau
   bio: Product Analyst - Coveo on Elasticsearch
   twitter: amoreauCoveo
-  image: amoreauCoveo.png
+  image: amoreauCoveo.jpg
 ---
 
 At Coveo, there's one thing we like above all: making sure we have all the data we might need at the same place. Coveo already offers a [plethora of connectors](https://docs.coveo.com/en/1997/cloud-v2-administrators/available-coveo-cloud-v2-source-types) to do so, but there are still many more places where you could find relevant data.
