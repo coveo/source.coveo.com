@@ -34,7 +34,7 @@ The page will also usually feature filtering mechanisms to help people refine th
 
 One of the most important distinctions in my opinion is that a people search page has to answer to two different audiences: the external users searching for someone on the page, and the people on the page themselves, who might directly benefit from being ranked higher in the search results. Keeping the balance between these two audiences is key to designing a good people search experience.
 
-![Document Search versus People Search](/images/2020-01-27-6-tips/documentsearch-vs-peoplesearch.png)
+![Document Search versus People Search]({{ site.baseurl }}/images/2020-01-27-6-tips/documentsearch-vs-peoplesearch.png)
 
 Another important difference is that the people search page will usually have a result template with most of, if not all of the relevant information on the result templates. This means that, a lot of times, there is no need to click on the results, as the information you need (e.g., phone number or email address) is already available directly from the page.
 
@@ -54,7 +54,7 @@ However, a people search page should show the end users the picture of the perso
 
 This allows the users that know who they are looking for to more easily scan the result page. The excerpt component is also less relevant in this scenario, as it is less likely that people will search for details of the person's profile, as opposed to searching for their name or for their areas of expertise. However, depending on the use case, it can still be a good idea to keep it.
 
-![People Search With Cards](/images/2020-01-27-6-tips/6tipspeoplesearch-peoplesearchpageexample.png)
+![People Search With Cards]({{ site.baseurl }}/images/2020-01-27-6-tips/6tipspeoplesearch-peoplesearchpageexample.png)
 
 
 ### 2. Sort In Alphabetical Order By Default; Switch To Relevance When There Is A Query
@@ -95,7 +95,7 @@ Also note that you can add the option to sort by distance, bypassing relevance. 
 
 ### 5. Consider Mixing Field Suggestions And Query Suggestions
 
-![Query Suggestions and Field Suggestions](/images/2020-01-27-6-tips/6tips-searchbox.png)
+![Query Suggestions and Field Suggestions]({{ site.baseurl }}/images/2020-01-27-6-tips/6tips-searchbox.png)
 
 Coveo offers a few ways to suggest queries to end users. We usually recommend using only Machine Learning Query Suggestions, as it learns from end user interactions and continually improves to present the most relevant suggestions to the users. However, there exists another — more static — way of suggesting queries: field suggestions.
 
