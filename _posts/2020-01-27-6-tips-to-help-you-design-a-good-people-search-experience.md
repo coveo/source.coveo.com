@@ -52,7 +52,7 @@ In a classic document-oriented search page, you usually want to have the result 
 
 However, a people search page should show the end users the picture of the person they are searching in a grid, not in a list.
 
-This allows the users that know who they are looking for to more easily scan the result page. The excerpt component is also less relevant in this scenario, as it is less likely that people will search for details of the person's profile, as opposed to searching for their name or for their areas of expertise. However, depending on the use case, it can still be a good idea to leave it.
+This allows the users that know who they are looking for to more easily scan the result page. The excerpt component is also less relevant in this scenario, as it is less likely that people will search for details of the person's profile, as opposed to searching for their name or for their areas of expertise. However, depending on the use case, it can still be a good idea to keep it.
 
 ![People Search With Cards](/images/2020-01-27-6-tips/6tipspeoplesearch-peoplesearchpageexample.png)
 
@@ -61,7 +61,7 @@ This allows the users that know who they are looking for to more easily scan the
 
 When searching for people, users expect to see a directory in alphabetical order (usually by last name). This is especially expected of the people on the page, who are likely to want to understand the exact reasons why their profile is ranked where it is.
 
-Usually, Coveo recommends that you sort results by **Relevance** by default. However, it can be hard to explain to the people on your search page why their profile is not in the top results, as it can be hard to explain why a result is considered more relevant (especially when you add Machine Learning in the equation).
+Usually, Coveo recommends that you sort results by **Relevance** by default. However, it can be hard to explain to the people on your search page why their profile is not in the top results, as explaining relevance is not always a black and white matter (especially when you add Machine Learning in the equation).
 
 For this reason, it is reasonable to say that sorting by alphabetical order is the best way to go.
 
@@ -73,9 +73,9 @@ While Coveo does not have an out-of-the-box component to do this, you can change
 
 The Coveo Machine Learning Automatic Relevance Tuning model is a machine learning model that allows results to be reranked or injected based on previous user's interactions. While this is a boon for finding products or documents, it isn't the best experience when activated on a people search page.
 
-Specifically, what you want to avoid is to have people be injected on the result page even when they are not supposed to be there.
+Specifically, what you want to avoid is to have people be injected on the result page when they are not supposed to be there.
 
-One scenario I saw this happening with was in a client (non-production) environment, where searching for the name of someone would return both the person you are looking for, and another person that was injected by Machine Learning. Worst than that, the person injected by Machine Learning happened to have a name which was alphabetically before the person queried, and since they were still working with alphabetical sort, the injected person was showing up first in the list despite being irrelevant.
+One scenario I saw this happening with was in a client (non-production) environment, where searching for the name of someone would return both the person you are looking for, and another person that was injected by Machine Learning. Worse than that, the person injected by Machine Learning happened to have a name which was alphabetically before the person queried, and since they were still working with alphabetical sort, the injected person was showing up first in the list despite being irrelevant.
 
 For this reason, it's better to not implement ART for your people search pages.
 
@@ -87,11 +87,11 @@ This recommendation does not apply to all use cases, but can be extremely benefi
 
 When a user is searching for someone, it is likely that they are looking for someone within their area. While an oncologist from three states away might be a good fit for your user, it's more likely they will prefer to meet with an oncologist from the town closest to them.
 
-For this reason, you will likely want to implement a way to boost the people that are within their area, or to use a function to decide how many points to add.
-
-Also note that you can add the option to sort by distance, bypassing relevance. While I don't believe this should be the default option, I think end users might appreciate having the option presented to them.
+For this reason, you will likely want to implement a way to boost the people that are within their area, or to use a function to decide how many points to add based on the distance.
 
 Coveo supports both of these options, using [Ranking Functions](https://docs.coveo.com/en/1448/cloud-v2-developers/ranking-functions). The exact function you will want to integrate depends on your specific use case, as well as the data you are working with.
+
+Also note that you can add the option to sort by distance, bypassing relevance. While I don't believe this should be the default option, I think end users might appreciate having the option presented to them.
 
 ### 5. Consider Mixing Field Suggestions And Query Suggestions
 
@@ -111,23 +111,23 @@ For more information on both of those functionalities, see [Providing Search Box
 
 Hypocorisms — or nicknames — are not automatically understood by Coveo. This means that searching for "Mike" will not return all Michael's in your index — it will only return people with Mike in their names or descriptions.
 
-There are two main approaches to fix this, which you can mix for ideal results.
+There are two main approaches to fix this. Feel free to use a mix of both methods for ideal results.
 
 **Option 1. Add a field specifically for the nicknames.**
 
-This allows the people on the profiles to set their preferred surnames, to ensure that someone searching for that surname will be able to find them.
+This allows the people on the profiles to set their preferred surnames, and this field to be queried against by end users.
 
-For example, while some "Alexander" people might prefer to be called "Alex", some might prefer "Xander" or even "Lex". Adding a field to let users enter their preferred surname not only allows end users to search for those surnames to find them, but also lets your end users control the specific surname they want to use.
+For example, while some people called "Alexander" might prefer to go by "Alex", some might prefer "Xander" or even "Lex". Adding a field to let users enter their preferred surname not only allows end users to search for those surnames to find them, but also lets your professionals control the specific surname they want to use.
 
 However, in certain scenarios, it's already hard enough to get people to enter up-to-date information on their profile, so having them enter all of their surname alternatives might be even worse.
 
 **Option 2. Add thesaurus rules.**
 
-Coveo allows you to add thesaurus rules to expand or replace part of the end user's query, allowing you to search for both "Michael" and "Mike" when a user enters either of those word, for example. To learn how to do this, see [Adding and Managing Query Pipeline Thesaurus Rules](https://docs.coveo.com/en/1738/cloud-v2-administrators/adding-and-managing-query-pipeline-thesaurus-rules).
+Coveo allows you to add thesaurus rules to expand or replace part of the end user's query, allowing you, for example, to expand "Mike" to "Michael", so users can find all Michael's by searching "Mike". To learn how to do this, see [Adding and Managing Query Pipeline Thesaurus Rules](https://docs.coveo.com/en/1738/cloud-v2-administrators/adding-and-managing-query-pipeline-thesaurus-rules).
 
-I would not recommend to add all of your rules at once. Instead, it's better to track what people are searching (through the analytics) and adjust the thesaurus rules based on the content gaps you found. To learn how to easily identify your content gaps with Coveo Cloud, see [Identifying Content Gaps](https://docs.coveo.com/en/1613/cloud-v2-administrators/identifying-content-gaps).
+I would not recommend to add all of your rules at once. Instead, it's better to track what people are searching for (through the analytics) and adjust the thesaurus rules based on the content gaps you found. To learn how to easily identify your content gaps with Coveo Cloud, see [Identifying Content Gaps](https://docs.coveo.com/en/1613/cloud-v2-administrators/identifying-content-gaps).
 
-There's also something to keep in mind; people will often write which schools they went to in their profiles, and school names often have names of people in them. For example, if a lawyer in your firm studied at John Hopkins University, then searching for "John" will return their profile in the results, even if they are not called John. On top of that, if you added thesaurus rules to, for instance, expand "Johnny" to "John", then searching for "Johnny" would return all people who went to John Hopkins. This is something to keep in mind when adding the thesaurus rules, to ensure that you are not hindering the relevance too much by adding your rules.
+There's also something to keep in mind with this solution. People will often write which schools they went to in their profiles, and school names often have names of people in them. For example, if a lawyer in your firm studied at John Hopkins University, then searching for "John" will return their profile in the results, even if they are not called John. On top of that, if you added thesaurus rules to, for instance, expand "Johnny" to "John", then searching for "Johnny" would return all people who went to John Hopkins, which could be considered irrelevant or unreliable search by some end users. This is something to keep in mind when adding the thesaurus rules, to ensure that you are not hindering the relevance too much by adding your rules.
 
 ## Conclusion
 
