@@ -12,7 +12,7 @@ author:
   image: jmprovencher.png
 ---
 
-One of the big challenges tech companies face today is credentials management. Let’s face it, every company should rotate periodically all their secrets to make sure they respect industry standards regarding security and compliance. However, this task can easily become overwhelming as we have to rotate them manually. With the shift to cloud-first microservices, the amount of secrets we have to manage exploded. Each service needs to authenticate with others. Those secrets all need to be rotated.
+One of the big challenges tech companies face today is credentials management. Let’s face it, every company should rotate periodically all their secrets to make sure they respect industry standards regarding security and compliance. However, this task can easily become overwhelming as we have to rotate them manually. With the shift to cloud-first microservices, the amount of secrets we have to manage exploded. Each service needs to authenticate with other services. Those secrets all need to be rotated.
 <!-- more -->
 
 To solve this problem, there are multiple approaches. A well known one is [Vault by HashiCorp](https://www.vaultproject.io/). Vault is not a managed service though, and we felt like we should use a managed service as much as possible to help us scale.
