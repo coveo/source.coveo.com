@@ -33,7 +33,7 @@ At Coveo, we started with our internal OAuth2.0 Client Secrets used between our 
 
 ## Assume Your Rotation Lambda Functions Will Fail
 
-AWS Secrets Manager uses a distributed computing model called [eventual consistency](https://en.wikipedia.org/wiki/Eventual_consistency). A fancy expression meaning that, due to cache propagation, any changes you make in your secret can take some time before being completely visible across API requests. Since the secret rotation is composed of 4 steps that precipitates really fast, the Lambda function will sometimes fail because values are not yet properly propagated. Don’t worry, AWS included an automatic retry strategy directly in Secrets Manager that should automatically replay your Lambda function at the necessary step until the propagation is completed.
+AWS Secrets Manager uses a distributed computing model called [eventual consistency](https://en.wikipedia.org/wiki/Eventual_consistency). A fancy expression meaning that, due to cache propagation, any changes you make in your secret can take some time before being completely visible across API requests. Since the secret rotation is composed of 4 steps that cascades really fast, the Lambda function will sometimes fail because values are not yet properly propagated. Don’t worry, AWS included an automatic retry strategy directly in Secrets Manager that should automatically replay your Lambda function at the necessary step until the propagation is completed.
 
 ## Be Backward-Compatible
 
