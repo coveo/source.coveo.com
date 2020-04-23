@@ -23,7 +23,7 @@ Our internal knowledge base is indexed with content coming from a variety of sou
 #### Accelerate productivity
 I am not able to imagine working at Coveo without our internal search. On a daily basis, I am constantly looking for answers about our product.  Each time I have a question, I know where to go since all valuable content has been indexed on one search page. Coveo Cloud is built for unifying and securing content from any repositories in the Coveo Index.  It uses connectors to transfer documents into the index. Not having this would require me to go to multiple sites before finding an answer. 
 
-![Unified Search Architecture](/source.coveo.com/images/2020-04-22-workplace-strategy/unified.png)
+![Unified Search Architecture](/source.coveo.com/images/2020-04-22-workplace-strategy/unifiedsearch.png)
 
 Obviously, we use Coveo to bring relevance to our internal search. Our internal knowledge base leverages multiple features, one of them being custom context. Coveo will consider the user department when returning results, ensuring we are presented with information relevant to our job. To do so, your search interface must send custom contextual information (e.g., user role) along with each query it executes and each Coveo Usage Analytics event it logs. 
 
@@ -35,12 +35,12 @@ My colleague previously wrote a blog post on the best practices regarding people
 One of the challenges that comes with remote employees and growing organizations, is the ability to keep track of new-hires. Each month, we hire a dozen new employees. You can easily imagine that knowing who to contact when you need something can be challenging. This is why your intranet needs to contain a People search section.
 
 Here is an overview of the people search section of our Intranet: 
-![Intranet interface](/source.coveo.com/images/2020-04-22-workplace-strategy/cc-search.png)
+![Intranet interface](/source.coveo.com/images/2020-04-22-workplace-strategy/CC-Search.png)
 
 Each result template contains important information such as an employee work title, manager name, office location, and contact information. We even customize the template depending on the office location.
 
 When clicking on a result, we are able to provide an overview of the person’s team and what they have been working on. 
-![Employee Activity Overview](source.coveo.com/images/2020-04-22-workplace-strategy/janetView.png)
+![Employee Activity Overview](/source.coveo.com/images/2020-04-22-workplace-strategy/janetView.png)
 
 For more detailed information on how the people page was made, you should read my other colleague blog post here: [Building an Intranet People Search](https://source.coveo.com/2019/03/19/people-page/)
 
