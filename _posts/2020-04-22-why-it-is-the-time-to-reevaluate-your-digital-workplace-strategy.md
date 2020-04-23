@@ -23,7 +23,7 @@ Our internal knowledge base is indexed with content coming from a variety of sou
 #### Accelerate productivity
 I am not able to imagine working at Coveo without our internal search. On a daily basis, I am constantly looking for answers about our product.  Each time I have a question, I know where to go since all valuable content has been indexed on one search page. Coveo Cloud is built for unifying and securing content from any repositories in the Coveo Index.  It uses connectors to transfer documents into the index. Not having this would require me to go to multiple sites before finding an answer. 
 
-![Unified Search Architecture](/images/2020-04-22-workplace-strategy/UnifiedCoveoSearch1.png)
+![Unified Search Architecture]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/UnifiedCoveoSearch1.png)
 
 Obviously, we use Coveo to bring relevance to our internal search. Our internal knowledge base leverages multiple features, one of them being custom context. Coveo will consider the user department when returning results, ensuring we are presented with information relevant to our job. To do so, your search interface must send custom contextual information (e.g., user role) along with each query it executes and each Coveo Usage Analytics event it logs. 
 
@@ -35,12 +35,12 @@ My colleague previously wrote a blog post on the best practices regarding people
 One of the challenges that comes with remote employees and growing organizations, is the ability to keep track of new-hires. Each month, we hire a dozen new employees. You can easily imagine that knowing who to contact when you need something can be challenging. This is why your intranet needs to contain a People search section.
 
 Here is an overview of the people search section of our Intranet: 
-![Intranet interface](/images/2020-04-22-workplace-strategy/CC-Search.png)
+![Intranet interface]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/CC-Search.png)
 
 Each result template contains important information such as an employee work title, manager name, office location, and contact information. We even customize the template depending on the office location.
 
 When clicking on a result, we are able to provide an overview of the person’s team and what they have been working on. 
-![Employee Activity Overview](/images/2020-04-22-workplace-strategy/janetView.png)
+![Employee Activity Overview]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/janetView.png)
 
 For more detailed information on how the people page was made, you should read my other colleague blog post here: [Building an Intranet People Search](https://source.coveo.com/2019/03/19/people-page/)
 
@@ -58,11 +58,11 @@ To measure the effectiveness of your workplace solution, you will want to create
 #### Adoption trend
 There are multiple ways to evaluate the success of your intranet. One of the most important metrics to look at is the unique visitor trend. Is it going up? If not, you need to understand why user adoption is going down.
 
-![User Adoption Report](/images/2020-04-22-workplace-strategy/UV.png)
+![User Adoption Report]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/UV.png)
 
 You could get more insights by looking at the unique visits per department. You might find out that certain departments are not using the intranet as much as their colleagues. This might be a sign that the intranet is missing a certain feature (e.g., a sales pipeline tab for your sales team). 
 
-![Departement Adoption Report](/images/2020-04-22-workplace-strategy/departementUsage.png)
+![Departement Adoption Report]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/departementUsage.png)
 
 When looking at this dashboard, you might think that department E is underusing the internal knowledge base, however you need to consider the number of employees and calculate the ratio. 
 
@@ -74,11 +74,11 @@ If you are familiar with Coveo analytics, you might have used the average click 
 
 This metric represents the average position of opened items in a search result list. Ideally, this metric is between 1 and 4. To improve the overall performance, make sure that you have implemented the ART model and are tracking all click events.
 
-![Average Click Rank Report](/images/2020-04-22-workplace-strategy/ACR.png)
+![Average Click Rank Report]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/ACR.png)
 
 The second search metric that we always look at is the click-through rate. This metric represents the percentage of search events that led to at least one click event; the higher the value the better.  Ideally, you want your click-through rate to be above 50%.
 
-![Click-Through Report](/images/2020-04-22-workplace-strategy/VCT.png)
+![Click-Through Report]({{ site.baseurl }}/images/2020-04-22-workplace-strategy/VCT.png)
 
 Once again, to improve the overall performance, make sure that you have implemented the ART model and are tracking all click events. 
 
