@@ -23,7 +23,7 @@ Our internal knowledge base is indexed with content coming from a variety of sou
 #### Accelerate productivity
 I am not able to imagine working at Coveo without our internal search. On a daily basis, I am constantly looking for answers about our product.  Each time I have a question, I know where to go since all valuable content has been indexed on one search page. Coveo Cloud is built for unifying and securing content from any repositories in the Coveo Index.  It uses connectors to transfer documents into the index. Not having this would require me to go to multiple sites before finding an answer. 
 
-![Unified Search Architecture](/source.coveo.com/images/2020-04-22-workplace-strategy/unifiedsearch.png)
+![Unified Search Architecture](/source.coveo.com/images/2020-04-22-workplace-strategy/UnifiedCoveoSearch.png)
 
 Obviously, we use Coveo to bring relevance to our internal search. Our internal knowledge base leverages multiple features, one of them being custom context. Coveo will consider the user department when returning results, ensuring we are presented with information relevant to our job. To do so, your search interface must send custom contextual information (e.g., user role) along with each query it executes and each Coveo Usage Analytics event it logs. 
 
