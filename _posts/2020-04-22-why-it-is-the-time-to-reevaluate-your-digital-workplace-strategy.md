@@ -50,7 +50,7 @@ Wasn’t a JIRA made for this issue? No idea, the person who was responsible for
 
 Knowledge loss affects all businesses. When employees leave a company, they leave with a high amount of knowledge that is not always properly transferred to other employees. This can be quite costly.
 
-A good way to prevent this is to implement an intranet which is a good way to remove information silos.  Obviously, for this to work, employees must be responsible for documenting what they are doing.  However, if employees are already doing this, the next step is to make sure that people can easily find the desired information.
+A good way to prevent this is to implement an intranet, helping to remove information silos. Obviously, for this to work, employees must be responsible for documenting what they are doing.  However, if employees are already doing this, the next step is to make sure that people can easily find the desired information.
 
 ### *How to measure the success of an internal knowledge base?*
 To measure the effectiveness of your workplace solution, you will want to create dashboards that will allow you to fully understand the behavior of your employees. 
