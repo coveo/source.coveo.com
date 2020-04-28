@@ -10,3 +10,6 @@ Thumbs.db
 
 .idea
 .tags*
+
+\.jekyll-metadata
+\.jekyll-cache

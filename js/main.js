@@ -54,27 +54,18 @@ function isMobile(){
 
 
 // Set the Coveo Cloud Organization search and analytics tokens
-var siteOrigin= 'TechBlog'; //Take the value from https://search.coveo.com/JS/TechDoc.js
-var uaToken = '7b9b9300-3901-437b-bafd-51ae596f1b16'; // API Key for allowing to push Usage analytics events
-var SuggestionScope = '@syssource=("Web - TechBlog")'; //Search Box suggestion filter ex: @syssource=("ohclouden")
-var searchToken = '7b9b9300-3901-437b-bafd-51ae596f1b16'; //API Key allowing to query
+var siteOrigin= 'TechBlog'; // Telling support.coveo.com where the search request comes from
+var uaTokenCloudV1 = '7b9b9300-3901-437b-bafd-51ae596f1b16'; // API Key for allowing to push Usage analytics events
+var uaToken = 'xx15d10ab2-cb6c-4c13-addb-aa871471c00e'
+var SuggestionScope = '@syssource=("source.coveo.com")'; //Search Box suggestion filter ex: @syssource=("ohclouden")
+var searchTokenCloudV1 = '7b9b9300-3901-437b-bafd-51ae596f1b16'; //API Key allowing to query
+var searchToken = 'xx15d10ab2-cb6c-4c13-addb-aa871471c00e';
 var hostname = window.location.hostname; //To manage dev/staging/prod environment
-var TechDocSearchPage = 'http://search.coveo.com/';
-/*if (hostname == "onlinehelp.coveo.com") {
-	// Use the production org (coveosearch)
-	searchToken = '7b9b9300-3901-437b-bafd-51ae596f1b16';
-	uaToken = searchToken;
-} else {
-	// Use the staging org (coveosupport) for UA
-	uaToken = '25b8fab8-089b-4325-8d0f-d3145dd282ec';
-	// Use the production org (coveosearch) for search
-	searchToken = '7b9b9300-3901-437b-bafd-51ae596f1b16';
-}*/
-﻿
+var TechDocSearchPage = 'https://connect.coveo.com/s/global-search/%40uri';
+
 $(function(){
-	$('#searchBox').coveo('noConflict');
 	Coveo.SearchEndpoint.endpoints["default"] = new Coveo.SearchEndpoint({
-		restUri: 'https://cloudplatform.coveo.com/rest/search',
+		restUri: 'https://platform.cloud.coveo.com/rest/search',
 		accessToken: searchToken
 		});
 	Coveo.$("#searchBox").on("afterInitialization", function(){
@@ -87,20 +78,20 @@ $(function(){
 				populateOmniBoxEventArgs.closeOmnibox();
 				Coveo.SearchEndpoint.endpoints["default"]
 					.search({
-						q: '@systitle=="' + valueSelected + '"',
+						q: '@techblogtitle=="' + valueSelected + '"',
 						aq: SuggestionScope
 					})
 					.done(function (results) {
 						/*window.location = results.results[0].clickUri;*/
 						var foundResult = Coveo._.find(results.results, function(result){
-							return valueSelected == result.raw.systitle;
+							return valueSelected == result.raw.techblogtitle;
 						});
 						if(foundResult){
 							//logCustomEvent('pageNav', 'omniboxTitleSuggestion', uaToken, foundResult.Title, foundResult.clickUri);
 							//console.log('Navigation type, label, target: ' + 'omniboxTitleSuggestion' + ' | ' + foundResult.Title + ' | ' + foundResult.clickUri);
 							window.location = foundResult.clickUri;
 						} else {
-							logger.warn("Selected suggested result," + valueSelected + " , not found.");
+							logger.warn("Selected suggested result," + valueSelected + ", not found.");
 						}
 					})
 				},

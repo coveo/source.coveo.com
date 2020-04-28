@@ -1,4 +1,4 @@
-<script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/js/main.js?v=1"></script>
 {% if site.inc.sharing.twitter %}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>{% endif %}
 {% if site.inc.sharing.facebook %}<div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -36,9 +36,6 @@
   })();
 </script>
 {% endif %}
-{% if site.inc.analytics.google %}
-  {% include _google-analytics.html %}
-{% endif %}
 {% if site.inc.analytics.coveo %}
   {% include _coveo-analytics.html %}
 {% endif %}
@@ -52,7 +49,7 @@ function enableSelectBoxes(){
   $('div.selectBox').each(function(){
 
     $(this).children('span.selected').html("Blog");
-    
+
     $(this).children('span.selected,span.selectArrow').click(function(){
       $('span.selectArrow').toggleClass('active');
       $('div.selectBox').toggleClass('active');
@@ -62,12 +59,12 @@ function enableSelectBoxes(){
         $(this).parent().children('div.selectOptions').css('display','none');
       }
     });
-    
+
     $(this).find('span.selectOption').click(function() {
       $(this).parent().css('display','none');
       location.replace($(this).attr('value'));
     });
-  });       
+  });
 }
 
 </script>

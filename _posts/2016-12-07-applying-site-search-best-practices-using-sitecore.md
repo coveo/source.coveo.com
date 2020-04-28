@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 
-A few months ago, the Coveo for Sitecore Product and Marketing teams released an eBook on [Site Search Best Practices](http://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search).
+A few months ago, the Coveo for Sitecore Product and Marketing teams released an eBook on [Site Search Best Practices](https://www.coveo.com/en/resources/ebooks-white-papers/best-practices-for-site-search).
 The guide is great for high level planning, but when it comes to execution, there are some gaps that need to be filled.
 In this series of blog posts, I will go over each of the 19 points and explain in details how to implement them properly.
 
@@ -105,7 +105,7 @@ Now that this is fixed, you will want to load only one search box. A Coveo searc
 This is of course the simple approach, but you might want to keep the same style accross the site and keep the header box instead. The interface's search box can be removed simply by unchecking the "Display the main search box" checkbox on the [properties of the component](https://developers.coveo.com/x/PgHvAQ).
 
 Once this is done, you will have a header search powering your search interface, but it is not perfect yet. The search box is a simple redirect to the search page, so using that search box will constantly reload your search page, which is not ideal.
-The right approach is to load this search box as a component of the search result page. This was well explained in this [post](https://answers.coveo.com/questions/4830/adding-search-box-hides-the-coveo-search-sublayout), but let me go over it in details.
+The right approach is to load this search box as a component of the search result page. This was well explained in this [post](https://answers.coveo.com/questions/6477/adding-search-box-hides-the-coveo-search-sublayout.html), but let me go over it in details.
 
 First of all, you will want to customize your copy (never the original!) of the SearchBoxView.cshtml file in order to add a new Boolean function detecting if the search box is on a search page:
 
@@ -233,12 +233,12 @@ If you have the Enterprise edition, simply use the filtering rules on each of th
 
 Keep in mind that providing a long list of results looks messy. Keep control of the number of results using the "Number of results" field.
 
-For the main search page, do not provide result suggestions. Instead switch to Machine Learning queries suggestions. It is enabled by default; you simply need to create the [Machine Learning Model](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=168) and wait a for it to learn. This can take a few weeks.
+For the main search page, do not provide result suggestions. Instead switch to Machine Learning queries suggestions. It is enabled by default; you simply need to create the [Machine Learning Model](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=168) and wait a for it to learn. This can take a few weeks.
 
 ### 5. Test it
 
 How to test the search box is up to you, but we can tell you if visitors use it or not.
-Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=89). Keep in mind that the Origin 3 (Referrer) [dimension](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106), will tell you where the user was coming from; which will tell you if your search box is used or not.
+Once the site is live, keep track of the usage of the search box using the [Coveo Usage Analytics](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=89). Keep in mind that the Origin 3 (Referrer) [dimension](https://www.coveo.com/go?dest=cloudhelp&lcid=9&context=106), will tell you where the user was coming from; which will tell you if your search box is used or not.
 
 Note: Coveo for Sitecore does not send the right data as an Origin 3, this is a bug which will be fixed in Q1 2017.
 

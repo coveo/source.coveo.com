@@ -11,7 +11,7 @@ author:
   image: jrochette.jpg
 ---
 
-In my [last post](http://source.coveo.com/2017/08/08/redshift-best-practices/), I shared some of the wisdom I gathered over the 4 years I've worked with AWS Redshift. Since I'm not one for long blog posts, I decided to keep some for a second post. Here goes!
+In my [last post](https://source.coveo.com/2017/08/08/redshift-best-practices/), I shared some of the wisdom I gathered over the 4 years I've worked with AWS Redshift. Since I'm not one for long blog posts, I decided to keep some for a second post. Here goes!
 
 <!-- more -->
 

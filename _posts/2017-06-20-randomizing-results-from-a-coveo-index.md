@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Randomizing Results from a Coveo Index"
-tags: [Index Extensions, Query Extensions, coveo-search-ui, Custom Component]
+tags: [Index Extensions, Query Extensions, coveo-search-ui, Custom Component, CoveoFeelingLucky]
 author:
   name: Alexandre Moreau & François Lachance-Guillemette
   bio: Technical Writer and Coveo for Sitecore Developer

@@ -10,7 +10,7 @@ author:
   image: slangevin.png
 ---
 Coveo for Sitecore 4.0 was released this spring and allowed Coveo for Sitecore users to move their index to the cloud, reducing maintenance effort and opening the way for the advanced cloud features, such as Coveo Machine Learning and the query pipelines.
-Integrating Coveo for Sitecore to your Sitecore solution is now easier than ever. You can download the package directly on [the Coveo website](http://www.coveo.com/en/solutions/coveo-for-sitecore/download) and follow the installation wizard in Sitecore.
+Integrating Coveo for Sitecore to your Sitecore solution is now easier than ever. You can download the package directly on [the Coveo website](https://www.coveo.com/en/solutions/coveo-for-sitecore/download) and follow the installation wizard in Sitecore.
 This is great to try the product with a trial organization, but how do you manage a paid license?
 I received several questions in the past few months about environment setup and license management. In this blog post, I will try to clarify a few things.
 <!-- more -->
