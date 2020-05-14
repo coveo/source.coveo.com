@@ -60,7 +60,7 @@ The _Sources_ team develops and maintains APIs that allow clients to customize t
 
 We’ve covered a request coming from the UI, going into our infrastructure, and getting routed by the Search API to the index which matches some content. What about all of the personalization and machine learning? Well, the Search API also calls our machine learning microservices and merges everything together. Thus, like the index, we need a way to create these machine learning models. This is the job of multiple _Machine Learning (**Scala, Spark, Python, PyTorch, TensorFlow, Scikit-learn, EMR, Kinesis, DynamoDB, Lambda**)_ teams, the _Machine Learning Backend (**Java, AWS, K8S, Spring, Terraform**)_ team, and the _Usage Analytics (**Java, Kinesis, Snowflake, Redshift, Terraform, Tableau, DynamoDB, MySQL**)_ team.
 
-We have multiple _Machine Learning _teams that are developing machine learning algorithms and NLP models to learn from users' interactions and documents' contents to produce advanced functionalities such as automated relevance tuning, query suggestions, recommendations, semantic search, question answering, automatic categorisation, and more.
+We have multiple _Machine Learning_ teams that are developing machine learning algorithms and NLP models to learn from users' interactions and documents' contents to produce advanced functionalities such as automated relevance tuning, query suggestions, recommendations, semantic search, question answering, automatic categorisation, and more.
 
 The _Machine Learning Backend_ team has developed a platform to build and serve machine learning models and keep them performing at a high level, even while their usage is doubling every year.
 
