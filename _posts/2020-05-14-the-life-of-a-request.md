@@ -3,7 +3,7 @@ layout: post
 
 title: "The Life of a Request"
 
-tags: [workplace,remote,culture]
+tags: [workplace, culture, technologies, teams]
 
 author:
   name: Marc-Antoine Veilleux
