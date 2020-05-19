@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "The Life of a Request"
+title: "The Teams Behind Your Queries"
 
 tags: [workplace, culture, technologies, teams]
 
@@ -18,9 +18,9 @@ Over the years I’ve been at Coveo, I’ve often had to explain the different t
 
 It starts with a simple UI, either as a simple recommendation or a search box rendered in the browser.
 
-Behind these pixels, there are multiple teams working hard to make sure it looks and works great. At the core, we have _Search UI (**TypeScript, React, JavaScript, Golang, Terraform, K8S**)_, a team that is responsible for developing the Coveo UI library that our clients use to integrate Coveo into their systems. They are also developing a WYSIWYG application that allows non-developer customers to customize their UI integration, and most recently, the team is creating a new backend service that will allow customers to host and bootstrap the creation process of the UI.
+Behind these pixels, there are multiple teams working hard to make sure it looks and works great. At the core, we have _Search UI (**TypeScript, React, JavaScript, Go, Terraform, Kubernetes**)_, a team that is responsible for developing the [Coveo UI library](https://github.com/coveo/search-ui) that our clients use to integrate Coveo into their systems. They are also developing a WYSIWYG application that allows non-developer customers to customize their UI integration, and most recently, the team is creating a new backend service that will allow customers to host and bootstrap the creation process of the UI.
 
-Then, the following teams help integrate the UI and adapt Coveo inside multiple use cases: _Salesforce Integration (**TypeScript, JavaScript, Salesforce**), Sitecore (**C#, Typescript, React**), Commerce (**Java, Spring Boot, AWS, Terraform, K8s, Docker, Typescript, React, Redux,  SCSS**)_ , and _ServiceNow (**C#, JavaScript**)_. Each team’s goal is to fully integrate Coveo inside their associated use case and make sure it’s convenient and easy to use.
+Then, the following teams help integrate the UI and adapt Coveo inside multiple use cases: _Salesforce Integration (**TypeScript, JavaScript, Salesforce**), Sitecore (**C#, Typescript, React**), Commerce (**Java, Spring Boot, AWS, Terraform, Kubernetes, Docker, Typescript, React, Redux, SCSS**)_ , and _ServiceNow (**C#, JavaScript**)_. Each team’s goal is to fully integrate Coveo inside their associated use case and make sure it’s convenient and easy to use.
 
 These teams work closely with our _UX (**Sketch, InVision, Adobe Suite, Confluence, Google Drive, LucidCharts**)_ and _Demo (**JavaScript, TypeScript, Python, Go, AWS, Salesforce**)_ teams. The _UX_ team’s goal is to design the user’s journey across all Coveo products based on various user research and design activities, in collaboration with PMs. They monitor and validate the development of new features to ensure simple, usable, and appealing user interfaces. 
 
@@ -30,27 +30,27 @@ That’s it from the perspective of the client’s browser, but there’s a lot 
 
 The _Cloud Infra (**Kubernetes, Terraform, Elasticsearch/OpenDistro, Prometheus, Puppet, AWS, Python**)_ team provides and maintains the base infrastructure needed to run Coveo's Cloud services. 
 
-The _Cloud Ops (**Python, Jenkins, AWS, k8s**)_ team manages the Cloud Production environments 24/7 to ensure their best performance and uptime. They also perform rollouts of some workloads, manage Ops requests, and oversee AWS costs. 
+The _Cloud Ops (**Python, Jenkins, AWS, Kubernetes**)_ team manages the Cloud Production environments 24/7 to ensure their best performance and uptime. They also perform rollouts of some workloads, manage Ops requests, and oversee AWS costs. 
 
-The _Platform Foundation (**Java, Spring Boot, Spring Cloud, AWS, Terraform, K8s, Docker**)_ team’s mission is a bit different. They implement and maintain solutions throughout the technology stack for the core functionalities of a world-class SaaS platform such as observability, high availability, fault-tolerance, service discovery, internet gateway, and authentication.
+The _Platform Foundation (**Java, Spring Boot, Spring Cloud, AWS, Terraform, Kubernetes, Docker**)_ team’s mission is a bit different. They implement and maintain solutions throughout the technology stack for the core functionalities of a world-class SaaS platform such as observability, high availability, fault-tolerance, service discovery, internet gateway, and authentication.
 
-Once the request is received on our infrastructure, it is routed to the _Search API (**Scala, Kinesis, RDS, Redis, Terraform, K8S, Elasticsearch**)_ team. They orchestrate all of Coveo’s micro-services that drive recommendations and searches, which are vital to our clients’ businesses. They also empower our customers’ administrators with a programmable query transformation system (QPL).
+Once the request is received on our infrastructure, it is routed to the _Search API (**Scala, Kinesis, RDS, Redis, Terraform, Kubernetes, Elasticsearch**)_ team. They orchestrate all of Coveo’s micro-services that drive recommendations and searches, which are vital to our clients’ businesses. They also empower our customers’ administrators with a programmable query transformation system (QPL).
 
 From a high-level perspective, the _Search API_ uses indexed content and machine learning models to find the relevant information to answer the request. Behind these concepts, multiple teams are responsible for surfacing this information efficiently.
 
 From an index perspective, there are three main teams: _Index, Index Infrastructure,_ and _Indexing Pipeline._
 
-The _Index (**C++, Python, Java, Elasticsearch, AWS**)_ team is responsible for the core index/search technology used at Coveo. This team also manages the Java Index and Field services.
+The _Index (**C++, Python, Java, AWS**)_ team is responsible for the core index/search technology used at Coveo. This team also manages the Java Index and Field services.
 
 The _Index Infrastructure (**C++, Python, Docker, Kubernetes, Terraform, CMake, Jenkins**)_ team implements, deploys, and monitors solutions to improve and scale our customers’ indexing capabilities.
 
 The _Indexing Pipeline (**C++, Python, Java, Docker, Kubernetes, Terraform**)_ team is responsible for the backend pipeline that processes every document to make them ingestible by the Index Service. This includes carrying the documents from one step to the next and transforming them (conversion, indexing pipeline extensions, etc.). This team is also responsible for the Java Extension Service.
 
-Overall, these teams' purpose is to surface a search query on some content, and to do it as quickly as possible. To move the data from our customers’ repositories to our index, we will need the help of multiple other teams: _Connectors (**C#, .Net, .Net Core, Terraform, MySQL**) , Salesforce Connectivity (**C#, Scala**) , Connectors Infrastructure (**Java, .Net Core, Terraform**), Security Cache (**C++, Java, Python**),_ and _Sources (**Java, Spring, Terraform, AWS, elasticsearch, k8s, docker**)_.
+Overall, these teams' purpose is to surface content to a search query, and to do it as quickly as possible. To move the data from our customers’ repositories to our index, we will need the help of multiple other teams: _Connectors (**C#, .Net, .Net Core, Terraform, MySQL**), Salesforce Connectivity (**C#, Scala**), Connectors Infrastructure (**Java, .Net Core, Terraform**), Security Cache (**C++, Java, Python**),_ and _Sources (**Java, Spring, Terraform, AWS, Elasticsearch, Kubernetes, Docker**)_.
 
 The _Connectors_ team designs, implements, maintains, and deploys Connectors which allow our clients to configure and crawl various content sources to retrieve data, metadata, and permissions.
 
-The _Salesforce Connectivity_ team develops and maintains our solution that crawls all the needed data, schema, metadata, and permissions from the Salesforce Platform. Half a billion items are crawled each week.
+The _Salesforce Connectivity_ team develops and maintains our solution that crawls all the needed data, schema, metadata, and permissions from the Salesforce Platform. Half a billion items are crawled each week by this connector.
 
 The _Connectors Infrastructure_ team designs, implements, deploys, and monitors solutions to improve and scale the infrastructure supporting Coveo’s secure content crawling capabilities.
 
@@ -58,9 +58,9 @@ The _Security Cache_ team develops and maintains the modules used to enforce a s
 
 The _Sources_ team develops and maintains APIs that allow clients to customize the content they wish to index, as well as APIs that allow them to push their content to our infrastructure.
 
-We’ve covered a request coming from the UI, going into our infrastructure, and getting routed by the Search API to the index which matches some content. What about all of the personalization and machine learning? Well, the Search API also calls our machine learning microservices and merges everything together. Thus, like the index, we need a way to create these machine learning models. This is the job of multiple _Machine Learning (**Scala, Spark, Python, PyTorch, TensorFlow, Scikit-learn, EMR, Kinesis, DynamoDB, Lambda**)_ teams, the _Machine Learning Backend (**Java, AWS, K8S, Spring, Terraform**)_ team, and the _Usage Analytics (**Java, Kinesis, Snowflake, Redshift, Terraform, Tableau, DynamoDB, MySQL**)_ team.
+We’ve covered a request coming from the UI, going into our infrastructure, and getting routed by the Search API to the index which matches some content. What about all of the personalization and machine learning? Well, the Search API also calls our machine learning microservices and merges everything together. Thus, like the index, we need a way to create these machine learning models. This is the job of multiple _Machine Learning (**Scala, Spark, Python, PyTorch, TensorFlow, Scikit-learn, EMR, Kinesis, DynamoDB, Lambda**)_ teams, the _Machine Learning Backend (**Java, AWS, Kubernetes, Spring, Terraform**)_ team, and the _Usage Analytics (**Java, Kinesis, Snowflake, Redshift, Terraform, Tableau, DynamoDB, MySQL**)_ team.
 
-We have multiple _Machine Learning_ teams that are developing machine learning algorithms and NLP models to learn from users' interactions and documents' contents to produce advanced functionalities such as automated relevance tuning, query suggestions, recommendations, semantic search, question answering, automatic categorisation, and more.
+We have multiple _Machine Learning_ teams that are developing machine learning algorithms and NLP models to learn from users' interactions and documents' contents to produce advanced functionalities such as automatic relevance tuning, query suggestions, recommendations, semantic search, question answering, automatic categorisation, and more.
 
 The _Machine Learning Backend_ team has developed a platform to build and serve machine learning models and keep them performing at a high level, even while their usage is doubling every year.
 
