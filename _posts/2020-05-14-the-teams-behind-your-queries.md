@@ -20,6 +20,8 @@ It starts with a simple UI, either as a simple recommendation or a search box re
 
 Behind these pixels, there are multiple teams working hard to make sure it looks and works great. At the core, we have _Search UI (**TypeScript, React, JavaScript, Go, Terraform, Kubernetes**)_, a team that is responsible for developing the [Coveo UI library](https://github.com/coveo/search-ui) that our clients use to integrate Coveo into their systems. They are also developing a WYSIWYG application that allows non-developer customers to customize their UI integration, and most recently, the team is creating a new backend service that will allow customers to host and bootstrap the creation process of the UI.
 
+![Coveo Search UI]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/searchui.png)
+
 Then, the following teams help integrate the UI and adapt Coveo inside multiple use cases: _Salesforce Integration (**TypeScript, JavaScript, Salesforce**), Sitecore (**C#, Typescript, React**), Commerce (**Java, Spring Boot, AWS, Terraform, Kubernetes, Docker, Typescript, React, Redux, SCSS**)_ , and _ServiceNow (**C#, JavaScript**)_. Each team’s goal is to fully integrate Coveo inside their associated use case and make sure it’s convenient and easy to use.
 
 These teams work closely with our _UX (**Sketch, InVision, Adobe Suite, Confluence, Google Drive, LucidCharts**)_ and _Demo (**JavaScript, TypeScript, Python, Go, AWS, Salesforce**)_ teams. The _UX_ team’s goal is to design the user’s journey across all Coveo products based on various user research and design activities, in collaboration with PMs. They monitor and validate the development of new features to ensure simple, usable, and appealing user interfaces. 
@@ -34,6 +36,8 @@ The _Cloud Ops (**Python, Jenkins, AWS, Kubernetes**)_ team manages the Cloud Pr
 
 The _Platform Foundation (**Java, Spring Boot, Spring Cloud, AWS, Terraform, Kubernetes, Docker**)_ team’s mission is a bit different. They implement and maintain solutions throughout the technology stack for the core functionalities of a world-class SaaS platform such as observability, high availability, fault-tolerance, service discovery, internet gateway, and authentication.
 
+![Coveo Search UI]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/clustertab.png)
+
 Once the request is received on our infrastructure, it is routed to the _Search API (**Scala, Kinesis, RDS, Redis, Terraform, Kubernetes, Elasticsearch**)_ team. They orchestrate all of Coveo’s micro-services that drive recommendations and searches, which are vital to our clients’ businesses. They also empower our customers’ administrators with a programmable query transformation system (QPL).
 
 From a high-level perspective, the _Search API_ uses indexed content and machine learning models to find the relevant information to answer the request. Behind these concepts, multiple teams are responsible for surfacing this information efficiently.
@@ -47,6 +51,8 @@ The _Index Infrastructure (**C++, Python, Docker, Kubernetes, Terraform, CMake, 
 The _Indexing Pipeline (**C++, Python, Java, Docker, Kubernetes, Terraform**)_ team is responsible for the backend pipeline that processes every document to make them ingestible by the Index Service. This includes carrying the documents from one step to the next and transforming them (conversion, indexing pipeline extensions, etc.). This team is also responsible for the Java Extension Service.
 
 Overall, these teams' purpose is to surface content to a search query, and to do it as quickly as possible. To move the data from our customers’ repositories to our index, we will need the help of multiple other teams: _Connectors (**C#, .Net, .Net Core, Terraform, MySQL**), Salesforce Connectivity (**C#, Scala**), Connectors Infrastructure (**Java, .Net Core, Terraform**), Security Cache (**C++, Java, Python**),_ and _Sources (**Java, Spring, Terraform, AWS, Elasticsearch, Kubernetes, Docker**)_.
+
+![Coveo Source Administration]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/sourcetab.png)
 
 The _Connectors_ team designs, implements, maintains, and deploys Connectors which allow our clients to configure and crawl various content sources to retrieve data, metadata, and permissions.
 
@@ -66,7 +72,11 @@ The _Machine Learning Backend_ team has developed a platform to build and serve 
 
 The _Usage Analytics_ team collects signals about user interaction points with Coveo products and provides our customers with the ability to monitor and understand what is going on with their application so that we can help them optimize it. This information is also used by the machine learning algorithms.
 
+![Coveo Usage Analytics]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/uatab.png)
+
 So ultimately, with the content from the index and our machine learning models, we are able to answer the initial request! Hooray!
+
+![Coveo Recommendations]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/recommendations.png)
 
 There are some other important teams at Coveo that are omnipresent, even if they aren’t part of the query path. Here are some examples: 
 
