@@ -36,7 +36,7 @@ The _Cloud Ops (**Python, Jenkins, AWS, Kubernetes**)_ team manages the Cloud Pr
 
 The _Platform Foundation (**Java, Spring Boot, Spring Cloud, AWS, Terraform, Kubernetes, Docker**)_ team’s mission is a bit different. They implement and maintain solutions throughout the technology stack for the core functionalities of a world-class SaaS platform such as observability, high availability, fault-tolerance, service discovery, internet gateway, and authentication.
 
-![Coveo Search UI]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/clustertab.png)
+![Coveo Cluster View]({{ site.baseurl }}/images/2020-05-14-the-teams-behind-your-queries/clustertab.png)
 
 Once the request is received on our infrastructure, it is routed to the _Search API (**Scala, Kinesis, RDS, Redis, Terraform, Kubernetes, Elasticsearch**)_ team. They orchestrate all of Coveo’s micro-services that drive recommendations and searches, which are vital to our clients’ businesses. They also empower our customers’ administrators with a programmable query transformation system (QPL).
 
