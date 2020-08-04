@@ -12,24 +12,24 @@ author:
   image: lbompart.jpg
 ---
 
-In October 2017, Salesforce released Salesforce DX, bringing source-driven development and scratch orgs to the Salesforce developer community, a considerable boon for every Salesforce developer. However, the code that ended in the hand of the user, was still not the source code but still the one that lies in a Salesforce organization, unfit for team collaboration.
+In October 2017, Salesforce released Salesforce DX. It brought source-driven development and scratch orgs to the Salesforce developer community, a considerable boon for every Salesforce developer. However, the code that ended in the hand of the user was still not the source code but still the one that lay in a Salesforce organization unfit for team collaboration.
 
-2 years later, October 2019, Second-Generation Managed Package became GA, bringing the goodness of source-driven development to the packaging, unifying the code in a single place: your repository.
+2 years later, October 2019, Second-Generation Managed Package became GA, bringing the source-driven development to the packaging, unifying the code in a single place: your repository.
 
-Such shifts in the development process might seem daunting at first, but let me show you how you could organize your code with those tools, and what will it brings to you and your users.
+Such shifts in the development process might seem daunting at first, but let me show you how you could organize your code with those tools, and what it will bring to you and your users.
 
 <!-- more -->
 
 ## Preambule
 
-- Most of the present document apply for managed package developement for ISV, but you might find some practices and ideas that can apply to your workflow nonetheless.
-- The semantic used in this document does not necessarly reflect the official Salesforce lexicon, don't use it as a reference.
+- Most of the present document apply for managed package development for ISV, but you might find some practices and ideas that can applies to your workflow nonetheless.
+- The semantic used in this document does not necessarily reflect the official Salesforce lexicon, don't use it as a reference.
 - The source code of the example project used in this blogpost is available on [this GitHub repository](https://github.com/louis-bompart/lwc-structure).
 
 ## Phase 0: MDAPI Project
 
-The MDAPI file structure is how files have been structured for a long time in Salesforce. Those files are sometimes bulky and hard to collaborate on. This why the Source Format was introduced with Salesforce DX.
-If your project is still structured around the MDAPI format, switching to the source format might save you from numerous bad merge and headaches, and here are some resources to help you do it:
+The MDAPI file structure is how files have been structured for a long time in Salesforce. Those files are sometimes bulky and hard to collaborate on. This is why the Source Format was introduced with Salesforce DX.
+If your project is still structured around the MDAPI format, switching to the source format might save you numerous bad merge and headaches, and here are some resources to help you do it:
  - [Salesforce DX Project Structure and Source Format](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_source_file_format.htm), explains what is the Source Format.
  - [SDFX-CLI, mdapi Commands](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_mdapi.htm), some useful commands to work with your MDAPI files (`force:mdapi:convert` should be the one you want to check out).
 
@@ -94,7 +94,7 @@ Even with the files distributed among different folders, the Salesforce-CLI stit
 ### Con
 - It's quite different from the MDAPI file structure, so you might get confused at first if you're used to the latter.
 - What you ship and your code are different, which is something to keep in mind.
-- You still have a single big package, which can be cumbersome for your users (e.g. he might want less static resources).
+- You still have a single big package, which can be cumbersome for your users (e.g. they might want less static resources).
 - It can be used with 1st Generation Packaging (and of course we'd like to use the second!)
 
 
@@ -113,7 +113,7 @@ From there, we're assuming that you're using a 2GP.
 
 ### Con
 
-- You still have a single big package, which can be cumbersome for your users (e.g. he might want less static resources).
+- You still have a single big package, which can be cumbersome for your users (e.g. they might want less static resources).
 
 ## Phase 4: Feature-oriented Second Generation Managed Packages and directory structure.
 
@@ -133,7 +133,7 @@ You should create 'empty' packages (later called 'feature set package') that gro
 You can also add a 'demo' showing how to use them.
 For example in the case of a record page, you could include a flexipage with your components properly setup.
 
-For backward backward compatibility, you should create a `main` package that specifies all the feature set packages as dependencies.
+For backward compatibility, you should create a `main` package that specifies all the feature set packages as dependencies.
 ![An empty main package]({{ site.baseurl }}/images/2020-07-30-salesforce-package-development-model-for-isv/step4-mainpackage.png)
 > the `.placeholder` file is just there to ensure Git does commit the folder, you must also add it to your `.forceignore` file so that Salesforce CLI ignores it when pushing code.
 
