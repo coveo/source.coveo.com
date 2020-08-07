@@ -12,7 +12,7 @@ author:
   image: lbompart.jpg
 ---
 
-In October 2017, Salesforce released Salesforce DX. It brought source-driven development and scratch orgs to the Salesforce developer community, a considerable boon for every Salesforce developer. However, the code that ended in the hand of the user was still not the source code but still the one that lay in a Salesforce organization unfit for team collaboration.
+In October 2017, Salesforce released Salesforce DX. It brought source-driven development and scratch orgs to the Salesforce developer community, a considerable boon for every Salesforce developer. However, when creating a package, the source of truth was still the code that lived in the packaging organization, and not the code that was in your repository.
 
 2 years later, October 2019, Second-Generation Managed Package became GA, bringing the source-driven development to the packaging. This unified the code in a single place: your repository.
 
@@ -22,7 +22,7 @@ Such shifts in the development process might seem daunting at first, but let me 
 
 ## Preamble
 
-- Most of the present document apply for managed package development for ISV, but you might find some practices and ideas that can apply to your workflow nonetheless.
+- Most of the following content can be applied to managed package development for ISV, but you might find some practices and ideas that can apply to your workflow nonetheless.
 - The semantic used in this document does not necessarily reflect the official Salesforce lexicon. Don't use it as a reference.
 - The source code of the example project used in this blogpost is available on [this GitHub repository](https://github.com/louis-bompart/lwc-structure).
 
@@ -31,11 +31,11 @@ Such shifts in the development process might seem daunting at first, but let me 
 The MDAPI file structure is how files have been structured for a long time in Salesforce. Those files are sometimes bulky and hard to collaborate on. This is why the Source Format was introduced with Salesforce DX.
 If your project is still structured around the MDAPI format, switching to the source format might save you numerous bad merge and headaches Here are some resources to help you structuring your project:
  - [Salesforce DX Project Structure and Source Format](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_source_file_format.htm), explains what is the Source Format.
- - [SDFX-CLI, mdapi Commands](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_mdapi.htm), some useful commands to work with your MDAPI files (`force:mdapi:convert` should be the one you want to check out).
+ - [SDFX-CLI, mdapi Commands](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_mdapi.htm), some useful commands to work with your MDAPI files (`force:mdapi:convert` will be the one you want to check out to convert your repository).
 
 ## Phase 1: A monolithic package with a monolithic package directory structure
 
-A 'monolithic package' is a single Salesforce package containing the integrality of your product. A monolithic directory is constituted of a single package directory (a directory containing for example the `lwc` or `object` folder).
+A 'monolithic package' is a single Salesforce package containing the integrality of your product. A monolithic directory is constituted of a single package directory (a directory containing for example an `lwc` or `object` folder).
 
 It contains all the files related to your package in a single folder.
 
@@ -48,7 +48,7 @@ For example, here's what a simple project with a simple console application with
 - It's close to the MDAPI file structure (it'd be what you get from a `sfdx force:mdapi:convert` run even).
 
 ### Cons
-- It's not scalable if you start getting a lot of features: If you have two distinct feature sets, you might want to split your files between those two, but you won't be able to do so, because the subfolder of **package directory** are expecting files matching their names (so, LWC bundles in the `lwc` folder and Aura bundles in `aura` folder. However, because of the subfolder restrictions, you cannot bundle LWC in a subfolder like this: `lwc/subfolder/myComponent`).
+- It's not scalable if you start getting a lot of features: If you have two distinct feature sets, you might want to split your files between those two, but you won't be able to do so, because the subfolders under your **package directory** are expecting files matching their names (so, LWC bundles in the `lwc` folder and Aura bundles in `aura` folder. However, because of the subfolder restrictions, you cannot bundle LWC in a subfolder like this: `lwc/subfolder/myComponent`).
 - You have a single big package, which can be cumbersome for your users (e.g. they might want less static resources).
 
 ### First-Generation Managed package:
@@ -66,7 +66,7 @@ For example, if you have some LWCs for Salesforce Community and others for Sales
 
 If they have some shared code/logic, it could be split in a 'util' directory. Also, you can make multiple util directories. However, you should also apply the Separation of Concerns principle to those too.
 
-So if we take the example from the [Phase 1](#Phase-1:-A-monolithic-package-with-a-monolithic-package-directory-structure), it would become like this:
+So if we take the example from the [Phase 1](#Phase-1:-A-monolithic-package-with-a-monolithic-package-directory-structure), it could be changed to a structure like this:
 
 ![A force-app with multiple, well-scoped folders]({{ site.baseurl }}/images/2020-07-30-salesforce-package-development-model-for-isv/step-1-2-transition.png)
 
@@ -88,14 +88,14 @@ Even with the files distributed among different folders, the Salesforce-CLI stit
 
 ### Pros
 - The development is scalable. As a developer, this should prevent you from getting lost in your files.
-- It should represent better what the client cares about and the different 'solutions' included in your package.
+- It should better represent what the client cares about and the different 'solutions' included in your package.
 - It can be used with 1st or 2nd Generation Packaging
 
 ### Cons
 - It's quite different from the MDAPI file structure, so you might get confused at first if you're used to the latter.
 - What you ship and your code are different, which is something to keep in mind.
-- You still have a single big package, which can be cumbersome for your users (e.g. they might want less static resources).
-- It can be used with 1st Generation Packaging (and of course we'd like to use the second!)
+- You still have a single big package, which can be cumbersome for your users (e.g. they'll surely still want less static resources).
+- You might still be using the First Generation Packaging and thus missing on some goodness of the Second!
 
 
 ## Phase 3: Monolithic Second Generation Managed Package and feature-oriented directory structure.
@@ -113,7 +113,7 @@ From there, we're assuming that you're using a 2GP.
 
 ### Cons
 
-- You still have a single big package, which can be cumbersome for your users (e.g. they might want less static resources).
+- You still have a single big package, which can be cumbersome for your users (e.g. by now, they might starting getting a bit vocal about it...).
 
 ## Phase 4: Feature-oriented Second Generation Managed Packages and directory structure.
 
@@ -124,7 +124,7 @@ Those packages must explicitly specify their dependencies in the `sfdx-project.j
 
 You should create 'empty' packages (later called 'feature set package') that group your features per use cases. For example, if one of your personas is supposed to use multiple independent lightning components to have the best experience with one of your feature set, you should:
  - Split each of these independent lightning components in their own package.
- - Have an empty package that defines those packages as a dependency.
+ - Have an empty package that defines those packages as a dependency. Do not neglect the scope and name of this package, they still need to be 'focused' on a specific use case (e.g. for Coveo for Salesforce, one such package could be the Service Cloud Package or the Commerce Cloud Package).
 
 > That does not mean that you should have one package per component, but instead that you should ask yourself "Can my component be used as a standalone?".
 >
@@ -214,6 +214,7 @@ In the end, with our example, it would look like this:
 ### Pros
 - You ship smaller, self-contained features. That should allow better scalability, for the product and for your team. (i.e. more people can work on your project, and it can contain more stuff).
 - Your client can reduce their installation size by installing only what they need.
+- Newcomers to the project can onboard more easily because they don't need to understand the 'broad picture' of the whole project but instead a reduced subset of it.
 
 ### Cons
 - You have a lot of different packages. You must stay vigilant, or your project will become a mess.
