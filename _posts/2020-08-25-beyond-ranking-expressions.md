@@ -58,7 +58,7 @@ Despite that this rule is functional, it is far from optimal. A video that conta
 
 When creating my rule, I need to figure out a way to soften my boost, since the value of `ytlikecount` field has a wide range. This can be solved by adding a logarithmic function with the following formula:
 
-![Ranking expressions in query pipeline]({{ site.baseurl }}/images/2020-08-25-beyond-ranking-expressions/QRFLogFunction.png)
+![Ranking expressions in query pipeline]({{ site.baseurl }}/images/2020-08-25-beyond-ranking-expressions/QRFLogfunction.png)
 
 The formula starts with `$qrf`. The $qrf injects a query ranking function in the query, effectively creating a custom ranking algorithm for that query. 
 
