@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "Accessibility Within the Search Experience "
+title: "Accessibility within the search experience "
 
 tags: [accessibility, search, compliance]
 
@@ -12,7 +12,7 @@ author:
 ---
 Working for a web based company, you’ve most likely heard the question: “Is your product WCAG compliant.” Having previously worked in sales, the answer for me was always something along the lines of “Yeah, sure, we are WCAG 2.0 compliant.” But, do you know what that actually means? Do you know what WCAG stands for? *hint Web Content Accessibility Guidelines
 
-<!--more-->
+<!-- more -->
 
 ## WCAG 101
 
