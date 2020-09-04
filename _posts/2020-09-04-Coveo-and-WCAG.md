@@ -10,7 +10,7 @@ author:
   bio: Solution Architect
   image: Jamie.png
 ---
-Working for a web based company, you’ve most likely heard the question: “Is your product WCAG compliant.” Having previously worked in sales, the answer for me was always something along the lines of “Yeah, sure, we are WCAG 2.0 compliant.” But, do you know what that actually means? Do you know what WCAG stands for? *hint Web Content Accessibility Guidelines
+Working for a web-based company, you’ve most likely heard the question: “Is your product WCAG compliant.” Having previously worked in sales, the answer for me was always something along the lines of “Yeah, sure, we are WCAG 2.0 compliant.” But, do you know what that actually means? Do you know what WCAG stands for? *hint Web Content Accessibility Guidelines
 
 <!-- more -->
 
@@ -32,7 +32,9 @@ A very interesting experiment on using screen readers can be found in this [arti
 
 I am not going to dive into every aspect of Web Accessibility, but it is important to understand WHERE Coveo is compliant. 
 > Just as a general statement, Coveo’s most recent compliance audit (April 27, 2020) has found that the JavaScript Search Framework is WCAG 2.1 A & AA compliant.
+
 A user likely interacts with the Coveo JavaScript Search Framework for the front end search experience. For this reason, Coveo has taken steps to ensure that the framework is up to WCAG standards. Specifically, Coveo is compliant with (to just name a few):
+
 -keyboard functionality
 -font colors and sizes
 -focus order
@@ -43,6 +45,7 @@ A user likely interacts with the Coveo JavaScript Search Framework for the front
 ## ARIA Landmarks, Alt Text, and Color
 
 ARIA landmarks are attributes you can add to elements in your page to define areas like the main content or a navigation region. Coveo has implemented ARIA Landmarks to help accessibility tools navigate through its components.These ARIA Landmarks are designed to identify and describe elements of a page.
+
 Below is a breakdown of the ARIA Landmarks found on the JavaScript Search Framework.
 
 ![ARIA landmarks on Coveo JSUI]({{ site.baseurl }}/images/2020-08-25 Coveo-and-WCAG/jsui-accessibility-landmarks.png)
@@ -69,9 +72,9 @@ As with ARIA Landmarks and alt text, another area that is important to address i
 
 The bottom line is that, yes, WCAG is important. It is important to understand the reason for the WCAG, because these users are depending on them to have a quality experience.
 
-Right now it’s normal for developers to check and double check their code for security vulnerabilities. Why shouldn’t we check and double check for accessibility features as well? 
+Right now it’s normal for developers to check and double-check their code for security vulnerabilities. Why shouldn’t we check and double-check for accessibility features as well? 
 
-Underneath all of the guidelines and rules, we are trying to provide an equal experience for everyone to find information. Coveo can make a major impact by circumventing the tedious navigation experience and instead provide the documentation with a search. In this day and age, inclusion should be one of our top priorities, and without an understanding of accessibility we are providing a lesser customer experience.
+Underneath all of the guidelines and rules, we are trying to provide an equal experience for everyone to find information. Coveo can make a major impact by circumventing the tedious navigation experience and instead provide the documentation with a search. In this day and age, inclusion should be one of our top priorities, and without an understanding of accessibility, we are providing a lesser customer experience.
 
 ## References
 -[www.w3.org](https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=111#principle1)
