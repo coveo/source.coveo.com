@@ -35,12 +35,12 @@ I am not going to dive into every aspect of Web Accessibility, but it is importa
 
 A user likely interacts with the Coveo JavaScript Search Framework for the front end search experience. For this reason, Coveo has taken steps to ensure that the framework is up to WCAG standards. Specifically, Coveo is compliant with (to just name a few):
 
--keyboard functionality
--font colors and sizes
--focus order
--correct page titles
--language automation 
--page parsing
+- keyboard functionality
+- font colors and sizes
+- focus order
+- correct page titles
+- language automation 
+- page parsing
 
 ## ARIA Landmarks, Alt Text, and Color
 
@@ -77,9 +77,9 @@ Right now it’s normal for developers to check and double-check their code for 
 Underneath all of the guidelines and rules, we are trying to provide an equal experience for everyone to find information. Coveo can make a major impact by circumventing the tedious navigation experience and instead provide the documentation with a search. In this day and age, inclusion should be one of our top priorities, and without an understanding of accessibility, we are providing a lesser customer experience.
 
 ## References
--[www.w3.org](https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=111#principle1)
--[uxdesign.cc](https://uxdesign.cc/how-visually-impaired-people-navigate-the-web-7f9eab9d9c37)
--[gizmodo.com](https://gizmodo.com/giz-explains-how-blind-people-see-the-internet-5620079)
--[getadaaccessible.com](https://getadaaccessible.com/ada-website/)
--[www.a11ymatters.com](https://www.a11ymatters.com/pattern/accessible-search/)
--[docs.coveo.com](https://docs.coveo.com/en/2666/javascript-search-framework/adding-ARIA-landmarks)
+- [www.w3.org](https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=111#principle1)
+- [uxdesign.cc](https://uxdesign.cc/how-visually-impaired-people-navigate-the-web-7f9eab9d9c37)
+- [gizmodo.com](https://gizmodo.com/giz-explains-how-blind-people-see-the-internet-5620079)
+- [getadaaccessible.com](https://getadaaccessible.com/ada-website/)
+- [www.a11ymatters.com](https://www.a11ymatters.com/pattern/accessible-search/)
+- [docs.coveo.com](https://docs.coveo.com/en/2666/javascript-search-framework/adding-ARIA-landmarks)
