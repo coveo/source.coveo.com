@@ -2,12 +2,12 @@
     border-radius: 0px !important;
   }
   .bottomHeader #searchBox .magic-box .magic-box-input .magic-box-underlay, .bottomHeader #searchBox .magic-box .magic-box-input .magic-box .magic-box-input > input {
-    font-family: Lato, sans-serif !important;
+    font-family: canada-type-gibson, sans-serif !important;
     line-height: 48px;
     height: 48px;
   }
   .bottomHeader #searchBox .magic-box .magic-box-suggestions {
-    font-family: Lato, sans-serif !important;
+    font-family: canada-type-gibson, sans-serif !important;
     font-size: 15px !important;
     background-color: #F7F8F9;
   }
