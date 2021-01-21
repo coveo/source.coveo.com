@@ -69,12 +69,3 @@ With Coveo
 If you are a Coveo customer, you can achieve this with the [Popular Items: Viewed submodel](https://docs.coveo.com/en/3284/coveo-for-commerce/leveraging-machine-learning-product-recommendations#popular-items-viewed-popularviewed). No additional ML query parameters need to be configured for the model to provide its recommendations
 
 You might want to check out a previous blog post that we have about this: [Avoid No Results Pages, Display Popular Results Instead](https://source.coveo.com/2019/01/22/popular-results-when-no-results/).
-
-
-
-
-
-
-
-
-
