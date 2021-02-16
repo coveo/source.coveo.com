@@ -14,28 +14,30 @@ author:
 
 I was trying to find a good introduction for this blog post, so I did what I do when I need to write a complex piece of code: a Google search! My search was DevSecOps. One of the first results was [this article](https://www.redhat.com/en/topics/devops/what-is-devsecops) on the RedHat website.
 
-Basically, we adopted DevOps principles, meaning all developers are now taking part in the design, development, deployment and operations of our cloud infrastructure. This allows us to iterate fast, but then, the security team must move fast too.
+Basically, Coveo adopted DevOps principles, meaning all developers are now taking part in the design, development, deployment and operations of our cloud infrastructure. This allows us to iterate fast, but then, the security teams must move fast too.
 
-Unless we shift most of the security concerns as far left as possible? Right in the hands of our developers? This post will give you a few ideas. Spoiler, tooling is the key!
+Unless security professionals work on shifting most of the security concerns as far left as possible? Right in the hands of our developers? Shifting security left is something the software industry talks a lot about. This post will give you a few ideas. Spoiler, tooling is the key!
 
 <!-- more -->
 
 ## The challenge of knowledge
 
-With DevOps principles came Infrastructure as Code (IaC). There are multiple IaC tools out there, but we decided to use Terraform. Terraform can manage almost every AWS resources. This means we can create IAM roles, EC2 instances, S3 buckets and hundreds of other resources using Terraform.
+Infrastructure as a service (IaaS) opened a whole new world of possibilities. IaaS providers like Amazon Web Services (AWS), Microsoft Azure, Google Cloud are all well known now and don't need any presentation. Back in 2012, Coveo opened its first AWS account. In 2021, Coveo is managing over a dozen AWS account.
 
-While this is all great, it does not remove the need to understand how those AWS services are working. Like my paragliding instructor told me, knowledge is what keeps us safe! Without the knowledge of what is safe and what isn't, we are in danger.
+The multiplication of AWS accounts bring the necessity for Infrastructure as Code (IaC). There are multiple IaC tools out there, and Coveo decided to adopt Terraform. Terraform can manage almost every AWS resources. This means a developer can create IAM roles, EC2 instances, S3 buckets and hundreds of other resources using Terraform.
 
-It's exactly the same when we think about cloud services and Infrastructure as Code. To create a secured environment, we need to:
-- Understand the service we are trying to use
+While this is all great, it does not remove the need to understand how those AWS services are working. Like my paragliding instructor told me, knowledge is what keeps us safe! Without the knowledge of what is safe and what isn't, a pilot is in danger.
+
+It's exactly the same when configuring cloud services using Infrastructure as Code. To create a secured environment, it is necessary to:
+- Understand the AWS service, its features, its limitations
 - Know how to configure that service
 - Know how to use Terraform to automate that configuration
 
-It does not stop at configuring an AWS resource for a specific cloud service. We now have Kubernetes too! In Kubernetes, we can create a Deployment fronted by an Ingress that configures an AWS Application Load Balancer (ALB). So we need to know how to write a secure Deployment manifest, and a secure Ingress manifest while understanding how Kubernetes will configure that ALB, because we need to make sure it will be well configured!
+It does not stop at configuring an AWS resource for a specific cloud service. Developers now have to use Kubernetes too! In Kubernetes, a developer can create a Deployment being fronted by an Ingress that configures an AWS Application Load Balancer (ALB). So it is necessary to know how to write a secure Deployment manifest, and a secure Ingress manifest while understanding how Kubernetes will configure that ALB, because it must be well configured!
 
 ## A traditional approach
 
-When does security kicks in? When do we realise we made mistakes in that Terraform code? AWS has multiple services that can help identify misconfigurations:
+When does security kicks in? When do we realize we’ve made mistakes in that Terraform code? AWS has multiple services that can help identify misconfigurations:
 - [AWS Trusted Advisor](https://docs.aws.amazon.com/whitepapers/latest/aws-overview-security-processes/aws-trusted-advisor-security-checks.html)
 - [AWS Config conformance packs](https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html)
 - [AWS IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html)
