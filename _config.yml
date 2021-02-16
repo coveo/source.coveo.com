@@ -39,8 +39,6 @@ inc:
     google: true
     coveo: true
 
-  google_font: 'Lato:300,400,700'
-
 plugins:
     - jekyll-paginate
     - jekyll-sitemap
