@@ -16,13 +16,13 @@ I was trying to find a good introduction for this blog post, so I did what I do 
 
 Basically, Coveo adopted DevOps principles, meaning all developers are now taking part in the design, development, deployment and operations of our cloud infrastructure. This allows us to iterate fast, but then, the security teams must move fast too.
 
-Unless security professionals work on shifting most of the security concerns as far left as possible? Right in the hands of our developers? Shifting security left is something the software industry talks a lot about. This post will give you a few ideas. Spoiler, tooling is the key!
+To build secure environments, we must shift security left, in the hands of our developer. Shifting security left is something the software industry talks a lot about. This post will give you a few ideas. Spoiler, tooling is the key!
 
 <!-- more -->
 
 ## The challenge of knowledge
 
-Infrastructure as a service (IaaS) opened a whole new world of possibilities. IaaS providers like Amazon Web Services (AWS), Microsoft Azure, Google Cloud are all well known now and don't need any presentation. Back in 2012, Coveo opened its first AWS account. In 2021, Coveo is managing over a dozen AWS account.
+Infrastructure as a service (IaaS) opened a new world of possibilities. IaaS providers like Amazon Web Services (AWS), Microsoft Azure, Google Cloud are all well known now and don't need any presentation. Back in 2012, Coveo opened its first AWS account. In 2021, Coveo is managing over a dozen AWS accounts.
 
 The multiplication of AWS accounts brought the necessity for Infrastructure as Code (IaC). There are multiple IaC tools out there, and Coveo decided to adopt Terraform. Terraform can manage almost every AWS resources. This means a developer can create IAM roles, EC2 instances, S3 buckets and hundreds of other resources using Terraform.
 
@@ -51,13 +51,13 @@ So, what happens when a security specialist configures AWS Security Hub after de
 The problem is that everyone knows the time required to read pages of documentation was not taken. DevOps teams members most likely:
 - Copied a piece of Terraform code from StackOverflow
 - Copied another piece of Terraform code from our colleague that copied it from StackOverflow
-- Used our IDE to tell us the required parameters without reading any documentation
+- Used an IDE to tell the required parameters without reading any documentation
 - Used a pre-built Terraform module from someone else without looking at the code too much
 - ...
 
-Now, en organization might be facing dozens, hundreds, of AWS resources that don't follow best practices or that don't follow corporate policies. How can it be fixed?
+Now, an organization might be facing dozens, hundreds, of AWS resources that don't follow best practices or that don't follow corporate policies. How can it be fixed?
 
-AWS Config offers us the possibility to create [remediation actions](https://docs.aws.amazon.com/config/latest/developerguide/remediation.html). While the idea is great, having a tool that changes our resources configuration can bring multiple problems:
+AWS Config offers us the possibility to create [remediation actions](https://docs.aws.amazon.com/config/latest/developerguide/remediation.html). While the idea is great, having a tool that changes AWS resources configuration can bring multiple problems:
 - It can break the application
     - Some resources cannot be changed, they need to be deleted then re-created
 - It creates a configuration drift since the Terraform code does not contain the fix
@@ -218,6 +218,8 @@ With these few lines of HCL code, Terragrunt will run the `checkov` command ever
 There are a few benefits from this approach:
 - Developers most likely already use the `terragrunt plan` command before submitting a pull request
 - Since the CI/CD pipeline probably already does a `terragrunt plan`, it won't be required to change a single line of code in the CI/CD pipeline configuration
+
+Integrating security tools inside other DevOps tools is a great way to drive adoption.
 
 ## Next steps
 
