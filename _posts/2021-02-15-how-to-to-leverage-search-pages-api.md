@@ -129,7 +129,7 @@ It is recommendeded to use bundled coveo-turbo [custom components](https://coveo
 #### Client concerns to consider before going forward with this approach:
 - Is the client okay with the fact that JavaScript code is on Coveo side (let them know that JSUI will still run client side but a delay to download the scripts is added)?
 - Even if the Coveo API is responsive enough for most of our cases, stress tests should be run, especially for commerce clients that have a lot of visits. 
-- Deployment process can be done from the source code (locally or build server -> nice way to get Continous Deployment right?). Snapshot resources also lets you package and deploy search pages. Copy paste the DOM from the editor will not be enough as the header is skipped in the editor.
+- Deployment process can be done from the source code (locally or build server, nice way to get Continuous Deployment right?). Snapshot resources also lets you package and deploy search pages. Copy paste the DOM from the editor will not be enough as the header is skipped in the editor.
 - If client uses a SPA framework, same as for regular JSUI integration, you will have do defer the initialization based on the framework events
 
 [^1]:In order to support Sitecore JSS (headless approach), an [NPM](https://www.npmjs.com/package/coveoforsitecore-jss/v/0.1.39 ) library has been developed.  
