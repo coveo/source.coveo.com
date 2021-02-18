@@ -10,7 +10,7 @@ author:
   bio: Solution Specialist
   image: achouan.jpg
 ---
-The [Coveo JavaScript Search Framework](https://docs.coveo.com/en/361/javascript-search-framework/javascript-search-framework-tutorials), also known as the JSUI, lets you build visually rich, full-featured search interfaces. Thanks to the [Hosted Search Pages](https://docs.coveo.com/en/1656/build-a-search-ui/manage-hosted-search-pages) and the WYSIWIG [Interface Editor](https://docs.coveo.com/en/1852/build-a-search-ui/use-the-interface-editor) Coveo platform users (even the ones with no programming skills) can discover their content easily. All the resources used to set up a Hosted search page are now available through the Search Pages API, how can we benefit from this API and ease our JSUI integrations?
+The [Coveo JavaScript Search Framework](https://docs.coveo.com/en/361/javascript-search-framework/javascript-search-framework-tutorials), also known as the JSUI, lets you build visually rich, full-featured search interfaces. Thanks to the [Hosted Search Pages](https://docs.coveo.com/en/1656/build-a-search-ui/manage-hosted-search-pages) and the WYSIWYG [Interface Editor](https://docs.coveo.com/en/1852/build-a-search-ui/use-the-interface-editor) Coveo platform users (even the ones with no programming skills) can discover their content easily. All the resources used to set up a Hosted search page are now available through the Search Pages API. How can we benefit from this API and ease our JSUI integrations?
 
 <!-- more -->
 
@@ -19,23 +19,23 @@ The [Coveo JavaScript Search Framework](https://docs.coveo.com/en/361/javascript
 At Coveo Professional Services, the JSUI integration in our client environments can be painful. Here are a few key points to illustrate: 
 
 - Code is packaged before deployment, JavaScript and CSS are easily bundled, yet we still need to make sure it ends up between the HTML head element of our client pages.
-- Ideally, the HTML would be handled in a separate file on the client system, the reality is that it is common that our HTML must be appended to an existing client file, which is adding some merge operations.
+- Ideally, the HTML would be handled in a separate file on the client system. The reality is that it is common that our HTML must be appended to an existing client file, which is adding some merge operations.
 - The deployment process will vary from one client to another. It can be done within a few minutes for some client and for others it will take days.
 - Quite often, the client Web technology forces us to ramp up on systems we don't know (and no, it is not necessarily a good opportunity to learn something new). 
-- Finally, like our R&D teams, we like the benefits of Continuous deployment, but we rarely have the opportunity to enjoy it.
+- Finally, like our R&D teams, we like the benefits of Continuous deployment, but we rarely have the opportunity to enjoy them.
 
-Even for clients who integrate JSUI by themselves, it is usually coupled to their own Web application putting UI Integration and deployments at risk! Ideally, the Coveo integration would be a one time job and require minimum code. Now let's see how client UI and JSUI development can be decoupled.
+Even for clients who integrate the JSUI by themselves, it is usually coupled to their own Web application putting UI Integration and deployments at risk! Ideally, the Coveo integration would be a one time job and require minimum code. Now let's see how client UI and JSUI development can be decoupled.
 
 ## Hosted Search Pages API
 
-Recently, [Search Pages API](https://platform.cloud.coveo.com/docs?urls.primaryName=Search Pages#/) has been improved, it now lets us download all the resources required to load a search page.
+Recently, [Search Pages API](https://platform.cloud.coveo.com/docs?urls.primaryName=Search Pages#/) has been improved. It now lets us download all the resources required to load a search page.
 
 ![Sitecore Hosted Search page Editor]({{ site.baseurl }}/images/2021-02-15-leverage-hosted-search-pages/1852-DragAndDroppingComponentsExample.gif)
 
 
 ## Sitecore Hosted Search page component
 
-The Coveo for Sitecore product team were the first to jump on the occasion to leverage the Search Page API upgrade. They have added a [Sitecore server side component](https://docs.coveo.com/en/3257/coveo-for-sitecore-v5/integrate-a-coveo-platform-search-page-in-a-sitecore-item) that renders an HTML component, then the JavaScript bundled in Coveo for Sitecore handles the code logic to fetch Coveo API. [^1]
+The Coveo for Sitecore product team were the first to jump on the occasion to leverage the Search Page API upgrade. They have added a [Sitecore server side component](https://docs.coveo.com/en/3257/coveo-for-sitecore-v5/integrate-a-coveo-platform-search-page-in-a-sitecore-item) that renders an HTML component. The JavaScript bundled in Coveo for Sitecore then handles the code logic to fetch the Coveo API. [^1]
 
 ![Sitecore Hosted Search page component]({{ site.baseurl }}/images/2021-02-15-leverage-hosted-search-pages/SitecoreHostedSearchPage.png)
 
@@ -43,14 +43,14 @@ For more details on how to implement this solution, have a look at this great ar
 
 ## VueJS use case
 
-Our client OsiSoft decided to move their [public Website](https://www.osisoft.com/) to Sitecore, we had short time (5 weeks) to deliver 5 search interfaces. They decided to go with Sitecore JSS and the VueJS library. As VueJS is not supported yet with C4SC OOTB package[^2], the solution has been to guide the client to implement VueJS code logic to implement a similar logic to the OOTB C4SC component.
+Our client OsiSoft decided to move their [public Website](https://www.osisoft.com/) to Sitecore. We had short time (5 weeks) to deliver 5 search interfaces. They decided to go with Sitecore JSS and the VueJS library. As VueJS is not supported yet with C4SC OOTB package[^2], the solution has been to guide the client to implement VueJS code logic to implement a similar logic to the OOTB C4SC component.
 
 ## Hosted Search page Web Component
 
-After I presented OsiSoft implementation internally, Jean-François Allaire from PS decided to invest some time to develop a more generic solution by using a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Source code can be found here : [https://github.com/Coveo-Turbo/hosted-search-page](https://github.com/Coveo-Turbo/hosted-search-page).
+After I presented the OsiSoft implementation internally, Jean-François Allaire from PS decided to invest some time to develop a more generic solution by using a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Source code can be found here: [https://github.com/Coveo-Turbo/hosted-search-page](https://github.com/Coveo-Turbo/hosted-search-page).
 It has been implemented for [Wind River](https://www.windriver.com/result#t=All&sort=relevancy).
 
-Very few code is needed to integrate our search page and we have all the control over the Hosted Search page.
+Very little code is needed to integrate our search page and we have all the control over the Hosted Search page.
 
 Add a reference to the JS package between the HTML head element:
 ```html
@@ -130,7 +130,7 @@ It is recommendeded to use bundled coveo-turbo [custom components](https://coveo
 - Is the client okay with the fact that JavaScript code is on Coveo side (let them know that JSUI will still run client side but a delay to download the scripts is added)?
 - Even if the Coveo API is responsive enough for most of our cases, stress tests should be run, especially for commerce clients that have a lot of visits. 
 - Deployment process can be done from the source code (locally or build server, nice way to get Continuous Deployment right?). Snapshot resources also lets you package and deploy search pages. Copy paste the DOM from the editor will not be enough as the header is skipped in the editor.
-- If client uses a SPA framework, same as for regular JSUI integration, you will have do defer the initialization based on the framework events
+- If client uses a SPA framework, same as for regular JSUI integration, you will have to defer the initialization based on the framework events.
 
 [^1]:In order to support Sitecore JSS (headless approach), an [NPM](https://www.npmjs.com/package/coveoforsitecore-jss/v/0.1.39 ) library has been developed.  
 [^2]: Last time I checked, Sitecore JSS had to be implemented with React to support Hosted Search Page functionalities (Sitecore JSS also offers VueJS and Angular)
