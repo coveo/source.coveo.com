@@ -39,37 +39,40 @@ The Coveo for Sitecore product team were the first to jump on the occasion to le
 
 ![Sitecore Hosted Search page component]({{ site.baseurl }}/images/2021-02-15-leverage-hosted-search-pages/SitecoreHostedSearchPage.png)
 
-For more details on how to implement this solution, have a look at this great article from Hugo Santos [Coveo for Sitecore – Cloud Hosted Search Page, The Fastest Way of Creating a Sitecore Search Interface Ever](https://hls-consulting.com/2020/06/24/coveo-for-sitecore-cloud-hosted-search-page-the-fastest-way-of-creating-a-sitecore-search-interface-ever/).
+For more details on how to implement this solution, have a look at this great article from Hugo Santos. [Coveo for Sitecore – Cloud Hosted Search Page, The Fastest Way of Creating a Sitecore Search Interface Ever](https://hls-consulting.com/2020/06/24/coveo-for-sitecore-cloud-hosted-search-page-the-fastest-way-of-creating-a-sitecore-search-interface-ever/)
 
 ## VueJS use case
 
-Our client OsiSoft decided to move their [public Website](https://www.osisoft.com/) to Sitecore. We had short time (5 weeks) to deliver 5 search interfaces. They decided to go with Sitecore JSS and the VueJS library. As VueJS is not supported yet with C4SC OOTB package[^2], the solution has been to guide the client to implement VueJS code logic to implement a similar logic to the OOTB C4SC component.
+When our client [OsiSoft](https://www.osisoft.com/) decided to move their public Website to Sitecore, we were given a short 5 weeks to deliver 5 search interfaces. They decided to go with Sitecore JSS and the VueJS library. As VueJS is not supported yet with Coveo for Sitecore OOTB package[^2], the solution has been to guide the client to implement VueJS code logic to implement a similar logic to the OOTB Coveo for Sitecore component.
 
 ## Hosted Search page Web Component
 
-After I presented the OsiSoft implementation internally, Jean-François Allaire from PS decided to invest some time to develop a more generic solution by using a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Source code can be found here: [https://github.com/Coveo-Turbo/hosted-search-page](https://github.com/Coveo-Turbo/hosted-search-page).
-It has been implemented for [Wind River](https://www.windriver.com/result#t=All&sort=relevancy).
+[Jean-François Allaire](https://github.com/jfallaire) from our Professional Services team developed a more generic solution by using a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components). The source code can be found here: [https://github.com/Coveo-Turbo/hosted-search-page](https://github.com/Coveo-Turbo/hosted-search-page).
 
-Very little code is needed to integrate our search page and we have all the control over the Hosted Search page.
+As you can see below, very little code is needed to integrate our search page and we have all the control over the Hosted Search page.
 
-Add a reference to the JS package between the HTML head element:
-```html
+1 - Add a reference to the JavaScript package between the HTML head element:
+
+{% highlight html %}
 <script src="https://unpkg.com/@coveops/hosted-search-page@latest/dist/index.min.js"></script>
-```
-The Web Components that will render the search interface, its searchBox and a standalone searchBox: 
-```html
+{% endhighlight %}
+
+2 - Here are the Web Components that will render the search interface, its searchBox, and a standalone searchBox:
+
+{% highlight html %}
 <hosted-search-page id="searchPage"></hosted-search-page>
 
 <hosted-search-page id="searchBox"></hosted-search-page></div>
 
 <hosted-search-page id="globalSearchBox"></hosted-search-page>
-```
+{% endhighlight %}
 
-Code initialization (note the custom event CoveoScriptLoaded instead of page load): 
+3 - Here is how to initialize the code (note the custom event CoveoScriptLoaded instead of page load): 
 
-```javascript
+{% highlight javascript %}
 var COVEO_ORG_ID = '**************************';
 var COVEO_SEARCH_PAGE_API_KEY = '**********-****-****-****-************';
+var coveoToken = '**********************************';
 
 var hostedGlobalSearchBox = document.getElementById('globalSearchBox');
 if (hostedGlobalSearchBox) {
@@ -119,18 +122,22 @@ document.addEventListener('CoveoScriptsLoaded', function () {
 		}
 	}
 });
-```
+{% endhighlight %}
+
+4 - And here is a real-life implementation of this example, done for [Wind River](https://www.windriver.com/result#t=All&sort=relevancy).
+
 
 ## Conclusion:
-Timewise, this approach is a big win. Add to this the use of [coveo-turbo](https://coveo-turbo.github.io/), you can start building search pages locally and push them to the platform in a matter of seconds, as explained [here](https://coveo-turbo.github.io/docs/CLI-reference.html#deploy-a-page-to-the-coveo-platform). JS and CSS customizations are supported as they are injected inline between script and style tags. 
+Timewise, this approach is a big win. Add to this the use of [coveo-turbo](https://coveo-turbo.github.io/), you can start building search pages locally and push them to the platform in a matter of seconds, as explained in this [Deploying a page to the Coveo platform article](https://coveo-turbo.github.io/docs/CLI-reference.html#deploy-a-page-to-the-coveo-platform). JavaScript and CSS customizations are supported as they are injected inline between script and style tags. 
 
 It is recommendeded to use bundled coveo-turbo [custom components](https://coveo-turbo.github.io/#components) as much as possible to keep the inline header script as light as possible. 
 
-#### Client concerns to consider before going forward with this approach:
+Client concerns to consider before going forward with this approach:
 - Is the client okay with the fact that JavaScript code is on Coveo side (let them know that JSUI will still run client side but a delay to download the scripts is added)?
 - Even if the Coveo API is responsive enough for most of our cases, stress tests should be run, especially for commerce clients that have a lot of visits. 
 - Deployment process can be done from the source code (locally or build server, nice way to get Continuous Deployment right?). Snapshot resources also lets you package and deploy search pages. Copy paste the DOM from the editor will not be enough as the header is skipped in the editor.
 - If client uses a SPA framework, same as for regular JSUI integration, you will have to defer the initialization based on the framework events.
 
-[^1]:In order to support Sitecore JSS (headless approach), an [NPM](https://www.npmjs.com/package/coveoforsitecore-jss/v/0.1.39 ) library has been developed.  
+
+[^1]: In order to support Sitecore JSS (headless approach), an [NPM](https://www.npmjs.com/package/coveoforsitecore-jss/v/0.1.39 ) library has been developed.
 [^2]: Last time I checked, Sitecore JSS had to be implemented with React to support Hosted Search Page functionalities (Sitecore JSS also offers VueJS and Angular)
