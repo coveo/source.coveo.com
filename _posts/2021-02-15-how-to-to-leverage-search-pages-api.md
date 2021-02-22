@@ -130,7 +130,7 @@ document.addEventListener('CoveoScriptsLoaded', function () {
 ## Conclusion:
 Timewise, this approach is a big win. Add to this the use of [coveo-turbo](https://coveo-turbo.github.io/), you can start building search pages locally and push them to the platform in a matter of seconds, as explained in this [Deploying a page to the Coveo platform article](https://coveo-turbo.github.io/docs/CLI-reference.html#deploy-a-page-to-the-coveo-platform). JavaScript and CSS customizations are supported as they are injected inline between script and style tags. 
 
-It is recommendeded to use bundled coveo-turbo [custom components](https://coveo-turbo.github.io/#components) as much as possible to keep the inline header script as light as possible. 
+It is recommended to use bundled coveo-turbo [custom components](https://coveo-turbo.github.io/#components) as much as possible to keep the inline header script as light as possible. 
 
 Client concerns to consider before going forward with this approach:
 - Is the client okay with the fact that JavaScript code is on Coveo side (let them know that JSUI will still run client side but a delay to download the scripts is added)?
