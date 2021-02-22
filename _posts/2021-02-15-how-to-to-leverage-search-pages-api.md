@@ -39,7 +39,7 @@ The Coveo for Sitecore product team were the first to jump on the occasion to le
 
 ![Sitecore Hosted Search page component]({{ site.baseurl }}/images/2021-02-15-leverage-hosted-search-pages/SitecoreHostedSearchPage.png)
 
-For more details on how to implement this solution, have a look at this great article from Hugo Santos. [Coveo for Sitecore – Cloud Hosted Search Page, The Fastest Way of Creating a Sitecore Search Interface Ever](https://hls-consulting.com/2020/06/24/coveo-for-sitecore-cloud-hosted-search-page-the-fastest-way-of-creating-a-sitecore-search-interface-ever/)
+For more details on how to implement this solution, have a look at this great article from Hugo Santos: [Coveo for Sitecore – Cloud Hosted Search Page, The Fastest Way of Creating a Sitecore Search Interface Ever](https://hls-consulting.com/2020/06/24/coveo-for-sitecore-cloud-hosted-search-page-the-fastest-way-of-creating-a-sitecore-search-interface-ever/).
 
 ## VueJS use case
 
