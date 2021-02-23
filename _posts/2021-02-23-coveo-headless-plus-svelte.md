@@ -11,7 +11,7 @@ author:
   image: flguillemette.jpg
 ---
 
-I have been recently trying some new technologies, such as our own [Coveo Headless Library](https://docs.coveo.com/en/headless), which aims to replace the monolithic Coveo JavaScript Search Framework as a smaller headless state management library, and [Svelte](https://svelte.dev/), which aims at writing less and clearer code to achieve the same results as a React or VueJS app.
+I have been recently trying some new technologies, such as our own [Coveo Headless Library](https://docs.coveo.com/en/headless), which aims to replace Coveo JavaScript Search Framework with a smaller headless state management library, and [Svelte](https://svelte.dev/), which aims at writing less and clearer code to achieve the same results as a React or VueJS app.
 
 Those two technologies are so great and fun to work with that I could not wait to use them together. So this blog post will do exactly that: Let's build a very simple search page using Svelte and the Headless library.
 
@@ -19,7 +19,7 @@ Those two technologies are so great and fun to work with that I could not wait t
 
 ## Setting up the repository
 
-For this example, we will use [Sapper](https://sapper.svelte.dev/), a small framework that builds a Svelte app with many modern features such as Server-side rendered pages, which is very useful for Commerce's SEO.
+For this example, we will use [Sapper](https://sapper.svelte.dev/), a small framework that builds a Svelte app with many modern features such as Server-side rendered pages, which is very useful for SEO in Commerce.
 
 ```cmd
 npx degit "sveltejs/sapper-template#rollup" coveo-svelte-headless
@@ -31,7 +31,7 @@ npm run dev
 
 You can now open `localhost:3000` and directly edit the files, with hot-reload support! Yes, this is already very impressive.
 
-Now, let's remove some of the code that will not really be needed to in `index.svelte`, which now looks like this:
+Now, let's remove some of the code that will not really be needed in `index.svelte`, which now looks like this:
 
 ```svelte
 <svelte:head>
@@ -91,7 +91,7 @@ searchBoxController.subscribe(() => searchBoxState.set(searchBoxController.state
 
 In Svelte, a `writable` store is a value that can be listened to. You can subscribe to the store by using the (very convenient) `$` syntax, such as `$searchBoxState.results`. Each time the state changes, anything that uses `$searchBoxState` will be re-rendered accordingly.
 
-Now, it would not be very useful to have only a Search box without seeing the results, so let's do the same with a Result List:
+Now, it would not be very useful to have only a search box without seeing the results, so let's do the same with a result list:
 
 ```js
 // components/ResultList.js
@@ -158,7 +158,7 @@ We are now ready to create our simple ResultList Svelte component:
 </div>
 ```
 
-Here, we import the store and simply listen to it! No rocket science at play here, but the `#each` block might need some explaining: It will iterate over the results and render the HTML template for each result. The `as { clickUri, title }` syntax is simply extracting the two keys from each result by using [Object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring). I think the resulting code is surprisingly pretty clean and readable!
+Here, we import the store and simply listen to it! No rocket science at play here, but the `#each` block might need some explaining. It will iterate over the results and render the HTML template for each result. The `as { clickUri, title }` syntax is simply extracting the two keys from each result by using [Object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring). I think the resulting code is surprisingly pretty clean and readable!
 
 ## Integrating the components back into the Search Page
 
@@ -182,7 +182,7 @@ Now, let's integrate those two components in our home page:
 </div>
 ```
 
-Click on the Searchbox, hit Enter, and:
+Click on the search box, hit Enter, and:
 
 ![Coveo Headless and Svelte Result]({{ site.baseurl }}/images/2021-02-23-coveo-plus-svelte/coveo-plus-svelte-result.png)
 
@@ -190,9 +190,9 @@ That's it!
 
 ## Next Steps
 
-This was a very quick introduction to both libraries, but you can see how easy it is to use both and what a great match they have together.
+This was a very quick introduction to both libraries, but you can see how easy it is to use both and what a great match they are together.
 
-There is still a lot of work to do to make it usable in the real world though.
+There is still a lot of work to do to make it usable in the real world, though.
 
 ### Styling
 
@@ -200,4 +200,4 @@ Styling is very easy in Svelte. It is coded directly in the components, all you 
 
 ### Implementing Other Headless Features and Controllers
 
-There are many more features we could implement here, such as query suggestions (which is built-in the `Searchbox` controller) or more specific ones, such as the [Commerce Cart Recommender](https://docs.coveo.com/en/headless/0.1.0/reference/controllers/cart-recommendations/). I would encourage you to explore the [Headless Reference](https://docs.coveo.com/en/headless/0.1.0/reference/) and find the ones that you would like to implement.
+There are many more features we could implement here, such as query suggestions (which is already integrated in the `Searchbox` controller) or more specific ones, such as the [Commerce Cart Recommender](https://docs.coveo.com/en/headless/0.1.0/reference/controllers/cart-recommendations/). I would encourage you to explore the [Headless Reference](https://docs.coveo.com/en/headless/0.1.0/reference/) and find the ones that you would like to implement.
