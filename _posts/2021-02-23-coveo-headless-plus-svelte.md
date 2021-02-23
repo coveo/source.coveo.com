@@ -13,7 +13,7 @@ author:
 
 I have been recently trying some new technologies, such as our own [Coveo Headless Library](https://docs.coveo.com/en/headless), which aims to replace Coveo JavaScript Search Framework with a smaller headless state management library, and [Svelte](https://svelte.dev/), which aims at writing less and clearer code to achieve the same results as a React or VueJS app.
 
-Those two technologies are so great and fun to work with that I could not wait to use them together. So this blog post will do exactly that: Let's build a very simple search page using Svelte and the Headless library.
+Those two technologies are so great and fun to work with that I could not wait to use them together. So this blog post will do exactly that: Let's build a minimal search page using Svelte and the Headless library.
 
 <!-- more -->
 
@@ -91,7 +91,7 @@ searchBoxController.subscribe(() => searchBoxState.set(searchBoxController.state
 
 In Svelte, a `writable` store is a value that can be listened to. You can subscribe to the store by using the (very convenient) `$` syntax, such as `$searchBoxState.results`. Each time the state changes, anything that uses `$searchBoxState` will be re-rendered accordingly.
 
-Now, it would not be very useful to have only a search box without seeing the results, so let's do the same with a result list:
+Now, it would not be super useful to have only a search box without seeing the results, so let's do the same with a result list:
 
 ```js
 // components/ResultList.js
@@ -190,13 +190,13 @@ That's it!
 
 ## Next Steps
 
-This was a very quick introduction to both libraries, but you can see how easy it is to use both and what a great match they are together.
+This was a quick introduction to both libraries, but you can see how easy it is to use both and what a great match they are together.
 
 There is still a lot of work to do to make it usable in the real world, though.
 
 ### Styling
 
-Styling is very easy in Svelte. It is coded directly in the components, all you have to do is create a `style` tag directly in your Svelte file and start using its classes! Note that all classes are scoped by components by design! See the [Svelte documentation](https://svelte.dev/docs#style) for more details.
+Styling is super easy in Svelte. It is coded directly in the components, all you have to do is create a `style` tag directly in your Svelte file and start using its classes! Note that all classes are scoped by components by design! See the [Svelte documentation](https://svelte.dev/docs#style) for more details.
 
 ### Implementing Other Headless Features and Controllers
 
