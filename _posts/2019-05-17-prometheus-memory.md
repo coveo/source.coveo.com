@@ -16,7 +16,7 @@ At Coveo, we use [Prometheus 2](https://prometheus.io/) for collecting all of ou
 <!-- more -->
 
 Recently, we ran into an issue were our prometheus pod was killed by kubenertes because it was reaching its 30Gi memory limit. This surprised us, considering the amount of metrics we were collecting.
-For comparison, benchmarks for a typical Prometheus installation usually look something like this :
+For comparison, benchmarks for a typical Prometheus installation usually look something like this:
 
 * 800 microservice  + k8s
 * 120,000 sample/second
@@ -93,7 +93,7 @@ Needed_ram = number_of_serie_in_head * 8Kb (approximate size of a time series. n
 
 ### Analyze memory usage
 
-Prometheus exposes [Go](https://golang.org/) [profiling tools](https://golang.org/pkg/runtime/pprof/), so let see what we have.
+Prometheus exposes [Go](https://golang.org/) [profiling tools](https://golang.org/pkg/runtime/pprof/), so let's see what we have.
 
 ```
 $ go tool pprof -symbolize=remote -inuse_space https://monitoring.prod.cloud.coveo.com/debug/pprof/heap
@@ -118,9 +118,9 @@ Showing top 10 nodes out of 64
   304.51MB  2.92% 84.87%   304.51MB  2.92%  github.com/prometheus/tsdb.(*decbuf).uvarintStr /app/vendor/github.com/prometheus/tsdb/encoding_helpers.go
 ```
 
-First, we see that the memory usage is only 10Gb, which means the remaining 30GB used is, in fact, the cached memory allocated by mmap.
+First, we see that the memory usage is only 10Gb, which means the remaining 30Gb used are, in fact, the cached memory allocated by mmap.
 
-Second, we see that we have a huge amount of memory used by labels, which likely indicates a high cardinality issue. High cardinality means a metrics is using a label which has plenty of different values.
+Second, we see that we have a huge amount of memory used by labels, which likely indicates a high cardinality issue. High cardinality means a metric is using a label which has plenty of different values.
 
 ### Analyze label usage
 
@@ -252,7 +252,7 @@ Highest cardinality metric names:
 120963 container_spec_memory_reservation_limit_bytes
 ```
 
-We can see that the monitoring of one of the Kubernetes service(kubelet) seems to generate a lot of churn, which is normal considering that it exposes all of the container metrics and that container rotate often, and that the id label has high cardinality.
+We can see that the monitoring of one of the Kubernetes service (kubelet) seems to generate a lot of churn, which is normal considering that it exposes all of the container metrics, that container rotate often, and that the id label has high cardinality.
 
 ## Actions
 
