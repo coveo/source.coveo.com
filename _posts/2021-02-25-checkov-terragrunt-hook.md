@@ -16,7 +16,7 @@ Trying to find a good introduction for this blog post, I did what I do when I ne
 
 Basically, Coveo adopted the DevOps principle, meaning that all developers are now taking part in the design, development, deployment and operations of our cloud infrastructure. This allows us to iterate fast but, the security teams must also move fast now.
 
-To build secure environments, we must shift security left, in the hands of our developer. Shifting security left is something the software industry talks a lot about. This post will give you a few ideas. Spoiler: tooling is the key!
+To build secure environments while adopting DevOps, we must shift security left, in the hands of our developers. Shifting security left is something the software industry talks a lot about. This post will give you a few ideas. Spoiler: tooling is the key!
 
 <!-- more -->
 
