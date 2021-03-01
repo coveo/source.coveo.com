@@ -11,12 +11,12 @@ author:
   image: tdegiacinto.jpg
 ---
 
-At Coveo, we use [Prometheus 2](https://prometheus.io/) for collecting all of our monitoring metrics. Prometheus is known for being able to handle millions of time series with only a few resources. So when our pod was hiting its 30Gi memory limit, we decided to dive into it to understand how memory is allocated, and get to the root of the issue.
+At Coveo, we use [Prometheus 2](https://prometheus.io/) for collecting all of our monitoring metrics. Prometheus is known for being able to handle millions of time series with only a few resources. So when our pod was hitting its 30Gi memory limit, we decided to dive into it to understand how memory is allocated, and get to the root of the issue.
 
 <!-- more -->
 
-Recently, we ran into an issue were our prometheus pod was killed by kubenertes because it was reaching its 30Gi memory limit. This surprised us, considering the amount of metrics we were collecting.
-For comparison, benchmarks for a typical Prometheus installation usually look something like this:
+Recently, we ran into an issue where our Prometheus pod was killed by Kubenertes because it was reaching its 30Gi memory limit. This surprised us, considering the amount of metrics we were collecting.
+For comparison, benchmarks for a typical Prometheus installation usually looks something like this:
 
 * 800 microservice  + k8s
 * 120,000 sample/second
