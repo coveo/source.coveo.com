@@ -47,7 +47,7 @@ If you're starting with a fresh organization, AWS Security Hub is a good place t
 
 What happens when a security specialist configures AWS Security Hub after delegating infrastructure management to multiple DevOps teams? Well, if everyone took the time to read all the documentation available each time they needed to create a new piece of infrastructure, everything should be green!
 
-We all know we don’t always take the time to fully read the documentation. DevOps teams members are likely to:
+We all know we don’t always take the time to fully read the documentation. DevOps team members are likely to:
 - Copy a piece of Terraform code from StackOverflow
 - Copy another piece of Terraform code from a colleague that copied it from StackOverflow
 - Use an IDE to tell the required parameters without reading any documentation
@@ -221,7 +221,7 @@ Integrating security tools inside other DevOps tools is a great way to drive ado
 
 ## Next steps
 
-Running static analysis on Terraform files and on Kubernetes manifest won't solve all problems, but it will help the security team adapt to the speed of DevOps and shift a bit of security responsibilities left, i.e., in the hands of developers. Developing knowledge about AWS, Kubernetes, all the other things your organization might be using is also essential.
+Running static analysis on Terraform files and on Kubernetes manifest won't solve all problems, but it will help the security team adapt to the speed of DevOps and shift a bit of security responsibilities left, i.e., in the hands of developers. Developing knowledge about AWS, Kubernetes, and all the other things your organization might be using is also essential.
 
 The organization still needs observability in the resulting environment. AWS Config is there to help, and so are other SaaS providers like Lacework!
 
