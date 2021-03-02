@@ -92,7 +92,7 @@ Creating an S3 bucket using Terraform is quite easy:
 ```hcl
 resource "aws_s3_bucket" "data" {}
 ```
-This is all developers need! They don't even have to specify a name for the S3 Bucket, Terraform will generate one automatically...
+This is all developers need! They don't even have to specify a name for the S3 Bucket; Terraform will generate one automatically...
 
 So what happens if Checkov performs an analysis on that code?
 
