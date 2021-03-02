@@ -67,7 +67,7 @@ As you can see below, very little code is needed to integrate our search page an
 <hosted-search-page id="globalSearchBox"></hosted-search-page>
 {% endhighlight %}
 
-3 - Here is how to initialize the code (note the custom event CoveoScriptLoaded instead of page load): 
+3 - Here is how to initialize the code. Note that we use the custom event CoveoScriptLoaded instead of page load. Page Ids are not directly exposed in the platform; you can use [Swagger UI](https://platform.cloud.coveo.com/docs?urls.primaryName=Search%20Pages#/Search%20pages/get_rest_organizations__organizationID__pages) to retrieve them:
 
 {% highlight javascript %}
 var COVEO_ORG_ID = '**************************';
