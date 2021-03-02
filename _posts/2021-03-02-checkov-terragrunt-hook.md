@@ -22,9 +22,9 @@ To build secure environments while adopting DevOps, we must shift security left,
 
 ## The challenge of knowledge
 
-Infrastructure as a service (IaaS) opened a new world of possibilities. IaaS providers like Amazon Web Services (AWS), Microsoft Azure, Google Cloud are now all well known and don't need any presentation. Back in 2012, Coveo opened its first AWS account. In 2021, Coveo is now managing over a dozen AWS accounts.
+Infrastructure as a service (IaaS) opened a new world of possibilities. IaaS providers like Amazon Web Services (AWS), Microsoft Azure, and Google Cloud are now all well known and don't need any presentation. Back in 2012, Coveo opened its first AWS account. In 2021, Coveo is now managing over a dozen AWS accounts.
 
-The multiplication of AWS accounts brought the necessity for Infrastructure as Code (IaC). There are multiple IaC tools out there, and Coveo decided to adopt Terraform. Terraform can manage almost every AWS resource. This means a developer can create IAM roles, EC2 instances, S3 buckets and hundreds of other resources using Terraform.
+The multiplication of AWS accounts brought the necessity for Infrastructure as Code (IaC). There are multiple IaC tools out there, and Coveo decided to adopt Terraform. Terraform can manage almost every AWS resource. This means a developer can create IAM roles, EC2 instances, S3 buckets, and hundreds of other resources using Terraform.
 
 While this is all great, it does not remove the need to understand how those AWS services are working. To quote my paragliding instructor: "Knowledge is what keeps us safe!". Without the knowledge of what is safe and what isn't, a pilot is in danger.
 
@@ -50,11 +50,11 @@ What happens when a security specialist configures AWS Security Hub after delega
 We all know we don’t always take the time to fully read the documentation. DevOps team members are likely to:
 - Copy a piece of Terraform code from StackOverflow
 - Copy another piece of Terraform code from a colleague that copied it from StackOverflow
-- Use an IDE to tell the required parameters without reading any documentation
+- Use an IDE to tell what the required parameters are without reading any documentation
 - Use a pre-built Terraform module from someone else without looking at the code too much
-- Etc...
+- Etc.
 
-With time, an organization might end up with dozens or hundreds of AWS resources that don't follow best practices or that don't follow corporate policies. How can that be fixed?
+With time, an organization might end up with dozens of AWS resources that don't follow best practices or that don't follow corporate policies. How can that be fixed?
 
 AWS Config offers us the possibility to create [remediation actions](https://docs.aws.amazon.com/config/latest/developerguide/remediation.html). While the idea is great, having a tool that changes AWS resource configurations can bring multiple problems:
 - It can break the application (some resources cannot be changed, they need to be deleted and then re-created)
@@ -82,7 +82,7 @@ Checkov is one tool, but there are multiple tools out there:
 - [Terrascan](https://www.accurics.com/products/terrascan/) is another open-source tool, which leverages Open Policy Agent policies
 - [Snyk Infrastructure as Code](https://snyk.io/product/infrastructure-as-code-security/) is free for open-source projects and for a limited number of private projects
 - [Bridgecrew](https://bridgecrew.io/) are creators of Checkov, and they offer a SaaS that performs analyses on IaC and much more
-- Etc...
+- Etc.
 
 In this blog post, Checkov was chosen because it is free, simple, well documented, and easy to extend.
 
