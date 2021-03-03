@@ -261,17 +261,17 @@ The only action we will take here is to drop the `id` label, since it doesn't br
 ### DEV
 
 **Before optimization**
-![](/images/2019-05-17-prometheus-memory/image2.png)
+![](/images/2021-03-03-prometheus-memory/image2.png)
 
 **After**
-![](/images/2019-05-17-prometheus-memory/image4.png)
+![](/images/2021-03-03-prometheus-memory/image4.png)
 
 ### PROD
 
-![](/images/2019-05-17-prometheus-memory/image3.png)
+![](/images/2021-03-03-prometheus-memory/image3.png)
 
 After applying optimization, the sample rate was reduced by 75%.
-![](/images/2019-05-17-prometheus-memory/image2019-5-13_15-27-4.png)
+![](/images/2021-03-03-prometheus-memory/image2019-5-13_15-27-4.png)
 
 Pod memory usage was immediately halved after deploying our optimization and is now at 8Gb, which represents a 375% improvement of the memory usage.
 
