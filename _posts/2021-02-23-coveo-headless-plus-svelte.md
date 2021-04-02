@@ -19,11 +19,15 @@ Those two technologies are so great and fun to work with that I could not wait t
 
 ## Setting up the repository
 
-For this example, we will use [Sapper](https://sapper.svelte.dev/), a small framework that builds a Svelte app with many modern features such as Server-side rendered pages, which is very useful for SEO in Commerce.
+_This blog was updated on 2021-04-01 to use the new `SvelteKit` instead of `Sapper`_
+
+For this example, we will use [SvelteKit](https://kit.svelte.dev/), a small framework that builds a Svelte app with many modern features such as Server-side rendered pages, which is very useful for SEO in Commerce.
 
 ```cmd
-npx degit "sveltejs/sapper-template#rollup" coveo-svelte-headless
+mkdir coveo-svelte-headless
 cd coveo-svelte-headless
+npm init svelte@next
+
 npm install @coveo/headless
 npm install
 npm run dev
@@ -50,7 +54,7 @@ The first thing to do is to create a Headless engine. This engine holds the stat
 For this blog, we will use the sample configuration:
 
 ```js
-// components/SearchEngine.ts
+// src/lib/SearchEngine.js
 
 import { HeadlessEngine, searchAppReducers } from '@coveo/headless';
 
@@ -65,10 +69,10 @@ export const searchEngine = new HeadlessEngine({
 We must then create a controller to interact with that engine's state.
 
 ```js
-// components/SearchBox.ts
+// src/lib/SearchBox.js
 
 import { SearchBox, buildSearchBox } from '@coveo/headless';
-import {searchEngine} from "./SearchEngine";
+import { searchEngine } from "./SearchEngine";
 
 export const searchBoxController = buildSearchBox(searchEngine);
 ```
@@ -78,7 +82,7 @@ The `buildSearchBox` method creates a controller for a search box. It exposes a 
 It would be nice to leverage Svelte's store management system, so let's subscribe to the controller's state and expose it:
 
 ```js
-// components/SearchBox.js
+// src/lib/SearchBox.js
 
 import { buildSearchBox } from '@coveo/headless';
 import { searchEngine } from "./SearchEngine";
@@ -94,7 +98,7 @@ In Svelte, a `writable` store is a value that can be listened to. You can subscr
 Now, it would not be super useful to have only a search box without seeing the results, so let's do the same with a result list:
 
 ```js
-// components/ResultList.js
+// src/lib/ResultList.js
 
 import { buildResultList } from '@coveo/headless';
 import { searchEngine } from "./SearchEngine";
@@ -110,7 +114,7 @@ resultListController.subscribe(() => resultListState.set(resultListController.st
 And here comes the fun part, wrapping those states and controllers into Svelte components:
 
 ```svelte
-// components/SearchBox.svelte
+// src/lib/SearchBox.svelte
 <script>
   import { searchBoxController } from "./SearchBox.js";
 
@@ -136,7 +140,7 @@ We then use the `bind:value={text}` syntax to ensure that any letter typed in th
 We are now ready to create our simple ResultList Svelte component:
 
 ```svelte
-// components/ResultList.svelte
+// src/lib/ResultList.svelte
 <script>
   import { resultListState } from "./ResultList.js";
 </script>
@@ -165,11 +169,11 @@ Here, we import the store and simply listen to it! No rocket science at play her
 Now, let's integrate those two components in our home page:
 
 ```svelte
-// routes/index.svelte
+// src/routes/index.svelte
 
 <script>
-  import SearchBox from "../components/SearchBox.svelte";
-  import ResultList from "../components/ResultList.svelte";
+  import SearchBox from "$lib/SearchBox.svelte";
+  import ResultList from "$lib/ResultList.svelte";
 </script>
 
 <svelte:head>
@@ -182,7 +186,9 @@ Now, let's integrate those two components in our home page:
 </div>
 ```
 
-Click on the search box, hit Enter, and:
+You can see the `$lib` value in the import path. This is a convenient virtual path that points to the "lib" folder.
+
+With these changes, get back to your `localhost:3000`, click on the search box, hit Enter, and:
 
 ![Coveo Headless and Svelte Result]({{ site.baseurl }}/images/2021-02-23-coveo-plus-svelte/coveo-plus-svelte-result.png)
 
@@ -201,3 +207,4 @@ Styling is super easy in Svelte. It is coded directly in the components, all you
 ### Implementing Other Headless Features and Controllers
 
 There are many more features we could implement here, such as query suggestions (which is already integrated in the `Searchbox` controller) or more specific ones, such as the [Commerce Cart Recommender](https://docs.coveo.com/en/headless/0.1.0/reference/controllers/cart-recommendations/). I would encourage you to explore the [Headless Reference](https://docs.coveo.com/en/headless/0.1.0/reference/) and find the ones that you would like to implement.
+
