@@ -19,7 +19,7 @@ Currently, the Coveo index has around 30 internal caches, each of them using one
 
 LRU is one of the simplest caching schemes available. It offers an *acceptable* level of performance in most scenarios, while at the same time being really easy to implement.
 
-![In-Memory Structure of an LRU Cache](/images/2021-04-23-moving-past-lru/lru_structure.png)
+![In-Memory Structure of an LRU Cache](/images/2021-04-28-moving-past-lru/lru_structure.png)
 _In-Memory Structure of an LRU Cache_
 
 LRU is usually implemented as a linked list. Whenever an item is added or accessed in the cache, it is moved to the front of the list. When attempting to insert an item while the cache is full, the item at the back of the list is evicted to make some space.
@@ -48,7 +48,7 @@ When mapping out the flowchart representing a typical cache insertion process (i
 
  The _Insertion Policy_ answers all questions related to whether an item *should* be in the cache. The _Cache_ owns the values that were inserted and tracks its memory usage. Meanwhile, the _Eviction Policy_ is responsible for ordering items that are in the cache by order of preference.
 
-![Cachemere Insertion Process](/images/2021-04-23-moving-past-lru/insert_flow.png)
+![Cachemere Insertion Process](/images/2021-04-28-moving-past-lru/insert_flow.png)
 _Cachemere Insertion Process_
 
 This design allows Cachemere to provide a variety of policies, while still allowing the end-user to implement purpose-built policies without losing the benefits of a unified cache.
@@ -172,15 +172,15 @@ We then ran this benchmark with multiple cache sizes against the three caching s
 
 From the characteristics of each caching scheme described above, we expect both GDSF and TinyLFU to have a considerable edge over LRU in all benchmarks. We also expect TinyLFU to be ahead in hit rate benchmarks, while GDSF should come out on top in the cost (latency) benchmark.
 
-![Impact of Cache Size on Hit Rate](/images/2021-04-23-moving-past-lru/hit_rate.png)
+![Impact of Cache Size on Hit Rate](/images/2021-04-28-moving-past-lru/hit_rate.png)
 
 For the hit rate, the results are very straightforward. Both TinyLFU and GDSF significantly outperform LRU for all tested cache sizes, with TinyLFU coming out ahead, as expected.
 
-![Impact of Cache Size on Latency](/images/2021-04-23-moving-past-lru/latency.png)
+![Impact of Cache Size on Latency](/images/2021-04-28-moving-past-lru/latency.png)
 
 As for average latency, the results are initially a bit more surprising. GDSF performs very well - as expected - but TinyLFU seems to be performing much better than anticipated considering that it pays no attention whatsoever to cost of cache misses. Upon further examination however, this result is explained by the fact that TinyLFU has a higher overall hit rate, so the average cost ends up lower even though no effort is made to minimize reload cost.
 
-![Impact of Cache Size on Miss Latency](/images/2021-04-23-moving-past-lru/miss_latency.png)
+![Impact of Cache Size on Miss Latency](/images/2021-04-28-moving-past-lru/miss_latency.png)
 
 We can confirm this by plotting the average reload cost on cache miss instead of overall, and doing so makes it clear that GDSF does a pretty good job of reducing latency.
 
