@@ -73,7 +73,7 @@ Read the paper [here](https://arxiv.org/abs/1512.00727).
 
 Caching scheme aiming to minimize the average cost of a cache miss.
 
-For more information, take a look at [the documentation](todo://link.to.documentation.once.published).
+For more information, take a look at [the documentation](https://coveooss.github.io/cachemere/).
 
 ## Using Cachemere
 
