@@ -40,7 +40,7 @@ At least, not until now.
 
 ## Designing a Solution
 
-When we noticed that the performace of our caches wasn't where we wanted it to be, and that making large changes across many caches was becoming slow and error-prone, we took the initiative to design what has now become a general-purpose C++ caching library called [Cachemere](https://github.com/coveooss/cachemere).
+When we noticed that the performance of our caches wasn't where we wanted it to be, and that making large changes across many caches was becoming slow and error-prone, we took the initiative to design what has now become a general-purpose C++ caching library called [Cachemere](https://github.com/coveooss/cachemere).
 
 The first step in designing this new general-purpose cache is to create a modular system for describing cache behavior. Doing so will allow us to implement a generic cache once, and override specific parts of its behavior as required by the use case.
 
