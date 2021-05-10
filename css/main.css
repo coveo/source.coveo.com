@@ -2113,7 +2113,6 @@ h2 a {
 
 .illustration .container{
     max-width:930px;
-    margin-top:60px;
     text-align: center;
     padding:20px;
 }
@@ -2431,7 +2430,7 @@ body.nav-hidden .site-nav {
 
 article {
     background: transparent;
-    padding: 60px 20px;
+    padding: 0px 20px 60px;
     font-size: 18px
 }
 
