@@ -95,7 +95,7 @@ except Exception as e:
     log(str(e))
 {% endhighlight %}
 
-**Note**: we strongly recommend using a minimum of 3 characters for SKU decomposition.
+__Note__: we strongly recommend using a minimum of 3 characters for SKU decomposition.
 
 To get this code to access your fields, set `sku_meta` to your original or existing SKU field and `sku_field` to the new field you created to hold the list of partial values.  In our example, we used:
 
