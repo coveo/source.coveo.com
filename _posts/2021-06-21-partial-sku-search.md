@@ -19,9 +19,9 @@ Do you want to have better and faster search results in your Coveo-powered catal
 
 Making a good user experience when dealing with parts, pieces, or any complex product catalog, is not an easy task. Sometimes, the complexity of the catalog is carried over to the user experience, affecting not only the relevance but ultimately conversions on your website.
 
-A retail or occasional customer might be willing to search by keyword and sift through the results, but commercial buyers are more likely looking for a specific product to order or reorder. And, they expect rapid retrieval from these large data sets, even if they don’t use the complete product ID, or SKU, when searching.
+Now, a retail or occasional customer might be willing to search by keyword and sift through the results, but commercial buyers are more likely looking for a specific product to order or reorder. And, they expect rapid retrieval from these large data sets, even if they don’t use the complete product ID, or SKU, when searching.
 
-Although you could simply make the SKU field searchable with wildcards, you can make the response time up to 10 times faster by using SKU decomposition. 
+While you could simply make the SKU field searchable with wildcards, you can make the response time up to 10 times faster by using SKU decomposition. 
 
 ## What is SKU Decomposition, anyway?
 
@@ -110,6 +110,7 @@ sku_field = 'product_partial_match'
 After you save the new extension, you must associate it to the indexing source. This is similar to the field mapping process: select the catalog source in the Administration Console, and then from the More menu item, select the Manage Extensions option.
 
 Select the extension you created earlier and then adjust the settings for applying the extension on the source items. For the Stage option, choose post-conversion. We recommend that you choose the ‘skip extension’ option for the error action and apply to all items since the reject option will eliminate the document from the index. These are the options highlighted in the screenshot below.
+
 ![Adding the extension to a source.](/images/2021-06-21-partial-sku-search/Manage_Extension_rnd.png "Adding the extension to a source.")
 
 For these changes to be applied, you will have to reindex your catalog data, or re-push if your source is populated using the PUSH API.
