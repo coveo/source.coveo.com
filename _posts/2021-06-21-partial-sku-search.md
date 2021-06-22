@@ -31,7 +31,7 @@ By working out the list in advance and storing it in the index, your Coveo-power
 
 ## Field Management
 
-If your catalog data is well structured and the SKU field already exists, then all you need to do is create a new field and map it to the SKU field. You can do this from Coveo Platform Administration Console using the [Add field](https://docs.coveo.com/en/1982/index-content/add-or-edit-a-field) option from the Content: Fields menu. Make sure you select the “string” type and check the “Multi-Value Facet” and “Free text search” checkboxes, as highlighted in the screenshot below. In this example, our new field is called product_partial_match.
+If your catalog data is well structured and the SKU field already exists, then all you need to do is create a new field and map it to the SKU field. You can do this from Coveo Platform Administration Console using the [Add field](https://docs.coveo.com/en/1982/index-content/add-or-edit-a-field) option from the Content: Fields menu. Make sure you select the *string* type and check the *Multi-Value Facet* and *Free text search* checkboxes, as highlighted in the screenshot below. In this example, our new field is called product_partial_match.
 ![Adding a new field from the Coveo Administration Console]({{ site.baseurl }}/images/2021-06-21-partial-sku-search/Add_New_Field_650_rnd.png "Adding a new field from the Coveo Administration Console.")
 
 Then, you can map this field to your SKU metadata field for the catalog source.  In the screenshot below, the new field product_partial_match is associated with the existing field for the actual SKU value: bb_sku.
