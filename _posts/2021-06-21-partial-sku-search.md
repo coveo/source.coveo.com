@@ -1,5 +1,7 @@
 ---
 layout: post
+kramdown:
+  input: GFM
 
 title: "Part and Partial Value Search"
 subtitle: "SKU Search in Complex Manufacturing"
