@@ -1,7 +1,5 @@
 ---
 layout: post
-kramdown:
-  input: GFM
 
 title: "Part and Partial Value Search"
 subtitle: "SKU Search in Complex Manufacturing"
@@ -33,21 +31,48 @@ By working out the list in advance and storing it in the index, your Coveo-power
 
 ## Field Management
 
-If your catalog data is well structured and the SKU field already exists, then all you need to do is create a new field and map it to the SKU field. You can do this from Coveo Platform Administration Console using the [Add field](https://docs.coveo.com/en/1982/index-content/add-or-edit-a-field) option from the Content: Fields menu. Make sure you select the *string* type and check the *Multi-Value Facet* and *Free text search* checkboxes, as highlighted in the screenshot below. In this example, our new field is called product_partial_match.
+If your catalog data is well structured and the SKU field already exists, then all you need to do is create a new field and map it to the SKU field. You can do this from Coveo Platform Administration Console using the [Add field](https://docs.coveo.com/en/1982/index-content/add-or-edit-a-field) option from the Content: Fields menu. Make sure you select the 'string' type and check the 'Multi-Value Facet' and 'Free text search' checkboxes, as highlighted in the screenshot below. In this example, our new field is called product_partial_match.
 ![Adding a new field from the Coveo Administration Console]({{ site.baseurl }}/images/2021-06-21-partial-sku-search/Add_New_Field_650_rnd.png "Adding a new field from the Coveo Administration Console.")
 
-Then, you can map this field to your SKU metadata field for the catalog source.  In the screenshot below, the new field product_partial_match is associated with the existing field for the actual SKU value: bb_sku.
+Then, you can map this field to your SKU metadata field for the catalog source.  In the screenshot below, the new field `product_partial_match` is associated with the existing field for the actual SKU value: `bb_sku`.
 ![Add a field mapping]({{ site.baseurl }}/images/2021-06-21-partial-sku-search/Add_field_mapping_full_rnd.png "Adding a field mapping to link the new field to the SKU field.")
 
 Check out our documentation for more details on how to add a [mapping rule](https://docs.coveo.com/en/1640/index-content/manage-source-mappings#add-or-edit-a-mapping-rule).
 
-If your data source doesn’t already have a single metadata field that holds the SKU, you should explore ways to standardize the data. Alternatively, you can add configuration to do SKU decomposition on each field that should be inspected and parsed. This field will hold all the variations of the metadata field value for the indexed items.
+For sources that use the Push API you can take another approach. If you compute the list of partial SKU values and submit them as another field in the index, then no indexing extension is required.  Just make sure that your field has the characteristics described here: 'string' type, 'Multi-Value Facet' and 'Free text search'.
+
+{% highlight JSON %}
+    {
+      "name": "product_partial_match",
+      "description": "",
+      "type": "STRING",
+      "includeInQuery": true,
+      "includeInResults": true,
+      "mergeWithLexicon": false,
+      "smartDateFacet": false,
+      "facet": true,
+      "multiValueFacet": true,
+      "hierarchicalFacet": false,
+      "sort": false,
+      "ranking": false,
+      "stemming": false,
+      "multiValueFacetTokenizers": ";",
+      "useCacheForNestedQuery": false,
+      "useCacheForSort": false,
+      "useCacheForNumericQuery": false,
+      "useCacheForComputedFacet": false,
+      "dateFormat": "",
+      "system": false
+    }
+{% end highlight%}
+
+If your data source doesn’t already have a single metadata field that holds the SKU, you should explore ways to standardize the data. Alternatively, you can add configuration to do SKU decomposition on each field that should be inspected and parsed.
 
 ## Indexing Extension
 
 The key to making this work is to add an extension to the indexing process that will examine the SKU field, identify all the variations of the partial (sequential) values, and store them in the index. The response time gains come from having all the variations ready for comparison, rather than having to expand the wildcard at search time.
 
-If you have never added an indexing pipeline extension, you access it from the Extensions menu item in the Content section of the Administration Console. You can learn more about this in our documentation on [managing indexing pipelines](https://docs.coveo.com/en/1645/index-content/manage-indexing-pipeline-extensions#add-or-edit-indexing-pipeline-extensions).
+If you have never added an indexing pipeline extension, you access it from the "Extensions" menu item in the Content section of the Administration Console. You can learn more about this in our documentation on [managing indexing pipelines](https://docs.coveo.com/en/1645/index-content/manage-indexing-pipeline-extensions#add-or-edit-indexing-pipeline-extensions).
 ![Creating the indexing extension.]({{ site.baseurl }}/images/2021-06-21-partial-sku-search/Add_Indexing_Extension_rnd.png "Creating the indexing extension.")
 
 Add a name and description for the extension.  Then, paste the following python code snippet into the Extension script box, as shown in the screenshot above.
@@ -97,7 +122,7 @@ except Exception as e:
     log(str(e))
 {% endhighlight %}
 
-__Note__: we strongly recommend using a minimum of 3 characters for SKU decomposition.
+*NOTE*: we strongly recommend using a minimum of 3 characters for SKU decomposition.
 
 To get this code to access your fields, set `sku_meta` to your original or existing SKU field and `sku_field` to the new field you created to hold the list of partial values.  In our example, we used:
 
@@ -108,9 +133,9 @@ sku_field = 'product_partial_match'
 
 ## Tying it together
 
-After you save the new extension, you must associate it to the indexing source. This is similar to the field mapping process: select the catalog source in the Administration Console, and then from the More menu item, select the Manage Extensions option.
+After you save the new extension, you must associate it to the indexing source. This is similar to the field mapping process: select the catalog source in the Administration Console, and then from the "More" menu item, select the "Manage Extensions" option.
 
-Select the extension you created earlier and then adjust the settings for applying the extension on the source items. For the Stage option, choose post-conversion. We recommend that you choose the ‘skip extension’ option for the error action and apply to all items since the reject option will eliminate the document from the index. These are the options highlighted in the screenshot below.
+Select the extension you created earlier and then adjust the settings for applying the extension on the source items. For the "Stage" option, choose 'post-conversion'. We recommend that you choose the ‘skip extension’ option for the error action and apply to all items since the reject option will eliminate the document from the index. These are the options highlighted in the screenshot below.
 
 ![Adding the extension to a source.]({{ site.baseurl }}/images/2021-06-21-partial-sku-search/Manage_Extension_rnd.png "Adding the extension to a source.")
 
