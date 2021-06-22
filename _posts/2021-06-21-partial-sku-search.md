@@ -135,4 +135,4 @@ The methods outlined in this post can help you deliver more relevant search resu
 
 *Want to get your hands dirty and try this yourself? Check out our [trials](https://www.coveo.com/en/get-started) site!*
 
-*Do you like working on this type of challenge? Check out our [careers](https://www.coveo.com/en/company/careers) page.
+*Do you like working on this type of challenge? Check out our [careers](https://www.coveo.com/en/company/careers) page.*
