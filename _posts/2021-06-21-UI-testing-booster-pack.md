@@ -144,8 +144,8 @@ it('displays a count of zero at the start and an "edit" button', () => {
     </Provider>
   );
 
-  expect(screen.getByText("The count is: 0")).toBeInTheDocument();
-  expect(screen.getByRole("button", { name: /edit/i })).toBeInTheDocument();
+  expect(screen.getByText("The count is: 0")).toBeVisible();
+  expect(screen.getByRole("button", { name: /edit/i })).toBeVisible();
 });
 ```
 
@@ -198,13 +198,13 @@ it('replaces the "edit" button by "plus", "minus", and "save" buttons', () => {
   userEvent.click(editButton);
 
   // Assert
-  expect(screen.getByText("The count is: 0")).toBeInTheDocument();
+  expect(screen.getByText("The count is: 0")).toBeVisible();
   expect(
     screen.queryByRole("button", { name: /edit/i })
-  ).not.toBeInTheDocument();
-  expect(screen.getByRole("button", { name: "+" })).toBeInTheDocument();
-  expect(screen.getByRole("button", { name: "-" })).toBeInTheDocument();
-  expect(screen.getByRole("button", { name: /save/i })).toBeInTheDocument();
+  ).not.toBeVisible();
+  expect(screen.getByRole("button", { name: "+" })).toBeVisible();
+  expect(screen.getByRole("button", { name: "-" })).toBeVisible();
+  expect(screen.getByRole("button", { name: /save/i })).toBeVisible();
 });
 ```
 
@@ -237,7 +237,7 @@ it('increments the count by one when clicking on the "plus" button', () => {
 The test passes just fine and does validate that the count has been incremented by one. Now, what if someone refactors the component to remove redux altogether while retaining all the functionalities? There wouldn't be any `store` object to expect from anymore. The test would fail while the behaviour hasn't changed creating a false negative. The problem here is that our test relies on an implementation detail: redux. Would our user see if the count has changed by looking into the state object himself? Of course not, the user only looks at the screen.
 
 ```ts
-expect(screen.getByText("The count is: 1")).toBeInTheDocument();
+expect(screen.getByText("The count is: 1")).toBeVisible();
 ```
 
 The above assertion is a lot stronger since it validates what the user really sees. We could refactor the component to use any library and the test would still pass, as long as the functionnality is preserved. Yes the `<Provider>` would probably have to be removed, but it wouldn't hurt the test's logic to leave it there as well.
@@ -257,10 +257,10 @@ it('increments the count by one when clicking on the "plus" button', () => {
   const plusButton = screen.getByRole("button", { name: "+" });
 
   userEvent.click(plusButton);
-  expect(screen.getByText("The count is: 1")).toBeInTheDocument();
+  expect(screen.getByText("The count is: 1")).toBeVisible();
 
   userEvent.click(plusButton);
-  expect(screen.getByText("The count is: 2")).toBeInTheDocument();
+  expect(screen.getByText("The count is: 2")).toBeVisible();
 });
 ```
 
@@ -283,7 +283,7 @@ It can be tempting to reuse the same util in your tests assertions, thinking tha
 ```jsx
 expect(
   screen.getByRole("button", { name: translate("Save") })
-).toBeInTheDocument();
+).toBeVisible();
 ```
 
 However by doing so, you are more subject to false positives. Imagine someone (probably an intern again) mistakenly changes the "Save" translation for "Cancel". I know this is a bit extreme, but it is just to illustrate my point. In that case the test would still pass, because `translate` would return the same wrong string both in the component and the test. The UI would then save when clicking on "Cancel" which you would guess is not what we want!
@@ -291,7 +291,7 @@ However by doing so, you are more subject to false positives. Imagine someone (p
 > A visible string that changes, is a break in functionality.
 
 ```jsx
-expect(screen.getByRole("button", { name: /'save'/i })).toBeInTheDocument();
+expect(screen.getByRole("button", { name: /'save'/i })).toBeVisible();
 ```
 
 Hardcoding the "save" string directly into the test protects us from that potential breakage. The same principle applies for URLs, numbers, dates, and other visible values you could think of.
@@ -346,7 +346,7 @@ jest.mock("./validators");
 it("displays an invalid message when the email is invalid", () => {
   isValidEmail.mockReturnValue(false);
   render(<MyComponent />);
-  expect(screen.getByText("Invalid email")).toBeInTheDocument();
+  expect(screen.getByText("Invalid email")).toBeVisible();
 });
 ```
 
@@ -364,7 +364,7 @@ it("displays an invalid message when the email is invalid", () => {
   render(<MyComponent />);
   const emailInput = screen.getByRole("textbox", { name: "email" });
   userEvent.type(emailInput, "not an email address");
-  expect(screen.getByText("Invalid email")).toBeInTheDocument();
+  expect(screen.getByText("Invalid email")).toBeVisible();
 });
 ```
 
