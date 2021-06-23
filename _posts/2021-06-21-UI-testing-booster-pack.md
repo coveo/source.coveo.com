@@ -11,9 +11,9 @@ author:
   image: gdostie.jpeg
 ---
 
-You feel like you do a decent job at creating new user intefaces or modifying existing ones, but writing tests to cover your changes takes you more time than to write the actual source code. You have experience writing tests for clear cut units of code like functions or classes, but it seems that testing UI is just too different. Having lost all intuition about what needs to be tested, what needs to be mocked, how to split your test cases, or even how to write a simple assertion, you feel lost and unproductive. If you can relate to any of the above, this article is for you.
+You feel like you do a decent job at creating new user intefaces or modifying existing ones, but writing tests to cover your changes takes you more time than to write the actual source code. You have experience writing tests for clear cut units of code like functions or classes, but it seems that testing UI is just too different. Having lost all intuition about what needs to be tested, what needs to be mocked, how to split your test cases, or even how to write a simple assertion, you feel lost and unproductive.
 
-This post aims to provide a UI testing "booster pack", all batteries included, that will get you rolling in no time. Having the right mindset and using the right tools will make you almost look forward to writing tests for UIs. Not only because your tests will grant you confidence and improve the quality of the code you produce, but also quite frankly because it will become an enjoyable thing to do.
+If you can relate to any of the above, this article is for you. This post aims to provide a UI testing "booster pack", all batteries included, that will get you rolling in no time. Having the right mindset and using the right tools will make you almost look forward to writing tests for UIs. Not only because your tests will grant you confidence and improve the quality of the code you produce, but also quite frankly because it will become an enjoyable thing to do.
 
 <!-- more -->
 
@@ -45,7 +45,7 @@ For the majority of this blog post, we will be using the following `Counter` Rea
 
 The first step to find out what needs to be tested is to understand how the component behaves. The best way to do that is usually to interact with the component in a demo environment. To start out, look at the initial state, that is what is first being rendered. Once you know what the initial state is, you need to find every way you can make this initial state change into a derived state. From each of those derived state, if the component behaves exactly the same way compared to the initial state, you have found all the behaviours. On the contrary, if from a derived state the component behaves differently, you have identified new behaviours that will also need to be tested.
 
-After looking at what's initialy rendered and clicking on the available buttons, we can assume that there are 5-6 behaviours depending on how we choose to split them. Don't forget that the initial state is in itself a behaviour.
+After looking at what's initially rendered and clicking on the available buttons, we can assume that there are 5-6 behaviours depending on how we choose to split them. Don't forget that the initial state is in itself a behaviour.
 
 - It displays a count of zero at the start and an "edit" button
 - When clicking on "edit" button
@@ -56,7 +56,7 @@ After looking at what's initialy rendered and clicking on the available buttons,
 
 #### Step 2: Write down all test cases titles
 
-Spending time thinking about the test cases titles might be one of the most overlooked step in the testing world. However, doing so is crucial to establish a strong understanding of how the test cases should be split. Basically, the idea is to write the most detailed, succinct, and non-ambiguous description of each behaviour you have identified on step 1. Having them all written down before even thinking about the code needed to make the test work will help you understand how to split your tests. The scope of each of them will become much clearer in your head when comes the time to write their underlying code.
+Spending time thinking about the test cases titles might be one of the most overlooked step in the testing world. However, doing so is crucial to establish a strong understanding of how the test cases should be split. Basically, the idea is to write the most detailed, succinct, and non-ambiguous description of each behaviour you have identified on Step 1. Having them all written down before even thinking about the code needed to make the test work will help you understand how to split your tests. The scope of each of them will become much clearer in your head when comes the time to write their underlying code.
 
 For the purpose of this article, I already have done this on Step 1, but here's how it would look in the code:
 
@@ -86,13 +86,19 @@ describe("Counter", () => {
 });
 ```
 
-When dealing with derived states, like the one we have after clicking on the _Edit_ button, there are more than one valid solution to split the test cases. We could only use `it` blocks with longer titles or leverage `describe` blocks to shorten similar titles. In the end, it all comes down to personal or team preferences. I personally try to minimize the usage of `describe` blocks, since it reduces readability of test case titles when you have a lot of them. You need to go back up the file to read the `describe` bloc to understand the full test.
+When dealing with derived states, like the one we have after clicking on the _Edit_ button, there are more than one valid solution to split the test cases. We could only use `it` blocks with longer titles or leverage `describe` blocks to shorten similar titles.
+
+In the end, it all comes down to personal or team preferences. I personally try to minimize the usage of `describe` blocks, since it reduces readability of test case titles when you have a lot of them. You need to go back up the file to read the `describe` block to understand the full test.
 
 ## How do we test
 
 Now that we have successfully identified what we need to test, we can jump to the fun part: implementing the actual tests. This step seems intimidating when you start out writing tests for a component that is new to you. Fortunately, no matter the UI component under test, all tests can follow roughly the same structure: AAA, which stands for "Arrange", "Act", and "Assert". A quick search on your favorite search engine will give you a detailed explanation of the pattern, but those words are pretty self-explanatory so I won't explain them here. Sometimes you can "Arrange" and loop "Act"-"Assert" if that makes your life easier. As explained previously, the line between unit, functional, and other types of tests in a UI context is blurry and that's okay. As long as we stay productive and that our tests grant us confidence that the behaviours are working, we are happy.
 
-Talking about confidence, _"The more your tests resemble the way your software is used, the more confidence they can give you."_. It is the guiding principle of [Testing Library](https://testing-library.com/), the library we are using to test our UIs. In other words, it means that our tests must only perform actions that a real user of the interface can do. Doing otherwise leads to tests that rely on implementation details. Tests that rely on implementation details will generate false negatives (behaviour did not change and test broke) and false positives (behaviour changed and test passed). Having false positives and false negatives reduce the confidence we have in our tests and generates additional maintenance costs. Less value plus higher cost equals lower return on investment and quite frankly a drop in happiness for everyone involved. Let's see how that principle applies to our counter example.
+Talking about confidence,
+
+> The more your tests resemble the way your software is used, the more confidence they can give you.
+
+It is the guiding principle of [Testing Library](https://testing-library.com/), the library we are using to test our UIs. In other words, it means that our tests must only perform actions that a real user of the interface can do. Doing otherwise leads to tests that rely on implementation details. Tests that rely on implementation details will generate false negatives (behaviour did not change and test broke) and false positives (behaviour changed and test passed). Having false positives and false negatives reduce the confidence we have in our tests and generates additional maintenance costs. Less value plus higher cost equals lower return on investment and quite frankly a drop in happiness for everyone involved. Let's see how that principle applies to our counter example.
 
 #### Step 3: Get the first test working
 
@@ -108,7 +114,9 @@ it('displays a count of zero at the start and an "edit" button', () => {
 
 Running the test above gives us the following error.
 
-> Could not find "store" in the context of "Connect(Counter)". Either wrap the root component in a <Provider>, or pass a custom React context provider to <Provider> and the corresponding React context consumer to Connect(Counter) in connect options.
+```
+Could not find "store" in the context of "Connect(Counter)". Either wrap the root component in a <Provider>, or pass a custom React context provider to <Provider> and the corresponding React context consumer to Connect(Counter) in connect options.
+```
 
 Without even looking at the component's implementation, it is pretty obvious from the error message that we are missing something: a redux store provider. Looking at the component's implementation as little as possible forces us to not rely on implementation details, which is really the key to get better tests as explained earlier.
 
@@ -233,6 +241,8 @@ expect(screen.getByText("The count is: 1")).toBeInTheDocument();
 ```
 
 The above assertion is a lot stronger since it validates what the user really sees. We could refactor the component to use any library and the test would still pass, as long as the functionnality is preserved. Yes the `<Provider>` would probably have to be removed, but it wouldn't hurt the test's logic to leave it there as well.
+
+For this specific test case, redux is an implementation detail, but is not always the case! The redux state can rightfully be one of the outputs, or side-effects, that require to be tested. We could imagine a component who's redux state is depended on by multiple other components. A change in the way this component's state is handled could mean a breakage for these dependents. In this situation, we should create a separate test case to validate that side effect independantly. Doing so allows us to test the UI in the best way possible while providing a guarantee that all expected side-effects are preserved in a clearer way.
 
 Pushing the doubt further: what if a new intern (I always imagine an intern in those scenarios 😄) breaks the `Counter`'s logic so that when pressing on the "+" button, it doesn't increment more than once anymore. So from 0 it goes to 1, then stays at 1 when clicking on "+" again. Our current test wouldn't pick up on that breaking of functionality, leading to a false positive.
 
@@ -361,6 +371,42 @@ it("displays an invalid message when the email is invalid", () => {
 Don't get me wrong, testing the `isValidEmail` util separately is still a very good idea. It gives you confidence that all the edge cases are covered and that wherever the util is used, it will work as it is expected to. In the components that use the util we could only test the most common branches. For example one test for a valid email and one test for an invalid email. After all we only care about if the validation message is displayed when the right conditions occur, so that would be enough.
 
 If you like that idea of mocking as little things as possible, it is even possible to stop mocking the API client entirely. I won't go into details about this one since we have yet to try this in our team. If that interests you, [Stop mocking fetch](https://kentcdodds.com/blog/stop-mocking-fetch) is a great article on the subject.
+
+#### Keep each tests independent
+
+Have you noticed how in the `Counter` example tests the store object is re-created in each test?
+
+```js
+const store = createStore(combineReducers({ counter: CounterReducer }));
+```
+
+> This is a direct violation of the implementation details avoidance principle, no?
+
+Yes, you are correct, and this is not ideal. Nevertheless, using the real "application" store would make our tests dependent on each other. One test could make the state change during its execution, which would influence how the next test performs, because the same store is shared between the two.
+
+If you have to choose between relying on implementation details or loosing test independence, the best choice is to preserve test independence. The troubles caused by giving away independence are the same as relying on implementation details (false positives and false negatives), but debugging those troubles is way much harder. This is especially true when running tests in parallel or random order.
+
+In our case, we could diminish the amount of implementation details we rely on by leveraging a store creator pattern.
+
+```jsx
+// Store.js
+export const initializeStore = () => createStore(combineReducers({ counter: CounterReducer }));
+const Store = initializeStore();
+export default Store;
+
+// Counter.spec.jsx
+it('displays a count of zero at the start and an "edit" button', () => {
+  const store = initializeStore();
+  render(
+    <Provider store={store}>
+      <Counter />
+    </Provider>
+  );
+  // ...
+});
+```
+
+Or even better, setup a custom `render` function wrapper that automatically provides a new store with the right reducers for each test, like [suggested on the redux package documentation](https://redux.js.org/recipes/writing-tests#connected-components).
 
 ## Closing remarks
 
