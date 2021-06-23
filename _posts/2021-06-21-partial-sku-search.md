@@ -25,13 +25,13 @@ While you could simply make the SKU field searchable with wildcards, you can mak
 
 ## What is SKU Decomposition, anyway?
 
-Suppose one of your products has a SKU value of SJSH9-000-3K, but your buyers don’t always enter the full value. They might only enter SJSH9, for example, since it represents the category of product that they are looking for.  You can identify character sequences in the SKU and link them to the products containing the partial values.  For the example above, some variations of the SKU value are: S, SJ, SJS, SJSH, SHSJ9, 0, 00, 000, 3, 3K. This slicing and dicing of the SKU value is called decomposition.
+Suppose one of your products has a SKU value of SJSH9-000-3K, but your buyers don’t always enter the full value. They might only enter SJSH9, for example, since it represents the category of product that they are looking for.  You can identify character sequences in the SKU and link them to the products containing the partial values.  For the example above, some variations of the SKU value are: S, SJ, SJS, SJSH, SJSH9, 0, 00, 000, 3, 3K. This slicing and dicing of the SKU value is called decomposition.
 
 By working out the list in advance and storing it in the index, your Coveo-powered search interface will be able to find and surface relevant results without spending precious query time scanning the contents of all possible matching items.
 
 ## Field Management
 
-If your catalog data is well structured and the SKU field already exists, then all you need to do is create a new field and map it to the SKU field. You can do this from Coveo Platform Administration Console using the [Add field](https://docs.coveo.com/en/1982/index-content/add-or-edit-a-field) option from the Content: Fields menu. Make sure you select the 'string' type and check the 'Multi-Value Facet' and 'Free text search' checkboxes, as highlighted in the screenshot below. In this example, our new field is called product_partial_match.
+If your catalog data is well structured and the SKU field already exists, then all you need to do is create a new field and map it to the SKU field. You can do this from the Coveo Platform Administration Console using the [Add field](https://docs.coveo.com/en/1982/index-content/add-or-edit-a-field) option from the Content: Fields menu. Make sure you select the "string" type and check the "Multi-Value Facet" and "Free text search" checkboxes, as highlighted in the screenshot below. In this example, our new field is called product_partial_match.
 ![Adding a new field from the Coveo Administration Console]({{ site.baseurl }}/images/2021-06-21-partial-sku-search/Add_New_Field_650_rnd.png "Adding a new field from the Coveo Administration Console.")
 
 Then, you can map this field to your SKU metadata field for the catalog source.  In the screenshot below, the new field `product_partial_match` is associated with the existing field for the actual SKU value: `bb_sku`.
@@ -39,32 +39,7 @@ Then, you can map this field to your SKU metadata field for the catalog source. 
 
 Check out our documentation for more details on how to add a [mapping rule](https://docs.coveo.com/en/1640/index-content/manage-source-mappings#add-or-edit-a-mapping-rule).
 
-For sources that use the Push API you can take another approach. If you compute the list of partial SKU values and submit them as another field in the index, then no indexing extension is required.  Just make sure that your field has the characteristics described here: 'string' type, 'Multi-Value Facet' and 'Free text search'.
-
-{% highlight JSON %}
-    {
-      "name": "product_partial_match",
-      "description": "",
-      "type": "STRING",
-      "includeInQuery": true,
-      "includeInResults": true,
-      "mergeWithLexicon": false,
-      "smartDateFacet": false,
-      "facet": true,
-      "multiValueFacet": true,
-      "hierarchicalFacet": false,
-      "sort": false,
-      "ranking": false,
-      "stemming": false,
-      "multiValueFacetTokenizers": ";",
-      "useCacheForNestedQuery": false,
-      "useCacheForSort": false,
-      "useCacheForNumericQuery": false,
-      "useCacheForComputedFacet": false,
-      "dateFormat": "",
-      "system": false
-    }
-{% end highlight%}
+For sources that use the [Push API](https://docs.coveo.com/en/68/index-content/push-api) you can take another approach. If you compute the list of partial SKU values and submit them as another field in the index, then no indexing extension is required.  Just make sure that your field has the characteristics described here: 'string' type, 'Multi-Value Facet', and 'Free text search'.
 
 If your data source doesn’t already have a single metadata field that holds the SKU, you should explore ways to standardize the data. Alternatively, you can add configuration to do SKU decomposition on each field that should be inspected and parsed.
 
