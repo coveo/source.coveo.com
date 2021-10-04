@@ -24,7 +24,7 @@ In this blog post, I’ll do a deep dive into how Query Suggest comes up with su
 
 ## Query Suggest
 
-The Query Suggest feature provides a user experience that is similar to the one provided by many other search services: as the user types, a list of suggestions appears for ways to complete the query. As the user continues to type, the suggestions become more refined and particular. This kind of functionality is useful both for saving the user’s time and also for helping them to discover content related to their query. For example, a user searching for “garden tools” will instantly discover that the site also offers “garden shoes” and “garden hoses” as they begin to type.
+The Query Suggest feature provides a user experience that is similar to the one provided by many other search services: as the user types, a list of suggestions appears for ways to complete the query. As the user continues to type, the suggestions become more refined and particular. This kind of functionality is useful both for saving the user’s time and also for helping them to discover content related to their query. For example, a user searching for “garden tools” will instantly discover that the site also offers “garden shears” and “garden hose” as they begin to type.
 
 ![Query Suggest Example]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/qs-example.png)
 
