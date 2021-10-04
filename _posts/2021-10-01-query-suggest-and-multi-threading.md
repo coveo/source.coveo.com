@@ -26,7 +26,7 @@ In this blog post, I’ll do a deep dive into how Query Suggest comes up with su
 
 The Query Suggest feature provides a user experience that is similar to the one provided by many other search services: as the user types, a list of suggestions appears for ways to complete the query. As the user continues to type, the suggestions become more refined and particular. This kind of functionality is useful both for saving the user’s time and also for helping them to discover content related to their query. For example, a user searching for “garden tools” will instantly discover that the site also offers “garden shoes” and “garden hoses” as they begin to type.
 
-![Query Suggest Example]{{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/qs-example.png)
+![Query Suggest Example]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/qs-example.png)
 
 A query suggestion model can make use of multiple sources of information to quickly narrow down the many possible suggestions in order to provide relevant suggestions as early as possible. Coveo’s Query Suggest model uses three main sources of information to rank suggestions: **text similarity**, **historical data**, and **user features**. To explain how each of these works, I’ll give an example of how we could construct a query suggest model by iteratively adding these sources of information.
 
@@ -41,7 +41,7 @@ By combining these and other sources of information, Coveo’s Query Suggest can
 
 ## What kind of work does Query Suggest do?
 
-![Query Suggest Flow]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/flow.png)o
+![Query Suggest Flow]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/flow.png)
 
 In this section, we’ll go into detail about how our Query Suggest system processes a request for a suggestion. Remember, we have a very limited time budget (10s of milliseconds) to produce suggestions. Inside this budget we need to perform three expensive operations. 
 
