@@ -83,15 +83,15 @@ val myParData : ParVector[Int] = myData.par
 myParData.map(x => x * 2) // accomplished via map-reduce style parallelism
 ```
 
-These are very nice abstractions - you can write parallel code without considering locks, pools, thread status, etc. But you can also get yourself in trouble. Like all abstractions, details of the underlying implementation can [leak out](https://en.wikipedia.org/wiki/Leaky_abstraction), causing the facade of simplicity to crumble. This is exactly what we found to happen while experimenting with new Query Suggest features.
+These are very nice abstractions - you can write parallel code without considering locks, pools, thread status, etc. But you can also get yourself in trouble. Like all abstractions, details of the underlying implementation can leak out, causing the facade of simplicity to crumble. This is exactly what we found to happen while experimenting with new Query Suggest features.
 
 ## What can go wrong, and how to fix it
 
 In the preceding section, you may have found yourself thinking: "this is very nice, but when we’re sending this work out to threads, *which* threads are we sending them to?". This is a natural worry for programmers. In less abstracted interfaces, we typically have to concern ourselves with managing the creation and deletion of threads, or managing a limited pool of threads and a queue of tasks. Threads (and the CPU cores to execute them) are a limited resource, after all.
 
-So, what actually happens when you schedule a Future (listing 1)? There’s a hint in the listing: on the second line we import `ExecutionContext.Implicits.global`. The global execution context is essentially a dynamically growing and shrinking global static thread pool with a maximum of 256 threads (that is, it’s shared by the entire program, and can be executing up to 256 tasks at a time). This import statement adds this global thread pool as an implicit argument in the namespace. Thus, any Future we declare (without targeting another execution context explicitly) will be scheduled on this thread pool.
+So, what actually happens when you schedule a Future (Listing 1)? There’s a hint in the listing: on the second line we import `ExecutionContext.Implicits.global`. The global execution context is essentially a dynamically growing and shrinking global static thread pool with a maximum of 256 threads (that is, it’s shared by the entire program, and can be executing up to 256 tasks at a time). This import statement adds this global thread pool as an implicit argument in the namespace. Thus, any Future we declare (without targeting another execution context explicitly) will be scheduled on this thread pool.
 
-What about the parallel collections (listing 2)? To make a short story even shorter: it uses the same global static threadpool. Here we have no hint. It’s simply an implementation detail of the parallel collections.
+What about the parallel collections (Listing 2)? To make a short story even shorter: it uses the same global static threadpool. Here we have no hint. It’s simply an implementation detail of the parallel collections.
 
 What this means for Query Suggest is that making use of both of these features can cause "waiting" tasks (i.e., IO bound) and "working" tasks (i.e., CPU bound) to compete for threads on the same small pool of threads! This is a classic anti-pattern in multi threaded programming.
 
@@ -101,8 +101,6 @@ Why? "Waiting" tasks (like requesting information from a remote database) don’
 If this is a "classic anti-pattern" of multi-threaded parallel programming, why is it one we nearly fell into? It’s an easy mistake to make! Because the single global static thread pool that executes the tasks of Futures and ParallelCollections is referenced implicitly by both features, there is no direct connection between our "waiting" and "working" tasks visible in the source code. Instead, the connection between these bits of logic is buried in the implementation details of the libraries we were relying on. This kind of issue is happening entirely "under the surface", and requires an understanding of both libraries to spot. As I mentioned earlier, it’s an example of a [leaky abstraction](https://en.wikipedia.org/wiki/Leaky_abstraction): most of the complicated details of multi-threaded programming have been abstracted away by the Scala multi-threading tools, but at critical points the abstraction leaks and the complexities of the underlying system can not be ignored.
 
 Once the problem is clearly identified, the fix is easy. All you need to do is create a separate explicit thread pool and assign all "waiting" tasks to this separate pool. This way, no "waiting" tasks can be prioritized over a "working" task, ensuring that the CPU is always used as soon as it’s available. An example is presented in Listing 3. This listing shows how a `doWaitingWork` function can be defined which assigns tasks to run on a cached thread pool, which is both distinct from the global execution context thread pool and does not have a limit on the number of threads it can create.
-
-Implementing this kind of logic had a significant impact on the performance of our test engine under very heavy load, decreasing the average response time by a factor of 5 when the model is saturated with requests. Essentially this means we can expect much better and more reliable performance when the model is receiving many requests for personalized results.
 
 ```scala
 // Listing3.scala
@@ -119,6 +117,8 @@ def doWaitingWork[T](fn: () => T): Future[T] = {
     Future{ fn() }(exc)
 }
 ```
+
+Implementing this kind of logic had a significant impact on the performance of our test engine under very heavy load, decreasing the average response time by a factor of 5 when the model is saturated with requests. Essentially this means we can expect much better and more reliable performance when the model is receiving many requests for personalized results.
 
 ## Conclusion
 In this blog post, we saw how Coveo's Query Suggest integrates data from multiple different sources to increase relevance, how parallel processing is used to minimize latency, and how we should be wary of the hidden sharp edges of our tools when performance is critical.
