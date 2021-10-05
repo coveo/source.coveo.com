@@ -70,7 +70,7 @@ val dbResultFuture = Future { blocking { remoteDatabaseCall() } }
 dbResultFuture.map(result => println(s"The database returned $result"))
 ```
 
-Alternatively, if you have a large collection of data that needs to be processed as fast as possible making use of many CPU cores you can use the parallel collection tools to very easily implement a map-reduce style parallelism (that is, splitting the work into chunks, processing each chunk in parallel, then combining the processed chunks). We use this feature to process and rank collections of suggestions. This feature is even easier to use: simply invoking the par() method on a standard collection will return a parallelized view of that collection, where any map, filter, or fold will be accomplished by partitioning the collection into chunks and assigning the work to a collection of threads.
+Alternatively, if you have a large collection of data that needs to be processed as fast as possible making use of many CPU cores you can use the parallel collection tools to easily implement a map-reduce style parallelism (that is, splitting the work into chunks, processing each chunk in parallel, then combining the processed chunks). We use this feature to process and rank collections of suggestions. This feature is even easier to use: simply invoking the par() method on a standard collection will return a parallelized view of that collection, where any map, filter, or fold will be accomplished by partitioning the collection into chunks and assigning the work to a collection of threads.
 
 ```scala
 // Listing2.scala
@@ -83,7 +83,7 @@ val myParData : ParVector[Int] = myData.par
 myParData.map(x => x * 2) // accomplished via map-reduce style parallelism
 ```
 
-These are very nice abstractions - you can write parallel code without considering locks, pools, thread status, etc. But you can also get yourself in trouble. Like all abstractions, details of the underlying implementation can leak out, causing the facade of simplicity to crumble. This is exactly what we found to happen while experimenting with new Query Suggest features.
+These are very nice abstractions - you can write parallel code without considering locks, pools, thread status, etc. But you can also get yourself in trouble. Like all abstractions, details of the underlying implementation can [leak out](https://en.wikipedia.org/wiki/Leaky_abstraction), causing the facade of simplicity to crumble. This is exactly what we found to happen while experimenting with new Query Suggest features.
 
 ## What can go wrong, and how to fix it
 
