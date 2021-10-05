@@ -57,7 +57,7 @@ Each of these expensive operations uses multi-threading to speed it up, illustra
 
 Query Suggest is implemented in Scala, which provides a nice set of built in tools for doing multi-threaded programming. For example, if you have a slow request to a database to perform and you don’t want to block the program from continuing while this occurs in the background, you can simply use the Future class to assign that call to a separate thread and continue your program’s work until the result is needed. In Query Suggest, we use this tool to fetch the user’s internal id and features while the main thread continues to process the query.
 
-```
+```scala
 // Listing1.scala
 
 import scala.concurrent.{Future, blocking}
