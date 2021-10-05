@@ -8,7 +8,7 @@ tags: [Machine Learning, Personalization, Query Suggest, Multi-threading]
 author:
     name: Alexandre Parmentier
     bio: Software Developer, Machine Learning
-    image: 2021-10-11-query-suggest-and-multi-threading/alex-parmentier.jpeg
+    image: 2021-10-05-query-suggest-and-multi-threading/alex-parmentier.jpeg
 ---
 Coveo's Query Suggest model provides highly relevant and personalized suggestions as users type. In this blog post, I will explain how Query Suggest works in the back end, and how it uses mutli-threading to provide results at high speed.
 
@@ -26,7 +26,7 @@ In this blog post, I’ll do a deep dive into how Query Suggest comes up with su
 
 The Query Suggest feature provides a user experience that is similar to the one provided by many other search services: as the user types, a list of suggestions appears for ways to complete the query. As the user continues to type, the suggestions become more refined and particular. This kind of functionality is useful both for saving the user’s time and also for helping them to discover content related to their query. For example, a user searching for “garden tools” will instantly discover that the site also offers “garden shears” and “garden hose” as they begin to type.
 
-![Query Suggest Example]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/qs-example.png)
+![Query Suggest Example]({{ site.baseurl }}/images/2021-10-05-query-suggest-and-multi-threading/qs-example.png)
 
 A query suggestion model can make use of multiple sources of information to quickly narrow down the many possible suggestions in order to provide relevant suggestions as early as possible. Coveo’s Query Suggest model uses three main sources of information to rank suggestions: **text similarity**, **historical data**, and **user features**. To explain how each of these works, I’ll give an example of how we could construct a query suggest model by iteratively adding these sources of information.
 
@@ -41,7 +41,7 @@ By combining these and other sources of information, Coveo’s Query Suggest can
 
 ## What kind of work does Query Suggest do?
 
-![Query Suggest Flow]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/flow.png)
+![Query Suggest Flow]({{ site.baseurl }}/images/2021-10-05-query-suggest-and-multi-threading/flow.png)
 
 In this section, we’ll go into detail about how our Query Suggest system processes a request for a suggestion. Remember, we have a very limited time budget (10s of milliseconds) to produce suggestions. Inside this budget we need to perform three expensive operations. 
 
@@ -97,7 +97,7 @@ What this means for Query Suggest is that making use of both of these features c
 
 Why? “Waiting” tasks (like requesting information from a remote database) don’t really have any interesting computations for the CPU to do; they consist of the program waiting for networks or file systems to shuttle data around. On the other hand, “working” tasks (like computing the relevance score of each suggestion given the user’s query and features) have lots of computations to do to keep the CPU busy. But when tasks are executing on a pool that has a limited number of threads, it’s possible that due to bad luck, all (or most) available threads start doing “waiting” tasks, even though there are “working” tasks that need to be done. The result is that while there is work the CPU needs to do, it can’t do it because all available threads are busy doing “waiting” tasks. This is a very undesirable scenario: the user is waiting for an answer, the computations required to answer the user are waiting for a chance to execute on the CPU, but all the threads that can execute on the CPU are busy doing nothing. The figure below illustrates the situation.
 
-![Thread Pool Example]({{ site.baseurl }}/images/2021-10-11-query-suggest-and-multi-threading/threads.png)
+![Thread Pool Example]({{ site.baseurl }}/images/2021-10-05-query-suggest-and-multi-threading/threads.png)
 If this is a “classic anti-pattern” of multi-threaded parallel programming, why is it one we nearly fell into? It’s an easy mistake to make! Because the single global static thread pool that executes the tasks of Futures and ParallelCollections is referenced implicitly by both features, there is no direct connection between our “waiting” and “working” tasks visible in the source code. Instead, the connection between these bits of logic is buried in the implementation details of the libraries we were relying on. This kind of issue is happening entirely “under the surface”, and requires an understanding of both libraries to spot. As I mentioned earlier, it’s an example of a [leaky abstraction](https://en.wikipedia.org/wiki/Leaky_abstraction): most of the complicated details of multi-threaded programming have been abstracted away by the Scala multi-threading tools, but at critical points the abstraction leaks and the complexities of the underlying system can not be ignored.
 
 Once the problem is clearly identified, the fix is easy. All you need to do is create a separate explicit thread pool and assign all “waiting” tasks to this separate pool. This way, no “waiting” tasks can be prioritized over a “working” task, ensuring that the CPU is always used as soon as it’s available. An example is presented in Listing 3. This listing shows how a `doWaitingWork` function can be defined which assigns tasks to run on a cached thread pool, which is both distinct from the global execution context thread pool and does not have a limit on the number of threads it can create.
