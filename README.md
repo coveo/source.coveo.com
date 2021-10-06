@@ -44,6 +44,8 @@ The file name of your posts need to be prefixed by the date your post is meant t
 
 You should also add a `<!-- more -->` tag towards the beginning of your post, typically after the first paragraph. Everything before that tag will be used to create the post preview on (source.coveo.com)[https://source.coveo.com/], before the `Read more...` link.
 
+To preview your post locally, you can install [Ruby and Jekyll](https://jekyllrb.com/docs/), and run the `bundle exec jekyll serve` command from your folder. The site will be available on your [localhost:4000](http://localhost:4000).
+
 ## Detailed Steps
 
 To properly create a blog post, you'll need a [GitHub account](https://github.com/join), as well as [git](https://git-scm.com/downloads) on your computer.
