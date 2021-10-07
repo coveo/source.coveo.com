@@ -22,7 +22,7 @@ In its most intuitive form, a good recommendation leads you to find the product 
 
 [SALESPERSON_IMAGE_HAPPY_BEHAVIOUR]
 
-We propose the *Session aware recommender*, a model follows you along your shopping or browsing session. A session is defined by a bloc of uninterrupted browsing (with less than 20 minutes of inaction). By considering your history and your current actions, it generates recommendations that are up to the point with what you want __right now__. Items that represents your current interest are vectorized in a complex form that integrates factors such as their name, category, brand and price. Then, they are compared with all the other items in the catalog for their similarity. The items that are the most likely to fit your intent are returned as recommendations. All the vectors are pretrained periodically with our idea of a [Word2Vec](https://en.wikipedia.org/wiki/Word2vec) adapted to purchase recommendation. By integrating more parameters into the embeddings than solely the user-item interactions, we allow more personalized and diverse recommendations. More than that, paired with our training method, there is a way to control the trade-off between similarity and diversity and a way to gage the precedence of your past into the algorithm.
+We propose the *Session aware recommender*, a model follows you along your shopping or browsing session. A session is defined by a bloc of uninterrupted browsing (with less than 20 minutes of inaction). By considering your history and your current actions, it generates recommendations that are up to the point with what you want __right now__. Items that represents your current interest are vectorized in a complex form that integrates factors such as their name, category, brand and price. Then, they are compared with all the other items in the catalog for their similarity. The items that are the most likely to fit your intent are returned as recommendations. All the vectors are pretrained periodically with our idea of a [Word2Vec](https://en.wikipedia.org/wiki/Word2vec) adapted to purchase recommendation. By integrating more parameters into the embeddings than solely the user-item interactions, we allow more personalized and diverse recommendations. More than that, paired with our training method, there is a way to control the trade-off between similarity and diversity and a way to gage the precedence of your past actions into the algorithm.
 
 ## How does it acquire its awareness?
 
@@ -43,7 +43,7 @@ The embeddings we create are composed of four vectors all randomly initialized.
 3. An embedding layer for the brand - 32 dimensions;
 4. A linear layer for the price - 4 dimensions.
 
-The vectors are then concatenated which results in a large embeddings of 100 dimensions that compresses all the information. First, we use the name as it allows for a unique distinction between the items while also allowing some similarity; cat and dog *food* is still *food*. Second, the category allows to group similar items under a representative label; a pencil, a ruler and a stapler are all *office supplies*. Third, the brand allows for a more refined distinction between items from identical categories; a drill is a drill, but there are important distinctions to be made when we think about the company making it. And finally, the price, because we also find that the user will usually be more inclined toward a specific price range. All in all, these four parameters helps us to create interesting clusters of items with our training method. Moreover, we realized that even with only a really few items and user sessions, we could have decent recommendations as long as the items are not all too similar in term of parameters.
+The vectors are then concatenated which results in a large embeddings of 100 dimensions that compresses all the information. First, we use the name as it allows for a unique distinction between the items while also allowing some similarity; cat and dog *food* is still *food*. Second, the category allows to group similar items under a representative label; a pencil, a ruler and a stapler are all *office supplies*. Third, the brand allows for a more refined distinction between items from identical categories; a drill is a drill, but there are important distinctions to be made when we think about the company making it. And finally, the price, because we also find that the user will usually be more inclined toward a specific price range. All in all, these four parameters helps us to create interesting clusters of items with our training method. Moreover, we realized that even with only a really few items, but considering a good density of user sessions, we could generate decent recommendations as long as the items are not all too similar.
 
 <center>
     <img src="../images/2021-09-21-session-aware-recommendations/embedding_structure.png"
@@ -52,24 +52,38 @@ The vectors are then concatenated which results in a large embeddings of 100 dim
 
 ## How we train our embeddings
 
-First, all the items in the catalog are fetched and transformed into their embeddings structure of 100 dimensions with a random initialization.  By taking a look at the embedding space in which the vector resides, we can see that they are all around the place. Note that for the sake of the demonstration, this embedding space is only in two dimensions to illustrate it, because a 100 dimensions cannot be drawn:
+The objective of the training is for the model to learn how to guide you like a salesperson would do. Not the bugger one with wrongs intentions - nobody likes that - but the one that can truely assist you and give you good recommendations. A good salesperson knows all the ups and downs of the products it sells and how they are complimentary. But a question arises, how can we teach a model how to assist to become ? Well, we start by using what we  have; the purchase sessions of the users.
+
+First, the items in the catalog are transformed into embeddings of 100 dimensions. Note that for the sake of the demonstration, the embedding space is only represented in 2 dimensions as 100 cannot be drawn:
+
+Each dimension of the vector represents a part of its position on the __X__ and __Y__ axis. So a vector A = [1, 3] has the following coordinates (X,Y) = [1,3]:
+
+<center>
+    <img src="../images/2021-09-21-session-aware-recommendations/demonstration_embedding_space.png"
+         alt="Example of a point in the space" />
+</center>
+
+All the embeddings are randomly initialized. Hence, by taking a look at the embedding space in which the vector resides, we can observe its effect as they all are randomly spread around:
 
 <center>
     <img src="../images/2021-09-21-session-aware-recommendations/random_embedding_space.png"
          alt="Embeddings space with random initialization" />
 </center>
 
-Each dimension of the vector represents a part of its position in the space. In 2 dimensions, the two coordinates  are representing positions on the X and Y axis.
+Now that we have this random space, we need to train the model to create structure and groups within it. Grouping similar items together, it other words, to cluster them, will allow to compare their similarity. If an item is close to a specific group, it is most likely to be a part of it. So, we want the training to push similar items closer together and different ones appart.
 
-Second, we fetch all the user sessions that we stored. We keep the ones are informative enough to give us information about purchasing habits. Sessions without any purchases are filtered out and the same goes for the sessions that contains way too many events. From these sessions, we correlate the item bought with our list of freshly created list of embeddings.
+To do this training, we are using the purchase sessions of the users. Purchase sessions contains all the items a user have bought in a specific session as they were all part of the same cart. We can assume that there is an inherent complimentarity between these items as they were bought together. A triage has to be done so we only keep the sessions (or carts) that are informative enough to give us insight about the users purchasing habits. Sessions without any purchases are filtered out and the same goes for the sessions that contains way too many events. With the remaining sessions, we pick the item names, correlate them with our freshly created list of embeddings:
 
 <center>
     <img src="../images/2021-09-21-session-aware-recommendations/sampled_session.png"
-         alt="Embeddings training" />
+         alt="Sampled cart from a session" />
 </center>
 
-Then, we split the session randomly
+The intuition of the training procedure goes as is: for a specific set of __N__ purchased items, which are the __M__ other items that are the most likely to be bought with them?
 
+To recreate this pattern, we split the carts randomly in two parts. The first half, the __N__ purchased items (in blue), is the Query and the second, composed of the __M__ other ones (in green), is the Recommendation. The random split in the cart allows for a same session to be used multiple times with different combinations of input/output. Basically, the model only sees the Query and tries to generate the Recommendations. This tasks encourages the model to recognize similar items and group them together.
+
+Also, to make the model even more resilient, a negative counterpart is added; __M__ fake recommendations are added to the set of Recommendations to double its size. Hense, the model has two jobs. It has to generate but also discriminate a set of fake recommendations that have been randomly drafted in the distribution of the carts.
 
 
 
