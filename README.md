@@ -3,61 +3,68 @@
 
 See our blog posts at [source.coveo.com](https://source.coveo.com)
 
-Interested in creating a new post? See [How to create a post](https://github.com/Coveo/source.coveo.com/wiki/How-to-create-a-post)
-
-This blog was built using [Jekyll](http://jekyllrb.com/) hosted by [github pages](https://pages.github.com/)
-
+This blog uses [Jekyll](http://jekyllrb.com/) and is hosted by [github pages](https://pages.github.com/)
 
 # Create a post
 
-Preparation:
+## Quick start (if you know how to use Git and GitHub already)
 
-1. You need a Github account, create one [here](https://github.com/join)
-2. [Fork this repository](https://github.com/Coveo/source.coveo.com/fork)
-3. _(optional)_ Poke us in [#technical_blog](https://coveo.slack.com/messages/technical_blog) or [#opensource](https://coveo.slack.com/messages/opensource) channel on [Slack](http://coveo.slack.com) to join Coveo Organization
+Fork this repository, and add your blog post on your fork. You'll be able to preview your changes at [youruser.github.io/source.coveo.com](youruser.github.io/source.coveo.com).
 
-Post creation:
+Blogposts in Jekyll are written in markdown. The posts themselves are under `_posts`, and the images are under `images`.
 
-1. Create a new markdown file in `_posts` directory.
-2. You need a [front-matter](http://jekyllrb.com/docs/frontmatter/)
+Posts expect a [front-matter](http://jekyllrb.com/docs/frontmatter/). We ask that you minimally add:
+  * A title for your blog post
+  * Your name
+  * Your role within Coveo (in bio)
+  * A picture of you
 
-ex:
+Tags are not mandatory, but can be helpful. You can also add your Twitter handle to your discretion.
+
+Here is a sample front matter:
+
 ```markdown
 ---
 layout: post
 
-title: "Better unit test assertions in Java"
+title: "Integrating Coveo with Jekyll"
 
-tags: [JavaScript Search Framework, Web Pages Connector, Jekyll]
+tags: [JavaScript Search Framework, Jekyll, Coveo integration]
 
 author:
-  name: Guillaume Simard
-  bio: Team Lead, UA
-  twitter: guisim
-  image: guisim.jpg
+  name: Harry Potter
+  bio: Software Developer
+  twitter: coveo
+  image: hpotter.jpg
 
 ---
 ```
 
-3. Write your post using markdown. Follow http://jekyllrb.com/docs/posts/
-4. Use the `<!-- more -->` tag within your post. To let Jekyll know where the
-  excerpt ends.
-5. Commit and push to github.
-6. You can view your post at [youruser.github.io/source.coveo.com](youruser.github.io/source.coveo.com)
-7. *Create a pull request* and notify us on [#technical_blog](https://coveo.slack.com/messages/technical_blog),
-  we will then review, and merge if nothing is to be corrected.
-8. Roll yourself over all the traffic you will bring and controversies you will create
+The file name of your posts need to be prefixed by the date your post is meant to be published on (e.g., `2021-10-05-mypost.md` would be for October 5th, 2021).
 
-# Run locally
-1. [Install Docker](https://docs.docker.com/engine/installation/)
-2. Clone this repo
-3. Run these commands:
-```
-cd /path/to/your/repo
-docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll jekyll server
-```
-You can then access your local copy of the blog via [localhost:4000](http://localhost:4000/)
+You should also add a `<!-- more -->` tag towards the beginning of your post, typically after the first paragraph. Everything before that tag will be used to create the post preview on (source.coveo.com)[https://source.coveo.com/], before the `Read more...` link.
 
-Changes made to your local files will be reflected on your blog live.
+To preview your post locally, you can install [Ruby and Jekyll](https://jekyllrb.com/docs/), and run the `bundle exec jekyll serve` command from your folder. The site will be available on your [localhost:4000](http://localhost:4000).
 
-For more help and info, Jekyll documentation has a nice [installation page](http://jekyllrb.com/docs/installation/)
+## Detailed Steps
+
+To properly create a blog post, you'll need a [GitHub account](https://github.com/join), as well as [git](https://git-scm.com/downloads) on your computer.
+
+1. Using your GitHub account, [fork this repository](https://github.com/Coveo/source.coveo.com/fork). This creates a copy of this repository on your account at [https://github.com/youruser/source.coveo.com](https://github.com/youruser/source.coveo.com).
+2. On your forked repository, use git to clone it on your computer. For this, open a command line tool (like Terminal on Mac or cmd on Windows) on your computer, and run `git clone https://github.com/youruser/source.coveo.com.git`, changing `youruser` with your own username. Running this creates files in the folder your terminal is open to, so make sure you first get the terminal where you want your files to be in.
+3. Open your newly created folder using your favourite code editor. If you're new, we recommend using [VS Code](https://code.visualstudio.com/), which is free, full featured (for what you'll need), and relatively easy to use.
+4. In the `_posts` folder, create a new markdown file, prefixed by the date you want to publish your post on (e.g., `2021-10-05-mypost.md` would be for October 5th, 2021). You might alternatively want to duplicate an existing post instead and rename the file, to get a better idea of the markdown syntax.
+5. Blogposts in Jekyll are written in [markdown](https://www.markdownguide.org/). Posts expect a [front-matter](http://jekyllrb.com/docs/frontmatter/). We ask that you minimally add:
+  * A title for your blog post
+  * Your name
+  * Your role within Coveo (in bio)
+  * A picture of you (to add in the `images` folder)
+  Tags are not mandatory, but can be helpful. You can also add your Twitter handle to your discretion.
+6. Add a `<!-- more -->` tag towards the beginning of your post, typically after the first paragraph. Everything before that tag will be used to create the post preview on [source.coveo.com](https://source.coveo.com/), before the `Read more...` link.
+7. You can preview your post locally by following the documentation on [Jekyll's website](https://jekyllrb.com/docs/), installing Ruby, Jekyll, and running `bundle exec jekyll serve`.
+8. Once you feel satisfied with your post, you can push it to your fork. This requires a git commit. If you are new to git, we recommend using the [VS Code git tools](https://code.visualstudio.com/docs/editor/versioncontrol#_commit).
+9. Once you have pushed your post to your fork, you can preview your changes at [youruser.github.io/source.coveo.com](youruser.github.io/source.coveo.com).
+10. Change and repush any other changes you might want to make.
+11. Once you are satisfied with your article, [create a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) form your fork to the main source.coveo.com repo.
+
+This alerts us in the #technical_blog Slack channel. We will then review your changes, make comments, and eventually approve your request. You can typically expect comments/approval to roll in within the first week.
