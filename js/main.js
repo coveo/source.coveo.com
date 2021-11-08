@@ -26,6 +26,14 @@ $(window).ready(function(){
         $("+ ul",this).slideToggle();
     });
 
+	$('.show-ot-infoDisplay, a[href$="#ot_toggleInfoDisplay"]').on('click', function(e){
+		if(typeof OneTrust !== 'undefined') {
+			e.preventDefault();
+	  
+			OneTrust.ToggleInfoDisplay();
+		}
+	  });
+
 });
 
 // function trackEventsGa(){

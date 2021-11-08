@@ -83,6 +83,8 @@
   <meta name="author" content="{{ page.author.name }}" />
 {% endif %}
 
+{% include _cookie-policy.html %}
+
 {% if site.inc.analytics.google %}
   {% include _google-analytics.html %}
 {% endif %}
@@ -147,7 +149,8 @@
             <a href="{{ site.inc.url }}">{{ site.inc.company }}</a> &middot;
             <a href="https://connect.coveo.com">Connect</a>
             <a href="https://docs.coveo.com">Documentation</a>
-            <a href="https://careers.coveo.com">Careers</a>
+            <a href="https://careers.coveo.com">Careers</a>  &middot;
+            <a href="#ot_toggleInfoDisplay" class="show-ot-infoDisplay">Cookies Preferences</a>
         </nav>
 
         <nav class="social">
