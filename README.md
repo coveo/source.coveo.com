@@ -44,7 +44,7 @@ The file name of your posts need to be prefixed by the date your post is meant t
 
 You should also add a `<!-- more -->` tag towards the beginning of your post, typically after the first paragraph. Everything before that tag will be used to create the post preview on (source.coveo.com)[https://source.coveo.com/], before the `Read more...` link.
 
-To preview your post locally, you can install [Ruby and Jekyll](https://jekyllrb.com/docs/), and run the `bundle exec jekyll serve` command from your folder. The site will be available on your [localhost:4000](http://localhost:4000).
+To preview your post locally, you can install [Ruby and Jekyll](https://jekyllrb.com/docs/), and run the `bundle exec jekyll serve` command from your folder. The site will be available on your [localhost:4000](http://localhost:4000). Alternatively, with docker you can host a local Jekyll server using `docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll jekyll server` from the root of your repository.
 
 ## Detailed Steps
 
