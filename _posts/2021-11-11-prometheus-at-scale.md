@@ -19,21 +19,21 @@ As the company continually grows year after year, by bringing in new clients, de
 
 ![asd]({{ site.baseurl }}/images/2021-11-11-prometheus-at-scale/dilbert-kubernetes.jpeg)
 
-Most companies working with cloud-native, distributed and scalable technologies will aim at scaling on demand, or rather _scale with your wallet_, so that for example no human actions are required in preparation for black Friday. But unfortunately, it's not as easy as it sounds. Whether you're moving from three to ten virtual machines, from a dozen micro-services to a hundred, or you're preparing your ~100 nodes Kubernetes cluster to hit 300 in the next year, scaling up will inevitably lead to unforeseen problems. One of them is ensuring monitoring and alerting stays reliable for an ever-increasing number of virtual machines, micro-services and other components.
+Most companies working with cloud-native, distributed and scalable technologies will aim at scaling on demand, or rather _scale with your wallet_, so that for example, no human actions are required in preparation for Black Friday. But unfortunately, it's not as easy as it sounds. Whether you're moving from three to ten virtual machines, from a dozen micro-services to a hundred, or you're preparing your ~100 nodes Kubernetes cluster to hit 300 in the next year, scaling up will inevitably lead to unforeseen problems. One of them is ensuring monitoring and alerting stays reliable for an ever-increasing number of virtual machines, micro-services and other components.
 
 ## Prometheus
 
-This time-series database has been one of the most popular monitoring software solutions for the last decade. It's a [Cloud Native Computing Foundation](https://www.cncf.io/) project, available on [Github](https://github.com/prometheus/prometheus), and its role is to gather information regularly about all the monitoring targets you configure, evaluate rules that can trigger alerts, and also expose all of its information under a query language (PromQL). The most basic use case for Prometheus could be to gather uptime information about a server, and have it post an alert in Slack when it's down. You can also build dashboards on a visualization tool such as [Grafana](https://grafana.com/), which makes all sorts of queries on all your running applications.
+The time-series database [Prometheus](https://prometheus.io/) has been one of the most popular monitoring software solutions for the last decade. It's a [Cloud Native Computing Foundation](https://www.cncf.io/) project, available on [Github](https://github.com/prometheus/prometheus), and its role is to gather information regularly about all the monitoring targets you configure, evaluate rules that can trigger alerts, and also expose all of its information under a query language (PromQL). The most basic use case for Prometheus could be to gather uptime information about a server, and have it post an alert in Slack when it's down. You can also build dashboards on a visualization tool such as [Grafana](https://grafana.com/), which makes all sorts of queries on all your running applications.
 
 ![prometheus-single]({{ site.baseurl }}/images/2021-11-11-prometheus-at-scale/prometheus-single.png)
 
-In this article I'll refer to our multiple _monitoring targets_ as **exporters**, since it's the [piece of software](https://prometheus.io/docs/instrumenting/exporters/) that knows how to present information to Prometheus. Our targets can be virtual machines, clusters, applications, cloud services, etc. Prometheus will periodically fetch information from all exporters to build his time series. And then we use our visualization platform **Grafana**, that asks Prometheus directly for information.
+In this article I'll refer to our multiple _monitoring targets_ as **exporters**, since it's the [piece of software](https://prometheus.io/docs/instrumenting/exporters/) that knows how to present information to Prometheus. Our targets can be virtual machines, clusters, applications, cloud services, etc. Prometheus will periodically fetch information from all exporters to build its time series. And then we use our visualization platform **Grafana**, that asks Prometheus directly for information.
 
 Pinch your nose as we dive deeper into the various ways in which Prometheus can be made reliable and scalable.
 
 ## High availability
 
-At first, a single Prometheus instance will be enough for millions of time series, though it can be fragile as there is no redundancy. This fragility, of course, is not acceptable. We need to be aware as soon as a client facing application is having trouble fulfilling its destiny. This means we cannot allow down time to occur, monitoring and alerting are an essential part of our offering.
+At first, a single Prometheus instance will be enough for millions of time series, though it can be fragile as there is no redundancy. This fragility, of course, is not acceptable. We need to be aware as soon as a client facing application is having trouble fulfilling its destiny. This means we cannot allow downtime to occur; monitoring and alerting are an essential part of our offering.
 
 Two solutions are available to us. And we choose to have both in place.
 
@@ -52,10 +52,10 @@ prometheus-1       3/3     Running
 
 In Kubernetes, we can greatly reduce the chances that the two instances are down at the same time using these features:
 
-- `anti-affinity` and `pod-topology-constraints`, so that our Prometheus replicas are not hosted on the same physical machine, and even in the same data center.
+- `anti-affinity` and `pod-topology-constraints`, so that our Prometheus replicas are not hosted on the same physical machine, or even in the same data center.
 - `pod-disruption-budget` to tell Kubernetes to never intentionally shutdown both replicas at the same time.
 
-Furthermore, we now need an intermediary for **Grafana** to get its information. The Thanos Querier component takes care of serving the two Prometheus instances under a single endpoint, and also deduplicates the data both Prometheus would have in common. The Querier also implements the PromQL language to mimic Prometheus behavior.
+Furthermore, we now need an intermediary for **Grafana** to get its information. The Thanos Querier component takes care of serving both Prometheus instances under a single endpoint, and also deduplicates the data both Prometheus would have in common. The Querier also implements the PromQL language to mimic Prometheus behavior.
 
 The alerts can still be evaluated by both Prometheus at the same time, as they will be deduplicated by Alertmanager down the line.
 
@@ -82,7 +82,7 @@ If we can't have bigger instances, let's have more of them!
 
 To scale horizontally, we must split the scrape targets in groups. It's called **sharding** the scrape metrics. This will split Prometheus into multiple smaller instances, which we can host on different nodes, thus easily scaling by increasing the number of nodes in the cluster when required.
 
-We can do that logically, by dividing the targets by services, such as RabbitMQ, Elasticsearch, Kubernetes, etc. Or we could have one Prometheus shard per Kubernetes namespace. But I think the best approach is to use a pseudo-random division of all our scrape targets, so that it can be managed as one big Prometheus stack and also scaled on demand, without human interactions.
+We can do that logically, by dividing the targets by services, such as RabbitMQ, Elasticsearch, Kubernetes, etc. Or we could have one Prometheus shard per Kubernetes namespace. But I think the best approach is to use a pseudo-random division of all our scrape targets, so that we can manage our multiple shards as one big Prometheus stack and, more importantly, scale on demand without human interactions.
 
 To accomplish that, an entity controlling all Prometheus shards will be in charge of splitting the configuration, using a modulo of the desired number of shards on a hash of our scrape targets. This entity can be the [Prometheus operator](https://github.com/prometheus-operator/prometheus-operator), living alongside our Prometheus and Alertmanager pods.
 
