@@ -13,7 +13,7 @@ author:
 
 ---
 
-As the company continually grows year after year, by bringing in new clients, deploying in new regions, integrating new technologies, so must our infrastructure on which it sits. This explosion in data and event volumes demands that companies find scalable solutions to match their ambitions. It's a bit more complicated than simply throwing buzzwords like incantations, so I'll help you dive a bit into this world.
+Coveo has experienced great growth over the last few years, by bringing in new clients, deploying in new regions, integrating new technologies, etc. But so must our infrastructure on which it sits. This explosion in data and event volumes demands that companies find scalable solutions to match their ambitions. It's a bit more complicated than simply throwing buzzwords like incantations, so I'll help you dive a bit into this world.
 
 <!-- more -->
 
