@@ -53,7 +53,7 @@ Secrets in Secrets Manager have a deletion retention period. This customizable p
 
 This is the result of bad error handling on the provider side and simply means that a secret cannot be recreated when already scheduled for deletion. Running the following CLI command will fix the problem:
 ``
-aws secrets-manager delete-secret --secret-id my-awesome-secret --force-delete-without-recovery
+aws secretsmanager delete-secret --secret-id my-awesome-secret --force-delete-without-recovery
 ``
 
 ## 6. When is a Rotation Triggered?
