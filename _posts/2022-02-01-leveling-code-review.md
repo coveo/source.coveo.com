@@ -69,7 +69,7 @@ Your application will be deployed, so what happens while it is still in transiti
 - What will be the impact of this change during the deployment?
 - Is rollback possible if something goes wrong?
 - Is this properly monitorable?
-- What is the impact of this change if more than one service is doing it at the same time
+- What is the impact of this change if more than one service is doing it at the same time?
 - Is this an API breaking change? Is this a feature breaking change?
 - What are the impacts of this change on the upstream/downstream systems?
 - Should another Subject Matter Expert (SME) be involved in this review?
