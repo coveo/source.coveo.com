@@ -31,13 +31,13 @@ If you do these kinds of comments during code reviews, I would strongly urge you
 
 This is where your value, as a human, comes into play (until the great AI overlord takes over). At this level we can leverage your skills as a human to help improve the code submitted by your colleagues. The good thing about this level is that it doesn’t require a lot of knowledge about the project overall; it’s a great place to start if you are new to a project or the company.
 
-- Is the code easy to understand ?
-- Are the changes accompanied with unit tests (that are easy to understand) ?
-- Does the logic make sense according to the feature wanted or the bug that needed to be fixed ?
-- Could the code be re-written in a more idiomatic/readable way ?
-- Is the right data structure being used ?
-- What are the added lines doing ? 
-- Is there proper logging / instrumentation ?
+- Is the code easy to understand?
+- Are the changes accompanied with unit tests (that are easy to understand)?
+- Does the logic make sense according to the feature wanted or the bug that needed to be fixed?
+- Could the code be re-written in a more idiomatic/readable way?
+- Is the right data structure being used?
+- What are the added lines doing? 
+- Is there proper logging / instrumentation?
 
 Getting to this level is relatively easy considering how little outside knowledge is required, but it requires you to actually look and think about the code you are reading.
 
@@ -46,8 +46,8 @@ Getting to this level is relatively easy considering how little outside knowledg
 
 Now we’re getting to a more valuable place in terms of code review. This is when your code review starts to integrate the context of the service you are running in and the impact the code change has on the code around it. This is a good place to be when you start being familiar with a specific part of the code (or the whole project).
 
-- Is the change located in the right place in the project ?
-- Is this functionality duplicated from elsewhere in the project (could it be centralized or [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)) ?
+- Is the change located in the right place in the project?
+- Is this functionality duplicated from elsewhere in the project (could it be centralized or [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself))?
 - Should there be refactoring to improve the code quality of this part of the project?
 - What are the removed lines removing? Are they supposed to be removed?
 - Could/Should this be done by an external library instead (should we do it instead of pulling a full library for it)?
@@ -64,14 +64,14 @@ At this level of code review, you should not only be taking in consideration you
 
 Your application will be deployed, so what happens while it is still in transition? If it has to be rolled back, what happens then? Other services will interact with it – is it problematic? You are also to think in terms of organization; is this the right place to put this feature or is there another service that would be better suited to do it? You should be looking at your service as a part of the system, not as “the” system. Although all of those concerns should normally be identified during a design review, often enough some small changes might have unsuspected ramifications with deep architectural and responsibility implications. 
 
-- Is this the right place to add this functionality in the system ?
-- Is this an issue encountered by many other teams? Could this be generalized to be used by other services ?
-- What will be the impact of this change during the deployment ?
+- Is this the right place to add this functionality in the system?
+- Is this an issue encountered by many other teams? Could this be generalized to be used by other services?
+- What will be the impact of this change during the deployment?
 - Is rollback possible if something goes wrong?
-- Is this properly monitorable ?
+- Is this properly monitorable?
 - What is the impact of this change if more than one service is doing it at the same time
-- Is this an API breaking change ? Is this a feature breaking change?
-- What are the impacts of this change on the upstream/downstream systems ?
+- Is this an API breaking change? Is this a feature breaking change?
+- What are the impacts of this change on the upstream/downstream systems?
 - Should another Subject Matter Expert (SME) be involved in this review?
 
 The best way to get to this level is to start discussing and understanding what other teams, outside of your service, are doing. The more you’ll learn about how they work and their current issue, the better perspective you’ll have on the impact of the changes you are making.
