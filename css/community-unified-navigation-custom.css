@@ -13,6 +13,7 @@
   }
   .bottomHeader #searchBox .magic-box .magic-box-suggestions.magic-box-hasSuggestion {
     border-color: #CFD9E0 !important;
+    position:relative;
   }
   .bottomHeader #searchBox .magic-box .magic-box-suggestions.magic-box-hasSuggestion .magic-box-suggestion {
     color: #94A9BF;
