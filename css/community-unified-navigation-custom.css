@@ -13,6 +13,9 @@
   }
   .bottomHeader #searchBox .magic-box .magic-box-suggestions.magic-box-hasSuggestion {
     border-color: #CFD9E0 !important;
+    position:relative;
+    top: 0;
+    left: 0;
   }
   .bottomHeader #searchBox .magic-box .magic-box-suggestions.magic-box-hasSuggestion .magic-box-suggestion {
     color: #94A9BF;
@@ -25,6 +28,10 @@
     content: "Queries";
     text-transform: uppercase;
     color: #B5C4CF;
+  }
+  .magic-box.magic-box-hasFocus .magic-box-suggestions.magic-box-hasSuggestion .coveo-magicbox-suggestions {
+    border: none !important;
+
   }
   .bottomHeader #searchBox .magic-box .magic-box-suggestions .coveo-highlight,
   .bottomHeader #searchBox .magic-box .magic-box-suggestions .coveo-omnibox-hightlight {
