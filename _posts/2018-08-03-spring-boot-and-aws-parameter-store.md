@@ -58,10 +58,11 @@ We now need to add this Property Source to the application context. To do this I
 {% highlight java %}
 public class ParameterStorePropertySourceEnvironmentPostProcessor implements EnvironmentPostProcessor {
     @Override
-    public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        environment.getPropertySources()
-                   .addFirst(new ParameterStorePropertySource("AWSParameterStorePropertySource",
-                                                              AWSSimpleSystemsManagementClientBuilder.defaultClient()));
+    public void postProcessEnvironment(ConfigurableEnvironment environment, 
+                                       SpringApplication application) {
+        environment.getPropertySources().addFirst(
+            new ParameterStorePropertySource("AWSParameterStorePropertySource",
+                                             AWSSimpleSystemsManagementClientBuilder.defaultClient()));
     }
 }
 {% endhighlight %}
@@ -80,7 +81,7 @@ To limit the AWS calls to a minimum, I've added a required prefix. Since the Par
 {% highlight java %}
 @Override
 public Object getProperty(String propertyName) {
-    if (name.startsWith("/")) {
+    if (propertyName.startsWith("/")) {
         try {
             return ssmClient.getParameter(new GetParameterRequest().withName(propertyName)
                                                                    .withWithDecryption(true))
@@ -145,7 +146,8 @@ public class ParameterStoreSource {
 
     public Object getProperty(String propertyName) {
         try {
-            return ssmClient.getParameter(new GetParameterRequest().withName(propertyName).withWithDecryption(true))
+            return ssmClient.getParameter(new GetParameterRequest().withName(propertyName)
+                                                                   .withWithDecryption(true))
                             .getParameter()
                             .getValue();
         } catch (ParameterNotFoundException e) {
@@ -168,7 +170,7 @@ public class ParameterStorePropertySource extends PropertySource<ParameterStoreS
 
     @Override
     public Object getProperty(String propertyName) {
-        if (name.startsWith("/")) {
+        if (propertyName.startsWith("/")) {
             return source.getProperty(propertyName);
         }
         return null;
