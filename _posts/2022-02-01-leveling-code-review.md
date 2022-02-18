@@ -81,6 +81,6 @@ The best way to get to this level is to start discussing and understanding what 
 
 As you have probably noticed, those levels are mostly oriented towards someone working on a micro/macro service within a company. Nonetheless, I hope there can be some value in there even if this isn’t your current situation. One thing you’ll find is missing from this post is how to provide effective and constructive feedback, which will be covered in a future post on this blog, stay tuned :). If you are impatient, you can go and read what Google has to say about it in their [9th chapter of Software Engineering at Google](https://abseil.io/resources/swe_at_google.2.pdf).
 
-_Thanks to Devin Lafrenière, David Lévesque, Maxime Lachapelle, Alexandre Moreau, Kevin Larose, Samuel Begin, Louis Bompart, Martin Ouellet, and Marc Sanfaçon who were kind enough to review a text on reviews._
+_Thanks to Devin Lafrenière, David Lévesque, Maxime Lachapelle, Alexandre Moreau, Kevin Larose, Samuel Begin, Louis Bompart, Martin Ouellet, and Marc Sanfaçon who were kind enough to review this blog post._
 
 _Do you like leaving or receiving constructive code reviews? Do you long to work on a service where your code can improve the code of others? Check out our [careers](https://www.coveo.com/en/company/careers) page and join the team!_
