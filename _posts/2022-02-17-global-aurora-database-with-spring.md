@@ -23,7 +23,7 @@ With this initial development setup, the new platform launched in Europe worked,
 
 We started looking into how we could get a read-only replica that could be in Europe and help reduce latency for read-only transactions. Read-only transactions represent the vast majority of requests we receive for this specific service. At the time, we had a standard Aurora MySQL database. We quickly found that it could be migrated to a [global database](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html). AWS Aurora global databases maintain a single logical global cluster with multiple regionalized clusters in it. With it, you can easily spin an Aurora cluster in multiple regions and AWS will manage the replication on its own. Though not entirely transparent on the technical side, you can even failover your main cluster to a different region.
 
-As of today, Coveo offers the possibility to have data stored in the United States, the European Union and Australia. The architecture of the service currently looks like the diagram below.
+As of today, Coveo offers the possibility to have data stored in the United States, the European Union, and Australia. The architecture of the service currently looks like the diagram below.
 
 ![InfraFinal-AuroraGlobalDb]({{ site.baseurl }}/images/2022-02-17-global-aurora-database-with-spring/InfraFinal-AuroraGlobalDb.png)
 
