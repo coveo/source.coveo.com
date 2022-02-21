@@ -17,7 +17,7 @@ A few years ago, Coveo wanted to offer the possibility to store customer data ou
 
 To get things going, our initial goal was to launch a new platform in Europe. The US infrastructure would essentially be replicated in Europe but with one difference: the service managing the user directory was going to connect to the same database as the one running in the US. Here is what our initial development setup looked like.
 
-![InfraV1-AuroraGlobalDb]({{ site.baseurl }}/images/2022-02-17-global-aurora-database-with-spring/InfraV1-AuroraGlobalDb.png)
+![InfraV1-AuroraGlobalDb]({{ site.baseurl }}/images/2022-02-21-global-aurora-database-with-spring/InfraV1-AuroraGlobalDb.png)
 
 With this initial development setup, the new platform launched in Europe worked, but we quickly realized one big problem; it was really slow. We had to come up with a better solution before going live.
 
@@ -25,7 +25,7 @@ We started looking into how we could get a read-only replica that could be in Eu
 
 As of today, Coveo offers the possibility to have data stored in the United States, the European Union, and Australia. The architecture of the service currently looks like the diagram below.
 
-![InfraFinal-AuroraGlobalDb]({{ site.baseurl }}/images/2022-02-17-global-aurora-database-with-spring/InfraFinal-AuroraGlobalDb.png)
+![InfraFinal-AuroraGlobalDb]({{ site.baseurl }}/images/2022-02-21-global-aurora-database-with-spring/InfraFinal-AuroraGlobalDb.png)
 
 Of course, this solution is not perfect. As you can see in the diagram above, a global database can only have one writer instance. Since all regions need to write into this database, we had to find a way to send all read transactions to local reader instances and all write transactions to the writer instance wherever this instance is. Doing so is not supported out of the box with Spring, so we came up with a solution.
 
