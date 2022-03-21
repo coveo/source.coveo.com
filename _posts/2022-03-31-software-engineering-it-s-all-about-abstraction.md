@@ -1,5 +1,7 @@
 # Software Engineering: It’s All About Abstraction
 
+![manUnderTree]({{ site.baseurl }}/images/2022-03-31-software-engineering-it-s-all-about-abstraction/manUnderTree.jpg)
+
 Next summer, I'm going to drink a beer under a tree.
 
 Right now you probably have an image of me, under a tree, with a beer: you understood my _intent_.
