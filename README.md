@@ -9,7 +9,7 @@ This blog uses [Jekyll](http://jekyllrb.com/) and is hosted by [github pages](ht
 
 ## Quick start (if you know how to use Git and GitHub already)
 
-Fork this repository, and add your blog post on your fork. You'll be able to preview your changes at [youruser.github.io/source.coveo.com](youruser.github.io/source.coveo.com).
+Fork this repository, and add your blog post on your fork. You'll be able to preview your changes at [youruser.github.io/source.coveo.com](youruser.github.io/source.coveo.com). Note however that if the date in the file name of your post is in the future, you won't be able to see it.
 
 Blogposts in Jekyll are written in markdown. The posts themselves are under `_posts`, and the images are under `images`.
 
@@ -44,7 +44,7 @@ The file name of your posts need to be prefixed by the date your post is meant t
 
 You should also add a `<!-- more -->` tag towards the beginning of your post, typically after the first paragraph. Everything before that tag will be used to create the post preview on (source.coveo.com)[https://source.coveo.com/], before the `Read more...` link.
 
-To preview your post locally, you can install [Ruby and Jekyll](https://jekyllrb.com/docs/), and run the `bundle exec jekyll serve` command from your folder. The site will be available on your [localhost:4000](http://localhost:4000). Alternatively, with docker you can host a local Jekyll server using `docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll jekyll server` from the root of your repository.
+To preview your post locally, you can install [Ruby and Jekyll](https://jekyllrb.com/docs/), and run the `bundle exec jekyll serve` command from your folder. The site will be available on your [localhost:4000](http://localhost:4000). Alternatively, with docker you can host a local Jekyll server using `docker run --volume=$(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll jekyll server` from the root of your repository. Note that if the date in the file name of your post is in the future, you won't be able to see it.
 
 ## Detailed Steps
 
