@@ -1,6 +1,16 @@
-# Software Engineering: It’s All About Abstraction
+---
+layout: post
 
-![manUnderTree]({{ site.baseurl }}/images/2022-03-31-software-engineering-it-s-all-about-abstraction/manUnderTree.jpg)
+title: "Software Engineering: It’s All About Abstraction"
+
+tags: [abstraction, single responsibility principles, srp, don't repeat yourself, dry, test, readability]
+
+author:
+  name: Kevin Lalumiere
+  bio: Software Developer, Indexing Infrastructure
+  image: klalumiere.jpg
+
+---
 
 Next summer, I'm going to drink a beer under a tree.
 
@@ -15,6 +25,9 @@ This won't come as a surprise to most of you: we, developers, know that abstract
 That being said, it's not always clear how abstractions link to our day-to-day programming and to our leading practices.
 [Single Responsibility Principles (SRP)](https://en.wikipedia.org/wiki/Single-responsibility_principle), [Design Patters](https://www.goodreads.com/book/show/85009.Design_Patterns), [Don't Repeat Yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) and test readability are all somehow related to abstractions.
 This post explores these connections and it shows how understanding them helps to make better decisions about our programs.
+<!-- more -->
+
+![manUnderTree]({{ site.baseurl }}/images/2022-03-31-software-engineering-it-s-all-about-abstraction/manUnderTree.jpg)
 
 ## Abstractions and SRP
 
