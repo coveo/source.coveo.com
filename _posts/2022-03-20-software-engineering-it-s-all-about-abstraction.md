@@ -16,7 +16,7 @@ Next summer, I'm going to drink a beer under a tree.
 
 Right now you probably have an image of me, under a tree, with a beer: you understood my _intent_.
 What's interesting is that the details of this image will probably be significantly different for each person that is reading.
-This is because I did not talk about the implementations; _beer_ and _tree_ are abstractions, they convey a general idea efficiently without getting lost in the details.
+This is because I did not talk about the implementations; _beer_ and _tree_ are abstractions, they efficiently convey a general idea without getting lost in the details.
 _Efficiently_ is the key word here: imagine if I had to describe the detailed implementation of a tree or a beer each time I want to talk about them! 😰
 
 Since abstractions are a key part of the way humans communicate, they are also a key part of software engineering. 
@@ -34,7 +34,7 @@ This post explores these connections and it shows how understanding them helps t
 The SRP is colloquially known as "a function or a class should do one thing".
 The problem of this statement is that the definition of "one thing" is not very clear.
 Many people mitigated this issue by stating the SRP in other, more precise ways.
-Some of these alternative formulations are very helpful, but what help me the most to implement SRP is the following guideline
+Some of these alternative formulations are very helpful, but what helped me the most to implement SRP is the following guideline
 
 > The level of abstraction in a function implementation should be constant and as high as the locality of information allows.
 
@@ -59,7 +59,7 @@ Pizza CreateMargheritaPizza() {
 The function operates at the ingredient abstraction level, except for the basil, where it goes into details about where it comes from.
 This is a SRP transgression smell, as is the "paragraph" in the function.
 Interestingly, this paragraph starts with a helpful comment, `// Grow basil`.
-This comment suggest the abstraction that should be created in order to simplify the function, `Basil`:
+This comment suggests the abstraction that should be created in order to simplify the function, `Basil`:
 
 ```c++
 Pizza CreateMargheritaPizza() {
@@ -104,19 +104,19 @@ An example of such a good abstraction is `quicksort(input)`.
 
 An important conclusion that stems from this discussion is that SRP is _not_ about naively distributing the code in many small functions, it is about finding the abstractions hidden in your code and using the appropriate mechanisms (classes, functions, modules) in order to represent them.
 
-One reason why we still see a lot of large classes and functions is that writting good abstraction can be very hard.
+One reason why we still see a lot of large classes and functions is that writting good abstractions can be very hard.
 Sometimes, there is not even a word that exists to describe the concept that you are trying to express.
 For instance, in the seminal book [Design Patterns](https://www.goodreads.com/book/show/85009.Design_Patterns), we can read
 
 > The purpose of this book is to record experience in designing object-oriented software as design patterns. Each design pattern systematically names, explains, and evaluates an important and recurring design in object-oriented systems.
 
-In other words, arguably one of the most important contributions of the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) is to have _named_ typical abstraction that software engineers were using.
-Hence, thanks to them, we could now discuss more easily about these patterns and label their use in our code so other developers would understand in a blink our intent.
+In other words, arguably one of the most important contributions of the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) is to have _named_ typical abstractions that software engineers were using.
+Hence, thanks to them, we can now discuss more easily about these patterns and label their usage in our code so other developers can understand our intent in a blink.
 
 ## Abstractions show when to be DRY
 
 The DRY principle states that we should not repeat ourselves.
-It is hard to overestimate the importance of this principle: we all experienced many bugs created by forgetting to change one of the `N` copy-pasted pieces of code in a code base.
+It is hard to overestimate the importance of this principle: we have all experienced many bugs created by forgetting to change one of the `N` copy-pasted pieces of code in a code base.
 However, you might also have seen cases where the application of the principle seemed, to say the least, far-fetched...
 
 Consider a dockerfile written by a team responsible for the microservice `BasilService`,
@@ -128,7 +128,7 @@ RUN apt-get update \
         tini
 ```
 
-and then, another service's dockerfile, `OliveOilService`, contains
+and then, another service's dockerfile, `OliveOilService`, which contains
 
 ```dockerfile
 RUN apt-get update \
@@ -138,14 +138,14 @@ RUN apt-get update \
         tini
 ```
 
-There is clearly a duplication in both dockerfile: both depends on `python3` and `tini`.
+There is clearly a duplication in both dockerfiles: both depend on `python3` and `tini`.
 So, what should we do from here?
 Create a base container image that contains both `python3` and `tini`, named `UbuntuWithPython3AndTini`, or perhaps the typical `BaseService`?
 Doing so would eliminate the duplication, but it would also create a coupling between the `BasilService` and the `OliveOilService` who, semantically, should have nothing in common.
 As we'll see in the next paragraph, what might seem like a complicated trade-off driven decision becomes a lot simpler when we look at the problem from the perspective of abstractions.
 
-The problem with duplication is change coupling, that is, when changing the code in a file `A` implies that you should remember to also change it in a file `B`.
-For instance, let's say you find out that, in our previous example about `Basil`, you need to add the call `pot.Water` between the calls `pot.Plant` and `pot.Age`, perhaps in a loop so that you water the poor basil plant regularly.
+The problem with duplication is change coupling, that is, when changing the code in file `A` implies that you should remember to also change it in file `B`.
+For instance, let's say you find out that, in our previous example about `Basil`, you need to add the call `pot.Water` between the calls `pot.Plant` and `pot.Age`, perhaps in a loop so that you regularly water the poor basil plant .
 If you repeated the code to grow basil at 10 places in your code base, you'll need to make 10 modifications, which will take time and which is error-prone.
 The interesting thing is that, if you correctly identify and use an appropriate mechanism to represent the abstraction of creating basil, like for instance the class `Basil`, you will also eliminate the duplication.
 In other words, when you see change coupling, there is often also a hidden abstraction.
@@ -192,8 +192,8 @@ TEST(CookingClass, CanCookJambalaya) {
 }
 ```
 
-When the `Arrange` block gets large, it means that setting up your the class under test is hard.
-In a worse case scenario, the class under test might not be ready to use before `N` particular methods are called (in order) to initialize it.
+When the `Arrange` block gets large, it means that setting up your class under test is hard.
+In a worst-case scenario, the class under test might not be ready to use before `N` particular methods are called (in order) to initialize it.
 This is problematic because it means that using your code is very error-prone.
 Hence, to ease the live of the users of your class Application Programming Interface (API), you should probably consider adding tools to simplify the creation of the class in a "ready to use" state: perhaps a factory function with sane and safe defaults.
 If you need to inject [stubs](https://en.wikipedia.org/wiki/Method_stub) (like an in-memory database for instance) during your test, you could also create a (different) factory function that initializes your class under test with the stubs.
