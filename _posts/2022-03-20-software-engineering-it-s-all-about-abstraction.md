@@ -3,7 +3,7 @@ layout: post
 
 title: "Software Engineering: It’s All About Abstraction"
 
-tags: [abstraction, single responsibility principles, srp, don't repeat yourself, dry, test, readability]
+tags: [abstraction, single responsibility principle, srp, don't repeat yourself, dry, test, readability]
 
 author:
   name: Kevin Lalumiere
@@ -15,15 +15,15 @@ author:
 Next summer, I'm going to drink a beer under a tree.
 
 Right now you probably have an image of me, under a tree, with a beer: you understood my _intent_.
-What's interesting is that this image is probably significantly different for each person that is reading.
-This is because I did not talk about the implementations; _beer_ and _tree_ are abstractions, they allow to convey a general idea efficiently without getting lost in the details.
-_Efficiently_ is the key word here: imagine if I had to describe the detailed implementation of a tree or of a beer each time I want to talk about them! 😰
+What's interesting is that the details of this image will probably be significantly different for each person that is reading.
+This is because I did not talk about the implementations; _beer_ and _tree_ are abstractions, they convey a general idea efficiently without getting lost in the details.
+_Efficiently_ is the key word here: imagine if I had to describe the detailed implementation of a tree or a beer each time I want to talk about them! 😰
 
 Since abstractions are a key part of the way humans communicate, they are also a key part of software engineering. 
 Indeed, since software engineering is about [_programming over time_](https://www.goodreads.com/book/show/48816586-software-engineering-at-google), it is in part about using source code to communicate ideas to other developers.
 This won't come as a surprise to most of you: we, developers, know that abstractions are a key part of our job.
 That being said, it's not always clear how abstractions link to our day-to-day programming and to our leading practices.
-[Single Responsibility Principles (SRP)](https://en.wikipedia.org/wiki/Single-responsibility_principle), [Design Patters](https://www.goodreads.com/book/show/85009.Design_Patterns), [Don't Repeat Yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) and test readability are all somehow related to abstractions.
+[Single Responsibility Principle (SRP)](https://en.wikipedia.org/wiki/Single-responsibility_principle), [Design Patterns](https://www.goodreads.com/book/show/85009.Design_Patterns), [Don't Repeat Yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) and test readability are all somehow related to abstractions.
 This post explores these connections and it shows how understanding them helps to make better decisions about our programs.
 <!-- more -->
 
@@ -106,7 +106,7 @@ An important conclusion that stems from this discussion is that SRP is _not_ abo
 
 One reason why we still see a lot of large classes and functions is that writting good abstraction can be very hard.
 Sometimes, there is not even a word that exists to describe the concept that you are trying to express.
-For instance, in the seminal book [Design Patters](https://www.goodreads.com/book/show/85009.Design_Patterns), we can read
+For instance, in the seminal book [Design Patterns](https://www.goodreads.com/book/show/85009.Design_Patterns), we can read
 
 > The purpose of this book is to record experience in designing object-oriented software as design patterns. Each design pattern systematically names, explains, and evaluates an important and recurring design in object-oriented systems.
 
@@ -196,7 +196,7 @@ When the `Arrange` block gets large, it means that setting up your the class und
 In a worse case scenario, the class under test might not be ready to use before `N` particular methods are called (in order) to initialize it.
 This is problematic because it means that using your code is very error-prone.
 Hence, to ease the live of the users of your class Application Programming Interface (API), you should probably consider adding tools to simplify the creation of the class in a "ready to use" state: perhaps a factory function with sane and safe defaults.
-If you need to inject [stubs](https://en.wikipedia.org/wiki/Method_stub) (like an in-memory database for instance) during your test, you could also create a (different) factory function that initialize your class under test with the stubs.
+If you need to inject [stubs](https://en.wikipedia.org/wiki/Method_stub) (like an in-memory database for instance) during your test, you could also create a (different) factory function that initializes your class under test with the stubs.
 This would help people to use your class in some other tests.
 
 If the `Act` block of code gets large, it can mean that you are testing the behavior of your class when `N` methods of your API are called in a particular order.
@@ -214,5 +214,5 @@ Most test frameworks let you do that in some way: the challenge here will be to 
 
 Writing a program is creating and using abstractions.
 By choosing good abstractions, separating them properly and making sure that they are well named, you make it easier for the next person that will read your code.
-Considering that code is written `O(1)` time and that it is read `O(N)` times, taking the time to do so is a sound investment as soon as your code lives for a little while. 
+Considering that code is written `O(1)` times and that it is read `O(N)` times, taking the time to do so is a sound investment as soon as your code lives for a little while. 
 So next time you do software development, don't hesitate to take the time required to make your abstractions beautiful.
