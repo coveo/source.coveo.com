@@ -142,7 +142,7 @@ There is clearly a duplication in both dockerfile: both depends on `python3` and
 So, what should we do from here?
 Create a base container image that contains both `python3` and `tini`, named `UbuntuWithPython3AndTini`, or perhaps the typical `BaseService`?
 Doing so would eliminate the duplication, but it would also create a coupling between the `BasilService` and the `OliveOilService` who, semantically, should have nothing in common.
-What might seem like a complicated trade-off driven decision becomes a lot simpler when we look at the problem from the perspective of abstractions.
+As we'll see in the next paragraph, what might seem like a complicated trade-off driven decision becomes a lot simpler when we look at the problem from the perspective of abstractions.
 
 The problem with duplication is change coupling, that is, when changing the code in a file `A` implies that you should remember to also change it in a file `B`.
 For instance, let's say you find out that, in our previous example about `Basil`, you need to add the call `pot.Water` between the calls `pot.Plant` and `pot.Age`, perhaps in a loop so that you water the poor basil plant regularly.
