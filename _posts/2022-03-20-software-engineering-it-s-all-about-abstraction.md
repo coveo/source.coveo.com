@@ -152,7 +152,7 @@ In other words, when you see change coupling, there is often also a hidden abstr
 
 Going back to our previous examples with the dockerfiles, we can see that there is no change coupling between both.
 For instance, `BasilService` could stop depending on `python3` at any time without impacting `OliveOilService`.
-Hence, using the vocabulary of [Fred Brooks](https://en.wikipedia.org/wiki/No_Silver_Bullet), [we](https://medium.com/@mariusbongarts11/when-you-should-duplicate-code-b0d747bc1c67) say that the duplication is accidental, not essential.
+Hence, using the vocabulary of [Fred Brooks](https://en.wikipedia.org/wiki/No_Silver_Bullet), we say that the duplication is accidental, not essential (I'm not the first to use these words in the DRY context, see for instance [this excellent blog post written by Marius Bongarts](https://medium.com/@mariusbongarts11/when-you-should-duplicate-code-b0d747bc1c67)).
 
 ## What about tests
 
