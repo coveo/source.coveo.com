@@ -124,8 +124,9 @@ Consider a dockerfile written by a team responsible for the microservice `BasilS
 ```dockerfile
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --assume-yes \
-        python3 \
-        tini
+        gdb \
+        tini \
+        vim
 ```
 
 and then, another service's dockerfile, `OliveOilService`, which contains
@@ -133,14 +134,15 @@ and then, another service's dockerfile, `OliveOilService`, which contains
 ```dockerfile
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --assume-yes \
+        gdb \
         python3 \
-        python3-pip \
-        tini
+        tini \
+        vim
 ```
 
-There is clearly a duplication in both dockerfiles: both depend on `python3` and `tini`.
+There is clearly a duplication in both dockerfiles: both depend on `gdb`, `tini` and `vim`.
 So, what should we do from here?
-Create a base container image that contains both `python3` and `tini`, named `UbuntuWithPython3AndTini`, or perhaps the typical `BaseService`?
+Create a base container image that contains all three packages and name it `BaseService`?
 Doing so would eliminate the duplication, but it would also create a coupling between the `BasilService` and the `OliveOilService` who, semantically, should have nothing in common.
 As we'll see in the next paragraph, what might seem like a complicated trade-off driven decision becomes a lot simpler when we look at the problem from the perspective of abstractions.
 
@@ -151,8 +153,9 @@ The interesting thing is that, if you correctly identify and use an appropriate 
 In other words, when you see change coupling, there is often also a hidden abstraction.
 
 Going back to our previous examples with the dockerfiles, we can see that there is no change coupling between both.
-For instance, `BasilService` could stop depending on `python3` at any time without impacting `OliveOilService`.
+For instance, `BasilService` could stop depending on `gdb` at any time without impacting `OliveOilService`.
 Since there is no change coupling, using the vocabulary of [Fred Brooks](https://en.wikipedia.org/wiki/No_Silver_Bullet), we say that the duplication is **accidental**, not **essential** (I'm not the first to use these words in the DRY context, see for instance [this excellent blog post written by Marius Bongarts](https://medium.com/@mariusbongarts11/when-you-should-duplicate-code-b0d747bc1c67)).
+It is because the duplication between `BasilService` and `OliveOilService` is **accidental** that we get no benefit in removing it by using a base container image `BaseService`.
 
 ## What about tests
 
