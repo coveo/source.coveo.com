@@ -177,7 +177,7 @@ Some might say that the second test is not DRY and that `"arbitrary"` should be 
 Others would point out that storing `"arbitrary"` in a variable actually makes the test harder to read.
 However, the trade-off is an illusion because there is no DRY transgression: the duplication is **accidental**, not **essential**!
 
-Another problem one might encounter is tests that are quite large,
+Another problem one might encounter is tests that are quite large:
 
 ```c++
 TEST(CookingClass, CanCookJambalaya) {
@@ -195,14 +195,15 @@ TEST(CookingClass, CanCookJambalaya) {
 When the `Arrange` block gets large, it means that setting up your class under test is hard.
 In a worst-case scenario, the class under test might not be ready to use before `N` particular methods are called (in order) to initialize it.
 This is problematic because it means that using your code is very error-prone.
-Hence, to ease the live of the users of your class Application Programming Interface (API), you should probably consider adding tools to simplify the creation of the class in a "ready to use" state: perhaps a factory function with sane and safe defaults.
+Hence, to ease the life of the users of your class Application Programming Interface (API), you should probably consider adding tools, that is, introducing abstractions to simplify the creation of the class in a "ready to use" state: perhaps a factory function with sane and safe defaults.
 If you need to inject [stubs](https://en.wikipedia.org/wiki/Method_stub) (like an in-memory database for instance) during your test, you could also create a (different) factory function that initializes your class under test with the stubs.
 This would help people to use your class in some other tests.
 
-If the `Act` block of code gets large, it can mean that you are testing the behavior of your class when `N` methods of your API are called in a particular order.
+If the `Act` block of code gets large, it can mean that you are testing the behavior of your class when `N` methods of your API are called in a specific order.
 In other words, it can mean that the methods of the class under test interact in a non-trivial way.
 This interaction will make your API harder to use, or more precisely easier to misuse.
 Hence, you should consider redesigning your API so that the users can directly do what they want to do with a single (or as few as possible) method call.
+In particular, the methods should, as much as possible, represent uncoupled (orthogonal) abstractions.
 
 Finally, a large `Assert` block can mean two things.
 First, the state of objects of your class might be hard to observe.
