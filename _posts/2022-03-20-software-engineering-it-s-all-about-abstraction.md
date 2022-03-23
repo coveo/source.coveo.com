@@ -217,3 +217,9 @@ Writing a program is creating and using abstractions.
 By choosing good abstractions, separating them properly and making sure that they are well named, you make it easier for the next person that will read your code.
 Considering that code is written `O(1)` times and that it is read `O(N)` times, taking the time to do so is a sound investment as soon as your code lives for a little while. 
 So next time you do software development, don't hesitate to take the time required to make your abstractions beautiful.
+
+I hope you enjoyed this post!
+
+_Thanks to Alexandre Moreau, Andy Emond, Charles Marois, Jacques-Étienne Beaudet, Kevin Larose and Sami Sayegh who were kind enough to review this blog post._
+
+If you are passionate about software engineering and you would like to work with other developers who are passionate about their work, make sure to check out our [careers](https://www.coveo.com/en/company/careers) page and apply to join the team!
