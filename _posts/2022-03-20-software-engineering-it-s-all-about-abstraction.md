@@ -142,7 +142,7 @@ RUN apt-get update \
         vim
 ```
 
-There is clearly a duplication in both dockerfiles; both depend on `gdb`, `tini` and `vim`.
+There is clearly a duplication in both dockerfiles; both depend on `gdb`, `tini`, and `vim`.
 So, what should we do from here?
 Create a base container image that contains all three packages and name it `BaseService`?
 Doing so would eliminate the duplication, but it would also create a coupling between the `BasilService` and the `OliveOilService` which, semantically, should have nothing in common.
@@ -166,7 +166,7 @@ However, as [Adam Tornhill points out in Software Design X-Rays](https://www.goo
 So, are tests really special?
 
 Not so if we consider them from the perspective of the discussion above.
-For instance, consider the two tests
+For instance, consider the two tests:
 
 ```c++
 TEST(Concatenation, EmptyString) {
@@ -219,12 +219,12 @@ Most test frameworks let you do that in some way; the challenge here will be to 
 ## Love your abstractions
 
 Writing a program is creating and using abstractions.
-By choosing good abstractions, separating them properly and making sure that they are well named, you make it easier for the next person that will read your code.
+By choosing good abstractions, separating them properly, and making sure that they are well named, you make it easier for the next person that will read your code.
 Considering that code is written `O(1)` times and that it is read `O(N)` times, taking the time to do so is a sound investment as soon as your code lives for a little while. 
 So next time you do software development, don't hesitate to take the time required to make your abstractions beautiful.
 
 I hope you enjoyed this post!
 
-_Thanks to Alexandre Moreau, Andy Emond, Charles Marois, Jacques-Étienne Beaudet, Kevin Larose and Sami Sayegh who were kind enough to review this blog post._
+_Thanks to Alexandre Moreau, Andy Emond, Charles Marois, Jacques-Étienne Beaudet, Kevin Larose, and Sami Sayegh who were kind enough to review this blog post._
 
 If you are passionate about software engineering and you would like to work with other developers who are passionate about their work, make sure to check out our [careers](https://www.coveo.com/en/company/careers) page and apply to join the team!
