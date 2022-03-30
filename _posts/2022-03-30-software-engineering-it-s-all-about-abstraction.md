@@ -28,7 +28,7 @@ That being said, it's not always clear how abstractions link to our day-to-day p
 This post explores these connections and shows how understanding them helps to make better decisions about our programs.
 <!-- more -->
 
-![manUnderTree]({{ site.baseurl }}/images/2022-03-31-software-engineering-it-s-all-about-abstraction/manUnderTree.jpg)
+![manUnderTree]({{ site.baseurl }}/images/2022-03-30-software-engineering-it-s-all-about-abstraction/manUnderTree.jpg)
 
 ## Abstractions and SRP
 
