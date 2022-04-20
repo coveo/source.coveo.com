@@ -21,7 +21,7 @@ and allowing more and more external teams to access and experiment with the data
 
 The challenge we rapidly faced was that we had to offer more and more support to these external teams on how to
 automate some of these applications and scripts they were developing over the data. Most of these stakeholders are
-often really proficient with SQL and python for example, but have less knowledge and experience with CI/CD,
+often really proficient with SQL and Python, but have less knowledge and experience with CI/CD,
 infrastructure and monitoring.
 
 To solve this problem, we started looking at some solutions that would allow these teams and individuals to easily
@@ -46,7 +46,7 @@ scripts directly in their cloud without having to worry about managing anything.
 will run in their infrastructure.
 
 The third option is what Prefect calls the _[hybrid model](https://www.prefect.io/why-prefect/hybrid-model/)_. 
-You basically benefit from every capabilities they offer in the Prefect Cloud offering, but you run the scripts in your
+You basically benefit from all the capabilities available in the Prefect Cloud offering, but the scripts are run in your
 infrastructure using a [Prefect Agent](https://docs.prefect.io/orchestration/agents/overview.html). This is the 
 solution we opted for at Coveo. It was the best choice to make sure we stayed compliant with our 
 security best practices, making sure customer data would never leave our Virtual Private Cloud.
@@ -54,10 +54,10 @@ security best practices, making sure customer data would never leave our Virtual
 ## What is Sentry?
 
 Sentry is an error monitoring tool that enables developer teams to be notified rapidly when issues happen in their 
-applications. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in most of their 
+applications. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in their 
 services. 
 
-Even if Prefect comes built-in with automation that allows notifications in Slack in the event of a failure of a flow,
+Even if Prefect comes built-in with automation that allows notifications in Slack in the event of the failure of a flow,
 we felt this was not providing us with enough insights regarding what went wrong without having to go through our 
 internal logs to investigate. Once the initial Prefect implementation was completed on our side, it rapidly became clear
 that we needed to implement Sentry in Prefect to make sure that the different teams using it would be alerted if 
@@ -65,7 +65,7 @@ anything went wrong in their code.
 
 ## Integrating Sentry with Prefect
 
-In this blog post, I’ll show how it's possible to integrate Sentry in a Prefect flow,
+In this blog post, I’ll show how it's possible to integrate Sentry in a Prefect Flow,
 using tools such as [Terraform](https://www.terraform.io/), the [Python Sentry SDK](https://docs.sentry.io/platforms/python/), 
 the [Prefect SDK](https://docs.prefect.io/api/latest/) and Slack.
 
@@ -76,8 +76,8 @@ skip these steps and simply do them manually in Sentry.
 
 To create Sentry Terraform resources, it's important to initialize a Sentry provider. To do that, we internally
 have a shared SSM parameter available in AWS that contains a working sentry token that can be used to retrieve a
-terraform data object to initialize our Sentry provider. If such token is not available in your current infrastracture,
-simply create an SSM parameter and put the Sentry token in it. This Sentry provider will the creation of Sentry 
+Terraform data object to initialize our Sentry provider. If such token isn't available in your current infrastracture,
+simply create an SSM parameter and put the Sentry token in it. This provider will allow the creation of Sentry 
 resources in the following steps. 
 
 ```
@@ -101,13 +101,13 @@ resource "sentry_project" "prefect" {
 }
 ```
 
-If you were to perform a terraform apply` command at this point, you would see a resulting project in Sentry that is
+If you were to perform a `terraform apply` command at this point, you would see a resulting project in Sentry that is
 ready to receive incoming events.
 
 ![sentryProject]({{ site.baseurl }}/images/2022-04-20-integrating-sentry-with-prefect-flows/sentry_project.png)
 
-At this stage, we need to retrieve the Sentry DSN key associated to the project to pass it to our Prefect Flow
-so that we can initialize it in Python.
+At this stage, we need to retrieve the Sentry [DSN](https://docs.sentry.io/product/sentry-basics/dsn-explainer/) key
+associated to the project to pass it to our Prefect Flow so that we can initialize it in Python.
 
 ```
 data "sentry_key" "prefect" {
@@ -128,13 +128,13 @@ That’s it, we’re pretty much set up for what was needed on the Terraform inf
 ### Creating a base task with Sentry built-in
 
 Like mentioned previously, as more and more teams quickly started adopting Prefect at Coveo, we strongly
-felt as a team was that it was important to provide some basic capabilities and initializations for the internal
+felt as a team that it is important to provide some basic capabilities and initializations for the internal
 developers to make sure their ramp-up and adoption of the tool was as easy as possible, making them focus on the
-feature they had to develop rather than the plumbing around it.
+feature they have to develop rather than the plumbing around it.
 
 To achieve that, we came up with the idea of creating a base [task](https://docs.prefect.io/core/concepts/tasks.html) 
-that would take care of all the common initialization that is required by pretty much every Prefect
-[flows](https://docs.prefect.io/core/concepts/flows.html). One of these common initializations is Sentry.
+that would take care of all the common initializations that is required by pretty much every Prefect
+[Flow](https://docs.prefect.io/core/concepts/flows.html). One of these common initializations is Sentry.
 
 Creating this kind of task can be achieved simply like this.
 
@@ -225,14 +225,14 @@ def get_ssm_parameter(ssm_client, name: str, with_decryption: bool = True) -> An
 ```
 
 The first part of this method actually checks for different environment variables that should be set on this flow run
-to properly initialize Sentry with tags that will make it easier to report and understand where the exception is
+to properly initialize Sentry with tags. These tags will make it easier to report and understand where the exception is
 coming from. By having these different environment variables, it's possible to dynamically set tags such as the region where
-the code is running, the environment it’s in and what was the latest commit id is for this code. 
+the code is running, the environment it’s in, and what is the latest commit id for this code. 
 
-This kind of metadata enrichment will be super useful for developers when they will investigate errors in Slack if
-anything expected happens with their scripts. 
+This kind of metadata enrichment will be super useful for developers when they investigate errors in Slack if
+anything unexpected happens with their scripts. 
 
-After that, an SSM client needs to be instantiated using boto3 to retrieve the previously created SSM parameter that contains
+After that, an SSM client needs to be instantiated using Boto3 to retrieve the previously created SSM parameter that contains
 the Sentry DSN that is needed to initialize the Sentry SDK. Once the SDK is initialized, adding tags
 and context to Sentry using the provided [context](https://docs.prefect.io/api/latest/utilities/context.html) object
 from Prefect can be achieved in a simple manner using the `set_tag` and `set_context` methods. Metadata such as the
@@ -258,9 +258,9 @@ flow.run()
 Running this flow will result in an exception every time, showing up in Sentry with all the provided metadata.
 However, if we want to receive alerts directly in Slack when an exception occurs, there is one last thing to set up.
 
-###Integrating with Slack
+###Integrating With Slack
 
-To make sure any events coming in in Sentry will trigger an alert in a Slack channel, a Sentry plugin resource has to be
+To make sure any events coming in Sentry will trigger an alert in a Slack channel, a Sentry plugin resource has to be
 created in Terraform.
 
 ```
@@ -280,7 +280,7 @@ resource "sentry_plugin" "prefect" {
 }
 ```
 
-After applying this resource with Terraform, when running a Prefect flow, a notification will be sent in Slack in the
+After applying this resource with Terraform, when running a Prefect Flow, a notification will be sent in Slack in the
 channel that was specified.
 
 ![sentry_alert]({{ site.baseurl }}/images/2022-04-20-integrating-sentry-with-prefect-flows/sentry_alert.png)
@@ -289,5 +289,5 @@ In conclusion, this blog post showcased how Prefect can simplify deploying and r
 scripts at scale in a way that reduce negative engineering. It also demonstrated how you it's possible to integrate
 Sentry with Prefect to obtain better monitoring on running flows in the cloud. 
 
-If you are passionate about software engineering and you would like to work with other developers who are passionate
+If you're passionate about software engineering and you would like to work with other developers who are passionate
 about their work, make sure to check out our [careers](https://www.coveo.com/en/company/careers) page and apply to join the team!
