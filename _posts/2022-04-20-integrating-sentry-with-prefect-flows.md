@@ -22,19 +22,19 @@ and allowing more and more external teams to access and experiment with the data
 The challenge we rapidly faced was that we had to offer more and more support to these external teams on how to
 automate some of these applications and scripts they were developing over the data. Most of these stakeholders are
 often really proficient with SQL and Python, but have less knowledge and experience with CI/CD,
-infrastructure and monitoring.
+infrastructure, and monitoring.
 
 To solve this problem, we started looking at some solutions that would allow these teams and individuals to easily
 deploy and run these different workloads in production, without having to develop an in-house solution that would
 require a lot of engineering time and maintenance.
 
-After investigating multiple solutions to solve this problem, a clear winner stood out for us. **Prefect**.
+After investigating multiple solutions to solve this problem, a clear winner stood out for us: **Prefect**.
 
 <!-- more -->
 
 ## What Is Prefect?
 
-Prefect is a cloud scheduling solution that allows developers to easily run Python scripts without having to worry
+[Prefect](https://prefect.io) is a cloud scheduling solution that allows developers to easily run Python scripts without having to worry
 about managing the underlying infrastructure. 
 
 >The easiest way to build, run, and monitor data pipelines at scale. [[1]](https://prefect.io)
@@ -131,7 +131,7 @@ That’s it, we’re pretty much set up for what was needed on the Terraform inf
 
 As more and more teams started adopting Prefect at Coveo, we felt that it is important to provide basic capabilities 
 and initializations for these internal developers. We wanted to make sure that their ramp-up and adoption of the tool
-was as easy as possible; enabling them to focus on the features they have to implement rather than plumbing around it.
+was as easy as possible, enabling them to focus on the features they have to implement rather than plumbing around it.
 
 To achieve that, we came up with the idea of creating a base [task](https://docs.prefect.io/core/concepts/tasks.html) 
 that would take care of all the common initializations that is required by pretty much every Prefect
@@ -259,9 +259,9 @@ flow.run()
 Running this flow will result in an exception every time, showing up in Sentry with all the provided metadata.
 However, if we want to receive alerts directly in Slack when an exception occurs, there is one last thing to set up.
 
-###Integrating With Slack
+### Integrating With Slack
 
-To make sure any events coming in Sentry will trigger an alert in a Slack channel, a Sentry plugin resource has to be
+To make sure any events coming in Sentry trigger an alert in a Slack channel, a Sentry plugin resource has to be
 created in Terraform.
 
 ```
@@ -287,7 +287,7 @@ channel that was specified.
 ![slack_alert]({{ site.baseurl }}/images/2022-04-20-integrating-sentry-with-prefect-flows/slack_alert.png)
 
 In conclusion, this blog post showcased how Prefect can simplify deploying and running data transformations and 
-scripts at scale in a way that reduces negative engineering. It also demonstrated how you it's possible to integrate
+scripts at scale in a way that reduces negative engineering. It also demonstrated how it's possible to integrate
 Sentry with Prefect to obtain better monitoring on running flows in the cloud. 
 
 If you're passionate about software engineering and you would like to work with other developers who are passionate
