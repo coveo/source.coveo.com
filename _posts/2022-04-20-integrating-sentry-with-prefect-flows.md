@@ -16,7 +16,7 @@ author:
 
 At Coveo, we deal with an enormous amount of data on a daily basis. With data growth,
 our data platform has also grown from a single team a few years back, to more than 3 teams and 20 employees.
-With this maturation, we also gave ourselves the mission of democratizing data across our organization
+With this growth, we also gave ourselves the mission of democratizing data across our organization
 and allowing more and more external teams to access and experiment with the data we capture.
 
 The challenge we rapidly faced was that we had to offer more and more support to these external teams on how to
