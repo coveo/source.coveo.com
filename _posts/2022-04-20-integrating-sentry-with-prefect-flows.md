@@ -127,10 +127,9 @@ That’s it, we’re pretty much set up for what was needed on the Terraform inf
 
 ### Creating a base task with Sentry built-in
 
-Like mentioned previously, as more and more teams quickly started adopting Prefect at Coveo, we strongly
-felt as a team that it is important to provide some basic capabilities and initializations for the internal
-developers to make sure their ramp-up and adoption of the tool was as easy as possible, making them focus on the
-feature they have to develop rather than the plumbing around it.
+As more and more teams started adopting Prefect at Coveo, we felt that it is important to provide basic capabilities 
+and initializations for these internal developers. We wanted to make sure that their ramp-up and adoption of the tool
+was as easy as possible; enabling them to focus on the features they have to implement rather than plumbing around it.
 
 To achieve that, we came up with the idea of creating a base [task](https://docs.prefect.io/core/concepts/tasks.html) 
 that would take care of all the common initializations that is required by pretty much every Prefect
@@ -286,7 +285,7 @@ channel that was specified.
 ![sentry_alert]({{ site.baseurl }}/images/2022-04-20-integrating-sentry-with-prefect-flows/sentry_alert.png)
 
 In conclusion, this blog post showcased how Prefect can simplify deploying and running data transformations and 
-scripts at scale in a way that reduce negative engineering. It also demonstrated how you it's possible to integrate
+scripts at scale in a way that reduces negative engineering. It also demonstrated how you it's possible to integrate
 Sentry with Prefect to obtain better monitoring on running flows in the cloud. 
 
 If you're passionate about software engineering and you would like to work with other developers who are passionate
