@@ -30,6 +30,8 @@ require a lot of engineering time and maintenance.
 
 After investigating multiple solutions to solve this problem, a clear winner stood out for us. **Prefect**.
 
+<!-- more -->
+
 ## What Is Prefect?
 
 Prefect is a cloud scheduling solution that allows developers to easily run Python scripts without having to worry
@@ -282,7 +284,7 @@ resource "sentry_plugin" "prefect" {
 After applying this resource with Terraform, when running a Prefect Flow, a notification will be sent in Slack in the
 channel that was specified.
 
-![sentry_alert]({{ site.baseurl }}/images/2022-04-20-integrating-sentry-with-prefect-flows/sentry_alert.png)
+![slack_alert]({{ site.baseurl }}/images/2022-04-20-integrating-sentry-with-prefect-flows/slack_alert.png)
 
 In conclusion, this blog post showcased how Prefect can simplify deploying and running data transformations and 
 scripts at scale in a way that reduces negative engineering. It also demonstrated how you it's possible to integrate
