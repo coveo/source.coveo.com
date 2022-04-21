@@ -30,9 +30,9 @@ require a lot of engineering time and maintenance.
 
 After investigating multiple solutions to solve this problem, a clear winner stood out for us. **Prefect**.
 
-## What is Prefect?
+## What Is Prefect?
 
-Prefect is a cloud scheduling solution that allows developers to easily run python scripts without having to worry
+Prefect is a cloud scheduling solution that allows developers to easily run Python scripts without having to worry
 about managing the underlying infrastructure. 
 
 >The easiest way to build, run, and monitor data pipelines at scale. [[1]](https://prefect.io)
@@ -51,23 +51,23 @@ infrastructure using a [Prefect Agent](https://docs.prefect.io/orchestration/age
 solution we opted for at Coveo. It was the best choice to make sure we stayed compliant with our 
 security best practices, making sure customer data would never leave our Virtual Private Cloud.
 
-## What is Sentry?
+## What Is Sentry?
 
 Sentry is an error monitoring tool that enables developer teams to be notified rapidly when issues happen in their 
 applications. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in their 
 services. 
 
-Even if Prefect comes built-in with automation that allows notifications in Slack in the event of the failure of a flow,
+Even though Prefect comes built-in with automation that allows notifications in Slack in the event of the failure of a flow,
 we felt this was not providing us with enough insights regarding what went wrong without having to go through our 
 internal logs to investigate. Once the initial Prefect implementation was completed on our side, it rapidly became clear
 that we needed to implement Sentry in Prefect to make sure that the different teams using it would be alerted if 
 anything went wrong in their code.
 
-## Integrating Sentry with Prefect
+## Integrating Sentry With Prefect
 
 In this blog post, I’ll show how it's possible to integrate Sentry in a Prefect Flow,
 using tools such as [Terraform](https://www.terraform.io/), the [Python Sentry SDK](https://docs.sentry.io/platforms/python/), 
-the [Prefect SDK](https://docs.prefect.io/api/latest/) and Slack.
+the [Prefect SDK](https://docs.prefect.io/api/latest/), and Slack.
 
 ### Infrastructure
 
@@ -75,7 +75,7 @@ First you’re going to need to create some Sentry Terraform resources. If you�
 skip these steps and simply do them manually in Sentry.
 
 To create Sentry Terraform resources, it's important to initialize a Sentry provider. To do that, we internally
-have a shared SSM parameter available in AWS that contains a working sentry token that can be used to retrieve a
+have a shared SSM parameter available in AWS that contains a working Sentry token that can be used to retrieve a
 Terraform data object to initialize our Sentry provider. If such token isn't available in your current infrastracture,
 simply create an SSM parameter and put the Sentry token in it. This provider will allow the creation of Sentry 
 resources in the following steps. 
@@ -91,7 +91,7 @@ provider "sentry" {
 }
 ```
 
-Now that a Sentry provider has been created, we can start creating resources. First, let’s create a project
+Now that a Sentry provider has been created, we can start creating resources. First, let’s create a project.
 
 ```
 resource "sentry_project" "prefect" {
@@ -125,7 +125,7 @@ resource "aws_ssm_parameter" "sentry_dsn" {
 
 That’s it, we’re pretty much set up for what was needed on the Terraform infrastructure part.
 
-### Creating a base task with Sentry built-in
+### Creating a Base Task With Sentry Built-in
 
 As more and more teams started adopting Prefect at Coveo, we felt that it is important to provide basic capabilities 
 and initializations for these internal developers. We wanted to make sure that their ramp-up and adoption of the tool
