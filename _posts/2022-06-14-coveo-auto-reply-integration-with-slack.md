@@ -18,7 +18,7 @@ Following the newly launched (Coveo Slack Application)[https://www.coveo.com/en/
 
 It is not a secret that some Slack channels become a search dump and it is not always easy to address them all, even when the answers are sometimes easy to find. A great way to tackle this problem is to try to find questions and send them to the Coveo Search API. A simple way to do this is to listen to all the messages sent on a targeted channels, and only trigger a search on the ones containing a question mark. 
 
-A simple architecture for this idea would be to host a serverless function in AWS Lambda, and send the detected question to Coveo`s search API. For better versioning, deployment and monitoring approach,  a serverless Application will be used for this project.
+A simple architecture for this idea would be to host a serverless function in AWS Lambda, and send the detected question to Coveo's Search API. For better versioning, deployment and monitoring approach,  a serverless Application will be used for this project.
 
 
 <!-- more -->
