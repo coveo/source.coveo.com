@@ -14,9 +14,9 @@ author:
 ---
 
 ## Use case
-Following the newly launched (Coveo Slack Application)[https://www.coveo.com/en/solutions/digital-workplace/slack-application], it is now possible to search your whole Coveo index directly from Slack with a single click or slash command. This is definitely a great approach to search, but what about slack users that are not aware of this feature but actually need it? This is the use-case we will tackle in this project: automatically answering questions in targeted Slack channels.
+Following the newly launched (Coveo Slack Application)[https://www.coveo.com/en/solutions/digital-workplace/slack-application], it is now possible to search your whole Coveo index directly from Slack with a single click or slash command. This is definitely a great approach to search, but what about Slack users that are not aware of this feature but actually need it? This is the use-case we will tackle in this project: automatically answering questions in targeted Slack channels.
 
-It is not a secret that some slack channels become a search dump and it is not always easy to address them all, even when the answers are sometimes easy to find. A great way to tackle this problem is to try to find questions and send them to the Coveo search API. A simple way to do this is to listen to all the messages sent on a the targeted channels, and only trigger a search on the ones containing a question mark. 
+It is not a secret that some Slack channels become a search dump and it is not always easy to address them all, even when the answers are sometimes easy to find. A great way to tackle this problem is to try to find questions and send them to the Coveo search API. A simple way to do this is to listen to all the messages sent on a the targeted channels, and only trigger a search on the ones containing a question mark. 
 
 A simple architecture for this idea would be to host a serverless function in AWS Lambda, and send the detected question to Coveo`s search API. For better versioning, deployment and monitoring approach,  a serverless Application will be used for this project.
 
@@ -172,4 +172,4 @@ Now, if any questions returned answered, your bot will answer them :
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cuseit3.png)
 
 
-In conclusion, this blog post showcased how to easily connect a slack channel to an auto-reply bot querying Coveo.
+In conclusion, this blog post showcased how to easily connect a Slack channel to an auto-reply bot querying Coveo.
