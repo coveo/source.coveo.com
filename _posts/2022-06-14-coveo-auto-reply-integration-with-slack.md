@@ -18,7 +18,7 @@ Following the newly launched (Coveo Slack Application)[https://www.coveo.com/en/
 
 It is not a secret that some Slack channels become a search dump and it is not always easy to address them all, even when the answers are sometimes easy to find. A great way to tackle this problem is to try to find questions and send them to the Coveo Search API. A simple way to do this is to listen to all the messages sent on a targeted channels, and only trigger a search on the ones containing a question mark. 
 
-A simple architecture for this idea would be to host a serverless function in AWS Lambda, and send the detected question to Coveo's Search API. For better versioning, deployment and monitoring approach,  a serverless Application will be used for this project.
+A simple architecture for this idea would be to host a serverless function in AWS Lambda, and send the detected question to Coveo's Search API. For better versioning, deployment, and monitoring approach,  a serverless Application will be used for this project.
 
 
 <!-- more -->
@@ -62,7 +62,7 @@ We don't have a value to store yet so we will generate an API Key.
 
 #### Now that we are ready to create our secure parameter, let's create our Coveo API KEY:
 
-1. In another tab, navigate to your Coveo platform and [create a Key](https://docs.coveo.com/en/1718/manage-an-organization/manage-api-keys#add-an-api-key). Make sure you add `Search - Impersonation`, `Analytics - Data, Push` and `Analytics - Impersonate`. [_More on the impersonate Privilege and its danger_](https://docs.coveo.com/en/1707/manage-an-organization/privilege-reference#search-impersonate-domain)
+1. In another tab, navigate to your Coveo platform and [create a Key](https://docs.coveo.com/en/1718/manage-an-organization/manage-api-keys#add-an-api-key). Make sure you add `Search - Impersonation`, `Analytics - Data, Push`, and `Analytics - Impersonate`. [_More on the impersonate Privilege and its danger_](https://docs.coveo.com/en/1707/manage-an-organization/privilege-reference#search-impersonate-domain)
 2. When done, click ** Add key** and copy the generated key.
 3.  Browse back to your parameter store and add the API Key in the `COVEO_API_KEY` parameter value. Submit by clicking **Create parameter**.
 
@@ -159,11 +159,11 @@ When you are satisfied with your `app.js` changes, you will need to move those c
 1. The `lambdaApp.js` code header **needs** to import the AwsLambdaReceiver module to be triggered. 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cvscode1.png)
 
-2. The `lambdaApp.js` code footer **needs** to have the AwsLambdaReceiver in the app creation statement. Also, since it does not use the socket mode, it only needs the SLACK_BOT_TOKEN versus the `app.js` which needs the `SLACK_SIGNING_SECRET`, the `SLACK_APP_TOKEN` and the socketMode set to true. Lastly, the `module.exports.handler`is required for the lambda to work, so make sure to keep it.
+2. The `lambdaApp.js` code footer **needs** to have the AwsLambdaReceiver in the app creation statement. Also, since it does not use the socket mode, it only needs the SLACK_BOT_TOKEN versus the `app.js` which needs the `SLACK_SIGNING_SECRET`, the `SLACK_APP_TOKEN`, and the socketMode set to true. Lastly, the `module.exports.handler`is required for the lambda to work, so make sure to keep it.
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cvscode2.png)
 
 ### Use it 
-In the channels you want questions answered, click the channel name and navigate to the Integrations tab. Under the Apps section, click Add an App.
+In the channels you want questions answered, click the channel name and navigate to the Integrations tab. Under the Apps section, click Add, an App.
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cuseit1.png)
 And select your auto-reply bot app: 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cuseit2.png)
