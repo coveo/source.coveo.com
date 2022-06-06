@@ -26,7 +26,7 @@ A simple architecture for this idea would be to host a serverless function in AW
 
 ## Integration requirements  
 * Coveo Platform rights to generate an API Key with the proper rights
-* Write access in AWS for the following products: AWS Lambda, AWS Cloud Watch, * AWS  API Gateway and AWS Parameter Store
+* Write access in AWS for the following products: AWS Lambda, AWS Cloud Watch, AWS API Gateway and, AWS Parameter Store
 * Slack Admin rights to create an application and deploy it in a workspace
 
 ## Architecture 
@@ -151,7 +151,7 @@ Now that your app is deployed to AWS, you will need to update the Slack App URLs
 
 2. In your terminal, run `npm run dev`, which will run the `app.js` code, which is set up to work with the SocketMode and hot-reload your code.
 3. You can now change your bot behavior with a live result. 
-4. When you are satisfied with your `app.js` code, update your `lambdaApp.js` code so it's working the same way. Make sure to follow the next section to make sure it will be deployed properly.
+4. When you are satisfied with your `app.js` code, update your `lambdaApp.js` code so it's working the same way. Make sure to follow the next section to deploy it properly.
 
 ### Updating the lambdaApp code from the app.js code
 When you are satisfied with your `app.js` changes, you will need to move those changes to the `lambdaApp.js` so the lambda uses it. There is some difference between the `app.js` file and the `lambdaApp.js` that requires to stay untouched
@@ -168,8 +168,9 @@ In the channels you want questions answered, click the channel name and navigate
 And select your auto-reply bot app: 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cuseit2.png)
 
-Now, if any questions returned answered, your bot will answer them :
+Now, if any questions returned answered, your bot will answer them:
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cuseit3.png)
 
-
 In conclusion, this blog post showcased how to easily connect a Slack channel to an auto-reply bot querying Coveo.
+
+_Do you like connecting things together, getting access to all your content from wherever you want? [Join Coveo](https://careers.coveo.com/) and help make that dream a reality!_
