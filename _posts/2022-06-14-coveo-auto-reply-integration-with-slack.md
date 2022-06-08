@@ -133,7 +133,7 @@ Now that your app is deployed to AWS, you will need to update the Slack App URLs
 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cgatewayapi2.png)
 
-2. Go back to your Slack app setup and navigate to the Events request URL under the `Event Subscription`. Paste the gateway URL. it should mark as `Verified`.
+2. Go back to your Slack app setup and navigate to the Events request URL under the `Event Subscription`. Paste the gateway URL. It should mark as `Verified`.
 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5CslackApp1.png)
 
