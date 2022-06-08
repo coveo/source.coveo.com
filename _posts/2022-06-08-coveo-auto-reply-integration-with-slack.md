@@ -14,7 +14,7 @@ author:
 ---
 
 ## Use case
-Following the newly launched (Coveo Slack Application)[https://www.coveo.com/en/solutions/digital-workplace/slack-application], it is now possible to search your whole Coveo index directly from Slack with a single click or slash command. This is definitely a great approach to search, but what about Slack users that are not aware of this feature but actually need it? This is the use-case we will tackle in this project: automatically answering questions in targeted Slack channels.
+Following the newly launched [Coveo Slack Application](https://www.coveo.com/en/solutions/digital-workplace/slack-application), it is now possible to search your whole Coveo index directly from Slack with a single click or slash command. This is definitely a great approach to search, but what about Slack users that are not aware of this feature but actually need it? This is the use-case we will tackle in this project: automatically answering questions in targeted Slack channels.
 
 It is not a secret that some Slack channels become a search dump and it is not always easy to address them all, even when the answers are sometimes easy to find. A great way to tackle this problem is to try to find questions and send them to the Coveo Search API. A simple way to do this is to listen to all the messages sent on a targeted channels, and only trigger a search on the ones containing a question mark. 
 
