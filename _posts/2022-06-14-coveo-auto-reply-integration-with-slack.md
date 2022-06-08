@@ -74,7 +74,7 @@ As an admin in the Slack workspace, navigate to https://api.slack.com/ and click
 
 1. Select the workspace where the app should be created and click Next. 
 2. Copy the `manifestExample.yml` file into the manifest configuration. If you want a custom name, make sure to change the `display_information -> name:` and the `bot_user -> display_name:`. Click on `Next`.
-3. Review the OAuth scopes, features and settings and click Create.
+3. Review the OAuth scopes, features, and settings, and click Create.
 4. Your app is now created. The Events request URL under Event Subscription will not work at this time but it's normal; we will need to set up AWS to generate a proper request URL in the next section.
 
 #### Store the confidential tokens in your parameter store, with the `SecureString` type
