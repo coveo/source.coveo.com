@@ -75,7 +75,7 @@ As an admin in the Slack workspace, navigate to https://api.slack.com/ and click
 1. Select the workspace where the app should be created and click Next. 
 2. Copy the `manifestExample.yml` file into the manifest configuration. If you want a custom name, make sure to change the `display_information -> name:` and the `bot_user -> display_name:`. Click on `Next`.
 3. Review the OAuth scopes, features and settings and click Create.
-4. Your app is now created. The Events request URL under Event Subscription will not work at this time but it's normal, we will need to set up AWS to generate a proper request URL in the next section.
+4. Your app is now created. The Events request URL under Event Subscription will not work at this time but it's normal; we will need to set up AWS to generate a proper request URL in the next section.
 
 #### Store the confidential tokens in your parameter store, with the `SecureString` type
 
@@ -84,7 +84,7 @@ As an admin in the Slack workspace, navigate to https://api.slack.com/ and click
 3. Click Generate Token and Scopes. 
 4. Add both `connections:write` and `authorization:read` scopes to your token. Give it a name and generate it. Copy the token starting with `xapp` and store it in your Parameter Store with the same prefix path as before. For this example, we used `SLACK_APP_TOKEN` as the parameter name.
 5. Navigate to `App Credentials`.
-6. Show the `Signing Secret` and store it in your Parameter Store with the same prefix path as before. For this example, we used `SLACK_SIGNING_SECRET` as the parameter. Name.
+6. Show the `Signing Secret` and store it in your Parameter Store with the same prefix path as before. For this example, we used `SLACK_SIGNING_SECRET` as the parameter name.
 7. Navigate to `OAuth & Permissions`.
 8. Copy the `Bot User OAuth Token` under the `OAuth Tokens for Your Workspace` section and store it in your Parameter Store. For this example, we used `SLACK_BOT_TOKEN` as the attribute name
 
@@ -92,7 +92,7 @@ As an admin in the Slack workspace, navigate to https://api.slack.com/ and click
 
 The `serverless.yaml` file, in conjunction with the `handler.js` and `lambdaApp.js` are the ones that will be used by your AWS Lambda when deployed. For development ease, we will let serverless create an App using a CloudFormation template. The template will include:
 
-* An S3 bucket to store and versioned your deployed app
+* An S3 bucket to store and version your deployed app
 * A Lambda function 
 * A Gateway Rest API to access the Lambda 
 * A Log Group to monitor your app
@@ -100,7 +100,7 @@ The `serverless.yaml` file, in conjunction with the `handler.js` and `lambdaApp.
 If you want to change the service name of your app (defaulted at autorepply-coveo-slack-bot), you can do it on the first line of the yaml file.
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5ClambdaApp1.png)
 
-To deploy your app (which will use the `lambdaApp.js` file) simply run `npm run dev`
+To deploy your app (which will use the `lambdaApp.js` file) simply run `npm run dev`.
 
 Warning: At first, your lambda will not have access to your parameter store so you will need to give it permission.
 
@@ -116,7 +116,7 @@ Warning: At first, your lambda will not have access to your parameter store so y
 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Clambdapolicy2.png)
 
-5. With the Visual Editor, select System Manager as the Service, `GetParameter` as the Action and the path to your application parameter folder followed by `/*` for the resources. The review policy should look like this: 
+5. With the Visual Editor, select System Manager as the Service, `GetParameter` as the Action, and the path to your application parameter folder followed by `/*` for the resources. The review policy should look like this: 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Clambdapolicy3.png)
 
 6. Click `Create policy` when completed.
@@ -129,7 +129,7 @@ Now that your app is deployed to AWS, you will need to update the Slack App URLs
 * In your terminal after having deployed your serverless app or in the AWS console. When found, copy it.
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cgatewayapi1.png)
 
-* In the AWS console by browsing to the Lambda landing page and clicking on the `Functions` side menu and then click on your function name. You should see the API Gateway in the trigger section of your function overview. By clicking on it, you should see the trigger appear with an API endpoint listed. Copy it.
+* In the AWS console by browsing to the Lambda landing page and clicking on the `Functions` side menu, and clicking on your function name. You should see the API Gateway in the trigger section of your function overview. By clicking on it, you should see the trigger appear with an API endpoint listed. Copy it.
 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Cgatewayapi2.png)
 
