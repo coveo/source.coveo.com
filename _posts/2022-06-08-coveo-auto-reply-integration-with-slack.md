@@ -54,9 +54,7 @@ Before creating our API key, let's set up our AWS parameter store to store it.
 #### Create an AWS Parameter Store folder for your app
 
 1. Navigate to the Parameter Store landing page, and click **Create parameter**.
- 
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/paramstore1.png)
-
 2. Create a new name path for your application. For this example, we used the following path `/rd/coveo-autoreply-bot` with the parameter name `COVEO_API_KEY`. Make sure to give a unique path to your app-related tokens so we can give our Lambda restricted access to it later in the configuration. Also, make sure to select the `SecureString` type for the parameter. 
 
 We don't have a value to store yet so we will generate an API Key.
@@ -110,17 +108,12 @@ Warning: At first, your lambda will not have access to your parameter store so y
 
 1. Open the AWS Lambda console and click on your function's name.
 2. Select the `Configuration` tab, and then click `Permissions`.
-3. Click on the Execution role name.
-   
+3. Click on the Execution role name. 
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/lambdapolicy1.png)
-
 4.  In the Permission policies section, click Add permissions, and then click Create inline policy.
-
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/lambdapolicy2.png)
-
 5. With the Visual Editor, select System Manager as the Service, `GetParameter` as the Action, and the path to your application parameter folder followed by `/*` for the resources. The review policy should look like this: 
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/lambdapolicy3.png)
-
 6. Click `Create policy` when completed.
 
 ### Copy your Gateway API endpoint in the Slack app 
@@ -150,7 +143,6 @@ Now that your app is deployed to AWS, you will need to update the Slack App URLs
 
 1. To activate local debugging, you need to enable the Socket Mode in the application menu (found at https://api.slack.com/apps/$YOUR_APP_ID), in the `Socket Mode` menu under `Settings`. This will redirect your app events over a WebSockets connection. 
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/socketmode1.png)
-
 2. In your terminal, run `npm run dev`, which will run the `app.js` code, which is set up to work with the SocketMode and hot-reload your code.
 3. You can now change your bot behavior with a live result. 
 4. When you are satisfied with your `app.js` code, update your `lambdaApp.js` code so it's working the same way. Make sure to follow the next section to deploy it properly.
@@ -160,10 +152,8 @@ When you are satisfied with your `app.js` changes, you will need to move those c
 
 1. The `lambdaApp.js` code header **needs** to import the AwsLambdaReceiver module to be triggered. 
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/vscode1.png)
-
 2. The `lambdaApp.js` code footer **needs** to have the AwsLambdaReceiver in the app creation statement. Also, since it does not use the socket mode, it only needs the SLACK_BOT_TOKEN versus the `app.js` which needs the `SLACK_SIGNING_SECRET`, the `SLACK_APP_TOKEN`, and the socketMode set to true. Lastly, the `module.exports.handler`is required for the lambda to work, so make sure to keep it.
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/vscode2.png)
-
 ### Use it 
 In the channels you want questions answered, click the channel name and navigate to the Integrations tab. Under the Apps section, click Add, an App.
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/useit1.png)
