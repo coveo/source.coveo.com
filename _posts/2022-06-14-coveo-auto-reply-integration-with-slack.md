@@ -146,7 +146,7 @@ Now that your app is deployed to AWS, you will need to update the Slack App URLs
 
 ### Local Debugging
 
-1. To activate local debugging, you need to enable the Socket Mode in the application menu (found at https://api.slack.com/apps/$YOUR_APP_ID), in the `Socket Mode` menu under `Settings`.  This will redirect your app events over a WebSockets connection. 
+1. To activate local debugging, you need to enable the Socket Mode in the application menu (found at https://api.slack.com/apps/$YOUR_APP_ID), in the `Socket Mode` menu under `Settings`. This will redirect your app events over a WebSockets connection. 
 ![](..%5Cimages%5C2022-06-14-coveo-auto-reply-integration-with-slack%5Csocketmode1.png)
 
 2. In your terminal, run `npm run dev`, which will run the `app.js` code, which is set up to work with the SocketMode and hot-reload your code.
