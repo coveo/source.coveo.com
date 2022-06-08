@@ -63,7 +63,7 @@ We don't have a value to store yet so we will generate an API Key.
 #### Now that we are ready to create our secure parameter, let's create our Coveo API KEY:
 
 1. In another tab, navigate to your Coveo platform and [create a Key](https://docs.coveo.com/en/1718/manage-an-organization/manage-api-keys#add-an-api-key). Make sure you add `Search - Impersonation`, `Analytics - Data, Push`, and `Analytics - Impersonate`. [_More on the impersonate Privilege and its danger_](https://docs.coveo.com/en/1707/manage-an-organization/privilege-reference#search-impersonate-domain)
-2. When done, click ** Add key** and copy the generated key.
+2. When done, click ** Add key** and, copy the generated key.
 3.  Browse back to your parameter store and add the API Key in the `COVEO_API_KEY` parameter value. Submit by clicking **Create parameter**.
 
 _**Keep that key private!!!**_
