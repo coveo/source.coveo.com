@@ -43,6 +43,8 @@ COVEO_AWS_REGION=us-east-1
 COVEO_ENDPOINT=https://platform.cloud.coveo.com
 COVEO_ORG=myCompanyOrg
 COVEO_PIPELINE=default
+AWS_PROFILE=rd
+AWS_SDK_LOAD_CONFIG=1
 ```
 
 ### Create an Impersonation API key in the Coveo Platform 
