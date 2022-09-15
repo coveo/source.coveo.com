@@ -6,9 +6,9 @@ title: "Coveo auto-reply integration with Slack"
 tags: [bot, slack, question and answer , QnA, auto-reply, integration]
 
 author:
-  name: Alexandre Gagnon
-  bio: Software Engineer & Technical Evangelist, Service Integration
-  image: agagnon2.png
+  name: Paul-Arthur Thiéry
+  bio: Software Engineer, Service Integration
+  image: pathiery.png
  
 
 ---
@@ -93,7 +93,7 @@ To allow testing our app locally seamlessly, we will create a token that enables
 
 ### Create a Lambda Application automatically with Serverless
 
-The `serverless.yaml` file, in conjunction with the `handler.js` and `lambdaApp.js` are the ones that will be used by your AWS Lambda when deployed. For development ease, we will let serverless create an App using a CloudFormation template. The template will include:
+The `serverless.yaml` file, in conjunction with the `handler.js` and `app.js` are the ones that will be used by your AWS Lambda when deployed. For development ease, we will let serverless create an App using a CloudFormation template. The template will include:
 
 * An S3 bucket to store and version your deployed app
 * A Lambda function 
