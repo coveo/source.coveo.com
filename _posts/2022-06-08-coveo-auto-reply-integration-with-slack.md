@@ -6,9 +6,9 @@ title: "Coveo auto-reply integration with Slack"
 tags: [bot, slack, question and answer , QnA, auto-reply, integration]
 
 author:
-  name: Alexandre Gagnon
-  bio: Software Engineer & Technical Evangelist, Service Integration
-  image: agagnon2.png
+  name: Paul-Arthur Thiéry
+  bio: Software Engineer, Service Integration
+  image: pathiery.png
  
 
 ---
@@ -36,14 +36,15 @@ A simple architecture for this idea would be to host a serverless function in AW
 ## Building it
 ### Create your .env file
 
-For the publicly available variables needed for our application, we will add a `.env` file at the root of our repo. You can copy the env.example content and fill the right side of the variables with the AWS region (default in North America would be `us-east-1` but make sure to confirm this in your AWS console) and the Coveo-related properties. The Coveo pipeline is optional and will use `default` if empty. Here's an example : 
+For the publicly available variables needed for our application, we will add a `.env` file at the root of our repo. You can copy the `.env.example` content and fill the right side of the variables with the AWS region (default in North America would be `us-east-1` but make sure to confirm this in your AWS console) and the Coveo-related properties. The Coveo pipeline is optional and will use `default` if empty. Here's an example : 
 
 ```
 COVEO_AWS_REGION=us-east-1
 COVEO_ENDPOINT=https://platform.cloud.coveo.com
 COVEO_ORG=myCompanyOrg
 COVEO_PIPELINE=default
-SLACK_SIGNING_SECRET=$YOUR_SIGNING_SECRET
+AWS_PROFILE=rd
+AWS_SDK_LOAD_CONFIG=1
 ```
 
 ### Create an Impersonation API key in the Coveo Platform 
@@ -61,7 +62,7 @@ We don't have a value to store yet so we will generate an API Key.
 
 #### Now that we are ready to create our secure parameter, let's create our Coveo API KEY:
 
-1. In another tab, navigate to your Coveo platform and [create a Key](https://docs.coveo.com/en/1718/manage-an-organization/manage-api-keys#add-an-api-key). Make sure you add `Search - Impersonation`, `Analytics - Data, Push`, and `Analytics - Impersonate`. [_More on the impersonate Privilege and its danger_](https://docs.coveo.com/en/1707/manage-an-organization/privilege-reference#search-impersonate-domain)
+1. In another tab, navigate to your Coveo platform and [create a Key](https://docs.coveo.com/en/1718/manage-an-organization/manage-api-keys#add-an-api-key). Make sure you add `Search - Impersonation`, `Analytics - Data, Push`, and `Analytics - Impersonate`. [_More on the impersonate Privilege and its danger_](https://docs.coveo.com/en/1707/manage-an-organization/privilege-reference#search-impersonate-domain)(you can pick any value for the searchHub, keep it noted for later)
 2. When done, click ** Add key** and, copy the generated key.
 3.  Browse back to your parameter store and add the API Key in the `COVEO_API_KEY` parameter value. Submit by clicking **Create parameter**.
 
@@ -73,11 +74,13 @@ _**Keep that key private!!!**_
 As an admin in the Slack workspace, navigate to https://api.slack.com/ and click `Create an App`. Two choices will be given to you: **From scratch** or **From an app manifest**. Select `From an app manifest`.
 
 1. Select the workspace where the app should be created and click Next. 
-2. Copy the `manifestExample.yml` file into the manifest configuration. If you want a custom name, make sure to change the `display_information -> name:` and the `bot_user -> display_name:`. Click on `Next`.
+2. Copy the `manifestExample.yml` file into the manifest configuration. If you want a custom name, make sure to change the `display_information.name` and the `bot_user.display_name` properties. Click on `Next`.
 3. Review the OAuth scopes, features, and settings, and click Create.
 4. Your app is now created. The Events request URL under Event Subscription will not work at this time but it's normal; we will need to set up AWS to generate a proper request URL in the next section.
 
 #### Store the confidential tokens in your parameter store, with the `SecureString` type
+
+To allow testing our app locally seamlessly, we will create a token that enables socket mode in development. We will that save that App Token, along with our Signing Secret and Bot Token in SSM.
 
 1. Navigate to `Basic Information`.
 2. Navigate to `App-Level Tokens`.
@@ -90,17 +93,17 @@ As an admin in the Slack workspace, navigate to https://api.slack.com/ and click
 
 ### Create a Lambda Application automatically with Serverless
 
-The `serverless.yaml` file, in conjunction with the `handler.js` and `lambdaApp.js` are the ones that will be used by your AWS Lambda when deployed. For development ease, we will let serverless create an App using a CloudFormation template. The template will include:
+The `serverless.yaml` file, in conjunction with the `handler.js` and `app.js` are the ones that will be used by your AWS Lambda when deployed. For development ease, we will let serverless create an App using a CloudFormation template. The template will include:
 
 * An S3 bucket to store and version your deployed app
 * A Lambda function 
 * A Gateway Rest API to access the Lambda 
 * A Log Group to monitor your app
 
-If you want to change the service name of your app (defaulted at autorepply-coveo-slack-bot), you can do it on the first line of the yaml file.
+If you want to change the service name of your app (defaulted at autoreply-coveo-slack-bot), you can do it on the first line of the yaml file.
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/lambdaApp1.png)
 
-To deploy your app (which will use the `lambdaApp.js` file) simply run `npm run dev`.
+To deploy your app simply run `npm run deploy:lambda`.
 
 Warning: At first, your lambda will not have access to your parameter store so you will need to give it permission.
 
@@ -140,16 +143,9 @@ Now that your app is deployed to AWS, you will need to update the Slack App URLs
 1. To activate local debugging, you need to enable the Socket Mode in the application menu (found at https://api.slack.com/apps/$YOUR_APP_ID), in the `Socket Mode` menu under `Settings`. This will redirect your app events over a WebSockets connection. 
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/socketmode1.png)
 2. In your terminal, run `npm run dev`, which will run the `app.js` code, which is set up to work with the SocketMode and hot-reload your code.
-3. You can now change your bot behavior with a live result. 
-4. When you are satisfied with your `app.js` code, update your `lambdaApp.js` code so it's working the same way. Make sure to follow the next section to deploy it properly.
+3. You can now change your bot behavior with a live result.
+4. Once you are satisfied with the results, use `npm run deploy:lambda` to update you lambda !
 
-### Updating the lambdaApp code from the app.js code
-When you are satisfied with your `app.js` changes, you will need to move those changes to the `lambdaApp.js` so the lambda uses it. There is some difference between the `app.js` file and the `lambdaApp.js` that requires to stay untouched
-
-1. The `lambdaApp.js` code header **needs** to import the AwsLambdaReceiver module to be triggered. 
-![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/vscode1.png)
-2. The `lambdaApp.js` code footer **needs** to have the AwsLambdaReceiver in the app creation statement. Also, since it does not use the socket mode, it only needs the SLACK_BOT_TOKEN versus the `app.js` which needs the `SLACK_SIGNING_SECRET`, the `SLACK_APP_TOKEN`, and the socketMode set to true. Lastly, the `module.exports.handler`is required for the lambda to work, so make sure to keep it.
-![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/vscode2.png)
 ### Use it 
 In the channels you want questions answered, click the channel name and navigate to the Integrations tab. Under the Apps section, click Add, an App.
 ![]({{ site.baseurl }}/images//2022-06-14-coveo-auto-reply-integration-with-slack/useit1.png)
