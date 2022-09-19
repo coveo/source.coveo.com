@@ -136,4 +136,4 @@ But as far as we go, using the architecture described in this post, Prometheus w
 
 Onto the next component!
 
-*Do you like working on this type of challenge? Check out our [careers](https://www.coveo.com/en/company/careers) page.*
+*Do you like working on this type of challenge? Check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page.*

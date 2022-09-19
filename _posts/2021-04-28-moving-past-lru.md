@@ -194,4 +194,4 @@ We are now at the stage of progressively replacing caches in the Coveo index wit
 
 Cachemere still being in its early days, be sure to let us know how it works (or *doesn't* work) for you if you do give it a try. We're also open to contributions, so feel free to get in touch!
 
-_Do you like this type of challenge? Do you think there are other ways to improve our caches? [Join the Coveo Team](https://www.coveo.com/en/company/careers/open-positions) and help us improve the search experience!_
+_Do you like this type of challenge? Do you think there are other ways to improve our caches? [Join the Coveo Team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and help us improve the search experience!_

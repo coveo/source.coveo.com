@@ -157,4 +157,4 @@ Now, if any questions returned answered, your bot will answer them:
 
 In conclusion, this blog post showcased how to easily connect a Slack channel to an auto-reply bot querying Coveo. The GitHub repo can be found [here](https://github.com/coveo-labs/autoreply-coveo-slack-bot).
 
-_Do you like connecting things together, getting access to all your content from wherever you want? [Join Coveo](https://careers.coveo.com/) and help make that dream a reality!_
+_Do you like connecting things together, getting access to all your content from wherever you want? [Join Coveo](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and help make that dream a reality!_

@@ -138,7 +138,7 @@ I hope you found this post interesting!
 
 _Thanks to Jacques-Étienne Beaudet, Frédéric Boutin, Andy Emond, Alexandre Moreau and Marie-Christine Noreau who were kind enough to review this blog post._
 
-If you are looking to solve challenges like the one described above make sure to check out our [careers](https://www.coveo.com/en/company/careers) page and apply to join the team!
+If you are looking to solve challenges like the one described above make sure to check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page and apply to join the team!
 
 # Sources
 [https://blog.pchudzik.com/201911/read-from-replica/](https://blog.pchudzik.com/201911/read-from-replica/)  

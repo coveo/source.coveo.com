@@ -414,4 +414,4 @@ Writing tests for UIs is like doing fine arts. Tests come in many colours, lines
 
 If there is one sentence you need to remember from this post, it would be [Testing Library](https://testing-library.com/)'s guiding principle: _"The more your tests resemble the way your software is used, the more confidence they can give you"_.
 
-Do you think we're missing something in our tests? [Join the Coveo Team](https://www.coveo.com/en/company/careers/open-positions) and help us improve the search experience!
+Do you think we're missing something in our tests? [Join the Coveo Team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and help us improve the search experience!

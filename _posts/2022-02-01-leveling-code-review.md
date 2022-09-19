@@ -83,4 +83,4 @@ As you have probably noticed, those levels are mostly oriented towards someone w
 
 _Thanks to Devin Lafrenière, David Lévesque, Maxime Lachapelle, Alexandre Moreau, Kevin Larose, Samuel Begin, Louis Bompart, Martin Ouellet, and Marc Sanfaçon who were kind enough to review a text on reviews._
 
-_Do you like leaving or receiving constructive code reviews? Do you long to work on a service where your code can improve the code of others? Check out our [careers](https://www.coveo.com/en/company/careers) page and join the team!_
+_Do you like leaving or receiving constructive code reviews? Do you long to work on a service where your code can improve the code of others? Check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page and join the team!_

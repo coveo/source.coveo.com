@@ -285,3 +285,5 @@ Pod memory usage was immediately halved after deploying our optimization and is 
 
 * <https://github.com/prometheus/tsdb/blob/master/head.go>
 * <https://fabxc.org/tsdb/>
+
+_Are you also obsessed with optimization? Do you like this kind of challenge? [Join the Coveo team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) to be with like minded individual who like to push the boundaries of what is possible!_

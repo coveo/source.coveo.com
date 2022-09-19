@@ -208,3 +208,4 @@ Styling is super easy in Svelte. It is coded directly in the components, all you
 
 There are many more features we could implement here, such as query suggestions (which is already integrated in the `Searchbox` controller) or more specific ones, such as the [Commerce Cart Recommender](https://docs.coveo.com/en/headless/0.1.0/reference/controllers/cart-recommendations/). I would encourage you to explore the [Headless Reference](https://docs.coveo.com/en/headless/0.1.0/reference/) and find the ones that you would like to implement.
 
+_If you like cool front end technology like we do, why not [join the Coveo team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and explore even more new technologies?_

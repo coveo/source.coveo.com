@@ -226,3 +226,5 @@ Running static analysis on Terraform files and on Kubernetes manifest won't solv
 The organization still needs observability in the resulting environment. AWS Config is there to help, and so are other SaaS providers like Lacework!
 
 If you want to learn more about DevSecOps at Coveo and about the tools our developers are building, like [TGF](https://github.com/coveooss/tgf) and our own version of [Terragrunt](https://github.com/coveooss/terragrunt), let us know!
+
+_[Join the Coveo team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and help us make Terragrunt even better than it currently is!_

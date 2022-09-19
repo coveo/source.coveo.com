@@ -138,6 +138,7 @@ Client concerns to consider before going forward with this approach:
 - Deployment process can be done from the source code (locally or build server, nice way to get Continuous Deployment right?). Snapshot resources also lets you package and deploy search pages. Copy paste the DOM from the editor will not be enough as the header is skipped in the editor.
 - If client uses a SPA framework, same as for regular JSUI integration, you will have to defer the initialization based on the framework events.
 
+_If you too like building things out of existing API's, consider [joining the Coveo team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9)!_
 
 [^1]: In order to support Sitecore JSS (headless approach), an [NPM](https://www.npmjs.com/package/coveoforsitecore-jss/v/0.1.39 ) library has been developed.
 [^2]: Last time I checked, Sitecore JSS had to be implemented with React to support Hosted Search Page functionalities (Sitecore JSS also offers VueJS and Angular)
