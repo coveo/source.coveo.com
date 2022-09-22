@@ -125,4 +125,4 @@ In this blog post, we saw how Coveo's Query Suggest integrates data from multipl
 
 We're actively working on adding even more relevant and personalized results to Query Suggest. Each new feature we add puts more pressure on the performance of the model, creating a delicate balance that is a satisfying challenge to maintain.
 
-_Do you like this kind of challenge? Do you have ideas on how we can do even better? [Join the Coveo team](https://careers.coveo.com/) and get in on ultra-fast and performant machine learning!_
+_Do you like this kind of challenge? Do you have ideas on how we can do even better? [Join the Coveo team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and get in on ultra-fast and performant machine learning!_

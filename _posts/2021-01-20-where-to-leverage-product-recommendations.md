@@ -76,3 +76,5 @@ You might want to check out a previous blog post that we have about this: [Avoid
 Now that you have seen some strategies, all that is left is to choose what fits best for you site. 
 
 Our team is working on adding more strategies for you to choose from, stay tuned!
+
+_Are you passionate about UX like we are? [Join the Coveo team](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) and help us make the web a better place!_

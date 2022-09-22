@@ -291,4 +291,4 @@ scripts at scale in a way that reduces negative engineering. It also demonstrate
 Sentry with Prefect to obtain better monitoring on running flows in the cloud. 
 
 If you're passionate about software engineering and you would like to work with other developers who are passionate
-about their work, make sure to check out our [careers](https://www.coveo.com/en/company/careers) page and apply to join the team!
+about their work, make sure to check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page and apply to join the team!
