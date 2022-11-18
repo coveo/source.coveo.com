@@ -17,18 +17,6 @@
     top: 0;
     left: 0;
   }
-  .bottomHeader #searchBox .magic-box .magic-box-suggestions.magic-box-hasSuggestion .magic-box-suggestion {
-    color: #94A9BF;
-    margin-left: 100px;
-    border-left: 1px solid #CFD9E0;
-  }
-  .bottomHeader #searchBox .magic-box .magic-box-suggestions.magic-box-hasSuggestion .magic-box-suggestion:first-child:before {
-    position: absolute;
-    left: 11px;
-    content: "Queries";
-    text-transform: uppercase;
-    color: #B5C4CF;
-  }
   .magic-box.magic-box-hasFocus .magic-box-suggestions.magic-box-hasSuggestion .coveo-magicbox-suggestions {
     border: none !important;
 
