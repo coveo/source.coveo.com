@@ -169,7 +169,7 @@ If we click on the link to go investigate the culprit in Sentry, it's possible t
 
 ![tags]({{ site.baseurl }}/images/2023-01-04-creating-custom-sentry-block-prefect-2/tags.png)
 
-As you can imagine, the possibility are infinite in terms of what you can accomplish with custom block types.
+As you can imagine, the possibilities are infinite in terms of what you can accomplish with custom block types.
 
 
 All of the code samples provided in that blog post are available [here](https://github.com/jmprovencher/prefect-sentry-block).
