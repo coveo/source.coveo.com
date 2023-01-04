@@ -21,7 +21,7 @@ One of the interesting new concepts being offered is [Blocks](https://docs.prefe
 
 ## What Is Sentry?
 
-Sentry is an error monitoring tool that enables developer teams to be notified rapidly when issues happen in their 
+Sentry is an error monitoring tool that enables developer teams to be notified rapidly when an issue happen in their 
 applications. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in their 
 services. 
 
