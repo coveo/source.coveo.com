@@ -27,7 +27,7 @@ services.
 
 Even though Prefect comes built-in with automation that allows notifications in Slack in the event of the failure of a flow,
 we felt this was not providing us with enough insights regarding what went wrong without having to go through our 
-internal logs to investigate. Once our Prefect 2 migration was started, one the first thing we did was create this custom Sentry block type to offer an easy for engineering teams to be notified in the case of a failure in one of their flow.
+internal logs to investigate. Once our Prefect 2 migration was started, one the first things we did was create this custom Sentry block type to offer an easy way for engineering teams to be notified in the case of a failure in one of their flow.
 
 ## Creating a custom block type
 
