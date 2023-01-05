@@ -17,11 +17,13 @@ author:
 
 In my last [blog post](https://source.coveo.com/2022/04/20/integrating-sentry-with-prefect-flows/), I described a practical way of integrating Sentry with Prefect 1 flows. Since then, [Prefect 2](https://docs.prefect.io/) was released, and with it, many interesting capabilities were introduced. I won't spend time explaining why you should migrate to Prefect 2, but I suggest you have a look at the new features presented [here](https://docs.prefect.io/migration-guide/). If you're interested, I also created a step by step GitHub [repository](https://github.com/jmprovencher/prefect-tutorial) showcasing some of the new features available so that you can try it yourself.
 
-One of the interesting new concepts being offered is [Blocks](https://docs.prefect.io/ui/blocks/?h=block). Blocks allow users to interface with external systems and configurations across flows. Prefect Cloud comes built-in with a collection of existing block types, but it also offers the possibility to define new one's. With that, it's possible to create reusable utilities that can be shared among flows and teams. This blog post will provide a step by step plan as to how to create a custom Sentry block type that will automatically send notifications to Slack in case of a flow failure.
+<!-- more -->
+
+One of the interesting new concepts being offered is [Blocks](https://docs.prefect.io/ui/blocks/?h=block). Blocks allow users to interface with external systems and configurations across flows. Prefect Cloud comes built-in with a collection of existing block types, but it also offers the possibility to define new ones. With that, it's possible to create reusable utilities that can be shared among flows and teams. This blog post will provide a step by step plan as to how to create a custom Sentry block type that will automatically send notifications to Slack in case of a flow failure.
 
 ## What Is Sentry?
 
-Sentry is an error monitoring tool that enables developer teams to be notified rapidly when an issue happen in their 
+Sentry is an error monitoring tool that enables developer teams to be notified rapidly when an issue happens in their 
 applications. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in their 
 services. 
 
@@ -125,7 +127,7 @@ Running this script will result in the block creation in Prefect (assuming you a
 
 As you can see, the code example previously defined in the `SentryBlock` class is available in the UI! How neat is that!
 
-The Sentry block now created in Prefect, we can reuse it in any flow to automatically report on unexpected failures.
+With the Sentry block now created in Prefect, we can reuse it in any flow to automatically report on unexpected failures.
 
 ```python
 """Sample Prefect2 showcasing Sentry Block capabilities"""
