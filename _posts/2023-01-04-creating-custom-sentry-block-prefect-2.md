@@ -24,8 +24,7 @@ One of the interesting new concepts being offered is [Blocks](https://docs.prefe
 ## What Is Sentry?
 
 Sentry is an error monitoring tool that enables developer teams to be notified rapidly when an issue happens in their 
-applications. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in their 
-services. 
+applications. It provides the engineering teams with an interface to identify and debug errors in their applications. It is especially useful for detecting and fixing issues in production environments, where it can be difficult to reproduce errors and collect information about what went wrong. At Coveo, the usage of Sentry is already widespread and most R&D teams are using it in their services. 
 
 Even though Prefect comes built-in with automation that allows notifications in Slack in the event of the failure of a flow,
 we felt this was not providing us with enough insights regarding what went wrong without having to go through our 
