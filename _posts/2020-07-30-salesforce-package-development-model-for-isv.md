@@ -24,7 +24,7 @@ Such shifts in the development process might seem daunting at first, but let me 
 
 - Most of the following content can be applied to managed package development for ISV, but you might find some practices and ideas that can apply to your workflow nonetheless.
 - The semantic used in this document does not necessarily reflect the official Salesforce lexicon. Don't use it as a reference.
-- The source code of the example project used in this blogpost is available on [this GitHub repository](https://github.com/louis-bompart/lwc-structure).
+- The source code of the example project used in this blogpost is available on [this GitHub repository](https://github.com/coveooss/lwc-structure).
 
 ## Phase 0: MDAPI Project
 
