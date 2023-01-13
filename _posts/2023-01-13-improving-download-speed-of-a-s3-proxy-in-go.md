@@ -67,7 +67,7 @@ As I shared this, my colleague Felix Pelletier immediately claimed: “There is 
 
 ## We’re going to need a bigger buffer?
 Now we have 2 pieces of information: an idea of which part of the code is contributing to the problem, and a good tip from our colleague on what might be going on. We’re also very lucky as we have instrumented our code with telemetry which we visualize in [Honeycomb](https://www.honeycomb.io/), allowing us to confirm our profiling with tracing.
-![]({{ site.baseurl }}/images/2023-01-13-improving-download-speed-of-a-s3-proxy-in-go/downloadfastblur.png)
+![]({{ site.baseurl }}/images/2023-01-13-improving-download-speed-of-a-s3-proxy-in-go/slowblur.jpg)
 
 Although the tracing shows that something else is going on, 12s for a file download is way too long, so let’s fix this first. Here’s the code:
 
@@ -158,7 +158,7 @@ func (h *Handler) gameReplayHandler(w http.ResponseWriter, r *http.Request, user
 
 I wish I had a better story, where I launch another tool and I pinpoint exactly where the slowness is coming from, but I am lazy and a quick googling gave me enough confidence that calling Flush() could lead to some potential gain, which, lucky for me, it did.
 
-![]({{ site.baseurl }}/images/2023-01-13-improving-download-speed-of-a-s3-proxy-in-go/fastblur.png)
+![]({{ site.baseurl }}/images/2023-01-13-improving-download-speed-of-a-s3-proxy-in-go/fastblur.jpg)
 
 
 ## What did we learn?
