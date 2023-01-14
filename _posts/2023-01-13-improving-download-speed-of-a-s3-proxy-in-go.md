@@ -164,11 +164,11 @@ I wish I had a better story, where I launch another tool and I pinpoint exactly 
 ## What did we learn?
 
 
-In this specific case, preallocating the buffer is a great way to reduce useless, costly memory allocation and copy.
-Flushing the http.ResponseWriter saved the extra chunk of wasted time. 
-Messing around with the code for hours will save you a solid minute of “reading the doc”. 
-Profiling is key; understand where the bottleneck is before going around trying to fix stuff left and right.
-Observability is great in general. The tracing that comes with structured event logs is cherry on the top.
+- In this specific case, preallocating the buffer is a great way to reduce useless, costly memory allocation and copy.
+- Flushing the http.ResponseWriter saved the extra chunk of wasted time. 
+- Messing around with the code for hours will save you a solid minute of “reading the doc”. 
+- Profiling is key; understand where the bottleneck is before going around trying to fix stuff left and right.
+- Observability is great in general. The tracing that comes with structured event logs is cherry on the top.
 
 And for the curious, yes we did implement the pre-signed url solution. Spending time on a solution is not a good reason to preserve it in favor of a better solution ;).
 
