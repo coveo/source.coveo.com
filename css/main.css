@@ -3286,3 +3286,8 @@ section .post_content ol>li:before{
 .post_content table th.last {
   border-right: none;
 }
+
+#ccpa_icon {
+    transform: translateY(-2px);
+    margin-right: 5px;
+}
