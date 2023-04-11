@@ -84,7 +84,7 @@ requirements:
     - policy-acknowledgement
 ```
 
-In this specific example, the access matrix defines that a background check be completed, that the employee'S supervisor endorsement is required, that some specific trainings in our Learning Management System must be completed.
+In this specific example, the access matrix defines that a background check be completed, that the employee's supervisor endorsement is required, that some specific trainings in our Learning Management System must be completed.
 
 ## Learning Management System (LMS) integration
 
