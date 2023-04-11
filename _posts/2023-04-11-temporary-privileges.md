@@ -12,7 +12,7 @@ author:
   image: jplachance.jpg
 ---
 
-I spend most of my days inside a code editor, Jira, Outlook, or in meetings. Now that one of our projects won the [Identity Management Project of the Year – SMB](https://www.idsalliance.org/press-release/identity-defined-security-alliance-announces-winners-of-identity-management-awards/), it's a great opportunity to take a look back at what the Coveo R&D Defense team built.
+I spend most of my days inside a code editor, Jira, Outlook, or in meetings. Now that one of our projects won the [Identity Management Project of the Year – SMB](https://www.idsalliance.org/press-release/identity-defined-security-alliance-announces-winners-of-identity-management-awards/) award, it's a great opportunity to take a look back at what the Coveo R&D Defense team built.
 
 The Coveo infrastructure is constantly growing. DevOps engineers add new regions, new services, which leads to more systems that can break, more complex access management and more complex audit logging. If I tell stakeholders that the entire R&D department needs always-on access to all the services they deploy and own in a production environment, some of those stakeholders will tell me that the risks are too high, that it is not acceptable. On the other hand, if only a handful of people can help when there is an incident in production, if someone needs to wake up the on-call access management person at 3 in the morning because they need access to a specific role in a specific database in our Australian region, the time to resolution of incidents goes up, our service level agreement gets breached, leadership does not like that.
 
