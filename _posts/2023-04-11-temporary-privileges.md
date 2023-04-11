@@ -23,9 +23,9 @@ This is why Coveo needed a good middle ground. The R&D department needed a syste
 
 ## Tracking requirements
 
-What do a Coveo employee needs before being allowed to request a temporary privilege to a system the employee owns? Well, many things. The first step is to complete the Coveo onboarding process. This process will make the employee read Coveo policies, go through trainings, go through a background check procedure. Coveo has what HR calls the Coveo 90. The employee manager is responsible for going through the entire process with the new employee.
+What does a Coveo employee needs before being allowed to request a temporary privilege to a system the employee owns? Well, many things. The first step is to complete the Coveo onboarding process. This process will make sure the employee read the Coveo policies, went through trainings, cleared the background check, etc. Coveo has what HR calls the Coveo 90. The employee manager is responsible for going through the entire process with the new employee.
 
-So what's the link with temporary privileges? Well, the access management system must not grant a privilege to an employee that did not meet all the requirements yet. How does Coveo define the requirements? In an access matrix. Ok, what? Well, Coveo R&D employees are invited to contribute to a centralized YAML file that defines:
+So what's the link with temporary privileges? Well, the access management system must not grant a privilege to an employee that did not meet all these requirements yet. How does Coveo define the requirements? In an access matrix. Ok, what? Well, Coveo R&D employees are invited to contribute to a centralized YAML file that defines:
 
 - Teams
 - Access levels in a team
@@ -73,7 +73,7 @@ teams:
               - user-group-prod-temp-platform-admin
 ```
 
-Some environments have `requirements`, some don't. For example, the development environment is one where Coveo does enforce strict requirements, to allow quick frictionless innovation. The production environment though is a lot more restricted.
+Some environments have `requirements`, some don't. For example, the development environment is one where Coveo does not enforce strict requirements, to allow quick frictionless innovation. The production environment though is a lot more restricted.
 
 ```YAML
 requirements:
@@ -84,7 +84,7 @@ requirements:
     - policy-acknowledgement
 ```
 
-In this specific example, the access matrix defines that a background check be completed, that the employee supervisor endorsement is required, that some specific trainings in our Learning Management System must be completed.
+In this specific example, the access matrix defines that a background check be completed, that the employee'S supervisor endorsement is required, that some specific trainings in our Learning Management System must be completed.
 
 ## Learning Management System (LMS) integration
 
@@ -102,15 +102,15 @@ This is why, on top of our temporary privileges solution, the R&D Defense team b
 
 A Coveo manager:
 
-- Can see the employee progression in the LMS
+- Can see the employee' progression in the LMS
 - Can select the employee access group and access level, up to his own privileges
 - Is accountable for granting those privileges
 
-With this other building block, the R&D Defense team removed the IT back and forth by automating as much as possible. The team gave visibility and accountability to managers. The team also built a similar interface for employees, so they can clearly see their progress, their current privileges. Thanks to React and reusable components!
+With this other building block, the R&D Defense team removed the IT back and forth by automating as much as possible. They gave visibility and accountability to managers. The team also built a similar interface for employees, so they can clearly see their progress, their current privileges. Thanks to React and reusable components!
 
 ## Personalised resources catalog
 
-Now that Coveo has an access matrix, clear requirements, an LMS integration and autonomous managers, the system needs to stitch it all together in order to show our employees a catalog of resources they can request temporary access on. Here, the secret is to tag everything, apply strict tag policies, move toward Attributes Based Access Control ([ABAC](https://en.wikipedia.org/wiki/Attribute-based_access_control)).
+Now that Coveo has an access matrix, clear requirements, an LMS integration and autonomous managers, the system needs to stitch it all together in order to show our employees a catalog of resources they can request temporary access to. Here, the secret is to tag everything, apply strict tag policies, move toward Attributes Based Access Control ([ABAC](https://en.wikipedia.org/wiki/Attribute-based_access_control)).
 
 For those of you who spent time on the first YAML bloc of this post, you noticed that Coveo uses rules to define the list of resources an employee can request:
 
@@ -127,7 +127,7 @@ This is how Coveo ends up with a catalog of available (requestable) resources, p
 
 ![]({{ site.baseurl }}/images/2023-04-11-temporary-privileges/uam_temp_access_catalog.png)
 
-In this UI, the employee can select the problematic resource, chose an expiration date for the temporary access (within a given range), input a reason for the request. After the request is validated against the matrix and other systems, the access management system grants the access using the strongDM API. The employee can fix the issue, the employee doesn't have to wait for a long approbation process or send a Pager Duty alert to another colleague or manager.
+In this UI, the employee can select the problematic resource, chose an expiration date for the temporary access (within a given range), input a reason for the request. After the request is validated against the matrix and other systems, the access management system grants the access using the strongDM API. The employee can fix the issue, the employee doesn't have to wait for a long approbation process or page another colleague or manager.
 
 ## Tech stack
 
@@ -151,9 +151,9 @@ When the temporary privilege is granted, if the privilege is for a sensitive res
 - The request reason
 - Linked issues
 - Sessions [recordings in strongDM](https://www.strongdm.com/solution/cloud-observability-and-visibility) (since strongDM records all SSH sessions, database sessions, Kubernetes interactive sessions, etc.)
-- The engineer next steps
+- The engineer's next steps
 
-The true thing to remember here is that if security teams don't give engineers the tool they need, engineers will find a way to bypass controls in place, or the service level agreement will get a hit. Instead, security teams and engineers all want to work as a team, find the best solution possible, focus on what really maters: How can engineers avoid needing this privilege ever again?
+The true thing to remember here is that if security teams don't give engineers the tool they need, engineers will find a way to bypass controls in place, or the service level agreement will get a hit. Instead, security teams and engineers all have to work as a team, find the best solution possible, focus on what really matters: How can engineers avoid needing this privilege ever again?
 
 With our system, DevOps teams can offer great services to Coveo customers, circle back on what needs improvement when something breaks.
 
