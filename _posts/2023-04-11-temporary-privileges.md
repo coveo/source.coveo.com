@@ -144,7 +144,7 @@ The access matrix is stored in GitHub. Any change to the access matrix goes thro
 
 ## The post-mortem
 
-Some peers in the security space will say that allowing an engineer to get that access with such low friction is unsafe. I see the point, but the layers of multi-factor authentications, VPNs, all the logging made by our API, all the logging made by strongDM, combine with all I described above allows me to sleep well at night.
+Some peers in the security space will say that allowing an engineer to get that access with such low friction is unsafe. I see the point, but the layers of multi-factor authentications, VPNs, all the logging made by our API, all the logging made by strongDM, combined with all I described above allows me to sleep well at night.
 
 When the temporary privilege is granted, if the privilege is for a sensitive resource (AKA not a development one), the request creates an Incident in Jira, in a board our compliance team can review. The next morning, the compliance team can review:
 
