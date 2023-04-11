@@ -88,7 +88,7 @@ In this specific example, the access matrix defines that a background check be c
 
 ## Learning Management System (LMS) integration
 
-Off course, the access management system then needs to be fully integrated with a few system, like the LMS. Coveo invested a lot in learning management by creating [level up](https://levelup.coveo.com/), a home-made LMS, tailor made to fit our needs. On level up, Coveo has internal and external trainings. Anyone can learn how to use the Coveo Platform through level up. On top of that, employees can learn about internal policies and procedures as well.
+Of course, the access management system then needs to be fully integrated with a few system, like the LMS. Coveo invested a lot in learning management by creating [level up](https://levelup.coveo.com/), a home-made LMS, tailor-made for our needs. On level up, Coveo has internal and external trainings. Anyone can learn how to use the Coveo Platform through level up. On top of that, employees can learn about internal policies and procedures as well.
 
 With this building block, each employee has a clear path on level up. After completing a training, the access management system picks it up, then the employee can automatically start to see more resources in the resources catalog. More on that later!
 
