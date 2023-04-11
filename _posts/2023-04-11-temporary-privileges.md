@@ -30,7 +30,7 @@ So what's the link with temporary privileges? Well, the access management system
 - Teams
 - Access levels in a team
 - The targeted environment
-- Requirements for that that access level in that team in that environment
+- Requirements for that access level in that team in that environment
 - Available temporary privileges for members of that team / access level when requirements are met
 
 Here is a small example of what it can look like:
