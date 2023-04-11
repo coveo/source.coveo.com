@@ -23,7 +23,7 @@ This is why Coveo needed a good middle ground. The R&D department needed a syste
 
 ## Tracking requirements
 
-What does a Coveo employee need before being allowed to request a temporary privilege to a system the employee owns? Well, many things. The first step is to complete the Coveo onboarding process. This process will make sure the employee read the Coveo policies, went through trainings, cleared the background check, etc. Coveo has what HR calls the Coveo 90. The employee manager is responsible for going through the entire process with the new employee.
+What does a Coveo employee need before being allowed to request a temporary privilege to a resource in our infrastructure the employee owns? Well, many things. The first step is to complete the Coveo onboarding process. This process will make sure the employee read the Coveo policies, went through trainings, cleared the background check, etc. Coveo has what HR calls the Coveo 90. The employee manager is responsible for going through the entire process with the new employee.
 
 So what's the link with temporary privileges? Well, the access management system must not grant a privilege to an employee that has not met all these requirements yet. How does Coveo define the requirements? In an access matrix. Ok, what? Well, Coveo R&D employees are invited to contribute to a centralized YAML file that defines:
 
@@ -84,11 +84,11 @@ requirements:
     - policy-acknowledgement
 ```
 
-In this specific example, the access matrix defines that a background check be completed, that the employee's supervisor endorsement is required, that some specific trainings in our Learning Management System must be completed.
+In this specific example, the access matrix defines that a background check be completed, that the employee's supervisor endorsement is required, and that some specific trainings in our Learning Management System must be completed.
 
 ## Learning Management System (LMS) integration
 
-Of course, the access management system then needs to be fully integrated with a few system, like the LMS. Coveo invested a lot in learning management by creating [level up](https://levelup.coveo.com/), a home-made LMS, tailor-made for our needs. On level up, Coveo has internal and external trainings. Anyone can learn how to use the Coveo Platform through level up. On top of that, employees can learn about internal policies and procedures as well.
+Of course, the access management system then needs to be fully integrated with a few other systems, like the LMS. Coveo invested a lot in learning management by creating [level up](https://levelup.coveo.com/), a home-made LMS, tailor-made for our needs. On level up, Coveo has internal and external trainings. Anyone can learn how to use the Coveo Platform through level up. On top of that, employees can learn about internal policies and procedures as well.
 
 With this building block, each employee has a clear path on level up. After completing a training, the access management system picks it up, then the employee can automatically start to see more resources in the resources catalog. More on that later!
 
@@ -127,7 +127,7 @@ This is how Coveo ends up with a catalog of available (requestable) resources, p
 
 ![]({{ site.baseurl }}/images/2023-04-11-temporary-privileges/uam_temp_access_catalog.png)
 
-In this UI, the employee can select the problematic resource, chose an expiration date for the temporary access (within a given range), input a reason for the request. After the request is validated against the matrix and other systems, the access management system grants the access using the strongDM API. The employee can fix the issue, the employee doesn't have to wait for a long approbation process or page another colleague or manager.
+In this UI, the employee can select the problematic resource, chose an expiration date for the temporary access (within a given range), input a reason for the request. After the request is validated against the matrix and other systems, the access management system grants the access using the strongDM API. The employee can fix the issue, and they don't have to wait for a long approbation process or page another colleague or manager.
 
 ## Tech stack
 
