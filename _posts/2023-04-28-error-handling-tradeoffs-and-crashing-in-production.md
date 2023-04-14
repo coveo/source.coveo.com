@@ -117,7 +117,7 @@ For two reasons:
 
 ## Checked exceptions
 
-To make it less likely that developers forget to deal with exceptions that they have to handle, Java introduced checked exception.
+To make it less likely that developers forget to deal with exceptions that they have to handle, Java introduced checked exceptions.
 If a method throws a checked exception, for instance an `IOException`, it _must_ declare it in its signature.
 When a method `doX()` doesn't declare that it's throwing an exception, the compiler enforces it.
 Hence, if `DoX()` calls `DoIO() throws IOException`, it needs to do it in a `try` block and to `catch` the `IOException` that could be thrown.
