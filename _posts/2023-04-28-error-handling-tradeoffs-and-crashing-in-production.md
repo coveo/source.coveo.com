@@ -135,7 +135,11 @@ Is it possible to have the best of both worlds, robust compile time checks and t
 # The return of the return codes
 
 After the advent of checked exceptions, some programming languages and some libraries started to return, for each function and method call that might fail, an object that contains the result of the computation as well as information about the error that might have occurred.
-Rust uses this approach, and it uses it in a way that allows developers to benefit from the advantage of checked exception _and_ of transparent propagation.
+Go uses this approach, for instance.
+Rust also uses this approach, but with a twist, it uses it in a way that allows developers to benefit from the advantage of checked exception _and_ of transparent propagation.
+To achieve this, the object returned by fallible functions contains either the return value or an error, and the caller _must_ take into account the failure modes in order to get to the underlying return value.
+The caller can also easily propagate errors without handling them.
+All of this can sound a bit abstract, so let's dive in with examples! 😄
 
 In Rust, every error must be handled explicitly, _but_, the operator `?` allows propagating the error to the calling function.
 For instance, consider the function[^2]
