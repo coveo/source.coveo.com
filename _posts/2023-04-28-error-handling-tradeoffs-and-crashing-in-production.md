@@ -76,7 +76,7 @@ This is why the objects `boldStart` and `boldEnd` don't need to be manually clea
 
 These advantages are significant, but they are not free.
 In C++, exceptions comes with a runtime cost, which made them, according to [Herb Sutter's talk](https://youtu.be/ARYP83yNAWk), a non-zero-overhead abstraction.
-This is one of the reasons some businesses like Google famously decided not to use them.
+This might be one of the reasons some businesses like [Google famously decided not to use them in C++](https://google.github.io/styleguide/cppguide.html#Exceptions).
 Actually, when you throw an exception, the so-called stack unwinding happens which ends up running a lot of code (for instance the `destructor`s).
 Finally, exceptions can be a little bit too transparent.
 It is easy to forget to handle an exception that we _had to_ handle for our program to work properly.
@@ -85,11 +85,11 @@ It is easy to forget to handle an exception that we _had to_ handle for our prog
 
 A question that I asked myself for a long time is: should I `assert` or should I `throw`.
 Yes, `assert` should be for conditions that are _always true_, but my experience as a developer taught me humility: what I think is always true is usually true... until it becomes false!
-Sometime, this happens in production code, where the `assert`s were removed.
+Sometimes, this happens in production code, where the `assert`s were removed.
 In this case, the bug can propagate until something bad happen, usually quite far from the place where the `assert` would have failed if it was a debug build.
 This behavior made release build hard to debug: perhaps replacing `assert` with `throw` was the answer?
 
-I gave it a lot of thought, I read a lot, listen to a lot of talks, and I came to a surprising conclusion: sometime, you should crash the program in production.
+I gave it a lot of thought, I read a lot, listen to a lot of talks, and I came to a surprising conclusion: sometimes, you should crash the program in production.
 Of course, something should restart the program.
 That being said, there's still the risk of getting stuck in a [crashloop](https://stackoverflow.com/a/52215388/3068259).
 So, in which condition is it worth risking a crashloop in production?
@@ -97,7 +97,7 @@ When your program is in a corrupted state.
 
 The behavior of a corrupted program is no longer predictable.
 It is clear with this definition that a corrupted program is dangerous, and the rise of security incidents made the danger of such programs very visible.
-For instance, consider the C++ code
+For instance, consider the C code
 
 ```c
 assert(i >= 0); // always true
@@ -170,7 +170,7 @@ fn main() {
 
 The more astute readers might notice that the transparent propagation problem is not solved yet.
 Indeed, `read_username_from_file` needs to know that `File::open` and `read_to_string` can return `io::Error`, and then it needs to declare it in the return type in its signature `-> Result<String, io::Error>`.
-Hence, if `File::open` started to throw a new error type, for instance `io::ErrorInterface`, the signature of `read_username_from_file` would need to be modified.
+Hence, if `File::open` started to throw a new error type, for instance `io::ErrorInterface`, the signature of `read_username_from_file` would need to be modified, which is a breaking change on the API.
 Luckily for us, there are libraries that handle the error abstraction problem, like [thiserror](https://docs.rs/thiserror/latest/thiserror/) and [miette](https://docs.rs/miette/latest/miette/).
 These libraries were implemented in part thanks to the powerful Rust macro system.
 
