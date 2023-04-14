@@ -85,7 +85,7 @@ It is easy to forget to handle an exception that we _had to_ handle for our prog
 
 A question that I asked myself for a long time is: should I `assert` or should I `throw`.
 Yes, `assert` should be for conditions that are _always true_, but my experience as a developer taught me humility: what I think is always true is usually true... until it becomes false!
-Sometime, this happened in production code, where the `assert`s were removed.
+Sometime, this happens in production code, where the `assert`s were removed.
 In this case, the bug can propagate until something bad happen, usually quite far from the place where the `assert` would have failed if it was a debug build.
 This behavior made release build hard to debug: perhaps replacing `assert` with `throw` was the answer?
 
