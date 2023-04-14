@@ -153,7 +153,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 }
 ```
 
-In this example, the `String` that contains the `username` will usually be returned, but if the call `File::open("hello.txt")` or `read_to_string(&mut username)` fail and return an `io::Error` object, the `?` operator will return this object right away.
+In this example, the `String` that contains the `username` will usually be returned, but if the call `File::open("hello.txt")` or `read_to_string(&mut username)` fails and returns an `io::Error` object, the `?` operator will return this object right away.
 An example of main function that calls `read_user_from_file` is
 
 ```rust
