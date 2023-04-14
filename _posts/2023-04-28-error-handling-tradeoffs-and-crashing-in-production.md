@@ -14,7 +14,7 @@ author:
 
 # Error Handling Tradeoffs and Crashing in Production
 
-There are only [two hard things](https://martinfowler.com/bliki/TwoHardThings.html) in Computer Science: memory problems and error handling.
+There are only [two hard things](https://martinfowler.com/bliki/TwoHardThings.html) in Computer Science: memory problems, error handling, and of course off-by-1 errors.
 
 For years, I've felt uncertain about what to do when something unexpected happens in a program I wrote.
 Should I return an error code, crash, crash in debug builds only, throw an exception...
@@ -25,7 +25,7 @@ Because, of course, the answer is, as always, _it depends_.
 
 The first programming language I learned when I was a teenager was C[^1].
 In this language, I saw that functions like [`printf`](https://en.cppreference.com/w/c/io/fprintf) return an error code when they failed.
-Some of these functions would also use other communication channels to communicate about failures, for instance a preprocessor macro named [`errno`](https://en.cppreference.com/w/c/io/fprintf).
+Some of these functions would also use other communication channels to communicate about failures, for instance a preprocessor macro named [`errno`](https://en.cppreference.com/w/c/error/errno).
 
 It was not until university, when I was learning about [defensive programming](https://en.wikipedia.org/wiki/Defensive_programming), that I heard about [C's assert](https://en.cppreference.com/w/c/error/assert).
 The principle is that you use a macro called `assert` to verify conditions that should always be true about your program, something like
@@ -111,9 +111,9 @@ This is with this principle in mind that the [C++ contract proposal](https://www
 If the predicate of the contract is `false`, the program will crash, both in release build and in debug build.
 
 Why not throw an exception instead of crashing?
-For two reasons.
-First, we assume that nobody down the stack will have enough information to handle the exception: we are in a situation that we thought as impossible and for all we know, the stack itself could be corrupted!
-The second reason is that, as mentioned before, throwing an exception actually execute a lot of code, which is not safe in a context where the program is corrupted.
+For two reasons:
+- We assume that nobody down the stack will have enough information to handle the exception: we are in a situation that we thought as impossible and for all we know, the stack itself could be corrupted!
+- As mentioned before, throwing an exception actually execute a lot of code, which is not safe in a context where the program is corrupted, see [this paper](https://www.ndss-symposium.org/wp-content/uploads/2023/02/ndss2023_s295_paper.pdf) for instance.
 
 ## Checked exceptions
 
@@ -127,7 +127,8 @@ Since checked exceptions are part of the API of the methods, it means that a cha
 This is, of course, required in a method where we want, for instance, to catch every exception, like in the `DoX()` example above.
 However, there are some context where methods don't need to know if an exception is thrown and where we would like transparent propagation, like in the function `getBoldHtml` mentioned before.
 As explained above, this is actually one of the strengths of the exception concept: it allows separation of concerns between business logic and error handling.
-Java programmers invented workarounds to allow recovering this transparent propagation with checked exceptions, like using the generic `throws Exception`, but some of these workarounds were equivalent to stop using checked exceptions altogether.
+Using `RuntimeException`, which are not _checked_, is a typical way to recover the transparency that is used by [Spring](https://spring.io/) for instance.
+Java programmers also invented workarounds to allow recovering the transparent propagation with checked exceptions, like using the generic `throws Exception`, but some of these workarounds are equivalent to stop using checked exceptions altogether.
 
 Is it possible to have the best of both worlds, robust compile time checks and transparent propagation?
 
