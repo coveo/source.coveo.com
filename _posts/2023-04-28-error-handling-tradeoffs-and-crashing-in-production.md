@@ -120,7 +120,8 @@ For two reasons:
 To make it less likely that developers forget to deal with exceptions that they have to handle, Java introduced checked exceptions.
 If a method throws a checked exception, for instance an `IOException`, it _must_ declare it in its signature.
 When a method `doX()` doesn't declare that it's throwing an exception, the compiler enforces it.
-Hence, if `DoX()` calls `DoIO() throws IOException`, it needs to do it in a `try` block and to `catch` the `IOException` that could be thrown.
+Hence, if `doX()` calls `doIO() throws IOException`, it needs to do it in a `try` block and to `catch` the `IOException` that could be thrown.
+Alternatively, `doX() could declare the exception in its own signature to pass the checked exception to the parent caller.
 
 The powerful compile-time check described in the previous paragraph comes with tradeoffs.
 Since checked exceptions are part of the API of the methods, it means that a change in the exceptions thrown will result in an API break.
@@ -136,7 +137,7 @@ Is it possible to have the best of both worlds, robust compile time checks and t
 
 After the advent of checked exceptions, some programming languages and some libraries started to return, for each function and method call that might fail, an object that contains the result of the computation as well as information about the error that might have occurred.
 Go uses this approach, for instance.
-Rust also uses this approach, but with a twist, it uses it in a way that allows developers to benefit from the advantage of checked exception _and_ of transparent propagation.
+Rust also uses this approach, but with a twist, it uses it in a way that allows developers to benefit from the advantage of checked exceptions _and_ of transparent propagation.
 To achieve this, the object returned by fallible functions contains either the return value or an error, and the caller _must_ take into account the failure modes in order to get to the underlying return value.
 The caller can also easily propagate errors without handling them.
 All of this can sound a bit abstract, so let's dive in with examples! 😄
