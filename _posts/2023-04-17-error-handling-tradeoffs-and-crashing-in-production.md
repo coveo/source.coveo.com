@@ -113,7 +113,7 @@ If the predicate of the contract is `false`, the program will crash, both in rel
 Why not throw an exception instead of crashing?
 For two reasons:
 - We assume that nobody down the stack will have enough information to handle the exception: we are in a situation that we thought as impossible and for all we know, the stack itself could be corrupted!
-- As mentioned before, throwing an exception actually execute a lot of code, which is not safe in a context where the program is corrupted, see [this paper](https://www.ndss-symposium.org/wp-content/uploads/2023/02/ndss2023_s295_paper.pdf) for instance.
+- As mentioned before, throwing an exception actually executes a lot of code, which is not safe in a context where the program is corrupted, see [this paper](https://www.ndss-symposium.org/wp-content/uploads/2023/02/ndss2023_s295_paper.pdf) for instance.
 
 ### Checked exceptions
 
