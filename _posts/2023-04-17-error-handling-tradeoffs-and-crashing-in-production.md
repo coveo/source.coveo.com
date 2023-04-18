@@ -121,11 +121,11 @@ To make it less likely that developers forget to deal with exceptions that they 
 If a method throws a checked exception, for instance an `IOException`, it _must_ declare it in its signature.
 When a method `doX()` doesn't declare that it's throwing an exception, the compiler enforces it.
 Hence, if `doX()` calls `doIO() throws IOException`, it needs to do it in a `try` block and to `catch` the `IOException` that could be thrown.
-Alternatively, `doX() could declare the exception in its own signature to pass the checked exception to the parent caller.
+Alternatively, `doX()` could declare the exception in its own signature to pass the checked exception to the parent caller.
 
 The powerful compile-time check described in the previous paragraph comes with tradeoffs.
 Since checked exceptions are part of the API of the methods, it means that a change in the exceptions thrown will result in an API break.
-This is, of course, required in a method where we want, for instance, to catch every exception, like in the `DoX()` example above.
+This is, of course, required in a method where we want, for instance, to catch every exception, like in the `doX()` example above.
 However, there are some context where methods don't need to know if an exception is thrown and where we would like transparent propagation, like in the function `getBoldHtml` mentioned before.
 As explained above, this is actually one of the strengths of the exception concept: it allows separation of concerns between business logic and error handling.
 Using `RuntimeException`, which are not _checked_, is a typical way to recover the transparency that is used by [Spring](https://spring.io/) for instance.
