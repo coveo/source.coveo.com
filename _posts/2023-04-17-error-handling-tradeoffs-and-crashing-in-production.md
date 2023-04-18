@@ -21,6 +21,8 @@ Should I return an error code, crash, crash in debug builds only, throw an excep
 This uncertainty lit up my curiosity, and slowly, while I accumulated the years of experience, I became more aware of the tradeoffs behind each strategy.
 Because, of course, the answer is, as always, _it depends_.
 
+<!-- more -->
+
 # Return code, side channel and crashing
 
 The first programming language I learned when I was a teenager was C[^1].
