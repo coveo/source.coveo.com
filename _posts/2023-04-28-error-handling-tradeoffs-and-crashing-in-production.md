@@ -179,7 +179,7 @@ These libraries were implemented in part thanks to the powerful Rust macro syste
 From C to Rust, the facilities that we can use to handle errors have evolved quite a bit.
 What used to look like mutual exclusive tradeoffs are now available to us at the same time, making it easier to design programs that are as reliable as exciting!
 
-_Thanks to (TODO) YOU who were kind enough to review this blog post._
+_Thanks to Andy Emond, Jacques-Étienne Beaudet, and William Dussault who were kind enough to review this blog post._
 
 If you love evaluating the implication of tradeoffs in different contexts in order to make the right choice and produce efficient software, make sure to check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page and apply to join the team!
 
