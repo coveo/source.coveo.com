@@ -184,4 +184,4 @@ _Thanks to Andy Emond, Jacques-Étienne Beaudet, and William Dussault who were k
 If you love evaluating the implication of tradeoffs in different contexts in order to make the right choice and produce efficient software, make sure to check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page and apply to join the team!
 
 [^1]: Actually, it was HTML, but does it really count as a programming language? 😉
-[^2]: This example is taken from the excellent [Rust book](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html)
+[^2]: This example is taken from the excellent [Rust book](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html).
