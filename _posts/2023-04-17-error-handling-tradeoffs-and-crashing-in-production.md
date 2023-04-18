@@ -57,8 +57,8 @@ void RenderBoldHtml() {
 
 std::string getBoldHtml() {
     std::string boldStart = "<b>";
-    std::string boldEnd = "<b>";
-    return "<b>" + getHtml() + "</b>";
+    std::string boldEnd = "</b>";
+    return boldStart + getHtml() + boldEnd;
 }
 
 std::string getHtml() {
