@@ -12,8 +12,6 @@ author:
 
 ---
 
-# Error Handling Tradeoffs and Crashing in Production
-
 There are only [two hard things](https://martinfowler.com/bliki/TwoHardThings.html) in Computer Science: memory problems, error handling, and of course off-by-1 errors.
 
 For years, I've felt uncertain about what to do when something unexpected happens in a program I wrote.
@@ -23,7 +21,7 @@ Because, of course, the answer is, as always, _it depends_.
 
 <!-- more -->
 
-# Return code, side channel and crashing
+## Return code, side channel and crashing
 
 The first programming language I learned when I was a teenager was C[^1].
 In this language, I saw that functions like [`printf`](https://en.cppreference.com/w/c/io/fprintf) return an error code when they failed.
@@ -40,7 +38,7 @@ assert(pointer != NULL);
 The condition will be verified in debug builds, and the program will crash if it's not true.
 In release builds, the check is removed in order to save precious CPU cycles, and because you wouldn't want to crash a release program, would you?
 
-# Exceptions
+## Exceptions
 
 A few weeks after I learned C, I taught myself C++.
 I thought that since C was interesting, it's incremented version would be awesome!
@@ -83,7 +81,7 @@ Actually, when you throw an exception, the so-called stack unwinding happens whi
 Finally, exceptions can be a little bit too transparent.
 It is easy to forget to handle an exception that we _had to_ handle for our program to work properly.
 
-## Throw an exception or crash?
+### Throw an exception or crash?
 
 A question that I asked myself for a long time is: should I `assert` or should I `throw`.
 Yes, `assert` should be for conditions that are _always true_, but my experience as a developer taught me humility: what I think is always true is usually true... until it becomes false!
@@ -117,7 +115,7 @@ For two reasons:
 - We assume that nobody down the stack will have enough information to handle the exception: we are in a situation that we thought as impossible and for all we know, the stack itself could be corrupted!
 - As mentioned before, throwing an exception actually execute a lot of code, which is not safe in a context where the program is corrupted, see [this paper](https://www.ndss-symposium.org/wp-content/uploads/2023/02/ndss2023_s295_paper.pdf) for instance.
 
-## Checked exceptions
+### Checked exceptions
 
 To make it less likely that developers forget to deal with exceptions that they have to handle, Java introduced checked exceptions.
 If a method throws a checked exception, for instance an `IOException`, it _must_ declare it in its signature.
@@ -135,7 +133,7 @@ Java programmers also invented workarounds to allow recovering the transparent p
 
 Is it possible to have the best of both worlds, robust compile time checks and transparent propagation?
 
-# The return of the return codes
+## The return of the return codes
 
 After the advent of checked exceptions, some programming languages and some libraries started to return, for each function and method call that might fail, an object that contains the result of the computation as well as information about the error that might have occurred.
 Go uses this approach, for instance.
@@ -176,7 +174,7 @@ Hence, if `File::open` started to throw a new error type, for instance `io::Erro
 Luckily for us, there are libraries that handle the error abstraction problem, like [thiserror](https://docs.rs/thiserror/latest/thiserror/) and [miette](https://docs.rs/miette/latest/miette/).
 These libraries were implemented in part thanks to the powerful Rust macro system.
 
-# Closing thoughts
+## Closing thoughts
 
 From C to Rust, the facilities that we can use to handle errors have evolved quite a bit.
 What used to look like mutual exclusive tradeoffs are now available to us at the same time, making it easier to design programs that are as reliable as exciting!
