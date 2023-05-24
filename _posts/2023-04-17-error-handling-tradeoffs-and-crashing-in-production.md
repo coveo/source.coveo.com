@@ -89,7 +89,7 @@ Sometimes, this happens in production code, where the `assert` statements were r
 In this case, the bug can propagate until something bad happens, usually quite far from the place where the `assert` would have failed if it was a debug build.
 This behavior made release build hard to debug: perhaps replacing `assert` with `throw` was the answer?
 
-I gave it a lot of thoughtl; I read a lot, listen to a lot of talks, and I came to a surprising conclusion: sometimes, you should crash the program in production.
+I gave it a lot of thought; I read a lot, listen to a lot of talks, and I came to a surprising conclusion: sometimes, you should crash the program in production.
 Of course, something should restart the program.
 That being said, there's still the risk of getting stuck in a [crashloop](https://stackoverflow.com/a/52215388/3068259).
 So, in which condition is it worth risking a crashloop in production?
