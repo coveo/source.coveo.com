@@ -21,14 +21,14 @@ Because, of course, the answer is, as always, _it depends_.
 
 <!-- more -->
 
-## Return code, side channel and crashing
+## Return code, side channel, and crashing
 
 The first programming language I learned when I was a teenager was C[^1].
 In this language, I saw that functions like [`printf`](https://en.cppreference.com/w/c/io/fprintf) return an error code when they failed.
-Some of these functions would also use other communication channels to communicate about failures, for instance a preprocessor macro named [`errno`](https://en.cppreference.com/w/c/error/errno).
+Some of these functions would also use other communication channels to communicate failures, for instance a preprocessor macro named [`errno`](https://en.cppreference.com/w/c/error/errno).
 
 It was not until university, when I was learning about [defensive programming](https://en.wikipedia.org/wiki/Defensive_programming), that I heard about [C's assert](https://en.cppreference.com/w/c/error/assert).
-The principle is that you use a macro called `assert` to verify conditions that should always be true about your program, something like
+The principle is that you use a macro called `assert` to verify conditions that should always be true about your program, something like:
 
 ```c
 assert(pointer != NULL);
@@ -36,14 +36,14 @@ assert(pointer != NULL);
 ```
 
 The condition will be verified in debug builds, and the program will crash if it's not true.
-In release builds, the check is removed in order to save precious CPU cycles, and because you wouldn't want to crash a release program, would you?
+In release builds, the check is removed in order to save precious CPU cycles, and because you wouldn't want to crash a released program, would you?
 
 ## Exceptions
 
 A few weeks after I learned C, I taught myself C++.
 I thought that since C was interesting, it's incremented version would be awesome!
-This is while learning C++ that I learned about _exceptions_.
-With exceptions, a failing function can `throw` an object that can be `catch` by any other function down the stack.
+It's while learning C++ that I learned about _exceptions_.
+With exceptions, a failing function can `throw` an object that you can `catch` by any other function down the stack.
 For instance,
 
 ```c++
@@ -68,16 +68,16 @@ std::string getHtml() {
 ```
 
 Exceptions have many advantages compared to C's return code.
-First, they propagate transparently, which facilitate [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns).
+First, they propagate transparently, which facilitates [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns).
 For instance, in the example above, the function `getBoldHtml()` doesn't know or need to know that the function `getHtml()` can throw an exception.
 This is made possible since object classes in C++ have so-called `destructor` that frees the resources associated to each object.
-These destructor are called at the end of the scope of objects or when exceptions are thrown.
+These destructors are called at the end of the scope of objects or when exceptions are thrown.
 This is why the objects `boldStart` and `boldEnd` don't need to be manually cleaned up, including when `getHtml()` throws an exception. 
 
 These advantages are significant, but they are not free.
 In C++, exceptions comes with a runtime cost, which made them, according to [Herb Sutter's talk](https://youtu.be/ARYP83yNAWk), a non-zero-overhead abstraction.
 This might be one of the reasons some businesses like [Google famously decided not to use them in C++](https://google.github.io/styleguide/cppguide.html#Exceptions).
-Actually, when you throw an exception, the so-called stack unwinding happens which ends up running a lot of code (for instance the `destructor`s).
+Actually, when you throw an exception, the so-called stack unwinding happens, which ends up running a lot of code (for instance the `destructor`).
 Finally, exceptions can be a little bit too transparent.
 It is easy to forget to handle an exception that we _had to_ handle for our program to work properly.
 
@@ -85,11 +85,11 @@ It is easy to forget to handle an exception that we _had to_ handle for our prog
 
 A question that I asked myself for a long time is: should I `assert` or should I `throw`.
 Yes, `assert` should be for conditions that are _always true_, but my experience as a developer taught me humility: what I think is always true is usually true... until it becomes false!
-Sometimes, this happens in production code, where the `assert`s were removed.
-In this case, the bug can propagate until something bad happen, usually quite far from the place where the `assert` would have failed if it was a debug build.
+Sometimes, this happens in production code, where the `assert` statements were removed.
+In this case, the bug can propagate until something bad happens, usually quite far from the place where the `assert` would have failed if it was a debug build.
 This behavior made release build hard to debug: perhaps replacing `assert` with `throw` was the answer?
 
-I gave it a lot of thought, I read a lot, listen to a lot of talks, and I came to a surprising conclusion: sometimes, you should crash the program in production.
+I gave it a lot of thought; I read a lot, listen to a lot of talks, and I came to a surprising conclusion: sometimes, you should crash the program in production.
 Of course, something should restart the program.
 That being said, there's still the risk of getting stuck in a [crashloop](https://stackoverflow.com/a/52215388/3068259).
 So, in which condition is it worth risking a crashloop in production?
@@ -108,11 +108,11 @@ array[i] += userInput;
 If, for some reason that we don't understand, the variable `i` becomes an arbitrary value, this code could, depending on how it is compiled, result in an arbitrary code execution from the user.
 Hence, we should definitely not remove those checks in production code.
 This is with this principle in mind that the [C++ contract proposal](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0380r1.pdf) was written.
-If the predicate of the contract is `false`, the program will crash, both in release build and in debug build.
+If the predicate of the contract is `false`, the program will crash, both in a release build and in a debug build.
 
 Why not throw an exception instead of crashing?
 For two reasons:
-- We assume that nobody down the stack will have enough information to handle the exception: we are in a situation that we thought as impossible and for all we know, the stack itself could be corrupted!
+- We assume that nobody down the stack will have enough information to handle the exception; we are in a situation that we thought as impossible and for all we know, the stack itself could be corrupted!
 - As mentioned before, throwing an exception actually executes a lot of code, which is not safe in a context where the program is corrupted, see [this paper](https://www.ndss-symposium.org/wp-content/uploads/2023/02/ndss2023_s295_paper.pdf) for instance.
 
 ### Checked exceptions
@@ -129,21 +129,21 @@ This is, of course, required in a method where we want, for instance, to catch e
 However, there are some context where methods don't need to know if an exception is thrown and where we would like transparent propagation, like in the function `getBoldHtml` mentioned before.
 As explained above, this is actually one of the strengths of the exception concept: it allows separation of concerns between business logic and error handling.
 Using `RuntimeException`, which are not _checked_, is a typical way to recover the transparency that is used by [Spring](https://spring.io/) for instance.
-Java programmers also invented workarounds to allow recovering the transparent propagation with checked exceptions, like using the generic `throws Exception`, but some of these workarounds are equivalent to stop using checked exceptions altogether.
+Java programmers also invented workarounds to allow recovering the transparent propagation with checked exceptions, like using the generic `throws Exception`, but some of these workarounds are equivalent to stopping using checked exceptions altogether.
 
-Is it possible to have the best of both worlds, robust compile time checks and transparent propagation?
+Is it possible to have the best of both worlds: robust compile time checks and transparent propagation?
 
 ## The return of the return codes
 
 After the advent of checked exceptions, some programming languages and some libraries started to return, for each function and method call that might fail, an object that contains the result of the computation as well as information about the error that might have occurred.
 Go uses this approach, for instance.
-Rust also uses this approach, but with a twist, it uses it in a way that allows developers to benefit from the advantage of checked exceptions _and_ of transparent propagation.
+Rust also uses this approach, but with a twist; it uses it in a way that allows developers to benefit from the advantage of checked exceptions _and_ of transparent propagation.
 To achieve this, the object returned by fallible functions contains either the return value or an error, and the caller _must_ take into account the failure modes in order to get to the underlying return value.
 The caller can also easily propagate errors without handling them.
 All of this can sound a bit abstract, so let's dive in with examples! 😄
 
 In Rust, every error must be handled explicitly, _but_, the operator `?` allows propagating the error to the calling function.
-For instance, consider the function[^2]
+For instance, consider the function[^2]:
 
 ```rust
 fn read_username_from_file() -> Result<String, io::Error> {
@@ -155,7 +155,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 ```
 
 In this example, the `String` that contains the `username` will usually be returned, but if the call `File::open("hello.txt")` or `read_to_string(&mut username)` fails and returns an `io::Error` object, the `?` operator will return this object right away.
-An example of main function that calls `read_user_from_file` is
+An example of main function that calls `read_user_from_file` is:
 
 ```rust
 fn main() {
