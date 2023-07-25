@@ -33,7 +33,7 @@ The gist of the solution is simple. You spin up a local Redis instance on your C
 One problem was that, until January 31st, the latest Maven had a Java 7 requirement on the 3.8.x branch and Artifact Resolver 1.7+ required Java 8. [Now that 3.9.0 has been released](https://maven.apache.org/docs/3.9.0/release-notes.html), we can use the latest developments without having to rely on building a custom Maven binary or by using [these deprecated instructions](https://svn.apache.org/repos/asf/maven/website/components/resolver-archives/resolver-1.6.3/maven-resolver-synccontext-redisson/index.html). Now that it is all behind us, let's dive in!
 
 ### Preparing the Maven binary with Docker
-To use the Named Lock implementation with Redisson, you need to follow [these instructions](https://maven.apache.org/resolver/maven-resolver-named-locks-redisson/index.html). It is a bit cumbersome to setup but by using Docker, it's relatively easy using this Dockerfile :  
+To use the Named Lock implementation with Redisson, you need to follow [these instructions](https://maven.apache.org/resolver/maven-resolver-named-locks-redisson/index.html). ~~It is a bit cumbersome to setup but by using Docker, it's relatively easy using this Dockerfile~~ Update 2023-07-25: since [this pull request was merged](https://github.com/apache/maven-resolver/pull/296), the installation process is now much more simpler with the bundle so the `Dockerfile` has been updated to reflect that :  
 
 <script src="https://gist.github.com/jebeaudet/8b03d800033ef850f7fb8a3712ecda8e.js"></script>
 
