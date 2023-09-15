@@ -18,7 +18,7 @@ blog about a subject nobody wants me to talk about: patterns for project failure
 
 We all heard the conferences, we all read the articles: we know how to ensure a project’s success.
 After all, software engineering is a tried and true discipline as old as civil engineering. Julius
-Caesar successfully designed, wrote and deployed
+Caesar successfully designed, wrote, and deployed
 [his very own cipher](https://en.wikipedia.org/wiki/Caesar_cipher) back in the Roman empire, so we
 should have this figured out by now. Today, let’s take a break from articles teaching us what to do
 and let’s focus on something more entertaining: striving for failure.
@@ -137,14 +137,14 @@ the reasons are aplenty:
 * Time spent drafting software processes, especially with well-known languages such as
   [UML](https://www.uml.org/) or [BPMN](https://www.bpmn.org/), is time not spent coding. Besides,
   UX does not have access to those artifacts and just like UX,
-  the most cost-effective way to tackle core issues is once the code is being built.
+  the most cost-effective time to tackle core issues is while the code is being built.
 * Keeping an Architecture Decision Record (ADR) is time-consuming. The context in which the
   decisions are made never changes and will never invalidate your decisions in the future. You’ll
   save a lot of time revisiting decisions you should not question ever anyway. If you’re onboarding
   new employees that have a hard time getting up to speed as a result, it’s their fault they weren’t
   there when the decisions were made.
 
-In short: get to code (i.e. _real_ value) as fast as you can.
+In short: get to code (i.e., _real_ value) as fast as you can.
 
 ## Step 5: Always invent it here
 
@@ -171,12 +171,12 @@ neat thing about open source software is that you can make it your own. Key bene
 ## Step 6: Automate infrastructure work later
 
 Many tools exist to automate infrastructure work: [Terraform](https://www.terraform.io/),
-[Cloudformation](https://docs.aws.amazon.com/cloudformation/) or [Ansible](https://www.ansible.com/)
-to name a few. However, deploying those tools efficiently requires a lot of effort. If you don’t
-have time to automate your infrastructure now, you won’t have time later either. Just like UX,
-implementing infrastructure automation late in the game costs much less than doing it in advance.
-After all, what’s not to love about pages of AWS Web console screenshots,
-<abbr title="Bourne-again shell">Bash</abbr> scripts and good old elbow grease?
+[Cloudformation](https://docs.aws.amazon.com/cloudformation/), or
+[Ansible](https://www.ansible.com/) to name a few. However, deploying those tools efficiently
+requires a lot of effort. If you don’t have time to automate your infrastructure now, you won’t have
+time later either. Just like UX, implementing infrastructure automation late in the game costs much
+less than doing it in advance. After all, what’s not to love about pages of AWS Web console
+screenshots, <abbr title="Bourne-again shell">Bash</abbr> scripts and good old elbow grease?
 
 ## Step 7: There are no 9s after 100%
 
@@ -187,10 +187,10 @@ eternally so: functioning all the time, in tip-top shape.
 This is where one sneaky failure pattern rears its head: being unable to fail. You want your product
 to be perfect, and you know you can make it:
 
-* Simple <abbr title="Service-level objective">SLOs</abbr>: Always on, all the time. Pug love is
+* Simple <abbr title="Service-level objective">SLOs</abbr>: , always on, all the time. Pug love is
   eternal and cannot fail. [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem) be damned, your
   software will scale,
-  distribute and remain perfectly consistent forever.
+  distribute, and remain perfectly consistent forever.
 * Everybody on call, 24/7, at the same time. Don’t overthink the on-call schedules - your software
   is well built. If your people keep getting paged, it’s because your piece of software is broken,
   not because your alarms are defective or unreasonable.
@@ -204,10 +204,8 @@ to be perfect, and you know you can make it:
 
 If there is some time left, security measures may be put in place on the off chance that they’re not
 already there. Security is a lot like UX: it’s best done separately, fixed most efficiently once in
-production. Your well-spent budget allows for the following security considerations to be put in
-place:
-
-* 
+production. <del>Your well-spent budget allows for the following security considerations to be
+put in place...</del> Scratch that, you're out of time and budget. Assume security is good.
 
 
 ## Epilogue
@@ -219,7 +217,7 @@ testament to your everlasting creativity. Please excuse me, my pager is buzzing!
 ## Conclusion
 
 I would hope everybody recognizes themselves in one way or another while going through this article.
-Whether it is your past self you are seeing, the self you wish to improve or a self you wish not to
+Whether it is your past self you are seeing, the self you wish to improve, or a self you wish not to
 become, you now have all the tools in hand to fail in a consistent manner. You might be tempted to
 ask, is Coveo then impervious to project failure? The answer is no. And that’s part of what makes a
 good defense against it: we recognize failure as a possibility, not a fatality. We know that to err
