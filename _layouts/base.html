@@ -20,7 +20,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-72x72-precomposed.png" />
     <link rel="apple-touch-icon-precomposed" href="{{ site.github.url | replace: 'http://', '//' }}/images/apple-touch-icon-precomposed.png" />
     <link href="{{ site.github.url | replace: 'http://', '//' }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
-
+    {% include _content-security-policy.html %}
     <meta property="og:site_name" content="{{ site.title }}" />
     <meta name="twitter:card" content="summary" />
 
