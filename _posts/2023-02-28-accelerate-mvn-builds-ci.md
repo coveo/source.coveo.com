@@ -35,7 +35,7 @@ One problem was that, until January 31st, the latest Maven had a Java 7 requirem
 ### Preparing the Maven binary with Docker
 To use the Named Lock implementation with Redisson, you need to follow [these instructions](https://maven.apache.org/resolver/maven-resolver-named-locks-redisson/index.html). ~~It is a bit cumbersome to setup but by using Docker, it's relatively easy using this Dockerfile~~ Update 2023-07-25: since [this pull request was merged](https://github.com/apache/maven-resolver/pull/296), the installation process is now much more simpler with the bundle so the `Dockerfile` has been updated to reflect that :  
 
-<script src="https://gist.github.com/jebeaudet/8b03d800033ef850f7fb8a3712ecda8e.js"></script>
+<iframe src="https://gist.github.com/jebeaudet/8b03d800033ef850f7fb8a3712ecda8e.pibb" width="100%" height="500px" style="margin-bottom: 20px;"></iframe>
 
 Now, just build this image with `docker build .` and push it to your favorite repository.
 
