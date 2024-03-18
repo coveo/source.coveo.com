@@ -412,48 +412,13 @@ cite {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: canada-type-gibson, sans-serif;
-    font-weight: 500;
-    line-height: 1.1
+    line-height: 1.2;
 }
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
     font-weight: normal;
     line-height: 1;
     color: #999999
-}
-
-h1, h2, h3 {
-    margin-top: 20px;
-    margin-bottom: 10px
-}
-
-h4, h5, h6 {
-    margin-top: 10px;
-    margin-bottom: 10px
-}
-
-h1, .h1 {
-    font-size: 36px
-}
-
-h2, .h2 {
-    font-size: 30px
-}
-
-h3, .h3 {
-    font-size: 24px
-}
-
-h4, .h4 {
-    font-size: 18px
-}
-
-h5, .h5 {
-    font-size: 14px
-}
-
-h6, .h6 {
-    font-size: 12px
 }
 
 h1 small, .h1 small {
@@ -2081,14 +2046,100 @@ body {
     transition: 0.3s all ease;
     top: -200px
 }
-
-h1, h2, h3, h4, h5 {
-    color: #282829;
-    font-weight: 200;
+h1, h2, h3, h4, h5  {
+    color: #270054;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px; 
 }
 
-h1, h2 {
-    font-family: canada-type-gibson, sans-serif;
+h4, h5 {
+    color: #282829;
+}
+
+.h1,h1 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 56px;
+    line-height: 66px
+}
+
+@media only screen and (max-width: 1024px) {
+    .h1,h1 {
+        font-size:48px;
+        line-height: 56px
+    }
+}
+
+@media only screen and (max-width: 679px) {
+    .h1,h1 {
+        font-size:40px;
+        line-height: 46px
+    }
+}
+
+.h2,h2 {
+    margin-bottom: 24px;
+    font-size: 48px;
+    line-height: 56px
+}
+
+@media only screen and (max-width: 1024px) {
+    .h2,h2 {
+        margin-bottom:20px;
+        font-size: 40px;
+        line-height: 46px
+    }
+}
+
+@media only screen and (max-width: 679px) {
+    .h2,h2 {
+        margin-bottom:8px;
+        font-size: 32px;
+        line-height: 40px
+    }
+}
+
+.h3,h3 {
+    margin-bottom: 10px;
+    font-size: 32px;
+    line-height: 40px
+}
+
+@media only screen and (max-width: 1024px) {
+    .h3,h3 {
+        font-size:28px;
+        line-height: 34px
+    }
+}
+
+.h4,h4 {
+    font-size: 28px;
+    line-height: 40px
+}
+
+@media only screen and (max-width: 1024px) {
+    .h4,h4 {
+        font-size:24px;
+        line-height: 32px
+    }
+}
+
+.h5,h5 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    line-height: 32px
+}
+
+@media only screen and (max-width: 1024px) {
+    .h5,h5 {
+        font-size:18px;
+        line-height: 28px
+    }
+}
+
+.h6,h6 {
+    font-size: 18px
 }
 
 a {
@@ -2109,6 +2160,12 @@ h2 a {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.container.posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
 }
 
 .illustration .container{
@@ -2144,6 +2201,10 @@ h2 a {
     position: relative
 }
 
+.container.posts .index {
+    flex: 1 1 calc(50% - 32px);
+}
+
 .index,
 .container .single {
     margin: 0 auto 30px;
@@ -2152,11 +2213,16 @@ h2 a {
     max-width: 850px;
 
     background:#fff;
-    border-radius: 8px;
-    box-shadow: 0px 8px 24px rgba(229, 232, 232, 0.75);
+    border-radius: 100px 8px;
+    filter: drop-shadow(0px 2px 8px rgba(229, 232, 232, 0.75));
 
-    transition:0.2s ease all;
-    
+    transition:0.2s ease all; 
+}
+
+.container .single {
+    filter:none;
+    border-radius: none;
+    background: none;
 }
 
 .index .readmore {
@@ -2168,7 +2234,28 @@ h2 a {
 }
 
 .index .title {
-    margin: 0em 0 0.6em
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight:400;
+}
+
+.index .post_content{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: normal;
+}
+.index .post_content p {
+    margin: 0;
+}
+
+.index .post_content h1,
+.index .post_content h2 {
+    display: none;
 }
 
 .index .avatar {
@@ -2445,7 +2532,7 @@ article .social > div {
 }
 
 .container .single .title{
-    color:#282829;
+    color:#270054;
     margin: 0 0 10px 0;
 }
 .container.single .meta{
@@ -2539,7 +2626,7 @@ article blockquote p {
     line-height: 1.5;
     font-weight: 400;
 }
-
+/*
 article h1 {
     font-weight: 400;
     font-size: 2.1em;
@@ -2562,7 +2649,7 @@ article h4 {
     font-weight: bold;
     color: #373737;
 }
-
+*/
 article hr {
     margin: 3em 0
 }
@@ -2588,14 +2675,14 @@ article img {
     max-width: 100%;
     margin: 1em 0
 }
-
+/*
 article .title {
     margin: 0.2em 0;
     
     font-weight: 200;
     font-size: 32px;
 }
-
+*/
 article .title a {
     border: 0
 }
@@ -3029,7 +3116,7 @@ article .full.zoomable img.zoom {
     article blockquote p {
         font-size: 1em
     }
-
+    /*
     article h1 {
         font-size: 1.8em
     }
@@ -3037,7 +3124,7 @@ article .full.zoomable img.zoom {
     article h2 {
         font-size: 1.4em
     }
-
+    */
     article p {
         font-size: 0.9em
     }
