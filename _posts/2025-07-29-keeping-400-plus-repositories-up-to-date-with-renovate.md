@@ -7,7 +7,7 @@ tags: [GitHub, Renovate, Dependabot, Dependency Updates, Security, Automerge]
 
 author:
   name: Boris Bera
-  bio: Senior II Software Developer
+  bio: Senior II Software Developer, Platform Engineering
   image: bbera.jpg
 ---
 
