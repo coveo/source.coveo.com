@@ -3,7 +3,7 @@ layout: post
 
 title: "Keeping 400+ Repositories up-to-date with Renovate"
 
-tags: [GitHub, Renovate, Dependabot, Dependency Updates, Security, Automerge]
+tags: [GitHub, Renovate, Dependabot, Dependency Updates, Security, Automerge, Platform Engineering]
 
 author:
   name: Boris Bera
@@ -125,5 +125,9 @@ This works well for direct dependencies (the packages your project explicitly de
 To deal with this limitation, we make use of [Dependabot](https://github.com/dependabot). That's GitHub's dependency update bot. Unlike Renovate, it can operate on transitive dependencies. Dependabot has two modes of operation. It can be configured to update all dependencies or it can be configured only for security updates. We chose the latter option. We believe that Renovate is a better option for general dependency updates since it is more flexible and supports more package managers and programming languages. We only use Dependabot for security updates.
 
 When there's a security update available, developers might see a pull request from Renovate, Dependabot, or both. This is a bit of a quirky user experience but it still works well for us. After all, when it comes to security updates, what matters most is that they get merged quickly.
+
+## Wrapping Up
+
+We've had an interesting journey with Renovate and I'm really proud of the end result. I believe that we've created a great product for our developers. Today, Renovate has faded into the background. It's something that we can take for granted. Developers deal with a few automated pull requests every week and get on with their work. It's there, it does what it needs to, and we don't think about it. The benefits speak for themselves: our dependencies are kept up-to-date and security updates get applied quickly.
 
 *If you're passionate about software engineering, and you would like to work with other developers who are passionate about their work, make sure to check out our [careers](https://www.coveo.com/en/company/careers/open-positions?utm_source=tech-blog&utm_medium=blog-post&utm_campaign=organic#t=career-search&numberOfResults=9) page and apply to join the team!*
