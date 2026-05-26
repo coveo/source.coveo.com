@@ -20,7 +20,7 @@ inc:
   # Company information
   company:      Coveo
   url:          https://www.coveo.com/
-  twitter:      coveo
+  linkedin:     https://www.linkedin.com/company/coveo/
 
   # Comments
   disqus:
@@ -28,7 +28,7 @@ inc:
 
   # Sharing settings
   sharing:
-    twitter:    true
+    twitter:    false
     facebook:   false
     gplus:      false
     hn:         false
