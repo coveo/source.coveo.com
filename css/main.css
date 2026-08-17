@@ -2718,13 +2718,12 @@ article .full.zoomable img.zoom {
     width: 14px;
     height: 14px
 }
-
-/*.icon-rss.black {
-    background-position: 1px -11px
-}
-
-.icon-twitter.black {
-    background-position: 1px -16px
+.icon-linkedin {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQ0lEQVR4nO3ZPUoDURSG4SOKnUbQVrDQHbgHBTNoKQp2lm7BRgIuxDXYGaMuxE7xh4BOKptXrkw15GbumMLvxvPCdGfu8DB/TGLmed6vAvaBATDi7xsBt0DRFnGJbr02Z0K9bgokXE7q9VMgJfp9pkCyyBwyY5Bn4BBYrbZj4JUMITsqj2ubErI8Zr5DhpBizHyXDCFvwAmwVm3hHnkhQ4hM5pBZgljCPgkzD9W7aB1YBJaAbeAceM8BEl6cuw3HXgGu1SGbjQe3n7kF4F4W0iZgA/iShwDzCTNXshDgDHiqRh+B0wmzR5IQ4KDN9zewpQq5iyw7iMx3VCHDyLLDyPycKmSqdes5JOQQc0g0h4QcYg6J5hC17D9BSvT7SIGEf0/Vu0mBFOi31wipMD10u0hC1H5l74vcM2W4nJLPhOd5Vu8bSoiEJ4CHE4IAAAAASUVORK5CYII=);
+    background-size: 36px;
+    background-position: 0 0;
+    width: 36px;
+    height: 36px;
 }
 
 .icon-facebook.black {
